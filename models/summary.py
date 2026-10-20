@@ -331,7 +331,32 @@ def ideas(key, sym, group, T, F, fund_score, fund_ctx):
     return out
 
 
-def outlook(name, fs, ts, fl, ideas_, T=None, F=None):
+def catalysts(sym):
+    cal = J("calendar/calendar.json")
+    if not cal:
+        return None
+    today = pd.Timestamp.now().strftime("%Y-%m-%d")
+    ev = [e for e in cal["events"] if e["date"] >= today and e["importance"] >= 3 and (sym in e["markets"] or "ALL" in e["markets"])]
+    ev += [e for e in cal["events"] if e["date"] >= today and e["importance"] == 2 and sym in e["markets"] and e["cat"] in ("CME contract", "USDA")]
+    ev = sorted(ev, key=lambda e: e["date"])[:3]
+    return "; ".join(f"{e['event'].replace('NASS ', '')} {pd.Timestamp(e['date']).strftime('%b %-d')}" for e in ev) if ev else None
+
+
+def weather_note(sym):
+    wx = J("weather/weather.json")
+    if not wx:
+        return None
+    rs = [r for r in wx["regions"] if sym in r["markets"] and r["sensitivity"] >= 1 and (r["risk"] >= 1 or r["next16_flag"] in ("dry", "wet"))]
+    if not rs:
+        return None
+    rs = sorted(rs, key=lambda r: -r["risk"])[:3]
+    def one(r):
+        st = ", ".join(f"{x['crop']} {x['stage']}" for x in r["stages"])
+        return f"{r['region']} ({st}): next 16 days {r['next16_mm']} mm vs {r['next16_normal']} normal ({r['next16_flag']}), last 30 days {r['past30_flag']}"
+    return "Weather watch: " + "; ".join(one(r) for r in rs) + "."
+
+
+def outlook(name, fs, ts, fl, ideas_, T=None, F=None, sym=None):
     w = {"f": 0.4, "t": 0.3, "c": 0.3}
     comps = [(fs, w["f"]), (ts, w["t"]), (fl, w["c"])]
     tot = sum(v * wt for v, wt in comps if v is not None) / max(sum(wt for v, wt in comps if v is not None), 1e-9)
@@ -353,6 +378,9 @@ def outlook(name, fs, ts, fl, ideas_, T=None, F=None):
         watch.append(f"the {a['support'][0]:.{dp}f}–{a['resistance'][0]:.{dp}f} band is the immediate range")
     if watch:
         txt += "Levels to watch: " + "; ".join(watch) + ". "
+    ct = catalysts(sym) if sym else None
+    if ct:
+        txt += f"Next catalysts: {ct}. "
     if ideas_:
         txt += f"{len(ideas_)} idea{'s' if len(ideas_) > 1 else ''} below, each labelled with how well its method has tested."
     return tot, conv, txt
@@ -386,7 +414,10 @@ if __name__ == "__main__":
             else:
                 fs, fund_txt, ctx = dairy_fund(sym)
             ids = ideas(key, sym, group, T, F, fs, ctx)
-            tot, conv, otxt = outlook(name, fs, ts, fl, ids, T, F)
+            wn = weather_note(sym)
+            if wn:
+                fund_txt = fund_txt + " " + wn
+            tot, conv, otxt = outlook(name, fs, ts, fl, ids, T, F, sym)
             a = T.get("a") or {}
             mm = F.get("mm") or {}
             res.append({"key": key, "sym": sym, "group": group, "name": name, "score": tot, "view": word(tot), "conviction": conv,

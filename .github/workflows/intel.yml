@@ -27,6 +27,7 @@ jobs:
           python pipelines/events_calendar.py || true
           python pipelines/south_america.py || true
           python models/south_america.py || true
+          python -W ignore models/summary.py || true
         env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
       - name: commit
         run: |

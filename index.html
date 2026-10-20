@@ -14,13 +14,15 @@
   <div class="meta" id="meta">CME dairy, livestock, grains &amp; oilseeds · USDA / CFTC / CME data</div>
 </header>
 <nav class="comm">
-  <button class="on" data-c="dairy">Dairy</button>
+  <button class="on" data-c="summary">Summary</button>
+  <button data-c="dairy">Dairy</button>
   <button data-c="grains">Grains &amp; oilseeds</button>
   <button data-c="hogs">Lean hogs</button>
   <button data-c="cattle">Live &amp; feeder cattle</button>
 </nav>
 
-<section id="dairy">
+<section id="summary"></section>
+<section id="dairy" style="display:none">
 <nav class="tabs">
   <button data-tab="d-primer" class="on">1 · Primer</button>
   <button data-tab="d-sd">2 · Supply &amp; demand</button>
@@ -216,6 +218,7 @@
 <script src="assets/lib.js"></script>
 <script src="assets/tech.js"></script>
 <script src="assets/cotdesk.js"></script>
+<script src="assets/summary.js"></script>
 <script src="assets/dairy.js"></script>
 <script src="assets/grains.js"></script>
 <script src="assets/hogs.js"></script>
@@ -223,9 +226,11 @@
 <script>
 $$('nav.comm button[data-c]').forEach(b => b.onclick = () => {
   $$('nav.comm button').forEach(x => x.classList.toggle('on', x === b));
-  ['dairy', 'grains', 'hogs', 'cattle'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
-  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else history.replaceState(null, '', '#d-primer');
+  ['summary', 'dairy', 'grains', 'hogs', 'cattle'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
+  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
 });
+if (location.hash.startsWith('#d-')) $('nav.comm button[data-c="dairy"]').click();
+else if (!/^#(g|h-|c-)/.test(location.hash)) $('nav.comm button[data-c="summary"]').click();
 if (location.hash.startsWith('#g')) $('nav.comm button[data-c="grains"]').click();
 if (location.hash.startsWith('#h-')) $('nav.comm button[data-c="hogs"]').click();
 if (location.hash.startsWith('#c-')) $('nav.comm button[data-c="cattle"]').click();

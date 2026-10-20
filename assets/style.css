@@ -88,3 +88,15 @@ footer{max-width:1280px;margin:0 auto;padding:16px;font-size:11px;color:var(--mu
 .cotdesk .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .cotdesk .cd-chip{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;font-weight:600;background:#eef1f4;color:#888}
 .cotdesk .cd-up{background:#e3f6ea;color:#14713e}.cotdesk .cd-dn{background:#fde8e6;color:#a8322a}
+
+/* summary page */
+.sv-badge{display:inline-block;border:1.5px solid;border-radius:999px;padding:1px 9px;font-size:12px;font-weight:600;white-space:nowrap}
+.sv-bar{display:inline-block;position:relative;width:70px;height:8px;background:#eee;border-radius:4px;vertical-align:middle;margin-left:4px}
+.sv-bar span{position:absolute;top:0;height:8px;border-radius:4px}
+.sv-bar::after{content:'';position:absolute;left:50%;top:-2px;height:12px;border-left:1px solid #999}
+.sv-tbl tr.sv-sec td{background:#f0f6f1;font-weight:600;color:var(--acc)}
+.sv-h{font-size:15px;margin:18px 0 8px;color:var(--acc)}
+.sv-card{margin-top:12px}.sv-card p{font-size:13.5px;line-height:1.55}
+.sv-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:6px}.sv-head h2{margin:0}
+.sv-link{margin-left:auto;font-size:12px;color:var(--acc)}
+td.sv-w{white-space:normal;min-width:220px;max-width:360px;font-size:12px}

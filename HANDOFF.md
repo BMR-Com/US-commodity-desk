@@ -90,3 +90,9 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
 - Positioning by all five trader groups (percentiles 1/3/5y/all, COT index, z, streak, traders, top-4/8 concentration, driver), $ exposure and flows.
 - Money under water: LIFO cost layers of MM gross longs/shorts on nominal front-month closes over 2 years; % under water, open P&L, half-under-water level, ±15% grid.
 - CTA: trend score (sign of 20/60/120/250-day returns, roll-adjusted), MM-net-vs-score fit (R² 0.45–0.74 grains/meats, weak in dairy: flagged), 2-week flow sensitivity (corr 0.5–0.67), flip levels per lookback with flow if flipped, ±10% scenarios, breakout/MA triggers on the tradable contract, next trigger up/down.
+
+## Running without Claude + summary page (2026-10-20)
+- Everything except CME and FAS flash runs in GitHub Actions. Probe (2026-10-20): cmegroup.com returns 403 "IP blocked … web scraping" to GitHub runners (requests and headless Chromium); fas.usda.gov returns Akamai Access Denied.
+- `pipelines/tv_settle.py`: TradingView settlements written to data/cme/<date>/fut_settlements.csv with a SOURCE marker for dates the CME download is missing (weekdays, settled bars only); cme/ingest.py removes the marker when real data arrives. flows.py OI/options use real CME days only.
+- `local/mac_collector.py` + `local/install_mac.sh`: launchd job on Ma's Mac (weekdays 9:35 pm), Playwright with installed Chrome, runs cme/collect.js and cme/collect_flash.js, ingests, pushes. Replaces the Claude scheduled task once installed (the Claude task can then be disabled).
+- `models/summary.py` → data/summary/summary.json; `assets/summary.js` is the landing page (nav "Summary"): per market fundamentals / technicals / flows paragraphs, overall view (40/30/30 weights, conviction from agreement), levels to watch, trade ideas by method with how each method has tested.

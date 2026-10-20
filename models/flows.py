@@ -81,8 +81,8 @@ def curves(syms):
 
 
 def oi_changes(syms):
-    """Futures OI by month for the latest day with day-over-day change; total OI history."""
-    days = cme_days()
+    """Futures OI by month for the latest day with day-over-day change; total OI history (real CME days only)."""
+    days = [d for d in cme_days() if (ROOT / "data" / "cme" / d / "fut_volume_oi.csv").exists()]
     res = {}
     for sym in syms:
         tot = []
@@ -102,7 +102,7 @@ def oi_changes(syms):
 
 def option_strikes(syms, months=3):
     """Options OI by strike, calls vs puts, for the nearest listed months (latest CME day)."""
-    days = cme_days()
+    days = [d for d in cme_days() if (ROOT / "data" / "cme" / d / "opt_volume_oi.csv").exists()]
     if not days:
         return {}
     o = pd.read_csv(ROOT / "data" / "cme" / days[-1] / "opt_volume_oi.csv")

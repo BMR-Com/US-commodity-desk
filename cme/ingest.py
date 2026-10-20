@@ -19,6 +19,8 @@ ROOT = Path(__file__).resolve().parent.parent / "data" / "cme"
 
 def load_payload(path):
     raw = Path(path).read_text().strip()
+    if raw.startswith("{"):  # plain JSON object straight from the collector (Mac script)
+        return json.loads(raw)
     if raw.startswith("["):  # tool-result wrapper: [{"type":"text","text":...}]
         raw = json.loads(raw)[0]["text"]
     m = re.search(r"[A-Za-z0-9+/=]{1000,}", raw)
@@ -49,6 +51,7 @@ def main(path):
                 w.writerow(header)
                 w.writerows(rows)
             written.append(f"{out.relative_to(ROOT.parent.parent)} ({len(rows)} rows)")
+            (ROOT / td / "SOURCE").unlink(missing_ok=True)  # real CME data replaces a TradingView fallback
     if p.get("indexes"):
         new = list(csv.reader(io.StringIO(p["indexes"])))[1:]
         path = ROOT / "indexes.csv"

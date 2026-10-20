@@ -1,14 +1,14 @@
 // Live & feeder cattle section.
 const Cattle = (() => {
   const L = 'data/livestock/derived/';
-  let built = false, tab = 'c-primer', C, F, BIAS;
+  let built = false, tab = 'c-primer', C, F, BIAS, CS;
   function shell() {
     $('#cattle').innerHTML = `<nav class="tabs" id="cTabs"><button data-t="c-primer" class="on">1 · Primer</button><button data-t="c-sd">2 · Supply &amp; demand</button>
       <button data-t="c-flows">3 · Futures, options &amp; COT</button><button data-t="c-outlook">4 · Outlook</button></nav><main><div id="cBody"></div></main>`;
     $$('#cTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#cTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
   async function show() {
-    if (!built) { shell(); [C, F, BIAS] = await Promise.all([getJSON(L + 'cattle.json'), getJSON(L + 'flows.json').catch(() => null), getJSON('data/derived/convergence_bias.json').catch(() => null)]); built = true; }
+    if (!built) { shell(); [C, F, BIAS, CS] = await Promise.all([getJSON(L + 'cattle.json'), getJSON(L + 'flows.json').catch(() => null), getJSON('data/derived/convergence_bias.json').catch(() => null), getJSON(L + 'cattle_sd.json').catch(() => null)]); built = true; }
     const h = location.hash.slice(1); if (/^c-/.test(h)) { tab = h; $$('#cTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab)); }
     render();
   }
@@ -86,7 +86,7 @@ const Cattle = (() => {
     body(`<div class="grid g2"><div class="card"><h2>Cattle desk readout</h2><ul class="read">${Lr.map(v => `<li>${v}</li>`).join('')}</ul><p class="note">What the numbers say, not a trade recommendation.</p></div>
       <div class="card"><h2>What has been tested</h2><div class="tbl"><table><tr><th>Contract</th><th>From 20 bdays</th><th>From 60</th><th>From 120</th></tr>
         ${[['Live cattle', b], ['Feeder cattle', g]].map(([n, v]) => v && v.h20 ? `<tr><td>${n} (${v.n_contracts})</td>${['h20', 'h60', 'h120'].map(h => `<td>${sgn(v[h].mean_pct, 2, '%')} · ${Math.round(100 * v[h].up_share)}% up</td>`).join('')}</tr>` : '').join('')}</table></div>
-        <p class="note">Futures vs their own final price for every expired contract since 2010. The live cattle premium held in both halves of the sample (quarter-clustered t 2.3–3.2), but it coincides with a long cattle-cycle bull market, so treat it as a risk premium that can vanish in a herd-liquidation bear phase. Fundamental cattle models (placements → marketings → cash) are the next build.</p></div></div>`);
+        <p class="note">Futures vs their own final price for every expired contract since 2010. The live cattle premium held in both halves of the sample (quarter-clustered t 2.3–3.2), but it coincides with a long cattle-cycle bull market, so treat it as a risk premium that can vanish in a herd-liquidation bear phase. </p>${CS ? `<h3>Placements → marketings pipeline</h3><p>Forecasting monthly fed-cattle marketings from placements by weight with fixed days on feed: mean abs error ${CS.test.mape_pipeline}% vs ${CS.test.mape_naive}% for the trailing marketings trend; the pipeline wins only ${Math.round(100 * CS.test.pipeline_beats_naive)}% of months (n=${CS.test.n}). Days on feed vary too much with feed costs, heifer share and weather for a fixed-lag pipeline; it is shown for context only. Implied y/y marketings from placements already reported: ${CS.forward.map(f => `${f.month} ${sgn(f.yoy_pct, 1, '%')}`).join(', ')}.</p>` : ''}</div></div>`);
   }
   return { show };
 })();

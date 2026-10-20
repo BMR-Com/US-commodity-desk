@@ -18,7 +18,7 @@ CODES = "FGHJKMNQUVXZ"
 MNAME = dict(zip(CODES, ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]))
 UNITS = {"ZC": ("¢/bu", 2), "ZS": ("¢/bu", 2), "ZW": ("¢/bu", 2), "KE": ("¢/bu", 2), "ZM": ("$/st", 1), "ZL": ("¢/lb", 2),
          "HE": ("¢/lb", 3), "LE": ("¢/lb", 3), "GF": ("¢/lb", 3), "DC": ("$/cwt", 2), "GDK": ("$/cwt", 2),
-         "CSC": ("$/lb", 3), "CB": ("$/lb", 4), "GNF": ("$/lb", 4), "DY": ("$/lb", 4)}
+         "CSC": ("$/lb", 3), "CB": ("¢/lb", 3), "GNF": ("¢/lb", 3), "DY": ("¢/lb", 3)}
 NAMES = {"ZC": "Corn", "ZS": "Soybeans", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "ZM": "Soybean meal", "ZL": "Soybean oil",
          "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle", "DC": "Class III milk", "GDK": "Class IV milk",
          "CSC": "Cheese", "CB": "Butter", "GNF": "Nonfat dry milk", "DY": "Dry whey"}

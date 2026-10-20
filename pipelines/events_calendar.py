@@ -183,8 +183,8 @@ def main():
     hol = [{"date": h, "time": "", "event": "US exchange holiday (CME ags closed)", "cat": "Holiday", "markets": ["ALL"], "importance": 2} for h in HOLIDAYS if str(start.date()) <= h <= str(end.date())]
     df = pd.concat([df, pd.DataFrame(hol)]).sort_values(["date", "importance"], ascending=[True, False])
     df["estimated"] = df.get("estimated", False).fillna(False).astype(bool)
-    rows = df.where(pd.notna(df), None).to_dict("records")
-    (OUT / "calendar.json").write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "events": rows}, indent=0))
+    rows = [{k: (None if (isinstance(v, float) and v != v) else v) for k, v in r.items()} for r in df.astype(object).to_dict("records")]
+    (OUT / "calendar.json").write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "events": rows}, indent=0, allow_nan=False))
     print(len(rows), "events;", df.cat.value_counts().to_dict())
 
 

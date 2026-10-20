@@ -73,7 +73,7 @@ const GC = {
 };
 
 const Grains = (() => {
-  let built = false, com = 'corn', tab = 'g-primer', W, F, COND, EXP, TESTS, SAL, FL;
+  let built = false, com = 'corn', tab = 'g-primer', W, F, COND, EXP, TESTS, SAL, FL, BAS;
   const el = s => document.querySelector('#grains ' + s);
   function shell() {
     $('#grains').innerHTML = `
@@ -86,8 +86,8 @@ const Grains = (() => {
     $$('#gTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#gTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
   async function load() {
-    [W, F, COND, EXP, TESTS, SAL, FL] = await Promise.all([getJSON(G + 'wasde.json'), getJSON(G + 'flows.json').catch(() => null),
-      getJSON(G + 'condition.json').catch(() => null), getJSON(G + 'exports.json').catch(() => null), getJSON(G + 'tests.json').catch(() => null), getJSON(G + 'sales.json').catch(() => null), getJSON(G + 'flash.json').catch(() => null)]);
+    [W, F, COND, EXP, TESTS, SAL, FL, BAS] = await Promise.all([getJSON(G + 'wasde.json'), getJSON(G + 'flows.json').catch(() => null),
+      getJSON(G + 'condition.json').catch(() => null), getJSON(G + 'exports.json').catch(() => null), getJSON(G + 'tests.json').catch(() => null), getJSON(G + 'sales.json').catch(() => null), getJSON(G + 'flash.json').catch(() => null), getJSON(G + 'basis.json').catch(() => null)]);
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
@@ -201,6 +201,7 @@ const Grains = (() => {
         <div class="card" id="gSalesDet"><h2>Weekly net sales and buyers</h2><p class="note">Loading…</p></div>
       </div>
       <div class="card" style="margin-top:12px" id="gFlash"></div>
+      <div class="card" style="margin-top:12px" id="gBasis"></div>
       <div class="card" style="margin-top:12px"><h2>Stocks-to-use vs season-average farm price</h2><div class="chart"><canvas id="cGSU"></canvas></div><p class="note" id="gSUnote"></p></div>`;
     const drawRev = () => { const k = $('#gRevItem').value, x = u.b[u.cur].items[k];
       chart('cGRev', { type: 'line', data: { labels: x.history.map(h => h[0].replace(/(\w{3})\w* (\d{4})/, '$1 $2')), datasets: [{ label: `${k} ${u.cur}`, data: x.history.map(h => h[1]), borderColor: PAL[0], stepped: true, pointRadius: 3 }] } });
@@ -219,7 +220,22 @@ const Grains = (() => {
         options: { interaction: { mode: 'nearest', intersect: true }, plugins: { tooltip: { callbacks: { label: q => `${q.raw.m}: ${q.raw.x.toFixed(1)}%, $${q.raw.y}` } } },
           scales: { x: { title: { display: true, text: 'ending stocks / total use %' } }, y: { title: { display: true, text: 'season-average farm price' } } } } });
       $('#gSUnote').textContent = `Log-log fit over WASDE final estimates: elasticity ${s.fit.elasticity}, R² ${s.fit.r2}. ${s.fit.r2 < 0.3 ? 'Weak: US stocks alone do not set this price (world balances, crush economics or policy dominate).' : 'US stocks-to-use explains a large share of price differences across years.'}`; }
-    condCard(c); expCard(c); salesCard(c); flashCard(c);
+    condCard(c); expCard(c); salesCard(c); flashCard(c); basisCard(c);
+  }
+  function basisCard(c) {
+    const box = el('#gBasis'), key = c.sym === 'KE' ? 'kc' : c.wasde, d = BAS?.[key];
+    if (!d) { box.innerHTML = c.wasde === 'meal' || c.wasde === 'oil' ? '' : '<h2>Cash basis</h2><p class="note">USDA AMS cash bids not loaded yet.</p>'; box.style.display = d || !(c.wasde === 'meal' || c.wasde === 'oil') ? '' : 'none'; return; }
+    box.style.display = '';
+    const m = d[0], yrs = Object.keys(m.by_year).sort();
+    box.innerHTML = `<h2>Cash basis (USDA AMS daily bids, ¢/bu vs futures)</h2><div class="grid g2">
+      <div><div class="chart"><canvas id="cBasis"></canvas></div><p class="note">${m.label}, spot bids, by day of year.</p></div>
+      <div><div class="tbl"><table><tr><th>Market</th><th>Basis</th><th>vs</th><th>5-day chg</th><th>Usual now</th></tr>
+        ${d.map(x => `<tr><td>${x.label}</td><td>${sgn(x.basis, 0)}</td><td>${x.fm ?? ''}</td><td>${sgn(x.chg_5d, 0)}</td><td>${sgn(x.usual, 0)}</td></tr>`).join('')}</table></div>
+        <p class="note">Usual = same two weeks of earlier years (MARS history starts 2020). Basis below usual = cash weak against futures: ample nearby supply or slow demand.</p>
+        ${d.filter(x => x.test).map(x => { const t = x.test; return `<p class="note"><b>${x.label}</b> convergence test (${t.since}+, ${t.n_nonoverlap} non-overlapping 20-day windows): basis vs its norm → nearby-minus-next spread change corr ${fmt(t.corr_spread_nonoverlap, 2)}, → nearby futures move corr ${fmt(t.corr_ret_nonoverlap, 2)} (strongest fifth ${sgn(t.strong_ret, 1, '%')}, weakest ${sgn(t.weak_ret, 1, '%')}; ${t.years_pos}/${t.years} years same sign).</p>`; }).join('')}
+        <p class="note">Six years of daily bids is short: treat these tests as indicative only.</p></div></div>`;
+    chart('cBasis', { type: 'line', data: { datasets: yrs.slice(-6).map((y, i, a) => ({ label: y, data: m.by_year[y].map(p => ({ x: p[0], y: p[1] })), borderColor: i === a.length - 1 ? '#c0392b' : PAL[(i + 2) % PAL.length], borderWidth: i === a.length - 1 ? 2.4 : 1.1, pointRadius: 0 })) },
+      options: { scales: { x: { type: 'linear', min: 1, max: 366, title: { display: true, text: 'day of year' } }, y: { title: { display: true, text: '¢/bu' } } } } });
   }
   function flashCard(c) {
     const box = el('#gFlash'), d = FL?.[c.wasde];
@@ -362,6 +378,7 @@ const Grains = (() => {
     if (rv.length) L.push(`<b>This month's revisions:</b> ${rv.map(([k, x]) => `${k.replace('_', ' ')} ${sgn(x.change, k === 'yield' ? 1 : 0)}`).join(', ')}.`);
     const d = COND?.[c.wasde]?.model; if (d) L.push(`<b>Condition yield model:</b> ${fmt(d.estimate, 1)} bu/ac vs USDA ${fmt(d.usda, 1)} (${sgn(d.estimate - d.usda, 1)}).`);
     const sa = SAL?.[c.wasde]; if (sa) L.push(`<b>Export sales:</b> commitments ${fmt(sa.pct_of_usda, 1)}% of USDA vs ${fmt(sa.avg_pct, 1)}% usually by week ${sa.week}; implied ${fmt(sa.implied, 0)} vs USDA ${fmt(sa.usda, 0)} (${sgn(sa.implied - sa.usda, 0)}). Net sales ${fmt(sa.net_4wk, 1)}/wk (4-wk avg) vs ${fmt(sa.need_weekly, 1)} needed.${sa.test ? ` This gap has called the direction of USDA's next export revision ${fmt(100 * sa.test.revision_hit, 0)}% of the time: the best-tested signal on the grains desk.` : ''}`);
+    const bs = BAS?.[c.sym === 'KE' ? 'kc' : c.wasde]; if (bs) L.push(`<b>Cash basis:</b> ${bs.map(x => `${x.label} ${sgn(x.basis, 0)} vs usual ${sgn(x.usual, 0)}`).join('; ')} (¢/bu). ${bs.filter(x => x.usual != null).every(x => x.basis < x.usual) ? 'Cash is weak against futures everywhere: nearby supply is ample.' : bs.filter(x => x.usual != null).every(x => x.basis > x.usual) ? 'Cash is firm against futures: nearby demand is pulling grain.' : 'Mixed signals across locations.'}`);
     const fl = FL?.[c.wasde]; if (fl?.since && fl.since.n) L.push(`<b>Flash sales since the last weekly report:</b> ${fmt(fl.since.kt, 0)} kt in ${fl.since.n} announcement${fl.since.n === 1 ? '' : 's'}${fl.since.in_unit != null ? ` (${fmt(fl.since.in_unit, 1)} mil bu)` : ''}, to be added to commitments in the next report.`);
     const e = EXP?.[c.wasde]; if (e) L.push(`<b>Export pace:</b> week ${e.week}, ${fmt(e.pct_of_usda, 1)}% of USDA shipped vs ${fmt(e.avg_pct, 1)}% normally; inspections imply ${fmt(e.implied, 0)} vs USDA ${fmt(e.usda, 0)} (${sgn(e.implied - e.usda, 0)})${e.test ? `, typical miss at this stage ±${fmt(e.test.mae_pct, 0)}%. Pace ahead/behind USDA has called the direction of USDA's next export revision ${fmt(100 * e.test.revision_hit, 0)}% of the time` : ''}.`);
     const x = F?.cot?.[c.sym]?.summary; if (x) L.push(`<b>Positioning (secondary):</b> managed money ${x.mm_net >= 0 ? 'net long' : 'net short'} ${fmt(Math.abs(x.mm_net), 0)} (${fmt(x.mm_net_percentile_3y, 0)} pctl of 3y).`);

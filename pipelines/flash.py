@@ -41,7 +41,7 @@ def parse(rec):
         mm = MYRE.search(rest)
         my = f"{mm.group(1)}/{mm.group(2)[-2:]}" if mm and mm.start() < 40 else default_my
         out.append({"date": rec["t"][:10], "time": rec["t"][11:16], "commodity": com_key(m.group(2)), "qty_mt": qty,
-                    "destination": m.group(3).strip().rstrip(",").replace("unknown destinations", "Unknown").title(),
+                    "destination": re.sub(r"\s*[-–]+\s*[\d,].*$", "", m.group(3).strip()).rstrip(",").replace("unknown destinations", "Unknown").title(),
                     "my": my, "href": rec["href"]})
     return out
 

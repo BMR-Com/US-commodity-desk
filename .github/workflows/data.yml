@@ -35,7 +35,7 @@ jobs:
       - run: python pipelines/ams_mars.py
         continue-on-error: true
         env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}
-      - run: python models/grains_wasde.py && python -W ignore models/grains_exports.py && python -W ignore models/grains_sales.py && python -W ignore models/grains_flash.py && python models/grains_condition.py && python -W ignore models/grains_tests.py
+      - run: python models/grains_wasde.py && python -W ignore models/grains_exports.py && python -W ignore models/grains_sales.py && python -W ignore models/grains_flash.py && python -W ignore models/grains_basis.py && python models/grains_condition.py && python -W ignore models/grains_tests.py
         continue-on-error: true
       - run: python models/flows.py
         continue-on-error: true

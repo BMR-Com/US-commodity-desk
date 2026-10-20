@@ -78,7 +78,11 @@ const BAL = { 'milk:fat': 'Milk, milk-fat basis', 'milk:skim': 'Milk, skim-solid
 const bal = key => { const [g, k] = key.split(':'); return SD[g][k]; };
 function initSD() {
   const k = [['milk:fat', 'Milk (fat basis)'], ['products:cheese_american', 'American cheese'], ['products:butter', 'Butter'], ['products:ndm_smp', 'NDM / SMP'], ['products:dry_whey', 'Dry whey']];
-  $('#sdKpis').innerHTML = k.map(([key, nm]) => { const m = bal(key).metrics, st = m.ending_stocks || {};
+  const nm = SD.nass_milk;
+  const nassCard = nm ? (() => { const i = nm.month.length - 1; return `<div class="card kpi"><div class="lbl">NASS milk production · ${nm.month[i]}</div>
+      <div class="val">${sgn(nm.yoy_pct[i], 1, '%')}</div><div class="sub">${fmt(nm.production_bn_lb[i], 1)} bn lb, released ${nm.released[i]}</div>
+      <div class="sub">cows ${fmt(nm.cows_mil[i], 2)}m (${sgn(nm.cows_yoy_k[i], 0)}k y/y) · ${fmt(nm.per_cow_lb[i], 0)} lb/cow</div><div class="sub">first print; ERS balances lag ~1 month</div></div>`; })() : '';
+  $('#sdKpis').innerHTML = nassCard + k.map(([key, nm]) => { const m = bal(key).metrics, st = m.ending_stocks || {};
     return `<div class="card kpi"><div class="lbl">${nm} · ${m.last_month}</div>
       <div class="val">${sgn(m.production?.yoy_pct, 1, '%')}</div><div class="sub">production y/y · YTD ${sgn(m.production?.ytd_yoy_pct, 1, '%')}</div>
       <div class="sub">stocks ${sgn(st.yoy_pct, 1, '%')} y/y · ${sgn(st.vs_5y_avg_pct, 1, '%')} vs 5y · ${fmt(st.months_of_use, 2)} mo of use</div>

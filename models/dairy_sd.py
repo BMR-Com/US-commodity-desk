@@ -170,7 +170,17 @@ def wasde():
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     cp = class_prices()
-    sd = {"generated": pd.Timestamp.now("UTC").isoformat(timespec="minutes"),
+    try:
+        import sys
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from esmis_parse import milk_production
+        mp = milk_production()
+        nass_milk = mp.tail(36).astype(object).where(mp.tail(36).notna(), None).to_dict(orient="list")
+        nass_milk["released"] = [str(x) for x in nass_milk["released"]]
+    except Exception as e:
+        print("nass milk", e)
+        nass_milk = None
+    sd = {"generated": pd.Timestamp.now("UTC").isoformat(timespec="minutes"), "nass_milk": nass_milk,
           "milk": milk_balances(), "products": product_balances(cp), "wasde": wasde()}
     (OUT / "sd.json").write_text(json.dumps(sd, separators=(",", ":")))
     print("milk", json.dumps(sd["milk"]["fat"]["metrics"]))

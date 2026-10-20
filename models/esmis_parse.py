@@ -63,6 +63,26 @@ def hogs_and_pigs():
     return d.reset_index(drop=True)
 
 
+def milk_production():
+    """First-print US milk production headline per monthly release."""
+    rows = []
+    for p in sorted((ESMIS / "milk-production").glob("*.txt")):
+        t = re.sub(r"\s+", " ", p.read_text(errors="ignore"))
+        rel = released(t)
+        m = re.search(r"Milk production in the United States during (\w+) totaled ([\d.]+) billion pounds, (up|down) ([\d.]+) percent from \w+ (\d{4})", t)
+        if not (rel and m):
+            continue
+        mon, prod, sign, pct, ly = m.groups()
+        yr = int(ly) + 1
+        pc = re.search(r"Production per cow in the United States averaged ([\d,]+) pounds", t)
+        cw = re.search(r"number of milk cows on farms in the United States was ([\d.]+) million head, ([\d,]+) head (more|less) than", t)
+        rows.append(dict(released=rel.date(), month=f"{yr}-{MONTHS[mon]:02d}", production_bn_lb=float(prod),
+                         yoy_pct=float(pct) * (1 if sign == "up" else -1),
+                         per_cow_lb=n(pc.group(1)) if pc else None, cows_mil=float(cw.group(1)) if cw else None,
+                         cows_yoy_k=(n(cw.group(2)) / 1000 * (1 if cw.group(3) == "more" else -1)) if cw else None))
+    return pd.DataFrame(rows).sort_values("month").drop_duplicates("month", keep="first").reset_index(drop=True)
+
+
 if __name__ == "__main__":
     d = hogs_and_pigs()
     print(len(d), d.quarter.min(), d.quarter.max())

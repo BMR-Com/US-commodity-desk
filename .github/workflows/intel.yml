@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['pipelines/news.py', 'pipelines/weather.py', 'pipelines/events_calendar.py', 'pipelines/south_america.py', '.github/workflows/intel.yml']
+    paths: ['pipelines/news.py', 'pipelines/weather.py', 'pipelines/events_calendar.py', 'pipelines/south_america.py', 'models/south_america.py', '.github/workflows/intel.yml']
   schedule:
     - cron: '17 */3 * * *'     # news every 3 hours
 permissions: {contents: write}
@@ -25,7 +25,8 @@ jobs:
           if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$H" != "12" ] && [ "$H" != "00" ]; then echo "skip heavy feeds"; exit 0; fi
           python pipelines/weather.py || true
           python pipelines/events_calendar.py || true
-          if [ -f pipelines/south_america.py ]; then python pipelines/south_america.py || true; fi
+          python pipelines/south_america.py || true
+          python models/south_america.py || true
         env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
       - name: commit
         run: |

@@ -77,7 +77,7 @@ const Grains = (() => {
   const el = s => document.querySelector('#grains ' + s);
   function shell() {
     $('#grains').innerHTML = `
-      <nav class="tabs" id="gCom" style="background:#f0f6f1">${Object.entries(GC).map(([k, v]) => `<button data-com="${k}" class="${k === com ? 'on' : ''}">${v.name}</button>`).join('')}</nav>
+      <nav class="tabs" id="gCom" style="background:#f0f6f1">${Object.entries(GC).map(([k, v]) => `<button data-com="${k}" class="${k === com ? 'on' : ''}">${v.name}</button>`).join('')}<button data-com="sa" class="${com === 'sa' ? 'on' : ''}">Brazil &amp; Argentina</button></nav>
       <nav class="tabs" id="gTabs">
         <button data-t="g-primer" class="on">1 · Primer</button><button data-t="g-sd">2 · Supply &amp; demand</button>
         <button data-t="g-flows">3 · Futures, options &amp; COT</button><button data-t="g-outlook">4 · Outlook</button></nav>
@@ -91,7 +91,7 @@ const Grains = (() => {
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
-    if (h[0] === 'g') { if (GC[h[1]]) com = h[1]; if (['g-primer', 'g-sd', 'g-flows', 'g-outlook'].includes(h[2])) tab = h[2]; }
+    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-sd', 'g-flows', 'g-outlook'].includes(h[2])) tab = h[2]; }
     $$('#gCom button').forEach(x => x.classList.toggle('on', x.dataset.com === com)); $$('#gTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab));
   }
   async function show() {
@@ -100,11 +100,82 @@ const Grains = (() => {
   }
   window.addEventListener('hashchange', () => { if (built && location.hash.startsWith('#g/') && location.hash !== `#g/${com}/${tab}`) { fromHash(); render(); } });
   function render() {
+    el('#gTabs').style.display = com === 'sa' ? 'none' : '';
+    if (com === 'sa') { history.replaceState(null, '', '#g/sa'); saPage(); return; }
     history.replaceState(null, '', `#g/${com}/${tab}`);
     const c = GC[com];
     ({ 'g-primer': primer, 'g-sd': sd, 'g-flows': flows, 'g-outlook': outlook })[tab](c);
   }
   const us = c => { const b = W.commodities[c.wasde].us; const my = Object.keys(b).sort(); return { b, my, cur: my.at(-1), prev: my.at(-2) }; };
+
+  // ── BRAZIL & ARGENTINA ──
+  let SA = null;
+  async function saPage() {
+    if (!SA) SA = await getJSON(G + 'south_america.json').catch(() => ({}));
+    const C = SA.conab || {}, P = SA.psd || {}, X = SA.exports || {}, A = SA.argentina || {};
+    const kt = v => v == null ? '–' : fmt(v / 1000, 1);  // thousand t -> million t
+    const usda = (com, ctry, a) => { const t = P[com]?.[ctry]; if (!t) return null; const my = Object.keys(t).sort().at(-1); return t[my]?.[a]; };
+    const kpi = (l, v, s2) => `<div class="card kpi"><div class="lbl">${l}</div><div class="val">${v}</div><div class="sub">${s2}</div></div>`;
+    const cs = C.soybeans, cc = C.corn;
+    el('#gBody').innerHTML = `<div class="grid g4">
+        ${kpi('Brazil soybeans (CONAB)', cs ? `${kt(cs.production_kt)} mt` : '–', cs ? `${cs.season} survey ${cs.survey} (${sgn((cs.change_kt ?? 0) / 1000, 1)} m/m) · USDA ${usda('soybeans', 'BR', 'production') ? fmt(usda('soybeans', 'BR', 'production') / 1000, 1) : '–'} mt · last season ${kt(cs.prev_final_kt)}` : 'CONAB data loading')}
+        ${kpi('Brazil corn (CONAB, all crops)', cc ? `${kt(cc.production_kt)} mt` : '–', cc ? `${cc.season} survey ${cc.survey} · USDA ${usda('corn', 'BR', 'production') ? fmt(usda('corn', 'BR', 'production') / 1000, 1) : '–'} mt · last season ${kt(cc.prev_final_kt)}` : '')}
+        ${kpi('Argentina soybeans / corn (USDA)', `${usda('soybeans', 'AR', 'production') ? fmt(usda('soybeans', 'AR', 'production') / 1000, 1) : '–'} / ${usda('corn', 'AR', 'production') ? fmt(usda('corn', 'AR', 'production') / 1000, 1) : '–'} mt`, `crush ${usda('soybeans', 'AR', 'crush') ? fmt(usda('soybeans', 'AR', 'crush') / 1000, 1) : '–'} mt; meal exports ${usda('meal', 'AR', 'exports') ? fmt(usda('meal', 'AR', 'exports') / 1000, 1) : '–'} mt`)}
+        ${kpi('Brazil soybean exports YTD', X.soybeans ? `${fmt(X.soybeans.ytd_kt / 1000, 1)} mt` : '–', X.soybeans ? `Jan–${MON[X.soybeans.last_month - 1]}: ${sgn(X.soybeans.ytd_yoy_pct, 1, '%')} y/y; 5-yr avg ${fmt(X.soybeans.ytd_avg5_kt / 1000, 1)} mt` : '')}</div>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>CONAB estimate by survey (Brazil, mt)</h2><div class="ctrls" id="saConabSel"></div><div class="chart"><canvas id="cSaConab"></canvas></div>
+          <p class="note" id="saConabNote"></p></div>
+        <div class="card"><h2>Brazil exports by month (Comex Stat, thousand t)</h2><div class="ctrls" id="saExpSel"></div><div class="chart"><canvas id="cSaExp"></canvas></div>
+          <p class="note" id="saExpNote"></p></div></div>
+      <div class="card" style="margin-top:12px"><h2>USDA balances: Brazil, Argentina, China (PSD, thousand t)</h2><div class="tbl" id="saPsd"></div>
+        <p class="note">USDA Foreign Agricultural Service PSD, latest two marketing years (local marketing years: Brazil soybeans Feb–Jan, Argentina Apr–Mar). Compare with CONAB above; focus on each agency's revisions rather than the gap in levels.</p></div>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>Argentina: ministry estimates by campaign (MAGyP)</h2><div class="tbl" id="saArg"></div><p class="note">Planted, harvested and production from Argentina's agriculture ministry open data (monthly). Harvest % = harvested / planted area for the latest campaign.</p></div>
+        <div class="card"><h2>Crop progress</h2><div id="saProg"></div></div></div>
+      <div class="card" style="margin-top:12px"><h2>Weather watch: Brazil and Argentina</h2><div id="saWx"></div></div>
+      <div class="grid g2" style="margin-top:12px"><div class="card"><h2>South America events</h2><div id="saCal"></div></div><div class="card"><h2>Headlines</h2><div id="saNews"></div></div></div>`;
+    // CONAB revision path
+    const prods = ['soybeans', 'corn', 'corn_2nd', 'wheat'].filter(p => C[p]);
+    let cp = prods[0];
+    const drawConab = () => {
+      el('#saConabSel').innerHTML = prods.map(p => `<button class="btn ${p === cp ? 'on' : ''}" data-p="${p}">${p.replace('_2nd', ' (safrinha)')}</button>`).join(' ');
+      $$('#saConabSel button').forEach(b => b.onclick = () => { cp = b.dataset.p; drawConab(); });
+      const x = C[cp]; if (!x) return;
+      chart('cSaConab', { type: 'line', data: { datasets: [
+        { label: x.prev_season, data: x.path_prev.map(p => ({ x: p[0], y: p[1] / 1000 })), borderColor: '#8a8984', pointRadius: 2 },
+        { label: x.season, data: x.path_cur.map(p => ({ x: p[0], y: p[1] / 1000 })), borderColor: '#c0392b', borderWidth: 2.5, pointRadius: 3 }] },
+        options: { scales: { x: { type: 'linear', min: 1, max: 12, title: { display: true, text: 'CONAB survey number (1 = October)' } }, y: { title: { display: true, text: 'million t' } } } } });
+      const fv = x.first_vs_final || [];
+      el('#saConabNote').innerHTML = fv.length ? `First survey vs final: ${fv.slice(-6).map(r => `${r[0]} ${sgn((r[2] / r[1] - 1) * 100, 1, '%')}`).join(', ')}.` : '';
+    };
+    if (cp) drawConab(); else el('#saConabNote').textContent = 'CONAB survey data not loaded yet.';
+    // exports
+    const ecoms = ['soybeans', 'corn', 'meal', 'oil'].filter(k => X[k]);
+    let ec = ecoms[0];
+    const drawExp = () => {
+      el('#saExpSel').innerHTML = ecoms.map(k => `<button class="btn ${k === ec ? 'on' : ''}" data-k="${k}">${k}</button>`).join(' ');
+      $$('#saExpSel button').forEach(b => b.onclick = () => { ec = b.dataset.k; drawExp(); });
+      const x = X[ec]; if (!x) return;
+      chart('cSaExp', { type: 'line', data: { labels: MON, datasets: x.years.map((y, i, a) => ({ label: y, data: x.monthly[y], borderColor: i === a.length - 1 ? '#c0392b' : PAL[(i + 1) % PAL.length], borderWidth: i === a.length - 1 ? 2.5 : 1.1, pointRadius: 0 })) } });
+      el('#saExpNote').innerHTML = `Jan–${MON[x.last_month - 1]} ${x.years.at(-1)}: ${fmt(x.ytd_kt, 0)} kt (${sgn(x.ytd_yoy_pct, 1, '%')} y/y; 5-yr avg ${fmt(x.ytd_avg5_kt, 0)} kt). ${MON[x.last_month - 1]}: ${fmt(x.last_month_kt, 0)} kt vs ${fmt(x.last_month_ly_kt, 0)} a year ago.`;
+    };
+    if (ec) drawExp(); else el('#saExpNote').textContent = 'Brazil export data not loaded yet.';
+    // PSD table
+    const rows = [['production', 'Production'], ['crush', 'Crush'], ['domestic', 'Domestic use'], ['imports', 'Imports'], ['exports', 'Exports'], ['end_stocks', 'Ending stocks']];
+    const blocks = [['soybeans', 'BR'], ['soybeans', 'AR'], ['soybeans', 'CH'], ['meal', 'AR'], ['oil', 'AR'], ['corn', 'BR'], ['corn', 'AR'], ['wheat', 'AR']].filter(([c, k]) => P[c]?.[k]);
+    const CN = { BR: 'Brazil', AR: 'Argentina', CH: 'China' };
+    el('#saPsd').innerHTML = blocks.length ? `<table><tr><th>Balance</th><th>MY</th>${rows.map(r => `<th>${r[1]}</th>`).join('')}</tr>${blocks.map(([c, k]) => { const t = P[c][k], mys = Object.keys(t).sort().slice(-2);
+      return mys.map((my, i) => `<tr><td>${i === 0 ? `<b>${CN[k]} ${c}</b>` : ''}</td><td>${my}/${String(+my + 1).slice(-2)}</td>${rows.map(r => `<td>${t[my][r[0]] != null ? fmt(t[my][r[0]], 0) : '–'}</td>`).join('')}</tr>`).join(''); }).join('')}</table>` : '<p class="note">USDA PSD not loaded yet.</p>';
+    // Argentina
+    const ar = Object.entries(A);
+    el('#saArg').innerHTML = ar.length ? `<table><tr><th>Crop</th><th>Campaign</th><th>Planted (kha)</th><th>Harvested</th><th>Harvest %</th><th>Production (kt)</th><th>Previous</th></tr>${ar.map(([k, x]) => `<tr><td>${k}</td><td>${x.campaign}</td><td>${fmt(x.sown_ha / 1000, 0)}</td><td>${fmt(x.harvested_ha / 1000, 0)}</td><td>${fmt(x.harvest_pct, 0)}%</td><td>${fmt(x.production_t / 1000, 0)}</td><td>${x.prev_campaign}: ${fmt(x.prev_production_t / 1000, 0)}</td></tr>`).join('')}</table>` : '<p class="note">MAGyP data not loaded yet.</p>';
+    const pb = SA.progress_bulletin;
+    el('#saProg').innerHTML = `${pb ? `<p>CONAB weekly crop bulletin: <a href="${pb.url}" target="_blank" rel="noopener">${pb.title}</a> (Brazil planting and harvest progress by state).</p>` : '<p class="note">CONAB weekly bulletin link not loaded yet.</p>'}
+      <p class="note">Weekly progress sources: CONAB Acompanhamento das Lavouras (Brazil, Monday), IMEA (Mato Grosso, Friday), Buenos Aires Grain Exchange (Argentina, Thursday). The Buenos Aires exchange blocks automated access, so its figures appear through the headlines feed.</p>`;
+    Intel.weather(el('#saWx'), { countries: ['Brazil', 'Argentina'] });
+    Intel.calendar(el('#saCal'), { cats: ['South America', 'USDA'], markets: ['ZS', 'ZC'], days: 30, minImp: 2 });
+    Intel.news(el('#saNews'), { tags: ['south_america'], n: 12, chips: false });
+  }
 
   // ── PRIMER ──
   function primer(c) {

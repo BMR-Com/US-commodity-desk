@@ -21,11 +21,11 @@ const Intel = (() => {
     draw();
   }
 
-  async function calendar(el, { markets = null, days = 21, minImp = 1 } = {}) {
+  async function calendar(el, { markets = null, days = 21, minImp = 1, cats = null } = {}) {
     const D = await load('calendar');
     if (!D) { el.innerHTML = '<p class="note">Calendar not loaded yet.</p>'; return; }
     const today = new Date().toISOString().slice(0, 10), end = new Date(Date.now() + days * 864e5).toISOString().slice(0, 10);
-    const ev = D.events.filter(e => e.date >= today && e.date <= end && e.importance >= minImp && (!markets || e.markets.includes('ALL') || e.markets.some(m => markets.includes(m))));
+    const ev = D.events.filter(e => e.date >= today && e.date <= end && e.importance >= minImp && (!cats || cats.includes(e.cat)) && (!markets || e.markets.includes('ALL') || e.markets.some(m => markets.includes(m))));
     const byDay = {}; ev.forEach(e => (byDay[e.date] = byDay[e.date] || []).push(e));
     const dname = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     el.innerHTML = `<div class="tbl"><table class="cal">${Object.entries(byDay).map(([d, es]) => `<tr><td class="cal-d">${dname(d)}</td><td class="l">${es.map(e => `<div class="cal-e imp${e.importance}">${e.time ? `<span class="note">${e.time}</span> ` : ''}${e.link ? `<a href="${esc(e.link)}" target="_blank" rel="noopener">${esc(e.event)}</a>` : esc(e.event)}${e.estimated ? ' <span class="note">(est.)</span>' : ''} <span class="note">${e.markets.includes('ALL') ? '' : e.markets.join(' ')}</span></div>`).join('')}</td></tr>`).join('') || '<tr><td class="note">No events in range.</td></tr>'}</table></div>

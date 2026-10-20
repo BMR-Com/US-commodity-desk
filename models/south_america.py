@@ -35,10 +35,12 @@ def conab():
     out = {}
     if s is not None and len(s):
         s["ano_agricola"] = s.ano_agricola.astype(str).str.strip()
-        seasons = sorted(s.ano_agricola.unique())
-        cur, prev = seasons[-1], seasons[-2] if len(seasons) > 1 else None
         for p in ("soybeans", "corn", "corn_1st", "corn_2nd", "wheat"):
             x = s[s["product"] == p]
+            seasons = sorted(x.ano_agricola.unique())
+            if not seasons:
+                continue
+            cur, prev = seasons[-1], seasons[-2] if len(seasons) > 1 else None
             c = x[x.ano_agricola == cur].sort_values("survey")
             pv = x[x.ano_agricola == prev].sort_values("survey") if prev else x.iloc[0:0]
             if c.empty and pv.empty:
@@ -58,7 +60,7 @@ def conab():
             rev = []
             for se, g in x.groupby("ano_agricola"):
                 g = g.sort_values("survey")
-                if se != cur and len(g) >= 10:
+                if se != sorted(x.ano_agricola.unique())[-1] and len(g) >= 10:
                     rev.append([se, float(g.producao_mil_t.iloc[0]), float(g.producao_mil_t.iloc[-1])])
             if p in out:
                 out[p]["first_vs_final"] = rev

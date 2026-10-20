@@ -145,11 +145,13 @@ def comex():
             y1 = min(y0 + 2, yr)
             f = {"yearStart": str(y0), "yearEnd": str(y1), "typeForm": flow, "typeOrder": 1, "filterList": [{"id": "noNcmpt"}],
                  "filterArray": [{"item": ncms, "idInput": "noNcmpt"}], "detailDatabase": [{"id": "noNcmpt", "text": ""}], "monthDetail": True,
-                 "metricFOB": True, "metricKG": True, "monthStart": "01", "monthEnd": "12", "formQueue": "general", "langDefault": "en"}
+                 "metricFOB": True, "metricKG": True, "monthStart": "01", "monthEnd": "12", "formQueue": "general", "langDefault": "pt"}  # "en" silently drops the NCM filter
             r = get("https://api-comexstat.mdic.gov.br/general?filter=" + quote(json.dumps(f, separators=(",", ":"))))
             if not r:
                 continue
             for x in r.json().get("data", {}).get("list", []):
+                if x.get("coNcm") not in ncms:
+                    continue
                 rows.append({"commodity": com, "year": int(x["coAno"]), "month": int(x["coMes"]), "ncm": x.get("coNcm"), "fob_usd": float(x.get("vlFob") or 0), "kg": float(x.get("kgLiquido") or 0)})
             time.sleep(2)
     if rows:

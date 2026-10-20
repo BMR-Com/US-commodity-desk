@@ -29,6 +29,15 @@ Order: **dairy** (Class III/IV milk, cheese, butter, NDM, dry whey) → **lean h
 - Learning sources: CME Institute courses (livestock, dairy, grains), ADMIS livestock/grains dashboards (commentary only, no data files), other broker free data.
 - Methodology/model logic should stay out of this public repo where possible (BMR-Com rule); open question whether to compute in a private repo and publish outputs here.
 
+## CME via browser (working 2026-10-19)
+CME's own JSON endpoints work from a browser tab on cmegroup.com (same-origin fetch); no CSV downloads needed.
+- Trade dates: `/CmeWS/mvc/Volume/TradeDates?exchange=CME|CBOT` (reportType PRELIMINARY/FINAL)
+- Futures volume/OI by month: `/CmeWS/mvc/Volume/Details/F/{fut_id}/{YYYYMMDD}/P?tradeDate=...`
+- Options volume/OI by strike, calls/puts: `/CmeWS/mvc/Volume/Details/O/{opt_id}/{YYYYMMDD}/P?tradeDate=...`
+- Futures settlements: `/CmeWS/mvc/Settlements/Futures/Settlements/{fut_id}/FUT?strategy=DEFAULT&tradeDate=MM/DD/YYYY`
+- Product IDs: in `cme/collect.js` (note Class IV is GDK on Globex, futures 778 / options 779).
+- `cme/collect.js` runs in the page and returns CSVs; gzip+base64 the result in the page (bridge caps a result at ~260k chars; one day of all 17 products is ~140 KB gzipped), then `python cme/ingest.py <payload>` writes `data/cme/<date>/`.
+
 ## Next steps
 1. In a browser session: read CME courses; download CME ag volume/OI + settlement CSVs; set up the evening scheduled download.
 2. Dairy pipeline: NDPSR weekly, class/component prices monthly, Class III/IV rebuild from NDPSR using the post-June-2025 FMMO formulas (verify against AMS), futures from TradingView/Yahoo, COT.

@@ -19,6 +19,7 @@ jobs:
       - run: pip install -q pandas git+https://github.com/rongardF/tvdatafeed.git
       - run: python pipelines/contracts.py HE LE GF DC
       - run: python pipelines/contracts.py GDK CSC CB GNF DY
+      - run: python pipelines/contracts.py ZC ZS ZM ZL ZW KE
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

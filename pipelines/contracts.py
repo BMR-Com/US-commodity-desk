@@ -21,6 +21,12 @@ SPEC = {  # sym: (exchange, TV root, months, first year)
     "CB": ("CME", "CB", CODES, 2012),
     "GNF": ("CME", "GNF", CODES, 2012),
     "DY": ("CME", "DY", CODES, 2012),
+    "ZC": ("CBOT", "ZC", "HKNUZ", 2006),
+    "ZS": ("CBOT", "ZS", "FHKNQUX", 2006),
+    "ZM": ("CBOT", "ZM", "FHKNQUVZ", 2008),
+    "ZL": ("CBOT", "ZL", "FHKNQUVZ", 2008),
+    "ZW": ("CBOT", "ZW", "HKNUZ", 2006),
+    "KE": ("CBOT", "KE", "HKNUZ", 2008),
 }
 
 

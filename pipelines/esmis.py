@@ -17,6 +17,11 @@ PUBS = {  # slug: oldest year to keep
     "milk-production": 2010,
     "cold-storage": 2010,
     "dairy-products": 2010,
+    "crop-production": 2005,
+    "grain-stocks": 2005,
+    "acreage": 2005,
+    "prospective-plantings": 2005,
+    "crop-progress": 2018,
 }
 
 

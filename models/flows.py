@@ -8,7 +8,8 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-GROUPS = {"dairy": ["DC", "GDK", "CSC", "CB", "GNF", "DY"], "livestock": ["HE", "LE", "GF"]}
+GROUPS = {"dairy": ["DC", "GDK", "CSC", "CB", "GNF", "DY"], "livestock": ["HE", "LE", "GF"],
+          "grains": ["ZC", "ZS", "ZM", "ZL", "ZW", "KE"]}
 
 
 def num(s):

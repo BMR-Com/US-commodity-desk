@@ -13,6 +13,8 @@ SYMS = {  # desk symbol: (exchange, TradingView root candidates)
     "DC": ("CME", ["DC"]), "GDK": ("CME", ["GDK", "DK"]), "CSC": ("CME", ["CSC"]), "CB": ("CME", ["CB"]),
     "GNF": ("CME", ["GNF"]), "DY": ("CME", ["DY"]),
     "HE": ("CME", ["HE"]), "LE": ("CME", ["LE"]), "GF": ("CME", ["GF"]),
+    "ZC": ("CBOT", ["ZC"]), "ZS": ("CBOT", ["ZS"]), "ZM": ("CBOT", ["ZM"]), "ZL": ("CBOT", ["ZL"]),
+    "ZW": ("CBOT", ["ZW"]), "KE": ("CBOT", ["KE"]),
 }
 
 if __name__ == "__main__":

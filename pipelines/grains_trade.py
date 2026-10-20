@@ -78,16 +78,22 @@ def export_sales():
         (d / "commodities.json").write_bytes(r.content)
     cur = time.gmtime().tm_year
     for name, code in ESR_COMMODITIES.items():
-        for my in range(cur + 1, 2009, -1):  # marketing years
-            p = d / name / f"MY{my}.json"
+        for my in range(cur + 1, 2009, -1):  # marketing years; stored as compact CSV (raw JSON is ~0.7 MB/year)
+            p = d / name / f"MY{my}.csv"
             if p.exists() and my < cur - 1:
                 continue
             r = get(f"{ESR}/exports/commodityCode/{code}/allCountries/marketYear/{my}", headers=hdr)
             if r is None:
                 continue
+            try:
+                rows = r.json()
+            except ValueError:
+                continue
+            if not rows:
+                continue
             p.parent.mkdir(parents=True, exist_ok=True)
-            p.write_bytes(r.content)
-            print("ESR", name, my, len(r.content))
+            pd.DataFrame(rows).drop(columns=["commodityCode"], errors="ignore").to_csv(p, index=False)
+            print("ESR", name, my, len(rows))
             time.sleep(0.5)
 
 

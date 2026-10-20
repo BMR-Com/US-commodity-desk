@@ -46,7 +46,14 @@ def tidy(j):
         for h in hist:
             rows.append(dict(region=region, attr=c, my=my, wasde=h["wasdeNum"], report=h["reportDate"], value=h["value"], unit=h["unit"]))
     d = pd.DataFrame(rows)
-    if len(d):  # the US also appears in the world tables in metric tons; keep domestic units for the US
+    if len(d):
+        # round to USDA's published precision: unit conversions in the source leave noise (15341.43 vs 15341)
+        u = d.unit.fillna("").str.lower()
+        dec = np.where(u.str.contains("metric"), 2, np.where(u.str.contains("acre") & ~u.str.contains("million"), 1,
+                       np.where(u.str.contains(r"\$|dollar|cent|price", regex=True), 2, 0)))
+        d["value"] = [round(v, int(k)) for v, k in zip(d.value, dec)]
+        d.loc[d.attr == "yield", "value"] = d.loc[d.attr == "yield", "value"].round(1)
+        d.loc[d.attr == "price", "value"] = d.loc[d.attr == "price", "value"].round(3)  # the US also appears in the world tables in metric tons; keep domestic units for the US
         d = d[~((d.region == "United States") & d.unit.str.contains("Metric", case=False, na=False))]
     # attribute renames over the years create duplicates for the same report: keep the first non-null
     return d.dropna(subset=["value"]).drop_duplicates(["region", "attr", "my", "wasde"]) if len(d) else d

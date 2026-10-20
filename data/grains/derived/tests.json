@@ -1,0 +1,146 @@
+{
+ "corn": {
+  "momentum": {
+   "yield": {
+    "n": 56,
+    "same_direction": 0.57
+   },
+   "production": {
+    "n": 88,
+    "same_direction": 0.41
+   },
+   "exports": {
+    "n": 108,
+    "same_direction": 0.79
+   },
+   "feed_residual": {
+    "n": 194,
+    "same_direction": 0.51
+   },
+   "ethanol": {
+    "n": 130,
+    "same_direction": 0.68
+   },
+   "end_stocks": {
+    "n": 155,
+    "same_direction": 0.58
+   }
+  },
+  "price_reaction": null,
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>yield</td><td>57%</td><td>56</td></tr><tr><td>production</td><td>41%</td><td>88</td></tr><tr><td>exports</td><td>79%</td><td>108</td></tr><tr><td>feed residual</td><td>51%</td><td>194</td></tr><tr><td>ethanol</td><td>68%</td><td>130</td></tr><tr><td>end stocks</td><td>58%</td><td>155</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+ },
+ "soybeans": {
+  "momentum": {
+   "yield": {
+    "n": 36,
+    "same_direction": 0.56
+   },
+   "production": {
+    "n": 68,
+    "same_direction": 0.5
+   },
+   "exports": {
+    "n": 99,
+    "same_direction": 0.64
+   },
+   "crush": {
+    "n": 139,
+    "same_direction": 0.74
+   },
+   "end_stocks": {
+    "n": 104,
+    "same_direction": 0.53
+   }
+  },
+  "price_reaction": null,
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>yield</td><td>56%</td><td>36</td></tr><tr><td>production</td><td>50%</td><td>68</td></tr><tr><td>exports</td><td>64%</td><td>99</td></tr><tr><td>crush</td><td>74%</td><td>139</td></tr><tr><td>end stocks</td><td>53%</td><td>104</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+ },
+ "wheat": {
+  "momentum": {
+   "production": {
+    "n": 46,
+    "same_direction": 0.39
+   },
+   "exports": {
+    "n": 81,
+    "same_direction": 0.51
+   },
+   "feed_residual": {
+    "n": 141,
+    "same_direction": 0.52
+   },
+   "end_stocks": {
+    "n": 48,
+    "same_direction": 0.54
+   }
+  },
+  "price_reaction": null,
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>39%</td><td>46</td></tr><tr><td>exports</td><td>51%</td><td>81</td></tr><tr><td>feed residual</td><td>52%</td><td>141</td></tr><tr><td>end stocks</td><td>54%</td><td>48</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+ },
+ "meal": {
+  "momentum": {
+   "production": {
+    "n": 187,
+    "same_direction": 0.67
+   },
+   "exports": {
+    "n": 156,
+    "same_direction": 0.71
+   },
+   "domestic": {
+    "n": 181,
+    "same_direction": 0.66
+   },
+   "end_stocks": {
+    "n": 17,
+    "same_direction": 0.41
+   }
+  },
+  "price_reaction": null,
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>67%</td><td>187</td></tr><tr><td>exports</td><td>71%</td><td>156</td></tr><tr><td>domestic</td><td>66%</td><td>181</td></tr><tr><td>end stocks</td><td>41%</td><td>17</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+ },
+ "oil": {
+  "momentum": {
+   "production": {
+    "n": 177,
+    "same_direction": 0.62
+   },
+   "biofuel": {
+    "n": 117,
+    "same_direction": 0.68
+   },
+   "exports": {
+    "n": 130,
+    "same_direction": 0.67
+   },
+   "end_stocks": {
+    "n": 241,
+    "same_direction": 0.55
+   }
+  },
+  "price_reaction": null,
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>62%</td><td>177</td></tr><tr><td>biofuel</td><td>68%</td><td>117</td></tr><tr><td>exports</td><td>67%</td><td>130</td></tr><tr><td>end stocks</td><td>55%</td><td>241</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+ },
+ "kc": {
+  "momentum": {
+   "production": {
+    "n": 46,
+    "same_direction": 0.39
+   },
+   "exports": {
+    "n": 81,
+    "same_direction": 0.51
+   },
+   "feed_residual": {
+    "n": 141,
+    "same_direction": 0.52
+   },
+   "end_stocks": {
+    "n": 48,
+    "same_direction": 0.54
+   }
+  },
+  "price_reaction": null,
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>39%</td><td>46</td></tr><tr><td>exports</td><td>51%</td><td>81</td></tr><tr><td>feed residual</td><td>52%</td><td>141</td></tr><tr><td>end stocks</td><td>54%</td><td>48</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+ }
+}

@@ -46,7 +46,9 @@ def condition(commodity_dir, prefix):
     p = p.dropna(subset=["GOOD", "EXCELLENT"])
     out = pd.DataFrame(index=p.index)
     out["ge"] = p.GOOD + p.EXCELLENT
-    out["idx"] = sum(p.get(c, 0) * w for c, w in W.items()) / p[list(W)].sum(axis=1) * 20  # 20..100
+    pf = p.reindex(columns=list(W)).fillna(0)
+    tot = pf.sum(axis=1)
+    out["idx"] = (sum(pf[c] * w for c, w in W.items()) / tot * 20).where(tot >= 95)  # 20..100; incomplete rows dropped
     out["year"] = out.index.year
     out["week"] = out.index.isocalendar().week.values.astype(int)
     if "WINTER" in prefix:  # fall ratings belong to next year's crop: week 44 -> year+1, week -8
@@ -95,7 +97,7 @@ def model(cond, y, weeks, uh=None):
     for wk in weeks:
         rows = []
         for yr in years:
-            c = cond[(cond.year == yr) & (cond.week <= wk)]
+            c = cond[(cond.year == yr) & (cond.week <= wk)].dropna(subset=["idx"])
             if c.empty or c.week.max() < wk - 1:
                 continue
             t = trend(y, yr)
@@ -154,7 +156,7 @@ if __name__ == "__main__":
             if m:
                 cy = int(cond.year.max())
                 c = cond[cond.year == cy]
-                c = c[c.week <= m["week"]]
+                c = c[c.week <= m["week"]].dropna(subset=["idx"])
                 t = trend(y, cy)
                 est = t + m["intercept"] + m["slope_per_index_pt"] * c.idx.iloc[-1] if len(c) else None
                 entry["model"] = {"year": cy, "week": m["week"], "estimate": None if est is None else round(float(est), 1),

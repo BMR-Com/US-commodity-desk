@@ -227,7 +227,7 @@ async function initOutlook() {
   const CB = await getJSON('data/derived/cot_backtest.json').catch(() => ({}));
   const pos = Object.entries(FLOWS.cot).map(([s, v]) => [s, v.summary]).filter(([, c]) => c.mm_net_percentile_3y >= 90 || c.mm_net_percentile_3y <= 10);
   const ev = (s, c) => { const t = CB[s]?.w4?.[c.mm_net >= 0 ? 'extreme_long' : 'extreme_short']; return t ? ` (history after similar readings: ${sgn(t.mean_pct, 1, '%')} over 4 weeks, up ${Math.round(100 * t.up_share)}% of the time, n=${t.n})` : ''; };
-  L.push(`<b>Positioning (secondary):</b> ${pos.length ? pos.map(([s, c]) => `${SYM[s]} ${c.mm_net >= 0 ? 'long' : 'short'} ${ord(c.mm_net_percentile_3y)} pctl`).join(', ') + '. Settlement is set by USDA cash prices, so positioning only matters at the margin; in Class III and cheese, extremes have tended to persist.' : 'no dairy contract at a 3-year positioning extreme.'}`);
+  L.push(`<b>Positioning (secondary):</b> ${pos.length ? pos.map(([s, c]) => `${SYM[s]} ${c.mm_net >= 0 ? 'long' : 'short'} ${ord(c.mm_net_percentile_3y)} pctl`).join(', ') + '. Settlement is set by USDA cash prices, so positioning only matters at the margin; in Class III, Class IV and cheese, extremes have tended to persist.' : 'no dairy contract at a 3-year positioning extreme.'}`);
   $('#olList').innerHTML = L.map(x => `<li>${x}</li>`).join('');
   const BT = await getJSON(D + 'backtest.json').catch(() => null);
   if (BT) {
@@ -260,7 +260,7 @@ async function initOutlook() {
       <p class="note">Negative R² = worse than assuming no change. Stocks and months-of-use, known with the ~2-month NASS/ERS lag, carry no out-of-sample edge except dry whey one month ahead. The market prices them before they publish; treat them as context, not a signal.</p>
       <h3>Managed-money extremes and the next 4 weeks (roll-adjusted front month)</h3>
       <div class="tbl"><table><tr><th>Contract</th><th>All weeks</th><th>After extreme short (≤10th pctl 3y)</th><th>After extreme long (≥90th)</th></tr>${['DC', 'CSC', 'CB', 'GNF', 'GDK', 'DY'].map(cot).join('')}</table></div>
-      <p class="note">Class III and cheese trend with fund positioning: extreme shorts were followed by further weakness, extreme longs by strength. No contract shows a reliable contrarian squeeze.</p>`;
+      <p class="note">Fund extremes have tended to persist: Class III and Class IV rose after extreme longs (t≈2), cheese fell after extreme shorts (t≈−2.5); the other contracts show nothing. No contract shows a reliable contrarian squeeze.</p>`;
   }
   try { const t = await fetch('data/dairy/outlook.md').then(r => r.ok ? r.text() : ''); if (t.trim()) $('#olView').innerHTML = t.split(/\n\s*\n/).map(p => `<p>${p.replace(/^#+\s*/, '')}</p>`).join(''); } catch (e) {}
 }

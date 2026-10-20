@@ -73,7 +73,7 @@ const GC = {
 };
 
 const Grains = (() => {
-  let built = false, com = 'corn', tab = 'g-primer', W, F, COND, EXP, TESTS, SAL;
+  let built = false, com = 'corn', tab = 'g-primer', W, F, COND, EXP, TESTS, SAL, FL;
   const el = s => document.querySelector('#grains ' + s);
   function shell() {
     $('#grains').innerHTML = `
@@ -86,8 +86,8 @@ const Grains = (() => {
     $$('#gTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#gTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
   async function load() {
-    [W, F, COND, EXP, TESTS, SAL] = await Promise.all([getJSON(G + 'wasde.json'), getJSON(G + 'flows.json').catch(() => null),
-      getJSON(G + 'condition.json').catch(() => null), getJSON(G + 'exports.json').catch(() => null), getJSON(G + 'tests.json').catch(() => null), getJSON(G + 'sales.json').catch(() => null)]);
+    [W, F, COND, EXP, TESTS, SAL, FL] = await Promise.all([getJSON(G + 'wasde.json'), getJSON(G + 'flows.json').catch(() => null),
+      getJSON(G + 'condition.json').catch(() => null), getJSON(G + 'exports.json').catch(() => null), getJSON(G + 'tests.json').catch(() => null), getJSON(G + 'sales.json').catch(() => null), getJSON(G + 'flash.json').catch(() => null)]);
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
@@ -200,6 +200,7 @@ const Grains = (() => {
         <div class="card" id="gSales"><h2>Export sales</h2><p class="note">Loading…</p></div>
         <div class="card" id="gSalesDet"><h2>Weekly net sales and buyers</h2><p class="note">Loading…</p></div>
       </div>
+      <div class="card" style="margin-top:12px" id="gFlash"></div>
       <div class="card" style="margin-top:12px"><h2>Stocks-to-use vs season-average farm price</h2><div class="chart"><canvas id="cGSU"></canvas></div><p class="note" id="gSUnote"></p></div>`;
     const drawRev = () => { const k = $('#gRevItem').value, x = u.b[u.cur].items[k];
       chart('cGRev', { type: 'line', data: { labels: x.history.map(h => h[0].replace(/(\w{3})\w* (\d{4})/, '$1 $2')), datasets: [{ label: `${k} ${u.cur}`, data: x.history.map(h => h[1]), borderColor: PAL[0], stepped: true, pointRadius: 3 }] } });
@@ -218,7 +219,22 @@ const Grains = (() => {
         options: { interaction: { mode: 'nearest', intersect: true }, plugins: { tooltip: { callbacks: { label: q => `${q.raw.m}: ${q.raw.x.toFixed(1)}%, $${q.raw.y}` } } },
           scales: { x: { title: { display: true, text: 'ending stocks / total use %' } }, y: { title: { display: true, text: 'season-average farm price' } } } } });
       $('#gSUnote').textContent = `Log-log fit over WASDE final estimates: elasticity ${s.fit.elasticity}, R² ${s.fit.r2}. ${s.fit.r2 < 0.3 ? 'Weak: US stocks alone do not set this price (world balances, crush economics or policy dominate).' : 'US stocks-to-use explains a large share of price differences across years.'}`; }
-    condCard(c); expCard(c); salesCard(c);
+    condCard(c); expCard(c); salesCard(c); flashCard(c);
+  }
+  function flashCard(c) {
+    const box = el('#gFlash'), d = FL?.[c.wasde];
+    if (!d) { box.innerHTML = '<h2>Daily export sales announcements</h2><p class="note">No announcements loaded.</p>'; return; }
+    const kt = v => fmt(v / 1000, 0), t = d.test, cur = d.tally.at(-1);
+    box.innerHTML = `<h2>Daily export sales announcements (USDA "flash" sales, 100,000 t+)</h2><div class="grid g2">
+      <div><div class="tbl"><table><tr><th>Date</th><th>Commodity</th><th>kt</th><th>Buyer</th><th>MY</th></tr>
+        ${d.recent.map(r => `<tr><td>${r.date}</td><td>${r.commodity.replace('wheat_', '').toUpperCase().replace('SOYBEANS', 'soybeans').replace('CORN', 'corn').replace('MEAL', 'meal').replace('OIL', 'oil')}</td><td>${kt(r.qty_mt)}</td><td>${r.destination}</td><td>${r.my ?? ''}</td></tr>`).join('')}</table></div></div>
+      <div>${d.since ? `<p>Since the last weekly report (week to ${d.since.week_ending}): <b>${fmt(d.since.kt, 0)} kt</b> in ${d.since.n} announcement${d.since.n === 1 ? '' : 's'}${d.since.in_unit != null ? ` (${fmt(d.since.in_unit, 1)} mil bu)` : ''}. These show up in the next weekly export sales report.</p>` : ''}
+        <p>${cur.my} so far: ${fmt(cur.kt, 0)} kt in ${cur.n} announcements${cur.china_kt ? `, ${fmt(cur.china_kt, 0)} kt to China` : ''}.</p>
+        <div class="tbl"><table><tr><th>Same point of the year</th>${d.tally.map(x => `<th>${x.my}</th>`).join('')}</tr>
+          <tr><td>kt announced</td>${d.tally.map(x => `<td>${fmt(x.kt, 0)}</td>`).join('')}</tr>
+          <tr><td>of which China</td>${d.tally.map(x => `<td>${fmt(x.china_kt, 0)}</td>`).join('')}</tr></table></div>
+        ${t ? `<p class="note">Price test (announcements since ${t.since}, front-month close-to-close; they come out before the open): announcement days vs other days ${sgn(t.all.excess_day, 2, '%')} (t ${fmt(t.all.excess_t, 1)}, n=${t.all.n}); biggest quarter (≥${fmt(t.big_cut_kt, 0)} kt) ${sgn(t.big.excess_day, 2, '%')} (t ${fmt(t.big.excess_t, 1)}, n=${t.big.n})${t.china.n ? `; China ${sgn(t.china.excess_day, 2, '%')} (n=${t.china.n})` : ''}. Next 5 days vs normal: ${sgn(t.all.excess_fwd5, 2, '%')}. ${Math.abs(t.all.excess_t ?? 0) < 2 ? 'No reliable price reaction: the trade usually knows about these sales before USDA posts them.' : ''}</p>` : ''}
+        <p class="note">Parsed from USDA FAS newsroom posts; older posts with several sales were only partly captured where the full text could not be fetched.</p></div></div>`;
   }
   function salesCard(c) {
     const box = el('#gSales'), det = el('#gSalesDet'), d = SAL?.[c.wasde];
@@ -346,6 +362,7 @@ const Grains = (() => {
     if (rv.length) L.push(`<b>This month's revisions:</b> ${rv.map(([k, x]) => `${k.replace('_', ' ')} ${sgn(x.change, k === 'yield' ? 1 : 0)}`).join(', ')}.`);
     const d = COND?.[c.wasde]?.model; if (d) L.push(`<b>Condition yield model:</b> ${fmt(d.estimate, 1)} bu/ac vs USDA ${fmt(d.usda, 1)} (${sgn(d.estimate - d.usda, 1)}).`);
     const sa = SAL?.[c.wasde]; if (sa) L.push(`<b>Export sales:</b> commitments ${fmt(sa.pct_of_usda, 1)}% of USDA vs ${fmt(sa.avg_pct, 1)}% usually by week ${sa.week}; implied ${fmt(sa.implied, 0)} vs USDA ${fmt(sa.usda, 0)} (${sgn(sa.implied - sa.usda, 0)}). Net sales ${fmt(sa.net_4wk, 1)}/wk (4-wk avg) vs ${fmt(sa.need_weekly, 1)} needed.${sa.test ? ` This gap has called the direction of USDA's next export revision ${fmt(100 * sa.test.revision_hit, 0)}% of the time: the best-tested signal on the grains desk.` : ''}`);
+    const fl = FL?.[c.wasde]; if (fl?.since && fl.since.n) L.push(`<b>Flash sales since the last weekly report:</b> ${fmt(fl.since.kt, 0)} kt in ${fl.since.n} announcement${fl.since.n === 1 ? '' : 's'}${fl.since.in_unit != null ? ` (${fmt(fl.since.in_unit, 1)} mil bu)` : ''}, to be added to commitments in the next report.`);
     const e = EXP?.[c.wasde]; if (e) L.push(`<b>Export pace:</b> week ${e.week}, ${fmt(e.pct_of_usda, 1)}% of USDA shipped vs ${fmt(e.avg_pct, 1)}% normally; inspections imply ${fmt(e.implied, 0)} vs USDA ${fmt(e.usda, 0)} (${sgn(e.implied - e.usda, 0)})${e.test ? `, typical miss at this stage ±${fmt(e.test.mae_pct, 0)}%. Pace ahead/behind USDA has called the direction of USDA's next export revision ${fmt(100 * e.test.revision_hit, 0)}% of the time` : ''}.`);
     const x = F?.cot?.[c.sym]?.summary; if (x) L.push(`<b>Positioning (secondary):</b> managed money ${x.mm_net >= 0 ? 'net long' : 'net short'} ${fmt(Math.abs(x.mm_net), 0)} (${fmt(x.mm_net_percentile_3y, 0)} pctl of 3y).`);
     const cv = F?.curves?.[c.sym]; if (cv) { const k = Object.keys(cv).sort().at(-1), a = cv[k].settle; if (a.length > 1) L.push(`<b>Curve:</b> front spread ${(a[1] - a[0]).toFixed(2)} ${a[1] > a[0] ? '(carry)' : '(inverse)'}; front ${fmt(a[0], 2)} ${c.unit}.`); }

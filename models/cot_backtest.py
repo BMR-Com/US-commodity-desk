@@ -15,7 +15,45 @@ ROOT = Path(__file__).resolve().parent.parent
 SYMS = ["DC", "GDK", "CSC", "CB", "GNF", "DY", "HE", "LE", "GF"]
 
 
+MCODE = {c: i for i, c in enumerate("FGHJKMNQUVXZ", 1)}
+CASH_SETTLED = {"HE", "GF", "DC", "GDK", "CSC", "CB", "GNF", "DY"}
+
+
 def roll_adjusted_index(sym):
+    """Total-return index of holding the front contract, rolled before delivery/expiry, built from
+    per-contract closes (data/contracts/<SYM>.csv). Physically delivered contracts roll on the 20th of the month
+    before the delivery month; cash-settled ones 5 trading days before their last trading day. Falls back to the
+    TradingView continuous series (cruder roll detection) when no contract history exists."""
+    cp = ROOT / "data" / "contracts" / f"{sym}.csv"
+    if cp.exists():
+        d = pd.read_csv(cp, parse_dates=["date"]).dropna(subset=["close"])
+        d = d[(d.close > 0) & (d.date >= "2006-01-01")]  # 2003-05 histories are too thin (single contracts, bad prints)
+        px = d.pivot_table(index="date", columns="contract", values="close", aggfunc="last").sort_index()
+        last = d.groupby("contract").date.max()
+        roll = {}
+        for c in px.columns:
+            code = c[len(sym):]
+            m, y = MCODE.get(code[0]), int(code[1:])
+            if not m:
+                continue
+            if sym in CASH_SETTLED:
+                dates = px[c].dropna().index
+                roll[c] = dates[-6] if len(dates) > 6 and last[c] < px.index[-1] else pd.Timestamp(y, m, 28)
+            else:
+                pm, py = (m - 1, y) if m > 1 else (12, y - 1)
+                roll[c] = pd.Timestamp(py, pm, 20)
+        order = sorted(roll, key=lambda c: roll[c])
+        ret = pd.Series(0.0, index=px.index)
+        held = None
+        for i, t in enumerate(px.index):
+            if i == 0:
+                continue
+            prev = px.index[i - 1]
+            # contract held over (prev, t]: the first one whose roll date is after prev and that traded on both days
+            h = next((c for c in order if roll[c] > prev and not np.isnan(px.at[prev, c]) and not np.isnan(px.at[t, c])), None)
+            if h is not None:
+                ret.iat[i] = px.at[t, h] / px.at[prev, h] - 1
+        return (1 + ret.clip(-0.25, 0.25)).cumprod()
     p = pd.read_csv(ROOT / "data" / "prices" / f"{sym}.csv", parse_dates=["date"]).set_index("date")
     c1, c2 = p.c1_close, p.c2_close
     r = c1 / c1.shift(1) - 1

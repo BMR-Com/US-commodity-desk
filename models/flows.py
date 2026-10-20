@@ -13,7 +13,13 @@ GROUPS = {"dairy": ["DC", "GDK", "CSC", "CB", "GNF", "DY"], "livestock": ["HE", 
 
 
 def num(s):
-    return pd.to_numeric(s.astype(str).str.replace(",", "").str.replace(r"[AB]$", "", regex=True), errors="coerce")
+    """Numbers from CME strings, incl. CBOT eighths ("1052'4" = 1052.5) and trailing A/B (ask/bid) flags."""
+    x = s.astype(str).str.replace(",", "").str.replace(r"[AB]$", "", regex=True).str.strip()
+    frac = x.str.extract(r"^(-?\d+)'(\d)$")
+    out = pd.to_numeric(x, errors="coerce")
+    m = frac[0].notna()
+    out[m] = frac[0][m].astype(float) + frac[1][m].astype(float) / 8 * (frac[0][m].astype(float).apply(lambda v: -1 if v < 0 else 1))
+    return out
 
 
 def cot(sym):
@@ -178,6 +184,18 @@ def seasonality(sym, years=15):
             "current": [round(float(100 * (v / base - 1)), 2) for v in cy], "years": years}
 
 
+def clean(o):
+    """Replace NaN/inf with None recursively so the output is strict JSON."""
+    import math
+    if isinstance(o, float):
+        return None if (math.isnan(o) or math.isinf(o)) else o
+    if isinstance(o, dict):
+        return {k: clean(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [clean(v) for v in o]
+    return o
+
+
 if __name__ == "__main__":
     for group, syms in GROUPS.items():
         out = {"generated": pd.Timestamp.now("UTC").isoformat(timespec="minutes"), "cot": {}, "prices": {}}
@@ -194,5 +212,5 @@ if __name__ == "__main__":
             out["seasonality"] = {s: seasonality(s) for s in syms}
         d = ROOT / "data" / group / "derived"
         d.mkdir(parents=True, exist_ok=True)
-        (d / "flows.json").write_text(json.dumps(out, separators=(",", ":"), default=str))
+        (d / "flows.json").write_text(json.dumps(clean(json.loads(json.dumps(out, default=str))), separators=(",", ":"), allow_nan=False))
         print(group, {s: v["summary"] for s, v in out["cot"].items()})

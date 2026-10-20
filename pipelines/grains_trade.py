@@ -5,6 +5,7 @@ Writes data/grains/raw/{inspections,export_sales,flash}/ and a run log data/grai
 import builtins, io, json, os, re, sys, time, traceback
 from pathlib import Path
 import requests
+import pandas as pd
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "grains" / "raw"
 H = {"User-Agent": "Mozilla/5.0 (BMR-Com research; github actions)"}

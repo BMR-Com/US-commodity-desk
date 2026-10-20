@@ -39,7 +39,7 @@ jobs:
         continue-on-error: true
       - run: python models/flows.py
         continue-on-error: true
-      - run: python models/dairy_backtest.py && python models/cot_backtest.py
+      - run: python models/dairy_backtest.py && python models/cot_backtest.py && python -W ignore models/dairy_convergence.py && python -W ignore models/dairy_spot.py
         continue-on-error: true
       - run: python -W ignore models/hogs.py && python -W ignore models/hogs_sd.py && python models/convergence_bias.py && python -W ignore models/hogs_convergence.py && python -W ignore models/hogs_expiry.py && python -W ignore models/cattle.py && python -W ignore models/cattle_sd.py
         continue-on-error: true

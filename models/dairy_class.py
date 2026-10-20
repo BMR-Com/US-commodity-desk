@@ -89,7 +89,21 @@ def weekly_ndpsr():
         d["sales"] = pd.to_numeric(d["sales"].astype(str).str.replace(",", ""), errors="coerce")
         d["product"] = prod
         out.append(d[["week", "product", "price", "sales", "published"]])
-    return pd.concat(out).sort_values(["product", "week"])
+    w = pd.concat(out)
+    # Before June 2025 the Class III cheese price was the sales-weighted average of 40-lb blocks and
+    # 500-lb barrels (moisture-adjusted) + $0.03; from June 2025 blocks only.
+    b = pd.read_csv(RAW / "ndpsr" / "500_pound_barrel_cheddar_cheese_prices_sales_and_moisture_content.csv")
+    b = b.rename(columns={"Week Ending Date": "week", "cheese_500_Wtd_Price": "bprice", "cheese_500_Sales": "bsales"})  # moisture-adjusted
+    b["published"] = pd.to_datetime(b["published_date"])
+    b["week"] = pd.to_datetime(b["week"])
+    b = b.dropna(subset=["bprice"]).sort_values("published").groupby("week").tail(1)
+    b["bsales"] = pd.to_numeric(b["bsales"].astype(str).str.replace(",", ""), errors="coerce")
+    ch = w[w["product"] == "cheese"].merge(b[["week", "bprice", "bsales"]], on="week", how="left")
+    old = (ch.week < "2025-06-01") & ch.bprice.notna() & ch.bsales.gt(0)
+    ch.loc[old, "price"] = ((ch.price * ch.sales + (ch.bprice + 0.03) * ch.bsales) / (ch.sales + ch.bsales))[old]
+    ch.loc[old, "sales"] = (ch.sales + ch.bsales)[old]
+    w = pd.concat([w[w["product"] != "cheese"], ch[["week", "product", "price", "sales", "published"]]])
+    return w.sort_values(["product", "week"])
 
 
 def monthly_from_weekly(w):

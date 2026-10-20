@@ -1,38 +1,38 @@
 {
- "generated": "2026-10-20T14:56+00:00",
+ "generated": "2026-10-20T15:31+00:00",
  "nowcast": {
   "class3": {
    "2013-2026": {
     "1": {
-     "nowcast_err": 0.676,
+     "nowcast_err": 0.536,
      "futures_err": 0.155,
      "prev_err": 1.11,
      "n": 163.0,
-     "nowcast_beats_futures_pct": 18.0
+     "nowcast_beats_futures_pct": 22.0
     },
     "2": {
-     "nowcast_err": 0.58,
+     "nowcast_err": 0.398,
      "futures_err": 0.088,
      "prev_err": 1.11,
      "n": 163.0,
-     "nowcast_beats_futures_pct": 12.0
+     "nowcast_beats_futures_pct": 15.0
     },
     "3": {
-     "nowcast_err": 0.482,
+     "nowcast_err": 0.244,
      "futures_err": 0.175,
      "prev_err": 1.104,
      "n": 164.0,
-     "nowcast_beats_futures_pct": 12.0
+     "nowcast_beats_futures_pct": 21.0
     },
     "4": {
-     "nowcast_err": 0.424,
+     "nowcast_err": 0.092,
      "futures_err": 0.567,
      "prev_err": 1.104,
      "n": 164.0,
-     "nowcast_beats_futures_pct": 31.0
+     "nowcast_beats_futures_pct": 42.0
     },
     "5": {
-     "nowcast_err": 0.41,
+     "nowcast_err": 0.052,
      "futures_err": null,
      "prev_err": 1.057,
      "n": 57.0,
@@ -41,35 +41,35 @@
    },
    "2019-2026": {
     "1": {
-     "nowcast_err": 0.793,
+     "nowcast_err": 0.637,
      "futures_err": 0.166,
      "prev_err": 1.327,
      "n": 93.0,
-     "nowcast_beats_futures_pct": 18.0
+     "nowcast_beats_futures_pct": 16.0
     },
     "2": {
-     "nowcast_err": 0.688,
+     "nowcast_err": 0.484,
      "futures_err": 0.095,
      "prev_err": 1.327,
      "n": 93.0,
-     "nowcast_beats_futures_pct": 12.0
+     "nowcast_beats_futures_pct": 10.0
     },
     "3": {
-     "nowcast_err": 0.593,
+     "nowcast_err": 0.303,
      "futures_err": 0.25,
      "prev_err": 1.327,
      "n": 93.0,
-     "nowcast_beats_futures_pct": 14.0
+     "nowcast_beats_futures_pct": 19.0
     },
     "4": {
-     "nowcast_err": 0.539,
+     "nowcast_err": 0.113,
      "futures_err": 0.717,
      "prev_err": 1.327,
      "n": 93.0,
-     "nowcast_beats_futures_pct": 34.0
+     "nowcast_beats_futures_pct": 44.0
     },
     "5": {
-     "nowcast_err": 0.536,
+     "nowcast_err": 0.071,
      "futures_err": null,
      "prev_err": 1.269,
      "n": 32.0,

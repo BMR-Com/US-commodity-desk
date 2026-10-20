@@ -238,6 +238,7 @@ async function initOutlook() {
     const cot = s => { const x = CB[s]?.w4; if (!x) return ''; const f = y => y ? `${sgn(y.mean_pct, 2, '%')} · ${Math.round(100 * y.up_share)}% up · n${y.n}` : '–'; return `<tr><td>${SYM[s] || s}</td><td>${f(x.all)}</td><td>${f(x.extreme_short)}</td><td>${f(x.extreme_long)}</td></tr>`; };
     const DCV = await getJSON(D + 'dairy_convergence.json').catch(() => null);
     const CBI = await getJSON('data/derived/convergence_bias.json').catch(() => null);
+    const SPT = await getJSON(D + 'dairy_spot.json').catch(() => null);
     let conv = '';
     if (DCV) {
       const c3 = DCV.tests['2013-2026'].class3, c4 = DCV.tests['2013-2026'].class4;
@@ -245,6 +246,14 @@ async function initOutlook() {
       <div class="tbl"><table><tr><th>Months ahead</th><th>III futures</th><th>III fundamental</th><th>IV futures</th><th>IV fundamental</th></tr>
       ${[0, 1, 2, 3, 6].map(h => `<tr><td>${h === 0 ? 'current month' : h}</td><td>${fmt(c3[h].mae_futures)}</td><td>${fmt(Math.min(c3[h].mae_persist, c3[h].mae_seasonal))}</td><td>${fmt(c4[h].mae_futures)}</td><td>${fmt(Math.min(c4[h].mae_persist, c4[h].mae_seasonal))}</td></tr>`).join('')}</table></div>
       <p class="note">Each contract is scored against the USDA price it settled to. Fundamental = NDPSR weeks to date plus latest week carried (current month), latest NDPSR prices through the formula with and without seasonal adjustment (later months); best of the two shown. Futures win at every horizon: they trade the daily CME spot auctions that NDPSR reflects 1–2 weeks later.</p>`;
+    }
+    if (SPT?.tests) {
+      const r = (c, k) => { const x = SPT.tests[c]?.[k]; return x ? `<td>${fmt(x.mae_futures, 2)}</td><td>${fmt(x.mae_ndpsr, 2)}</td><td>${fmt(x.mae_spot, 2)}</td>` : '<td></td><td></td><td></td>'; };
+      const cur = SPT.current;
+      conv += `<h3>Does the CME daily spot auction improve the current-month nowcast? (since ${SPT.since}, $/cwt)</h3>
+      <div class="tbl"><table><tr><th></th><th>III futures</th><th>III NDPSR</th><th>III + spot</th><th>IV futures</th><th>IV NDPSR</th><th>IV + spot</th></tr>
+      ${['2+ weeks left', '1 week left', 'final week'].map(k => `<tr><td>${k}</td>${r('class3', k)}${r('class4', k)}</tr>`).join('')}</table></div>
+      <p class="note">“+ spot” fills the month's remaining NDPSR weeks with the last 5 CME spot sessions plus the usual NDPSR-minus-spot spread. It is no better than carrying the latest NDPSR week, and futures beat both: the CME spot auction is already in the futures price.${cur ? ` Current reading (${cur.month}, spot to ${cur.spot_date}, ${cur.weeks_left} NDPSR weeks left): Class III ${fmt(cur.class3, 2)}, Class IV ${fmt(cur.class4, 2)}.` : ''}</p>`;
     }
     if (CBI) {
       const row = s => { const v = CBI[s]; return v ? `<tr><td>${SYM[s] || s}</td>${['h20', 'h60', 'h120'].map(h => `<td>${sgn(v[h]?.mean_pct, 2, '%')} · ${Math.round(100 * (v[h]?.up_share ?? 0))}% up · t ${fmt(v[h]?.t, 1)}</td>`).join('')}</tr>` : ''; };

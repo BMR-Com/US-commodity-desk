@@ -84,3 +84,9 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
 - `pipelines/ohlc.py` (TradingView, in data.yml): continuous front + next 5–6 live contracts OHLCV → `data/ohlc/<SYM>.csv`.
 - `models/technicals.py`: indicator/rating/levels code ported from cotton-crop-progress/scripts/build_technicals.py (units per contract), calendar spreads between live contracts, seasonality/percentiles from data/contracts aligned on weeks to last trade → `data/technicals/<SYM>.json`.
 - `assets/tech.js` (Tech.mount): the cotton technicals page as a panel at the top of every Outlook tab (dairy has a market picker for all six contracts; cattle LE/GF). Uses lightweight-charts 4.1.3 + Chart.js.
+
+## COT desk (2026-10-20, Ma: "more detailed like cot full repo … under water … next level for CTAs")
+- `models/cot_desk.py` → `data/cot_desk/<SYM>.json` + `summary.json`; `assets/cotdesk.js` (CotDesk.mount) at the top of every Flows tab.
+- Positioning by all five trader groups (percentiles 1/3/5y/all, COT index, z, streak, traders, top-4/8 concentration, driver), $ exposure and flows.
+- Money under water: LIFO cost layers of MM gross longs/shorts on nominal front-month closes over 2 years; % under water, open P&L, half-under-water level, ±15% grid.
+- CTA: trend score (sign of 20/60/120/250-day returns, roll-adjusted), MM-net-vs-score fit (R² 0.45–0.74 grains/meats, weak in dairy: flagged), 2-week flow sensitivity (corr 0.5–0.67), flip levels per lookback with flow if flipped, ±10% scenarios, breakout/MA triggers on the tradable contract, next trigger up/down.

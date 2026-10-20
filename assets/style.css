@@ -79,3 +79,12 @@ footer{max-width:1280px;margin:0 auto;padding:16px;font-size:11px;color:var(--mu
 .tech td.x{font-weight:700;color:var(--acc)}.tech td.b{color:var(--up);font-weight:600}.tech td.s{color:var(--dn);font-weight:600}.tech td.n{color:var(--muted)}
 .tech details summary{cursor:pointer;font-size:12px;color:#444;margin:8px 0 4px}
 .tech ul.read li{font-size:13px}
+
+/* COT desk (cotdesk.js) */
+.cotdesk .tbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.cotdesk .grp{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.cotdesk .lab{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-right:2px}
+.cotdesk .chip{font:inherit;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#444;cursor:pointer}
+.cotdesk .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cotdesk .cd-chip{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;font-weight:600;background:#eef1f4;color:#888}
+.cotdesk .cd-up{background:#e3f6ea;color:#14713e}.cotdesk .cd-dn{background:#fde8e6;color:#a8322a}

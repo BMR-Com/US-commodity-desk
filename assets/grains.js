@@ -309,7 +309,7 @@ const Grains = (() => {
   function flows(c) {
     if (!F || !F.cot?.[c.sym]) { el('#gBody').innerHTML = '<div class="card"><p class="note">Grain futures, options and COT data are still downloading; this tab fills in after the next data run.</p></div>'; return; }
     const syms = Object.keys(F.cot);
-    el('#gBody').innerHTML = `<div class="card"><h2>Managed money across grains &amp; oilseeds</h2><div class="tbl"><table id="tGCot"></table></div>
+    el('#gBody').innerHTML = `<div id="gCotDesk" style="margin-bottom:12px"></div><div class="card"><h2>Managed money across grains &amp; oilseeds</h2><div class="tbl"><table id="tGCot"></table></div>
         <p class="note">CFTC Disaggregated COT, futures and options combined. Percentiles vs all history and the last 3 years.</p></div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h3>Price (continuous front month, ${c.unit})</h3><div class="chart"><canvas id="cGPx"></canvas></div></div>
@@ -364,6 +364,7 @@ const Grains = (() => {
         chart('cGOpt', { type: 'bar', data: { labels: x.strike, datasets: [{ label: 'Call OI', data: x.call_oi, backgroundColor: 'rgba(31,122,58,.7)' }, { label: 'Put OI', data: x.put_oi.map(v => -v), backgroundColor: 'rgba(179,38,30,.7)' }] },
           options: { indexAxis: 'y', scales: { x: { ticks: { callback: v => Math.abs(v) } }, y: { ticks: { autoSkip: true, maxTicksLimit: 30 } } }, plugins: { tooltip: { callbacks: { label: q => `${q.dataset.label}: ${Math.abs(q.raw)}` } } } } }); };
       draw(); }
+    CotDesk.mount(el('#gCotDesk'), [c.sym]);
   }
 
   // ── OUTLOOK ──

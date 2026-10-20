@@ -62,7 +62,7 @@ const Cattle = (() => {
 
   function flows() {
     const parts = ['LE', 'GF'].filter(s => F?.cot?.[s]);
-    body(`<div class="card"><h2>Positioning (secondary)</h2><div class="tbl"><table><tr><th>Contract</th><th>Report</th><th>Open int.</th><th>MM net</th><th>w/w</th><th>Pctl 3y</th><th>Prod/merch</th><th>Swap</th></tr>
+    body(`<div id="cCotDesk" style="margin-bottom:12px"></div><div class="card"><h2>Positioning (secondary)</h2><div class="tbl"><table><tr><th>Contract</th><th>Report</th><th>Open int.</th><th>MM net</th><th>w/w</th><th>Pctl 3y</th><th>Prod/merch</th><th>Swap</th></tr>
       ${parts.map(s => { const x = F.cot[s].summary; return `<tr><td>${s === 'LE' ? 'Live cattle' : 'Feeder cattle'}</td><td>${x.date}</td><td>${fmt(x.oi, 0)}</td><td>${sgn(x.mm_net, 0)}</td><td>${sgn(x.mm_net_wow, 0)}</td><td>${fmt(x.mm_net_percentile_3y, 0)}</td><td>${sgn(x.pm_net, 0)}</td><td>${sgn(x.sw_net, 0)}</td></tr>`; }).join('')}</table></div></div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h3>Live cattle curve vs ${C.curve_le?.cash_label ?? 'cash'}</h3><div class="chart"><canvas id="cLe"></canvas></div></div>
@@ -73,6 +73,7 @@ const Cattle = (() => {
     cv('cLe', C.curve_le); cv('cGf', C.curve_gf);
     const px = F?.prices?.LE; if (px) chart('cLePx', { type: 'line', data: { labels: px.date.slice(-750), datasets: [{ label: 'Live cattle ¢/lb', data: px.c1.slice(-750), borderColor: PAL[0], pointRadius: 0 }] } });
     const s = F?.cot?.LE?.series; if (s) chart('cLeCot', { type: 'line', data: { labels: s.date.slice(-260), datasets: [{ label: 'Managed money', data: s.mm_net.slice(-260), borderColor: PAL[1], pointRadius: 0 }, { label: 'Producer/merchant', data: s.pm_net.slice(-260), borderColor: PAL[2], pointRadius: 0 }] } });
+    CotDesk.mount($('#cCotDesk'), ['LE', 'GF']);
   }
 
   function outlook() {

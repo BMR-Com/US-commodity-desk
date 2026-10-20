@@ -76,7 +76,7 @@ const Hogs = (() => {
   function flows() {
     const c = F?.cot?.HE; if (!c) { body('<div class="card"><p class="note">Flows data not available yet.</p></div>'); return; }
     const sm = c.summary, cv = H.curve;
-    body(`<div class="card"><h2>Lean hogs positioning (secondary)</h2><div class="tbl"><table><tr><th>Report</th><th>Open int.</th><th>MM net</th><th>w/w</th><th>% OI</th><th>Pctl all</th><th>Pctl 3y</th><th>Prod/merch</th><th>Swap</th></tr>
+    body(`<div id="hCotDesk" style="margin-bottom:12px"></div><div class="card"><h2>Lean hogs positioning (secondary)</h2><div class="tbl"><table><tr><th>Report</th><th>Open int.</th><th>MM net</th><th>w/w</th><th>% OI</th><th>Pctl all</th><th>Pctl 3y</th><th>Prod/merch</th><th>Swap</th></tr>
       <tr><td>${sm.date}</td><td>${fmt(sm.oi, 0)}</td><td>${sgn(sm.mm_net, 0)}</td><td>${sgn(sm.mm_net_wow, 0)}</td><td>${fmt(sm.mm_net_pct_oi, 1)}%</td><td>${fmt(sm.mm_net_percentile_all, 0)}</td><td>${fmt(sm.mm_net_percentile_3y, 0)}</td><td>${sgn(sm.pm_net, 0)}</td><td>${sgn(sm.sw_net, 0)}</td></tr></table></div></div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h3>Futures curve vs cash index (${cv?.trade_date}, index ${cv?.index_date} $${fmt(cv?.index)})</h3><div class="chart"><canvas id="hCurve"></canvas></div><p class="note">Bars: each contract minus today's index. The expiring contract converges to the index; deferred months carry the seasonal path.</p></div>
@@ -97,6 +97,7 @@ const Hogs = (() => {
         $$('#hOptM button').forEach(b => b.onclick = () => { om = b.dataset.m; draw(); }); const x = o.months[om];
         chart('hOpt', { type: 'bar', data: { labels: x.strike, datasets: [{ label: 'Call OI', data: x.call_oi, backgroundColor: 'rgba(31,122,58,.7)' }, { label: 'Put OI', data: x.put_oi.map(v => -v), backgroundColor: 'rgba(179,38,30,.7)' }] },
           options: { indexAxis: 'y', scales: { x: { ticks: { callback: v => Math.abs(v) } } }, plugins: { tooltip: { callbacks: { label: q => `${q.dataset.label}: ${Math.abs(q.raw)}` } } } } }); }; draw(); }
+    CotDesk.mount($('#hCotDesk'), ['HE']);
   }
 
   function outlook() {

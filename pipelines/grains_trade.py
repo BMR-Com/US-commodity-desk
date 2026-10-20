@@ -29,26 +29,38 @@ def get(url, **kw):
     return None
 
 
+def aggregate_inspections(raw_bytes):
+    import pandas as pd
+    d = pd.read_csv(io.BytesIO(raw_bytes), low_memory=False, encoding="latin-1", dtype=str)
+    d.columns = [c.strip() for c in d.columns]
+    d["week"] = pd.to_datetime(d["Thursday"], format="%Y%m%d", errors="coerce")
+    for c in ("1000 Bushels", "Metric Ton"):
+        d[c] = pd.to_numeric(d[c].str.replace(",", ""), errors="coerce")
+    d["Class"] = d["Class"].fillna("").str.strip()
+    g = d.groupby(["week", "Grain", "Class", "Destination", "AMS Reg"], dropna=False)[["1000 Bushels", "Metric Ton"]].sum().reset_index()
+    return g.rename(columns={"Grain": "grain", "Class": "cls", "Destination": "destination", "AMS Reg": "region",
+                             "1000 Bushels": "kbu", "Metric Ton": "mt"})
+
+
 def inspections():
-    """FGIS publishes one CSV per calendar year of inspection certificates."""
+    """FGIS publishes one CSV per calendar year of inspection certificates; keep weekly aggregates only."""
+    import pandas as pd
     d = OUT / "inspections"
     d.mkdir(parents=True, exist_ok=True)
     cur = time.gmtime().tm_year
     for y in range(cur, 1999, -1):
-        p = d / f"CY{y}.csv"
+        p = d / f"weekly_CY{y}.csv"
         if p.exists() and y < cur:
             continue
-        r = None
-        for u in (f"https://fgisonline.ams.usda.gov/ExportGrainReport/CY{y}.csv",
-                  f"https://fgisonline.ams.usda.gov/exportgrainreport/CY{y}.csv"):
-            r = get(u)
-            if r is not None and len(r.content) > 1000:
-                break
-        if r is None:
+        r = get(f"https://fgisonline.ams.usda.gov/ExportGrainReport/CY{y}.csv")
+        if r is None or len(r.content) < 1000:
             print("inspections", y, "not found")
             continue
-        p.write_bytes(r.content)
-        print("inspections", y, len(r.content))
+        g = aggregate_inspections(r.content)
+        g.to_csv(p, index=False)
+        print("inspections", y, len(g), "weekly rows")
+    for old in d.glob("CY*.csv"):
+        old.unlink()
 
 
 def export_sales():

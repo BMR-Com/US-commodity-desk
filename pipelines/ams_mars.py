@@ -14,7 +14,7 @@ B = "https://marsapi.ams.usda.gov/services/v1.2/reports/"
 KEY = (os.getenv("AMS_API_KEY") or "").strip()
 REPORTS = {  # slug: name
     1603: "cme_daily_dairy", 2850: "iowa_bids", 3192: "illinois_bids", 3147: "gulf_export_bids",
-    3043: "ia_mn_barge_bids", 3223: "kc_wheat_bids", 3046: "minneapolis_bids", 3617: "ethanol_daily", 3148: "portland_bids"}
+    3043: "ia_mn_barge_bids", 3223: "kc_wheat_bids", 3046: "minneapolis_bids", 3617: "ethanol_daily", 3148: "portland_bids", 3486: "mexico_feeder_imports", 2829: "beef_drop_value"}
 GRAIN_COLS = ["report_date", "commodity", "class", "grade", "protein", "trade_loc", "delivery_point", "quote_type", "sale Type",
               "basis Min", "basis Max", "basis Min Futures Month", "price Min", "price Max", "avg_price", "current",
               "delivery_start", "delivery Start Half", "trans_mode", "freight"]
@@ -37,7 +37,10 @@ def main():
         print("no AMS_API_KEY")
         return
     now = pd.Timestamp.now()
+    only = {int(a) for a in sys.argv[1:]}
     for slug, name in REPORTS.items():
+        if only and slug not in only:
+            continue
         d = OUT / name
         d.mkdir(parents=True, exist_ok=True)
         for y in range(2020, now.year + 1):
@@ -59,7 +62,7 @@ def main():
             if not parts:
                 continue
             x = pd.concat(parts)
-            if slug != 1603 and slug != 3617:
+            if slug in (2850, 3192, 3147, 3043, 3223, 3046, 3148):
                 x = x[[c for c in GRAIN_COLS if c in x.columns]]
             else:
                 x = x.drop(columns=[c for c in x.columns if c.startswith(("office", "slug", "report_title", "market_location", "published"))], errors="ignore")

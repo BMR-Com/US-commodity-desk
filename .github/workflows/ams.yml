@@ -1,0 +1,23 @@
+name: ams-backfill
+on: {workflow_dispatch: {}}
+permissions: {contents: write}
+concurrency: {group: ams-backfill, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas
+      - name: backfill each report, commit after each
+        env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          for s in 1603 2850 3192 3147 3043 3223 3046 3617 3148 3486 2829; do
+            python pipelines/ams_mars.py $s || true
+            git add data/ams; git diff --cached --quiet && continue
+            git commit -q -m "data: AMS MARS report $s"
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep 10; done
+          done

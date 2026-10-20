@@ -79,7 +79,7 @@ def datamart():
             if sec == "Summary":
                 rows = root.get("results", [])
             else:
-                rr = get(f"{DM}/{rid}/{urllib.parse.quote(sec)}")
+                rr = get(f"{DM}/{rid}/{urllib.parse.quote(sec, safe='')}")
                 if rr is None:
                     continue
                 j = rr.json()

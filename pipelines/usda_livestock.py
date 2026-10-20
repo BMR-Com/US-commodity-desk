@@ -43,7 +43,7 @@ ERS = {
 def datamart():
     for rid, (name, sections) in REPORTS.items():
         for sec in sections:
-            r = get(f"{DM}/{rid}/{urllib.parse.quote(sec)}")
+            r = get(f"{DM}/{rid}/{urllib.parse.quote(sec, safe='')}")
             if r is None:
                 continue
             j = r.json()
@@ -103,10 +103,17 @@ def ers():
 
 
 if __name__ == "__main__":
+    import builtins, traceback
+    OUT.mkdir(parents=True, exist_ok=True)
+    log = open(OUT / "_run.log", "w")
+    _print = builtins.print
+    def print(*a, **k):  # noqa: A001 - tee to the committed run log
+        _print(*a, **k); _print(*a, file=log, flush=True)
+    builtins.print = print
     what = sys.argv[1:] or ["datamart", "nass", "ers"]
-    if "datamart" in what:
-        datamart()
-    if "nass" in what:
-        nass()
-    if "ers" in what:
-        ers()
+    for step, fn in (("datamart", datamart), ("nass", nass), ("ers", ers)):
+        if step in what:
+            try:
+                fn()
+            except Exception:
+                print(step, "FAILED", traceback.format_exc())

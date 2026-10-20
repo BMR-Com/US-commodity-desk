@@ -48,7 +48,11 @@ def condition(commodity_dir, prefix):
     out["ge"] = p.GOOD + p.EXCELLENT
     out["idx"] = sum(p.get(c, 0) * w for c, w in W.items()) / p[list(W)].sum(axis=1) * 20  # 20..100
     out["year"] = out.index.year
-    out["week"] = out.index.isocalendar().week.values
+    out["week"] = out.index.isocalendar().week.values.astype(int)
+    if "WINTER" in prefix:  # fall ratings belong to next year's crop: week 44 -> year+1, week -8
+        fall = out.week >= 35
+        out.loc[fall, "year"] += 1
+        out.loc[fall, "week"] -= 52
     return out
 
 

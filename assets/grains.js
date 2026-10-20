@@ -226,6 +226,10 @@ const Grains = (() => {
     const m = d.model;
     if (m) $('#gYield').innerHTML = `<h3>Condition-based yield model</h3><p>${m.year} yield estimate from condition in week ${m.week}: <b>${fmt(m.estimate, 1)} bu/ac</b> vs USDA ${fmt(m.usda, 1)} (trend ${fmt(m.trend, 1)}).</p>
       <p class="note">Backtest (leave-one-year-out, ${m.test.n} years): mean abs error ${fmt(m.test.mae_model, 2)} bu/ac vs ${fmt(m.test.mae_trend, 2)} for trend alone${m.test.mae_usda_same_date != null ? `; on the ${m.test.n_usda} years with a USDA yield forecast at the same date, model ${fmt(m.test.mae_model_same_years, 2)} vs USDA ${fmt(m.test.mae_usda_same_date, 2)}` : ''}. Direction vs trend right ${fmt(100 * m.test.hit_direction, 0)}% of years.</p>`;
+    const sw = c.wasde === 'wheat' ? COND?.spring_wheat?.model : null;
+    if (sw) $('#gYield').innerHTML += `<h3>Spring wheat (HRS)</h3><p>${sw.year} estimate from condition in week ${sw.week}: <b>${fmt(sw.estimate, 1)} bu/ac</b> vs USDA ${fmt(sw.usda, 1)} (trend ${fmt(sw.trend, 1)}).</p>
+      <p class="note">Backtest (${sw.test.n} years): mean abs error ${fmt(sw.test.mae_model, 2)} vs ${fmt(sw.test.mae_trend, 2)} for trend alone; direction right ${fmt(100 * sw.test.hit_direction, 0)}%.</p>`;
+    if (c.wasde === 'wheat') $('#gYield').insertAdjacentHTML('afterbegin', '<p class="note">Winter wheat; negative weeks are the previous autumn\'s ratings (crop year).</p>');
   }
   function expCard(c) {
     const box = el('#gExp'), d = EXP?.[c.wasde];

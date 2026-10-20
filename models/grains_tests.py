@@ -125,8 +125,8 @@ def html(com, mom, cond, exp, react):
     parts = []
     b = bias(com)
     if b:
-        cells = "".join(f"<td>{b[h]['mean_pct']:+.2f}% · {100 * b[h]['up_share']:.0f}% up · t {b[h]['t']:+.1f}</td>" for h in ("h20", "h60", "h120") if h in b)
-        parts.append(f"<h3>Convergence: futures vs their own final price</h3><div class='tbl'><table><tr><th>Expired contracts since 2010</th><th>From 20 bdays</th><th>From 60</th><th>From 120</th></tr><tr><td>{b['n_contracts']} contracts</td>{cells}</tr></table></div><p class='note'>Positive = futures finished above where they traded. t-stats overstate significance (neighbouring contracts share shocks).</p>")
+        cells = "".join(f"<td>{b[h]['mean_pct']:+.2f}%<br><span class='note'>{100 * b[h]['up_share']:.0f}% up · t {b[h]['t']:+.1f}</span></td>" for h in ("h20", "h60", "h120") if h in b)
+        parts.append(f"<h3>Convergence: futures vs their own final price</h3><div class='tbl'><table><tr><th>Expired since 2010</th><th>From 20 bdays</th><th>From 60</th><th>From 120</th></tr><tr><td>{b['n_contracts']} contracts</td>{cells}</tr></table></div><p class='note'>Positive = futures finished above where they traded. t-stats overstate significance (neighbouring contracts share shocks).</p>")
     if mom:
         parts.append("<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr>" +
                      "".join(f"<tr><td>{k.replace('_', ' ')}</td><td>{100 * v['same_direction']:.0f}%</td><td>{v['n']}</td></tr>" for k, v in mom.items()) +

@@ -15,7 +15,7 @@
 <nav class="comm">
   <button class="on" data-c="dairy">Dairy</button>
   <button data-c="grains">Grains &amp; oilseeds</button>
-  <button disabled title="in build">Lean hogs</button>
+  <button data-c="hogs">Lean hogs</button>
   <button disabled title="in build">Live &amp; feeder cattle</button>
 </nav>
 
@@ -207,17 +207,20 @@
 </main>
 </section>
 <section id="grains" style="display:none"></section>
+<section id="hogs" style="display:none"></section>
 <footer>Data: USDA AMS (mandatory reporting datamart), USDA ERS, USDA WASDE, CFTC, CME Group. Prices and positions as of the dates shown. Research use only; not investment advice.</footer>
 <script src="assets/lib.js"></script>
 <script src="assets/dairy.js"></script>
 <script src="assets/grains.js"></script>
+<script src="assets/hogs.js"></script>
 <script>
 $$('nav.comm button[data-c]').forEach(b => b.onclick = () => {
   $$('nav.comm button').forEach(x => x.classList.toggle('on', x === b));
-  ['dairy', 'grains'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
-  if (b.dataset.c === 'grains') Grains.show(); else history.replaceState(null, '', '#d-primer');
+  ['dairy', 'grains', 'hogs'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
+  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else history.replaceState(null, '', '#d-primer');
 });
 if (location.hash.startsWith('#g')) $('nav.comm button[data-c="grains"]').click();
+if (location.hash.startsWith('#h-')) $('nav.comm button[data-c="hogs"]').click();
 </script>
 </body>
 </html>

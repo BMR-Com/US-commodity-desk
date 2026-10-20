@@ -40,6 +40,19 @@ def slaughter():
 
 
 def hogs_and_pigs():
+    """First-print weight-group inventories with true release dates (archived NASS text releases)."""
+    from esmis_parse import hogs_and_pigs as hp_first
+    h = hp_first()
+    if len(h):
+        h["month"] = pd.PeriodIndex(h.quarter, freq="M")
+        inv = pd.DataFrame({"GE 180 LBS": h.ge180.values, "120 TO 179 LBS": h["120_179"].values,
+                            "50 TO 119 LBS": h["50_119"].values, "LT 50 LBS": h.lt50.values}, index=h.month) * 1000
+        prev = pd.DataFrame({"GE 180 LBS": h.ge180_prev.values, "120 TO 179 LBS": h["120_179_prev"].values,
+                             "50 TO 119 LBS": h["50_119_prev"].values, "LT 50 LBS": h.lt50_prev.values}, index=h.month - 12) * 1000
+        # year-ago values as printed in the same release (what the market saw), not later revisions
+        inv = pd.concat([prev[~prev.index.isin(inv.index)], inv]).sort_index()
+        rel = pd.Series(pd.to_datetime(h.released).values, index=h.month)
+        return inv, rel
     d = pd.read_csv(RAW / "hogs_inventory.csv")
     d = d[d.reference_period_desc.str.startswith("FIRST OF") & d.short_desc.str.startswith("HOGS, MARKET,")].copy()
     d["group"] = d.short_desc.str.extract(r"HOGS, MARKET, (.+?) - INVENTORY")[0]

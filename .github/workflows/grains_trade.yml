@@ -1,0 +1,32 @@
+name: grains-trade
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipelines/grains_trade.py', '.github/workflows/grains_trade.yml']
+  schedule:
+    - cron: '30 21 * * 1'     # Monday after Crop Progress (4 pm ET) and inspections
+    - cron: '0 14 * * 2-5'    # weekday mornings: flash sales, Thursday export sales
+    - cron: '30 17 * * 4'     # Thursday after weekly export sales (8:30 ET)
+permissions: {contents: write}
+concurrency: {group: grains-trade, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas
+      - name: trade (inspections, export sales, flash)
+        run: python pipelines/grains_trade.py
+        continue-on-error: true
+        env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/grains
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: grains trade $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q && break; sleep 8; done

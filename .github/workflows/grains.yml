@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['pipelines/crop_progress.py', 'pipelines/grains_trade.py', '.github/workflows/grains.yml']
+    paths: ['pipelines/crop_progress.py', '.github/workflows/grains.yml']
   schedule:
     - cron: '30 21 * * 1'     # Monday after Crop Progress (4 pm ET) and inspections
     - cron: '0 14 * * 2-5'    # weekday mornings: flash sales, Thursday export sales
@@ -23,14 +23,10 @@ jobs:
         run: python pipelines/crop_progress.py CORN SOYBEANS WHEAT SORGHUM OATS BARLEY
         continue-on-error: true
         env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}', CP_MAX_BATCHES: '2000'}
-      - name: trade (inspections, export sales, flash)
-        run: python pipelines/grains_trade.py
-        continue-on-error: true
-        env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data/grains
           git diff --cached --quiet && exit 0
-          git commit -q -m "data: grains crop progress and trade $(date -u +%F)"
+          git commit -q -m "data: grains crop progress $(date -u +%F)"
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q && break; sleep 8; done

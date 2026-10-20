@@ -251,6 +251,10 @@ const Grains = (() => {
         <div class="card"><h3 id="gCurveT">Forward curve</h3><div class="chart"><canvas id="cGCurve"></canvas></div><p class="note" id="gCarry"></p></div>
         <div class="card"><h3 id="gOiT">Open interest by month</h3><div class="chart"><canvas id="cGOi"></canvas></div></div>
       </div>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>Relative value</h2><div class="ctrls"><select id="gRv"></select></div><div class="chart"><canvas id="cGRv"></canvas></div><p class="note" id="gRvNote"></p></div>
+        <div class="card"><h2>Seasonality (front month, % vs that year's average)</h2><div class="chart"><canvas id="cGSeas"></canvas></div><p class="note" id="gSeasNote"></p></div>
+      </div>
       <div class="card" style="margin-top:12px"><h2>Options open interest by strike</h2><div class="ctrls" id="gOptM"></div><div class="chart tall"><canvas id="cGOpt"></canvas></div></div>`;
     const name = s => Object.values(GC).find(x => x.sym === s)?.name || s;
     $('#tGCot').innerHTML = `<tr><th>Contract</th><th>Report</th><th>Open int.</th><th>MM net</th><th>w/w</th><th>% OI</th><th>Pctl all</th><th>Pctl 3y</th><th>Prod/merch</th><th>Swap</th></tr>` +
@@ -273,6 +277,19 @@ const Grains = (() => {
       chart('cGOi', { type: 'bar', data: { labels: oi.month, datasets: [{ label: 'Open interest', data: oi.oi, backgroundColor: 'rgba(47,107,58,.55)', yAxisID: 'y' },
         { label: 'Change', data: oi.oi_change, backgroundColor: oi.oi_change.map(v => v >= 0 ? '#1f7a3a' : '#b3261e'), yAxisID: 'y1' }] },
         options: { scales: { y1: { position: 'right', grid: { display: false } } } } }); }
+    const rv = F.rv;
+    if (rv) { const lab = { soy_corn_ratio: 'Soybean / corn price ratio', wheat_minus_corn: 'Chicago wheat − corn (¢/bu)', kc_minus_chicago: 'KC − Chicago wheat (¢/bu)', board_crush: 'Board crush ($/bu)', oil_share: 'Oil share of crush value (%)' };
+      const note = { soy_corn_ratio: 'Above ~2.4 favors soybean acres, below ~2.2 favors corn (new-crop Nov/Dec matters most in Feb–Mar).', wheat_minus_corn: 'Near zero, wheat gets fed to livestock instead of corn.', kc_minus_chicago: 'Protein and class balance: KC over Chicago in short-protein years.', board_crush: 'Processor margin; strong crush supports bean demand.', oil_share: 'Above ~45–50% oil is leading the crush and meal is the by-product.' };
+      const keys = Object.keys(lab).filter(k => rv[k]); $('#gRv').innerHTML = keys.map(k => `<option value="${k}">${lab[k]}</option>`).join('');
+      const draw = () => { const k = $('#gRv').value; chart('cGRv', { type: 'line', data: { labels: rv.date, datasets: [{ label: lab[k], data: rv[k], borderColor: PAL[0], pointRadius: 0, borderWidth: 1.3 }] } }); $('#gRvNote').textContent = note[k]; };
+      $('#gRv').onchange = draw; draw(); }
+    const se = F.seasonality?.[c.sym];
+    if (se) { chart('cGSeas', { type: 'line', data: { labels: se.month.map(m => MON[m - 1]), datasets: [
+      { label: 'upper quartile', data: se.q75, borderWidth: 0, backgroundColor: 'rgba(47,107,58,.12)', fill: '+1', pointRadius: 0 },
+      { label: '_lower', data: se.q25, borderWidth: 0, pointRadius: 0 },
+      { label: `${se.years}-yr average`, data: se.mean, borderColor: '#999', borderDash: [4, 3], pointRadius: 0 },
+      { label: `${se.current_year} (vs prior-year avg)`, data: se.current, borderColor: '#c0392b', borderWidth: 2.2, pointRadius: 2 }] }, options: { plugins: { legend: legendNoMin } } });
+      $('#gSeasNote').textContent = 'Monthly average of the continuous front month as % deviation from each year’s mean; shaded band = middle 50% of years. Roll effects between contract months are included.'; }
     const o = F.options?.[c.sym];
     if (o) { const ms = Object.keys(o.months); let om = ms[0];
       const draw = () => { $('#gOptM').innerHTML = ms.map(m => `<button class="btn ${m === om ? 'on' : ''}" data-m="${m}">${m}</button>`).join(' ') + ` <span class="note">${o.date} · put/call OI ${o.months[om].put_call_oi ?? '–'}</span>`;

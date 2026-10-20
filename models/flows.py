@@ -134,6 +134,50 @@ def prices(sym, n=1500):
             "c2": clean(d.c2_close) if "c2_close" in d else None}
 
 
+def relative_value():
+    """Grain spreads/ratios from continuous front-month closes."""
+    px = {}
+    for s in ("ZC", "ZS", "ZM", "ZL", "ZW", "KE"):
+        p = ROOT / "data" / "prices" / f"{s}.csv"
+        if p.exists():
+            d = pd.read_csv(p, parse_dates=["date"]).set_index("date").c1_close
+            px[s] = d[~d.index.duplicated()]
+    if not {"ZC", "ZS"} <= set(px):
+        return None
+    d = pd.DataFrame(px).dropna(how="all").ffill().tail(2600)
+    out = {"date": [str(x.date()) for x in d.index]}
+    def put(k, sr):
+        out[k] = [None if pd.isna(v) else round(float(v), 4) for v in sr]
+    put("soy_corn_ratio", d.ZS / d.ZC)
+    if "ZW" in d:
+        put("wheat_minus_corn", d.ZW - d.ZC)
+    if "KE" in d and "ZW" in d:
+        put("kc_minus_chicago", d.KE - d.ZW)
+    if {"ZM", "ZL"} <= set(d):
+        put("board_crush", d.ZM * 0.022 + d.ZL * 0.11 - d.ZS / 100)
+        put("oil_share", 100 * (d.ZL * 0.11) / (d.ZL * 0.11 + d.ZM * 0.022))
+    return out
+
+
+def seasonality(sym, years=15):
+    p = ROOT / "data" / "prices" / f"{sym}.csv"
+    if not p.exists():
+        return None
+    d = pd.read_csv(p, parse_dates=["date"]).set_index("date").c1_close.dropna()
+    d = d[~d.index.duplicated()]
+    m = d.resample("ME").mean()
+    m = m[m.index.year >= m.index.year.max() - years]
+    dev = m.groupby(m.index.year).transform(lambda x: 100 * (x / x.mean() - 1))
+    prof = dev.groupby(dev.index.month).agg(["mean", lambda x: x.quantile(.25), lambda x: x.quantile(.75)])
+    prof.columns = ["mean", "q25", "q75"]
+    cy = m[m.index.year == m.index.year.max()]
+    ly = m[m.index.year == m.index.year.max() - 1]
+    base = ly.mean() if len(ly) else cy.mean()
+    return {"month": [int(i) for i in prof.index], "mean": prof["mean"].round(2).tolist(), "q25": prof.q25.round(2).tolist(),
+            "q75": prof.q75.round(2).tolist(), "current_year": int(m.index.year.max()),
+            "current": [round(float(100 * (v / base - 1)), 2) for v in cy], "years": years}
+
+
 if __name__ == "__main__":
     for group, syms in GROUPS.items():
         out = {"generated": pd.Timestamp.now("UTC").isoformat(timespec="minutes"), "cot": {}, "prices": {}}
@@ -145,6 +189,9 @@ if __name__ == "__main__":
         out["curves"] = curves(syms)
         out["oi"] = oi_changes(syms)
         out["options"] = option_strikes(syms)
+        if group == "grains":
+            out["rv"] = relative_value()
+            out["seasonality"] = {s: seasonality(s) for s in syms}
         d = ROOT / "data" / group / "derived"
         d.mkdir(parents=True, exist_ok=True)
         (d / "flows.json").write_text(json.dumps(out, separators=(",", ":"), default=str))

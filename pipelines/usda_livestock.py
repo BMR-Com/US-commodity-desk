@@ -27,12 +27,13 @@ REPORTS = {
 NASS = {  # name: QuickStats filter
     "hogs_inventory": {"commodity_desc": "HOGS", "statisticcat_desc": "INVENTORY", "agg_level_desc": "NATIONAL", "freq_desc": "POINT IN TIME"},
     "hogs_pig_crop": {"commodity_desc": "HOGS", "statisticcat_desc": "PIG CROP", "agg_level_desc": "NATIONAL"},
-    "hogs_farrowings": {"commodity_desc": "HOGS", "statisticcat_desc": "FARROWINGS", "agg_level_desc": "NATIONAL"},
+    "hogs_litter_rate": {"commodity_desc": "HOGS", "short_desc": "HOGS - LITTER RATE, MEASURED IN PIGS / LITTER", "agg_level_desc": "NATIONAL"},
     "hogs_slaughter": {"commodity_desc": "HOGS", "statisticcat_desc": "SLAUGHTERED", "agg_level_desc": "NATIONAL", "freq_desc": "MONTHLY"},
     "cattle_on_feed": {"commodity_desc": "CATTLE", "short_desc__LIKE": "ON FEED", "agg_level_desc": "NATIONAL"},
     "cattle_inventory": {"commodity_desc": "CATTLE", "statisticcat_desc": "INVENTORY", "agg_level_desc": "NATIONAL", "freq_desc": "POINT IN TIME"},
     "cattle_slaughter": {"commodity_desc": "CATTLE", "statisticcat_desc": "SLAUGHTERED", "agg_level_desc": "NATIONAL", "freq_desc": "MONTHLY"},
-    "cold_storage_meat": {"group_desc": "MEAT", "statisticcat_desc": "STOCKS", "agg_level_desc": "NATIONAL"},
+    "cold_storage_pork": {"commodity_desc": "PORK", "statisticcat_desc": "STOCKS", "agg_level_desc": "NATIONAL"},
+    "cold_storage_beef": {"commodity_desc": "BEEF", "statisticcat_desc": "STOCKS", "agg_level_desc": "NATIONAL"},
 }
 ERS = {
     "ers_meat_supply_disappearance": "https://www.ers.usda.gov/media/5531/meat-supply-and-disappearance-tables.xlsx",
@@ -41,13 +42,21 @@ ERS = {
 
 
 def datamart():
+    """Full history per section, fetched in yearly report_date chunks (API caps a call at ~100k rows)."""
+    this_year = time.gmtime().tm_year
     for rid, (name, sections) in REPORTS.items():
         for sec in sections:
-            r = get(f"{DM}/{rid}/{urllib.parse.quote(sec, safe='')}")
-            if r is None:
-                continue
-            j = r.json()
-            rows = j.get("results", []) if isinstance(j, dict) else []
+            rows = []
+            for y in range(2001, this_year + 1):
+                q = urllib.parse.quote(f"report_date=01/01/{y}:12/31/{y}", safe="=/:")
+                r = get(f"{DM}/{rid}/{urllib.parse.quote(sec, safe='/')}?q={q}")
+                if r is None:
+                    continue
+                j = r.json()
+                part = j.get("results", []) if isinstance(j, dict) else []
+                if isinstance(j, dict) and j.get("stats", {}).get("totalRows:", 0) > len(part):
+                    print(f"  WARNING {rid} {sec} {y}: {len(part)} of {j['stats']['totalRows:']} rows")
+                rows += part
             n = write_rows(OUT / name / f"{slug(sec)}.csv", rows)
             print(f"{rid} {name} / {sec}: {n} rows")
 

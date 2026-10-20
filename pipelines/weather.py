@@ -108,13 +108,18 @@ def main():
             a = get("https://archive-api.open-meteo.com/v1/archive", {"latitude": lat, "longitude": lon, "start_date": "2006-01-01", "end_date": "2025-12-31",
                                                                        "daily": "precipitation_sum,temperature_2m_max", "timezone": "auto"})
             if not a:
-                print(name, "archive failed"); continue
-            norms[key] = {"date": a["daily"]["time"], "precip": a["daily"]["precipitation_sum"], "tmax": a["daily"]["temperature_2m_max"]}
-            cache.write_text(json.dumps(norms))
+                print(name, "archive failed: no normals this run")
+                a = None
+            if a:
+                norms[key] = {"date": a["daily"]["time"], "precip": a["daily"]["precipitation_sum"], "tmax": a["daily"]["temperature_2m_max"]}
+                cache.write_text(json.dumps(norms))
             time.sleep(2)
-        arch = pd.DataFrame({"precip": norms[key]["precip"], "tmax": norms[key]["tmax"]}, index=pd.to_datetime(norms[key]["date"])).fillna(0)
-        pn, plo, phi, tn = window_normal(arch, past.index[0], past.index[-1])
-        fn, flo, fhi, ftn = window_normal(arch, fut.index[0], fut.index[-1])
+        if key in norms:
+            arch = pd.DataFrame({"precip": norms[key]["precip"], "tmax": norms[key]["tmax"]}, index=pd.to_datetime(norms[key]["date"])).fillna(0)
+            pn, plo, phi, tn = window_normal(arch, past.index[0], past.index[-1])
+            fn, flo, fhi, ftn = window_normal(arch, fut.index[0], fut.index[-1])
+        else:
+            pn = plo = phi = tn = fn = flo = fhi = ftn = None
         p_obs, f_obs = float(past.precip.sum()), float(fut.precip.sum())
         stages = []
         m = today.month
@@ -146,6 +151,7 @@ def main():
                     "risk": risk, "daily": {"date": [str(x.date()) for x in d.index], "precip": [None if pd.isna(v) else round(v, 1) for v in d.precip],
                                              "tmax": [None if pd.isna(v) else round(v, 1) for v in d.tmax]}, "today": str(today.date())})
         print(name, pflag, fflag, f_obs, fn, "risk", risk)
+        (OUT / "weather.json").write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "regions": res}, separators=(",", ":")))
         time.sleep(1)
     cache.write_text(json.dumps(norms))
     (OUT / "weather.json").write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "regions": res}, separators=(",", ":")))

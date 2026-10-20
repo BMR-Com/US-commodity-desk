@@ -172,6 +172,28 @@ def grains_fund(key, wkey, sym):
                          "; ".join(f"{x['label']} {sg(x['basis'], 0)} vs usual {sg(x['usual'], 0)}" for x in firm[:3]) + " ¢/bu).")
             if abs(d) > 3:
                 votes.append(np.sign(d) * 0.3)
+    sa = J("grains/derived/south_america.json") or {}
+    if key in ("soybeans", "corn", "meal", "oil"):
+        prod = "soybeans" if key != "corn" else "corn"
+        cb = (sa.get("conab") or {}).get(prod)
+        psd = (sa.get("psd") or {}).get(prod, {})
+        ex = (sa.get("exports") or {}).get(prod if key in ("soybeans", "corn") else key)
+        bits = []
+        if cb and cb.get("production_kt"):
+            u = psd.get("BR", {})
+            umy = sorted(u)[-1] if u else None
+            bits.append(f"CONAB has Brazil's {cb['season']} {'soy' if prod == 'soybeans' else 'corn'} crop at {cb['production_kt'] / 1000:.1f} mt (survey {cb['survey']}, "
+                        f"{sg((cb.get('change_kt') or 0) / 1000, 1)} mt on the month; last season {(cb.get('prev_final_kt') or 0) / 1000:.1f} mt)"
+                        + (f"; USDA's latest Brazil estimate is {u[umy]['production'] / 1000:.1f} mt for {umy}/{str(int(umy) + 1)[-2:]}" if umy and u[umy].get("production") else "") + ".")
+        a = psd.get("AR", {})
+        if a:
+            amy = sorted(a)[-1]
+            if a[amy].get("production"):
+                bits.append(f"USDA puts Argentina at {a[amy]['production'] / 1000:.1f} mt ({amy}/{str(int(amy) + 1)[-2:]}).")
+        if ex and ex.get("ytd_yoy_pct") is not None and ex["ytd_kt"] < 3e5:
+            bits.append(f"Brazil's {key} exports Jan–{['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][ex['last_month'] - 1]} are {ex['ytd_kt'] / 1000:.1f} mt ({sg(ex['ytd_yoy_pct'], 1, '%')} y/y).")
+        if bits:
+            parts.append("South America: " + " ".join(bits))
     score = float(np.clip(np.sum(votes), -1, 1)) if votes else 0.0
     return score, " ".join(parts) or "Fundamental data not available.", {"sal": sal, "w": w}
 

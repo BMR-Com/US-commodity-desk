@@ -12,13 +12,16 @@ concurrency: {group: data, cancel-in-progress: false}
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install -q requests pandas git+https://github.com/rongardF/tvdatafeed.git
       - run: python pipelines/usda_dairy.py
+      - run: python pipelines/usda_livestock.py
+        continue-on-error: true
+        env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}'}
       - run: python models/dairy_class.py
         continue-on-error: true
       - run: python models/dairy_sd.py
@@ -36,5 +39,5 @@ jobs:
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data
           git diff --cached --quiet && exit 0
-          git commit -q -m "data: USDA dairy, COT, prices $(date -u +%F)"
+          git commit -q -m "data: USDA dairy and livestock, COT, prices $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase origin main && git push -q && break; sleep 5; done

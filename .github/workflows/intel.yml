@@ -1,0 +1,36 @@
+name: intel
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipelines/news.py', 'pipelines/weather.py', 'pipelines/events_calendar.py', 'pipelines/south_america.py', '.github/workflows/intel.yml']
+  schedule:
+    - cron: '17 */3 * * *'     # news every 3 hours
+permissions: {contents: write}
+concurrency: {group: intel, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy openpyxl
+      - run: python pipelines/news.py
+        continue-on-error: true
+      - name: weather, calendar, South America (about twice a day on the schedule; always on push/dispatch)
+        run: |
+          H=$(date -u +%H)
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$H" != "12" ] && [ "$H" != "00" ]; then echo "skip heavy feeds"; exit 0; fi
+          python pipelines/weather.py || true
+          python pipelines/events_calendar.py || true
+          if [ -f pipelines/south_america.py ]; then python pipelines/south_america.py || true; fi
+        env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -q -m "intel: news, weather, calendar $(date -u +%F' '%H:%M)"
+          for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep 8; done

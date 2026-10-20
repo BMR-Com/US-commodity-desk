@@ -21,6 +21,8 @@ jobs:
       - run: python pipelines/usda_dairy.py
       - run: python models/dairy_class.py
         continue-on-error: true
+      - run: python models/dairy_sd.py
+        continue-on-error: true
       - run: python pipelines/cot.py
         continue-on-error: true
       - run: python pipelines/prices.py

@@ -39,6 +39,6 @@ CME's own JSON endpoints work from a browser tab on cmegroup.com (same-origin fe
 - `cme/collect.js` runs in the page and returns CSVs; gzip+base64 the result in the page (bridge caps a result at ~260k chars; one day of all 17 products is ~140 KB gzipped), then `python cme/ingest.py <payload>` writes `data/cme/<date>/`.
 
 ## Next steps
-1. In a browser session: read CME courses; download CME ag volume/OI + settlement CSVs; set up the evening scheduled download.
+1. ~~CME courses, CME volume/OI + settlements, evening scheduled download~~ — done 2026-10-19. Dairy course notes in `notes/cme-courses.md`; livestock and grains courses listed there, to read in their phases. Scheduled task "CME ags evening volume/OI download" runs Mon–Fri 21:41 CT on Ma's Mac (built-in browser) and commits `data/cme/<date>/`. Ma chose to keep raw CME data in this public repo.
 2. Dairy pipeline: NDPSR weekly, class/component prices monthly, Class III/IV rebuild from NDPSR using the post-June-2025 FMMO formulas (verify against AMS), futures from TradingView/Yahoo, COT.
 3. Dairy primer + S&D tab once NASS key is in place.

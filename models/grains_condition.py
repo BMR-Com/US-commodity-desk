@@ -101,7 +101,7 @@ def model(cond, y, weeks, uh=None):
             if uh is not None:
                 u = uh[(uh.year == yr) & (uh.release <= c.index[-1])].sort_values("release")
                 usda = u.value.iloc[-1] if len(u) else np.nan
-            rows.append(dict(year=yr, idx=c.idx.iloc[-1], ge=c.ge.iloc[-1], dev=y[yr] - t, trend=t, actual=y[yr], usda=usda))
+            rows.append(dict(year=yr, idx=c.idx.iloc[-1], ge=c["ge"].iloc[-1], dev=y[yr] - t, trend=t, actual=y[yr], usda=usda))
         r = pd.DataFrame(rows)
         if len(r) < 12:
             continue
@@ -144,7 +144,7 @@ if __name__ == "__main__":
         if cond is None or cond.empty:
             print(key, "no condition data yet")
             continue
-        entry = {"ge": {str(yr): [[int(w), float(v)] for w, v in zip(g.week, g.ge)] for yr, g in cond.groupby("year") if yr >= 2010}}
+        entry = {"ge": {str(yr): [[int(w), float(v)] for w, v in zip(g.week, g["ge"])] for yr, g in cond.groupby("year") if yr >= 2010}}
         if y is not None and len(y) > 10:
             m = model(cond, y, weeks, usda_yield_history(key))
             if m:

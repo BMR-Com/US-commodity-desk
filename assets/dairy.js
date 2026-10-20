@@ -220,9 +220,28 @@ async function initOutlook() {
   if (curve.length > 6) L.push(`<b>Curve:</b> Class III ${curve[0] < curve.at(-1) ? 'contango' : 'backwardation'} from $${fmt(curve[0])} (${IMPL[0].month}) to $${fmt(curve.at(-1))} (${IMPL[curve.length - 1].month}); Class IV from $${fmt(IMPL[0].class4_futures)} to $${fmt(IMPL[curve.length - 1].class4_futures)}.`);
   const yr = Object.keys(W.class3?.Prices || {}).sort().at(-1);
   if (yr) { const w = k => W[k]?.Prices?.[yr]; L.push(`<b>WASDE (${w('class3').report}):</b> ${yr} Class III $${fmt(w('class3').value)} (${sgn(w('class3').change, 2)}), Class IV $${fmt(w('class4').value)} (${sgn(w('class4').change, 2)}); marketings ${fmt(W.milk_fat.Marketings[yr].value, 1)} bn lb (${sgn(W.milk_fat.Marketings[yr].change, 1)}).`); }
-  const pos = Object.entries(FLOWS.cot).map(([s, v]) => [s, v.summary]).filter(([, c]) => c.mm_net_percentile_3y >= 85 || c.mm_net_percentile_3y <= 15);
-  L.push(`<b>Positioning:</b> ${pos.length ? pos.map(([s, c]) => `${SYM[s]} managed money ${c.mm_net >= 0 ? 'net long' : 'net short'} ${fmt(Math.abs(c.mm_net), 0)} (${ord(c.mm_net_percentile_3y)} pctl of 3y)`).join('; ') + '. Extremes raise the odds of a squeeze against the crowd when data surprise.' : 'no dairy contract at a 3-year positioning extreme.'}`);
+  const CB = await getJSON('data/derived/cot_backtest.json').catch(() => ({}));
+  const pos = Object.entries(FLOWS.cot).map(([s, v]) => [s, v.summary]).filter(([, c]) => c.mm_net_percentile_3y >= 90 || c.mm_net_percentile_3y <= 10);
+  const ev = (s, c) => { const t = CB[s]?.w4?.[c.mm_net >= 0 ? 'extreme_long' : 'extreme_short']; return t ? ` (history after similar readings: ${sgn(t.mean_pct, 1, '%')} over 4 weeks, up ${Math.round(100 * t.up_share)}% of the time, n=${t.n})` : ''; };
+  L.push(`<b>Positioning:</b> ${pos.length ? pos.map(([s, c]) => `${SYM[s]} managed money ${c.mm_net >= 0 ? 'net long' : 'net short'} ${fmt(Math.abs(c.mm_net), 0)} (${ord(c.mm_net_percentile_3y)} pctl of 3y)${ev(s, c)}`).join('; ') + '. Tested since 2006: in Class III and cheese, positioning extremes have tended to persist rather than reverse; in the other dairy contracts they carry no reliable edge either way.' : 'no dairy contract at a 3-year positioning extreme.'}`);
   $('#olList').innerHTML = L.map(x => `<li>${x}</li>`).join('');
+  const BT = await getJSON(D + 'backtest.json').catch(() => null);
+  if (BT) {
+    const n3 = BT.nowcast.class3['2019-2026'], n4 = BT.nowcast.class4['2019-2026'];
+    const row = k => `<tr><td>${k} week${k > 1 ? 's' : ''}</td><td>${fmt(n3[k]?.nowcast_err)}</td><td>${fmt(n3[k]?.futures_err)}</td><td>${fmt(n4[k]?.nowcast_err)}</td><td>${fmt(n4[k]?.futures_err)}</td><td>${fmt(n3[k]?.prev_err)}</td></tr>`;
+    const sd1 = BT.sd_to_price.h1['stocks+use'], sd3 = BT.sd_to_price.h3['stocks+use'];
+    const sdr = p => `<tr><td>${p}</td><td>${sgn(sd1[p]?.oos_r2_vs_no_change, 2)}</td><td>${fmt(100 * (sd1[p]?.hit_rate ?? NaN), 0)}%</td><td>${sgn(sd3[p]?.oos_r2_vs_no_change, 2)}</td><td>${fmt(100 * (sd3[p]?.hit_rate ?? NaN), 0)}%</td></tr>`;
+    const cot = s => { const x = CB[s]?.w4; if (!x) return ''; const f = y => y ? `${sgn(y.mean_pct, 2, '%')} · ${Math.round(100 * y.up_share)}% up · n${y.n}` : '–'; return `<tr><td>${SYM[s] || s}</td><td>${f(x.all)}</td><td>${f(x.extreme_short)}</td><td>${f(x.extreme_long)}</td></tr>`; };
+    $('#olTests').innerHTML = `<h3>Month-to-date nowcast vs futures (mean abs error to announced price, $/cwt, 2019–2026)</h3>
+      <div class="tbl"><table><tr><th>NDPSR weeks in</th><th>III nowcast</th><th>III futures</th><th>IV nowcast</th><th>IV futures</th><th>III no-change</th></tr>${[1, 2, 3, 4].map(row).join('')}</table></div>
+      <p class="note">Front-month futures beat the NDPSR month-to-date early in the month: they price the CME spot market daily, NDPSR lags it 1–2 weeks. From week 3 the futures comparison is contaminated by TradingView's continuous-contract roll; per-contract history from the nightly CME download will fix that going forward.</p>
+      <h3>Do S&amp;D stocks predict product prices? (walk-forward, out of sample, from 2016)</h3>
+      <div class="tbl"><table><tr><th>Product</th><th>1m R² vs no-change</th><th>1m hit</th><th>3m R²</th><th>3m hit</th></tr>${['cheese', 'butter', 'ndm', 'whey', 'pooled'].map(sdr).join('')}</table></div>
+      <p class="note">Negative R² = worse than assuming no change. Stocks and months-of-use, known with the ~2-month NASS/ERS lag, carry no out-of-sample edge except dry whey one month ahead. The market prices them before they publish; treat them as context, not a signal.</p>
+      <h3>Managed-money extremes and the next 4 weeks (roll-adjusted front month)</h3>
+      <div class="tbl"><table><tr><th>Contract</th><th>All weeks</th><th>After extreme short (≤10th pctl 3y)</th><th>After extreme long (≥90th)</th></tr>${['DC', 'CSC', 'CB', 'GNF', 'GDK', 'DY'].map(cot).join('')}</table></div>
+      <p class="note">Class III and cheese trend with fund positioning: extreme shorts were followed by further weakness, extreme longs by strength. No contract shows a reliable contrarian squeeze.</p>`;
+  }
   try { const t = await fetch('data/dairy/outlook.md').then(r => r.ok ? r.text() : ''); if (t.trim()) $('#olView').innerHTML = t.split(/\n\s*\n/).map(p => `<p>${p.replace(/^#+\s*/, '')}</p>`).join(''); } catch (e) {}
 }
 

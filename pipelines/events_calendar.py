@@ -111,7 +111,7 @@ def rules(start, end):
         while d.weekday() != 3:
             d += pd.Timedelta(days=1)
         if start <= d <= end:
-            ev.append({"date": str(d.date()), "time": "8:00 AM CT", "event": "CONAB Brazil crop survey (date estimated)", "cat": "South America", "markets": ["ZS", "ZC"], "importance": 2, "estimated": True})
+            ev.append({"date": str(d.date()), "time": "8:00 AM CT", "event": "CONAB Brazil crop survey (date estimated)", "cat": "South America", "markets": ["ZS", "ZC"], "importance": 3, "estimated": True})
     # Class & component prices (USDA AMS), Wednesday on or before the 5th
     for m in pd.date_range(start - pd.Timedelta(days=31), end, freq="MS"):
         d = m + pd.Timedelta(days=4)

@@ -122,7 +122,10 @@ def main():
     df["time"] = df.time.fillna(pd.Timestamp.now("UTC").strftime("%Y-%m-%dT%H:%MZ"))
     cutoff = (pd.Timestamp.now("UTC") - pd.Timedelta(days=45)).strftime("%Y-%m-%d")
     df = df[df.time >= cutoff]
+    AG = r"soy|corn|maize|grain|crop|safra|safrinha|harvest|plant|wheat|cattle|beef|hog|pork|dairy|milk|cheese|butter|farm|ag\b|agri|fertili|ethanol|biofuel|crush|livestock|feed|USDA|WASDE|export sales|tariff"
     def tags(t):
+        if not re.search(AG, t, re.I):
+            return []
         return [k for k, rx in TAGS.items() if re.search(rx, t, re.I)]
     df["tags"] = df.title.apply(tags)
     df = df[df.tags.str.len() > 0].sort_values("time", ascending=False)

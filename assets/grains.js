@@ -173,7 +173,7 @@ const Grains = (() => {
     el('#saProg').innerHTML = `${pb ? `<p>CONAB weekly crop bulletin: <a href="${pb.url}" target="_blank" rel="noopener">${pb.title}</a> (Brazil planting and harvest progress by state).</p>` : '<p class="note">CONAB weekly bulletin link not loaded yet.</p>'}
       <p class="note">Weekly progress sources: CONAB Acompanhamento das Lavouras (Brazil, Monday), IMEA (Mato Grosso, Friday), Buenos Aires Grain Exchange (Argentina, Thursday). The Buenos Aires exchange blocks automated access, so its figures appear through the headlines feed.</p>`;
     Intel.weather(el('#saWx'), { countries: ['Brazil', 'Argentina'] });
-    Intel.calendar(el('#saCal'), { cats: ['South America', 'USDA'], markets: ['ZS', 'ZC'], days: 30, minImp: 2 });
+    Intel.calendar(el('#saCal'), { cats: ['South America', 'USDA'], markets: ['ZS', 'ZC'], days: 45, minImp: 3 });
     Intel.news(el('#saNews'), { tags: ['south_america'], n: 12, chips: false });
   }
 

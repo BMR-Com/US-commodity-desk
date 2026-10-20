@@ -107,9 +107,9 @@ def cat_metrics(c, k):
     r = {"L": num(L[-1]), "S": num(S[-1]), "N": num(N[-1]), "dL": num(L[-1] - L[-2]), "dS": num(S[-1] - S[-2]),
          "dN": num(N[-1] - N[-2]), "dN4": num(N[-1] - N[-5]), "np_oi": num(round(npo[-1], 1)), "dnp_oi": num(round(npo[-1] - npo[-2], 1)),
          "z": num(round(dN[-1] / sd, 2)) if sd and sd > 0 else None, "streak": streak(dN),
-         "pct": {"y1": pct(N[-52:], N[-1]), "y3": pct(N[-156:], N[-1]), "y5": pct(N[-260:], N[-1]), "all": pct(N, N[-1])},
+         "pct": {"y1": pct(N[-52:], N[-1]), "y3": pct(N[-156:], N[-1]), "y5": pct(N[-260:], N[-1]), "y10": pct(N[-520:], N[-1]), "all": pct(N, N[-1])},
          "pct_L": pct(L[-156:], L[-1]), "pct_S": pct(S[-156:], S[-1]),
-         "cot": {"y1": cot_index(N, 52), "y3": cot_index(N, 156), "y5": cot_index(N, 260)},
+         "cot": {"y1": cot_index(N, 52), "y3": cot_index(N, 156), "y5": cot_index(N, 260), "y10": cot_index(N, 520), "all": cot_index(N, len(N))}, "since": None,
          "range_3y": [num(np.nanmin(N[-156:])), num(np.nanmax(N[-156:]))], "record": [num(np.nanmin(N)), num(np.nanmax(N))]}
     if f"{k}_tl" in c:
         r["TL"], r["TS"] = num(c[f"{k}_tl"].iloc[-1]), num(c[f"{k}_ts"].iloc[-1])
@@ -321,7 +321,7 @@ def build(sym):
         return None
     cats = {k: cat_metrics(c, k) for k in CATS}
     mm = cats["mm"]
-    out = {"sym": sym, "name": NAMES[sym], "date": str(c.index[-1].date()), "oi": num(c.oi.iloc[-1]), "doi": num(c.oi.iloc[-1] - c.oi.iloc[-2]),
+    out = {"sym": sym, "name": NAMES[sym], "date": str(c.index[-1].date()), "history_since": str(c.index[0].date()), "oi": num(c.oi.iloc[-1]), "doi": num(c.oi.iloc[-1] - c.oi.iloc[-2]),
            "cats": cats, "cat_names": {k: v[4] for k, v in CATS.items()}, "driver": driver(mm["dL"], mm["dS"]),
            "conc": {k: num(c[k].iloc[-1]) for k in c.columns if k.startswith("conc_")}}
     lvl, f, front = price_series(sym)
@@ -368,7 +368,7 @@ if __name__ == "__main__":
         (OUT / f"{s}.json").write_text(json.dumps(o, separators=(",", ":")))
         mm = o["cats"]["mm"]
         uw, ct = o.get("underwater") or {}, o.get("cta") or {}
-        summary[s] = {"name": o["name"], "date": o["date"], "N": mm["N"], "dN": mm["dN"], "dN4": mm["dN4"], "z": mm["z"], "pct3": mm["pct"]["y3"],
+        summary[s] = {"name": o["name"], "date": o["date"], "N": mm["N"], "dN": mm["dN"], "dN4": mm["dN4"], "z": mm["z"], "pct3": mm["pct"]["y3"], "pct10": mm["pct"]["y10"], "pct_all": mm["pct"]["all"],
                       "cot3": mm["cot"]["y3"], "np_oi": mm["np_oi"], "driver": o["driver"], "streak": mm["streak"],
                       "pm_pct3": o["cats"]["pm"]["pct"]["y3"], "usdN": (o.get("usd") or {}).get("N"), "usd_dN": (o.get("usd") or {}).get("dN"),
                       "long_uw": (uw.get("long") or {}).get("pct_underwater"), "short_uw": (uw.get("short") or {}).get("pct_underwater"),

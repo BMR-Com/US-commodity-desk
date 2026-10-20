@@ -91,7 +91,7 @@ def flows(sym, group):
     p3 = mm["pct"]["y3"]
     cta = c.get("cta") or {}
     uw = c.get("underwater") or {}
-    txt = (f"Managed money is net {'long' if mm['N'] >= 0 else 'short'} {abs(mm['N']):,.0f} lots ({ordn(p3)} percentile of 3 years, "
+    txt = (f"Managed money is net {'long' if mm['N'] >= 0 else 'short'} {abs(mm['N']):,.0f} lots ({ordn(p3)} percentile of 3 years, {ordn(mm['pct'].get('y10'))} of 10 years, {ordn(mm['pct'].get('all'))} of all history since {c.get('history_since', '2006')[:4]}; "
            f"{mm['np_oi']:.1f}% of open interest), {'+' if mm['dN'] >= 0 else ''}{mm['dN']:,.0f} on the week ({c.get('driver') or 'flat'}; z {mm['z']}). ")
     if (c.get("usd") or {}).get("N") is not None:
         txt += f"That is about ${abs(c['usd']['N']) / 1e9:.2f}bn of exposure. "
@@ -393,7 +393,7 @@ if __name__ == "__main__":
                         "scores": {"fundamental": fs, "technical": ts, "flows": fl},
                         "price": a.get("last"), "unit": (T.get("t") or {}).get("unit"), "dp": (T.get("t") or {}).get("dp"), "contract": (T.get("s") or {}).get("label"),
                         "chg_1w": (a.get("returns") or {}).get("1w"), "trend": a.get("trend"), "rating": T.get("rd"),
-                        "mm_pct3": F.get("p3"), "mm_net": mm.get("N"), "cta_score": (F.get("cta") or {}).get("score"),
+                        "mm_pct3": F.get("p3"), "mm_pct10": (mm.get("pct") or {}).get("y10"), "mm_pct_all": (mm.get("pct") or {}).get("all"), "mm_net": mm.get("N"), "cta_score": (F.get("cta") or {}).get("score"),
                         "paras": {"fundamental": fund_txt, "technical": ttxt, "flows": ftxt, "outlook": otxt}, "ideas": ids})
             print(sym, word(tot), conv, {k: round(v, 2) if v is not None else None for k, v in {"f": fs, "t": ts, "c": fl}.items()}, len(ids), "ideas")
         except Exception:

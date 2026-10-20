@@ -49,7 +49,7 @@ const CotDesk = (() => {
       const kpi = (l, v, s) => `<div class="kpi card" style="padding:10px"><div class="lbl">${l}</div><div class="val" style="font-size:19px">${v}</div><div class="sub">${s}</div></div>`;
       R('kpis').innerHTML = kpi('Managed money net', `${k(mm.N)} <span class="note">lots</span>`, `${usd(u.N)} · ${pc(mm.np_oi)} of OI`) +
         kpi('This week', sk(mm.dN), `${susd(u.dN)} · ${D.driver || ''} · z ${mm.z ?? '–'} · streak ${mm.streak}`) +
-        kpi('Percentile (3y / 5y / all)', `${ord(mm.pct.y3)}`, `${ord(mm.pct.y5)} · ${ord(mm.pct.all)} · COT index ${mm.cot.y3 ?? '–'} (3y)`) +
+        kpi('Percentile 3y · 10y · all', `${ord(mm.pct.y3)} · ${ord(mm.pct.y10)} · ${ord(mm.pct.all)}`, `5y ${ord(mm.pct.y5)} · all = since ${(D.history_since || '2006').slice(0, 4)} · COT index ${mm.cot.y3 ?? '–'} (3y), ${mm.cot.y10 ?? '–'} (10y)`) +
         kpi('4 weeks', sk(mm.dN4), `${susd(u.dN4)} · longs ${k(mm.L)} (${ord(mm.pct_L)}) · shorts ${k(mm.S)} (${ord(mm.pct_S)})`);
       // chart
       chips('g-mode', [['mm', 'Managed money'], ['cats', 'All groups'], ['traders', 'Trader counts']], st.chartMode, m => { st.chartMode = m; render(); });
@@ -66,8 +66,8 @@ const CotDesk = (() => {
         plugins: { legend: { labels: { boxWidth: 10, font: { size: 11 } } } }, scales: { x: { stacked: true, ticks: { maxTicksLimit: 8 } }, y: { stacked: st.chartMode === 'mm', title: { display: true, text: 'lots' } }, y2: { position: 'right', grid: { display: false }, title: { display: true, text: 'price' } } } } });
       // categories table
       const C = D.cats;
-      R('t-cats').innerHTML = `<table><tr><th>Group</th><th>Net</th><th>w/w</th><th>4 wk</th><th>% OI</th><th>1y</th><th>3y</th><th>5y</th><th>All</th><th>COT idx 3y</th><th>z</th><th>Traders L/S</th></tr>
-        ${Object.keys(C).map(c => { const x = C[c]; return `<tr><td>${D.cat_names[c]}</td><td>${k(x.N)}</td><td>${sk(x.dN)}</td><td>${sk(x.dN4)}</td><td>${pc(x.np_oi)}</td>${['y1', 'y3', 'y5', 'all'].map(w => `<td style="${heat(x.pct[w])}">${ord(x.pct[w])}</td>`).join('')}<td>${x.cot.y3 ?? '–'}</td><td>${x.z ?? '–'}</td><td>${x.TL != null ? `${k(x.TL)} / ${k(x.TS)}` : '–'}</td></tr>`; }).join('')}</table>`;
+      R('t-cats').innerHTML = `<table><tr><th>Group</th><th>Net</th><th>w/w</th><th>4 wk</th><th>% OI</th><th>1y</th><th>3y</th><th>5y</th><th>10y</th><th>All</th><th>COT idx 3y</th><th>z</th><th>Traders L/S</th></tr>
+        ${Object.keys(C).map(c => { const x = C[c]; return `<tr><td>${D.cat_names[c]}</td><td>${k(x.N)}</td><td>${sk(x.dN)}</td><td>${sk(x.dN4)}</td><td>${pc(x.np_oi)}</td>${['y1', 'y3', 'y5', 'y10', 'all'].map(w => `<td style="${heat(x.pct[w])}">${ord(x.pct[w])}</td>`).join('')}<td>${x.cot.y3 ?? '–'}</td><td>${x.z ?? '–'}</td><td>${x.TL != null ? `${k(x.TL)} / ${k(x.TS)}` : '–'}</td></tr>`; }).join('')}</table>`;
       const cc = D.conc || {};
       R('conc').innerHTML = `Percentiles of net position vs each window (green ≥ 90th, red ≤ 10th). Concentration, net share of OI held by the largest traders: top 4 long ${pc(cc.conc_net_le_4_tdr_long_all)}, short ${pc(cc.conc_net_le_4_tdr_short_all)}; top 8 long ${pc(cc.conc_net_le_8_tdr_long_all)}, short ${pc(cc.conc_net_le_8_tdr_short_all)}.`;
       // under water
@@ -121,8 +121,8 @@ const CotDesk = (() => {
       // group monitor
       const g = GROUP[st.sym], M = SUM.p?.markets || {}, list = (SUM.p?.groups?.[g] || []).filter(s => M[s]);
       R('grp-h').textContent = `Group monitor: ${g}`;
-      R('grp').innerHTML = `<table><tr><th>Market</th><th>MM net</th><th>w/w</th><th>Driver</th><th>z</th><th>3y pct</th><th>COT idx</th><th>Net $</th><th>Longs u/w</th><th>Shorts u/w</th><th>Trend</th><th>Next trigger up</th><th>Next trigger down</th></tr>
-        ${list.map(s => { const x = M[s], nx = x.next || {}; return `<tr style="${s === st.sym ? 'font-weight:600' : ''}"><td>${x.name}</td><td>${k(x.N)}</td><td>${sk(x.dN)}</td><td>${x.driver || ''}</td><td>${x.z ?? '–'}</td><td style="${heat(x.pct3)}">${ord(x.pct3)}</td><td>${x.cot3 ?? '–'}</td><td>${usd(x.usdN)}</td><td>${pc(x.long_uw, 0)}</td><td>${pc(x.short_uw, 0)}</td><td>${x.cta_score == null ? '–' : (x.cta_score > 0 ? '+' : '') + x.cta_score.toFixed(2)}</td>
+      R('grp').innerHTML = `<table><tr><th>Market</th><th>MM net</th><th>w/w</th><th>Driver</th><th>z</th><th>3y pct</th><th>10y pct</th><th>All pct</th><th>COT idx</th><th>Net $</th><th>Longs u/w</th><th>Shorts u/w</th><th>Trend</th><th>Next trigger up</th><th>Next trigger down</th></tr>
+        ${list.map(s => { const x = M[s], nx = x.next || {}; return `<tr style="${s === st.sym ? 'font-weight:600' : ''}"><td>${x.name}</td><td>${k(x.N)}</td><td>${sk(x.dN)}</td><td>${x.driver || ''}</td><td>${x.z ?? '–'}</td><td style="${heat(x.pct3)}">${ord(x.pct3)}</td><td style="${heat(x.pct10)}">${ord(x.pct10)}</td><td style="${heat(x.pct_all)}">${ord(x.pct_all)}</td><td>${x.cot3 ?? '–'}</td><td>${usd(x.usdN)}</td><td>${pc(x.long_uw, 0)}</td><td>${pc(x.short_uw, 0)}</td><td>${x.cta_score == null ? '–' : (x.cta_score > 0 ? '+' : '') + x.cta_score.toFixed(2)}</td>
           <td>${nx.up ? `${px(nx.up.lvl, DP[s])} <span class="note">${pc(nx.up.pct)}</span>` : '–'}</td><td>${nx.dn ? `${px(nx.dn.lvl, DP[s])} <span class="note">${pc(nx.dn.pct)}</span>` : '–'}</td></tr>`; }).join('')}</table>`;
     }
     async function load() {

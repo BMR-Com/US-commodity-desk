@@ -311,7 +311,7 @@ const Grains = (() => {
     const rv = Object.entries(it).filter(([k, x]) => x.change && Math.abs(x.change) > 0 && ['production', 'yield', 'exports', 'end_stocks', 'feed_residual', 'ethanol', 'crush'].includes(k));
     if (rv.length) L.push(`<b>This month's revisions:</b> ${rv.map(([k, x]) => `${k.replace('_', ' ')} ${sgn(x.change, k === 'yield' ? 1 : 0)}`).join(', ')}.`);
     const d = COND?.[c.wasde]?.model; if (d) L.push(`<b>Condition yield model:</b> ${fmt(d.estimate, 1)} bu/ac vs USDA ${fmt(d.usda, 1)} (${sgn(d.estimate - d.usda, 1)}).`);
-    const e = EXP?.[c.wasde]; if (e) L.push(`<b>Export pace:</b> inspections imply ${fmt(e.implied, 0)} vs USDA ${fmt(e.usda, 0)} (${sgn(e.implied - e.usda, 0)}).`);
+    const e = EXP?.[c.wasde]; if (e) L.push(`<b>Export pace:</b> week ${e.week}, ${fmt(e.pct_of_usda, 1)}% of USDA shipped vs ${fmt(e.avg_pct, 1)}% normally; inspections imply ${fmt(e.implied, 0)} vs USDA ${fmt(e.usda, 0)} (${sgn(e.implied - e.usda, 0)})${e.test ? `, typical miss at this stage ±${fmt(e.test.mae_pct, 0)}%. Pace ahead/behind USDA has called the direction of USDA's next export revision ${fmt(100 * e.test.revision_hit, 0)}% of the time` : ''}.`);
     const x = F?.cot?.[c.sym]?.summary; if (x) L.push(`<b>Positioning (secondary):</b> managed money ${x.mm_net >= 0 ? 'net long' : 'net short'} ${fmt(Math.abs(x.mm_net), 0)} (${fmt(x.mm_net_percentile_3y, 0)} pctl of 3y).`);
     const cv = F?.curves?.[c.sym]; if (cv) { const k = Object.keys(cv).sort().at(-1), a = cv[k].settle; if (a.length > 1) L.push(`<b>Curve:</b> front spread ${(a[1] - a[0]).toFixed(2)} ${a[1] > a[0] ? '(carry)' : '(inverse)'}; front ${fmt(a[0], 2)} ${c.unit}.`); }
     const t = TESTS?.[c.wasde];

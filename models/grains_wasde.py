@@ -51,7 +51,8 @@ def tidy(j):
         u = d.unit.fillna("").str.lower()
         dec = np.where(u.str.contains("metric"), 2, np.where(u.str.contains("acre") & ~u.str.contains("million"), 1,
                        np.where(u.str.contains(r"\$|dollar|cent|price", regex=True), 2, 0)))
-        d["value"] = [round(v, int(k)) for v, k in zip(d.value, dec)]
+        keep = d.attr.isin(["yield", "price"])
+        d["value"] = [v if kp else round(v, int(k)) for v, k, kp in zip(d.value, dec, keep)]
         d.loc[d.attr == "yield", "value"] = d.loc[d.attr == "yield", "value"].round(1)
         d.loc[d.attr == "price", "value"] = d.loc[d.attr == "price", "value"].round(3)  # the US also appears in the world tables in metric tons; keep domestic units for the US
         d = d[~((d.region == "United States") & d.unit.str.contains("Metric", case=False, na=False))]

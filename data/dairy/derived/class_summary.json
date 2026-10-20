@@ -1,0 +1,36 @@
+{
+ "last_announced": "2026-09",
+ "rebuild_max_abs_err_since_2025_06": {
+  "class3_err": 0.01,
+  "class4_err": 0.01
+ },
+ "rebuild_max_abs_err_2013_2025_05": {
+  "class3_err": 0.01,
+  "class4_err": 0.01
+ },
+ "weekly_to_monthly_max_abs_diff": {
+  "cheese": 0.01532012492265844,
+  "butter": 0.02092759596016225,
+  "ndm": 0.0355306531231423,
+  "whey": 0.007490543753720935
+ },
+ "nowcast": [
+  {
+   "month": "2026-10",
+   "weeks_in": 2,
+   "through": "2026-10-10",
+   "cheese": 1.4441,
+   "butter": 1.3663,
+   "ndm": 1.9545,
+   "whey": 0.6984,
+   "butterfat": 1.3795,
+   "nonfat_solids": 1.6981,
+   "other_solids": 0.4446,
+   "protein": 2.3967,
+   "class3_skim": 10.5763,
+   "class4_skim": 15.792,
+   "class3": 15.03,
+   "class4": 20.07
+  }
+ ]
+}

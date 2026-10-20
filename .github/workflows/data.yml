@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['pipelines/**', '.github/workflows/data.yml']
+    paths: ['pipelines/**', 'models/**', '.github/workflows/data.yml']
   schedule:
     - cron: '20 20 * * 1-5'   # ~3:20 pm CT weekdays: NDPSR (Wed), class/advanced prices, FMMO stats
     - cron: '40 21 * * 5'     # Friday after COT release
@@ -19,6 +19,8 @@ jobs:
         with: {python-version: '3.11'}
       - run: pip install -q requests pandas git+https://github.com/rongardF/tvdatafeed.git
       - run: python pipelines/usda_dairy.py
+      - run: python models/dairy_class.py
+        continue-on-error: true
       - run: python pipelines/cot.py
         continue-on-error: true
       - run: python pipelines/prices.py

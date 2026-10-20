@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>US Ags Desk · BMR-Com</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+<header>
+  <h1>BMR-Com · US Ags Desk</h1>
+  <div class="meta" id="meta">CME dairy, livestock, grains &amp; oilseeds · USDA / CFTC / CME data</div>
+</header>
+<nav class="comm">
+  <button class="on" data-c="dairy">Dairy</button>
+  <button disabled title="next">Lean hogs</button>
+  <button disabled title="next">Live &amp; feeder cattle</button>
+  <button disabled title="later">Grains &amp; oilseeds</button>
+</nav>
+
+<section id="dairy">
+<nav class="tabs">
+  <button data-tab="d-primer" class="on">1 · Primer</button>
+  <button data-tab="d-sd">2 · Supply &amp; demand</button>
+  <button data-tab="d-flows">3 · Futures, options &amp; COT</button>
+  <button data-tab="d-outlook">4 · Outlook</button>
+</nav>
+<main>
+
+<!-- ───────────── PRIMER ───────────── -->
+<div class="panel on" id="d-primer">
+  <div class="grid g2">
+    <div class="card">
+      <h2>What the dairy contracts are</h2>
+      <p>Raw milk is perishable and is never traded on the exchange. What trades is the <b>formula price</b> USDA sets for milk each month, plus the four wholesale products that drive that formula: cheddar cheese, butter, nonfat dry milk (NDM) and dry whey. Every CME dairy future is <b>cash-settled to a USDA number</b>, so futures converge to the cash market by construction. There is no delivery, no storage arbitrage and no basis at expiry, only the gap between today's price and what USDA will announce.</p>
+      <div class="tbl"><table>
+        <tr><th>Contract</th><th>Globex</th><th>Size</th><th>Quote</th><th class="l">Settles to</th></tr>
+        <tr><td>Class III milk</td><td>DC</td><td>200,000 lb</td><td>$/cwt</td><td class="l">USDA Class III price (cheese milk)</td></tr>
+        <tr><td>Class IV milk</td><td>GDK</td><td>200,000 lb</td><td>$/cwt</td><td class="l">USDA Class IV price (butter/powder milk)</td></tr>
+        <tr><td>Cash-settled cheese</td><td>CSC</td><td>20,000 lb</td><td>$/lb</td><td class="l">USDA monthly 40-lb block cheddar average</td></tr>
+        <tr><td>Cash-settled butter</td><td>CB</td><td>20,000 lb</td><td>¢/lb</td><td class="l">USDA monthly butter average</td></tr>
+        <tr><td>Nonfat dry milk</td><td>GNF</td><td>44,000 lb</td><td>¢/lb</td><td class="l">USDA monthly NDM average</td></tr>
+        <tr><td>Dry whey</td><td>DY</td><td>44,000 lb</td><td>¢/lb</td><td class="l">USDA monthly dry whey average</td></tr>
+      </table></div>
+      <p class="note">24 consecutive months listed; options on all six. Last trading day is the business day before USDA's class price announcement, which comes out on or before the 5th of the following month.</p>
+    </div>
+    <div class="card">
+      <h2>How a futures price becomes a settlement</h2>
+      <div class="flow">
+        <div class="step"><b>Plants sell product</b>Cheese, butter, NDM and whey plants (≥1m lb/yr) report every sale to USDA</div><div class="arr">→</div>
+        <div class="step"><b>NDPSR, weekly</b>National Dairy Products Sales Report: sales-weighted price and volume each week</div><div class="arr">→</div>
+        <div class="step"><b>Monthly averages</b>Weeks whose Saturday falls in the month, weighted by sales</div><div class="arr">→</div>
+        <div class="step"><b>Component prices</b>Butterfat, protein, other solids, nonfat solids, via FMMO formulas net of make allowances</div><div class="arr">→</div>
+        <div class="step"><b>Class III / IV</b>Announced by AMS; futures settle on the first print</div>
+      </div>
+      <h3>Why the CME spot call matters</h3>
+      <p>CME runs a daily physical auction (block and barrel cheese, butter, NDM, dry whey). Plant sales prices key off these spot prices, so spot moves show up in NDPSR one to two weeks later and then in the class price. Spot is the leading indicator; NDPSR is the settlement mechanism.</p>
+      <h3>Formula regime in force</h3>
+      <p class="note">Since June 2025: 40-lb blocks only (barrels dropped), make allowances raised (cheese 25.19¢, butter 22.72¢, NDM 23.93¢, whey 26.68¢), butterfat recovery 91%, Class I mover back to "higher of". Since December 2025: skim components 3.3% protein, 6.0% other solids, 9.3% nonfat solids. The desk's rebuild reproduces every announced Class III/IV price since 2013 to the cent.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <h2>Class price calculator: move the product prices, watch milk reprice</h2>
+    <div class="ctrls">
+      <span class="note">Load:</span>
+      <button class="btn" data-preset="ams">Last announced month</button>
+      <button class="btn" data-preset="mtd">Month-to-date (NDPSR)</button>
+      <select id="presetFut"></select>
+    </div>
+    <div class="grid g2">
+      <div>
+        <div class="slider"><label>Cheese (blocks)</label><input type="range" id="sCheese" min="1.00" max="2.60" step="0.0001"><output id="oCheese"></output></div>
+        <div class="slider"><label>Butter</label><input type="range" id="sButter" min="1.00" max="3.50" step="0.0001"><output id="oButter"></output></div>
+        <div class="slider"><label>NDM</label><input type="range" id="sNdm" min="0.80" max="2.50" step="0.0001"><output id="oNdm"></output></div>
+        <div class="slider"><label>Dry whey</label><input type="range" id="sWhey" min="0.15" max="0.95" step="0.0001"><output id="oWhey"></output></div>
+        <p class="note" id="presetNote"></p>
+      </div>
+      <div>
+        <div class="bigout"><div><div class="note">Class III</div><div class="v" id="oC3"></div></div><div><div class="note">Class IV</div><div class="v" id="oC4"></div></div><div><div class="note">III – IV</div><div class="v" id="oSpr"></div></div></div>
+        <div class="tbl"><table id="tComp"></table></div>
+      </div>
+    </div>
+    <h3>Sensitivity: $/cwt change in milk for a 10¢/lb move in each product</h3>
+    <div class="tbl"><table id="tSens"></table></div>
+    <p class="note">The surprise for newcomers: butter barely moves Class III. Higher butter raises the butterfat price, but the protein formula subtracts butterfat value (cheese yields fat as well as protein), so the two effects nearly cancel. Class III is a cheese-and-whey contract. Class IV is a butter-and-NDM contract, and NDM moves Class IV roughly 0.9× as hard as cheese moves Class III.</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <h2>How each supply-and-demand line moves price</h2>
+      <div class="tbl"><table>
+        <tr><th class="l">S&amp;D line</th><th class="l">Mechanism</th><th class="l">Watch</th></tr>
+        <tr><td class="l">Milk production (cows × yield)</td><td class="l">More milk has to clear through storable products. Surplus milk goes to cheese first (largest outlet), then butter/powder. Price falls hardest in the product with the least capacity or demand slack.</td><td class="l">NASS Milk Production (monthly), FMMO receipts</td></tr>
+        <tr><td class="l">Components (fat %, protein %)</td><td class="l">Record butterfat tests mean more cream per cwt, so butter supply rises even with flat milk volume. Higher protein lifts cheese yield.</td><td class="l">FMMO producer component tests</td></tr>
+        <tr><td class="l">Plant capacity</td><td class="l">New cheese plants pull milk away from butter/powder. That supports Class IV and pressures cheese until demand catches up.</td><td class="l">NASS Dairy Products output by product</td></tr>
+        <tr><td class="l">Cold-storage stocks</td><td class="l">Cheese and butter stocks in months of use are the best single gauge of tightness. Stocks below the 5-year average for the season usually come with rising spot prices.</td><td class="l">NASS Cold Storage (monthly), tab 2</td></tr>
+        <tr><td class="l">Exports</td><td class="l">The US exports about 1/6 of milk solids. NDM, whey and lactose are export-driven (Mexico, SE Asia, China), so they track world powder prices. Cheese and butter export only when the US is cheap to the EU/NZ.</td><td class="l">USDA FAS/GATS, USDEC, GDT auctions</td></tr>
+        <tr><td class="l">Domestic disappearance</td><td class="l">Food service and retail, with Q4 holiday peaks for butter and cheese. Fluid milk sales decline structurally, pushing more milk into manufacturing.</td><td class="l">ERS disappearance, AMS fluid sales</td></tr>
+        <tr><td class="l">Feed cost / margin</td><td class="l">Corn and soymeal set the milk-feed margin. Poor margins mean more culling and slower herd growth with a 1–2 year lag (heifer pipeline).</td><td class="l">Corn/SBM futures, NASS milk-feed ratio</td></tr>
+      </table></div>
+    </div>
+    <div class="card">
+      <h2>Linkages to other markets</h2>
+      <ul class="read">
+        <li><b>Grains &amp; oilseeds:</b> corn silage, grain and soybean meal are most of a dairy's feed bill. Cheap feed sustains expansion; a feed rally squeezes margins and slows milk growth 6–18 months out.</li>
+        <li><b>Cattle:</b> cull dairy cows are a large share of US cow beef (processing/ground beef). High cull-cow prices make culling profitable, which speeds herd contraction. Beef-on-dairy crossbred calves are now a major profit line for dairies and a growing source of fed cattle, so dairy and beef herd decisions are linked.</li>
+        <li><b>Global dairy:</b> NDM trades against EU and NZ skim milk powder, and whey against EU whey. Global Dairy Trade auctions and EU quotations set the export parity the US must meet.</li>
+        <li><b>Fats &amp; oils:</b> butterfat competes with vegetable oils in food manufacturing and with EU butter globally. Cream is pulled between butter, ice cream and cream cheese seasonally.</li>
+        <li><b>Macro:</b> USD/MXN (Mexico is the largest buyer of US NDM and cheese), the US dollar for export competitiveness, energy and freight costs (drying is energy-intensive), and interest rates (cost of carrying cheese inventory).</li>
+      </ul>
+      <h3>Seasonality</h3>
+      <p>Spring flush (Mar–Jun) is peak milk, so butter and powder stocks build. Production dips in late summer on heat stress, then Q4 holiday demand draws butter and cheese stocks down. Class III and component futures carry this seasonality in the curve shape.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────── S&D ───────────── -->
+<div class="panel" id="d-sd">
+  <div class="grid g4" id="sdKpis"></div>
+  <div class="card" style="margin-top:12px">
+    <div class="ctrls"><b>Balance:</b> <select id="sdProd"></select> <span class="note" id="sdAsOf"></span></div>
+    <div class="grid g2">
+      <div><h3>Production: seasonal</h3><div class="chart"><canvas id="cSdProd"></canvas></div></div>
+      <div><h3>Ending stocks: seasonal</h3><div class="chart"><canvas id="cSdStocks"></canvas></div></div>
+      <div><h3>Exports and domestic disappearance, y/y change</h3><div class="chart"><canvas id="cSdUse"></canvas></div></div>
+      <div><h3 id="sdScatterTitle">Stocks in months of use vs price</h3><div class="chart"><canvas id="cSdScatter"></canvas></div></div>
+    </div>
+    <p class="note">Monthly balances: USDA ERS supply and utilization (from NASS production and cold storage, Census trade). Months of use = ending stocks ÷ 3-month average of (domestic disappearance + exports). Prices are the USDA monthly NDPSR averages that settle the futures.</p>
+  </div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <h2>WASDE dairy balance and price forecasts</h2>
+      <div class="tbl"><table id="tWasde"></table></div>
+      <p class="note">Billion lb (milk) and $/cwt or $/lb (prices). Change = this month's WASDE vs last month's. Read the revisions, not the levels.</p>
+    </div>
+    <div class="card">
+      <h2>WASDE revision path</h2>
+      <div class="ctrls"><select id="wasdeItem"></select></div>
+      <div class="chart"><canvas id="cWasde"></canvas></div>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <h2>Class prices: USDA announced vs desk rebuild</h2>
+      <div class="chart"><canvas id="cRebuild"></canvas></div>
+      <p class="note" id="rebuildNote"></p>
+    </div>
+    <div class="card">
+      <h2>Month-to-date nowcast</h2>
+      <div id="nowcast"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────── FLOWS ───────────── -->
+<div class="panel" id="d-flows">
+  <div class="card">
+    <h2>Managed money positioning across the dairy complex</h2>
+    <div class="tbl"><table id="tCot"></table></div>
+    <p class="note">CFTC Disaggregated Commitments of Traders, futures and options combined. Percentile ranks the current managed-money net position against all history and the last 3 years.</p>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <div class="ctrls"><b>Contract:</b> <span id="flowSyms"></span></div>
+    <div class="grid g2">
+      <div><h3>Price (continuous front month)</h3><div class="chart"><canvas id="cPx"></canvas></div></div>
+      <div><h3>Managed money net vs producer/merchant net</h3><div class="chart"><canvas id="cCot"></canvas></div></div>
+      <div><h3 id="curveTitle">Forward curve</h3><div class="chart"><canvas id="cCurve"></canvas></div></div>
+      <div><h3 id="oiTitle">Open interest by month and daily change</h3><div class="chart"><canvas id="cOi"></canvas></div></div>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <h2>Options open interest by strike</h2>
+      <div class="ctrls"><span id="optMonths"></span><span class="note" id="optNote"></span></div>
+      <div class="chart tall"><canvas id="cOpt"></canvas></div>
+    </div>
+    <div class="card">
+      <h2>Class III / IV futures vs value implied by component futures</h2>
+      <div class="chart tall"><canvas id="cImplied"></canvas></div>
+      <p class="note">Implied = the FMMO formula applied to cheese, butter, NDM and whey futures for the same month. First 18 months only (deferred component months barely trade). A persistent gap means the milk contract is rich or cheap to its components. The gap closes at settlement, because both settle to the same USDA averages.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────── OUTLOOK ───────────── -->
+<div class="panel" id="d-outlook">
+  <div class="grid g2">
+    <div class="card">
+      <h2>Desk readout</h2>
+      <p class="note" id="olAsOf"></p>
+      <ul class="read" id="olList"></ul>
+      <p class="note">Generated from the data on tabs 2 and 3 each time it updates: what the numbers say, not a trade recommendation.</p>
+    </div>
+    <div class="card">
+      <h2>Desk view</h2>
+      <div id="olView" class="note">No written view yet. Add <code>data/dairy/outlook.md</code> to the repo and it appears here.</div>
+    </div>
+  </div>
+</div>
+
+</main>
+</section>
+<footer>Data: USDA AMS (mandatory reporting datamart), USDA ERS, USDA WASDE, CFTC, CME Group. Prices and positions as of the dates shown. Research use only; not investment advice.</footer>
+<script src="assets/lib.js"></script>
+<script src="assets/dairy.js"></script>
+</body>
+</html>

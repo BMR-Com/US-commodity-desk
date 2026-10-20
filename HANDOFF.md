@@ -27,7 +27,7 @@ Order: **dairy** (Class III/IV milk, cheese, butter, NDM, dry whey) → **lean h
 - CME open interest and settlements: download via browser on a schedule (needs a session linked to Ma's computer / Chrome), push into this repo.
 - Prices: Yahoo or TradingView; futures/options flow charts separate from price charts.
 - Learning sources: CME Institute courses (livestock, dairy, grains), ADMIS livestock/grains dashboards (commentary only, no data files), other broker free data.
-- Methodology/model logic should stay out of this public repo where possible (BMR-Com rule); open question whether to compute in a private repo and publish outputs here.
+- Model logic: Ma chose (2026-10-19) to build everything in this public repo for now and split proprietary parts out later. Keep all model code under `models/` so it can move as one folder.
 
 ## CME via browser (working 2026-10-19)
 CME's own JSON endpoints work from a browser tab on cmegroup.com (same-origin fetch); no CSV downloads needed.
@@ -40,5 +40,10 @@ CME's own JSON endpoints work from a browser tab on cmegroup.com (same-origin fe
 
 ## Next steps
 1. ~~CME courses, CME volume/OI + settlements, evening scheduled download~~ — done 2026-10-19. Dairy course notes in `notes/cme-courses.md`; livestock and grains courses listed there, to read in their phases. Scheduled task "CME ags evening volume/OI download" runs Mon–Fri 21:41 CT on Ma's Mac (built-in browser) and commits `data/cme/<date>/`. Ma chose to keep raw CME data in this public repo.
-2. Dairy pipeline: NDPSR weekly, class/component prices monthly, Class III/IV rebuild from NDPSR using the post-June-2025 FMMO formulas (verify against AMS), futures from TradingView/Yahoo, COT.
-3. Dairy primer + S&D tab once NASS key is in place.
+2. ~~Dairy v1~~ — done 2026-10-19.
+   - Pipeline `.github/workflows/data.yml` (weekdays 20:20 UTC, Fri 21:40 UTC, and on pushes to pipelines/models/data/cme): `pipelines/usda_dairy.py` (AMS datamart all sections full history: NDPSR 2993, class 2991, advanced 2989, FMMO 3345–3462; ERS dairy supply/use CSVs), `pipelines/cot.py` (CFTC disaggregated F+O and futures-only, dairy + livestock), `pipelines/prices.py` (TradingView continuous 1!/2!; Class IV root is GDK).
+   - Models: `models/dairy_class.py` (FMMO formulas by regime; rebuild matches every announced Class III/IV since 2013 to the cent; NDPSR month-to-date nowcast; futures-implied III/IV from CSC/CB/GNF/DY settlements), `models/dairy_sd.py` (ERS monthly balances, stocks/use metrics, WASDE balance and revisions read from BMR-Com/wasde-analytics data JSONs), `models/flows.py` (COT summaries/percentiles, curves, OI by month, option OI by strike; dairy and livestock).
+   - Site: `index.html` + `assets/` — dairy tabs Primer (interactive class price calculator), S&D, Flows, Outlook (rule-based readout; Ma's written view from `data/dairy/outlook.md` if present). Needs GitHub Pages enabled (Settings → Pages → main, root).
+   - Access notes: USDA hosts are blocked from the Claude workspace but open from GitHub Actions; WASDE CSV on usda.gov is 403 from Actions (use wasde-analytics outputs); NASS reports are open as text via esmis.nal.usda.gov (no key) — QuickStats would need NASS_API_KEY.
+3. Dairy v2: NASS milk production / cold storage / dairy products (ESMIS text) to run the balance ahead of ERS; CME spot dairy (daily, via the browser collector); per-day production seasonal; GDT/EU prices for export parity.
+4. Lean hogs, then cattle: datamart LM_HG201/2511 (CME Lean Hog Index rebuild), LM_PK602/2498 (pork cutout), LM_CT100/150, LSWFEDCC 2700, boxed beef 2453; NASS hogs & pigs, cattle on feed, slaughter (ESMIS); ERS meat supply & disappearance; CME Feeder Cattle Index (needs MARS key for auction data). Livestock flows JSON already builds.

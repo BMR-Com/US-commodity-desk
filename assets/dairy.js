@@ -223,7 +223,7 @@ async function initOutlook() {
   const CB = await getJSON('data/derived/cot_backtest.json').catch(() => ({}));
   const pos = Object.entries(FLOWS.cot).map(([s, v]) => [s, v.summary]).filter(([, c]) => c.mm_net_percentile_3y >= 90 || c.mm_net_percentile_3y <= 10);
   const ev = (s, c) => { const t = CB[s]?.w4?.[c.mm_net >= 0 ? 'extreme_long' : 'extreme_short']; return t ? ` (history after similar readings: ${sgn(t.mean_pct, 1, '%')} over 4 weeks, up ${Math.round(100 * t.up_share)}% of the time, n=${t.n})` : ''; };
-  L.push(`<b>Positioning:</b> ${pos.length ? pos.map(([s, c]) => `${SYM[s]} managed money ${c.mm_net >= 0 ? 'net long' : 'net short'} ${fmt(Math.abs(c.mm_net), 0)} (${ord(c.mm_net_percentile_3y)} pctl of 3y)${ev(s, c)}`).join('; ') + '. Tested since 2006: in Class III and cheese, positioning extremes have tended to persist rather than reverse; in the other dairy contracts they carry no reliable edge either way.' : 'no dairy contract at a 3-year positioning extreme.'}`);
+  L.push(`<b>Positioning (secondary):</b> ${pos.length ? pos.map(([s, c]) => `${SYM[s]} ${c.mm_net >= 0 ? 'long' : 'short'} ${ord(c.mm_net_percentile_3y)} pctl`).join(', ') + '. Settlement is set by USDA cash prices, so positioning only matters at the margin; in Class III and cheese, extremes have tended to persist.' : 'no dairy contract at a 3-year positioning extreme.'}`);
   $('#olList').innerHTML = L.map(x => `<li>${x}</li>`).join('');
   const BT = await getJSON(D + 'backtest.json').catch(() => null);
   if (BT) {
@@ -232,7 +232,23 @@ async function initOutlook() {
     const sd1 = BT.sd_to_price.h1['stocks+use'], sd3 = BT.sd_to_price.h3['stocks+use'];
     const sdr = p => `<tr><td>${p}</td><td>${sgn(sd1[p]?.oos_r2_vs_no_change, 2)}</td><td>${fmt(100 * (sd1[p]?.hit_rate ?? NaN), 0)}%</td><td>${sgn(sd3[p]?.oos_r2_vs_no_change, 2)}</td><td>${fmt(100 * (sd3[p]?.hit_rate ?? NaN), 0)}%</td></tr>`;
     const cot = s => { const x = CB[s]?.w4; if (!x) return ''; const f = y => y ? `${sgn(y.mean_pct, 2, '%')} · ${Math.round(100 * y.up_share)}% up · n${y.n}` : '–'; return `<tr><td>${SYM[s] || s}</td><td>${f(x.all)}</td><td>${f(x.extreme_short)}</td><td>${f(x.extreme_long)}</td></tr>`; };
-    $('#olTests').innerHTML = `<h3>Month-to-date nowcast vs futures (mean abs error to announced price, $/cwt, 2019–2026)</h3>
+    const DCV = await getJSON(D + 'dairy_convergence.json').catch(() => null);
+    const CBI = await getJSON('data/derived/convergence_bias.json').catch(() => null);
+    let conv = '';
+    if (DCV) {
+      const c3 = DCV.tests['2013-2026'].class3, c4 = DCV.tests['2013-2026'].class4;
+      conv = `<h3>Convergence: who forecasts the announced class price better? (mean abs error $/cwt, weekly origins 2013–2026)</h3>
+      <div class="tbl"><table><tr><th>Months ahead</th><th>III futures</th><th>III fundamental</th><th>IV futures</th><th>IV fundamental</th></tr>
+      ${[0, 1, 2, 3, 6].map(h => `<tr><td>${h === 0 ? 'current month' : h}</td><td>${fmt(c3[h].mae_futures)}</td><td>${fmt(Math.min(c3[h].mae_persist, c3[h].mae_seasonal))}</td><td>${fmt(c4[h].mae_futures)}</td><td>${fmt(Math.min(c4[h].mae_persist, c4[h].mae_seasonal))}</td></tr>`).join('')}</table></div>
+      <p class="note">Each contract is scored against the USDA price it settled to. Fundamental = NDPSR weeks to date plus latest week carried (current month), latest NDPSR prices through the formula with and without seasonal adjustment (later months); best of the two shown. Futures win at every horizon: they trade the daily CME spot auctions that NDPSR reflects 1–2 weeks later.</p>`;
+    }
+    if (CBI) {
+      const row = s => { const v = CBI[s]; return v ? `<tr><td>${SYM[s] || s}</td>${['h20', 'h60', 'h120'].map(h => `<td>${sgn(v[h]?.mean_pct, 2, '%')} · ${Math.round(100 * (v[h]?.up_share ?? 0))}% up · t ${fmt(v[h]?.t, 1)}</td>`).join('')}</tr>` : ''; };
+      conv += `<h3>Systematic convergence: futures vs their own final settlement (expired contracts since 2010)</h3>
+      <div class="tbl"><table><tr><th>Contract</th><th>From 20 business days out</th><th>From 60</th><th>From 120</th></tr>${['DC', 'GDK', 'CSC', 'CB', 'GNF', 'DY'].map(row).join('')}</table></div>
+      <p class="note">Positive = futures settled above where they traded. Dry whey has settled ~3% above its 60-day-out price in both 2010–17 and 2018–26; the NDM and Class IV discounts seen in 2010–17 have not persisted. t-stats overstate significance because neighbouring contracts share shocks.</p>`;
+    }
+    $('#olTests').innerHTML = conv + `<h3>Month-to-date nowcast vs futures (mean abs error to announced price, $/cwt, 2019–2026)</h3>
       <div class="tbl"><table><tr><th>NDPSR weeks in</th><th>III nowcast</th><th>III futures</th><th>IV nowcast</th><th>IV futures</th><th>III no-change</th></tr>${[1, 2, 3, 4].map(row).join('')}</table></div>
       <p class="note">Front-month futures beat the NDPSR month-to-date early in the month: they price the CME spot market daily, NDPSR lags it 1–2 weeks. From week 3 the futures comparison is contaminated by TradingView's continuous-contract roll; per-contract history from the nightly CME download will fix that going forward.</p>
       <h3>Do S&amp;D stocks predict product prices? (walk-forward, out of sample, from 2016)</h3>

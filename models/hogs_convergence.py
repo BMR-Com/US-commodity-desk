@@ -28,6 +28,13 @@ HE_MONTHS = [2, 4, 5, 6, 7, 8, 10, 12]
 GROUP_BY_K = {0: "ge180", 1: "120_179", 2: "50_119", 3: "lt50", 4: "lt50", 5: "lt50"}
 
 
+def expiry(f):
+    """(last trading date, final settlement) from a contract's own history; (None, nan) if still trading."""
+    if f.empty or f.index.max() >= pd.Timestamp.now().normalize() - pd.Timedelta(days=3):
+        return None, np.nan
+    return f.index.max(), float(f.iloc[-1])
+
+
 def ltd(y, m):
     return pd.bdate_range(f"{y}-{m:02d}-01", periods=10)[-1]
 
@@ -50,6 +57,23 @@ def build():
         s2 = s[:d]
         return s2.iloc[-1] if len(s2) else np.nan
 
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from hogs_sd import slaughter
+    per_day, _ = slaughter()
+
+    def seasonal(t, T, years=5):
+        r = []
+        for k in range(1, years + 1):
+            a, b = at(idx, t - pd.DateOffset(years=k)), at(idx, T - pd.DateOffset(years=k))
+            if a and b and not np.isnan(a) and not np.isnan(b):
+                r.append(np.log(b / a))
+        return np.mean(r) if r else np.nan
+
+    def recent_slaughter_yoy(t):
+        M = t.to_period("M")
+        ms = [m for m in (M - 2, M - 3, M - 4) if m in per_day.index and m - 12 in per_day.index]  # published by t
+        return per_day[ms].sum() / per_day[[m - 12 for m in ms]].sum() - 1 if ms else np.nan
+
     rows = []
     for _, r in hp.iterrows():
         t = r.released
@@ -58,18 +82,21 @@ def build():
             tm = q + k
             if tm.month not in HE_MONTHS:
                 continue
-            T = ltd(tm.year, tm.month)
-            if T <= t:
-                continue
             contract = f"HE{CODES[tm.month - 1]}{tm.year}"
             f = fut[fut.contract == contract].set_index("date").close
+            T, settle_final = expiry(f)
+            if T is None:
+                T, settle_final = ltd(tm.year, tm.month), np.nan
+            if T <= t:
+                continue
             post = f[t + pd.Timedelta(days=1):]
             pre = f[:t]
             if post.empty or pre.empty:
                 continue
             g = GROUP_BY_K[k]
-            settle = idx.get(T, np.nan) if T <= idx.index.max() else np.nan
-            T1 = ltd(tm.year - 1, tm.month)
+            settle = settle_final
+            f1 = fut[fut.contract == f"HE{CODES[tm.month - 1]}{tm.year - 1}"].set_index("date").close
+            T1 = expiry(f1)[0] or ltd(tm.year - 1, tm.month)
             rows.append(dict(
                 release=str(t.date()), contract=contract, k=k, ltd=str(T.date()),
                 settle=settle, settle_ly=idx.get(T1, np.nan),
@@ -77,7 +104,8 @@ def build():
                 cash_yoy=np.log(at(idx, t) / at(idx, t - pd.Timedelta(days=364))),
                 weight_yoy=at(cw, t) / at(cw, t - pd.Timedelta(days=364)) - 1,
                 cutout_yoy=np.nan if cut is None else np.log(at(cut, t) / at(cut, t - pd.Timedelta(days=364))),
-                fut_pre=pre.iloc[-1], fut_post=post.iloc[0], cash_t=at(idx, t)))
+                fut_pre=pre.iloc[-1], fut_post=post.iloc[0], cash_t=at(idx, t),
+                seas=seasonal(t, T), supply_delta=(r[g] / r[g + "_prev"] - 1) - recent_slaughter_yoy(t)))
     return pd.DataFrame(rows)
 
 
@@ -101,6 +129,42 @@ def walk_forward(d, feats, start="2012-01-01"):
     return pd.concat(preds) if preds else pd.DataFrame()
 
 
+def walk_forward_cash(d, feats, start="2012-01-01"):
+    """log(I_T / I_t) = seasonal + b . feats ; fitted on settled history before each release."""
+    d = d.dropna(subset=["cash_t", "seas"] + feats).copy()
+    d["y"] = np.log(d.settle / d.cash_t) - d.seas
+    preds = []
+    for t in sorted(d.release.unique()):
+        if t < start:
+            continue
+        train = d[(d.ltd < t) & d.y.notna()]
+        test = d[d.release == t]
+        if len(train) < 30:
+            continue
+        if feats:
+            X = np.c_[np.ones(len(train)), train[feats].values]
+            b, *_ = np.linalg.lstsq(X, train.y.values, rcond=None)
+            yhat = np.c_[np.ones(len(test)), test[feats].values] @ b
+        else:
+            yhat = np.full(len(test), train.y.mean())
+        x = test.copy()
+        x["model"] = x.cash_t * np.exp(x.seas + yhat)
+        # blend: futures + lambda * (model - futures), lambda fit on past forecasts only
+        preds.append(x)
+    p = pd.concat(preds) if preds else pd.DataFrame()
+    if len(p):
+        lam = []
+        for t in p.release:
+            past = p[(p.ltd < t)].dropna(subset=["settle"])
+            if len(past) < 20:
+                lam.append(0.0); continue
+            g, c = (past.model - past.fut_post).values, (past.settle - past.fut_post).values
+            lam.append(float(np.clip((g * c).sum() / (g * g).sum(), 0, 1)))
+        p["lam"] = lam
+        p["blend"] = p.fut_post + p.lam * (p.model - p.fut_post)
+    return p
+
+
 def score(p):
     p = p.dropna(subset=["settle", "model"])
     if p.empty:
@@ -118,6 +182,9 @@ def score(p):
     if len(big):
         out["when_gap_ge_3"] = {"n": int(len(big)), "hit": round(float((np.sign(big.model - big.fut_post) == np.sign(big.settle - big.fut_post)).mean()), 2),
                                 "avg_convergence_in_gap_direction": round(float((np.sign(big.model - big.fut_post) * (big.settle - big.fut_post)).mean()), 2)}
+    if "blend" in p:
+        out["mae_blend"] = round(float((p.blend - p.settle).abs().mean()), 2)
+        out["avg_lambda"] = round(float(p.lam.mean()), 2)
     by_k = {}
     for k, x in p.groupby("k"):
         by_k[int(k)] = {"n": int(len(x)), "mae_model": round(float((x.model - x.settle).abs().mean()), 2),
@@ -147,6 +214,11 @@ if __name__ == "__main__":
             p = x
         else:
             p = walk_forward(d, feats, start)
+        res[name] = score(p)
+        print(name, json.dumps(res[name]))
+    for name, feats in {"cash+seasonal": [], "cash+seasonal+supply_delta": ["supply_delta"],
+                        "cash+seasonal+supply_delta+weights": ["supply_delta", "weight_yoy"]}.items():
+        p = walk_forward_cash(d, feats)
         res[name] = score(p)
         print(name, json.dumps(res[name]))
     # current forecasts with the full-sample fit of the best set

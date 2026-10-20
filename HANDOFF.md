@@ -47,3 +47,15 @@ CME's own JSON endpoints work from a browser tab on cmegroup.com (same-origin fe
    - Access notes: USDA hosts are blocked from the Claude workspace but open from GitHub Actions; WASDE CSV on usda.gov is 403 from Actions (use wasde-analytics outputs); NASS reports are open as text via esmis.nal.usda.gov (no key) — QuickStats would need NASS_API_KEY.
 3. Dairy v2: NASS milk production / cold storage / dairy products (ESMIS text) to run the balance ahead of ERS; CME spot dairy (daily, via the browser collector); per-day production seasonal; GDT/EU prices for export parity.
 4. Lean hogs, then cattle: datamart LM_HG201/2511 (CME Lean Hog Index rebuild), LM_PK602/2498 (pork cutout), LM_CT100/150, LSWFEDCC 2700, boxed beef 2453; NASS hogs & pigs, cattle on feed, slaughter (ESMIS); ERS meat supply & disappearance; CME Feeder Cattle Index (needs MARS key for auction data). Livestock flows JSON already builds.
+
+## Testing framework (Ma, 2026-10-20)
+These markets settle to USDA cash numbers, so models are judged on **convergence**: does a fundamental estimate of the final settlement beat the futures price at the time, and does (model - futures) predict (settlement - futures)? COT is secondary.
+- Per-contract history incl. expired: `pipelines/contracts.py` → `data/contracts/<SYM>.csv` (TradingView; workflow `contracts.yml`, weekday evenings). Final close = final settlement.
+- First-print NASS reports with true release dates: `pipelines/esmis.py` → `data/esmis/<slug>/*.txt`; parser `models/esmis_parse.py` (Hogs and Pigs done: 87 releases 2005–2026). NASS QuickStats/`load_time` are revised values and reload dates — never use them for backtests.
+- Results so far:
+  - Lean Hog Index rebuild (`models/hogs.py`) matches CME published values to the cent.
+  - H&P weight-group slaughter forecast: MAPE 1.4–2.7% vs naive 3.1–3.7% (2015–26) — `models/hogs_sd.py` (still uses revised QuickStats inventories; switch to esmis_parse first prints).
+  - Hogs convergence (`models/hogs_convergence.py` quarterly; `models/hogs_expiry.py` daily last 30 bdays): futures beat every cash/seasonal/supply/margin/weight model; blend weight 0. H&P vs trend barely predicts report-day moves (true surprise needs trade estimates).
+  - Dairy convergence (`models/dairy_convergence.py`): futures beat NDPSR-based forecasts at all horizons (current month III: futures 7c vs 51c).
+  - Systematic bias (`models/convergence_bias.py`): live cattle futures settle ~2–3% above their 20–60-bdays-out price in both 2010–17 and 2018–26 (quarter-clustered t 2.3–3.2); dry whey ~+3% from 60 days (weaker). NDM/Class IV discounts were 2010–17 only.
+- Next: CME spot dairy daily (nightly collector) for front-month dairy; cattle model (COF placements/days on feed, 5-area cash, FCI) with the LE bias as a lead; MARS key in repo returns "User is not found".

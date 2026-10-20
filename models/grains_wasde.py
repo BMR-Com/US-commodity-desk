@@ -29,22 +29,35 @@ COUNTRIES = {"corn": ["Brazil", "Argentina", "Ukraine", "China", "World"],
              "wheat": ["Russia", "EU-27", "European Union", "Australia", "Canada", "Argentina", "Ukraine", "China", "World"]}
 
 
+BU_PER_MT = {"Corn": 39.368, "Oilseed,_Soybean": 36.744, "Wheat": 36.744}
+# US keys that the source sometimes stores only in million metric tons (world-table collision): convert, don't drop
+MT_CONVERT = {"beginning stocks", "ending stocks", "exports", "imports", "production"}
+
+
 def load(name):
     local = os.getenv("WASDE_DIR")
     if local and Path(local, f"{name}.json").exists():
-        return json.loads(Path(local, f"{name}.json").read_text())
-    return requests.get(RAW.format(name), timeout=120).json()
+        j = json.loads(Path(local, f"{name}.json").read_text())
+    else:
+        j = requests.get(RAW.format(name), timeout=120).json()
+    j["_name"] = name
+    return j
 
 
 def tidy(j):
     rows = []
+    bu = BU_PER_MT.get(j.get("_name"))
     for key, hist in j["data"].items():
         region, attr, my = key.split("||")
         c = CANON.get(attr.strip().lower())
         if not c:
             continue
         for h in hist:
-            rows.append(dict(region=region, attr=c, my=my, wasde=h["wasdeNum"], report=h["reportDate"], value=h["value"], unit=h["unit"]))
+            v, unit = h["value"], h["unit"]
+            if (region == "United States" and bu and v is not None and "metric" in str(unit).lower()
+                    and attr.strip().lower() in MT_CONVERT):
+                v, unit = round(v * bu), "Million Bushels (converted from MMT)"
+            rows.append(dict(region=region, attr=c, my=my, wasde=h["wasdeNum"], report=h["reportDate"], value=v, unit=unit))
     d = pd.DataFrame(rows)
     if len(d):
         # round to USDA's published precision: unit conversions in the source leave noise (15341.43 vs 15341)

@@ -32,7 +32,7 @@ jobs:
         continue-on-error: true
       - run: python pipelines/prices.py
         continue-on-error: true
-      - run: python models/grains_wasde.py && python -W ignore models/grains_exports.py && python models/grains_condition.py && python -W ignore models/grains_tests.py
+      - run: python models/grains_wasde.py && python -W ignore models/grains_exports.py && python -W ignore models/grains_sales.py && python models/grains_condition.py && python -W ignore models/grains_tests.py
         continue-on-error: true
       - run: python models/flows.py
         continue-on-error: true

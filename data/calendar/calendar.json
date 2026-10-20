@@ -1,5 +1,5 @@
 {
-"generated": "2026-10-20 18:58 UTC",
+"generated": "2026-10-20 19:14 UTC",
 "events": [
 {
 "date": "2026-10-13",
@@ -35,6 +35,19 @@
 },
 {
 "date": "2026-10-15",
+"time": "8:00 AM CT",
+"event": "CONAB Brazil crop survey (date estimated)",
+"cat": "South America",
+"markets": [
+"ZS",
+"ZC"
+],
+"importance": 3,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-10-15",
 "time": "7:30 AM CT",
 "event": "USDA weekly export sales",
 "cat": "USDA",
@@ -51,19 +64,6 @@
 "importance": 2,
 "link": null,
 "estimated": false
-},
-{
-"date": "2026-10-15",
-"time": "8:00 AM CT",
-"event": "CONAB Brazil crop survey (date estimated)",
-"cat": "South America",
-"markets": [
-"ZS",
-"ZC"
-],
-"importance": 2,
-"link": null,
-"estimated": true
 },
 {
 "date": "2026-10-15",
@@ -598,6 +598,19 @@
 },
 {
 "date": "2026-11-12",
+"time": "8:00 AM CT",
+"event": "CONAB Brazil crop survey (date estimated)",
+"cat": "South America",
+"markets": [
+"ZS",
+"ZC"
+],
+"importance": 3,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-12",
 "time": "7:30 AM CT",
 "event": "USDA weekly export sales",
 "cat": "USDA",
@@ -614,19 +627,6 @@
 "importance": 2,
 "link": null,
 "estimated": false
-},
-{
-"date": "2026-11-12",
-"time": "8:00 AM CT",
-"event": "CONAB Brazil crop survey (date estimated)",
-"cat": "South America",
-"markets": [
-"ZS",
-"ZC"
-],
-"importance": 2,
-"link": null,
-"estimated": true
 },
 {
 "date": "2026-11-12",
@@ -1367,6 +1367,19 @@
 },
 {
 "date": "2026-12-17",
+"time": "8:00 AM CT",
+"event": "CONAB Brazil crop survey (date estimated)",
+"cat": "South America",
+"markets": [
+"ZS",
+"ZC"
+],
+"importance": 3,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-17",
 "time": "7:30 AM CT",
 "event": "USDA weekly export sales",
 "cat": "USDA",
@@ -1383,19 +1396,6 @@
 "importance": 2,
 "link": null,
 "estimated": false
-},
-{
-"date": "2026-12-17",
-"time": "8:00 AM CT",
-"event": "CONAB Brazil crop survey (date estimated)",
-"cat": "South America",
-"markets": [
-"ZS",
-"ZC"
-],
-"importance": 2,
-"link": null,
-"estimated": true
 },
 {
 "date": "2026-12-17",
@@ -1870,6 +1870,19 @@
 },
 {
 "date": "2027-01-14",
+"time": "8:00 AM CT",
+"event": "CONAB Brazil crop survey (date estimated)",
+"cat": "South America",
+"markets": [
+"ZS",
+"ZC"
+],
+"importance": 3,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-01-14",
 "time": "7:30 AM CT",
 "event": "USDA weekly export sales",
 "cat": "USDA",
@@ -1886,19 +1899,6 @@
 "importance": 2,
 "link": null,
 "estimated": false
-},
-{
-"date": "2027-01-14",
-"time": "8:00 AM CT",
-"event": "CONAB Brazil crop survey (date estimated)",
-"cat": "South America",
-"markets": [
-"ZS",
-"ZC"
-],
-"importance": 2,
-"link": null,
-"estimated": true
 },
 {
 "date": "2027-01-14",

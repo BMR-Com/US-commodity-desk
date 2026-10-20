@@ -24,9 +24,9 @@ CANON = {  # lower-cased WASDE attribute -> canonical
     "biofuel": "biofuel", "biodiesel": "biofuel", "for methyl ester": "biofuel", "methyl ester": "biofuel",
     "food, feed & other industrial": "food_other", "domestic feed": "dom_feed", "trade": "trade",
 }
-COUNTRIES = {"corn": ["United States", "Brazil", "Argentina", "Ukraine", "China", "World"],
-             "soybeans": ["United States", "Brazil", "Argentina", "China", "World"],
-             "wheat": ["United States", "Russia", "EU-27", "European Union", "Australia", "Canada", "Argentina", "Ukraine", "China", "World"]}
+COUNTRIES = {"corn": ["Brazil", "Argentina", "Ukraine", "China", "World"],
+             "soybeans": ["Brazil", "Argentina", "China", "World"],
+             "wheat": ["Russia", "EU-27", "European Union", "Australia", "Canada", "Argentina", "Ukraine", "China", "World"]}
 
 
 def load(name):

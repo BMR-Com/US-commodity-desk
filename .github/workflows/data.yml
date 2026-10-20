@@ -32,6 +32,8 @@ jobs:
         continue-on-error: true
       - run: python pipelines/prices.py
         continue-on-error: true
+      - run: python models/grains_wasde.py
+        continue-on-error: true
       - run: python models/flows.py
         continue-on-error: true
       - run: python models/dairy_backtest.py && python models/cot_backtest.py

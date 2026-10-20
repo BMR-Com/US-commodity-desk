@@ -1,0 +1,28 @@
+name: contracts
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipelines/contracts.py', '.github/workflows/contracts.yml']
+  schedule:
+    - cron: '10 23 * * 1-5'   # evening weekdays: refresh active contracts
+permissions: {contents: write}
+concurrency: {group: contracts, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q pandas git+https://github.com/rongardF/tvdatafeed.git
+      - run: python pipelines/contracts.py HE LE GF DC
+      - run: python pipelines/contracts.py GDK CSC CB GNF DY
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/contracts
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: per-contract futures history $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q && break; sleep 5; done

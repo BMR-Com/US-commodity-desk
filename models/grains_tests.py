@@ -95,6 +95,32 @@ def bias(com):
     return b if b.get("n_contracts") else None
 
 
+def pace_price_test(com):
+    """Does (pace-implied exports - USDA)/USDA predict the roll-adjusted front-month return over the next 4 weeks?"""
+    p = D / f"exports_detail_{com}.csv"
+    if not p.exists() or not (ROOT / "data" / "prices" / f"{SYM[com]}.csv").exists():
+        return None
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from cot_backtest import roll_adjusted_index
+    idx = roll_adjusted_index(SYM[com])
+    d = pd.read_csv(p, parse_dates=["week"]).dropna(subset=["usda"])
+    d = d[(d.wk >= 12) & (d.my >= "2010/11")]  # early-season pace is too noisy
+    d["gap"] = 100 * (d.implied / d.usda - 1)
+    def fwd(t, n=20):
+        a = idx[t + pd.Timedelta(days=1):]
+        b = idx[:t]
+        return 100 * (a.iloc[n - 1] / b.iloc[-1] - 1) if len(a) >= n and len(b) else np.nan
+    d["ret20"] = [fwd(t) for t in d.week]
+    d = d.dropna(subset=["ret20"])
+    if len(d) < 50:
+        return None
+    big = d[d.gap.abs() >= 5]
+    return {"n": int(len(d)), "corr": round(float(np.corrcoef(d.gap, d.ret20)[0, 1]), 3),
+            "hit_when_gap_ge_5": round(float((np.sign(big.gap) == np.sign(big.ret20)).mean()), 2) if len(big) else None,
+            "n_gap_ge_5": int(len(big))}
+
+
 def html(com, mom, cond, exp, react):
     parts = []
     b = bias(com)
@@ -114,6 +140,9 @@ def html(com, mom, cond, exp, react):
     if exp and exp.get("test"):
         t = exp["test"]
         parts.append(f"<h3>Export pace</h3><p>Pace-implied exports at this point of the season: mean abs error {t['mae_pct']}% of final vs {t['mae_usda_pct']}% for USDA's same-month forecast; called the direction of USDA's next export revision {100 * t['revision_hit']:.0f}% of the time (n={t['n']}).</p>")
+    pp = pace_price_test(com) if com in ("corn", "soybeans", "wheat") else None
+    if pp:
+        parts.append(f"<h3>Does export pace predict price?</h3><p>Pace-implied minus USDA exports (weeks 12+, MY 2010 on) vs the roll-adjusted front-month move over the next 4 weeks: correlation {pp['corr']}; when pace ran 5%+ away from USDA, price moved in the pace direction {100 * (pp['hit_when_gap_ge_5'] or 0):.0f}% of the time (n={pp['n_gap_ge_5']} weekly readings, overlapping).</p>")
     if react:
         parts.append(f"<h3>Price reaction to WASDE</h3><p>Ending-stocks revision vs front-month move over WASDE week: correlation {react['corr']}, price moved opposite to the stocks revision {100 * react['hit']:.0f}% of the time (n={react['n']}; {react['note']}).</p>")
     return "".join(parts) or "<p class='note'>No tests yet.</p>"

@@ -78,6 +78,7 @@ def run(com):
                              next_usda=nxt.value.iloc[0] if len(nxt) else np.nan,
                              final=final.get(my, np.nan) if my in complete else np.nan))
     r = pd.DataFrame(rows)
+    r.to_csv(OUT / f"exports_detail_{com}.csv", index=False)
     test = None
     bt = r.dropna(subset=["final", "usda"])
     bt = bt[(bt.my >= "2010/11")]

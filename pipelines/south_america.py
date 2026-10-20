@@ -89,11 +89,20 @@ def conab():
             f = get(url)
             if f is not None:
                 ct = f.headers.get("content-type", "")
-                if "html" in ct:  # landing page: find the file
-                    m = re.search(r'href="([^"]+\.(?:xlsx|xls|pdf)[^"]*)"', f.text, re.I) or re.search(r'href="([^"]+/@@download/file[^"]*)"', f.text)
+                if "html" in ct:  # bulletin folder: prefer the planting/harvest item, then its file
+                    m = re.search(r'href="([^"]*plantio-e-colheita[^"]*)"', f.text)
                     if m:
-                        f = get(m.group(1) if m.group(1).startswith("http") else "https://www.gov.br" + m.group(1))
-                        ct = f.headers.get("content-type", "") if f else ""
+                        f2 = get(m.group(1))
+                        if f2 is not None:
+                            f, ct = f2, f2.headers.get("content-type", "")
+                if f is not None and "html" in ct:
+                    m = re.search(r'href="([^"]+\.(?:xlsx|xls|pdf))"', f.text, re.I) or re.search(r'href="([^"]+/@@download/file[^"]*)"', f.text) \
+                        or re.search(r'href="([^"]+/view)"', f.text)
+                    if m:
+                        u2 = m.group(1) if m.group(1).startswith("http") else "https://www.gov.br" + m.group(1)
+                        f2 = get(u2.replace("/view", "/@@download/file"))
+                        if f2 is not None:
+                            f, ct = f2, f2.headers.get("content-type", "")
                 if f is not None:
                     ext = "xlsx" if "sheet" in ct or "excel" in ct else "pdf" if "pdf" in ct else "bin"
                     (OUT / "raw").mkdir(exist_ok=True)

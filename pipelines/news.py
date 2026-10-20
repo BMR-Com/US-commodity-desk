@@ -96,6 +96,16 @@ def main():
             items += got
             print(topic, len(got))
         time.sleep(1.5)
+    broad = "corn OR soybeans OR soybean OR wheat OR grain OR cattle OR hogs OR pork OR beef OR dairy OR milk OR cheese OR soymeal OR soyoil OR USDA"
+    for site in ["reuters.com", "bloomberg.com", "wsj.com", "marketwatch.com", "barrons.com", "ft.com", "agriculture.com", "farmprogress.com",
+                 "brownfieldagnews.com", "nationalhogfarmer.com", "dairyherd.com", "drovers.com", "hoards.com", "feedstuffs.com", "agweb.com"]:
+        url = f"https://news.google.com/rss/search?q={quote(f'({broad}) site:{site} when:7d')}&hl=en-US&gl=US&ceid=US:en"
+        x = fetch(url)
+        if x:
+            got = parse(x, "outlet:" + site)
+            items += got
+            print(site, len(got))
+        time.sleep(1.2)
     for name, url in [("Brownfield", "https://www.brownfieldagnews.com/feed/"), ("farmdoc daily", "https://farmdocdaily.illinois.edu/feed")]:
         x = fetch(url)
         if x:

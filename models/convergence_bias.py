@@ -12,13 +12,16 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-SYMS = ["HE", "LE", "GF", "DC", "GDK", "CSC", "CB", "GNF", "DY"]
+SYMS = ["HE", "LE", "GF", "DC", "GDK", "CSC", "CB", "GNF", "DY", "ZC", "ZS", "ZM", "ZL", "ZW", "KE"]
 CODES = "FGHJKMNQUVXZ"
 H = [10, 20, 40, 60, 120]
 
 
 def run(sym, since=2010):
-    d = pd.read_csv(ROOT / "data" / "contracts" / f"{sym}.csv", parse_dates=["date"])
+    p = ROOT / "data" / "contracts" / f"{sym}.csv"
+    if not p.exists():
+        return {"n_contracts": 0}
+    d = pd.read_csv(p, parse_dates=["date"])
     cutoff = pd.Timestamp.now().normalize() - pd.Timedelta(days=5)
     rows = []
     for c, g in d.groupby("contract"):
@@ -53,6 +56,8 @@ if __name__ == "__main__":
     p.mkdir(parents=True, exist_ok=True)
     (p / "convergence_bias.json").write_text(json.dumps(res, indent=1))
     for s, v in res.items():
+        if not v.get("n_contracts"):
+            print(s, "no contract history yet"); continue
         line = " | ".join(f"h{h}: {v[f'h{h}']['mean_pct']:+.2f}% t{v[f'h{h}']['t']:+.1f} up{v[f'h{h}']['up_share']:.0%}" for h in H if f"h{h}" in v)
         print(f"{s:4} n{v['n_contracts']:4}  {line}")
         h = v.get("h60", {}).get("by_month", {})

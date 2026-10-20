@@ -68,7 +68,23 @@ def trend(y, upto, start=1990):
     return a + b * upto
 
 
-def model(cond, y, weeks):
+def usda_yield_history(key):
+    """USDA yield forecast by marketing year and WASDE release date (corn, soybeans)."""
+    if key not in ("corn", "soybeans"):
+        return None
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from grains_wasde import tidy, load, FILES
+    months = {m: i for i, m in enumerate(["January", "February", "March", "April", "May", "June", "July", "August",
+                                           "September", "October", "November", "December"], 1)}
+    d = tidy(load(FILES[key]))
+    d = d[(d.region == "United States") & (d.attr == "yield")].copy()
+    d["release"] = [pd.Timestamp(int(r.split()[1]), months[r.split()[0]], 12) for r in d.report]
+    d["year"] = d.my.str[:4].astype(int)
+    return d[["year", "release", "value"]]
+
+
+def model(cond, y, weeks, uh=None):
     """Pick the week with the best leave-one-year-out fit among candidates; report that test."""
     best = None
     years = sorted(set(cond.year) & set(y.index))
@@ -81,7 +97,11 @@ def model(cond, y, weeks):
             t = trend(y, yr)
             if np.isnan(t):
                 continue
-            rows.append(dict(year=yr, idx=c.idx.iloc[-1], ge=c.ge.iloc[-1], dev=y[yr] - t, trend=t, actual=y[yr]))
+            usda = np.nan
+            if uh is not None:
+                u = uh[(uh.year == yr) & (uh.release <= c.index[-1])].sort_values("release")
+                usda = u.value.iloc[-1] if len(u) else np.nan
+            rows.append(dict(year=yr, idx=c.idx.iloc[-1], ge=c.ge.iloc[-1], dev=y[yr] - t, trend=t, actual=y[yr], usda=usda))
         r = pd.DataFrame(rows)
         if len(r) < 12:
             continue
@@ -94,7 +114,11 @@ def model(cond, y, weeks):
         mae, mae_t = (r.pred - r.actual).abs().mean(), (r.trend - r.actual).abs().mean()
         if best is None or mae < best["mae_model"]:
             b, a = np.polyfit(r.idx, r.dev, 1)
+            ru = r.dropna(subset=["usda"])
             best = {"week": int(wk), "n": int(len(r)), "mae_model": round(float(mae), 2), "mae_trend": round(float(mae_t), 2),
+                    "mae_usda_same_date": round(float((ru.usda - ru.actual).abs().mean()), 2) if len(ru) else None,
+                    "mae_model_same_years": round(float((ru.pred - ru.actual).abs().mean()), 2) if len(ru) else None,
+                    "n_usda": int(len(ru)),
                     "slope_per_index_pt": round(float(b), 3), "intercept": round(float(a), 3),
                     "hit_direction": round(float((np.sign(r.pred - r.trend) == np.sign(r.actual - r.trend)).mean()), 2),
                     "years": r.year.tolist(), "pred": r.pred.round(1).tolist(), "actual": r.actual.round(1).tolist()}
@@ -122,7 +146,7 @@ if __name__ == "__main__":
             continue
         entry = {"ge": {str(yr): [[int(w), float(v)] for w, v in zip(g.week, g.ge)] for yr, g in cond.groupby("year") if yr >= 2010}}
         if y is not None and len(y) > 10:
-            m = model(cond, y, weeks)
+            m = model(cond, y, weeks, usda_yield_history(key))
             if m:
                 cy = int(cond.year.max())
                 c = cond[cond.year == cy]
@@ -131,7 +155,8 @@ if __name__ == "__main__":
                 est = t + m["intercept"] + m["slope_per_index_pt"] * c.idx.iloc[-1] if len(c) else None
                 entry["model"] = {"year": cy, "week": m["week"], "estimate": None if est is None else round(float(est), 1),
                                   "trend": round(float(t), 1), "usda": float(y[cy]) if cy in y.index else wasde_yield(key),
-                                  "test": {k: m[k] for k in ("n", "mae_model", "mae_trend", "hit_direction", "slope_per_index_pt")},
+                                  "test": {k: m[k] for k in ("n", "mae_model", "mae_trend", "hit_direction", "slope_per_index_pt",
+                                                             "mae_usda_same_date", "mae_model_same_years", "n_usda")},
                                   "history": {k: m[k] for k in ("years", "pred", "actual")}}
                 print(key, json.dumps({k: v for k, v in entry["model"].items() if k != "history"}))
         out[key] = entry

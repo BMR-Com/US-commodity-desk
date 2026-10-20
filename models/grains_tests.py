@@ -87,8 +87,20 @@ def wasde_price_reaction(com):
             "note": "approximate: window return over WASDE week (exact release dates not used)"}
 
 
+def bias(com):
+    p = ROOT / "data" / "derived" / "convergence_bias.json"
+    if not p.exists():
+        return None
+    b = json.loads(p.read_text()).get(SYM.get(com, ""), {})
+    return b if b.get("n_contracts") else None
+
+
 def html(com, mom, cond, exp, react):
     parts = []
+    b = bias(com)
+    if b:
+        cells = "".join(f"<td>{b[h]['mean_pct']:+.2f}% · {100 * b[h]['up_share']:.0f}% up · t {b[h]['t']:+.1f}</td>" for h in ("h20", "h60", "h120") if h in b)
+        parts.append(f"<h3>Convergence: futures vs their own final price</h3><div class='tbl'><table><tr><th>Expired contracts since 2010</th><th>From 20 bdays</th><th>From 60</th><th>From 120</th></tr><tr><td>{b['n_contracts']} contracts</td>{cells}</tr></table></div><p class='note'>Positive = futures finished above where they traded. t-stats overstate significance (neighbouring contracts share shocks).</p>")
     if mom:
         parts.append("<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr>" +
                      "".join(f"<tr><td>{k.replace('_', ' ')}</td><td>{100 * v['same_direction']:.0f}%</td><td>{v['n']}</td></tr>" for k, v in mom.items()) +
@@ -96,7 +108,9 @@ def html(com, mom, cond, exp, react):
     if cond:
         m = cond.get("model")
         if m:
-            parts.append(f"<h3>Condition yield model</h3><p>Leave-one-year-out over {m['test']['n']} years, condition at week {m['week']}: mean abs error {m['test']['mae_model']} bu/ac vs {m['test']['mae_trend']} for trend alone; direction vs trend right {100 * m['test']['hit_direction']:.0f}% of years.</p>")
+            t = m['test']
+            usda = f" On the {t['n_usda']} years where USDA had a yield forecast out by that date: model {t['mae_model_same_years']} vs USDA {t['mae_usda_same_date']} bu/ac." if t.get('mae_usda_same_date') is not None else ""
+            parts.append(f"<h3>Condition yield model</h3><p>Leave-one-year-out over {t['n']} years, condition at week {m['week']}: mean abs error {t['mae_model']} bu/ac vs {t['mae_trend']} for trend alone; direction vs trend right {100 * t['hit_direction']:.0f}% of years.{usda}</p>")
     if exp and exp.get("test"):
         t = exp["test"]
         parts.append(f"<h3>Export pace</h3><p>Pace-implied exports at this point of the season: mean abs error {t['mae_pct']}% of final vs {t['mae_usda_pct']}% for USDA's same-month forecast; called the direction of USDA's next export revision {100 * t['revision_hit']:.0f}% of the time (n={t['n']}).</p>")

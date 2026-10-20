@@ -141,6 +141,9 @@ def main():
             risk += 1
         if heat is not None and heat >= 3 and sens >= 2:
             risk += 1
+        planting = any("planting" in s["stage"] for s in stages) and sens >= 2
+        if planting and fflag == "wet":
+            risk += 1  # heavy rain delays planting
         harvest = any("harvest" in s["stage"] for s in stages)
         if harvest and fflag == "wet":
             risk += 1

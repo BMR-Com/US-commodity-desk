@@ -43,7 +43,7 @@ const Intel = (() => {
         return `<tr><td>${esc(r.region)} <span class="note">${r.country}</span></td><td class="l sv-w">${st || '<span class="note">off-season</span>'}${mat ? `<br><span class="note">${esc(mat)}</span>` : ''}</td>
           <td>${fl(r.past30_flag, r.past30_mm, r.past30_normal)}</td><td>${fl(r.next16_flag, r.next16_mm, r.next16_normal)}</td>
           <td>${r.tmax_next16}°C <span class="note">${r.tmax_anom == null ? '' : (r.tmax_anom > 0 ? '+' : '') + r.tmax_anom + ' vs normal'}</span></td><td>${w}</td></tr>`; }).join('')}</table></div>
-      <p class="note">Open-Meteo forecast and reanalysis; "normal" = 1996–2025 average for the same dates. Red = below the 20th percentile of past years (dry), blue = above the 80th (wet). Watch flags weight dryness, heat and harvest rain by how sensitive the crop stage is this month. ${D.generated}.</p>`;
+      <p class="note">Open-Meteo forecast and reanalysis; "normal" = 2006–2025 average for the same dates. Red = below the 20th percentile of past years (dry), blue = above the 80th (wet). Watch flags weight dryness, heat and harvest rain by how sensitive the crop stage is this month. ${D.generated}.</p>`;
   }
   return { news, calendar, weather, MK };
 })();

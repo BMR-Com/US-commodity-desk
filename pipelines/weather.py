@@ -1,6 +1,6 @@
 """Weather watch for the key growing regions (Open-Meteo, free, no key; runs in GitHub Actions).
 
-For each region: last 30 days and next 16 days of rain and max temperature vs the 1996–2025 normal for the same
+For each region: last 30 days and next 16 days of rain and max temperature vs the 2006–2025 normal for the same
 calendar window, plus the crop stage that matters this month. Flags dry/wet/heat where it matters for that stage.
 Writes data/weather/weather.json.
 """
@@ -61,7 +61,7 @@ CROPNAME = {"corn": "corn", "soy": "soybeans", "hrw": "HRW wheat", "srw": "SRW w
 
 
 def get(url, params):
-    for i in range(4):
+    for i in range(3):
         try:
             r = requests.get(url, params=params, timeout=90)
             if r.status_code == 200:
@@ -76,7 +76,7 @@ def window_normal(arch, start, end):
     """Mean precip total and Tmax over the same calendar window in each year 1996-2025."""
     d = arch.copy()
     tot, tmx = [], []
-    for y in range(1996, 2026):
+    for y in range(2006, 2026):
         try:
             s = pd.Timestamp(y, start.month, start.day)
             e = s + (end - start)
@@ -105,11 +105,12 @@ def main():
         past, fut = d[d.index < today].tail(30), d[d.index >= today].head(16)
         key = f"{lat},{lon}"
         if key not in norms:
-            a = get("https://archive-api.open-meteo.com/v1/archive", {"latitude": lat, "longitude": lon, "start_date": "1996-01-01", "end_date": "2025-12-31",
+            a = get("https://archive-api.open-meteo.com/v1/archive", {"latitude": lat, "longitude": lon, "start_date": "2006-01-01", "end_date": "2025-12-31",
                                                                        "daily": "precipitation_sum,temperature_2m_max", "timezone": "auto"})
             if not a:
                 print(name, "archive failed"); continue
             norms[key] = {"date": a["daily"]["time"], "precip": a["daily"]["precipitation_sum"], "tmax": a["daily"]["temperature_2m_max"]}
+            cache.write_text(json.dumps(norms))
             time.sleep(2)
         arch = pd.DataFrame({"precip": norms[key]["precip"], "tmax": norms[key]["tmax"]}, index=pd.to_datetime(norms[key]["date"])).fillna(0)
         pn, plo, phi, tn = window_normal(arch, past.index[0], past.index[-1])

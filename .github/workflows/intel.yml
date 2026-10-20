@@ -11,7 +11,7 @@ concurrency: {group: intel, cancel-in-progress: false}
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,8 +23,8 @@ jobs:
         run: |
           H=$(date -u +%H)
           if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$H" != "12" ] && [ "$H" != "00" ]; then echo "skip heavy feeds"; exit 0; fi
-          python pipelines/weather.py || true
           python pipelines/events_calendar.py || true
+          timeout 900 python pipelines/weather.py || true
           python pipelines/south_america.py || true
           python models/south_america.py || true
           python -W ignore models/summary.py || true

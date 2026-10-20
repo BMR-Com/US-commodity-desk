@@ -1,30 +1,4 @@
-inspections 2026 9536030
-inspections 2025 11781707
-inspections 2024 12420603
-inspections 2023 10509697
-inspections 2022 11139757
-inspections 2021 10815511
-inspections 2020 11576705
-inspections 2019 11045971
-inspections 2018 11981963
-inspections 2017 10854340
-inspections 2016 10064565
-inspections 2015 8362076
-inspections 2014 11098285
-inspections 2013 8613215
-inspections 2012 9939189
-inspections 2011 11512347
-inspections 2010 9798830
-inspections 2009 9677281
-inspections 2008 13019020
-inspections 2007 12812965
-inspections 2006 7396451
-inspections 2005 6003447
-inspections 2004 4716378
-inspections 2003 4649920
-inspections 2002 5020203
-inspections 2001 5193195
-inspections 2000 5039245
+inspections 2026 3333 weekly rows
 export sales: no FAS_API_KEY secret
   HTTP 404 https://apps.fas.usda.gov/export-sales/dailyrep.htm 
   HTTP 403 https://www.fas.usda.gov/programs/export-sales-reporting-program/daily-export-sales <HTML><HEAD> <TITLE>Access Denied</TITLE> </HEAD><BODY> <H1>Access Denied</H1>   You don't have permission to access "ht

@@ -60,5 +60,11 @@
       } catch (e) { errors.push(String(e)); }
     }
   }
-  return { collected_at: new Date().toISOString(), dates, fut_volume_oi: fut.join('\n'), opt_volume_oi: opt.join('\n'), fut_settlements: set.join('\n'), errors };
+  // CME livestock cash indexes (last 5 values each; history accumulates in data/cme/indexes.csv)
+  const idx = ['index,date,price'];
+  for (const k of ['hogs', 'cattle', 'pork', 'beef', 'bacon']) {
+    try { const r = await j(`/services/commodity-index/${k}?isProtected&_t=${Date.now()}`);
+      for (const p of r.prices || []) idx.push([k, p.date, num(p.price)].join(',')); } catch (e) { errors.push(String(e)); }
+  }
+  return { collected_at: new Date().toISOString(), dates, fut_volume_oi: fut.join('\n'), opt_volume_oi: opt.join('\n'), fut_settlements: set.join('\n'), indexes: idx.join('\n'), errors };
 })()

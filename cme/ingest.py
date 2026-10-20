@@ -49,6 +49,20 @@ def main(path):
                 w.writerow(header)
                 w.writerows(rows)
             written.append(f"{out.relative_to(ROOT.parent.parent)} ({len(rows)} rows)")
+    if p.get("indexes"):
+        new = list(csv.reader(io.StringIO(p["indexes"])))[1:]
+        path = ROOT / "indexes.csv"
+        rows = {}
+        if path.exists():
+            for r in list(csv.reader(path.open()))[1:]:
+                rows[(r[0], r[1])] = r
+        for r in new:
+            rows[(r[0], r[1])] = r
+        with path.open("w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["index", "date", "price"])
+            w.writerows(sorted(rows.values()))
+        written.append(f"data/cme/indexes.csv ({len(rows)} rows)")
     if p.get("errors"):
         print("collector errors:", *p["errors"], sep="\n  ")
     print("\n".join(written))

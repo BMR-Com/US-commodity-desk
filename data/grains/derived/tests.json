@@ -27,7 +27,7 @@
    }
   },
   "price_reaction": null,
-  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>yield</td><td>57%</td><td>56</td></tr><tr><td>production</td><td>41%</td><td>88</td></tr><tr><td>exports</td><td>79%</td><td>108</td></tr><tr><td>feed residual</td><td>51%</td><td>194</td></tr><tr><td>ethanol</td><td>68%</td><td>130</td></tr><tr><td>end stocks</td><td>58%</td><td>155</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>yield</td><td>57%</td><td>56</td></tr><tr><td>production</td><td>41%</td><td>88</td></tr><tr><td>exports</td><td>79%</td><td>108</td></tr><tr><td>feed residual</td><td>51%</td><td>194</td></tr><tr><td>ethanol</td><td>68%</td><td>130</td></tr><tr><td>end stocks</td><td>58%</td><td>155</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p><h3>Export pace</h3><p>Pace-implied exports at this point of the season: mean abs error 23.93% of final vs 21.48% for USDA's same-month forecast; called the direction of USDA's next export revision 65% of the time (n=10).</p>"
  },
  "soybeans": {
   "momentum": {
@@ -53,7 +53,7 @@
    }
   },
   "price_reaction": null,
-  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>yield</td><td>56%</td><td>36</td></tr><tr><td>production</td><td>50%</td><td>68</td></tr><tr><td>exports</td><td>64%</td><td>99</td></tr><tr><td>crush</td><td>74%</td><td>139</td></tr><tr><td>end stocks</td><td>53%</td><td>104</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>yield</td><td>56%</td><td>36</td></tr><tr><td>production</td><td>50%</td><td>68</td></tr><tr><td>exports</td><td>64%</td><td>99</td></tr><tr><td>crush</td><td>74%</td><td>139</td></tr><tr><td>end stocks</td><td>53%</td><td>104</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p><h3>Export pace</h3><p>Pace-implied exports at this point of the season: mean abs error 45.13% of final vs 7.11% for USDA's same-month forecast; called the direction of USDA's next export revision 76% of the time (n=8).</p>"
  },
  "wheat": {
   "momentum": {
@@ -75,7 +75,7 @@
    }
   },
   "price_reaction": null,
-  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>39%</td><td>46</td></tr><tr><td>exports</td><td>51%</td><td>81</td></tr><tr><td>feed residual</td><td>52%</td><td>141</td></tr><tr><td>end stocks</td><td>54%</td><td>48</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>39%</td><td>46</td></tr><tr><td>exports</td><td>51%</td><td>81</td></tr><tr><td>feed residual</td><td>52%</td><td>141</td></tr><tr><td>end stocks</td><td>54%</td><td>48</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p><h3>Export pace</h3><p>Pace-implied exports at this point of the season: mean abs error 7.96% of final vs 4.41% for USDA's same-month forecast; called the direction of USDA's next export revision 54% of the time (n=9).</p>"
  },
  "meal": {
   "momentum": {
@@ -141,6 +141,6 @@
    }
   },
   "price_reaction": null,
-  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>39%</td><td>46</td></tr><tr><td>exports</td><td>51%</td><td>81</td></tr><tr><td>feed residual</td><td>52%</td><td>141</td></tr><tr><td>end stocks</td><td>54%</td><td>48</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p>"
+  "html": "<h3>WASDE revision momentum</h3><div class='tbl'><table><tr><th>Item</th><th>Next revision same direction</th><th>n</th></tr><tr><td>production</td><td>39%</td><td>46</td></tr><tr><td>exports</td><td>51%</td><td>81</td></tr><tr><td>feed residual</td><td>52%</td><td>141</td></tr><tr><td>end stocks</td><td>54%</td><td>48</td></tr></table></div><p class='note'>After USDA revises an item for a marketing year, how often its next revision of that item goes the same way. Well above 50% means revisions trend: USDA moves toward the final number in steps.</p><h3>Export pace</h3><p>Pace-implied exports at this point of the season: mean abs error 7.96% of final vs 4.41% for USDA's same-month forecast; called the direction of USDA's next export revision 54% of the time (n=9).</p>"
  }
 }

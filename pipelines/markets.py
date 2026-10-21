@@ -84,11 +84,13 @@ def contract_symbol(sym, meta):
     """'ZC=F' with shortName 'Corn Futures,Dec-2026' -> 'ZCZ26.CBT'."""
     if not sym.endswith("=F"):
         return None
-    mm = re.search(r"([A-Z][a-z]{2})-(\d{4})\s*$", meta.get("shortName") or "")
+    name = meta.get("shortName") or ""
+    mm = re.search(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[\s\-']*(\d{4}|\d{2})\s*$", name, re.I)
     sx = SUFFIX.get(meta.get("exchangeName"))
-    if not mm or not sx or mm[1] not in MONTHS:
+    if not mm or not sx:
+        print("  no contract for", sym, repr(name), meta.get("exchangeName"))
         return None
-    return f"{sym[:-2]}{MONTHS[mm[1]]}{mm[2][-2:]}.{sx}"
+    return f"{sym[:-2]}{MONTHS[mm[1].title()]}{mm[2][-2:]}.{sx}"
 
 
 def pct(a, b):
@@ -165,8 +167,11 @@ def main():
             jc = chart(cs)
             time.sleep(0.4)
             cc = series(jc) if jc and jc.get("timestamp") else None
+            if cc is None or len(cc) < 5:
+                print("  contract history missing", cs)
             if cc is not None and len(cc) >= 5:
-                c, contract = cc, m.get("shortName", "").split(",")[-1].strip()
+                code = cs.split(".")[0][len(sym) - 2:]
+                c, contract = cc, f"{ {v: k for k, v in MONTHS.items()}[code[0]]} {code[1:]}"
                 m = {**m, **{k: jc["meta"].get(k) for k in ("regularMarketPrice", "regularMarketTime") if jc["meta"].get(k)}}
         if len(c) < 5:
             continue

@@ -1,21 +1,6 @@
 {
-"generated": "2026-10-20 19:14 UTC",
+"generated": "2026-10-21 01:40 UTC",
 "events": [
-{
-"date": "2026-10-13",
-"time": "3:00 PM CT",
-"event": "NASS Crop Progress",
-"cat": "USDA",
-"markets": [
-"ZC",
-"ZS",
-"ZW",
-"KE"
-],
-"importance": 2,
-"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=10&day=13&report_id=17011",
-"estimated": false
-},
 {
 "date": "2026-10-14",
 "time": "11:00 AM CT",
@@ -59,7 +44,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-15",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -100,7 +98,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 2,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=10&day=19&report_id=17011",
@@ -140,6 +139,18 @@
 },
 {
 "date": "2026-10-22",
+"time": "11:00 AM CT",
+"event": "NASS Cotton Ginnings",
+"cat": "USDA",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=10&day=22&report_id=17017",
+"estimated": false
+},
+{
+"date": "2026-10-22",
 "time": "2:00 PM CT",
 "event": "NASS Milk Production",
 "cat": "USDA",
@@ -164,7 +175,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-22",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -246,7 +270,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 2,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=10&day=26&report_id=17011",
@@ -297,7 +322,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-29",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -388,7 +426,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 2,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=02&report_id=17011",
@@ -482,7 +521,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-05",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -523,7 +575,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 2,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=09&report_id=17011",
@@ -553,7 +606,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 3,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=10&report_id=11001",
@@ -573,10 +627,23 @@
 "KE",
 "HE",
 "LE",
-"DC"
+"DC",
+"CT"
 ],
 "importance": 3,
 "link": "https://esmis.nal.usda.gov/publication/world-agricultural-supply-and-demand-estimates",
+"estimated": false
+},
+{
+"date": "2026-11-10",
+"time": "11:00 AM CT",
+"event": "NASS Cotton Ginnings",
+"cat": "USDA",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=10&report_id=17017",
 "estimated": false
 },
 {
@@ -622,7 +689,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-12",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -675,7 +755,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 2,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=16&report_id=17011",
@@ -726,7 +807,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-19",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -811,6 +905,18 @@
 },
 {
 "date": "2026-11-23",
+"time": "11:00 AM CT",
+"event": "NASS Cotton Ginnings",
+"cat": "USDA",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=23&report_id=17017",
+"estimated": false
+},
+{
+"date": "2026-11-23",
 "time": "3:00 PM CT",
 "event": "NASS Crop Progress",
 "cat": "USDA",
@@ -818,7 +924,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 2,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=23&report_id=17011",
@@ -910,7 +1017,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-27",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -937,7 +1057,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 2,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=30&report_id=17011",
@@ -1117,7 +1238,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-03",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -1190,7 +1324,8 @@
 "ZC",
 "ZS",
 "ZW",
-"KE"
+"KE",
+"CT"
 ],
 "importance": 3,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=12&day=10&report_id=11001",
@@ -1210,10 +1345,23 @@
 "KE",
 "HE",
 "LE",
-"DC"
+"DC",
+"CT"
 ],
 "importance": 3,
 "link": "https://esmis.nal.usda.gov/publication/world-agricultural-supply-and-demand-estimates",
+"estimated": false
+},
+{
+"date": "2026-12-10",
+"time": "11:00 AM CT",
+"event": "NASS Cotton Ginnings",
+"cat": "USDA",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=12&day=10&report_id=17017",
 "estimated": false
 },
 {
@@ -1229,7 +1377,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-10",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -1391,7 +1552,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-17",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -1449,6 +1623,18 @@
 ],
 "importance": 1,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-12-22",
+"time": "11:00 AM CT",
+"event": "NASS Cotton Ginnings",
+"cat": "USDA",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=12&day=22&report_id=17017",
 "estimated": false
 },
 {
@@ -1521,7 +1707,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-24",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -1637,7 +1836,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-31",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -1787,7 +1999,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-07",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -1894,7 +2119,20 @@
 "ZW",
 "KE",
 "HE",
-"LE"
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-14",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
 ],
 "importance": 2,
 "link": null,
@@ -1971,6 +2209,21 @@
 "ALL"
 ],
 "importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-19",
+"time": "10:00 AM CT",
+"event": "USDA export inspections (holiday-delayed)",
+"cat": "USDA",
+"markets": [
+"ZC",
+"ZS",
+"ZW",
+"KE"
+],
+"importance": 1,
 "link": null,
 "estimated": false
 }

@@ -146,6 +146,17 @@ def main():
     macro = J("macro/macro.json") or {}
     us_econ = J("macro/us_econ.json") or {}
     energy = J("energy/summary.json") or {}
+    rs = (J("research/research.json") or {}).get("markets", {})
+    research = {}
+    nth = lambda n: f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+    for k, r in rs.items():
+        t, c = r["trend"], r["carry"]
+        bits = [f"trend {'long' if t['sign'] > 0 else 'short'} {t['lev']:.1f}x for 40% vol (12m excess {t['r12'] * 100:+.0f}%)"]
+        if c.get("now") is not None:
+            bits.append(f"carry {c['now'] * 100:+.1f}%/yr" + (f" ({nth(c['pct_month'])} percentile for the month)" if c.get("pct_month") is not None else ""))
+        if r.get("options"):
+            bits.append(f"IV-RV {r['options']['vol_prem']:+.1f}")
+        research[k] = {"line": "; ".join(bits), "flags": r["flags"]}
     mk = {x["sym"]: x for x in (J("markets/markets.json") or {}).get("items", [])}
     macro_nums = [{"name": mk[k]["name"], "last": mk[k]["last"], "d1": mk[k]["d1"], "m1": mk[k]["m1"], "kind": mk[k]["kind"], "time": mk[k]["time"]}
                   for k in ("ES=F", "^GSPC", "^VIX", "^TNX", "DX-Y.NYB", "EURUSD=X", "BRL=X", "CNY=X", "CL=F", "NG=F", "GC=F", "HG=F", "^SPGSCI") if k in mk]
@@ -163,7 +174,8 @@ def main():
          "crush": sheet.get("crush"), "ratios": sheet.get("ratios"), "general_news": recent_news(None, 24, 6),
          "macro": {"view": macro.get("view"), "score": macro.get("score"), "summary": macro.get("summary"), "sections": macro.get("sections", []),
                    "caveat": macro.get("caveat")}, "macro_numbers": macro_nums, "econ": econ, "us_econ": us_econ.get("read"),
-         "energy": {"read": energy.get("read"), "prices": energy.get("prices"), "inventories": energy.get("inventories"), "vol": energy.get("vol"), "cracks": energy.get("cracks")}}
+         "energy": {"read": energy.get("read"), "prices": energy.get("prices"), "inventories": energy.get("inventories"), "vol": energy.get("vol"), "cracks": energy.get("cracks")},
+         "research": research}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "latest.json").write_text(json.dumps(B, indent=1, default=str))
     md = to_md(B)
@@ -232,6 +244,9 @@ def to_md(B):
             fl = [f["text"] for f in m["flags"]]
             if fl:
                 L.append("Flags: " + "; ".join(fl) + ".")
+            rr = (B.get("research") or {}).get(m.get("sym"))
+            if rr:
+                L.append("Research signals: " + rr["line"] + "." + (" " + " ".join(rr["flags"]) if rr["flags"] else ""))
             if m["event"] and "Next catalysts" not in m["levels"]:
                 L.append(f"Next catalyst: {m['event']} {m['event_date']}.")
             for n in m["news"]:

@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-21 18:22 UTC",
- "generated_et": "Wed Oct 21, 2026 02:22 PM ET",
+ "generated": "2026-10-21 18:27 UTC",
+ "generated_et": "Wed Oct 21, 2026 02:27 PM ET",
  "date": "2026-10-21",
- "prices_from": "2026-10-21 18:22 UTC",
+ "prices_from": "2026-10-21 18:04 UTC",
  "cme_oi_date": "20261019",
  "headlines": [
   "Biggest moves vs prior settle: Class III milk -0.49 (-2.7%); KC HRW wheat -17.00 (-2.5%); Chicago wheat -13.75 (-2.1%).",
@@ -1341,6 +1341,127 @@
    "321": 51.96780099999997,
    "ho": 95.14100099999999,
    "rb": 30.38120099999999
+  }
+ },
+ "research": {
+  "ZC": {
+   "line": "trend short 1.7x for 40% vol (12m excess -5%); carry -11.9%/yr (51st percentile for the month)",
+   "flags": []
+  },
+  "ZS": {
+   "line": "trend long 2.3x for 40% vol (12m excess +12%); carry -4.1%/yr (62nd percentile for the month)",
+   "flags": [
+    "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).",
+    "Crowded: managed money at the 98th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR)."
+   ]
+  },
+  "ZM": {
+   "line": "trend long 1.8x for 40% vol (12m excess +18%); carry +5.5%/yr (66th percentile for the month)",
+   "flags": [
+    "Crowded: managed money at the 99th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR)."
+   ]
+  },
+  "ZL": {
+   "line": "trend long 1.7x for 40% vol (12m excess +29%); carry -3.1%/yr (71st percentile for the month)",
+   "flags": [
+    "Crowded: managed money at the 87th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR)."
+   ]
+  },
+  "ZW": {
+   "line": "trend long 1.4x for 40% vol (12m excess +12%); carry -9.4%/yr (59th percentile for the month)",
+   "flags": [
+    "Choppy: 3-month variance ratio 0.68 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
+    "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka)."
+   ]
+  },
+  "KE": {
+   "line": "trend long 1.4x for 40% vol (12m excess +24%); carry -7.0%/yr (56th percentile for the month)",
+   "flags": [
+    "Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
+    "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka)."
+   ]
+  },
+  "CT": {
+   "line": "trend long 1.7x for 40% vol (12m excess +13%); carry -16.5%/yr (16th percentile for the month)",
+   "flags": [
+    "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka)."
+   ]
+  },
+  "LE": {
+   "line": "trend short 2.6x for 40% vol (12m excess -3%); carry -7.0%/yr (69th percentile for the month)",
+   "flags": [
+    "Choppy: 3-month variance ratio 0.82 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud)."
+   ]
+  },
+  "GF": {
+   "line": "trend long 2.3x for 40% vol (12m excess +2%); carry +4.6%/yr (50th percentile for the month)",
+   "flags": [
+    "Choppy: 3-month variance ratio 0.75 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud)."
+   ]
+  },
+  "HE": {
+   "line": "trend short 2.1x for 40% vol (12m excess -23%); carry -20.9%/yr (70th percentile for the month)",
+   "flags": [
+    "Crowded: managed money at the 1st 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR)."
+   ]
+  },
+  "DC": {
+   "line": "trend short 1.8x for 40% vol (12m excess -24%); carry +28.5%/yr (49th percentile for the month); IV-RV -9.1",
+   "flags": [
+    "Crowded: managed money at the 1st 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR).",
+    "Fat right tail: options price a 14% rally 2.4x as likely as a lognormal at ATM vol."
+   ]
+  },
+  "GDK": {
+   "line": "trend long 1.9x for 40% vol (12m excess +37%); carry +52.6%/yr (78th percentile for the month); IV-RV +1.9",
+   "flags": [
+    "Crowded: managed money at the 100th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR).",
+    "Fat left tail: options price a 15% drop 2.1x as likely as a lognormal at ATM vol."
+   ]
+  },
+  "CSC": {
+   "line": "trend short 1.8x for 40% vol (12m excess -24%); carry +41.9%/yr (69th percentile for the month); IV-RV -9.8",
+   "flags": [
+    "Crowded: managed money at the 3rd 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR).",
+    "Fat right tail: options price a 14% rally 3.1x as likely as a lognormal at ATM vol."
+   ]
+  },
+  "CB": {
+   "line": "trend short 1.5x for 40% vol (12m excess -43%); carry -21.4%/yr (5th percentile for the month); IV-RV -10.3",
+   "flags": [
+    "Rebound risk: trend is short a beaten-down market in high vol, the setting where momentum shorts crash (Daniel-Moskowitz).",
+    "Crowded: managed money at the 0th 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR)."
+   ]
+  },
+  "GNF": {
+   "line": "trend long 1.6x for 40% vol (12m excess +100%); carry +65.9%/yr (99th percentile for the month)",
+   "flags": []
+  },
+  "DY": {
+   "line": "trend long 2.6x for 40% vol (12m excess +6%); carry -39.2%/yr (19th percentile for the month)",
+   "flags": []
+  },
+  "NG": {
+   "line": "trend short 1.0x for 40% vol (12m excess -23%); carry -156.5%/yr (0th percentile for the month)",
+   "flags": [
+    "Choppy: 3-month variance ratio 0.89 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
+    "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).",
+    "Crowded: managed money at the 4th 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR)."
+   ]
+  },
+  "CL": {
+   "line": "trend long 0.8x for 40% vol (12m excess +128%); carry +19.4%/yr (96th percentile for the month)",
+   "flags": []
+  },
+  "HO": {
+   "line": "trend long 0.8x for 40% vol (12m excess +206%); carry +25.5%/yr (92nd percentile for the month)",
+   "flags": []
+  },
+  "RB": {
+   "line": "trend long 1.1x for 40% vol (12m excess +127%); carry +25.8%/yr (93rd percentile for the month)",
+   "flags": [
+    "Crowded: managed money at the 99th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR)."
+   ]
   }
  }
 }

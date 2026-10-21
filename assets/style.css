@@ -162,3 +162,12 @@ tr.mk-today td{background:#eef6ee}tr.mk-past td{opacity:.6}
 .us-rates,.us-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:6px 0}
 .us-tile{border:1px solid var(--line);border-radius:6px;padding:7px 9px;background:#fbfbf9}.us-v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
 nav.comm a.navlink{color:#cfe3d2;padding:.55rem .9rem;font-size:13px;text-decoration:none;border-bottom:3px solid transparent;display:inline-block}nav.comm a.navlink:hover{color:#fff}
+
+/* research signals */
+.sig-t td,.sig-t th{white-space:nowrap}
+.sig-t tr.grp td{background:#f3f6f3;font-size:12px}
+.sig-row{cursor:pointer}.sig-row:hover td{background:#f7faf7}.sig-row.on td{background:#e8f2ea}
+.sig-flag{color:#a04000;font-weight:600;cursor:help}
+.sig-flags{margin:6px 0 10px 18px;color:#7a3b00;font-size:13px}
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px 22px;margin-top:6px}
+#sig-detail .card{margin:12px 0}

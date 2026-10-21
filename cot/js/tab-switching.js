@@ -3,7 +3,7 @@
    =========================================================== */
 function switchTab(tab, keepHash){
   if(!keepHash && tab!=='cot'){ try{ history.replaceState(null,'','#'+tab); }catch(e){} }
-  var allTabs = ['cot','summary','scatter','index','levels','seasonality','formula','ai'];
+  var allTabs = ['cot','summary','scatter','index','levels','seasonality','formula'];
   allTabs.forEach(function(t){
     var pane = document.getElementById('pane_'+t);
     var btn = document.getElementById('tb_'+t);
@@ -33,12 +33,8 @@ function switchTab(tab, keepHash){
   if(tab==='formula' && !_tabLoaded['formula']){
     loadTab('formula', 'tabs/formula-tab.html', 'js/formula-tab.js').then(function(){ initFormulaTab(); });
   }
-  if(tab==='ai' && !_tabLoaded['ai']){
-    loadTab('ai', 'tabs/ai-tab.html', 'js/ai-tab.js').then(function(){ initAiTab(); });
-  }
 
   // Call init functions for already-loaded tabs
-  if(tab==='ai' && _tabLoaded['ai']) initAiTab();
   if(tab==='formula' && _tabLoaded['formula']) initFormulaTab();
   // First visit to the COT Analyzer: show Cotton straight away instead of an empty page
   if(tab==='cot' && _tabLoaded['cot']) autoLoadDefaultMarket();
@@ -67,7 +63,7 @@ function autoLoadDefaultMarket(){
    #CT, #KC ... open that market in the COT Analyzer;
    #summary, #index, #levels ... open a tab.
    =========================================================== */
-var TAB_IDS=['summary','cot','scatter','index','levels','seasonality','formula','ai'];
+var TAB_IDS=['summary','cot','scatter','index','levels','seasonality','formula'];
 function openMarket(tk){
   if(!tk)return;tk=String(tk).toUpperCase();
   _autoLoaded=true;

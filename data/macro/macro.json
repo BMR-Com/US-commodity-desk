@@ -1,17 +1,18 @@
 {
- "generated": "2026-10-21 11:55 UTC",
+ "generated": "2026-10-21 11:58 UTC",
  "view": "headwind",
  "score": -2,
  "components": {
   "rates": 0,
   "dollar": -1,
-  "brl": 0,
+  "brl": 1,
+  "mxn": -1,
   "risk": 0,
   "energy": 0,
   "china": -1,
   "breadth": 0
  },
- "summary": "Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl 0; risk 0; energy 0; china \u2212; breadth 0. Strongest ag/soft over the month: Dry whey +18.2%; weakest: Corn -15.5%. ",
+ "summary": "Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl +; mxn \u2212; risk 0; energy 0; china \u2212; breadth 0. Strongest ag/soft over the month: Sugar #11 +17.1%; weakest: Corn -15.6%. ",
  "sections": [
   {
    "title": "Rates",
@@ -20,18 +21,18 @@
   },
   {
    "title": "Dollar & farm currencies",
-   "score": -1,
-   "text": "Dollar index 101.67 (+1.2% in a month, +3.5% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.024 (-1.7% in a month): little changed. USD/CNY 6.664 (-0.5%); USD/MXN 18.49 (+7.4%), Mexico being the top buyer of US corn, pork and dairy."
+   "score": 0,
+   "text": "Dollar index 101.67 (+1.2% in a month, +3.4% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.022 (-2.3% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.664 (-0.5%); USD/MXN 18.49 (+7.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
   },
   {
    "title": "Risk appetite",
    "score": 0,
-   "text": "S&P 500 +0.8% in a month (+12.7% YTD); VIX 17.3. Neutral risk backdrop. "
+   "text": "S&P 500 +0.8% in a month (+12.7% YTD); VIX 17.4. Neutral risk backdrop. "
   },
   {
    "title": "Energy",
    "score": 0,
-   "text": "WTI 98.63 $/bbl (+3.0% in a month), Brent 109.37, ULSD 4.731 $/gal (-3.2%), natural gas 2.85 (+0.3%). Crude little changed on the month. "
+   "text": "WTI 98.80 $/bbl (+3.2% in a month), Brent 109.56, ULSD 4.730 $/gal (-3.3%), natural gas 2.85 (+0.4%). Crude little changed on the month. "
   },
   {
    "title": "China & industrial demand",
@@ -41,7 +42,7 @@
   {
    "title": "Commodity breadth",
    "score": 0,
-   "text": "15 of 33 commodities trade above their 50-day average (45%); S&P GSCI +1.2% in a month; gold -5.2%. "
+   "text": "14 of 33 commodities trade above their 50-day average (42%); S&P GSCI +1.2% in a month; gold -5.2%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",

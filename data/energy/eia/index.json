@@ -267,9 +267,9 @@
 "demGaso": {
 "label": "Gasoline supplied",
 "route": "petroleum/cons/wpsup",
-"id": "WRPUPUS2",
+"id": "WGFUPUS2",
 "how": "id found",
-"rows": 1875,
+"rows": 1863,
 "last": "2026-10-16"
 },
 "demDist": {
@@ -415,7 +415,55 @@
 "how": "name matched",
 "rows": 456,
 "last": "2027-12"
+},
+"distProd": {
+"label": "Distillate production",
+"route": "petroleum/sum/sndw",
+"id": "WDIRPUS2",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
+},
+"gasoProd": {
+"label": "Gasoline production",
+"route": "petroleum/sum/sndw",
+"id": "WGFRPUS2",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
+},
+"distExp": {
+"label": "Distillate exports",
+"route": "petroleum/sum/sndw",
+"id": "WDIEXUS2",
+"how": "id found",
+"rows": 855,
+"last": "2026-10-16"
+},
+"gasoExp": {
+"label": "Gasoline exports",
+"route": "petroleum/sum/sndw",
+"id": "W_EPM0F_EEX_NUS-Z00_MBBLD",
+"how": "name matched",
+"rows": 855,
+"last": "2026-10-16"
+},
+"distImp": {
+"label": "Distillate imports",
+"route": "petroleum/sum/sndw",
+"id": "WDIIMUS2",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
+},
+"gasoImp": {
+"label": "Gasoline imports",
+"route": "petroleum/sum/sndw",
+"id": "WGTIMUS2",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
 }
 },
-"generated": "2026-10-21 17:44 UTC"
+"generated": "2026-10-21 21:50 UTC"
 }

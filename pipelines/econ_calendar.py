@@ -1,4 +1,4 @@
-"""US and China economic calendar (plus the global items that move commodities: OPEC/IMF/G20 tagged "All").
+"""US economic calendar.
 
 Source: Forex Factory's public weekly calendar export (nfs.faireconomy.media), which lists each release with
 time, impact (High/Medium/Low), consensus forecast and previous value. The export has no actual values, so the
@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "macro"
 ET = ZoneInfo("America/New_York")
 H = {"User-Agent": "Mozilla/5.0 (BMR-Com research; github actions)"}
-KEEP = {"USD": "US", "CNY": "China", "All": "Global"}
+KEEP = {"USD": "US"}   # US only (Ma, 2026-10-21: other countries' entries were thin)
 # why a release matters for commodities / ags (matched on the title, first hit wins)
 WHY = [
     (r"FOMC|Federal Funds|Fed Chair|Powell|Fed .*Speaks|Beige Book", "Fed policy path: rates, dollar and fund flows into commodities"),
@@ -79,7 +79,7 @@ def main():
             ev[(e["date"], e["country"], e["title"])] = e
             got += 1
     cut = (datetime.now(ET).date() - timedelta(days=45)).isoformat()
-    out = sorted((e for e in ev.values() if e["date"] >= cut), key=lambda e: (e["date"], datetime.strptime(e["time"], "%I:%M %p ET").time() if e["time"] else datetime.min.time()))
+    out = sorted((e for e in ev.values() if e["date"] >= cut and e["country"] in KEEP.values()), key=lambda e: (e["date"], datetime.strptime(e["time"], "%I:%M %p ET").time() if e["time"] else datetime.min.time()))
     p.write_text(json.dumps({"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
                              "source": "Forex Factory weekly calendar export (forecast = consensus; no actuals in the export)", "events": out}, indent=0))
     print("econ calendar", got, "fetched,", len(out), "kept")

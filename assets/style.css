@@ -159,3 +159,5 @@ tr.mk-today td{background:#eef6ee}tr.mk-past td{opacity:.6}
 .geo-cal td.geo-cell{width:26px;min-width:22px;border-left:1px solid #fff}.geo-cal .geo-now{outline:2px solid #1a1a1a;outline-offset:-2px}
 .geo-cty{border:1px solid var(--line);border-radius:6px;padding:8px 10px}.geo-cty h3{margin:0 0 4px}.geo-cty p{margin:4px 0}
 .geo-mini{font-size:12px}
+.us-rates,.us-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:6px 0}
+.us-tile{border:1px solid var(--line);border-radius:6px;padding:7px 9px;background:#fbfbf9}.us-v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}

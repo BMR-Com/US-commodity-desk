@@ -117,7 +117,7 @@ def main():
     # this week's high-impact US/China events still to come
     cal = (J("macro/econ_calendar.json") or {}).get("events", [])
     today = datetime.now(ET).date()
-    wk = [e for e in cal if today.isoformat() <= e["date"] <= (today + timedelta(days=7)).isoformat() and e["impact"] in ("High",) and e["country"] in ("US", "China")]
+    wk = [e for e in cal if today.isoformat() <= e["date"] <= (today + timedelta(days=7)).isoformat() and e["impact"] in ("High",) and e["country"] == "US"]
     summary = (f"Macro backdrop for ags: {view} (score {total:+d} across rates, dollar, Brazil real, risk, energy, China, breadth). "
                + "; ".join(f"{k} {'+' if v > 0 else '−' if v < 0 else '0'}" for k, v in score.items()) + ". "
                + (f"Strongest ag/soft over the month: {best[0]['name']} {best[0]['m1']:+.1f}%; weakest: {best[-1]['name']} {best[-1]['m1']:+.1f}%. " if best else "")

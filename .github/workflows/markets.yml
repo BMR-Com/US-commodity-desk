@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['pipelines/markets.py', 'pipelines/econ_calendar.py', 'models/macro.py', '.github/workflows/markets.yml']
+    paths: ['pipelines/markets.py', 'pipelines/econ_calendar.py', 'pipelines/us_macro.py', 'models/macro.py', '.github/workflows/markets.yml']
   schedule:
     - cron: '7 11-22 * * 1-5'   # hourly, ~7 am to 6 pm ET (Yahoo: futures ~10-30 min delayed, FX/cash indices real time)
     - cron: '7 23 * * 0'        # Sunday evening as Asia opens
@@ -21,6 +21,12 @@ jobs:
       - run: python pipelines/markets.py
       - run: python pipelines/econ_calendar.py
         continue-on-error: true
+      - name: US economic snapshot (BLS, BEA, NY Fed, Treasury; twice a day, BLS no-key limit is 25 requests/day)
+        continue-on-error: true
+        run: |
+          H=$(date -u +%H)
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$H" != "13" ] && [ "$H" != "19" ]; then echo "not this hour"; exit 0; fi
+          python pipelines/us_macro.py
       - run: python models/macro.py
         continue-on-error: true
       - name: commit

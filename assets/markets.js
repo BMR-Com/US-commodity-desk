@@ -1,7 +1,7 @@
 // Markets & macro: heat map of commodities, stock indices, currencies and US rates (Yahoo Finance, delayed),
-// US Treasury curve, macro read for ags, and the US/China economic calendar.
+// US Treasury curve, US economic snapshot, macro read for ags, and the US economic calendar.
 const Markets = (() => {
-  let built = false, M = null, X = null, C = null, hz = 'd1', cty = 'all', imp = 'HM';
+  let built = false, M = null, X = null, C = null, U = null, hz = 'd1', cty = 'US', imp = 'HM';
   const H = [['d1', '1 day'], ['w1', '1 week'], ['m1', '1 month'], ['m3', '3 months'], ['ytd', 'YTD'], ['y1', '1 year']];
   const fx = (v, d) => v == null ? '–' : (+v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
   const dp = x => x.kind === 'yield' ? 3 : x.last >= 1000 ? 1 : x.last >= 10 ? 2 : x.last >= 1 ? 3 : 4;
@@ -55,12 +55,34 @@ const Markets = (() => {
       <p class="note">${C.source}. Updated ${C.generated}.</p>`;
   }
   const addDays = (d, n) => { const t = new Date(d + 'T12:00'); t.setDate(t.getDate() + n); return t.toISOString().slice(0, 10); };
+  function usCard() {
+    if (!U) return '';
+    const R = U.rates || {}, cats = ['Inflation', 'Jobs', 'Growth', 'Sentiment'];
+    const sg = v => v == null ? '–' : (v > 0 ? '+' : '') + v.toFixed(1);
+    const sp = a => { if (!a || a.length < 3) return ''; const v = a.map(x => x[1]), lo = Math.min(...v), hi = Math.max(...v), w = 110, h = 26;
+      return `<svg width="${w}" height="${h}" class="mk-spark"><polyline fill="none" stroke="currentColor" stroke-width="1.3" points="${v.map((y, i) => `${(i / (v.length - 1) * w).toFixed(1)},${(h - (hi === lo ? h / 2 : (y - lo) / (hi - lo) * (h - 2)) - 1).toFixed(1)}`).join(' ')}"/></svg>`; };
+    const main = i => i.kind === 'index' ? `${sg(i.yoy)}% y/y` : i.kind === 'k' ? `${sg(i.chg)}k` : `${i.value.toFixed(1)}${i.unit.startsWith('%') ? '%' : ''}`;
+    const sub = i => i.kind === 'index' ? `m/m ${sg(i.mom)}%${i.ann3 != null ? ` · 3m ann. ${sg(i.ann3)}%` : ''} · prev ${sg(i.yoy_prev)}% y/y` : i.kind === 'k' ? `3-mo avg ${sg(i.avg3)}k · prev ${sg(i.chg_prev)}k` : `prev ${i.prev == null ? '–' : i.prev.toFixed(1)} (${sg(i.chg)})`;
+    return `<div class="card" style="margin-top:12px"><h2>US economy snapshot <span class="note">${U.sources}; updated ${U.generated}</span></h2>
+      <p><b>${U.read}</b></p>
+      <div class="us-rates">${[['Fed funds target', R.target_lo != null ? `${R.target_lo}–${R.target_hi}%` : '–', `effective ${R.effr ?? '–'}% (${R.effr_date || ''})`],
+        ['SOFR', R.sofr != null ? R.sofr + '%' : '–', R.sofr_date || ''], ['2-year Treasury', R.y2 != null ? R.y2.toFixed(2) + '%' : '–', R.y2_minus_ff != null ? `${R.y2_minus_ff > 0 ? '+' : ''}${R.y2_minus_ff} vs fed funds` : ''],
+        ['10-year Treasury', R.y10 != null ? R.y10.toFixed(2) + '%' : '–', R.y3m != null ? `3m ${R.y3m}% · 30y ${R.y30}%` : ''], ['10-yr real yield (TIPS)', R.real10 != null ? R.real10.toFixed(2) + '%' : '–', R.real_date || ''],
+        ['10-yr breakeven inflation', R.breakeven10 != null ? R.breakeven10.toFixed(2) + '%' : '–', R.breakeven5 != null ? `5-yr ${R.breakeven5}%` : '']]
+        .map(([a, b, c]) => `<div class="us-tile"><div class="note">${a}</div><div class="us-v">${b}</div><div class="note">${c}</div></div>`).join('')}</div>
+      ${(R.last_moves || []).length ? `<p class="note">Recent Fed moves: ${R.last_moves.map(m => `${m[0]} ${m[1] > 0 ? '+' : ''}${Math.round(m[1] * 100)} bp`).join(' · ')}</p>` : ''}
+      ${cats.map(c => { const xs = U.indicators.filter(i => i.cat === c); return !xs.length ? '' : `<h3>${c}</h3><div class="us-grid">${xs.map(i => `<div class="us-tile" title="${i.name} · ${i.source}${i.note ? ' · ' + i.note : ''}">
+        <div class="note">${i.name} · ${i.period}</div><div class="us-v">${main(i)}</div><div class="note">${sub(i)}</div>${sp(i.spark)}
+        ${i.next ? `<div class="note">next ${i.next.date.slice(5)} ${i.next.time}${i.next.forecast ? ` · f'cast ${i.next.forecast}` : ''}</div>` : ''}</div>`).join('')}</div>`; }).join('')}
+      <p class="note">Sparklines: last 24 months (y/y % for price indexes, monthly change for payrolls). No API keys are needed; FRED would add more series with a free key.</p></div>`;
+  }
   function render() {
     const el = document.getElementById('markets');
     el.innerHTML = `<main>
       ${X ? `<div class="card"><h2>Macro outlook for commodities &amp; ags <span class="sv-badge" style="border-color:${X.view === 'tailwind' ? 'var(--up)' : X.view === 'headwind' ? 'var(--dn)' : '#666'};color:${X.view === 'tailwind' ? 'var(--up)' : X.view === 'headwind' ? 'var(--dn)' : '#666'}">${X.view} (${X.score > 0 ? '+' : ''}${X.score})</span></h2>
         <p><b>${X.summary}</b></p><div class="grid g2">${X.sections.map(s => `<div><h3>${s.title} <span class="${s.score > 0 ? 'up' : s.score < 0 ? 'dn' : 'note'}">${s.score > 0 ? '▲ tailwind' : s.score < 0 ? '▼ headwind' : '● neutral'}</span></h3><p>${s.text}</p></div>`).join('')}</div>
         <p class="note">${X.caveat} Updated ${X.generated}.</p></div>` : ''}
+      ${usCard()}
       <div class="card" style="margin-top:12px"><h2>Heat map</h2>
         <div class="mk-bar">${H.map(([k, l]) => `<button data-h="${k}" class="${k === hz ? 'on' : ''}">${l}</button>`).join('')} <label class="note"><input type="checkbox" id="mkTbl"> table view</label></div>
         <div id="mkHeat">${heat()}</div>
@@ -68,19 +90,17 @@ const Markets = (() => {
       <div class="grid g2" style="margin-top:12px"><div class="card"><h2>US Treasury yield curve <span class="note">${M.treasury ? M.treasury.date : ''}</span></h2><canvas id="mkCurve" height="200"></canvas>
           ${M.treasury ? `<p class="note">2s10s ${M.treasury.s2s10_bp} bp (${M.treasury.s2s10_chg_1m_bp > 0 ? '+' : ''}${M.treasury.s2s10_chg_1m_bp} bp in a month); 3m10y ${M.treasury.s3m10_bp} bp. Source: US Treasury daily par yield curve (end of day).</p>` : ''}</div>
         <div class="card"><h2>2s10s, last year</h2><canvas id="mk210" height="200"></canvas></div></div>
-      <div class="card" style="margin-top:12px"><h2>Economic calendar: US &amp; China</h2>
-        <div class="mk-bar">${[['all', 'US + China'], ['US', 'US'], ['China', 'China'], ['Global', 'Global']].map(([k, l]) => `<button data-c="${k}" class="${k === cty ? 'on' : ''}">${l}</button>`).join('')}
-          &nbsp; ${[['High', 'High impact'], ['HM', 'High + medium'], ['all', 'All']].map(([k, l]) => `<button data-i="${k}" class="${k === imp ? 'on' : ''}">${l}</button>`).join('')}</div>
+      <div class="card" style="margin-top:12px"><h2>US economic calendar</h2>
+        <div class="mk-bar">${[['High', 'High impact'], ['HM', 'High + medium'], ['all', 'All']].map(([k, l]) => `<button data-i="${k}" class="${k === imp ? 'on' : ''}">${l}</button>`).join('')}</div>
         <div id="mkCal">${cal()}</div></div></main>`;
     el.querySelectorAll('[data-h]').forEach(b => b.onclick = () => { hz = b.dataset.h; render(); });
-    el.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { cty = b.dataset.c; render(); });
     el.querySelectorAll('[data-i]').forEach(b => b.onclick = () => { imp = b.dataset.i; render(); });
     el.querySelector('#mkTbl').onchange = e => { el.querySelector('#mkHeat').innerHTML = e.target.checked ? table() : heat(); };
     curve(el);
   }
   async function show() {
     if (!built) {
-      [M, X, C] = await Promise.all(['data/markets/markets.json', 'data/macro/macro.json', 'data/macro/econ_calendar.json'].map(u => getJSON(u).catch(() => null)));
+      [M, X, C, U] = await Promise.all(['data/markets/markets.json', 'data/macro/macro.json', 'data/macro/econ_calendar.json', 'data/macro/us_econ.json'].map(u => getJSON(u).catch(() => null)));
       built = true;
     }
     history.replaceState(null, '', '#markets');

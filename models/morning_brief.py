@@ -144,6 +144,7 @@ def main():
 
     # macro: read, key cross-market numbers (Yahoo), US/China releases today and tomorrow
     macro = J("macro/macro.json") or {}
+    us_econ = J("macro/us_econ.json") or {}
     mk = {x["sym"]: x for x in (J("markets/markets.json") or {}).get("items", [])}
     macro_nums = [{"name": mk[k]["name"], "last": mk[k]["last"], "d1": mk[k]["d1"], "m1": mk[k]["m1"], "kind": mk[k]["kind"], "time": mk[k]["time"]}
                   for k in ("ES=F", "^GSPC", "^VIX", "^TNX", "DX-Y.NYB", "EURUSD=X", "BRL=X", "CNY=X", "CL=F", "NG=F", "GC=F", "HG=F", "^SPGSCI") if k in mk]
@@ -151,7 +152,7 @@ def main():
             if d0 <= e["date"] <= (today + timedelta(days=1)).isoformat() and e["impact"] in ("High", "Medium") and e["country"] in ("US", "China", "Global")]
     hi = [e for e in econ if e["date"] == d0 and e["impact"] == "High"]
     if hi:
-        heads.append("Macro releases today: " + "; ".join(f"{e['country']} {e['title']} {e['time']}" + (f" (f'cast {e['forecast']}, prev {e['previous']})" if e["forecast"] else "") for e in hi) + ".")
+        heads.append("Macro releases today: " + "; ".join(f"{e['title']} {e['time']}" + (f" (f'cast {e['forecast']}, prev {e['previous']})" if e["forecast"] else "") for e in hi) + ".")
     if macro.get("view"):
         heads.append(f"Macro backdrop for ags: {macro['view']} ({macro['score']:+d}).")
 
@@ -160,7 +161,7 @@ def main():
          "events_today": ev_today, "events_ahead": ev_ahead, "flash": fl, "markets": markets,
          "crush": sheet.get("crush"), "ratios": sheet.get("ratios"), "general_news": recent_news(None, 24, 6),
          "macro": {"view": macro.get("view"), "score": macro.get("score"), "summary": macro.get("summary"), "sections": macro.get("sections", []),
-                   "caveat": macro.get("caveat")}, "macro_numbers": macro_nums, "econ": econ}
+                   "caveat": macro.get("caveat")}, "macro_numbers": macro_nums, "econ": econ, "us_econ": us_econ.get("read")}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "latest.json").write_text(json.dumps(B, indent=1, default=str))
     md = to_md(B)
@@ -180,6 +181,8 @@ def to_md(B):
         L += ["## US & China economic releases (today, tomorrow)", ""] + [
             f"- {e['date'][5:]} {e['time'] or 'all day'} · {e['country']} {e['title']} ({e['impact']})" + (f" · forecast {e['forecast']}" if e['forecast'] else "") + (f", previous {e['previous']}" if e['previous'] else "")
             for e in B["econ"]] + [""]
+    if B.get("us_econ"):
+        L += ["## US economy", "", B["us_econ"], ""]
     if B.get("macro", {}).get("summary"):
         L += ["## Macro outlook and what it means for ags", "", B["macro"]["summary"], ""]
         L += [f"- **{x['title']}**: {x['text']}" for x in B["macro"]["sections"]]

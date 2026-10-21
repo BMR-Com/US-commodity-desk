@@ -23,6 +23,9 @@ jobs:
       - name: overnight prices and technicals
         continue-on-error: true
         run: python pipelines/ohlc.py && python -W ignore models/technicals.py
+      - name: cross-market snapshot (Yahoo), US/China economic calendar, macro read
+        continue-on-error: true
+        run: python pipelines/markets.py; python pipelines/econ_calendar.py; python models/macro.py
       - name: news and calendar
         continue-on-error: true
         run: python pipelines/news.py; python pipelines/events_calendar.py

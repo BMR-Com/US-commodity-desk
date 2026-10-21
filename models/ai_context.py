@@ -120,6 +120,20 @@ def more_cards(cards):
             L.append("Cracks $/bbl: 3-2-1 {:.2f}, ULSD-crude {:.2f}, gasoline-crude {:.2f}".format(ES["cracks"]["321"], ES["cracks"]["ho"], ES["cracks"]["rb"]))
         add("energy_fund", "Energy fundamentals (EIA storage, stocks, refining, cracks)", "fundamental",
             ["storage", "inventories", "stocks", "eia", "refinery", "crack", "cushing", "distillate", "henry hub", "natural gas", "crude", "gasoline", "diesel", "energy"], L)
+    SD = J(D / "energy/sd.json")
+    for sym, M in ((SD or {}).get("markets") or {}).items():
+        L = [f"{M['name']} supply & demand and inventory fair value ({SD['generated']}): {M.get('read')}"]
+        fv = M.get("fair") or {}
+        if fv:
+            L.append(f"Model: {fv.get('label')} on {fv.get('driver')}; quality: {fv.get('quality')}.")
+        b = M.get("balance") or {}
+        for r in b.get("rows", []):
+            L.append(f"{r['name']}: {b.get('avg_label')} {r['avg']} vs year ago {r['avg_ya']} ({M.get('balance_unit')})")
+        for x in M.get("projection") or []:
+            L.append(f"Projected {x['what']}: {x['projected']} Bcf (5-yr avg {x['avg5']})")
+        al = {"NG": ["natural gas", "storage", "injection", "withdrawal", "end of october", "end of march"], "CL": ["crude", "cushing", "spr", "refinery", "wti spread"],
+              "HO": ["diesel", "distillate", "ulsd", "heating oil", "crack"], "RB": ["gasoline", "rbob", "crack"]}.get(sym, [])
+        add(f"esd_{sym}", f"{M['name']} supply, demand and fair value", "fundamental", al + ["fair value", "supply", "demand", "balance", "days of supply", "inventory", "stocks"], L)
     for k, title, al in (("crude", "Crude oil production and trade", ["crude", "oil", "opec", "saudi", "russia", "permian", "texas", "exports", "producers"]),
                          ("natgas", "Natural gas production, LNG terminals and trade", ["natural gas", "lng", "terminal", "sabine", "plaquemines", "corpus christi", "freeport", "pipeline", "mexico", "exports", "producers"]),
                          ("products", "Oil products: consumption, refining capacity, diesel and gasoline trade", ["diesel", "gasoline", "refining", "refinery", "capacity", "products", "consumption"])):

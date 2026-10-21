@@ -609,7 +609,7 @@
   "g": "oil",
   "label": "Gasoline supplied",
   "freq": "weekly",
-  "id": "WRPUPUS2",
+  "id": "WGFUPUS2",
   "routes": [
    "petroleum/cons/wpsup",
    "petroleum/sum/sndw"
@@ -622,7 +622,9 @@
    "finished",
    "^u\\.s\\."
   ],
-  "not": []
+  "not": [
+   "blending|aviation|total petroleum"
+  ]
  },
  {
   "k": "demDist",
@@ -957,6 +959,128 @@
    "normal",
    "percent",
    "_PCT"
+  ]
+ },
+ {
+  "k": "distProd",
+  "g": "oil",
+  "label": "Distillate production",
+  "freq": "weekly",
+  "id": "WDIRPUS2",
+  "routes": [
+   "petroleum/sum/sndw"
+  ],
+  "must": [
+   "production",
+   "distillate"
+  ],
+  "prefer": [
+   "^u\\.s\\.",
+   "refiner"
+  ],
+  "not": [
+   "blender only"
+  ]
+ },
+ {
+  "k": "gasoProd",
+  "g": "oil",
+  "label": "Gasoline production",
+  "freq": "weekly",
+  "id": "WGFRPUS2",
+  "routes": [
+   "petroleum/sum/sndw"
+  ],
+  "must": [
+   "production",
+   "gasoline"
+  ],
+  "prefer": [
+   "^u\\.s\\.",
+   "finished motor"
+  ],
+  "not": [
+   "blending components"
+  ]
+ },
+ {
+  "k": "distExp",
+  "g": "oil",
+  "label": "Distillate exports",
+  "freq": "weekly",
+  "id": "WDIEXUS2",
+  "routes": [
+   "petroleum/sum/sndw"
+  ],
+  "must": [
+   "export",
+   "distillate"
+  ],
+  "prefer": [
+   "^u\\.s\\."
+  ],
+  "not": []
+ },
+ {
+  "k": "gasoExp",
+  "g": "oil",
+  "label": "Gasoline exports",
+  "freq": "weekly",
+  "id": "WGTEXUS2",
+  "routes": [
+   "petroleum/sum/sndw"
+  ],
+  "must": [
+   "export",
+   "gasoline"
+  ],
+  "prefer": [
+   "^u\\.s\\.",
+   "total"
+  ],
+  "not": [
+   "blending|finished|reformulated|conventional"
+  ]
+ },
+ {
+  "k": "distImp",
+  "g": "oil",
+  "label": "Distillate imports",
+  "freq": "weekly",
+  "id": "WDIIMUS2",
+  "routes": [
+   "petroleum/sum/sndw"
+  ],
+  "must": [
+   "import",
+   "distillate"
+  ],
+  "prefer": [
+   "^u\\.s\\."
+  ],
+  "not": [
+   "from|padd"
+  ]
+ },
+ {
+  "k": "gasoImp",
+  "g": "oil",
+  "label": "Gasoline imports",
+  "freq": "weekly",
+  "id": "WGTIMUS2",
+  "routes": [
+   "petroleum/sum/sndw"
+  ],
+  "must": [
+   "import",
+   "gasoline"
+  ],
+  "prefer": [
+   "^u\\.s\\.",
+   "total"
+  ],
+  "not": [
+   "blending|finished|reformulated|conventional|from|padd"
   ]
  }
 ]

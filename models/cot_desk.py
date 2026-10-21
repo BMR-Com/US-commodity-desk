@@ -356,12 +356,14 @@ def build(sym):
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     summary = {}
+    errs = {}
     syms = sys.argv[1:] or [s for g in GROUPS.values() for s in g]
     for s in syms:
         try:
             o = build(s)
         except Exception as e:
             import traceback; traceback.print_exc(); o = None
+            errs[s] = traceback.format_exc()[-1500:]
         if not o:
             print(s, "no data")
             continue
@@ -377,4 +379,5 @@ if __name__ == "__main__":
         print(s, o["date"], "MM", mm["N"], mm["dN"], o["driver"], "pct3", mm["pct"]["y3"], "| longs uw", summary[s]["long_uw"], "shorts uw", summary[s]["short_uw"],
               "| cta", ct.get("score"), "beta", round(ct.get("beta_lots") or 0), "r2", round(ct.get("r2") or 0, 2))
     if not sys.argv[1:]:
+        (OUT / "errors.json").write_text(json.dumps(errs, indent=1))
         (OUT / "summary.json").write_text(json.dumps(clean({"groups": GROUPS, "markets": summary}), separators=(",", ":")))

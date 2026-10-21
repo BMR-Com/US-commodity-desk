@@ -16,10 +16,10 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "technicals"
 CODES = "FGHJKMNQUVXZ"
 MNAME = dict(zip(CODES, ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]))
-UNITS = {"ZC": ("¢/bu", 2), "ZS": ("¢/bu", 2), "ZW": ("¢/bu", 2), "KE": ("¢/bu", 2), "ZM": ("$/st", 1), "ZL": ("¢/lb", 2),
+UNITS = {"CT": ("¢/lb", 2), "ZC": ("¢/bu", 2), "ZS": ("¢/bu", 2), "ZW": ("¢/bu", 2), "KE": ("¢/bu", 2), "ZM": ("$/st", 1), "ZL": ("¢/lb", 2),
          "HE": ("¢/lb", 3), "LE": ("¢/lb", 3), "GF": ("¢/lb", 3), "DC": ("$/cwt", 2), "GDK": ("$/cwt", 2),
          "CSC": ("$/lb", 3), "CB": ("¢/lb", 3), "GNF": ("¢/lb", 3), "DY": ("¢/lb", 3)}
-NAMES = {"ZC": "Corn", "ZS": "Soybeans", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "ZM": "Soybean meal", "ZL": "Soybean oil",
+NAMES = {"CT": "Cotton", "ZC": "Corn", "ZS": "Soybeans", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "ZM": "Soybean meal", "ZL": "Soybean oil",
          "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle", "DC": "Class III milk", "GDK": "Class IV milk",
          "CSC": "Cheese", "CB": "Butter", "GNF": "Nonfat dry milk", "DY": "Dry whey"}
 
@@ -287,7 +287,7 @@ def season_rows(sym, live, last_dates, closes):
     for c in live:
         L, y = code_parts(sym, c)
         m = CODES.index(L) + 1
-        est_last[c] = last_dates.get(c) or (pd.Timestamp(y, m, 14) if sym in ("ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE")
+        est_last[c] = last_dates.get(c) or (pd.Timestamp(y, m, 8) if sym == "CT" else pd.Timestamp(y, m, 14) if sym in ("ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE")
                                             else pd.Timestamp(y, m, 1) + pd.offsets.MonthEnd(0))
     def wk_series(c, last):
         s = closes.get(c)

@@ -26,6 +26,7 @@ QUERIES = {  # topic: search terms
     "south_america": "Brazil soybeans OR Brazil corn OR Argentina soybeans OR Argentina corn OR Conab OR safrinha",
     "hogs": "hog futures OR hog prices OR pork exports OR lean hogs",
     "cattle": "cattle futures OR cattle prices OR beef prices OR screwworm OR feeder cattle",
+    "cotton": "cotton futures OR cotton prices OR cotton crop OR cotton exports OR ICE cotton OR cotton mills",
     "dairy": "dairy prices OR milk prices OR cheese prices OR butter prices OR Class III milk",
     "usda": "USDA WASDE OR USDA report OR crop progress OR export sales",
     "trade_policy": "China tariffs soybeans OR farm trade deal OR biofuel RVO OR EPA biofuel",
@@ -39,6 +40,7 @@ TAGS = {
     "wheat": r"wheat",
     "hogs": r"\bhogs?\b|\bpork\b|\bpigs?\b|swine",
     "cattle": r"cattle|\bbeef\b|screwworm|feedlot|steer",
+    "cotton": r"cotton",
     "dairy": r"dairy|\bmilk\b|cheese|butter|whey|nonfat",
     "south_america": r"brazil|argentin|conab|safrinha|rosario|parana|mato grosso",
     "usda": r"\bUSDA\b|WASDE|crop progress|export sales|NASS",
@@ -96,7 +98,7 @@ def main():
             items += got
             print(topic, len(got))
         time.sleep(1.5)
-    broad = "corn OR soybeans OR soybean OR wheat OR grain OR cattle OR hogs OR pork OR beef OR dairy OR milk OR cheese OR soymeal OR soyoil OR USDA"
+    broad = "cotton OR corn OR soybeans OR soybean OR wheat OR grain OR cattle OR hogs OR pork OR beef OR dairy OR milk OR cheese OR soymeal OR soyoil OR USDA"
     for site in ["reuters.com", "bloomberg.com", "wsj.com", "marketwatch.com", "barrons.com", "ft.com", "agriculture.com", "farmprogress.com",
                  "brownfieldagnews.com", "nationalhogfarmer.com", "dairyherd.com", "drovers.com", "hoards.com", "feedstuffs.com", "agweb.com"]:
         url = f"https://news.google.com/rss/search?q={quote(f'({broad}) site:{site} when:7d')}&hl=en-US&gl=US&ceid=US:en"
@@ -122,7 +124,7 @@ def main():
     df["time"] = df.time.fillna(pd.Timestamp.now("UTC").strftime("%Y-%m-%dT%H:%MZ"))
     cutoff = (pd.Timestamp.now("UTC") - pd.Timedelta(days=45)).strftime("%Y-%m-%d")
     df = df[df.time >= cutoff]
-    AG = r"soy|corn|maize|grain|crop|safra|safrinha|harvest|plant|wheat|cattle|beef|hog|pork|dairy|milk|cheese|butter|farm|ag\b|agri|fertili|ethanol|biofuel|crush|livestock|feed|USDA|WASDE|export sales|tariff"
+    AG = r"cotton|soy|corn|maize|grain|crop|safra|safrinha|harvest|plant|wheat|cattle|beef|hog|pork|dairy|milk|cheese|butter|farm|ag\b|agri|fertili|ethanol|biofuel|crush|livestock|feed|USDA|WASDE|export sales|tariff"
     def tags(t):
         if not re.search(AG, t, re.I):
             return []

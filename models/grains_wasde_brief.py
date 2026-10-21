@@ -33,10 +33,11 @@ ALIAS = {"Beginning stocks": "Beginning Stocks", "Domestic use": "Domestic Use",
          "Feed and residual": "Feed and Residual", "Food, seed & industrial": "Food, Seed & Industrial", "Ethanol for fuel": "Ethanol for Fuel",
          "Ethanol & by-products": "Ethanol for Fuel", "Crushings": "Crush", "Domestic Crush": "Crush", "Avg. farm price": "Avg. Farm Price",
          "For methyl ester": "Biofuel", "For Methyl Ester": "Biofuel", "Methyl Ester": "Biofuel", "Biodiesel": "Biofuel",
+         "Planted": "Area Planted", "Harvested": "Area Harvested", "Exports, Total": "Exports", "Exports, total": "Exports",
          "EU-27": "European Union", "Major exporters": "Major Exporters", "Major importers": "Major Importers", "Total foreign": "Total Foreign"}
 ATTRS = ["Production", "Domestic Use", "Exports", "Imports", "Ending Stocks"]
 US_ROWS = ["Area Planted", "Area Harvested", "Yield", "Beginning Stocks", "Production", "Imports", "Total Supply", "Feed and Residual",
-           "Food, Seed & Industrial", "Ethanol for Fuel", "Crush", "Biofuel", "Food", "Seed", "Domestic Use", "Exports", "Total Use", "Ending Stocks", "Avg. Farm Price"]
+           "Food, Seed & Industrial", "Ethanol for Fuel", "Crush", "Biofuel", "Food", "Seed", "Domestic Use", "Exports", "Unaccounted", "Total Use", "Ending Stocks", "Avg. Farm Price"]
 COMS = {
     "corn": {"name": "Corn", "file": "Corn.json", "sym": "ZC", "esr": "corn", "cond": "corn", "unit": "m bu", "wunit": "MMT",
              "regions": ["World", "World Less China", "United States", "Brazil", "Argentina", "Ukraine", "Russia", "South Africa", "China", "European Union",
@@ -68,7 +69,27 @@ COMS = {
            "regions": ["World", "World Less China", "United States", "Russia", "European Union", "Canada", "Australia", "Argentina", "Ukraine"],
            "hist": [("United States", "Production"), ("United States", "Exports"), ("United States", "Ending Stocks"), ("World", "Production"),
                     ("World", "Ending Stocks"), ("Russia", "Production")]},
+    "cotton": {"name": "Cotton", "file": "Cotton.json", "sym": "CT", "unit": "m bales", "wunit": "m bales",
+               "regions": ["World", "World Less China", "United States", "China", "India", "Brazil", "Australia", "Pakistan", "Bangladesh",
+                           "Vietnam", "Turkey", "Central Asia", "Afr. Fr. Zone"],
+               "hist": [("United States", "Production"), ("United States", "Exports"), ("United States", "Ending Stocks"), ("World", "Production"),
+                        ("World", "Domestic Use"), ("World", "Ending Stocks"), ("World Less China", "Ending Stocks"), ("China", "Imports"),
+                        ("Brazil", "Exports"), ("India", "Production")],
+               "external_brief": True},
 }
+
+
+def cotton_brief(key):
+    """The cotton read (crop conditions, Texas drought, export sales, Brazil, on-call, COT) comes from BMR-Com/wasde-analytics."""
+    try:
+        local = os.getenv("COTTON_BRIEF_DIR")
+        if local and (Path(local) / f"{key}.json").exists():
+            return json.load(open(Path(local) / f"{key}.json")).get("Cotton")
+        import requests
+        r = requests.get(f"https://raw.githubusercontent.com/BMR-Com/wasde-analytics/main/data/brief/{key}.json", timeout=60)
+        return r.json().get("Cotton") if r.status_code == 200 else None
+    except Exception:
+        return None
 
 
 # ─────────────────────────── loaders ───────────────────────────
@@ -168,7 +189,9 @@ def su(df, reg, my, rd):
     du = get(df, reg, "Domestic Use", my, rd); ex = get(df, reg, "Exports", my, rd)
     if es is None:
         return None
-    if tu:
+    if du is not None and ex is not None and reg not in ("World", "World Less China"):
+        use = du + ex          # source "Total Use" sometimes repeats domestic use (world-table collision)
+    elif tu:
         use = tu
     elif du is None:
         return None
@@ -533,6 +556,8 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     ctx0 = {"cond": cond_data(), "sa": south_america(), "esr": {}}
     for k in COMS:
+        if not COMS[k].get("esr"):
+            continue
         try:
             ctx0["esr"][k] = esr_frame(COMS[k]["esr"])
         except Exception as e:
@@ -557,6 +582,15 @@ def main():
             nxt = all_rels[i + 1] if i + 1 < len(all_rels) else None
             rcut = rd + pd.Timedelta(days=10)
             ncut = (nxt + pd.Timedelta(days=9)) if nxt is not None else pd.Timestamp.now().normalize()
+            if cfg.get("external_brief"):
+                cb = cotton_brief(rd.strftime("%Y-%m"))
+                if cb:
+                    reports.setdefault(rd, {})[k] = {"name": cfg["name"], "my": my, "unit": cfg["unit"], "wunit": cfg["wunit"], "changes": ch,
+                                                    "history": cb.get("history") or hist, "checks": cb.get("checks"), "latest": cb.get("latest"),
+                                                    "factors": cb.get("factors", []), "score": cb.get("score"), "outlook": cb.get("outlook", "neutral"),
+                                                    "balance": balance(df, rd, prev, cfg["regions"], US_ROWS), "brief": cb.get("brief", []),
+                                                    "source": "BMR-Com/wasde-analytics"}
+                continue
             rep = checks(k, cfg, df, rd, prev, my, ctx, rcut)
             now = checks(k, cfg, df, rd, prev, my, ctx, ncut, pcut=rcut)
             F, score, label = outlook(cfg, ch, rep, now)

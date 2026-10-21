@@ -4,7 +4,7 @@ const CotDesk = (() => {
   const SUM = { p: null };
   const cache = {};
   const NAMES = { ZC: 'Corn', ZS: 'Soybeans', ZW: 'Chicago wheat', KE: 'KC wheat', ZM: 'Meal', ZL: 'Oil', HE: 'Lean hogs', LE: 'Live cattle', GF: 'Feeder cattle', DC: 'Class III', GDK: 'Class IV', CSC: 'Cheese', CB: 'Butter', GNF: 'NFDM', DY: 'Dry whey' };
-  const GROUP = { ZC: 'grains', ZS: 'grains', ZM: 'grains', ZL: 'grains', ZW: 'grains', KE: 'grains', HE: 'livestock', LE: 'livestock', GF: 'livestock', DC: 'dairy', GDK: 'dairy', CSC: 'dairy', CB: 'dairy', GNF: 'dairy', DY: 'dairy' };
+  const GROUP = { CT: 'softs', ZC: 'grains', ZS: 'grains', ZM: 'grains', ZL: 'grains', ZW: 'grains', KE: 'grains', HE: 'livestock', LE: 'livestock', GF: 'livestock', DC: 'dairy', GDK: 'dairy', CSC: 'dairy', CB: 'dairy', GNF: 'dairy', DY: 'dairy' };
   const k = v => v == null ? '–' : Math.round(v).toLocaleString();
   const sk = v => v == null ? '–' : `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${v > 0 ? '+' : ''}${Math.round(v).toLocaleString()}</span>`;
   const usd = (v, sign) => { if (v == null) return '–'; const x = Math.abs(v), s = v < 0 ? '−' : (sign ? '+' : ''); return s + '$' + (x >= 1e9 ? (x / 1e9).toFixed(2) + 'bn' : x >= 1e6 ? (x / 1e6).toFixed(0) + 'm' : (x / 1e3).toFixed(0) + 'k'); };

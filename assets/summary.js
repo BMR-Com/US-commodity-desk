@@ -1,7 +1,7 @@
 // Desk summary: one card per market with fundamentals, technicals, flows, overall outlook and trade ideas.
 const Summary = (() => {
   let built = false, S = null;
-  const LINK = { grains: k => [`#g/${k}/g-outlook`, 'grains'], livestock: (k, s) => [s === 'HE' ? '#h-outlook' : '#c-outlook', s === 'HE' ? 'hogs' : 'cattle'], dairy: () => ['#d-outlook', 'dairy'] };
+  const LINK = { grains: k => [`#g/${k}/g-outlook`, 'grains'], livestock: (k, s) => [s === 'HE' ? '#h-outlook' : '#c-outlook', s === 'HE' ? 'hogs' : 'cattle'], dairy: () => ['#d-outlook', 'dairy'], softs: () => ['#ct-outlook', 'cotton'] };
   const badge = (v, c) => { const col = /bullish/.test(v) ? 'var(--up)' : /bearish/.test(v) ? 'var(--dn)' : '#666'; return `<span class="sv-badge" style="border-color:${col};color:${col}">${v}${c ? ` · ${c} conviction` : ''}</span>`; };
   const bar = v => { if (v == null) return '–'; const w = Math.round(Math.abs(v) * 40); return `<span class="sv-bar"><span style="${v >= 0 ? 'left:50%' : `right:50%`};width:${w}%;background:${v >= 0 ? 'var(--up)' : 'var(--dn)'}"></span></span>`; };
   const f = (v, d) => v == null ? '–' : (+v).toFixed(d);
@@ -11,7 +11,7 @@ const Summary = (() => {
   function render() {
     const el = document.getElementById('summary');
     const M = S.markets;
-    const groups = [['grains', 'Grains & oilseeds'], ['livestock', 'Livestock'], ['dairy', 'Dairy']];
+    const groups = [['grains', 'Grains & oilseeds'], ['softs', 'Cotton'], ['livestock', 'Livestock'], ['dairy', 'Dairy']];
     el.innerHTML = `<main><div class="card"><h2>Desk summary</h2>
       <p class="note">Built automatically from the data and models behind every tab (updated ${S.generated}). Fundamentals weigh 40%, technicals 30%, flows 30%. Each trade idea names its method and says how that method has tested; untested ideas are context, not edges. A standing caveat from the back-tests: in these cash-settled and delivery markets futures have been the best forecast of their own settlement, so the edge is in timing, structure and the few tested biases (e.g. the live cattle convergence premium), not in out-forecasting the curve. Research only, not investment advice.</p>
       <div class="tbl"><table class="sv-tbl"><tr><th>Market</th><th>Contract</th><th>Last</th><th>1 wk</th><th>Overall view</th><th>Fundamental</th><th>Technical</th><th>Flows</th><th>Funds pct 3y · 10y · all</th><th>Trend score</th><th>Ideas</th></tr>

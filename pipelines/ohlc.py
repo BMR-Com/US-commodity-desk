@@ -12,13 +12,15 @@ from contracts import SPEC, CODES  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "ohlc"
 N_ACTIVE = {"DC": 6, "GDK": 6, "CSC": 6, "CB": 6, "GNF": 6, "DY": 6, "HE": 5, "LE": 5, "GF": 5,
-            "ZC": 5, "ZS": 6, "ZM": 6, "ZL": 6, "ZW": 5, "KE": 5}
+            "ZC": 5, "ZS": 6, "ZM": 6, "ZL": 6, "ZW": 5, "KE": 5, "CT": 5}
 
 
 def last_trade_guess(sym, y, m):
     """Rough last trading day, only used to decide which contracts are still live."""
     if sym in ("ZC", "ZS", "ZM", "ZL", "ZW", "KE"):
         return pd.Timestamp(y, m, 14)
+    if sym == "CT":
+        return pd.Timestamp(y, m, 8)        # ~17 business days before month end
     if sym == "HE":
         return pd.Timestamp(y, m, 14)
     if sym in ("DC", "GDK", "CSC", "CB", "GNF", "DY"):

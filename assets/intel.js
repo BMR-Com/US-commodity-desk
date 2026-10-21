@@ -4,8 +4,8 @@ const Intel = (() => {
   const load = async n => C[n] ?? (C[n] = await getJSON(`data/${n}/${n}.json`).catch(() => null));
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const ago = t => { const h = (Date.now() - new Date(t.replace('Z', ':00Z')).getTime()) / 36e5; return h < 1 ? 'now' : h < 24 ? `${Math.round(h)}h` : `${Math.round(h / 24)}d`; };
-  const MK = { ZC: 'corn', ZS: 'soybeans', ZM: 'meal', ZL: 'oil', ZW: 'wheat', KE: 'wheat', HE: 'hogs', LE: 'cattle', GF: 'cattle', DC: 'dairy', GDK: 'dairy' };
-  const TAGLAB = { corn: 'Corn', soybeans: 'Soybeans', meal: 'Meal', oil: 'Oil', wheat: 'Wheat', hogs: 'Hogs', cattle: 'Cattle', dairy: 'Dairy', south_america: 'S. America', usda: 'USDA' };
+  const MK = { ZC: 'corn', ZS: 'soybeans', ZM: 'meal', ZL: 'oil', ZW: 'wheat', KE: 'wheat', HE: 'hogs', LE: 'cattle', GF: 'cattle', CT: 'cotton', DC: 'dairy', GDK: 'dairy' };
+  const TAGLAB = { corn: 'Corn', soybeans: 'Soybeans', meal: 'Meal', oil: 'Oil', wheat: 'Wheat', hogs: 'Hogs', cattle: 'Cattle', cotton: 'Cotton', dairy: 'Dairy', south_america: 'S. America', usda: 'USDA' };
 
   async function news(el, { tags = null, n = 25, chips = true } = {}) {
     const D = await load('news');

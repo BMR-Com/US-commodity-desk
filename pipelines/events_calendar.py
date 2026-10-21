@@ -18,8 +18,9 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "calendar"
 H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk)"}
 NASS = {  # report title -> (markets, importance 1-3)
-    "Crop Progress": (["ZC", "ZS", "ZW", "KE"], 2), "Crop Production": (["ZC", "ZS", "ZW", "KE"], 3), "Crop Production Annual": (["ZC", "ZS", "ZW", "KE"], 3),
-    "Grain Stocks": (["ZC", "ZS", "ZW", "KE"], 3), "Acreage": (["ZC", "ZS", "ZW", "KE"], 3), "Prospective Plantings": (["ZC", "ZS", "ZW", "KE"], 3),
+    "Crop Progress": (["ZC", "ZS", "ZW", "KE", "CT"], 2), "Crop Production": (["ZC", "ZS", "ZW", "KE", "CT"], 3), "Crop Production Annual": (["ZC", "ZS", "ZW", "KE", "CT"], 3),
+    "Cotton Ginnings": (["CT"], 2), "Cotton System Consumption and Stocks": (["CT"], 1),
+    "Grain Stocks": (["ZC", "ZS", "ZW", "KE"], 3), "Acreage": (["ZC", "ZS", "ZW", "KE", "CT"], 3), "Prospective Plantings": (["ZC", "ZS", "ZW", "KE", "CT"], 3),
     "Small Grains Summary": (["ZW", "KE"], 2), "Winter Wheat and Canola Seedings": (["ZW", "KE"], 2), "Fats & Oils": (["ZL", "ZM"], 1),
     "Grain Crushings and Co-Products Production": (["ZC"], 1), "Oilseed Crushings": (["ZS", "ZM", "ZL"], 1),
     "Hogs and Pigs": (["HE"], 3), "Quarterly Hogs and Pigs": (["HE"], 3), "Cattle on Feed": (["LE", "GF"], 3), "Cattle": (["LE", "GF"], 2),
@@ -84,7 +85,8 @@ def rules(start, end):
             ev.append({"date": ds, "time": "10:00 AM CT", "event": "USDA export inspections (holiday-delayed)", "cat": "USDA", "markets": ["ZC", "ZS", "ZW", "KE"], "importance": 1})
         if wd == 3:
             dd = d if bday(d) else d + pd.Timedelta(days=1)
-            ev.append({"date": str(dd.date()), "time": "7:30 AM CT", "event": "USDA weekly export sales", "cat": "USDA", "markets": ["ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE", "LE"], "importance": 2})
+            ev.append({"date": str(dd.date()), "time": "7:30 AM CT", "event": "USDA weekly export sales", "cat": "USDA", "markets": ["ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE", "LE", "CT"], "importance": 2})
+            ev.append({"date": str(dd.date()), "time": "2:30 PM CT", "event": "CFTC cotton on-call report", "cat": "CFTC", "markets": ["CT"], "importance": 2})
             ev.append({"date": ds, "time": "", "event": "Buenos Aires Grain Exchange crop progress (weekly)", "cat": "South America", "markets": ["ZS", "ZC", "ZW"], "importance": 1})
         if wd == 4:
             dd = d if bday(d) else d + pd.Timedelta(days=3)
@@ -96,7 +98,7 @@ def rules(start, end):
     # WASDE
     for w in WASDE_2026:
         if start <= pd.Timestamp(w) <= end:
-            ev.append({"date": w, "time": "11:00 AM CT", "event": "USDA WASDE", "cat": "USDA", "markets": ["ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE", "LE", "DC"], "importance": 3,
+            ev.append({"date": w, "time": "11:00 AM CT", "event": "USDA WASDE", "cat": "USDA", "markets": ["ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE", "LE", "DC", "CT"], "importance": 3,
                        "link": "https://esmis.nal.usda.gov/publication/world-agricultural-supply-and-demand-estimates"})
     for m in pd.date_range(pd.Timestamp("2027-01-01"), end, freq="MS"):
         d = m + pd.Timedelta(days=8)
@@ -145,6 +147,16 @@ def contract_events(start, end):
                 while not bday(ltd):
                     ltd -= pd.Timedelta(days=1)
                 out = [(fnd, "first notice day"), (ltd, "last trading day")]
+            elif sym == "CT":            # ICE cotton: FND 5 business days before the delivery month, LTD 17 business days before month end
+                fnd, n = mstart, 0
+                while n < 5:
+                    fnd -= pd.Timedelta(days=1)
+                    n += bday(fnd)
+                ltd, n = mstart + pd.offsets.MonthEnd(0) + pd.Timedelta(days=1), 0
+                while n < 17:
+                    ltd -= pd.Timedelta(days=1)
+                    n += bday(ltd)
+                out = [(fnd, "first notice day"), (ltd, "last trading day")]
             elif sym == "HE":
                 d, n = mstart, 0
                 while True:
@@ -168,7 +180,7 @@ def contract_events(start, end):
                 out = [(d, "last trading day (settles to CME Feeder Index)")]
             for d, what in out:
                 if start <= d <= end:
-                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "CME contract", "markets": [sym],
+                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "ICE contract" if sym == "CT" else "CME contract", "markets": [sym],
                                "importance": 2 if "first notice" in what or "settles" in what else 1, "estimated": True})
     return ev
 

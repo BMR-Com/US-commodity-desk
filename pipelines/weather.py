@@ -20,7 +20,9 @@ REGIONS = [
     ("Ohio Valley (SRW)", "US", 38.5, -87.5, ["srw"], ["ZW"]),
     ("Red River Valley ND (spring wheat)", "US", 46.88, -96.79, ["hrs"], ["KE", "ZW"]),
     ("Texas Panhandle (feedlots/pasture)", "US", 35.2, -101.8, ["cattle"], ["LE", "GF"]),
-    ("Sorriso, Mato Grosso", "Brazil", -12.55, -55.72, ["br_soy_mt", "br_safrinha"], ["ZS", "ZC"]),
+    ("Lubbock, West Texas (cotton)", "US", 33.58, -101.85, ["cotton"], ["CT"]),
+    ("Greenwood, Mississippi Delta (cotton)", "US", 33.52, -90.18, ["cotton"], ["CT"]),
+    ("Sorriso, Mato Grosso", "Brazil", -12.55, -55.72, ["br_soy_mt", "br_safrinha", "br_cotton"], ["ZS", "ZC", "CT"]),
     ("Rio Verde, Goiás", "Brazil", -17.79, -50.92, ["br_soy_mt", "br_safrinha"], ["ZS", "ZC"]),
     ("Cascavel, Paraná", "Brazil", -24.96, -53.46, ["br_soy_south", "br_safrinha"], ["ZS", "ZC"]),
     ("Passo Fundo, Rio Grande do Sul", "Brazil", -28.26, -52.41, ["br_soy_south"], ["ZS"]),
@@ -42,6 +44,11 @@ STAGES = {
             6: ("harvest", 1, "dry harvest weather"), 7: ("harvest", 0, "harvest wrap-up")},
     "srw": {10: ("planting", 1, "planting conditions"), 11: ("establishment", 1, "fall stands"), 4: ("jointing", 2, "spring rain"), 5: ("heading", 3, "wet weather raises disease/vomitoxin risk"), 6: ("harvest", 1, "dry harvest weather")},
     "hrs": {4: ("planting", 1, "planting pace"), 5: ("planting", 2, "planting pace"), 6: ("tillering", 2, "moisture"), 7: ("heading/fill", 3, "heat and dryness cut yield"), 8: ("harvest", 1, "dry harvest weather"), 9: ("harvest", 0, "wrap-up")},
+    "cotton": {4: ("planting starts", 1, "soil moisture to plant dryland West Texas"), 5: ("planting", 2, "rain to plant dryland acres; drought raises abandonment"),
+               6: ("planting/squaring", 3, "June rain decides West Texas abandonment"), 7: ("squaring/bloom", 3, "heat and dryness shed fruit"), 8: ("boll set/fill", 3, "rain sets yield"),
+               9: ("bolls open/defoliation", 2, "dry weather for harvest; hurricane risk"), 10: ("harvest", 2, "rain hurts grades and delays harvest"), 11: ("harvest", 1, "harvest pace and grades"), 12: ("harvest", 0, "wrap-up")},
+    "br_cotton": {1: ("planting (2nd crop)", 2, "planting after soy"), 2: ("planting/emergence", 2, "rain"), 3: ("squaring", 2, "rain"), 4: ("flowering/boll set", 3, "when the rains stop"),
+                  5: ("boll fill", 3, "dry-season onset"), 6: ("harvest starts", 1, "dry harvest"), 7: ("harvest", 1, "harvest pace"), 8: ("harvest/ginning", 0, "harvest")},
     "cattle": {m: ("pasture/feedlot", 1, "heat stress in feedlots (summer), pasture and hay (drought), blizzards (winter)") for m in range(1, 13)},
     "br_soy_mt": {9: ("planting starts", 2, "regular rains needed to plant"), 10: ("planting", 3, "planting pace sets the safrinha window"), 11: ("planting/emergence", 2, "rain regularity"),
                   12: ("flowering/pod set", 2, "rain regularity"), 1: ("fill/early harvest", 2, "too much rain delays harvest"), 2: ("harvest", 1, "harvest pace vs safrinha planting"), 3: ("harvest", 0, "wrap-up")},
@@ -56,7 +63,7 @@ STAGES = {
     "ar_wheat": {5: ("planting", 1, "moisture"), 6: ("planting", 2, "moisture"), 7: ("tillering", 1, "moisture"), 8: ("tillering", 2, "moisture"), 9: ("heading", 3, "dryness and frost"),
                  10: ("grain fill", 3, "rain decides yield; frost risk"), 11: ("harvest", 1, "harvest pace"), 12: ("harvest", 0, "harvest")},
 }
-CROPNAME = {"corn": "corn", "soy": "soybeans", "hrw": "HRW wheat", "srw": "SRW wheat", "hrs": "spring wheat", "cattle": "cattle",
+CROPNAME = {"cotton": "cotton", "br_cotton": "cotton", "corn": "corn", "soy": "soybeans", "hrw": "HRW wheat", "srw": "SRW wheat", "hrs": "spring wheat", "cattle": "cattle",
             "br_soy_mt": "soybeans", "br_safrinha": "safrinha corn", "br_soy_south": "soybeans", "ar_soy": "soybeans", "ar_corn": "corn", "ar_wheat": "wheat"}
 
 

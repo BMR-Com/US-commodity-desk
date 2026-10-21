@@ -23,12 +23,12 @@ OUT = ROOT / "data" / "cot_desk"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cot_backtest import roll_adjusted_index  # noqa: E402
 
-GROUPS = {"grains": ["ZC", "ZS", "ZM", "ZL", "ZW", "KE"], "livestock": ["HE", "LE", "GF"], "dairy": ["DC", "GDK", "CSC", "CB", "GNF", "DY"]}
-NAMES = {"ZC": "Corn", "ZS": "Soybeans", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "ZM": "Soybean meal", "ZL": "Soybean oil",
+GROUPS = {"grains": ["ZC", "ZS", "ZM", "ZL", "ZW", "KE"], "livestock": ["HE", "LE", "GF"], "softs": ["CT"], "dairy": ["DC", "GDK", "CSC", "CB", "GNF", "DY"]}
+NAMES = {"CT": "Cotton", "ZC": "Corn", "ZS": "Soybeans", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "ZM": "Soybean meal", "ZL": "Soybean oil",
          "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle", "DC": "Class III milk", "GDK": "Class IV milk",
          "CSC": "Cheese", "CB": "Butter", "GNF": "Nonfat dry milk", "DY": "Dry whey"}
 # dollars per 1.00 of the quoted price, per contract (TradingView/CME quote units)
-USD = {"ZC": 50, "ZS": 50, "ZW": 50, "KE": 50, "ZM": 100, "ZL": 600, "HE": 400, "LE": 400, "GF": 500,
+USD = {"CT": 500, "ZC": 50, "ZS": 50, "ZW": 50, "KE": 50, "ZM": 100, "ZL": 600, "HE": 400, "LE": 400, "GF": 500,
        "DC": 2000, "GDK": 2000, "CSC": 20000, "CB": 200, "GNF": 440, "DY": 440}
 CATS = {"mm": ("m_money_positions_long_all", "m_money_positions_short_all", "traders_m_money_long_all", "traders_m_money_short_all", "Managed money"),
         "pm": ("prod_merc_positions_long", "prod_merc_positions_short", "traders_prod_merc_long_all", "traders_prod_merc_short_all", "Producer/merchant"),

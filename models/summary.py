@@ -18,6 +18,7 @@ MARKETS = [  # key, symbol, group, display, grains wasde key
     ("wheat", "ZW", "grains", "Chicago SRW wheat", "wheat"), ("kc", "KE", "grains", "KC HRW wheat", "wheat"),
     ("hogs", "HE", "livestock", "Lean hogs", None), ("cattle", "LE", "livestock", "Live cattle", None),
     ("feeders", "GF", "livestock", "Feeder cattle", None),
+    ("cotton", "CT", "softs", "Cotton", None),
     ("class3", "DC", "dairy", "Class III milk", None), ("class4", "GDK", "dairy", "Class IV milk", None)]
 LINK = {"grains": "#g/{key}/g-outlook", "livestock": None, "dairy": "#d-outlook"}
 
@@ -241,6 +242,33 @@ def cattle_fund(sym):
     return float(np.clip(np.sum(votes), -1, 1)) if votes else 0.0, " ".join(parts), {"bias": b}
 
 
+def wasde_read(key):
+    """Latest WASDE brief for this market (grains engine; cotton read from BMR-Com/wasde-analytics)."""
+    idx = J("grains/derived/wasde_brief/index.json")
+    if not idx:
+        return None, None
+    rep = J(f"grains/derived/wasde_brief/{idx['reports'][0]['report']}.json")
+    return (rep or {}).get("commodities", {}).get(key), idx["reports"][0]["label"]
+
+
+def esr_read(key):
+    e = J("grains/derived/esr_brief.json")
+    return next((b for b in (e or {}).get("commodities", []) if b.get("key") == key), None)
+
+
+def cotton_fund():
+    C, lab = wasde_read("cotton")
+    if not C:
+        return None, "Cotton fundamentals not available yet.", {}
+    sc = max(-1.0, min(1.0, (C.get("score") or 0) / 3))
+    fac = C.get("factors") or []
+    bull = [x["factor"] for x in fac if x["tilt"] == "bullish"]; bear = [x["factor"] for x in fac if x["tilt"] == "bearish"]
+    hl = next((b["t"] for b in C.get("brief", []) if b["h"] == "Headline"), "")
+    txt = (f"{lab} WASDE read for {C['my']}: {C['outlook']}. " + hl.replace("**", "") + " "
+           + (f"Supportive: {', '.join(bull)}. " if bull else "") + (f"Weighing: {', '.join(bear)}. " if bear else ""))
+    return sc, txt.strip(), {}
+
+
 def dairy_fund(sym):
     spot, sd = J("dairy/derived/dairy_spot.json"), J("dairy/derived/sd.json")
     parts, votes = [], []
@@ -429,12 +457,22 @@ if __name__ == "__main__":
             fl, ftxt, F = flows(sym, group)
             if group == "grains":
                 fs, fund_txt, ctx = grains_fund(key, wkey, sym)
+            elif sym == "CT":
+                fs, fund_txt, ctx = cotton_fund()
             elif sym == "HE":
                 fs, fund_txt, ctx = hogs_fund()
             elif sym in ("LE", "GF"):
                 fs, fund_txt, ctx = cattle_fund(sym)
             else:
                 fs, fund_txt, ctx = dairy_fund(sym)
+            if group == "grains":
+                B = esr_read(key if key != "wheat" else "wheat")
+                if B:
+                    fund_txt += (f" Export sales (week ending {B['week']}): commitments {B['pace']*100:.0f}% of USDA vs a {B['pace_norm']*100:.0f}% norm"
+                                 + (f"; pace implies {B['implied']:,.0f} {B['w_unit']} vs USDA {B['target']:,.0f}." if B.get("implied") else "."))
+                Wb, lab = wasde_read(key)
+                if Wb:
+                    fund_txt += f" {lab} WASDE factor read: {Wb['outlook']}."
             ids = ideas(key, sym, group, T, F, fs, ctx)
             wn = weather_note(sym)
             if wn:

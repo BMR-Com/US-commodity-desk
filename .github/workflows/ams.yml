@@ -19,5 +19,5 @@ jobs:
             python pipelines/ams_mars.py $s || true
             git add data/ams; git diff --cached --quiet && continue
             git commit -q -m "data: AMS MARS report $s"
-            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep 10; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 10; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
           done

@@ -30,4 +30,4 @@ jobs:
           git add data/contracts data/grains/derived/rv.json data/summary/sheet.json
           git diff --cached --quiet && exit 0
           git commit -q -m "data: per-contract futures history $(date -u +%F)"
-          for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

@@ -49,7 +49,7 @@ def desk_market(sym):
     h = h[h.index >= pd.Timestamp("2006-01-01")]
     r = h.r.fillna(0)
     idx = (1 + r).cumprod()
-    daily = pd.DataFrame({"px": idx, "carry": h.carry})
+    daily = pd.DataFrame({"px": idx, "carry": h.carry, "F1": h.F1, "F2": h.F2})
     for n in (20, 50, 100, 200, 275):
         daily[f"ma{n}"] = idx.rolling(n, min_periods=int(n * .9)).mean()
     for n in (20, 55, 100):

@@ -1,15 +1,15 @@
-# Morning brief · Wed Oct 21, 2026 08:02 AM ET
+# Morning brief · Wed Oct 21, 2026 08:22 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-21 12:02 UTC). CME open interest from 20261019. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-21 12:22 UTC). CME open interest from 20261019. Research only, not investment advice.
 
 ## Key points
 
 - Biggest moves vs prior settle: Chicago wheat -8.75 (-1.4%); KC HRW wheat -9.25 (-1.3%); Lean hogs +0.800 (+1.2%).
 - Today: USDA NDPSR dairy product prices (weekly) 12:00 PM ET.
 - 1 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported the following sales activity for MY 2026/2027: 114,000 MT of soybeans for delivery to China and 261,000 MT of soybeans for delivery to unknown destinations.
-- Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.
+- Strongest desk views: Corn strongly bearish.
 - Through a trend-follower trigger: Class IV milk below 20.94.
-- Macro backdrop for ags: headwind (-2).
+- Macro backdrop for ags: mixed (-1).
 
 ## Calendar
 
@@ -27,16 +27,16 @@ Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, 
 
 ## Macro outlook and what it means for ags
 
-Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar −; brl +; mxn −; risk 0; energy 0; china −; breadth 0. Strongest ag/soft over the month: Sugar #11 +16.9%; weakest: Corn -15.5%. 
+Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar −; brl +; mxn −; risk 0; energy +; china −; breadth 0. Strongest ag/soft over the month: Coffee +14.5%; weakest: Corn -15.6%. 
 
 - **Rates**: US 10-year 5.12% (+11 bp in a month), 2-year 4.79% (+3 bp); 2s10s curve +33 bp (+8 bp in a month). Yields are little changed on the month. T-bill yield 4.08% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 101.67 (+1.2% in a month, +3.5% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.025 (-2.3% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.664 (-0.5%); USD/MXN 18.49 (+7.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
-- **Risk appetite**: S&P 500 +0.8% in a month (+12.7% YTD); VIX 17.4. Neutral risk backdrop. 
-- **Energy**: WTI 98.67 $/bbl (+3.0% in a month), Brent 109.42, ULSD 4.727 $/gal (-3.3%), natural gas 2.85 (+0.6%). Crude little changed on the month. 
-- **China & industrial demand**: Copper -2.1% in a month, Shanghai Composite -6.0%, Hang Seng -5.6%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. 
-- **Commodity breadth**: 14 of 33 commodities trade above their 50-day average (42%); S&P GSCI +1.2% in a month; gold -5.2%. 
+- **Dollar & farm currencies**: Dollar index 101.69 (+1.3% in a month, +3.5% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.032 (-2.1% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.664 (-0.5%); USD/MXN 18.49 (+7.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
+- **Risk appetite**: S&P 500 +0.8% in a month (+12.7% YTD); VIX 17.3. Neutral risk backdrop. 
+- **Energy**: WTI 98.49 $/bbl (+10.5% in a month), Brent 109.17, ULSD 4.713 $/gal (+5.1%), natural gas 2.86 (-4.4%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. 
+- **China & industrial demand**: Copper -3.1% in a month, Shanghai Composite -6.0%, Hang Seng -5.6%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Commodity breadth**: 14 of 33 commodities trade above their 50-day average (42%); S&P GSCI +1.2% in a month; gold -5.1%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,775.000 (+0.25% d/d); S&P 500 7,712.570 (+0.28% d/d); VIX 17.350 (+0.23% d/d); US 10-year 5.117 (-2 bp d/d); US dollar index 101.675 (-0.05% d/d); EUR/USD 1.123 (+0.15% d/d); USD/BRL 5.025 (-0.24% d/d); USD/CNY 6.664 (-0.40% d/d); WTI crude 98.670 (-3.07% d/d); Natural gas 2.854 (-3.68% d/d); Gold 4,157.400 (+0.36% d/d); Copper 6.548 (-0.28% d/d); S&P GSCI 746.862 (+0.00% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,776.000 (+0.27% d/d); S&P 500 7,712.570 (+0.28% d/d); VIX 17.320 (+0.06% d/d); US 10-year 5.117 (-2 bp d/d); US dollar index 101.694 (-0.04% d/d); EUR/USD 1.124 (+0.19% d/d); USD/BRL 5.032 (-0.11% d/d); USD/CNY 6.664 (-0.40% d/d); WTI crude 98.490 (+0.68% d/d); Natural gas 2.860 (-3.48% d/d); Gold 4,158.500 (+0.38% d/d); Copper 6.554 (-0.75% d/d); S&P GSCI 746.862 (+0.00% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -45,12 +45,12 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Market | Contract | Last | Chg | 1 wk | 1 m | Rating | RSI | Support | Resistance | Funds net (chg) | OI chg | View |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Corn | Dec 26 | 459.00 | -3.00 (-0.6%) | -13.1% | +2.9% | Strong sell | 41 | 457.00 | 464.00 | 230,877 (-86,482) | -10,794 | strongly bearish |
-| Soybeans | Nov 26 | 1,243.00 | -5.25 (-0.4%) | -5.8% | +9.3% | Buy | 53 | 1,143.00 | 1,335.25 | 237,491 (-14,169) | +6,349 | neutral |
+| Soybeans | Nov 26 | 1,243.00 | -5.25 (-0.4%) | -5.8% | +9.3% | Buy | 53 | 1,143.00 | 1,335.25 | 237,491 (-14,169) | +6,349 | mildly bullish |
 | Soybean meal | Dec 26 | 346.9 | -1.8 (-0.5%) | -6.5% | +11.5% | Buy | 55 | 345.3 | 363.6 | 206,131 (-673) | +683 | neutral |
 | Soybean oil | Dec 26 | 66.29 | -0.44 (-0.7%) | -2.3% | -6.4% | Sell | 48 | 65.98 | 73.00 | 89,328 (-10,119) | +938 | mildly bearish |
 | Chicago wheat | Dec 26 | 634.50 | -8.75 (-1.4%) | -9.8% | +3.8% | Sell | 43 | 613.75 | 674.50 | -33,038 (-3,495) | -231 | bearish |
-| KC HRW wheat | Dec 26 | 681.75 | -9.25 (-1.3%) | -10.5% | +5.4% | Sell | 44 | 626.00 | 682.25 | 17,391 (-6,649) | +989 | strongly bearish |
-| Cotton | Dec 26 | 80.76 | -0.12 (-0.1%) | -2.4% | +4.2% | Neutral | 50 | 75.17 | 88.08 | 65,699 (+1,862) | – | mildly bearish |
+| KC HRW wheat | Dec 26 | 681.75 | -9.25 (-1.3%) | -10.5% | +5.4% | Sell | 44 | 626.00 | 682.25 | 17,391 (-6,649) | +989 | bearish |
+| Cotton | Dec 26 | 80.76 | -0.12 (-0.1%) | -2.4% | +4.2% | Neutral | 50 | 75.17 | 88.08 | 65,699 (+1,862) | – | neutral |
 | Lean hogs | Dec 26 | 67.150 | +0.800 (+1.2%) | -1.3% | -3.8% | Sell | 41 | – | 71.200 | -42,088 (-6,816) | -12,529 | bearish |
 | Live cattle | Dec 26 | 230.175 | +2.150 (+0.9%) | +1.7% | +3.7% | Strong buy | 65 | 228.025 | 235.900 | 48,748 (-2,172) | -1,843 | mildly bullish |
 | Feeder cattle | Nov 26 | 346.300 | +2.375 (+0.7%) | +1.5% | +6.2% | Strong buy | 66 | 343.275 | 348.575 | 8,852 (+65) | +416 | mildly bullish |
@@ -73,7 +73,7 @@ Flags: Export commitments -25% vs normal pace; Weather watch: South-central Nebr
 - [57% of U.S. corn, 58% of soybeans good to excellent](https://news.google.com/rss/articles/CBMijAFBVV95cUxPWHVDM1RZMVhNN2NHd1otci1tcFdmbVJaa1c1aFgyVjMxSUFaUjZjODc2UXNlOHNvUnVtQW81YW5JVmlMRTBDYnExZHFXenV2RjhjLU5MNGdPa1AyVVhtdDBCbTdpc3ZETDVLOTJIcHFicEpXWldPR0MwUG1UYnRMUXlpSTAtZjFRRmJHeg?oc=5) · Brownfield Ag News
 - [Perseus SC Adds a Pyroxasulfone Herbicide Option for 2027 Corn and Soybeans](https://news.google.com/rss/articles/CBMisgFBVV95cUxNc2llLUhHVnFyN0l1YWpKTnVFNTBNanVjYTl5R3h2R21lYzZfQU0wWFRaOGU3Z1BJbVoyMEZwOEhOSkZVNDBwX0VWUEJGVVhIVHRLTXdkdW9KMmJDLXhIM0dEZS1yTTFhQjJfYjZkTFVER2hVdEVPLUF0V3hPbnNJQXYyMXc0LXp1VXhhTktrTHU4SmlSOFBMOUtyTlRPaENvOXdZcDBLd0UzTi12U1ViNlFB?oc=5) · Successful Farming
 
-**Soybeans** (Nov 26, neutral). Nov 26 trades at 1243.00 ¢/bu (-5.8% on the week, +9.3% on the month), in an up trend: the daily rating is buy and the weekly buy. RSI is 53 and ADX 33 (trending). Nearest support 1143.00, resistance 1335.25; 52-week range 983.00–1335.25. Levels to watch: a close above 1279.65 (50-day average) would bring trend-follower buying; below 1227.27 (100-day average) adds selling; the 1143.00–1335.25 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
+**Soybeans** (Nov 26, mildly bullish). Nov 26 trades at 1243.00 ¢/bu (-5.8% on the week, +9.3% on the month), in an up trend: the daily rating is buy and the weekly buy. RSI is 53 and ADX 33 (trending). Nearest support 1143.00, resistance 1335.25; 52-week range 983.00–1335.25. Levels to watch: a close above 1279.65 (50-day average) would bring trend-follower buying; below 1227.27 (100-day average) adds selling; the 1143.00–1335.25 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
 Flags: Funds near a 10-yr long extreme (99th pct); Nov 26 / Jan 27 at 80% of full carry; Export commitments +17% vs normal pace; Weather watch: South-central Nebraska; Sorriso, Mato Grosso.
 - [57% of U.S. corn, 58% of soybeans good to excellent](https://news.google.com/rss/articles/CBMijAFBVV95cUxPWHVDM1RZMVhNN2NHd1otci1tcFdmbVJaa1c1aFgyVjMxSUFaUjZjODc2UXNlOHNvUnVtQW81YW5JVmlMRTBDYnExZHFXenV2RjhjLU5MNGdPa1AyVVhtdDBCbTdpc3ZETDVLOTJIcHFicEpXWldPR0MwUG1UYnRMUXlpSTAtZjFRRmJHeg?oc=5) · Brownfield Ag News
 - [Perseus SC Adds a Pyroxasulfone Herbicide Option for 2027 Corn and Soybeans](https://news.google.com/rss/articles/CBMisgFBVV95cUxNc2llLUhHVnFyN0l1YWpKTnVFNTBNanVjYTl5R3h2R21lYzZfQU0wWFRaOGU3Z1BJbVoyMEZwOEhOSkZVNDBwX0VWUEJGVVhIVHRLTXdkdW9KMmJDLXhIM0dEZS1yTTFhQjJfYjZkTFVER2hVdEVPLUF0V3hPbnNJQXYyMXc0LXp1VXhhTktrTHU4SmlSOFBMOUtyTlRPaENvOXdZcDBLd0UzTi12U1ViNlFB?oc=5) · Successful Farming
@@ -91,14 +91,14 @@ Flags: 78% of fund shorts under water.
 - [Wheat Hits 11-Week Low as Risk Premiums Ease on Ukraine Talks](https://news.google.com/rss/articles/CBMisgFBVV95cUxPalF2VTBOdE1lUWVZZkM4N25DdHowanVxUDlnSzF1Z19hQXJpT3ZQWU92aHB1NEhJaXdDQjB4UXNuQUdYSFFkb19PbDl1M1BkSDFVQ1JNZllwcUVvNE1KZDVhN3QtelczYVVoV2NLVUk1emlGdjBxaTZqZ1hhNER6Vm40bFFTVHFkbFZsc0pyUVhhdlM0bC1RbkhPdHF4RjBYYi1CYUpoLW1reU5TdktsR2tB?oc=5) · Bloomberg.com
 - [Recent moisture gives Kansas winter wheat strong start](https://news.google.com/rss/articles/CBMikwFBVV95cUxQdEY2SmJSY3FibDExcnVWZ2FISmpvZjItcmppTlF0bWxmZUwxYlg5QXIxektQdi1QZVphQmNkNkdoT2d6bG5ldXR0ZXYzUDJGQnQycXFIYWhIQzQ5N0c3S013ODBrT01WSFZTM3NjOTZZTWRoOHpaMXczWHQxb1htbllmYkFLaWpqZmV3bjlVR3VCZjA?oc=5) · Brownfield Ag News
 
-**KC HRW wheat** (Dec 26, strongly bearish). Dec 26 trades at 681.75 ¢/bu (-10.5% on the week, +5.4% on the month), in an up trend: the daily rating is sell and the weekly sell. RSI is 44 and ADX 33 (trending). Nearest support 626.00, resistance 682.25; 52-week range 562.50–858.25. Levels to watch: a close above 690.04 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 626.00–682.25 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
+**KC HRW wheat** (Dec 26, bearish). Dec 26 trades at 681.75 ¢/bu (-10.5% on the week, +5.4% on the month), in an up trend: the daily rating is sell and the weekly sell. RSI is 44 and ADX 33 (trending). Nearest support 626.00, resistance 682.25; 52-week range 562.50–858.25. Levels to watch: a close above 690.04 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 626.00–682.25 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
 Flags: Export commitments -16% vs normal pace; Realized vol low (17%, 4th pct): cheap to own optionality into catalysts; Weather watch: SW Kansas (HRW).
 - [Wheat Hits 11-Week Low as Risk Premiums Ease on Ukraine Talks](https://news.google.com/rss/articles/CBMisgFBVV95cUxPalF2VTBOdE1lUWVZZkM4N25DdHowanVxUDlnSzF1Z19hQXJpT3ZQWU92aHB1NEhJaXdDQjB4UXNuQUdYSFFkb19PbDl1M1BkSDFVQ1JNZllwcUVvNE1KZDVhN3QtelczYVVoV2NLVUk1emlGdjBxaTZqZ1hhNER6Vm40bFFTVHFkbFZsc0pyUVhhdlM0bC1RbkhPdHF4RjBYYi1CYUpoLW1reU5TdktsR2tB?oc=5) · Bloomberg.com
 - [Recent moisture gives Kansas winter wheat strong start](https://news.google.com/rss/articles/CBMikwFBVV95cUxQdEY2SmJSY3FibDExcnVWZ2FISmpvZjItcmppTlF0bWxmZUwxYlg5QXIxektQdi1QZVphQmNkNkdoT2d6bG5ldXR0ZXYzUDJGQnQycXFIYWhIQzQ5N0c3S013ODBrT01WSFZTM3NjOTZZTWRoOHpaMXczWHQxb1htbllmYkFLaWpqZmV3bjlVR3VCZjA?oc=5) · Brownfield Ag News
 
 ### Cotton
 
-**Cotton** (Dec 26, mildly bearish). Dec 26 trades at 80.76 ¢/lb (-2.4% on the week, +4.2% on the month), in an up trend: the daily rating is neutral and the weekly neutral. RSI is 50 and ADX 35 (trending). Nearest support 75.17, resistance 88.08; 52-week range 66.10–93.74. Levels to watch: a close above 81.90 (100-day average) would bring trend-follower buying; below 79.57 (60-day momentum flip) adds selling; the 75.17–88.08 band is the immediate range. Next catalysts: Cotton Ginnings Oct 22; USDA weekly export sales Oct 22; Crop Progress Oct 26.
+**Cotton** (Dec 26, neutral). Dec 26 trades at 80.76 ¢/lb (-2.4% on the week, +4.2% on the month), in an up trend: the daily rating is neutral and the weekly neutral. RSI is 50 and ADX 35 (trending). Nearest support 75.17, resistance 88.08; 52-week range 66.10–93.74. Levels to watch: a close above 81.90 (100-day average) would bring trend-follower buying; below 79.57 (60-day momentum flip) adds selling; the 75.17–88.08 band is the immediate range. Next catalysts: Cotton Ginnings Oct 22; USDA weekly export sales Oct 22; Crop Progress Oct 26.
 Flags: Weather watch: Greenwood, Mississippi Delta (cotton); Sorriso, Mato Grosso.
 - [Dry weather helps finish off Arkansas cotton](https://news.google.com/rss/articles/CBMimgFBVV95cUxQS01BWmRQYnkwS3NwYjJacjNnN0VkVU1ocGRBR0JfYXBZREE0c0xKME9NWTREaUsyWnhiQjh2M2NqbE5mckFkQkRMQ0xMdUVEc2tXVzBfcFJaS2xDMTdUM3AwclNFaFJpbzRwLVM4RFVxYzgxYlZQUmh4bTBGblNPSk9CXzFuRXlpNTYtM3VVQXdJMVpaOWxRY1ZR?oc=5) · Farm Progress
 - [High-Yield Cotton Farms Win Big in New Insurance Policy Shift](https://news.google.com/rss/articles/CBMinwFBVV95cUxQbUloMzRJT1VhcHpnS0pPWWVwM2otUXFpT0ZYcEs0ZjVYdkhldkxpNHhBVHZWSER4Q2FxLUpfMmVINHhudXhENEtxWjNnaFRkQkxscVk2MWFIY09vSVMzS0N6eVRkUnV4MzF6clFKaFNYUHBtWjA5bDVEc3ZQYWlMa2FrNDJZejVoRWJwT29MeDdmbVgwNmkyZmxjc0h0T1U?oc=5) · AgWeb

@@ -1,16 +1,16 @@
 {
- "generated": "2026-10-21 12:02 UTC",
- "generated_et": "Wed Oct 21, 2026 08:02 AM ET",
+ "generated": "2026-10-21 12:22 UTC",
+ "generated_et": "Wed Oct 21, 2026 08:22 AM ET",
  "date": "2026-10-21",
- "prices_from": "2026-10-21 12:02 UTC",
+ "prices_from": "2026-10-21 12:22 UTC",
  "cme_oi_date": "20261019",
  "headlines": [
   "Biggest moves vs prior settle: Chicago wheat -8.75 (-1.4%); KC HRW wheat -9.25 (-1.3%); Lean hogs +0.800 (+1.2%).",
   "Today: USDA NDPSR dairy product prices (weekly) 12:00 PM ET.",
   "1 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported the following sales activity for MY 2026/2027: 114,000 MT of soybeans for delivery to China and 261,000 MT of soybeans for delivery to unknown destinations.",
-  "Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.",
+  "Strongest desk views: Corn strongly bearish.",
   "Through a trend-follower trigger: Class IV milk below 20.94.",
-  "Macro backdrop for ags: headwind (-2)."
+  "Macro backdrop for ags: mixed (-1)."
  ],
  "events_today": [
   {
@@ -238,7 +238,7 @@
    "spread_read": "near full carry: market paying to store \u2014 ample stocks, bearish nearby",
    "esr_pace": 0.5204,
    "esr_norm": 0.44571,
-   "view": "neutral",
+   "view": "mildly bullish",
    "conviction": "low",
    "technical": "Nov 26 trades at 1243.00 \u00a2/bu (-5.8% on the week, +9.3% on the month), in an up trend: the daily rating is buy and the weekly buy. RSI is 53 and ADX 33 (trending). Nearest support 1143.00, resistance 1335.25; 52-week range 983.00\u20131335.25.",
    "levels": "Levels to watch: a close above 1279.65 (50-day average) would bring trend-follower buying; below 1227.27 (100-day average) adds selling; the 1143.00\u20131335.25 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.",
@@ -436,7 +436,7 @@
    "esr_pace": 0.54642,
    "esr_norm": 0.61214,
    "view": "bearish",
-   "conviction": "medium",
+   "conviction": "high",
    "technical": "Dec 26 trades at 634.50 \u00a2/bu (-9.8% on the week, +3.8% on the month), in a down trend: the daily rating is sell and the weekly strong sell. RSI is 43 and ADX 27 (trending). Nearest support 613.75, resistance 674.50; 52-week range 557.25\u2013795.00.",
    "levels": "Levels to watch: a close above 650.86 (200-day average) would bring trend-follower buying; below 590.50 (100-day breakout low) adds selling; the 613.75\u2013674.50 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.",
    "flags": [
@@ -499,8 +499,8 @@
    "spread_read": "moderate carry",
    "esr_pace": 0.51407,
    "esr_norm": 0.61021,
-   "view": "strongly bearish",
-   "conviction": "high",
+   "view": "bearish",
+   "conviction": "medium",
    "technical": "Dec 26 trades at 681.75 \u00a2/bu (-10.5% on the week, +5.4% on the month), in an up trend: the daily rating is sell and the weekly sell. RSI is 44 and ADX 33 (trending). Nearest support 626.00, resistance 682.25; 52-week range 562.50\u2013858.25.",
    "levels": "Levels to watch: a close above 690.04 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 626.00\u2013682.25 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.",
    "flags": [
@@ -571,7 +571,7 @@
    "spread_read": "wide vs history",
    "esr_pace": null,
    "esr_norm": null,
-   "view": "mildly bearish",
+   "view": "neutral",
    "conviction": "low",
    "technical": "Dec 26 trades at 80.76 \u00a2/lb (-2.4% on the week, +4.2% on the month), in an up trend: the daily rating is neutral and the weekly neutral. RSI is 50 and ADX 35 (trending). Nearest support 75.17, resistance 88.08; 52-week range 66.10\u201393.74.",
    "levels": "Levels to watch: a close above 81.90 (100-day average) would bring trend-follower buying; below 79.57 (60-day momentum flip) adds selling; the 75.17\u201388.08 band is the immediate range. Next catalysts: Cotton Ginnings Oct 22; USDA weekly export sales Oct 22; Crop Progress Oct 26.",
@@ -1024,9 +1024,9 @@
  ],
  "general_news": [],
  "macro": {
-  "view": "headwind",
-  "score": -2,
-  "summary": "Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl +; mxn \u2212; risk 0; energy 0; china \u2212; breadth 0. Strongest ag/soft over the month: Sugar #11 +16.9%; weakest: Corn -15.5%. ",
+  "view": "mixed",
+  "score": -1,
+  "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl +; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Coffee +14.5%; weakest: Corn -15.6%. ",
   "sections": [
    {
     "title": "Rates",
@@ -1036,27 +1036,27 @@
    {
     "title": "Dollar & farm currencies",
     "score": 0,
-    "text": "Dollar index 101.67 (+1.2% in a month, +3.5% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.025 (-2.3% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.664 (-0.5%); USD/MXN 18.49 (+7.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 101.69 (+1.3% in a month, +3.5% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.032 (-2.1% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.664 (-0.5%); USD/MXN 18.49 (+7.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
     "score": 0,
-    "text": "S&P 500 +0.8% in a month (+12.7% YTD); VIX 17.4. Neutral risk backdrop. "
+    "text": "S&P 500 +0.8% in a month (+12.7% YTD); VIX 17.3. Neutral risk backdrop. "
    },
    {
     "title": "Energy",
-    "score": 0,
-    "text": "WTI 98.67 $/bbl (+3.0% in a month), Brent 109.42, ULSD 4.727 $/gal (-3.3%), natural gas 2.85 (+0.6%). Crude little changed on the month. "
+    "score": 1,
+    "text": "WTI 98.49 $/bbl (+10.5% in a month), Brent 109.17, ULSD 4.713 $/gal (+5.1%), natural gas 2.86 (-4.4%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -2.1% in a month, Shanghai Composite -6.0%, Hang Seng -5.6%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -3.1% in a month, Shanghai Composite -6.0%, Hang Seng -5.6%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": 0,
-    "text": "14 of 33 commodities trade above their 50-day average (42%); S&P GSCI +1.2% in a month; gold -5.2%. "
+    "text": "14 of 33 commodities trade above their 50-day average (42%); S&P GSCI +1.2% in a month; gold -5.1%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1064,11 +1064,11 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7775.0,
-   "d1": 0.25466619386866896,
-   "m1": -0.7467926214335896,
+   "last": 7776.0,
+   "d1": 0.2675606846974654,
+   "m1": -0.7340269355971096,
    "kind": "price",
-   "time": "2026-10-21 11:50 UTC"
+   "time": "2026-10-21 11:57 UTC"
   },
   {
    "name": "S&P 500",
@@ -1080,11 +1080,11 @@
   },
   {
    "name": "VIX",
-   "last": 17.35,
-   "d1": 0.23108339278876677,
-   "m1": 16.677875813902034,
+   "last": 17.32,
+   "d1": 0.05777316213841921,
+   "m1": 16.47612732546302,
    "kind": "price",
-   "time": "2026-10-21 11:45 UTC"
+   "time": "2026-10-21 11:52 UTC"
   },
   {
    "name": "US 10-year",
@@ -1096,27 +1096,27 @@
   },
   {
    "name": "US dollar index",
-   "last": 101.675,
-   "d1": -0.05406797908047434,
-   "m1": 1.2396691138514937,
+   "last": 101.694,
+   "d1": -0.03539108989043527,
+   "m1": 1.2585877635998388,
    "kind": "price",
-   "time": "2026-10-21 11:50 UTC"
+   "time": "2026-10-21 11:57 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.1233,
-   "d1": 0.15342918437053488,
-   "m1": -2.1493327097202086,
+   "last": 1.1237,
+   "d1": 0.1890931847922772,
+   "m1": -2.1144887081924635,
    "kind": "price",
-   "time": "2026-10-21 12:00 UTC"
+   "time": "2026-10-21 12:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.0249,
-   "d1": -0.24022590550066836,
-   "m1": -2.252608915325538,
+   "last": 5.0317,
+   "d1": -0.10522491765163622,
+   "m1": -2.1203312064406177,
    "kind": "price",
-   "time": "2026-10-21 12:00 UTC"
+   "time": "2026-10-21 12:07 UTC"
   },
   {
    "name": "USD/CNY",
@@ -1128,35 +1128,35 @@
   },
   {
    "name": "WTI crude",
-   "last": 98.67,
-   "d1": -3.0651349714757803,
-   "m1": 3.017332697364594,
+   "last": 98.49,
+   "d1": 0.6849318209630084,
+   "m1": 10.464329244813197,
    "kind": "price",
-   "time": "2026-10-21 11:50 UTC"
+   "time": "2026-10-21 11:56 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 2.854,
-   "d1": -3.678705938328364,
-   "m1": 0.6346979742659187,
+   "last": 2.86,
+   "d1": -3.4762084735876386,
+   "m1": -4.443702945588635,
    "kind": "price",
-   "time": "2026-10-21 11:50 UTC"
+   "time": "2026-10-21 11:56 UTC"
   },
   {
    "name": "Gold",
-   "last": 4157.4,
-   "d1": 0.3572611885014565,
-   "m1": -5.166630338038914,
+   "last": 4158.5,
+   "d1": 0.38381456015379456,
+   "m1": -5.141538524254285,
    "kind": "price",
-   "time": "2026-10-21 11:50 UTC"
+   "time": "2026-10-21 11:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.548,
-   "d1": -0.28173587746204154,
-   "m1": -2.0713388316452086,
+   "last": 6.554,
+   "d1": -0.7496008208228044,
+   "m1": -3.0831765640788045,
    "kind": "price",
-   "time": "2026-10-21 11:50 UTC"
+   "time": "2026-10-21 11:57 UTC"
   },
   {
    "name": "S&P GSCI",
@@ -1164,7 +1164,7 @@
    "d1": 0.00026974914668631556,
    "m1": 1.1966953040568384,
    "kind": "price",
-   "time": "2026-10-21 12:00 UTC"
+   "time": "2026-10-21 12:07 UTC"
   }
  ],
  "econ": [

@@ -72,8 +72,8 @@ const EnergyGeo = (() => {
     if (!G) { el.innerHTML = '<p class="note">Energy geography not built yet (runs weekly; first build pending).</p>'; return; }
     const prod = G.production || [];
     el.innerHTML = `
-      <div class="card"><h2>Where ${G.name.toLowerCase()} is produced <span class="note">${G.prod_source}, ${G.year}, ${G.unit}</span></h2>
-        <div class="geo-wrap"><svg class="geo-map" id="egW"></svg><div><p class="note">Shaded: countries with at least ${G.threshold}% of world output (darker = larger). World ${n1(G.world)} ${G.unit}.</p>
+      <div class="card"><h2>${G.prod_title || `Where ${G.name.toLowerCase()} is produced`} <span class="note">${G.prod_source}, ${G.year}, ${G.unit}</span></h2>
+        <div class="geo-wrap"><svg class="geo-map" id="egW"></svg><div><p class="note">Shaded: countries with at least ${G.threshold}% of the world total (darker = larger). World ${n1(G.world)} ${G.unit}.</p>
         ${tbl(['Country', 'Production', 'Share', 'vs last yr', 'vs 5-yr avg'], prod.map(p => `<tr class="${p.mapped ? '' : 'note'}"><td class="l">${p.mapped ? '<b>' + p.country + '</b>' : p.country}</td><td>${n1(p.value)}</td><td>${p.share}%</td><td class="${cls(p.value - p.prev)}">${pct(p.value, p.prev)}</td><td class="${cls(p.value - p.avg5)}">${pct(p.value, p.avg5)}</td></tr>`))}</div></div></div>
       ${G.us_states ? `<div class="card" style="margin-top:12px"><h2>United States: ${G.us_states.what} <span class="note">${G.us_states.source}, ${G.us_states.period}</span></h2>
         <div class="geo-wrap"><svg class="geo-map" id="egU"></svg><div>${tbl(['State', G.us_states.unit, 'Share', 'vs year ago'], G.us_states.states.slice(0, 14).map(s => `<tr><td class="l">${s.state}</td><td>${n0(s.value)}</td><td>${s.share}%</td><td class="${cls(s.value - s.prev)}">${pct(s.value, s.prev)}</td></tr>`))}

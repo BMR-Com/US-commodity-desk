@@ -32,7 +32,7 @@ jobs:
         continue-on-error: true
       - run: python pipelines/prices.py
         continue-on-error: true
-      - run: python pipelines/ohlc.py && python pipelines/tv_settle.py && python -W ignore models/technicals.py && python models/vol.py
+      - run: python pipelines/ohlc.py && python pipelines/tv_settle.py && python -W ignore models/technicals.py && python models/vol.py && python models/options_desk.py
         continue-on-error: true
       - run: python pipelines/ams_mars.py
         continue-on-error: true

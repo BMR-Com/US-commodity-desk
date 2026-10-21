@@ -257,7 +257,7 @@ def main():
                "a weak job market or falling real incomes hits meat and dairy demand first.")
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "us_econ.json").write_text(json.dumps({"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-                                                   "sources": "BLS public API, BEA/ISM/UMich via DBnomics, New York Fed, US Treasury (all free, no keys)",
+                                                   "sources": "BLS public API, BEA (via DBnomics), New York Fed, US Treasury (all free, no keys)",
                                                    "indicators": ind, "rates": rates, "read": " ".join(txt)}, default=lambda o: None))
     print("us_econ", len(ind), "indicators;", " ".join(txt)[:400])
 

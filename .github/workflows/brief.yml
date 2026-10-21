@@ -1,0 +1,41 @@
+name: morning-brief
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['models/morning_brief.py', '.github/workflows/brief.yml']
+  schedule:
+    # Ready before 8 am ET all year: 10:35 UTC = 6:35 EDT / 5:35 EST, 11:35 UTC = 7:35 EDT / 6:35 EST.
+    # The later run picks up overnight trade and news closer to the open; both are cheap.
+    - cron: '35 10 * * *'
+    - cron: '35 11 * * *'
+permissions: {contents: write}
+concurrency: {group: brief, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy openpyxl git+https://github.com/rongardF/tvdatafeed.git
+      - name: overnight prices and technicals
+        continue-on-error: true
+        run: python pipelines/ohlc.py && python -W ignore models/technicals.py
+      - name: news and calendar
+        continue-on-error: true
+        run: python pipelines/news.py; python pipelines/events_calendar.py
+        env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
+      - name: trader sheet, summary, brief
+        run: |
+          python -W ignore models/trader_sheet.py || true
+          python -W ignore models/summary.py || true
+          python -W ignore models/morning_brief.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -q -m "brief: morning brief $(TZ=America/New_York date +%F' '%H:%M) ET"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

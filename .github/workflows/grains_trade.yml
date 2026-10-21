@@ -6,8 +6,10 @@ on:
     paths: ['pipelines/grains_trade.py', 'models/grains_esr_brief.py', 'models/grains_wasde_brief.py', '.github/workflows/grains_trade.yml']
   schedule:
     - cron: '30 21 * * 1'     # Monday after Crop Progress (4 pm ET) and inspections
-    - cron: '0 14 * * 2-5'    # weekday mornings: flash sales, Thursday export sales
-    - cron: '30 17 * * 4'     # Thursday after weekly export sales (8:30 ET)
+    - cron: '31 12 * * 4'     # Thursday weekly export sales, 8:30 ET in daylight time (12:30 UTC): waits for the release
+    - cron: '31 13 * * 4'     # same in standard time (13:30 UTC); exits at once if the week is already stored
+    - cron: '0 14 * * 2-5'    # weekday mornings: flash sales; catches a holiday-shifted (Friday) export sales report
+    - cron: '30 17 * * 4'     # Thursday backstop
 permissions: {contents: write}
 concurrency: {group: grains-trade, cancel-in-progress: false}
 jobs:
@@ -20,9 +22,14 @@ jobs:
         with: {python-version: '3.11'}
       - run: pip install -q requests pandas numpy
       - name: trade (inspections, export sales, flash)
-        run: python pipelines/grains_trade.py
+        run: |
+          if [ "${{ github.event.schedule }}" = "31 12 * * 4" ] || [ "${{ github.event.schedule }}" = "31 13 * * 4" ]; then
+            python pipelines/grains_trade.py export_sales_release   # release run: export sales only, as soon as it is out
+          else
+            python pipelines/grains_trade.py
+          fi
         continue-on-error: true
-        env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
+        env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}', ESR_WAIT: '45'}
       - name: export sales analytics (brief engine, sales/flash models, WASDE cross-check)
         continue-on-error: true
         run: |
@@ -30,10 +37,13 @@ jobs:
           python -W ignore models/grains_flash.py || true
           python -W ignore models/grains_esr_brief.py
           python -W ignore models/grains_wasde_brief.py
+          python -W ignore models/trader_sheet.py || true
+          python -W ignore models/summary.py || true
+          python -W ignore models/morning_brief.py || true
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/grains
+          git add data/grains data/summary data/brief
           git diff --cached --quiet && exit 0
           git commit -q -m "data: grains trade $(date -u +%F)"
           for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

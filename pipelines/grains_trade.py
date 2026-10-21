@@ -98,6 +98,55 @@ def export_sales():
             time.sleep(0.5)
 
 
+def _latest_esr_week(name="corn"):
+    """Newest week-ending date in the stored current-marketing-year file (e.g. '2026-10-08')."""
+    files = sorted((OUT / "export_sales" / name).glob("MY*.csv"))
+    if not files:
+        return None
+    try:
+        return str(pd.read_csv(files[-1], usecols=["weekEndingDate"])["weekEndingDate"].max())[:10]
+    except Exception:
+        return None
+
+
+def export_sales_release():
+    """Thursday 8:30 am ET release: wait for the new week to appear in the FAS API, then fetch.
+
+    FAS publishes the weekly report at 8:30 ET on Thursday (Friday after some holidays) covering the week ending
+    the previous Thursday. Scheduled twice (12:31 and 13:31 UTC) so one run lands just after 8:30 ET whether
+    daylight time is in force or not; a run before 8:25 ET exits (it is the other season's twin), and a run after
+    the new week is already stored does nothing. Polls the API every 2 minutes for up to ESR_WAIT minutes.
+    """
+    from datetime import datetime, timedelta
+    from zoneinfo import ZoneInfo
+    if not FAS_KEY:
+        print("export sales: no FAS_API_KEY secret")
+        return
+    now = datetime.now(ZoneInfo("America/New_York"))
+    if (now.hour, now.minute) < (8, 25):
+        print("export sales release: before 8:25 ET, nothing to wait for", now.strftime("%H:%M"))
+        return
+    back = (now.weekday() - 3) % 7  # days since the latest Thursday
+    want = (now.date() - timedelta(days=back + 7)).isoformat()
+    have = _latest_esr_week()
+    if have and have >= want:
+        print("export sales release: week", want, "already stored")
+        return
+    cur = int(want[:4]) + (1 if want[5:7] >= "09" else 0)  # corn MY starts in September
+    deadline = time.time() + 60 * float(os.environ.get("ESR_WAIT", "45"))
+    while True:
+        r = get(f"{ESR}/exports/commodityCode/401/allCountries/marketYear/{cur}", headers={"X-Api-Key": FAS_KEY})
+        weeks = sorted({str(x.get("weekEndingDate"))[:10] for x in (r.json() if r is not None else [])})
+        if weeks and weeks[-1] >= want:
+            print("export sales release: week", weeks[-1], "is out at", datetime.now(ZoneInfo("America/New_York")).strftime("%H:%M ET"))
+            export_sales()
+            return
+        if time.time() > deadline:
+            print("export sales release: week", want, "not out yet; latest", weeks[-1] if weeks else None)
+            return
+        time.sleep(120)
+
+
 def flash():
     """FAS daily export sales announcements (large sales reported the next day)."""
     d = OUT / "flash"

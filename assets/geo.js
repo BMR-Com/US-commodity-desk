@@ -45,16 +45,17 @@ const Geo = (() => {
     const max = Math.max(...fl.map(f => f.t), 1);
     const exps = [...new Set(fl.map(f => f.from))];
     const col = d3.scaleOrdinal(exps, ['#2f6db3', '#c48a1c', '#b8452f', '#3a8a5a', '#7a4fa0', '#6b6b6b']);
-    svg.append('defs').selectAll('marker').data(exps).join('marker').attr('id', (d, i) => 'geoArr' + i).attr('viewBox', '0 0 10 10').attr('refX', 8).attr('refY', 5)
-      .attr('markerWidth', 5).attr('markerHeight', 5).attr('orient', 'auto').append('path').attr('d', 'M0,0L10,5L0,10z').attr('fill', d => col(d));
+    svg.append('defs').selectAll('marker').data(exps).join('marker').attr('id', (d, i) => 'geoArr' + i).attr('viewBox', '0 0 10 10').attr('refX', 9).attr('refY', 5)
+      .attr('markerUnits', 'userSpaceOnUse').attr('markerWidth', 11).attr('markerHeight', 11).attr('orient', 'auto').append('path').attr('d', 'M0,0L10,5L0,10z').attr('fill', d => col(d));
     const g = svg.append('g');
+    let nl = 0;
     for (const f of fl) {
       const a = cen(f.from_iso), b = cen(f.to_iso); if (!a || !b) continue;
       const dx = b[0] - a[0], dy = b[1] - a[1], dr = Math.hypot(dx, dy) * 1.2;
       g.append('path').attr('d', `M${a[0]},${a[1]}A${dr},${dr} 0 0,1 ${b[0]},${b[1]}`).attr('fill', 'none').attr('stroke', col(f.from)).attr('stroke-opacity', .75)
-        .attr('stroke-width', 1 + 9 * Math.sqrt(f.t / max)).attr('marker-end', `url(#geoArr${exps.indexOf(f.from)})`)
+        .attr('stroke-width', 1 + 7 * Math.sqrt(f.t / max)).attr('marker-end', `url(#geoArr${exps.indexOf(f.from)})`)
         .append('title').text(`${f.from} → ${f.to}: ${n0(f.t / 1000)} kt (${f.year}), $${n0(f.usd / 1e6)}m`);
-      if (f.t >= max * 0.18) g.append('text').attr('x', (a[0] + b[0]) / 2).attr('y', (a[1] + b[1]) / 2 - 4).attr('class', 'geo-flow').text(`${n0(f.t / 1000)} kt`);
+      if (f.t >= max * 0.25 && nl++ < 6) g.append('text').attr('x', (a[0] + b[0]) / 2).attr('y', (a[1] + b[1]) / 2 - 4).attr('class', 'geo-flow').text(`${n0(f.t / 1000)} kt`);
     }
     for (const e of exps) { const c = cen(fl.find(f => f.from === e).from_iso); if (c) g.append('circle').attr('cx', c[0]).attr('cy', c[1]).attr('r', 5).attr('fill', col(e)).attr('stroke', '#fff'); }
     return exps.map(e => `<span class="geo-key"><i style="background:${col(e)}"></i>${e}</span>`).join(' ');
@@ -107,7 +108,7 @@ const Geo = (() => {
     const regs = WX.regions.filter(r => G.weather_regions.includes(r.id));
     const unit = (G.unit || '').replace(/[()]/g, '');
     const usd = G.us_dest;
-    const destTbl = (d, lbl) => !d ? '' : `<h3>${lbl} <span class="note">${d.measure}${d.my ? `, MY ${d.my}/${String(d.my + 1).slice(2)}` : ''}${d.week ? ` (week ending ${d.week})` : ''}${d.year ? `, ${d.year}` : ''}</span></h3>
+    const destTbl = (d, lbl) => !d ? '' : `<h3>${lbl} <span class="note">${d.measure}${d.my ? `, marketing year ${d.my - 1}/${String(d.my).slice(2)}` : ''}${d.week ? ` (week ending ${d.week})` : ''}${d.year ? `, ${d.year}` : ''}</span></h3>
       <div class="tbl"><table><tr><th class="l">#</th><th class="l">Destination</th><th>Quantity</th><th>Share</th></tr>${d.top.map((x, i) => `<tr><td class="l">${i + 1}</td><td class="l">${x.country}</td><td>${n0(x.value)}</td><td>${x.share ?? '–'}%</td></tr>`).join('')}
       ${d.unknown ? `<tr><td></td><td class="l note">Unknown destinations</td><td class="note">${n0(d.unknown)}</td><td class="note">${n1(d.unknown / d.total * 100)}%</td></tr>` : ''}</table></div>`;
     el.innerHTML = `
@@ -120,7 +121,7 @@ const Geo = (() => {
         <div class="geo-wrap"><svg class="geo-map" id="geoU"></svg><div class="tbl"><table><tr><th class="l">State</th><th>${G.us_states.unit.toLowerCase()}</th><th>Share</th></tr>
         ${G.us_states.states.slice(0, 12).map(s => `<tr><td class="l">${s.state}</td><td>${n0(s.value)}</td><td>${s.share}%</td></tr>`).join('')}</table></div></div></div>` : ''}
       <div class="card" style="margin-top:12px"><h2>Trade flows <span class="note">top exporters' shipments by destination, UN Comtrade ${G.flows_year || ''}, thousand tonnes</span></h2>
-        ${G.flows.length ? `<svg class="geo-map" id="geoF"></svg><div id="geoFK" class="note"></div>` : '<p class="note">Bilateral flow data loading (UN Comtrade is rate-limited; filled in over the next runs).</p>'}
+        ${G.flows.length ? `<svg class="geo-map" id="geoF"></svg><div id="geoFK" class="note"></div>` : (key === 'milk' ? '<p class="note">Fluid milk is hardly traded across borders; see Cheese, Butter and Nonfat dry milk for dairy trade flows.</p>' : '<p class="note">Bilateral flow data loading (UN Comtrade is rate-limited; filled in over the next runs).</p>')}
         <div class="grid g2" style="margin-top:8px"><div><h3>Top 5 exporters <span class="note">PSD ${G.my}/${String(G.my + 1).slice(2)}, ${unit}</span></h3><div class="tbl"><table><tr><th class="l">Exporter</th><th>Exports</th><th>Share of world</th><th>Last yr</th></tr>
           ${G.exporters.map(e => `<tr><td class="l">${e.country}</td><td>${n1(e.value)}</td><td>${e.share}%</td><td>${n1(e.prev)}</td></tr>`).join('')}</table></div>
           <h3>Top importers</h3><div class="tbl"><table><tr><th class="l">Importer</th><th>Imports</th><th>Share</th><th>Last yr</th></tr>

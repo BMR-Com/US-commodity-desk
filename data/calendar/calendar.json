@@ -1,5 +1,5 @@
 {
-"generated": "2026-10-21 02:43 UTC",
+"generated": "2026-10-21 11:32 UTC",
 "events": [
 {
 "date": "2026-10-14",
@@ -933,6 +933,18 @@
 },
 {
 "date": "2026-11-23",
+"time": "",
+"event": "Cotton Dec 26: first notice day",
+"cat": "ICE contract",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-23",
 "time": "10:00 AM CT",
 "event": "USDA export inspections",
 "cat": "USDA",
@@ -1297,6 +1309,18 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2026-12-08",
+"time": "",
+"event": "Cotton Dec 26: last trading day",
+"cat": "ICE contract",
+"markets": [
+"CT"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 },
 {
 "date": "2026-12-09",

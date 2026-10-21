@@ -1,0 +1,42 @@
+name: geo
+on:
+  workflow_dispatch:
+    inputs:
+      steps: {description: 'geo.py steps (psd comtrade nass usdm) and/or weather', required: false, default: 'all'}
+  push:
+    branches: [main]
+    paths: ['pipelines/geo.py', 'pipelines/geo_weather.py', 'models/geo.py', '.github/workflows/geo.yml']
+  schedule:
+    - cron: '20 10 * * *'    # daily: crop-region weather (Open-Meteo) + Drought Monitor, before the morning brief
+    - cron: '40 15 * * 1'    # Mondays: PSD, Comtrade, NASS state data (PSD updates after WASDE)
+permissions: {contents: write}
+concurrency: {group: geo, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy
+      - name: PSD, Comtrade, NASS states, Drought Monitor
+        continue-on-error: true
+        env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}'}
+        run: |
+          S="${{ github.event.inputs.steps }}"
+          if [ "${{ github.event.schedule }}" = "20 10 * * *" ]; then python pipelines/geo.py usdm;
+          elif [ -z "$S" ] || [ "$S" = "all" ]; then python pipelines/geo.py psd comtrade nass usdm;
+          else python pipelines/geo.py $(echo $S | sed 's/weather//'); fi
+      - name: crop-region weather vs history (Open-Meteo)
+        continue-on-error: true
+        run: python pipelines/geo_weather.py
+      - name: assemble
+        run: python models/geo.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/geo
+          git diff --cached --quiet && exit 0
+          git commit -q -m "geo: production, trade, weather $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

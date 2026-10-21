@@ -1,0 +1,176 @@
+{
+"generated": "2026-10-21 19:10 UTC",
+"data_date": "2026-10-21",
+"items": {
+"overview": {
+"title": "Desk overview (morning brief, macro, energy)",
+"model": "openai/gpt-oss-120b",
+"read": "The morning brief (Wed Oct 21, 2026 02:54 PM ET) shows Class III milk down 0.59 cents (-3.3%), KC HRW wheat off 17.25 cents (-2.5%) and Chicago wheat down 15.00 cents (-2.3%). USDA’s weekly NDPSR dairy product prices release is scheduled for 12:00 PM ET today. A flash export sale in the past three days reported 114,000 MT of soybeans for delivery to China and 261,000 MT to unknown destinations for MY 2026/27. The desk’s strongest views are strongly bearish on corn and KC HRW wheat, while the macro backdrop is a -2 headwind across rates, dollar, Brazil real, MXN, risk, energy, China and breadth. Energy data show gas storage at 3,567 Bcf (week to 2026‑10‑09) and crude stocks at 412.5 mb, with the 3‑2‑1 crack at $51.97 /bbl, influencing farm fuel and ethanol margins.",
+"faq": [
+{
+"q": "What matters most today?",
+"a": "The key item today is the USDA NDPSR dairy product price release at 12:00 PM ET, which will set the tone for milk and other dairy contracts. Traders will also watch the continued weakness in Class III milk (-0.59 cents, -3.3%) and the sharp declines in KC HRW wheat (-17.25 cents, -2.5%) and Chicago wheat (-15.00 cents, -2.3%). The recent flash export sale of 114,000 MT of soybeans to China and 261,000 MT to unknown destinations adds a supply‑demand angle for soybeans."
+},
+{
+"q": "What is the macro backdrop for ags?",
+"a": "The macro backdrop is a headwind with a score of -2, reflecting negative pressure across most factors. Rates are neutral (0), the dollar is negative, Brazil real is neutral (0), MXN is negative, risk is neutral (0), energy is positive, China is negative, and breadth is neutral. This combination of a firm dollar, high real yields and sticky inflation weighs on fund demand for commodities."
+}
+]
+},
+"ZS": {
+"title": "Soybeans",
+"model": "openai/gpt-oss-120b",
+"read": "Soybeans (ZS) are trading at 1,246.25 ¢/bu on 2026-10-26, down 2.4% week‑over‑week and 6.0% month‑over‑month, with RSI at 34 and a weak ADX of 20. The desk rates the market neutral with low conviction because fundamentals are mildly bearish (ending stocks 315 M bu, stocks/use 6.9%, farm price $12.00) while flows are bullish (managed‑money net long 237,491 lots, near a 10‑yr long extreme) and technicals are mixed. Key price bands are 1,167.00 ¢/bu support and 1,256.50 ¢/bu resistance; a close above 1,279.64 ¢/bu (50‑day avg) would trigger trend‑follower buying, while below 1,227.27 ¢/bu (100‑day avg) adds selling. Upcoming catalysts include USDA weekly export sales on 2026-10-22 and 2026-10-29 and the Crop Progress report on 2026-10-26, with the NASS Crop Production report due 2026-11-10.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk view is neutral with low conviction because fundamentals are slightly bearish (ending stocks 315 M bu, stocks/use 6.9%, farm price $12.00) but flows are strongly bullish (managed‑money net long 237,491 lots, 99th percentile 10‑yr long) and technicals are mixed (sell daily, buy weekly, RSI 34). The disagreement among lenses leads to a small‑size, wait‑for‑confirmation stance."
+},
+{
+"q": "What are funds (COT) doing?",
+"a": "Managed‑money funds are net long 237,491 lots (17.9% of open interest), at the 99th percentile of a 10‑year long extreme, but they reduced net long by 14,169 lots this week, indicating fresh shorting pressure."
+}
+]
+},
+"ZL": {
+"title": "Soybean oil",
+"model": "openai/gpt-oss-120b",
+"read": "Soybean oil (ZL) is trading at 65.95 ¢/lb as of 2026-10-26, down 1.7% on the week and 2.9% on the month, with RSI at 37 and ADX at 10 indicating a range‑bound market. The desk is mildly bearish with low conviction because technicals are bearish (sell rating, support at 64.63 ¢/lb, resistance at 66.14 ¢/lb), flows are net long but liquidating (managed‑money net long 89,328 lots, down 10,119 lots w/w), and fundamentals are neutral (USDA 2026/27 ending stocks 1,797 mt, stocks/use 5.4%). Key price thresholds are 65.36 ¢/lb (200‑day average) and 67.56 ¢/lb (20‑day momentum flip); a break above 67.56 would attract trend‑follower buying, while a drop below 65.36 would add selling pressure. Upcoming catalysts are USDA weekly export sales on 2026-10-22, 2026-10-29 and 2026-11-05, and the USDA WASDE release on 2026-11-10.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk is mildly bearish with low conviction because technicals are bearish (sell rating, RSI 37, support 64.63 ¢/lb, resistance 66.14 ¢/lb), flows are net long but showing weekly liquidation, and fundamentals are neutral (ending stocks 1,797 mt, stocks/use 5.4%)."
+}
+]
+},
+"ZW": {
+"title": "Chicago wheat",
+"model": "openai/gpt-oss-120b",
+"read": "The desk is bearish on Chicago wheat (ZW) with medium conviction. Price is at 628.25 ¢/bu (down 6.7% week, 12.4% month) in a mixed trend but technicals are strongly bearish (RSI 26, ADX 26, support 626.25, resistance 634.00). Managed‑money funds are net short 33,038 lots, with 76% of shorts underwater and 15% of longs underwater. Fundamentals are also bearish: USDA reports 740 million bu ending stocks (stocks‑to‑use 39.8%) and export commitments are 8% below USDA’s target. The convergence of bearish fundamentals, technical weakness and heavy short positioning drives the desk view.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk rates Chicago wheat a strong sell and is overall bearish with medium conviction. The view is driven by weak fundamentals (high ending stocks, low export commitments), technical weakness (price down 6.7% week, RSI 26, tight range 626.25‑634.00) and heavy short fund positioning."
+},
+{
+"q": "What are funds (COT) doing?",
+"a": "Managed‑money funds are net short 33,038 lots (‑5.4% of open interest), down 3,495 lots week‑over‑week. This is at the 75th percentile of the past three years, with 76% of short positions underwater and 15% of long positions underwater."
+},
+{
+"q": "What are the key levels and next catalysts?",
+"a": "Immediate range is 626.25‑634.00. A close above 650.79 (200‑day average) would attract trend‑follower buying, while a break below 590.50 (100‑day breakout low) would add selling pressure. Upcoming catalysts are USDA weekly export sales on Oct 22 and Oct 29, Crop Progress on Oct 26, and the NASS Crop Production report on Nov 10."
+}
+]
+},
+"KE": {
+"title": "KC HRW wheat",
+"model": "openai/gpt-oss-120b",
+"read": "The desk is strongly bearish on KC HRW wheat (KE) as of 2026-10-26, citing bearish fundamentals, technicals and flows. Fundamentals show ending stocks at 740 million bu (+23 % month‑on‑month) with a stocks‑to‑use ratio of 39.8 % and export commitments down 16 % versus a normal pace, pressuring prices. Technically the contract trades at 673.75 ¢/bu, down 5.8 % week‑over‑week and 13.8 % month‑over‑month, with RSI 23 (oversold), ADX 27 (trending) and support/resistance at 658.25/678.50 ¢/bu. Managed money remains net long 17,391 lots (5.1 % of OI) but posted a weekly long liquidation of 6,649 lots, indicating weakening bullish positioning. The next catalysts are USDA weekly export sales on 2026-10-22 and 2026-10-29 and the Crop Progress report on 2026-10-26.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk holds a strongly bearish view with high conviction because fundamentals are weak (ending stocks 740 million bu, stocks‑to‑use 39.8 %, export commitments 16 % below normal), technicals are bearish (price 673.75 ¢/bu, RSI 23, ADX 27, price below the 200‑day average of 689.96 ¢/bu), and flows are turning negative (weekly long liquidation of 6,649 lots)."
+},
+{
+"q": "What are funds (COT) doing?",
+"a": "Managed money is net long 17,391 lots (about $0.59 bn exposure, 5.1 % of open interest) but has reduced its long position by 6,649 lots this week, indicating a shift toward liquidation. The trend score is -0.50 (mixed) and funds are 35,014 lots longer than the trend model suggests, implying excess bullish exposure that is being unwound."
+}
+]
+},
+"LE": {
+"title": "Live cattle",
+"model": "openai/gpt-oss-120b",
+"read": "Live cattle settled at 231.05 ¢/lb on Dec 26 2026, up 2.6% on the week and 5.3% on the month, with RSI 67 and ADX 17 indicating a range‑bound market. The daily and weekly ratings are strong‑buy, but the desk holds a mildly bullish view with low conviction because fundamentals are neutral, technicals are bullish, and flows are mixed. Managed money is net long but has been liquidating, so the desk recommends a small, cautious position pending price confirmation.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk is mildly bullish with low conviction. Fundamentals are neutral (live steer $224.19 / lb week of 2026‑10‑19, Cattle on Feed +0.7% y/y, placements –9.2%, marketings –3.3% in Sep 2026), technicals are strongly bullish (price above 250‑day flip at 232.918, RSI 67), and flows are neutral, so the lenses disagree and the desk favors a small, waiting stance."
+},
+{
+"q": "What are funds (COT) doing?",
+"a": "Managed money is net long 48,748 lots (about $4.51 bn, 12.5% of open interest) but shed 2,172 lots this week (long liquidation, z‑score –0.29). The net long sits at the 21st percentile of the past three years, 28th of ten years, and 42nd of all history since 2006. Longs are up $1.394 bn, shorts down $184 m, and the trend score is flat (0), with funds 17,236 lots shorter than the trend would suggest."
+}
+]
+},
+"CT": {
+"title": "Cotton",
+"model": "openai/gpt-oss-120b",
+"read": "Cotton is trading at 81.92 ¢/lb on Dec 26, up 1.6% week‑over‑week but down 1.1% month‑over‑month, with RSI at 52 and ADX 15 indicating a range‑bound market. The desk is neutral with low conviction because fundamentals are modestly bearish (WASDE shows US production 13.44 m bales +0.24 m, exports flat at 12.30 m, ending stocks 3.80 m +0.20 m) while technicals are mildly bullish and fund flows are mixed. Managed money is net long 65,699 lots (≈$2.69 bn) and has added 1,862 lots this week, but the trend score is flat, leaving the overall outlook balanced. Key price levels are support 80.71 ¢/lb, resistance 82.05 ¢/lb, with a breakout above 83.58 ¢/lb (20‑day momentum flip) or a drop below 81.90 ¢/lb (100‑day average) likely to trigger trend‑follower buying or selling respectively. Upcoming catalysts include Cotton Ginnings (Oct 22), USDA weekly export sales (Oct 22) and Crop Progress (Oct 26), followed by the NASS Crop Production report on Nov 10, 2026.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk holds a neutral view with low conviction because the lenses diverge: fundamentals from the Oct 2026 WASDE are slightly bearish, technicals show modest bullish momentum, and fund flows are essentially flat, so the overall signal is balanced."
+}
+]
+},
+"DY": {
+"title": "Dry whey",
+"model": "openai/gpt-oss-120b",
+"read": "Dry whey shows a strong time‑series momentum signal, delivering a +6.3% excess return over the past 12 months (roll‑adjusted) and a back‑tested trend Sharpe of 0.84 since 2011‑03‑31. The rule is long at 2.60× target exposure for a 40% volatility target, with EWMA volatility at 15% (4th 5‑yr percentile). Carry is deeply negative, with front‑month DYX2026 vs DYZ2026 storage carry at -35.0%/yr (21st percentile for the month) and a seasonal‑adjusted carry of -18.0%. Cross‑sectionally the contract ranks #14/20 on momentum and #17/20 on carry, and recent realized 20‑day volatility is 7.2% (22nd percentile over 5 years).",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "We are bullish on Dry whey based on the robust momentum signal (+6.3% excess return) and a solid trend Sharpe of 0.84, indicating risk‑adjusted outperformance. The negative carry (-35.0%/yr) is viewed as a discount that the momentum exposure can capture, while volatility is low (15% EWMA, 7.2% 20‑day realized), supporting the 2.60× leverage target."
+},
+{
+"q": "What are funds (COT) doing?",
+"a": "COT data for Dry whey is not provided in the source material, so we cannot comment on current fund positioning."
+},
+{
+"q": "What are the key levels and next catalysts?",
+"a": "Specific price levels or upcoming catalyst events are not included in the supplied data, so no key levels can be identified at this time."
+},
+{
+"q": "What do the fundamentals say?",
+"a": "Fundamental information for Dry whey (e.g., supply‑demand balances, inventory data) is not available in the provided dataset, so a fundamentals assessment cannot be made."
+}
+]
+},
+"NG": {
+"title": "Natural gas",
+"model": "openai/gpt-oss-120b",
+"read": "The desk is short natural gas, using a 0.97x short position based on a -23.2% excess return over 12 months (roll‑adjusted) and a 41% EWMA volatility. Carry is deeply negative at -160.8%/yr (0th percentile for the month) and seasonal‑adjusted -114.5%, while momentum and carry rankings are low (#17/20 and #20/20). Back‑tested trend Sharpe is modest at 0.21 since 2012‑11‑30, and flags show a choppy, jumpy, and crowded short environment. Storage is near normal, with Lower 48 inventories down 0.1% versus the 5‑year average for the week to 2026‑10‑09.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk is short natural gas (0.97x) because trend excess return is -23.2%, carry is strongly negative (-160.8%/yr, 0th percentile), and both momentum (rank 17/20) and carry (rank 20/20) are weak. The back‑test shows a modest trend Sharpe of 0.21 and the market is flagged as choppy, jumpy and crowded on the short side."
+},
+{
+"q": "What are funds (COT) doing?",
+"a": "Managed money net positions are at the 4th 5‑year percentile, indicating a short bias that aligns with the trend signal; the COT is being used as a crowding gauge rather than a return signal."
+},
+{
+"q": "What are the key levels and next catalysts?",
+"a": "Specific price levels are not provided. The next catalysts will likely be seasonal storage dynamics and weather‑driven demand, given that storage is near normal (-0.1% vs 5‑year average for the week to 2026‑10‑09) and carry remains deeply negative."
+},
+{
+"q": "What do the fundamentals say?",
+"a": "Fundamentals are weak: Lower 48 storage is only -0.1% relative to the 5‑year average for the week to 2026‑10‑09, indicating near‑normal inventories, while storage carry is -160.8%/yr (0th percentile) and seasonally adjusted -114.5%, providing little support for price upside."
+}
+]
+},
+"CL": {
+"title": "WTI crude",
+"model": "openai/gpt-oss-120b",
+"read": "WTI crude (CL) shows a strong 12‑month roll‑adjusted excess return of +130.5% as of 2026-10-21, supporting a time‑series momentum long position at 0.85× target exposure with a 40% volatility target (EWMA vol 47%). The front‑month calendar spread CLZ2026 vs CLF2027 offers a storage carry of +19.6%/yr (97th percentile for the month) and a seasonal‑adjusted carry of +17.8%. Backtests since 2012‑11‑30 give a trend Sharpe of 0.36 and a carry Sharpe of 0.33, while realized 20‑day vol is 38.1% (62nd percentile over 5 years). Crude stocks ex‑SPR are down -3.7% versus the 5‑year weekly average for the week to 2026-10-16, indicating weaker near‑term sentiment.",
+"faq": [
+{
+"q": "What is the desk's view and why?",
+"a": "The desk is bullish on WTI crude, maintaining a long position at 0.85× because the 12‑month excess return of +130.5% and the high storage carry (+19.6%/yr) suggest strong upside. Backtested momentum and carry signals both show positive Sharpe ratios (0.36 and 0.33), reinforcing the view despite modest realized volatility (38.1%)."
+},
+{
+"q": "What are funds (COT) doing?",
+"a": "COT data is not provided in the source material, so no fund positioning can be reported."
+},
+{
+"q": "What are the key levels and next catalysts?",
+"a": "Specific price levels or upcoming catalysts are not included in the supplied data, so they cannot be detailed at this time."
+},
+{
+"q": "What do the fundamentals say?",
+"a": "Fundamentally, crude stocks ex‑SPR are down -3.7% versus their 5‑year average for the week to 2026-10-16, indicating weaker market breadth. The strong storage carry and seasonal advantage suggest underlying supply‑demand dynamics remain supportive of price gains."
+}
+]
+}
+}
+}

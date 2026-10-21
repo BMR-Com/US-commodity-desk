@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-21 18:53 UTC",
+ "generated": "2026-10-21 20:32 UTC",
  "view": "headwind",
- "score": -2,
+ "score": -3,
  "components": {
-  "rates": 0,
+  "rates": -1,
   "dollar": -1,
   "brl": 0,
   "mxn": -1,
@@ -12,17 +12,17 @@
   "china": -1,
   "breadth": 0
  },
- "summary": "Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl 0; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Coffee +14.6%; weakest: KC wheat -15.2%. ",
+ "summary": "Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates \u2212; dollar \u2212; brl 0; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Coffee +14.6%; weakest: KC wheat -15.2%. ",
  "sections": [
   {
    "title": "Rates",
-   "score": 0,
-   "text": "US 10-year 5.12% (+11 bp in a month), 2-year 4.79% (+3 bp); 2s10s curve +33 bp (+8 bp in a month). Yields are little changed on the month. T-bill yield 4.06% sets the cost of carrying inventory."
+   "score": -1,
+   "text": "US 10-year 5.13% (+17 bp in a month), 2-year 4.81% (+5 bp); 2s10s curve +32 bp (+12 bp in a month). Rising long yields raise carry and funding costs and pull money out of commodities. A steepening curve led by the long end often reflects inflation or term-premium worries; T-bill yield 4.06% sets the cost of carrying inventory."
   },
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 101.67 (+1.2% in a month, +3.5% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.036 (-1.5% in a month): little changed. USD/CNY 6.665 (-0.4%); USD/MXN 18.70 (+8.6%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 101.70 (+1.3% in a month, +3.5% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.025 (-1.7% in a month): little changed. USD/CNY 6.675 (-0.3%); USD/MXN 18.68 (+8.5%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
   },
   {
    "title": "Risk appetite",
@@ -32,17 +32,17 @@
   {
    "title": "Energy",
    "score": 1,
-   "text": "WTI 97.17 $/bbl (+9.0% in a month), Brent 108.83, ULSD 4.581 $/gal (+2.1%), natural gas 2.79 (-6.7%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. "
+   "text": "WTI 97.76 $/bbl (+9.6% in a month), Brent 109.75, ULSD 4.605 $/gal (+2.7%), natural gas 2.77 (-7.3%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -2.5% in a month, Shanghai Composite -6.0%, Hang Seng -5.6%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -2.8% in a month, Shanghai Composite -6.0%, Hang Seng -5.6%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": 0,
-   "text": "15 of 33 commodities trade above their 50-day average (45%); S&P GSCI +1.0% in a month; gold -5.2%. "
+   "text": "15 of 33 commodities trade above their 50-day average (45%); S&P GSCI +0.7% in a month; gold -5.3%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",

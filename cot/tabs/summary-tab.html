@@ -1,0 +1,147 @@
+<style>
+.desk{background:#fff;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,.2);margin-bottom:25px;padding:20px 24px;}
+.desk-hdr{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;border-bottom:2px solid #2a5298;padding-bottom:10px;margin-bottom:14px;}
+.desk-title{font-size:1.3em;font-weight:700;color:#1a1a1a;}
+.desk-sub{font-size:.8em;color:#666;margin-top:3px;}
+.desk-ctl{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+.desk-ctl label{font-size:.7em;display:block;margin-bottom:3px;}
+.desk-ctl select{padding:6px 10px;font-size:.85em;}
+.desk-ctl button{margin-top:0;padding:7px 14px;font-size:.78em;letter-spacing:.3px;}
+.brief-grid{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;font-size:.88em;line-height:1.55;color:#1a1a1a;}
+.brief-grid .bh{font-weight:700;color:#2a5298;text-transform:uppercase;font-size:.78em;letter-spacing:.5px;padding-top:2px;}
+.setups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px;}
+.setup-card{border:1px solid #e1e6ec;border-radius:10px;padding:12px 14px;background:#fafbfc;}
+.setup-card h4{font-size:.78em;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.setup-card.bull h4{color:#1a8c4e;} .setup-card.bear h4{color:#c0392b;} .setup-card.warn h4{color:#b7791f;}
+.setup-item{display:flex;justify-content:space-between;align-items:center;font-size:.84em;padding:4px 0;border-bottom:1px dashed #e6e9ee;cursor:pointer;}
+.setup-item:last-child{border-bottom:none;} .setup-item:hover{color:#2a5298;}
+.setup-item .sv{font-family:monospace;font-weight:700;}
+.empty{color:#999;font-size:.82em;font-style:italic;}
+.sec-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px;}
+.sec-card{border-radius:10px;padding:10px 12px;color:#1a1a1a;border:1px solid #e1e6ec;}
+.sec-card .sn{font-weight:700;font-size:.82em;}
+.sec-card .sv{font-size:1.4em;font-weight:700;font-family:monospace;}
+.sec-card .sm{font-size:.72em;color:#555;}
+.mon-wrap{overflow-x:auto;border:1px solid #dee2e6;border-radius:8px;max-height:720px;overflow-y:auto;}
+.mon{width:100%;border-collapse:collapse;font-size:.8em;}
+.mon th{background:#2a5298;color:#fff;padding:7px 6px;position:sticky;top:0;z-index:2;cursor:pointer;white-space:nowrap;font-weight:600;user-select:none;}
+.mon th:hover{background:#1e3c72;}
+.mon th.sorted:after{content:' ▾';} .mon th.sorted.asc:after{content:' ▴';}
+.mon td{padding:6px;border-bottom:1px solid #eef1f4;vertical-align:middle;color:#1a1a1a;white-space:nowrap;}
+.mon tr:hover td{background:#f5f8fc;}
+.mon td.num{text-align:right;font-family:monospace;}
+.mon td.read{white-space:normal;min-width:340px;max-width:560px;font-size:.95em;line-height:1.4;color:#333;}
+.mon .mk{font-weight:700;cursor:pointer;color:#1e3c72;} .mon .mk:hover{text-decoration:underline;}
+.mon .tk{color:#888;font-weight:400;font-size:.85em;margin-left:4px;}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.85em;font-weight:600;}
+.b-bull{background:#e3f6ea;color:#14713e;} .b-bear{background:#fde8e6;color:#a8322a;} .b-flat{background:#eef1f4;color:#555;}
+.pos{color:#1a8c4e;} .neg{color:#c0392b;}
+.cotbar{position:relative;width:70px;height:10px;background:linear-gradient(90deg,#1a8c4e 0%,#e9ecef 25%,#e9ecef 75%,#c0392b 100%);border-radius:5px;display:inline-block;vertical-align:middle;margin-right:5px;opacity:.85;}
+.cotbar i{position:absolute;top:-2px;width:4px;height:14px;background:#1a1a1a;border-radius:2px;transform:translateX(-2px);}
+.scorebar{position:relative;width:80px;height:10px;background:#eef1f4;border-radius:5px;display:inline-block;vertical-align:middle;margin-right:5px;}
+.scorebar b{position:absolute;top:0;height:10px;border-radius:5px;}
+.scorebar:before{content:'';position:absolute;left:50%;top:-2px;height:14px;width:1px;background:#999;}
+.flag{display:inline-block;margin-right:4px;font-size:.95em;}
+.mon-note{font-size:.76em;color:#555;margin-top:10px;line-height:1.5;}
+.softs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;}
+.soft{border:1px solid #e1e6ec;border-radius:10px;padding:12px 14px;background:#fbfcfd;}
+.soft-h{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;}
+.soft-row{display:flex;align-items:center;gap:8px;font-size:.8em;margin:4px 0;flex-wrap:wrap;}
+.soft-read{font-size:.78em;color:#444;line-height:1.45;margin-top:6px;border-top:1px dashed #e1e6ec;padding-top:6px;}
+.ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;}
+.idea{border:1px solid #e1e6ec;border-radius:10px;padding:12px 14px;background:#fff;border-left:5px solid #999;}
+.idea.long{border-left-color:#1a8c4e;} .idea.short{border-left-color:#c0392b;}
+.idea-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;}
+.idea-t{font-weight:700;font-size:1em;color:#1a1a1a;cursor:pointer;} .idea-t:hover{color:#2a5298;}
+.idea-side{font-weight:800;margin-right:4px;} .long .idea-side{color:#1a8c4e;} .short .idea-side{color:#c0392b;}
+.idea-k{font-size:.72em;color:#666;text-transform:uppercase;letter-spacing:.4px;}
+.conv{font-size:.72em;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+.conv-High{background:#1e3c72;color:#fff;} .conv-Medium{background:#d6e2f5;color:#1e3c72;} .conv-Low{background:#eef1f4;color:#444;} .conv-Watch{background:#fff4d6;color:#8a6100;}
+.lvls{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0;font-size:.78em;}
+.lvls div{background:#f6f8fb;border-radius:6px;padding:5px 6px;text-align:center;} .lvls b{display:block;font-family:monospace;font-size:1.08em;color:#1a1a1a;}
+.lvls span{color:#777;font-size:.88em;}
+.idea ul{margin:4px 0 6px 16px;font-size:.8em;line-height:1.45;color:#333;} .idea li{margin-bottom:2px;}
+.idea .tm{font-size:.78em;color:#2a5298;background:#f0f5fd;border-radius:6px;padding:5px 8px;}
+.regime{display:flex;gap:10px;flex-wrap:wrap;font-size:.8em;margin-bottom:12px;color:#333;}
+.regime span{background:#f6f8fb;border-radius:14px;padding:4px 10px;} .regime .off{background:#fde8e6;color:#a8322a;font-weight:700;} .regime .on{background:#e3f6ea;color:#14713e;font-weight:700;}
+.sub-h{font-size:.85em;font-weight:700;color:#2a5298;text-transform:uppercase;letter-spacing:.5px;margin:18px 0 8px;}
+@media (max-width:768px){.brief-grid{grid-template-columns:1fr;}.brief-grid .bh{padding-top:8px;}}
+@media print{.desk{box-shadow:none;padding:6px 8px;page-break-inside:avoid;}.desk-ctl{display:none!important;}.brief-grid{font-size:7pt;}.mon{font-size:5.5pt;}.mon-wrap{max-height:none;overflow:visible;}.mon td.read{min-width:0;}.setups{font-size:7pt;}}
+</style>
+
+<!-- ============================================================
+     SOFTS FOCUS
+     ============================================================ -->
+<div class="desk" id="softsSec">
+  <div class="desk-hdr"><div><div class="desk-title">&#x2615; Softs Focus — Cocoa · Coffee · Sugar · Cotton</div><div class="desk-sub">Managed-money positioning, old/new-crop split, price trend and current trade idea. Click a market for the full COT history.</div></div></div>
+  <div class="softs" id="softCards"></div>
+</div>
+
+<!-- ============================================================
+     DESK BRIEF — trader-style narrative from the weekly snapshot
+     ============================================================ -->
+<div class="desk" id="briefSec">
+  <div class="desk-hdr">
+    <div>
+      <div class="desk-title">&#x1F9ED; COT Desk Brief</div>
+      <div class="desk-sub" id="briefSub">Loading pre-computed positioning…</div>
+    </div>
+    <div class="desk-ctl">
+      <div><label>Look-back</label><select id="dkWin" onchange="renderDesk()"><option value="y3" selected>3 years (COT idx)</option><option value="y1">1 year</option><option value="y5">5 years</option><option value="f">Since 2006</option></select></div>
+      <div><label>Crop view</label><select id="dkCrop" onchange="renderDesk()" title="Applies to markets with old/other crop breakdown"><option value="all" selected>All crop years</option><option value="old">Old crop</option><option value="other">Other (new) crop</option></select></div>
+      <div><button type="button" onclick="copyBrief()" id="copyBriefBtn">&#x1F4CB; Copy brief</button></div>
+    </div>
+  </div>
+  <div class="brief-grid" id="briefBody"></div>
+  <div class="setups" id="setupCards"></div>
+</div>
+
+<!-- ============================================================
+     TRADE IDEAS — trend × carry × positioning × technicals
+     ============================================================ -->
+<div class="desk" id="ideasSec">
+  <div class="desk-hdr"><div><div class="desk-title">&#x1F4A1; Trade Ideas</div><div class="desk-sub" id="ideasSub">Weekly prices + COT positioning</div></div></div>
+  <div class="regime" id="regimeBar"></div>
+  <div class="ideas" id="ideaCards"></div>
+  <div class="sub-h">Watchlist — COT contrarian setups waiting for price confirmation</div>
+  <div class="ideas" id="watchCards"></div>
+  <div class="sub-h">Systematic scorecard — all markets</div>
+  <div class="mon-wrap" style="max-height:520px;"><table class="mon" id="boardTable"><thead><tr>
+    <th>Market</th><th>Last</th><th>1w</th><th>4w</th><th>6m</th><th>12m</th><th>vs 200d</th><th>RSI</th><th>Trend</th><th>Carry /yr</th><th>Rule</th><th>COT idx</th><th>Vol (60d)</th><th>Size</th><th>52-wk</th>
+  </tr></thead><tbody id="boardBody"></tbody></table></div>
+  <div class="mon-note"><b>How ideas are built</b> (from the research summaries): trend = sign of 12-month return confirmed by the 6-month return and the 200-day average (time-series momentum). Carry = front contract vs the same month next year, annualised; ignored for Nat Gas, Live Cattle and Lean Hogs because their curves are seasonal. Trend + carry agree → full size; trend alone → half; conflict → flat. Size scales with 1/volatility (10% vol target per full position) and is halved when S&amp;P 500 &lt; 200-day and VIX &gt; 25. COT overlay halves trend trades into crowded positioning and turns contrarian COT setups into small tactical ideas only once price confirms. Stops 2×ATR(14), targets 2R. Prices from Yahoo Finance: trend measures use the continuous front-month series with roll gaps removed (grains, softs, livestock, Nat Gas); reference levels, RSI, ATR and 1w/4w moves use the actual tradable contract shown next to the price. A systematic read, not investment advice.</div>
+</div>
+
+<!-- ============================================================
+     POSITIONING MONITOR
+     ============================================================ -->
+<div class="desk" id="monSec">
+  <div class="desk-hdr"><div><div class="desk-title">&#x1F4E1; Positioning Monitor — Managed Money</div><div class="desk-sub">Click a column to sort · click a market to open it in the COT Analyzer</div></div></div>
+  <div class="sec-strip" id="secStrip"></div>
+  <div class="mon-wrap"><table class="mon" id="monTable"><thead><tr>
+    <th data-k="name">Market</th><th data-k="px4w">Px 4w</th><th data-k="cot">Regime</th><th data-k="N">MM Net</th><th data-k="dN">&Delta; w/w</th><th data-k="z">Flow &sigma;</th><th data-k="drv">Driver</th><th data-k="spark">52-wk net</th><th data-k="cot">COT idx</th><th data-k="pN">Net %ile</th><th data-k="pmP">P/M %ile</th><th data-k="score" class="sorted">Setup</th><th data-k="read">Desk read</th>
+  </tr></thead><tbody id="monBody"></tbody></table></div>
+  <div class="mon-note"><b>COT index</b> = where funds' net position sits between its low (0) and high (100) over the look-back. <b>Flow &sigma;</b> = this week's net change vs the typical weekly change over 3 years. <b>Driver</b> splits the change into new buying / short covering / long liquidation / fresh shorting. <b>P/M %ile</b> = producer/merchant (commercial) net percentile — commercials at the opposite extreme to funds is a classic divergence. <b>Setup</b> (−100…+100) is contrarian: positive = crowded short with commercials long and flow starting to turn up; it is penalised while flow is still running hard in the crowded direction. Flags: &#x1F525; squeeze fuel · &#x26A0;&#xFE0F; liquidation risk · &#x2195;&#xFE0F; spec/commercial divergence · &#x23E9; fast repositioning.</div>
+</div>
+
+<div class="exec-summary" id="execSec" style="display:none;">
+  <div class="exec-title">&#x1F4CA; BCOM COT Percentile League Tables — Managed Money</div>
+  <div class="exec-analysis" id="execText" style="display:none;"></div>
+  <div class="pctile-row">
+    <div class="pctile-wrap"><div class="pctile-title pt-gs">&#x1F534; Gross Short %ile</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="t_gs"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-ns">&#x1F7E0; Net Short %ile</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="t_ns"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gl">&#x1F7E2; Gross Long %ile</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="t_gl"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gso">&#x1F534; Short %OI %ile</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="t_gso"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-nso">&#x1F7E0; Net %OI %ile</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="t_nso"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-glo">&#x1F7E2; Long %OI %ile</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="t_glo"></tbody></table></div>
+  </div>
+</div>
+
+<div class="summary-section" id="sumSec" style="display:none;">
+  <div style="margin-bottom:15px;">
+    <div class="summary-title">&#x1F4CB; BCOM Market Summary — All Trader Categories (Since 2006)</div>
+  </div>
+  <div style="overflow-x:auto;"><table class="summary-table" id="sumTable"><thead><tr><th rowspan="2">Commodity</th><th rowspan="2">Category</th><th colspan="2">Net</th><th colspan="2">Net%OI</th><th colspan="2">Long</th><th colspan="2">Long%OI</th><th colspan="2">Short</th><th colspan="2">Short%OI</th></tr><tr><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th></tr></thead><tbody id="sumBody"></tbody></table></div>
+  <div class="stats-legend"><strong>Range bar:</strong> dot = current position. Green = positive, Red = negative. Full history since 2006.</div>
+</div>
+

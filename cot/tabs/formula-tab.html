@@ -1,0 +1,114 @@
+<div style="max-width:1400px;margin:0 auto;">
+
+  <div style="color:white;margin-bottom:20px;">
+    <h2 style="font-size:1.6em;margin-bottom:6px;">🔧 Custom Formula Builder</h2>
+    <p style="opacity:0.85;font-size:0.9em;">Add or subtract any COT parameters across categories, metrics, and crop types. Build custom spreads, ratios, and composite indicators.</p>
+  </div>
+
+  <!-- Formula Builder Card -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="font-weight:700;font-size:1em;color:#1a1a1a;margin-bottom:12px;">🧮 Build Your Formula</div>
+
+    <div id="formula-terms" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px;"></div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+      <button onclick="addFormulaTerm()" style="padding:8px 16px;background:#1a8c4e;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">+ Add Term</button>
+      <button onclick="saveCurrentFormula()" style="padding:8px 16px;background:#2a5298;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">💾 Save Formula</button>
+      <button onclick="clearFormula()" style="padding:8px 16px;background:#95a5a6;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">Clear</button>
+      <button onclick="updateFormulaCharts()" style="padding:8px 16px;background:#c0392b;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">▶ Calculate & Chart</button>
+    </div>
+
+    <div id="formula-preview" style="font-family:monospace;font-size:14px;color:#334155;background:#f8fafc;padding:10px 14px;border-radius:6px;border:1px dashed #94a3b8;">
+      Formula: <span style="font-weight:600;color:#0f172a;">—</span>
+    </div>
+  </div>
+
+  <!-- Commodity, Crop, Percentile Window Selector -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="display:flex;gap:15px;flex-wrap:wrap;align-items:center;">
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-weight:600;font-size:0.82em;color:#1a1a1a;">Commodity</label>
+        <select id="formulaCommodity" style="padding:8px 12px;border:2px solid #ccc;border-radius:8px;font-size:0.9em;min-width:220px;" onchange="updateFormulaCharts()">
+          <option value="">-- Select --</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-weight:600;font-size:0.82em;color:#1a1a1a;">Crop Type</label>
+        <select id="formulaCropType" style="padding:8px 12px;border:2px solid #ccc;border-radius:8px;font-size:0.9em;" onchange="updateFormulaCharts()">
+          <option value="all" selected>All</option>
+          <option value="old">Old Crop</option>
+          <option value="other">Other Crop</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-weight:600;font-size:0.82em;color:#1a1a1a;">Percentile Window</label>
+        <select id="formulaPctileWindow" style="padding:8px 12px;border:2px solid #ccc;border-radius:8px;font-size:0.9em;" onchange="updateFormulaCharts()">
+          <option value="full" selected>Full History</option>
+          <option value="1yr">1 Year (52w)</option>
+          <option value="3yr">3 Year (156w)</option>
+          <option value="5yr">5 Year (260w)</option>
+          <option value="10yr">10 Year (520w)</option>
+        </select>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:18px;">
+        <input type="checkbox" id="showPctileToggle" checked onchange="togglePctileChart()" style="width:18px;height:18px;cursor:pointer;">
+        <label for="showPctileToggle" style="font-weight:600;font-size:0.85em;color:#1a1a1a;cursor:pointer;">Show Percentile Chart</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Saved Formulas -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="font-weight:700;font-size:1em;color:#1a1a1a;margin-bottom:12px;">📂 Saved Formulas</div>
+    <div id="saved-formulas-list" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+    <div id="saved-formulas-empty" style="font-size:0.85em;color:#999;font-style:italic;">No saved formulas yet. Build one above and click Save.</div>
+  </div>
+
+  <!-- Chart 1: Formula Value with Zoom -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px;">
+      <div style="font-weight:700;font-size:1.1em;color:#1a1a1a;">📈 Formula Value Over Time</div>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <label style="font-size:0.8em;color:#555;font-weight:600;">🔍 Zoom:</label>
+        <input type="range" id="formulaZoomSlider" min="5" max="100" value="100" style="width:140px;accent-color:#2a5298;cursor:pointer;" oninput="onFormulaZoom(this.value)">
+        <span id="formulaZoomLabel" style="font-size:0.78em;color:#2a5298;font-weight:700;min-width:70px;">All data</span>
+        <button onclick="resetFormulaZoom()" style="padding:4px 12px;font-size:0.78em;background:#7f8c8d;color:white;border:none;border-radius:6px;cursor:pointer;margin-top:0;letter-spacing:0;text-transform:none;">↺ Reset</button>
+      </div>
+    </div>
+    <div style="position:relative;height:420px;">
+      <canvas id="formulaChart"></canvas>
+    </div>
+    <div style="margin-top:6px;font-size:0.72em;color:#999;text-align:center;">💡 Mouse wheel to zoom, drag to pan (requires chartjs-plugin-zoom)</div>
+  </div>
+
+  <!-- Chart 2: Percentile with Zoom -->
+  <div id="formulaPctileBox" style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px;">
+      <div style="font-weight:700;font-size:1.1em;color:#1a1a1a;">📊 Percentile Rank</div>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <label style="font-size:0.8em;color:#555;font-weight:600;">🔍 Zoom:</label>
+        <input type="range" id="formulaPctZoomSlider" min="5" max="100" value="100" style="width:140px;accent-color:#059669;cursor:pointer;" oninput="onFormulaPctZoom(this.value)">
+        <span id="formulaPctZoomLabel" style="font-size:0.78em;color:#059669;font-weight:700;min-width:70px;">All data</span>
+        <button onclick="resetFormulaPctZoom()" style="padding:4px 12px;font-size:0.78em;background:#7f8c8d;color:white;border:none;border-radius:6px;cursor:pointer;margin-top:0;letter-spacing:0;text-transform:none;">↺ Reset</button>
+      </div>
+    </div>
+    <div style="position:relative;height:320px;">
+      <canvas id="formulaPctileChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Chart 3: Seasonality with Year Selector -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px;">
+      <div style="font-weight:700;font-size:1.1em;color:#1a1a1a;">📅 Weekly Seasonality (52-Wk)</div>
+      <div id="formulaYearSelector" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+        <strong style="font-size:0.85em;">Years:</strong>
+      </div>
+    </div>
+    <div style="position:relative;height:380px;">
+      <canvas id="formulaSeaChart"></canvas>
+    </div>
+    <div id="formulaSeaNote" style="margin-top:8px;padding:6px 12px;background:#f0f7ff;border-radius:6px;font-size:0.8em;color:#1565c0;"></div>
+  </div>
+
+</div>

@@ -1,0 +1,114 @@
+<div class="chart-section" id="chart5" style="display:none;">
+  <div class="chart-header">
+    <div class="chart-title">&#x1F4C5; Weekly Seasonality (52-Wk)</div>
+    <div class="chart-controls">
+      <label>Metric:</label><select id="seaMet" onchange="drawSea()"><option value="net">Net</option><option value="long">Long</option><option value="short">Short</option><option value="net_pct">Net%OI</option><option value="traders_total">Traders</option><option value="per_trader_long">L/Trader</option><option value="per_trader_short">S/Trader</option></select>
+      <label style="margin-left:8px;">Agg:</label><select id="seaAgg" onchange="drawSea()"><option value="sum">Sum</option><option value="avg">Avg</option></select>
+      <label style="margin-left:8px;text-transform:none;letter-spacing:0;display:flex;align-items:center;gap:4px;cursor:pointer;" title="Shaded min–max range and average of the 5 complete years before the latest year"><input type="checkbox" id="seaBand" checked onchange="drawSea()" style="margin:0;"> 5-yr range &amp; avg</label>
+    </div>
+  </div>
+  <div class="comm-sel" id="seaCommSel"><div class="comm-sel-label">&#x1F4E6; Commodities <span class="sel-count" id="seaCount"></span></div></div>
+  <div class="yr-sel" id="seaYrSel"><strong style="font-size:0.85em;">Years:</strong></div>
+  <div class="chart-container" style="height:380px;"><canvas id="seaChart"></canvas></div>
+  <div id="seaNote" style="margin-top:8px;padding:6px 12px;background:#f0f7ff;border-radius:6px;font-size:0.8em;color:#1565c0;position:relative;z-index:1;"></div>
+</div>
+
+<!-- ============================================================
+     CHART 6: Scatter Prod vs MM
+     ============================================================ -->
+<div class="exec-summary" id="agriExecSec" style="display:none;">
+  <div class="exec-title">&#x1F33E; Agri Crop COT Executive Summary — Managed Money (Crop-Year BCOM Commodities Only)</div>
+  <!-- OLD -->
+  <div class="crop-panel-hdr hdr-old" style="margin-bottom:10px;">&#x1F33E; Old Crop — Managed Money Positioning Extremes</div>
+  <div class="exec-analysis" id="agriTxt_old">Loading...</div>
+  <div class="pctile-row" style="margin-bottom:20px;">
+    <div class="pctile-wrap"><div class="pctile-title pt-gs">&#x1F534; Gross Short</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gs_old"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-ns">&#x1F7E0; Net Short</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_ns_old"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gl">&#x1F7E2; Gross Long</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gl_old"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gso">&#x1F534; Short%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gso_old"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-nso">&#x1F7E0; Net%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_nso_old"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-glo">&#x1F7E2; Long%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_glo_old"></tbody></table></div>
+  </div>
+  <!-- OTHER -->
+  <div class="crop-panel-hdr hdr-other" style="margin-bottom:10px;">&#x1F331; Other Crop — Managed Money Positioning Extremes</div>
+  <div class="exec-analysis" id="agriTxt_other">Loading...</div>
+  <div class="pctile-row" style="margin-bottom:20px;">
+    <div class="pctile-wrap"><div class="pctile-title pt-gs">&#x1F534; Gross Short</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gs_other"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-ns">&#x1F7E0; Net Short</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_ns_other"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gl">&#x1F7E2; Gross Long</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gl_other"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gso">&#x1F534; Short%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gso_other"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-nso">&#x1F7E0; Net%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_nso_other"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-glo">&#x1F7E2; Long%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_glo_other"></tbody></table></div>
+  </div>
+  <!-- ALL -->
+  <div class="crop-panel-hdr hdr-all" style="margin-bottom:10px;">&#x1F4CA; All Crop Years — Managed Money Positioning Extremes</div>
+  <div class="exec-analysis" id="agriTxt_all">Loading...</div>
+  <div class="pctile-row">
+    <div class="pctile-wrap"><div class="pctile-title pt-gs">&#x1F534; Gross Short</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gs_all"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-ns">&#x1F7E0; Net Short</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_ns_all"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gl">&#x1F7E2; Gross Long</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gl_all"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-gso">&#x1F534; Short%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_gso_all"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-nso">&#x1F7E0; Net%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_nso_all"></tbody></table></div>
+    <div class="pctile-wrap"><div class="pctile-title pt-glo">&#x1F7E2; Long%OI</div><table class="pctile-tbl"><thead><tr><th>Commodity</th><th>%ile</th></tr></thead><tbody id="ag_glo_all"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     AGRI: MARKET SUMMARY — 3 always-visible sections, no scrolling
+     ============================================================ -->
+<div class="summary-section" id="agriSumSec" style="display:none;">
+  <!-- Old Crop — page 1 -->
+  <div class="agri-crop-block">
+    <div class="agri-block-title" style="font-size:1em;font-weight:700;color:#1a1a1a;margin-bottom:6px;">&#x1F33E; Agri Crop Market Summary — Old Crop</div>
+    <div class="crop-panel-hdr hdr-old" style="margin-bottom:6px;display:none;">&#x1F33E; Old Crop</div>
+    <div style="overflow-x:auto;"><table class="summary-table"><thead><tr><th rowspan="2">Commodity</th><th rowspan="2">Category</th><th colspan="2">Net</th><th colspan="2">Net%OI</th><th colspan="2">Long</th><th colspan="2">Long%OI</th><th colspan="2">Short</th><th colspan="2">Short%OI</th></tr><tr><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th></tr></thead><tbody id="asb_old"></tbody></table></div>
+  </div>
+  <!-- Other Crop — page 2 -->
+  <div class="agri-crop-block" style="margin-top:20px;">
+    <div class="agri-block-title" style="font-size:1em;font-weight:700;color:#1a1a1a;margin-bottom:6px;">&#x1F331; Agri Crop Market Summary — Other Crop</div>
+    <div class="crop-panel-hdr hdr-other" style="margin-bottom:6px;display:none;">&#x1F331; Other Crop</div>
+    <div style="overflow-x:auto;"><table class="summary-table"><thead><tr><th rowspan="2">Commodity</th><th rowspan="2">Category</th><th colspan="2">Net</th><th colspan="2">Net%OI</th><th colspan="2">Long</th><th colspan="2">Long%OI</th><th colspan="2">Short</th><th colspan="2">Short%OI</th></tr><tr><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th></tr></thead><tbody id="asb_other"></tbody></table></div>
+  </div>
+  <!-- All Crop Years — page 3 -->
+  <div class="agri-crop-block" style="margin-top:20px;">
+    <div class="agri-block-title" style="font-size:1em;font-weight:700;color:#1a1a1a;margin-bottom:6px;">&#x1F4CA; Agri Crop Market Summary — All Crop Years</div>
+    <div class="crop-panel-hdr hdr-all" style="margin-bottom:6px;display:none;">&#x1F4CA; All Crop Years</div>
+    <div style="overflow-x:auto;"><table class="summary-table"><thead><tr><th rowspan="2">Commodity</th><th rowspan="2">Category</th><th colspan="2">Net</th><th colspan="2">Net%OI</th><th colspan="2">Long</th><th colspan="2">Long%OI</th><th colspan="2">Short</th><th colspan="2">Short%OI</th></tr><tr><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th><th>Range</th><th>Cur</th></tr></thead><tbody id="asb_all"></tbody></table></div>
+  </div>
+  <div class="stats-legend">Dot=current. Cross-crop-year spreading visible only in All view.</div>
+</div>
+
+<!-- ============================================================
+     AGRI: SEASONALITY — 3 separate charts, always visible
+     ============================================================ -->
+<div class="chart-section" id="agriSeaSec" style="display:none;">
+  <div class="chart-header">
+    <div class="chart-title">&#x1F33E; Agri Crop Weekly Seasonality (52-Wk, Crop-Year Commodities)</div>
+    <div class="chart-controls">
+      <label>Metric:</label><select id="aSMet" onchange="drawAllAgriSea()"><option value="net">Net</option><option value="long">Long</option><option value="short">Short</option><option value="net_pct">Net%OI</option><option value="traders_total">Traders</option><option value="per_trader_long">L/Trader</option><option value="per_trader_short">S/Trader</option></select>
+      <label style="margin-left:8px;">Agg:</label><select id="aSAgg" onchange="drawAllAgriSea()"><option value="sum">Sum</option><option value="avg">Avg</option></select>
+      <label style="margin-left:8px;text-transform:none;letter-spacing:0;display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="checkbox" id="aSeaBand" checked onchange="drawAllAgriSea()" style="margin:0;"> 5-yr range &amp; avg</label>
+    </div>
+  </div>
+  <div class="comm-sel" id="aSeaCommSel"><div class="comm-sel-label">&#x1F4E6; Crop Commodities <span class="sel-count" id="aSeaCount"></span></div></div>
+  <div class="yr-sel" id="aSeaYrSel"><strong style="font-size:0.85em;">Years:</strong></div>
+  <!-- Old Crop Chart -->
+  <div class="agri-sea-block">
+    <div class="crop-panel-hdr hdr-old" style="margin:10px 0 6px;">&#x1F33E; Old Crop</div>
+    <div class="chart-container" style="height:420px;"><canvas id="aSeaChartOld"></canvas></div>
+    <div id="aSeaNoteOld" style="padding:5px 12px;background:#f0f7ff;border-radius:6px;font-size:0.76em;color:#1565c0;margin-top:4px;"></div>
+  </div>
+  <!-- Other Crop Chart -->
+  <div class="agri-sea-block" style="margin-top:16px;">
+    <div class="crop-panel-hdr hdr-other" style="margin-bottom:6px;">&#x1F331; Other Crop</div>
+    <div class="chart-container" style="height:420px;"><canvas id="aSeaChartOther"></canvas></div>
+    <div id="aSeaNoteOther" style="padding:5px 12px;background:#f0f7ff;border-radius:6px;font-size:0.76em;color:#1565c0;margin-top:4px;"></div>
+  </div>
+  <!-- All Crop Chart -->
+  <div class="agri-sea-block" style="margin-top:16px;">
+    <div class="crop-panel-hdr hdr-all" style="margin-bottom:6px;">&#x1F4CA; All Crop Years</div>
+    <div class="chart-container" style="height:420px;"><canvas id="aSeaChartAll"></canvas></div>
+    <div id="aSeaNoteAll" style="padding:5px 12px;background:#f0f7ff;border-radius:6px;font-size:0.76em;color:#1565c0;margin-top:4px;"></div>
+  </div>
+</div>
+

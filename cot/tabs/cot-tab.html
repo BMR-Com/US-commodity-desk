@@ -1,0 +1,66 @@
+<div class="container">
+">
+<header>
+  <h1>&#x1F4CA; Bloomberg Commodity Index COT Analyzer</h1>
+  <div class="subtitle">CFTC Commitment of Traders - BCOM Constituents Only</div>
+  <div class="info-box"><strong>Source:</strong> CFTC Disaggregated Reports &nbsp;|&nbsp; <strong>Index:</strong> BCOM 2026 Target Weights &nbsp;|&nbsp; <strong>Coverage:</strong> 21 CFTC-reported BCOM markets &nbsp;|&nbsp; <strong>Update:</strong> Weekly (Fri 3:30 PM ET)</div>
+</header>
+
+<div class="controls">
+  <div class="control-group"><label for="commoditySelect">Commodity (BCOM)</label><select id="commoditySelect" onchange="onCommChange()"><option value="">-- Loading... --</option></select></div>
+  <div class="control-group"><label for="traderCategory">Trader Category</label><select id="traderCategory"><option value="managed_money" selected>Managed Money</option><option value="swap_dealers">Swap Dealers</option><option value="prod_merc">Producer/Merchant</option><option value="other_rept">Other Reportables</option></select></div>
+  <div class="control-group"><label for="reportType">Report</label><select id="reportType"><option value="futures">Futures Only</option><option value="combined" selected>Futures &amp; Options</option></select></div>
+  <div class="control-group" id="cropYearGroup" style="display:none;"><label for="cropYear">&#x1F33E; Crop Year</label><select id="cropYear" onchange="onCropYearChange()"><option value="all" selected>All Crop Years</option><option value="old">Old Crop</option><option value="other">Other Crop</option></select></div>
+  <div class="control-group"><label>Start</label><input type="date" id="startDate" value="2006-01-01"></div>
+  <div class="control-group"><label>End</label><input type="date" id="endDate"></div>
+  <button id="fetchBtn" onclick="fetchData()">&#x1F4C8; Generate Charts</button>
+  <button onclick="dlCSV()" style="background:#6c3483;">&#x2B07;&#xFE0F; CSV</button>
+</div>
+
+<div class="loading" id="loading"><div class="spinner"></div><div id="loadingText">Loading...</div></div>
+<div class="error" id="errDiv"></div>
+<div class="warning" id="warnDiv"></div>
+<div class="debug-panel" id="dbgPanel"><div id="dbgContent">No data yet.</div></div>
+
+<!-- ============================================================
+     EXEC SUMMARY (all BCOM)
+     ============================================================ -->
+
+<div class="chart-section" id="weeklyDetail" style="display:none;">
+  <div class="chart-header"><div class="chart-title" id="wdTitle">&#x1F4CB; 4-Week Positioning Detail (All Trader Categories)</div></div>
+  <div id="wdSummary" style="padding:10px 14px;background:#f0f7ff;border-left:4px solid #2a5298;border-radius:4px;font-size:0.85em;line-height:1.6;color:#1a1a1a;margin-bottom:16px;"></div>
+  <div id="wdTables"></div>
+</div>
+
+<!-- ============================================================
+     CHART 1-4: Main Analysis Charts
+     ============================================================ -->
+<div class="chart-section" id="chart1" style="display:none;">
+  <div class="chart-header"><div class="chart-title">&#x1F4CA; Position Analysis</div><div class="chart-controls"><label>Metric:</label><select id="posMet" onchange="drawPos()"><option value="net">Net</option><option value="long">Long</option><option value="short">Short</option><option value="spread">Spread</option><option value="net_pct">Net%OI</option><option value="long_pct">Long%OI</option><option value="short_pct">Short%OI</option></select></div></div>
+  <div class="chart-container"><canvas id="posChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="zs_pos" min="5" max="100" value="100" oninput="onZoom('pos',this.value)"><span class="zoom-lbl" id="zl_pos">All data</span><button class="zoom-rst" onclick="resetZoom('pos')">&#x21BA; Reset</button></div>
+</div>
+
+<div class="chart-section" id="chart2" style="display:none;">
+  <div class="chart-header"><div class="chart-title">&#x2696;&#xFE0F; All Trader Categories</div><div class="chart-controls"><label>Metric:</label><select id="cmpMet" onchange="drawCmp()"><option value="net">Net</option><option value="long">Long</option><option value="short">Short</option><option value="net_pct">Net%OI</option></select></div></div>
+  <div class="chart-container"><canvas id="cmpChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="zs_cmp" min="5" max="100" value="100" oninput="onZoom('cmp',this.value)"><span class="zoom-lbl" id="zl_cmp">All data</span><button class="zoom-rst" onclick="resetZoom('cmp')">&#x21BA; Reset</button></div>
+</div>
+
+<div class="chart-section" id="chart3" style="display:none;">
+  <div class="chart-header"><div class="chart-title">&#x1F465; Trader Count</div><div class="chart-controls"><label>Metric:</label><select id="trdMet" onchange="drawTrd()"><option value="total">Total</option><option value="long">Long</option><option value="short">Short</option><option value="both">Both</option></select></div></div>
+  <div class="chart-container"><canvas id="trdChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="zs_trd" min="5" max="100" value="100" oninput="onZoom('trd',this.value)"><span class="zoom-lbl" id="zl_trd">All data</span><button class="zoom-rst" onclick="resetZoom('trd')">&#x21BA; Reset</button></div>
+</div>
+
+<div class="chart-section" id="chart4" style="display:none;">
+  <div class="chart-header"><div class="chart-title">&#x1F4D0; Position Size</div><div class="chart-controls"><label>Metric:</label><select id="szMet" onchange="drawSz()"><option value="per_trader_long">Long/Trader</option><option value="per_trader_short">Short/Trader</option><option value="long_vs_short">Both</option></select></div></div>
+  <div class="chart-container"><canvas id="szChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="zs_sz" min="5" max="100" value="100" oninput="onZoom('sz',this.value)"><span class="zoom-lbl" id="zl_sz">All data</span><button class="zoom-rst" onclick="resetZoom('sz')">&#x21BA; Reset</button></div>
+</div>
+
+<!-- ============================================================
+     CHART 5: Seasonality (All BCOM)
+     ============================================================ -->
+
+</div><!-- end .container -->

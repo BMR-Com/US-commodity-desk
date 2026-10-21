@@ -24,6 +24,7 @@
   <button data-c="cotton">Cotton</button>
   <button data-c="hogs">Lean hogs</button>
   <button data-c="cattle">Live &amp; feeder cattle</button>
+  <button data-c="cotfull" title="CFTC Commitments of Traders desk: summary and trade ideas, COT analyzer, scatter, index traders (CIT), triggers and flows, seasonality, custom formula, AI analysis">COT (full)</button>
   <button data-c="energy" title="Natural gas, crude and refined products: EIA storage and stocks, weather, cracks, COT, ETF options">Energy</button>
 </nav>
 
@@ -226,6 +227,7 @@
 <section id="grains" style="display:none"></section>
 <section id="hogs" style="display:none"></section>
 <section id="cattle" style="display:none"></section>
+<section id="cotfull" style="display:none;padding:0"><iframe id="cot-frame" title="COT positioning desk" style="display:block;width:100%;height:calc(100vh - 92px);min-height:640px;border:0;background:#1e3c72"></iframe></section>
 <section id="energy" style="display:none;padding:0"><iframe id="energy-frame" title="Energy desk" style="display:block;width:100%;height:calc(100vh - 92px);min-height:640px;border:0;background:#0b111b"></iframe></section>
 <footer>Data: USDA AMS (mandatory reporting datamart), USDA ERS, USDA WASDE, CFTC, CME Group. Prices and positions as of the dates shown. Research use only; not investment advice.</footer>
 <script src="assets/lib.js"></script>
@@ -240,12 +242,22 @@
 <script src="assets/geo.js"></script>
 <script src="assets/options.js"></script>
 <script src="assets/signals.js"></script>
+<script src="assets/chat.js"></script>
 <script src="assets/dairy.js"></script>
 <script src="assets/grains.js"></script>
 <script src="assets/hogs.js"></script>
 <script src="assets/cattle.js"></script>
 <script src="assets/cotton.js"></script>
 <script>
+// COT (full): the CFTC positioning desk (cot/index.html, port of cftc-cot-full) in a frame; #cot/<tab or ticker> deep-links
+const CotFull = {
+  show() {
+    const f = $('#cot-frame'), t = (location.hash.match(/^#cot\/(\w+)/) || [])[1];
+    if (!f.src) f.src = 'cot/index.html' + (t ? '#' + t : '');
+    if (!location.hash.startsWith('#cot')) history.replaceState(null, '', '#cot');
+    window.scrollTo(0, 0);
+  }
+};
 // Energy: the energy terminal (energy.html) runs in a frame inside this tab; #energy/<tab> deep-links a sub-tab
 const Energy = {
   show() {
@@ -267,10 +279,11 @@ window.addEventListener('message', e => {
 });
 $$('nav.comm button[data-c]').forEach(b => b.onclick = () => {
   $$('nav.comm button').forEach(x => x.classList.toggle('on', x === b));
-  ['summary', 'markets', 'options', 'signals', 'dairy', 'grains', 'cotton', 'hogs', 'cattle', 'energy'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
-  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (b.dataset.c === 'energy') Energy.show(); else if (b.dataset.c === 'signals') Signals.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
+  ['summary', 'markets', 'options', 'signals', 'dairy', 'grains', 'cotton', 'hogs', 'cattle', 'cotfull', 'energy'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
+  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (b.dataset.c === 'energy') Energy.show(); else if (b.dataset.c === 'signals') Signals.show(); else if (b.dataset.c === 'cotfull') CotFull.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
 });
-if (location.hash.startsWith('#energy')) $('nav.comm button[data-c="energy"]').click();
+if (location.hash.startsWith('#cot/') || location.hash === '#cot') $('nav.comm button[data-c="cotfull"]').click();
+else if (location.hash.startsWith('#energy')) $('nav.comm button[data-c="energy"]').click();
 else if (location.hash.startsWith('#d-')) $('nav.comm button[data-c="dairy"]').click();
 else if (location.hash === '#markets') $('nav.comm button[data-c="markets"]').click();
 else if (location.hash.startsWith('#signals')) $('nav.comm button[data-c="signals"]').click();

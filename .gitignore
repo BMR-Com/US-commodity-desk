@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+cot/data/*.csv
+cot/data/prices/
+cot/data/diagnostics/

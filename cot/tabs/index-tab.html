@@ -1,0 +1,91 @@
+<style>
+.ix-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px;}
+.ix-kpi{border:1px solid #e1e6ec;border-radius:10px;padding:10px 12px;background:#fafbfc;}
+.ix-kpi .k{font-size:.72em;color:#555;text-transform:uppercase;letter-spacing:.4px;}
+.ix-kpi .v{font-size:1.4em;font-weight:700;font-family:monospace;color:#1a1a1a;}
+.ix-kpi .m{font-size:.74em;color:#666;}
+.ix-note{font-size:.88em;line-height:1.6;color:#1a1a1a;background:#f0f7ff;border-left:4px solid #2a5298;padding:10px 14px;border-radius:4px;margin-bottom:6px;}
+.ix-tbl{width:100%;border-collapse:collapse;font-size:.8em;}
+.ix-tbl th{background:#2a5298;color:#fff;padding:7px 6px;white-space:nowrap;font-weight:600;text-align:center;}
+.ix-tbl th.grp{background:#1e3c72;}
+.ix-tbl td{padding:6px;border-bottom:1px solid #eef1f4;color:#1a1a1a;white-space:nowrap;text-align:right;font-family:monospace;}
+.ix-tbl td.nm{text-align:left;font-family:inherit;font-weight:600;cursor:pointer;color:#1e3c72;}
+.ix-tbl tr.sec td{background:#eef3fa;font-weight:700;}
+.ix-tbl tr.tot td{background:#dde7f5;font-weight:700;border-top:2px solid #2a5298;}
+.ix-tbl tr.sel td{background:#fff7dd;}
+.ix-pos{color:#1a8c4e!important;} .ix-neg{color:#c0392b!important;}
+.ix-rb{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.78em;font-weight:600;background:#fff4d6;color:#8a6100;}
+.pct-tbl td.pc{padding:5px 6px;min-width:62px;}
+.pct-tbl th.w5{background:#2a5298;} .pct-tbl th.w10{background:#1e3c72;} .pct-tbl th.wf{background:#14284d;}
+.pb-grid{display:grid;grid-template-columns:150px repeat(5,1fr);gap:8px 12px;align-items:center;font-size:.82em;}
+.pb-h{font-weight:700;color:#555;font-size:.85em;text-transform:uppercase;letter-spacing:.4px;text-align:center;}
+.pb-l{font-weight:700;color:#1a1a1a;}
+.pb{position:relative;height:16px;border-radius:8px;background:linear-gradient(90deg,#fadbd8 0%,#f4f6f8 50%,#d5f5e3 100%);}
+.pb i{position:absolute;top:-3px;width:6px;height:22px;border-radius:3px;background:#1e3c72;transform:translateX(-3px);box-shadow:0 0 2px rgba(0,0,0,.4);}
+.pb span{position:absolute;right:5px;top:0;font-size:.78em;line-height:16px;font-weight:700;color:#1a1a1a;font-family:monospace;}
+@media (max-width:700px){.pct-tbl td.pc{padding:5px 6px;min-width:62px;}
+.pct-tbl th.w5{background:#2a5298;} .pct-tbl th.w10{background:#1e3c72;} .pct-tbl th.wf{background:#14284d;}
+.pb-grid{grid-template-columns:110px repeat(5,1fr);font-size:.72em;}}
+</style>
+<div class="container">
+<header>
+  <h1>&#x1F3E6; Index Traders (CIT) Analyzer</h1>
+  <div class="subtitle">CFTC Supplemental Report — Commodity Index Traders, futures &amp; options combined</div>
+  <div class="info-box"><strong>Source:</strong> CFTC Supplemental (CIT) report &nbsp;|&nbsp; <strong>Coverage:</strong> 13 agricultural markets (12 with dollar values) &nbsp;|&nbsp; <strong>Dollars:</strong> contracts × contract size × front-month price &nbsp;|&nbsp; <strong>Update:</strong> Weekly (Fri 3:30 PM ET)</div>
+</header>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F4CB; Index money this week</div><div class="chart-title" style="font-size:.85em;font-weight:600;color:#555;" id="ixDate"></div></div>
+  <div class="ix-kpis" id="ixKpis"></div>
+  <div class="ix-note" id="ixNote">Loading index-trader data…</div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F4B5; Weekly flows: index traders vs managed money</div><div class="chart-controls"><label>Flow:</label><select id="ixFlowWin" onchange="ixTable()"><option value="1">Week</option><option value="4">4 weeks (lots)</option></select></div></div>
+  <div style="overflow-x:auto;"><table class="ix-tbl"><thead>
+    <tr><th rowspan="2">Market</th><th colspan="5" class="grp">Index traders (CIT)</th><th colspan="4" class="grp">Managed money</th></tr>
+    <tr><th>Net (lots)</th><th>w/w (lots)</th><th>w/w ($)</th><th>Net ($)</th><th>Long / Short ($)</th><th>Net (lots)</th><th>w/w (lots)</th><th>w/w ($)</th><th>Net ($)</th></tr>
+  </thead><tbody id="ixFlowBody"></tbody></table></div>
+  <div style="font-size:.75em;color:#666;margin-top:8px;">Dollar flows value the week's change in contracts at this week's front-month price, so they show buying and selling, not price moves. Feeder Cattle is in the CSV but has no price series.</div>
+</div>
+
+<div class="controls">
+  <div class="control-group"><label for="ixSel">Market</label><select id="ixSel" onchange="ixLoad()"></select></div>
+  <div class="control-group"><label for="ixFrom">Start</label><input type="date" id="ixFrom" value="2006-01-01" onchange="ixLoad()"></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F4CF; Index positioning vs history, all markets</div></div>
+  <div style="overflow-x:auto;"><table class="ix-tbl pct-tbl"><thead id="ixPctHead"></thead><tbody id="ixPctBody"></tbody></table></div>
+  <div style="font-size:.75em;color:#666;margin-top:8px;">Percentile of the latest week within each look-back. Bar position and colour: left/red = low versus history, right/green = high. Click a market to chart it below.</div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F4CA; Position Analysis</div><div class="chart-controls"><label>Metric:</label><select id="ixPosMet" onchange="ixDrawPos()"><option value="net">Net</option><option value="long">Long</option><option value="short">Short</option><option value="net_pct">Net%OI</option><option value="long_pct">Long%OI</option><option value="net_usd">Net ($)</option><option value="long_usd">Long ($)</option></select></div></div>
+  <div class="chart-container"><canvas id="ixPosChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="ixz_pos" min="5" max="100" value="100" oninput="ixZoom('pos',this.value)"><span class="zoom-lbl" id="ixzl_pos">All data</span><button class="zoom-rst" onclick="ixZoom('pos',100)">&#x21BA; Reset</button></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x2696;&#xFE0F; All Trader Categories</div><div class="chart-controls"><label>Metric:</label><select id="ixCmpMet" onchange="ixDrawCmp()"><option value="net">Net</option><option value="long">Long</option><option value="short">Short</option><option value="net_pct">Net%OI</option></select></div></div>
+  <div class="chart-container"><canvas id="ixCmpChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="ixz_cmp" min="5" max="100" value="100" oninput="ixZoom('cmp',this.value)"><span class="zoom-lbl" id="ixzl_cmp">All data</span><button class="zoom-rst" onclick="ixZoom('cmp',100)">&#x21BA; Reset</button></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F465; Trader Count</div><div class="chart-controls"><label>Metric:</label><select id="ixTrdMet" onchange="ixDrawTrd()"><option value="long">Long</option><option value="short">Short</option><option value="both" selected>Both</option></select></div></div>
+  <div class="chart-container"><canvas id="ixTrdChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="ixz_trd" min="5" max="100" value="100" oninput="ixZoom('trd',this.value)"><span class="zoom-lbl" id="ixzl_trd">All data</span><button class="zoom-rst" onclick="ixZoom('trd',100)">&#x21BA; Reset</button></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F4D0; Position Size</div><div class="chart-controls"><label>Metric:</label><select id="ixSzMet" onchange="ixDrawSz()"><option value="per_trader_long">Long/Trader</option><option value="per_trader_long_usd">Long/Trader ($)</option></select></div></div>
+  <div class="chart-container"><canvas id="ixSzChart"></canvas></div>
+  <div class="zoom-bar"><label>&#x1F50E; Zoom:</label><input type="range" class="zoom-slider" id="ixz_sz" min="5" max="100" value="100" oninput="ixZoom('sz',this.value)"><span class="zoom-lbl" id="ixzl_sz">All data</span><button class="zoom-rst" onclick="ixZoom('sz',100)">&#x21BA; Reset</button></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F310; Breadth: share of markets where index money rose over 4 weeks</div></div>
+  <div class="chart-container" style="height:260px;"><canvas id="ixBreadth"></canvas></div>
+</div>
+</div>

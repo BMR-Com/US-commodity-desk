@@ -1,0 +1,51 @@
+<style>
+.lv-chip{display:inline-block;min-width:34px;text-align:center;padding:2px 5px;margin:1px;border-radius:9px;font-size:.78em;font-weight:700;font-family:monospace;}
+.lv-up{background:#e3f6ea;color:#14713e;} .lv-dn{background:#fde8e6;color:#a8322a;} .lv-na{background:#eef1f4;color:#888;}
+.lv-tbl{width:100%;border-collapse:collapse;font-size:.8em;}
+.lv-tbl th{background:#2a5298;color:#fff;padding:7px 6px;white-space:nowrap;font-weight:600;cursor:pointer;user-select:none;}
+.lv-tbl th.grp{background:#1e3c72;cursor:default;}
+.lv-tbl td{padding:6px;border-bottom:1px solid #eef1f4;color:#1a1a1a;white-space:nowrap;}
+.lv-tbl td.n{text-align:right;font-family:monospace;}
+.lv-tbl td.mk{font-weight:700;color:#1e3c72;cursor:pointer;} .lv-tbl td.mk:hover{text-decoration:underline;}
+.lv-tbl tr.sec td{background:#eef3fa;font-weight:700;}
+.lv-tbl tr.tot td{background:#dde7f5;font-weight:700;border-top:2px solid #2a5298;}
+.lv-near{background:#fff4d6!important;}
+.lv-pos{color:#1a8c4e;} .lv-neg{color:#c0392b;}
+.lv-ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.lv-ctl label{font-size:.8em;}
+.hm{border-collapse:separate;border-spacing:2px;font-size:.72em;}
+.hm td{width:26px;height:20px;text-align:center;border-radius:3px;color:#1a1a1a;font-family:monospace;}
+.hm td.nm{width:auto;text-align:left;font-weight:700;color:#1e3c72;padding-right:8px;white-space:nowrap;cursor:pointer;font-family:inherit;}
+.hm th{font-weight:600;color:#555;font-size:.9em;padding:2px;white-space:nowrap;}
+.hm tr.sec td{background:none;color:#2a5298;text-transform:uppercase;letter-spacing:.5px;font-size:.95em;text-align:left;padding-top:8px;}
+</style>
+<div class="container">
+<header>
+  <h1>&#x1F6A6; Triggers &amp; Flows</h1>
+  <div class="subtitle">Where the technical signals funds react to would flip, fund dollar exposure, and how positioning has moved over six months</div>
+</header>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F3AF; Trigger levels</div>
+    <div class="lv-ctl"><label>Sector</label><select id="lvSec" onchange="lvTrig()"><option value="">All</option></select>
+    <label>Sort</label><select id="lvSort" onchange="lvTrig()"><option value="near" selected>Nearest trigger (ATR)</option><option value="sector">Sector</option><option value="pct">Fund %ile</option></select></div></div>
+  <div style="font-size:.78em;color:#555;margin-bottom:8px;line-height:1.5;">Breakouts (20/55/100-day high or low) and the 100/200-day averages are the signals managed money reacts to most. ▲/▼ shows each signal's current state on the tradable contract. "Next down/up" is the nearest level that would flip a signal, with distance in % and in average daily ranges (ATR). Highlighted rows are within one ATR of a flip. Markets with no current price feed are left out.</div>
+  <div style="overflow-x:auto;"><table class="lv-tbl"><thead>
+    <tr><th class="grp" colspan="4"></th><th class="grp" colspan="7">Signal state</th><th class="grp" colspan="2">Next level down</th><th class="grp" colspan="2">Next level up</th><th class="grp"></th></tr>
+    <tr><th>Market</th><th>Contract</th><th>Last</th><th>Fund %ile 3y</th><th>20d</th><th>55d</th><th>100d</th><th>50 avg</th><th>100 avg</th><th>200 avg</th><th>MACD</th><th>Level</th><th>Dist.</th><th>Level</th><th>Dist.</th><th>55-day range</th></tr>
+  </thead><tbody id="lvBody"></tbody></table></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F4B5; Managed money: dollar exposure and weekly flows</div></div>
+  <div style="overflow-x:auto;"><table class="lv-tbl"><thead><tr>
+    <th>Market</th><th>Net (lots)</th><th>w/w (lots)</th><th>Net ($)</th><th>w/w ($)</th><th>4 weeks ($)</th><th>Long ($)</th><th>Short ($)</th></tr></thead><tbody id="mmBody"></tbody></table></div>
+  <div style="font-size:.75em;color:#666;margin-top:8px;">Contracts × contract size × front-month price. Flows value the change in contracts at this week's price, so they show buying and selling, not price moves. Aluminum is left out: its COT contract is the Midwest Premium, which has no price feed.</div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-header"><div class="chart-title">&#x1F321;&#xFE0F; Managed-money positioning heatmap, last 26 weeks</div></div>
+  <div style="font-size:.78em;color:#555;margin-bottom:8px;">Each cell is the fund net position's percentile versus the prior 3 years at that week's report. Green = funds long relative to history, red = short. Read across a row to see a market building toward or unwinding from an extreme.</div>
+  <div style="overflow-x:auto;"><table class="hm" id="hmTbl"></table></div>
+</div>
+</div>

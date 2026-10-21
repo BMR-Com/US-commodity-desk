@@ -1,0 +1,62 @@
+name: cot_full
+# CFTC COT positioning desk (port of BMR-Com/cftc-cot-full), served at /cot/ and shown as the "COT (full)" tab.
+# Large working CSVs (master, CIT, prices) stay in the Actions cache, not in git; only the browser JSON is committed.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['cot/scripts/**', '.github/workflows/cot_full.yml']
+  schedule:
+    - cron: '45 19 * * 5'   # Friday after the 3:30 pm ET CFTC release (daylight time)
+    - cron: '45 20 * * 5'   # same in standard time
+    - cron: '30 23 * * 5'   # retries: Friday evening, Saturday, Monday (late or holiday-delayed reports)
+    - cron: '0 14 * * 6'
+    - cron: '0 14 * * 1'
+    - cron: '20 22 * * 1-4' # weekday prices for the triggers / levels tab
+permissions: {contents: write}
+concurrency: {group: cot_full, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q -r cot/requirements.txt
+      - name: restore working CSVs
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            cot/data/bcom_cot_master.csv
+            cot/data/cit_master.csv
+            cot/data/prices
+          key: cot-work-${{ github.run_id }}
+          restore-keys: cot-work-
+      - name: prices (Yahoo)
+        continue-on-error: true
+        run: python -u cot/scripts/prices.py
+      - name: CFTC index traders (CIT supplemental)
+        continue-on-error: true
+        run: python -u cot/scripts/fetch_cit_data.py
+      - name: CFTC disaggregated COT -> master, summary, web JSON
+        run: python -u cot/scripts/fetch_cot_data.py
+      - name: save working CSVs
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            cot/data/bcom_cot_master.csv
+            cot/data/cit_master.csv
+            cot/data/prices
+          key: cot-work-${{ github.run_id }}
+      - name: AI context for the desk chatbot
+        continue-on-error: true
+        run: pip install -q numpy pandas && python models/ai_context.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add cot/data/web cot/data/latest_summary.json data/ai
+          git diff --cached --quiet && exit 0
+          git commit -q -m "cot: CFTC positioning desk $(date -u +%F' '%H:%M)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

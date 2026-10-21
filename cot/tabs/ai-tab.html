@@ -1,0 +1,145 @@
+<div style="max-width:1100px;margin:0 auto;">
+
+  <div style="color:white;margin-bottom:20px;">
+    <h2 style="font-size:1.6em;margin-bottom:6px;">🤖 AI COT Market Analysis</h2>
+    <p style="opacity:0.85;font-size:0.9em;">Powered by Groq (Llama 3.3-70B) · Uses pre-computed data from the weekly Python script · Your API key stays in your browser only</p>
+    <div id="aiDataStatus" style="margin-top:8px;padding:8px 14px;border-radius:6px;font-size:0.82em;background:rgba(255,255,255,0.12);color:#ffe066;"></div>
+  </div>
+
+  <!-- API Key card -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="font-weight:700;font-size:1em;color:#1a1a1a;margin-bottom:12px;">🔑 Groq API Key</div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <input type="password" id="aiKeyInput" placeholder="Paste your Groq API key here (gsk_...)" 
+             style="flex:1;min-width:260px;padding:10px 14px;border:2px solid #ccc;border-radius:8px;font-size:0.9em;font-family:monospace;">
+      <button onclick="aiSaveKey()" style="padding:10px 18px;background:#6c3483;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:700;white-space:nowrap;">💾 Save Key</button>
+      <span id="aiKeyStatus" style="font-size:0.82em;color:#1a8c4e;font-weight:600;"></span>
+    </div>
+    <div style="margin-top:8px;font-size:0.78em;color:#777;">
+      Free key at <a href="https://console.groq.com/keys" target="_blank" style="color:#2a5298;">console.groq.com/keys</a> — 
+      takes 30 seconds to sign up. Key is stored only in your browser session.
+    </div>
+  </div>
+
+  <!-- Quick action buttons -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="font-weight:700;font-size:1em;color:#1a1a1a;margin-bottom:12px;">⚡ Quick Analysis</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button onclick="aiQ('Summarize the current positioning across all 23 BCOM commodities. Identify the top themes, most extreme readings, and sectors with notable positioning.')" 
+              style="padding:10px 16px;background:#1a8c4e;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">📊 Full Report Summary</button>
+      <button onclick="aiQ('Which commodities have managed money at the most extreme long OR short positioning historically? List them with their percentile ranks and what that signals.')" 
+              style="padding:10px 16px;background:#c0392b;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">⚠️ Positioning Extremes</button>
+      <button onclick="aiQ('Identify the top 3 long candidates and top 3 short candidates based on extreme and contrarian managed money positioning. Explain the reasoning for each.')" 
+              style="padding:10px 16px;background:#2a5298;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">🎯 Trading Signals</button>
+      <button onclick="aiQ('For each crop commodity (corn, soybeans, wheat, cotton, coffee, cocoa, lean hogs), compare the old crop vs other crop managed money positioning and explain what the difference implies.')" 
+              style="padding:10px 16px;background:#8B6914;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">🌾 Old vs Other Crop</button>
+      <button onclick="aiQ('Compare Prod/Merchant positioning vs Managed Money across all BCOM commodities. Where is the biggest divergence and what does that historically signal?')" 
+              style="padding:10px 16px;background:#8e44ad;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:0.88em;">🔄 Prod/MM Divergence</button>
+    </div>
+  </div>
+
+  <!-- Custom question -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="font-weight:700;font-size:1em;color:#1a1a1a;margin-bottom:12px;">💬 Ask Any Question</div>
+    <div style="margin-bottom:10px;">
+      <select id="aiPresetSel" onchange="aiFillPreset()" style="width:100%;padding:9px 12px;border:2px solid #e0e0e0;border-radius:8px;font-size:0.88em;color:#333;background:white;">
+        <option value="">— Or pick from preset questions —</option>
+        <optgroup label="Historical Questions">
+          <option value="What is the 10-year low and high in managed money net position for cotton? When did those extremes occur and where is current positioning relative to them?">10-year range in cotton MM positioning?</option>
+          <option value="Which commodity has seen the lowest managed money net position in the past 5 years? What about over the full history since 2006?">Lowest MM net position (5yr & full history)?</option>
+          <option value="Which commodities are currently at or near their all-time managed money short position? What was the exact record and when was it set?">Near all-time MM short records?</option>
+          <option value="Compare current gold and silver managed money positioning to their 10-year range. Are speculators crowded long, short, or neutral?">Gold & silver spec positioning vs history?</option>
+        </optgroup>
+        <optgroup label="Sector Analysis">
+          <option value="Summarize managed money positioning across all energy commodities. Which are most bullishly positioned and which most bearishly?">Energy sector COT summary?</option>
+          <option value="Analyze the grains sector (corn, soybeans, soybean meal, soybean oil, wheat, HRW wheat). Which have the most extreme positioning and what does it suggest?">Grains sector analysis?</option>
+          <option value="How are speculators positioned in precious metals (gold and silver)? Compare their current positioning percentiles vs history.">Precious metals spec positioning?</option>
+        </optgroup>
+        <optgroup label="Trade Ideas">
+          <option value="Based on extreme managed money positioning, which commodity has the highest contrarian long potential (most crowded shorts that could unwind)?">Best contrarian long idea?</option>
+          <option value="Which commodities show both extreme managed money gross shorts AND Prod/Merchant gross longs historically? This combination typically signals strong long opportunity.">Best fundamental long setups (MM short + Prod long)?</option>
+          <option value="Are there any commodities where managed money is extremely long but Prod/Merchant is also extremely long — a potential crowded trade with downside risk?">Crowded long risk setups?</option>
+        </optgroup>
+        <optgroup label="Week-over-Week">
+          <option value="Which commodities saw the biggest week-over-week changes in managed money net positioning? What direction and what does the magnitude suggest?">Biggest positioning changes this week?</option>
+          <option value="Are there any commodities where managed money significantly increased shorts this week while already at elevated short percentiles?">Shorts being added at extremes?</option>
+        </optgroup>
+      </select>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <input type="text" id="aiCustomQ" placeholder="Type your own question... e.g. 'What is the 10-year low in cotton managed money net position?'" 
+             style="flex:1;padding:10px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:0.88em;"
+             onkeydown="if(event.key==='Enter')aiAskCustom()">
+      <button onclick="aiAskCustom()" style="padding:10px 20px;background:#2a5298;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:700;white-space:nowrap;">▶ Ask</button>
+    </div>
+  </div>
+
+  <!-- AI Response area -->
+  <div id="aiPane_spinner" style="display:none;text-align:center;padding:30px;color:white;">
+    <div style="border:3px solid rgba(255,255,255,0.3);border-top:3px solid white;border-radius:50%;width:36px;height:36px;animation:spin 0.8s linear infinite;margin:0 auto 12px;"></div>
+    <div style="font-size:0.95em;opacity:0.9;">Analyzing COT data...</div>
+  </div>
+  <div id="aiPane_response" style="display:none;background:white;border-radius:12px;padding:24px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #f0f0f0;">
+      <strong style="color:#1a1a1a;font-size:1em;">🤖 AI Response</strong>
+      <button onclick="document.getElementById('aiPane_response').style.display='none';document.getElementById('aiChartArea').style.display='none';"
+              style="padding:4px 12px;background:#eee;color:#555;border:none;border-radius:6px;cursor:pointer;font-size:0.82em;margin-top:0;">✕ Close</button>
+    </div>
+    <div id="aiPane_text" style="font-size:0.92em;line-height:1.75;color:#1a1a1a;white-space:pre-wrap;"></div>
+  </div>
+
+  <!-- AI Chart Area — rendered when Groq detects a chart request -->
+  <div id="aiChartArea" style="display:none;background:white;border-radius:12px;padding:20px;margin-top:14px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid #f0f0f0;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div id="aiChartTitle" style="font-weight:700;font-size:1em;color:#1a1a1a;"></div>
+        <div id="aiChartSub" style="font-size:0.78em;color:#777;margin-top:2px;"></div>
+      </div>
+      <button onclick="document.getElementById('aiChartArea').style.display='none'"
+              style="padding:4px 12px;background:#eee;color:#555;border:none;border-radius:6px;cursor:pointer;font-size:0.82em;margin-top:0;">✕ Close</button>
+    </div>
+    <div id="aiChartSpinner" style="display:none;text-align:center;padding:20px;color:#2a5298;font-size:0.9em;">
+      <div style="border:3px solid #e0e0e0;border-top:3px solid #2a5298;border-radius:50%;width:28px;height:28px;animation:spin 0.8s linear infinite;margin:0 auto 8px;"></div>
+      Fetching chart data from CFTC...
+    </div>
+    <div style="position:relative;height:380px;">
+      <canvas id="aiChartCanvas"></canvas>
+    </div>
+    <div id="aiChartNote" style="margin-top:8px;padding:6px 10px;background:#f0f7ff;border-radius:6px;font-size:0.76em;color:#1565c0;"></div>
+  </div>
+
+  <!-- Data snapshot table -->
+  <div style="background:white;border-radius:12px;padding:20px;margin-top:18px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+      <div style="font-weight:700;font-size:1em;color:#1a1a1a;">📋 Latest Week Snapshot (Managed Money)</div>
+      <div id="aiSnapDate" style="font-size:0.8em;color:#777;"></div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table id="aiSnapTable" style="width:100%;border-collapse:collapse;font-size:0.78em;">
+        <thead>
+          <tr style="background:#2a5298;color:white;">
+            <th style="padding:7px 8px;text-align:left;">Commodity</th>
+            <th style="padding:7px 6px;">Crop</th>
+            <th style="padding:7px 6px;">Net</th>
+            <th style="padding:7px 6px;">Chg</th>
+            <th style="padding:7px 6px;" title="Net percentile vs full history since 2006">Net%ile<br><small>(Full)</small></th>
+            <th style="padding:7px 6px;" title="Net percentile vs 10-year history">Net%ile<br><small>(10yr)</small></th>
+            <th style="padding:7px 6px;" title="Long percentile vs full history">Long%ile<br><small>(Full)</small></th>
+            <th style="padding:7px 6px;" title="Short percentile vs full history">Short%ile<br><small>(Full)</small></th>
+            <th style="padding:7px 6px;">10yr Min</th>
+            <th style="padding:7px 6px;">10yr Max</th>
+            <th style="padding:7px 6px;">All-Time Min</th>
+            <th style="padding:7px 6px;">All-Time Max</th>
+          </tr>
+        </thead>
+        <tbody id="aiSnapBody"></tbody>
+      </table>
+    </div>
+    <div style="margin-top:8px;font-size:0.72em;color:#999;">
+      %ile = percentile rank vs history (0% = all-time low, 100% = all-time high). 
+      Data from Python script (window.BCOM_COT_DATA). 
+      <span id="aiDataFrom"></span>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMR-Com · COT Positioning &amp; Trade Ideas</title>
+<meta name="description" content="Weekly CFTC Commitments of Traders positioning, technicals and systematic trade ideas for BCOM commodities, with a softs focus. Independent research by BMR-Com.">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); min-height: 100vh; color: #333; }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+header { text-align: center; color: white; padding: 30px 20px 20px; margin-bottom: 20px; }
+h1 { font-size: 2.2em; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+.subtitle { font-size: 1.1em; opacity: 0.9; margin-bottom: 15px; }
+.controls { background: rgba(255,255,255,0.95); padding: 20px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: center; }
+.control-group { display: flex; flex-direction: column; gap: 6px; }
+label { font-weight: 600; color: #1a1a1a; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
+select, button, input[type="date"] { padding: 10px 16px; border: 2px solid #ccc; border-radius: 8px; font-size: 0.95em; background: white; color: #1a1a1a; }
+select:focus, input[type="date"]:focus { outline: none; border-color: #2a5298; }
+button { background: #2a5298; color: white; border: none; cursor: pointer; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 18px; }
+button:hover:not(:disabled) { background: #1e3c72; transform: translateY(-1px); }
+button:disabled { background: #95a5a6; cursor: not-allowed; transform: none; }
+#cropYear { border-color: #8B6914; }
+#cropYearGroup label { color: #8B6914; }
+.crop-notes-box { background: rgba(255,255,255,0.12); color: white; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid rgba(255,220,100,0.7); overflow: hidden; }
+.crop-notes-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; cursor: pointer; user-select: none; font-weight: 700; font-size: 0.92em; }
+.crop-notes-header:hover { background: rgba(255,255,255,0.08); }
+.crop-notes-body { padding: 0 16px 14px; font-size: 0.82em; line-height: 1.6; }
+.crop-notes-body p { margin-bottom: 8px; }
+.crop-year-tbl { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8em; }
+.crop-year-tbl th { background: rgba(255,255,255,0.2); padding: 5px 10px; text-align: left; }
+.crop-year-tbl td { padding: 4px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.bcom-tag { display: inline-block; background: rgba(255,220,100,0.4); color: #ffe066; border-radius: 3px; padding: 1px 5px; font-size: 0.75em; font-weight: 700; margin-left: 4px; }
+/* Crop-type tab bar */
+.crop-tab-bar { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.crop-tab { padding: 7px 18px; border: 2px solid #dee2e6; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.85em; background: white; color: #555; margin-top: 0; letter-spacing: 0; text-transform: none; transition: all 0.2s; }
+.crop-tab:hover:not(:disabled) { transform: none; }
+.crop-tab.active-old { background: #8B6914; color: white; border-color: #8B6914; }
+.crop-tab.active-other { background: #1a6e35; color: white; border-color: #1a6e35; }
+.crop-tab.active-all { background: #2a5298; color: white; border-color: #2a5298; }
+.crop-panel { display: none; }
+.crop-panel.active { display: block; }
+.crop-panel-hdr { font-size: 0.92em; font-weight: 700; padding: 8px 14px; margin-bottom: 12px; border-radius: 6px; color: white; }
+.hdr-old { background: #8B6914; }
+.hdr-other { background: #1a6e35; }
+.hdr-all { background: #2a5298; }
+/* Zoom bar */
+.zoom-bar { display: flex; align-items: center; gap: 10px; padding: 8px 0 2px; flex-wrap: wrap; border-top: 1px solid #f0f0f0; margin-top: 8px; }
+.zoom-bar label { font-size: 0.8em; color: #555; text-transform: none; letter-spacing: 0; font-weight: 600; margin: 0; }
+.zoom-slider { width: 200px; accent-color: #2a5298; cursor: pointer; margin: 0; padding: 0; height: 6px; border: none; background: transparent; vertical-align: middle; }
+.zoom-lbl { font-size: 0.78em; color: #2a5298; font-weight: 700; min-width: 80px; }
+.zoom-rst { margin-top: 0; padding: 4px 12px; font-size: 0.78em; background: #7f8c8d; letter-spacing: 0; text-transform: none; border-radius: 6px; }
+.zoom-rst:hover:not(:disabled) { background: #5d6d7e; transform: none; }
+/* Chart sections */
+.chart-section { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); margin-bottom: 25px; }
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid #ecf0f1; padding-bottom: 12px; }
+.chart-title { font-size: 1.2em; font-weight: 700; color: #1a1a1a; }
+.chart-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.chart-controls label { font-size: 0.8em; }
+.chart-controls select { font-size: 0.85em; padding: 6px 10px; }
+.chart-container { position: relative; height: 380px; }
+/* Weekly detail */
+.weekly-crop-section { margin-bottom: 18px; border-radius: 8px; overflow: hidden; border: 2px solid #dee2e6; }
+.weekly-crop-hdr { padding: 8px 14px; font-weight: 700; font-size: 0.88em; color: white; }
+.weekly-detail-tbl { width: 100%; border-collapse: collapse; font-size: 0.76em; }
+.weekly-detail-tbl th { padding: 5px 6px; font-weight: 600; font-size: 0.78em; text-align: center; color: white; }
+.weekly-detail-tbl td { padding: 4px 6px; text-align: right; font-family: monospace; font-size: 0.8em; border-bottom: 1px solid #eee; color: #1a1a1a; }
+.weekly-detail-tbl td:first-child { text-align: left; font-family: inherit; font-weight: 600; }
+.chg-row td { font-size: 0.73em; color: #666; border-bottom: 2px solid #dee2e6; }
+.sub-pm, .cat-hdr-pm { background: #d4880f; }
+.sub-sd, .cat-hdr-sd { background: #1a8c4e; }
+.sub-mm, .cat-hdr-mm { background: #2a5298; }
+.sub-or, .cat-hdr-or { background: #8e44ad; }
+.val-pos { color: #1a8c4e; } .val-neg { color: #c0392b; }
+.nodata-cell { color: #bbb; font-style: italic; font-size: 0.75em; }
+/* Summary sections */
+.summary-section { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); margin-bottom: 25px; }
+.summary-title { font-size: 1.3em; font-weight: 700; color: #1a1a1a; }
+.summary-table { width: 100%; border-collapse: collapse; font-size: 0.78em; }
+.summary-table th { background: #2a5298; color: white; padding: 7px 5px; text-align: center; font-weight: 600; position: sticky; top: 0; z-index: 2; }
+.summary-table td { padding: 5px; border-bottom: 1px solid #ecf0f1; text-align: center; color: #1a1a1a; }
+.summary-table tr:hover { background: #f0f4f8; }
+.commodity-name { text-align: left !important; font-weight: 600; }
+.section-header { background: #34495e !important; color: white !important; font-weight: 700; text-align: left !important; padding: 8px !important; }
+.data-cell { font-family: monospace; }
+.positive-value { color: #1a8c4e; font-weight: 600; }
+.negative-value { color: #c0392b; font-weight: 600; }
+.table-container { max-height: 680px; overflow-y: auto; border-radius: 8px; border: 1px solid #dee2e6; }
+.stats-legend { margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 6px; font-size: 0.8em; }
+/* Minmax bar */
+.mmbar-wrap { width: 100%; }
+.mmbar-cont { width: 100%; height: 16px; background: #e9ecef; border-radius: 8px; position: relative; margin: 2px 0; overflow: hidden; }
+.mmbar-dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; border: 2px solid white; top: 50%; transform: translate(-50%, -50%); z-index: 5; }
+.mmbar-lbl { display: flex; justify-content: space-between; font-size: 0.62em; color: #777; }
+/* Exec summary */
+.exec-summary { background: white; padding: 20px 25px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); margin-bottom: 25px; }
+.exec-title { font-size: 1.3em; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; border-bottom: 2px solid #2a5298; padding-bottom: 8px; }
+.exec-analysis { font-size: 0.86em; line-height: 1.65; color: #1a1a1a; margin-bottom: 16px; padding: 12px 16px; background: #f8f9fa; border-left: 4px solid #2a5298; border-radius: 4px; }
+.pctile-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.pctile-wrap { border-radius: 8px; overflow: hidden; border: 1px solid #dee2e6; }
+.pctile-title { font-size: 0.72em; font-weight: 700; color: white; padding: 6px 8px; text-align: center; }
+.pt-gs { background: #c0392b; } .pt-ns { background: #d4880f; } .pt-gl { background: #1a8c4e; }
+.pt-gso { background: #a93226; } .pt-nso { background: #b7950b; } .pt-glo { background: #1e8449; }
+.pctile-tbl { width: 100%; border-collapse: collapse; font-size: 0.74em; }
+.pctile-tbl th { background: #34495e; color: white; padding: 4px 6px; font-size: 0.76em; text-align: left; }
+.pctile-tbl th:last-child { text-align: right; }
+.pctile-tbl td { padding: 3px 6px; border-bottom: 1px solid #eee; color: #1a1a1a; font-size: 0.9em; }
+.pctile-tbl td:last-child { text-align: right; font-weight: 700; font-family: monospace; }
+/* Scatter */
+.scatter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 15px; }
+.scatter-wrap { background: #f8f9fa; border-radius: 8px; padding: 12px; }
+.scatter-title { font-size: 0.85em; font-weight: 600; color: #1a1a1a; text-align: center; margin-bottom: 8px; }
+.scatter-cont { height: 340px; position: relative; }
+.comm-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+.comm-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.78em; color: #1a1a1a; }
+/* Commodity/year selectors */
+.comm-sel { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; padding: 10px; background: #e8f4fd; border-radius: 8px; align-items: center; }
+.comm-sel-label { font-weight: 700; font-size: 0.82em; color: #1565c0; width: 100%; margin-bottom: 4px; }
+.comm-chip { padding: 4px 12px; border: 2px solid #90caf9; border-radius: 18px; cursor: pointer; font-size: 0.78em; background: white; user-select: none; color: #1a1a1a; }
+.comm-chip:hover { border-color: #1976d2; background: #bbdefb; }
+.comm-chip.active { background: #1976d2; color: white; border-color: #1976d2; }
+.chip-all { background: #1a8c4e !important; color: white !important; border-color: #1a8c4e !important; font-weight: 700; }
+.chip-none { background: #c0392b !important; color: white !important; border-color: #c0392b !important; font-weight: 700; }
+.sel-count { font-size: 0.78em; color: #333; font-style: italic; margin-left: 4px; }
+.yr-sel { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; padding: 8px; background: #f8f9fa; border-radius: 8px; align-items: center; }
+.yr-chip { padding: 4px 10px; border: 2px solid #ccc; border-radius: 18px; cursor: pointer; font-size: 0.8em; background: white; color: #1a1a1a; }
+.yr-chip:hover { border-color: #2a5298; }
+.yr-chip.active { background: #2a5298; color: white; border-color: #2a5298; }
+.loading { display: none; text-align: center; padding: 30px; color: white; font-size: 1.1em; }
+.spinner { border: 4px solid rgba(255,255,255,0.3); border-radius: 50%; border-top: 4px solid white; width: 36px; height: 36px; animation: spin 1s linear infinite; margin: 0 auto 15px; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.error { background: #c0392b; color: white; padding: 15px; border-radius: 8px; margin: 15px 0; display: none; font-family: monospace; font-size: 0.85em; }
+.warning { background: #d4880f; color: #1a1a1a; padding: 12px; border-radius: 8px; margin: 10px 0; display: none; }
+.debug-panel { background: #1a1a1a; color: #ecf0f1; padding: 15px; border-radius: 8px; margin: 15px 0; display: none; font-family: monospace; font-size: 0.8em; max-height: 400px; overflow-y: auto; }
+.info-box { background: rgba(255,255,255,0.1); color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid rgba(255,255,255,0.5); font-size: 0.85em; line-height: 1.5; }
+#commoditySelect { min-width: 280px; cursor: pointer; }
+@media (max-width: 1200px) { .scatter-grid { grid-template-columns: 1fr 1fr 1fr; } .pctile-row { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) { h1 { font-size: 1.6em; } .controls { flex-direction: column; } .chart-container { height: 280px; } .scatter-grid { grid-template-columns: 1fr 1fr!important; } .pctile-row { grid-template-columns: 1fr 1fr; } }
+.chart-subtitle { font-size:0.82em; color:#666; margin-top:3px; font-weight:400; }
+/* Charts 1+2 and 3+4 paired with subtle separator */
+#chart2, #chart4 { border-top: 2px dashed #e8ecf0; margin-top: 0; }
+
+@media print {
+  @page { size:A4 landscape; margin:7mm 9mm; }
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  body{background:white!important;}
+  .controls,.loading,.error,.warning,.debug-panel,.zoom-bar,.comm-sel,.yr-sel,.crop-tab-bar{display:none!important;}
+  header,h1,.subtitle,.info-box{display:none!important;}
+  .container{padding:0!important;max-width:100%!important;}
+
+  /* ── Exec Summary (All BCOM): 1 page ── */
+  #execSec{page-break-before:always!important;page-break-inside:avoid!important;padding:6px 8px!important;box-shadow:none!important;margin:0!important;border-radius:0!important;}
+  .exec-title{font-size:8.5pt!important;margin-bottom:3px!important;padding-bottom:3px!important;}
+  .exec-analysis{font-size:6pt!important;padding:3px 5px!important;margin-bottom:5px!important;line-height:1.35!important;}
+  .pctile-row{gap:3px!important;grid-template-columns:repeat(6,1fr)!important;}
+  .pctile-title{font-size:6pt!important;padding:2px 3px!important;}
+  .pctile-tbl{font-size:6pt!important;}
+  .pctile-tbl td,.pctile-tbl th{padding:1.5px 3px!important;}
+
+  /* ── BCOM Market Summary: exactly 2 pages ── */
+  #sumSec{page-break-before:always!important;padding:4px 6px!important;box-shadow:none!important;border-radius:0!important;}
+  .summary-title{font-size:8pt!important;margin-bottom:3px!important;}
+  .summary-table{font-size:0!important;}
+  .summary-table th{font-size:4.8pt!important;padding:1.5px 1px!important;background:#2a5298!important;color:white!important;position:static!important;white-space:nowrap!important;}
+  .summary-table td{font-size:4.8pt!important;padding:1px!important;border-bottom:0.3px solid #eee!important;}
+  .summary-table tr{page-break-inside:avoid!important;}
+  .mmbar-cont{height:7px!important;border-radius:4px!important;}
+  .mmbar-dot{width:6px!important;height:6px!important;}
+  .mmbar-lbl{font-size:4pt!important;}
+  .mmbar-wrap{min-width:50px!important;}
+  .section-header{font-size:5.5pt!important;padding:1.5px 3px!important;}
+  .commodity-name{font-size:5pt!important;}
+  .data-cell{font-size:4.8pt!important;}
+  .positive-value,.negative-value{font-size:4.8pt!important;}
+  .stats-legend{display:none!important;}
+
+  /* ── 4-Week Detail: 1 page ── */
+  #weeklyDetail{page-break-before:always!important;page-break-inside:avoid!important;padding:4px 6px!important;box-shadow:none!important;border-radius:0!important;}
+  #wdTitle{font-size:8pt!important;}
+  #wdSummary{font-size:6pt!important;padding:3px 5px!important;margin-bottom:4px!important;line-height:1.3!important;}
+  .weekly-crop-section{margin-bottom:5px!important;}
+  .weekly-crop-hdr{padding:2px 6px!important;font-size:6pt!important;}
+  .weekly-detail-tbl{font-size:5pt!important;}
+  .weekly-detail-tbl th{padding:1.5px 2px!important;font-size:5pt!important;}
+  .weekly-detail-tbl td{padding:1.5px 2px!important;font-size:5.5pt!important;}
+  .chg-row td{font-size:4.5pt!important;}
+
+  /* ── Charts: generic ── */
+  /* Hide the metric/agg dropdowns inside each chart — they're not needed in print */
+  .chart-controls{display:none!important;}
+  .chart-section{box-shadow:none!important;padding:5px 8px!important;margin:0!important;border-radius:0!important;page-break-inside:avoid!important;}
+  .chart-title{font-size:9pt!important;}
+  .chart-subtitle{font-size:7.5pt!important;display:block!important;margin-top:1px!important;}
+  .chart-header{margin-bottom:4px!important;padding-bottom:4px!important;}
+  /* Prevent canvas overflow */
+  .chart-container{overflow:hidden!important;max-height:none!important;}
+
+  /* ── Position Analysis + All Trader Categories = 1 page ── */
+  #chart1{page-break-before:always!important;}
+  #chart1 .chart-container{height:210px!important;}
+  #chart2{page-break-before:avoid!important;margin-top:8px!important;padding-top:6px!important;border-top:1.5px dashed #ccc!important;}
+  #chart2 .chart-container{height:200px!important;}
+
+  /* ── Trader Count + Position Size = 1 page ── */
+  #chart3{page-break-before:always!important;}
+  #chart3 .chart-container{height:210px!important;}
+  #chart4{page-break-before:avoid!important;margin-top:8px!important;padding-top:6px!important;border-top:1.5px dashed #ccc!important;}
+  #chart4 .chart-container{height:200px!important;}
+
+  /* ── Seasonality: 1 page ── */
+  #chart5{page-break-before:always!important;}
+  #chart5 .chart-container{height:330px!important;}
+  #seaNote{font-size:6pt!important;padding:2px 6px!important;margin-top:3px!important;}
+
+  /* ── Scatter: 1 page each — bottom legend only ── */
+  #chart6{page-break-before:always!important;}
+  #chart7{page-break-before:always!important;}
+  .scatter-cont{height:195px!important;overflow:hidden!important;}
+  .scatter-wrap{padding:4px!important;}
+  .scatter-title{font-size:6pt!important;margin-bottom:2px!important;}
+  .comm-legend{display:flex!important;flex-wrap:wrap!important;gap:2px 6px!important;padding:4px!important;margin-top:4px!important;border-top:1px solid #eee!important;}
+  .comm-legend-item{font-size:5pt!important;gap:3px!important;}
+  .comm-legend-item div{width:7px!important;height:7px!important;}
+
+  /* ── Agri Exec Summary: 1 page ── */
+  #agriExecSec{page-break-before:always!important;padding:4px 6px!important;box-shadow:none!important;border-radius:0!important;}
+  #agriExecSec .exec-title{font-size:8pt!important;margin-bottom:3px!important;}
+  #agriExecSec .crop-panel-hdr{font-size:6.5pt!important;padding:2px 6px!important;margin:3px 0 2px!important;border-radius:3px!important;}
+  #agriExecSec .exec-analysis{font-size:5.5pt!important;padding:2px 4px!important;margin-bottom:3px!important;line-height:1.25!important;}
+  #agriExecSec .pctile-row{margin-bottom:3px!important;gap:2px!important;}
+  #agriExecSec .pctile-title{font-size:5.5pt!important;padding:1.5px 2px!important;}
+  #agriExecSec .pctile-tbl{font-size:5.5pt!important;}
+  #agriExecSec .pctile-tbl td,#agriExecSec .pctile-tbl th{padding:1px 2px!important;}
+
+  /* ── Agri Market Summary: 1 page per crop section ── */
+  #agriSumSec{page-break-before:always!important;padding:0!important;box-shadow:none!important;border-radius:0!important;}
+  #agriSumSec .summary-title{display:none!important;}
+  #agriSumSec .summary-table th{font-size:4.5pt!important;padding:1px!important;}
+  #agriSumSec .summary-table td{font-size:4.5pt!important;padding:1px!important;}
+  #agriSumSec .mmbar-cont{height:6px!important;} #agriSumSec .mmbar-lbl{font-size:3.5pt!important;}
+  .agri-crop-block{page-break-before:always!important;page-break-inside:avoid!important;padding:4px 8px!important;}
+  .agri-crop-block:first-child{page-break-before:avoid!important;}
+  .agri-crop-block .agri-block-title{font-size:8pt!important;font-weight:700!important;margin-bottom:3px!important;}
+  .agri-crop-block .crop-panel-hdr{font-size:7pt!important;padding:3px 8px!important;margin-bottom:4px!important;}
+
+  /* ── Agri Seasonality: 1 page (3 stacked charts) ── */
+  #agriSeaSec{page-break-before:always!important;padding:4px 6px!important;box-shadow:none!important;border-radius:0!important;}
+  #agriSeaSec .chart-header{margin-bottom:2px!important;}
+  #agriSeaSec .chart-title{font-size:8pt!important;}
+  .agri-sea-block{margin-top:0!important;}
+  /* Each block has fixed height budget: hdr(16pt) + chart(153px→115pt) = ~131pt × 3 = 393pt, fits in 555pt */
+  #agriSeaSec .agri-sea-block .crop-panel-hdr{font-size:6.5pt!important;padding:1px 6px!important;margin:5px 0 2px!important;}
+  #agriSeaSec .chart-container{height:200px!important;overflow:hidden!important;}
+  #agriSeaSec .agri-sea-block .crop-panel-hdr+.chart-container{margin-top:0!important;}
+  #agriSeaSec [id^=aSeaNote]{display:none!important;}
+}
+/* ── Tab bar ── */
+#tabBar{display:flex;gap:0;background:#1e3c72;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.tab-btn{padding:14px 28px;color:rgba(255,255,255,0.7);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;font-size:0.95em;font-weight:600;letter-spacing:0.5px;text-transform:none;margin-top:0;border-radius:0;transition:all 0.2s;}
+.tab-btn:hover:not(:disabled){background:rgba(255,255,255,0.08);color:white;transform:none;}
+.tab-btn.active{color:white;border-bottom-color:#ffe066;}
+@media print{#tabBar{display:none!important;}}
+
+
+/* ── Data status strip ── */
+#dataStatus{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;background:rgba(0,0,0,0.18);color:rgba(255,255,255,0.9);font-size:0.78em;padding:6px 20px;}
+#dataStatus b{color:#fff;}
+.ds-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:2px;}
+.ds-ok{background:#2ecc71;} .ds-warn{background:#f1c40f;}
+.ds-sep{opacity:0.5;}
+@media print{#dataStatus{display:none!important;}}
+
+
+/* ── Brand + footer ── */
+.brand{color:#ffe066;font-weight:800;font-size:1.05em;align-self:center;margin-right:18px;white-space:nowrap;letter-spacing:.3px;}
+#mktSearch{margin:8px 0 8px auto;align-self:center;padding:7px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;font-size:.85em;min-width:170px;}
+#mktSearch::placeholder{color:rgba(255,255,255,.75);}
+#mktSearch:focus{outline:2px solid #ffe066;background:rgba(255,255,255,.2);}
+.brand small{display:block;color:rgba(255,255,255,.7);font-weight:500;font-size:.62em;letter-spacing:.6px;text-transform:uppercase;}
+#siteFooter{max-width:1400px;margin:10px auto 30px;padding:14px 20px;color:rgba(255,255,255,.75);font-size:.76em;line-height:1.6;border-top:1px solid rgba(255,255,255,.2);}
+#siteFooter b{color:#fff;}
+@media (max-width:900px){#tabBar{overflow-x:auto;padding:0 8px;}.tab-btn{padding:12px 14px;white-space:nowrap;}.brand{margin-right:8px;}}
+@media print{#siteFooter{display:none!important;}}
+
+/* ── Custom Formula Builder ── */
+.formula-term-row{display:flex;gap:8px;align-items:center;background:#f8fafc;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;flex-wrap:wrap;}
+.formula-term-row select{padding:6px 10px;border:1px solid #94a3b8;border-radius:6px;font-size:13px;background:white;}
+.formula-term-row .op-badge{width:36px;text-align:center;font-weight:bold;font-size:16px;color:#475569;}
+.formula-term-row .remove-btn{color:#ef4444;cursor:pointer;font-size:18px;font-weight:bold;padding:0 6px;}
+.formula-term-row .remove-btn:hover{color:#b91c1c;}
+.saved-chip{background:#e0f2fe;color:#0369a1;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;border:1px solid #7dd3fc;display:flex;align-items:center;gap:6px;transition:all 0.2s;}
+.saved-chip:hover{background:#bae6fd;transform:translateY(-1px);}
+.saved-chip .delete-chip{color:#ef4444;font-weight:bold;margin-left:4px;font-size:14px;}
+.saved-chip .delete-chip:hover{color:#b91c1c;}
+#formula-terms{min-height:50px;}
+
+</style>
+<base target="_blank">
+<style>html.embed #tabBar .brand{display:none}</style>
+<script>if (window.self !== window.top) document.documentElement.classList.add('embed');</script>
+</head>
+<body>
+
+<!-- ── Tab Navigation Bar ── -->
+<div id="tabBar">
+  <span class="brand">BMR-Com <small>COT Positioning Desk</small></span>
+  <button class="tab-btn active" onclick="switchTab('summary')" id="tb_summary">📋 Summary &amp; Ideas</button>
+  <button class="tab-btn" onclick="switchTab('cot')" id="tb_cot">📊 COT Analyzer</button>
+  <button class="tab-btn" onclick="switchTab('scatter')" id="tb_scatter">🎯 Scatter</button>
+  <button class="tab-btn" onclick="switchTab('index')" id="tb_index">🏦 Index (CIT)</button>
+  <button class="tab-btn" onclick="switchTab('levels')" id="tb_levels">🚦 Triggers &amp; Flows</button>
+  <button class="tab-btn" onclick="switchTab('seasonality')" id="tb_seasonality">📅 Seasonality</button>
+  <button class="tab-btn" onclick="switchTab('formula')" id="tb_formula">🔧 Custom Formula</button>
+  <button class="tab-btn" onclick="switchTab('ai')" id="tb_ai">🤖 AI Analysis</button>
+  <input id="mktSearch" list="mktList" placeholder="🔎 Go to market…" aria-label="Go to market" autocomplete="off"><datalist id="mktList"></datalist>
+</div>
+
+<div id="dataStatus" style="display:none;"></div>
+
+<!-- ── Tab Panes (loaded dynamically) ── -->
+<div id="pane_summary" class="tab-pane"></div>
+<div id="pane_cot" class="tab-pane" style="display:none;"></div>
+<div id="pane_scatter" class="tab-pane" style="display:none;"></div>
+<div id="pane_index" class="tab-pane" style="display:none;"></div>
+<div id="pane_levels" class="tab-pane" style="display:none;"></div>
+<div id="pane_seasonality" class="tab-pane" style="display:none;"></div>
+<div id="pane_formula" class="tab-pane" style="display:none;"></div>
+<div id="pane_ai" class="tab-pane" style="display:none;"></div>
+
+<footer id="siteFooter"><b>BMR-Com</b> · independent commodity research. Data: CFTC Disaggregated Commitments of Traders (futures &amp; options combined) and Yahoo Finance prices, refreshed weekly by an automated GitHub Actions pipeline. Desk reads and trade ideas are systematic, rules-based outputs for research and discussion — not investment advice. Zinc, Nickel, Lead (LME) and Low Sulphur Gasoil (ICE Europe) are BCOM constituents not reported by the CFTC. Source code: <a href="https://github.com/BMR-Com/cftc-cot-full" style="color:#ffe066">github.com/BMR-Com/cftc-cot-full</a></footer>
+
+<!-- ── Shared JavaScript ── -->
+<!-- APP_VER: bump on every code change so browsers never mix old and new JS
+     (GitHub Pages lets browsers cache files for 10 minutes). -->
+<script>var APP_VER='2026.10.17.4';</script>
+<script src="js/shared.js?v=2026.10.17.4"></script>
+<script src="js/data-store.js?v=2026.10.17.4"></script>
+<script src="js/insights.js?v=2026.10.17.4"></script>
+<script src="js/tab-switching.js?v=2026.10.17.4"></script>
+
+<script>
+/* ===========================================================
+   TAB LOADER — fetches HTML content for each tab on demand
+   =========================================================== */
+
+var _tabLoaded = {};
+var _tabJSLoaded = {};
+
+function loadTab(tabId, htmlUrl, jsUrl) {
+    return new Promise(function(resolve, reject) {
+        if (_tabLoaded[tabId]) { resolve(); return; }
+
+        var pane = document.getElementById('pane_' + tabId);
+        if (!pane) { reject('Pane not found'); return; }
+
+        var vq = '?v=' + encodeURIComponent(window.APP_VER || '');
+        fetch(htmlUrl + vq)
+            .then(function(r) { if (!r.ok) throw new Error(htmlUrl + ' HTTP ' + r.status); return r.text(); })
+            .then(function(html) {
+                pane.innerHTML = html;
+                _tabLoaded[tabId] = true;
+
+                // Load JS if provided
+                if (jsUrl && !_tabJSLoaded[jsUrl]) {
+                    var script = document.createElement('script');
+                    script.src = jsUrl + vq;
+                    script.onload = function() {
+                        _tabJSLoaded[jsUrl] = true;
+                        resolve();
+                    };
+                    script.onerror = function() {
+                        console.warn('Failed to load ' + jsUrl);
+                        resolve(); // still resolve, tab works without JS
+                    };
+                    document.body.appendChild(script);
+                } else {
+                    resolve();
+                }
+            })
+            .catch(function(e) {
+                pane.innerHTML = '<div style="padding:40px;text-align:center;color:#c0392b;">Failed to load tab content. <a href="' + htmlUrl + '">Try direct link</a></div>';
+                reject(e);
+            });
+    });
+}
+
+// Pre-load COT tab (default)
+document.addEventListener('DOMContentLoaded', function() {
+    loadTab('cot', 'tabs/cot-tab.html', 'js/cot-tab.js')
+        .then(function() {
+            // Initialize COT tab
+            document.getElementById('endDate').valueAsDate = new Date();
+            loadList();
+            renderDataStatus();
+            // Land on the tab or market in the link (#CT, #index ...), else the Summary
+            initMarketSearch();
+            routeHash();
+        })
+        .catch(function(e) { console.error('Failed to load COT tab:', e); });
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<div class="chart-section" id="scCtl" style="padding:14px 20px;">
+  <div style="display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap;">
+    <div class="control-group"><label>Look-back</label><select id="scWin" onchange="doScatter();doScatterPct();"><option value="f" selected>Since 2006</option><option value="y5">5 years</option><option value="y3">3 years</option><option value="y1">1 year</option></select></div>
+    <div class="control-group"><label>Crop view</label><select id="scCrop" onchange="doScatter();doScatterPct();"><option value="all" selected>All crop years</option><option value="old">Old crop</option><option value="other">Other (new) crop</option></select></div>
+    <div style="font-size:.8em;color:#555;max-width:620px;line-height:1.45;">Each dot is one market, plotted by where commercials (Prod/Merch, x) and funds (Managed Money, y) sit versus their own history. Top-left / bottom-right corners = funds and commercials at opposite extremes. Hover for exact values.</div>
+  </div>
+</div>
+<div class="chart-section" id="chart6" style="display:none;">
+  <div class="chart-header"><div class="chart-title">&#x1F3AF; Prod/Merch vs Managed Money (%ile) — All BCOM</div></div>
+  <div class="scatter-grid" style="grid-template-columns:repeat(3,1fr);gap:10px;">
+    <div class="scatter-wrap"><div class="scatter-title">Prod Short vs MM Short</div><div class="scatter-cont" style="height:280px;"><canvas id="sc1"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod Short vs MM Long</div><div class="scatter-cont" style="height:280px;"><canvas id="sc2"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod Long vs MM Short</div><div class="scatter-cont" style="height:280px;"><canvas id="sc3"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod Long vs MM Long</div><div class="scatter-cont" style="height:280px;"><canvas id="sc4"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod Net vs MM Net</div><div class="scatter-cont" style="height:280px;"><canvas id="sc5"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">MM Net %ile vs this week's flow (&sigma;)</div><div class="scatter-cont" style="height:280px;"><canvas id="sc6"></canvas></div></div>
+  </div>
+  <div class="comm-legend" id="scLeg"></div>
+</div>
+
+<!-- ============================================================
+     CHART 7: %OI Scatter
+     ============================================================ -->
+<div class="chart-section" id="chart7" style="display:none;">
+  <div class="chart-header"><div class="chart-title">&#x1F3AF; %OI Positioning (%ile) — All BCOM</div></div>
+  <div class="scatter-grid" style="grid-template-columns:repeat(3,1fr);gap:10px;">
+    <div class="scatter-wrap"><div class="scatter-title">Prod S% vs MM S%</div><div class="scatter-cont" style="height:280px;"><canvas id="sp1"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod S% vs MM L%</div><div class="scatter-cont" style="height:280px;"><canvas id="sp2"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod L% vs MM S%</div><div class="scatter-cont" style="height:280px;"><canvas id="sp3"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod L% vs MM L%</div><div class="scatter-cont" style="height:280px;"><canvas id="sp4"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">Prod N% vs MM N%</div><div class="scatter-cont" style="height:280px;"><canvas id="sp5"></canvas></div></div>
+    <div class="scatter-wrap"><div class="scatter-title">MM Long %OI vs MM Short %OI</div><div class="scatter-cont" style="height:280px;"><canvas id="sp6"></canvas></div></div>
+  </div>
+  <div class="comm-legend" id="spLeg"></div>
+</div>
+
+<!-- ============================================================
+     AGRI: EXEC SUMMARY — 3 sections always visible, no tabs
+     ============================================================ -->

@@ -87,8 +87,8 @@ const Geo = (() => {
     for (const r of regs) {
       if (r.chart_rain) { const c = r.chart_rain, lb = c.weeks.map(w => 'wk ' + (w + 1));
         new Chart(el.querySelector('#gr-' + r.id), { type: 'line', data: { labels: lb, datasets: [
-          { label: 'this season', data: c.cur, borderColor: '#2f6db3', borderWidth: 2, pointRadius: 0 },
-          { label: 'average', data: c.mean, borderColor: '#8a8984', borderDash: [4, 3], pointRadius: 0 },
+          { label: 'this season', data: c.cur, borderColor: '#2f6db3', borderWidth: 2, pointRadius: c.cur.length < 3 ? 4 : 0 },
+          { label: 'average', data: c.mean, borderColor: '#8a8984', borderDash: [4, 3], pointRadius: c.cur.length < 3 ? 4 : 0 },
           { label: '10th pct', data: c.p10, borderColor: 'rgba(184,69,47,.5)', pointRadius: 0, borderWidth: 1 },
           { label: '90th pct', data: c.p90, borderColor: 'rgba(58,138,90,.5)', pointRadius: 0, borderWidth: 1, fill: '-1', backgroundColor: 'rgba(138,137,132,.12)' }] },
           options: { plugins: { legend: { labels: { boxWidth: 10, font: { size: 10 } } }, title: { display: true, text: `cumulative rain since ${r.season_from} (mm)`, font: { size: 11 } } }, scales: { x: { ticks: { maxTicksLimit: 8 } } } } }); }
@@ -130,7 +130,7 @@ const Geo = (() => {
           ${usd && (usd.last_my || usd.current_my) ? '<p class="note">Source: USDA FAS weekly Export Sales. Units: metric tons (cotton: running bales).</p>' : ''}</div></div></div>
       <div class="card" style="margin-top:12px"><h2>Weather in the regions that matter <span class="note">Open-Meteo; vs ${WX.history || '2011–2025'}; data through ${regs[0] ? regs[0].data_through : '–'}</span></h2>
         <p class="note">Countries with at least ${G.threshold}% of world output or a top-5 export share. Percentiles rank this year against the same dates in 2011–2025 (10th = drier/lower than 9 in 10 years). Water balance = rain minus reference evapotranspiration. Irrigated areas (Xinjiang, Punjab) depend more on heat and water supply than on rain.</p>
-        <div class="tbl"><table><tr><th class="l">Region</th><th>Rain 30 d</th><th>Rain 60 d</th><th>Season to date</th><th>Water bal. 60 d</th><th>Max temp 30 d (anom)</th><th>Soil moisture</th><th>Next 16 d rain</th><th class="l">Read</th></tr>
+        <div class="tbl"><table class="geo-wx"><tr><th class="l">Region</th><th>Rain 30 d</th><th>Rain 60 d</th><th>Season to date</th><th>Water bal. 60 d</th><th>Max temp 30 d (anom)</th><th>Soil moisture</th><th>Next 16 d rain</th><th class="l">Read</th></tr>
         ${regs.map(wxRow).join('') || '<tr><td colspan="9" class="note">Weather data loading.</td></tr>'}</table></div>
         <details style="margin-top:8px"><summary><b>Charts: season rain and soil moisture vs history</b></summary><div class="geo-chs" id="geoCh"></div></details></div>
       ${G.usdm ? `<div class="card" style="margin-top:12px"><h2>United States: drought in the producing states <span class="note">U.S. Drought Monitor, % of state area</span></h2>

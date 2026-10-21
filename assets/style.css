@@ -154,3 +154,5 @@ tr.mk-today td{background:#eef6ee}tr.mk-past td{opacity:.6}
 .op-in input[type=range]{padding:0}
 #opLegs input{font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--line);border-radius:3px}
 .op-x{border:0;background:none;color:var(--dn);cursor:pointer}
+.geo-wx{font-size:12px}.geo-wx td{white-space:nowrap;vertical-align:top}.geo-wx td:first-child{min-width:170px;white-space:normal}
+.geo-wx td:last-child{min-width:200px;max-width:260px;white-space:normal}

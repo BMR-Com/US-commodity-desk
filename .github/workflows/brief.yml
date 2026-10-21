@@ -36,7 +36,6 @@ jobs:
           python -W ignore models/summary.py || true
           python models/energy_summary.py || true
           python -W ignore models/morning_brief.py
-          python models/ai_context.py || true
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

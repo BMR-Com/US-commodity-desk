@@ -32,7 +32,7 @@ jobs:
           case "$S" in "50 1"*) echo "EIA-only run";; *) python -u pipelines/energy_prices.py;; esac
       - name: energy summary for the morning brief
         continue-on-error: true
-        run: python models/energy_summary.py && python -W ignore models/energy_sd.py && python models/ai_context.py
+        run: python models/energy_summary.py && python -W ignore models/energy_sd.py
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

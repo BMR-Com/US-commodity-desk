@@ -54,12 +54,14 @@ U = [
 EXCH_DELAY = {"CBT": 10, "CME": 10, "NYM": 30, "CMX": 30, "NYB": 30, "CCY": 0, "SNP": 0, "DJI": 0, "NIM": 0, "CGI": 15, "NYS": 15}
 
 
-def chart(sym):
+def chart(sym, rng="2y"):
     for host in ("query1", "query2"):
         try:
-            r = requests.get(f"https://{host}.finance.yahoo.com/v8/finance/chart/{sym}?range=2y&interval=1d&includePrePost=false", headers=H, timeout=30)
+            r = requests.get(f"https://{host}.finance.yahoo.com/v8/finance/chart/{sym}?range={rng}&interval=1d&includePrePost=false", headers=H, timeout=30)
             if r.status_code == 200:
                 return r.json()["chart"]["result"][0]
+            if r.status_code == 404:
+                return None
             print("  HTTP", r.status_code, sym, host)
         except Exception as e:
             print("  err", sym, e)
@@ -81,16 +83,35 @@ def series(j):
 
 
 def contract_symbol(sym, meta):
-    """'ZC=F' with shortName 'Corn Futures,Dec-2026' -> 'ZCZ26.CBT'."""
+    """Front contract behind a Yahoo =F quote: 'ZC=F' + shortName 'Corn Futures,Dec-2026' -> 'ZCZ26.CBT'.
+    Yahoo truncates shortName to 32 characters ('...Futures,Dec-2', '...Futures,Nov', or empty), so when the year
+    or month is cut off, try the next listed months and keep the one whose last price matches the =F quote."""
     if not sym.endswith("=F"):
         return None
-    name = meta.get("shortName") or ""
-    mm = re.search(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[\s\-']*(\d{4}|\d{2})\s*$", name, re.I)
-    sx = SUFFIX.get(meta.get("exchangeName"))
-    if not mm or not sx:
-        print("  no contract for", sym, repr(name), meta.get("exchangeName"))
+    sx = "NYB" if sym[:-2] in ("CT", "SB", "KC", "CC", "OJ") else SUFFIX.get(meta.get("exchangeName"))  # ICE US softs (Yahoo mislabels CT as NYM)
+    if not sx:
         return None
-    return f"{sym[:-2]}{MONTHS[mm[1].title()]}{mm[2][-2:]}.{sx}"
+    root, name, px = sym[:-2], meta.get("shortName") or "", meta.get("regularMarketPrice")
+    today = datetime.now(ET).date()
+    mm = re.search(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[\s\-']*(\d{4}|\d{2})\s*$", name, re.I)
+    if mm:
+        return f"{root}{MONTHS[mm[1].title()]}{mm[2][-2:]}.{sx}"
+    mo = re.search(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*[\s\-']*\d{0,3}\s*$", name, re.I)
+    if mo:
+        m = list(MONTHS).index(mo[1].title()) + 1
+        cands = [(m, today.year if m >= today.month else today.year + 1)]
+    else:
+        cands = [((today.month - 1 + k) % 12 + 1, today.year + (today.month - 1 + k) // 12) for k in range(0, 8)]
+    for m, y in cands:
+        cs = f"{root}{'FGHJKMNQUVXZ'[m - 1]}{str(y)[-2:]}.{sx}"
+        if len(cands) == 1:
+            return cs
+        j = chart(cs, "5d")
+        time.sleep(0.3)
+        if j and px is not None and abs((j["meta"].get("regularMarketPrice") or -1) - px) < 1e-9:
+            return cs
+    print("  no contract for", sym, repr(name), meta.get("exchangeName"))
+    return None
 
 
 def pct(a, b):

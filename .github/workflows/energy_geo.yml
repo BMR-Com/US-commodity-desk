@@ -1,0 +1,33 @@
+name: energy_geo
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipelines/energy_geo.py', 'models/energy_geo.py', '.github/workflows/energy_geo.yml']
+  schedule:
+    - cron: '15 16 * * 1'   # weekly: EIA monthly/annual series, OWID, UN Comtrade
+permissions: {contents: write}
+concurrency: {group: energy_geo, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas
+      - name: EIA, OWID, Comtrade
+        continue-on-error: true
+        env: {EIA_API_KEY: '${{ secrets.EIA_API_KEY }}'}
+        run: python -u pipelines/energy_geo.py
+      - name: build page data
+        continue-on-error: true
+        run: python models/energy_geo.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/energy/geo
+          git diff --cached --quiet && exit 0
+          git commit -q -m "energy geo: production, trade, LNG, refining $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

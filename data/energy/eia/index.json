@@ -1,0 +1,421 @@
+{
+"series": {
+"storL48": {
+"label": "Gas \u2014 Lower 48 working gas",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SWO_R48_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"storEast": {
+"label": "Gas \u2014 East region",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SWO_R31_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"storMw": {
+"label": "Gas \u2014 Midwest region",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SWO_R32_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"storSc": {
+"label": "Gas \u2014 South Central",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SWO_R33_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"storScSalt": {
+"label": "Gas \u2014 South Central salt",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SSO_R33_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"storScNon": {
+"label": "Gas \u2014 South Central non-salt",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SNO_R33_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"storMtn": {
+"label": "Gas \u2014 Mountain region",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SWO_R34_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"storPac": {
+"label": "Gas \u2014 Pacific region",
+"route": "natural-gas/stor/wkly",
+"id": "NW2_EPG0_SWO_R35_BCF",
+"how": "id found",
+"rows": 876,
+"last": "2026-10-09"
+},
+"prodDry": {
+"label": "Gas \u2014 dry production",
+"route": "natural-gas/prod/sum",
+"id": "N9070US2",
+"how": "id found",
+"rows": 355,
+"last": "2026-07"
+},
+"consTot": {
+"label": "Gas \u2014 total consumption",
+"route": "natural-gas/cons/sum",
+"id": "N9140US2",
+"how": "id found",
+"rows": 307,
+"last": "2026-07"
+},
+"consRes": {
+"label": "Gas \u2014 residential",
+"route": "natural-gas/cons/sum",
+"id": "N3010US2",
+"how": "id found",
+"rows": 643,
+"last": "2026-07"
+},
+"consCom": {
+"label": "Gas \u2014 commercial",
+"route": "natural-gas/cons/sum",
+"id": "N3020US2",
+"how": "id found",
+"rows": 643,
+"last": "2026-07"
+},
+"consInd": {
+"label": "Gas \u2014 industrial",
+"route": "natural-gas/cons/sum",
+"id": "N3035US2",
+"how": "id found",
+"rows": 307,
+"last": "2026-07"
+},
+"consPow": {
+"label": "Gas \u2014 electric power",
+"route": "natural-gas/cons/sum",
+"id": "N3045US2",
+"how": "id found",
+"rows": 307,
+"last": "2026-07"
+},
+"expLng": {
+"label": "Gas \u2014 LNG exports",
+"route": "natural-gas/move/expc",
+"id": "N9133US2",
+"how": "id found",
+"rows": 355,
+"last": "2026-07"
+},
+"expTot": {
+"label": "Gas \u2014 total exports",
+"route": "natural-gas/move/expc",
+"id": "N9130US2",
+"how": "id found",
+"rows": 643,
+"last": "2026-07"
+},
+"impTot": {
+"label": "Gas \u2014 total imports",
+"route": "natural-gas/move/impc",
+"id": "N9100US2",
+"how": "id found",
+"rows": 643,
+"last": "2026-07"
+},
+"hhSpot": {
+"label": "Henry Hub spot",
+"route": "natural-gas/pri/fut",
+"id": "RNGWHHD",
+"how": "id found",
+"rows": 2205,
+"last": "2026-10-20"
+},
+"fut1": {
+"label": "Gas contract 1",
+"route": "natural-gas/pri/fut",
+"id": "RNGC1",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"fut2": {
+"label": "Gas contract 2",
+"route": "natural-gas/pri/fut",
+"id": "RNGC2",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"fut3": {
+"label": "Gas contract 3",
+"route": "natural-gas/pri/fut",
+"id": "RNGC3",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"fut4": {
+"label": "Gas contract 4",
+"route": "natural-gas/pri/fut",
+"id": "RNGC4",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"crude": {
+"label": "Crude stocks, ex-SPR",
+"route": "petroleum/stoc/wstk",
+"id": "WCESTUS1",
+"how": "id found",
+"rows": 2298,
+"last": "2026-10-09"
+},
+"spr": {
+"label": "SPR crude stocks",
+"route": "petroleum/stoc/wstk",
+"id": "WCSSTUS1",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
+},
+"cushing": {
+"label": "Cushing crude stocks",
+"route": "petroleum/stoc/wstk",
+"id": "W_EPC0_SAX_YCUOK_MBBL",
+"how": "id found",
+"rows": 1176,
+"last": "2026-10-16"
+},
+"gaso": {
+"label": "Gasoline stocks",
+"route": "petroleum/stoc/wstk",
+"id": "WGTSTUS1",
+"how": "id found",
+"rows": 1919,
+"last": "2026-10-09"
+},
+"dist": {
+"label": "Distillate stocks",
+"route": "petroleum/stoc/wstk",
+"id": "WDISTUS1",
+"how": "id found",
+"rows": 2298,
+"last": "2026-10-09"
+},
+"jet": {
+"label": "Jet fuel stocks",
+"route": "petroleum/stoc/wstk",
+"id": "WKJSTUS1",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
+},
+"prod": {
+"label": "Crude production",
+"route": "petroleum/sum/sndw",
+"id": "WCRFPUS2",
+"how": "id found",
+"rows": 2281,
+"last": "2026-10-09"
+},
+"imp": {
+"label": "Crude imports",
+"route": "petroleum/sum/sndw",
+"id": "WCEIMUS2",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
+},
+"exp": {
+"label": "Crude exports",
+"route": "petroleum/sum/sndw",
+"id": "WCREXUS2",
+"how": "id found",
+"rows": 1863,
+"last": "2026-10-16"
+},
+"runs": {
+"label": "Refiner net crude input",
+"route": "petroleum/pnp/wiup",
+"id": "WCRRIUS2",
+"how": "id found",
+"rows": 2299,
+"last": "2026-10-16"
+},
+"util": {
+"label": "Refinery utilization",
+"route": "petroleum/pnp/wiup",
+"id": "WPULEUS3",
+"how": "id found",
+"rows": 1876,
+"last": "2026-10-09"
+},
+"demGaso": {
+"label": "Gasoline supplied",
+"route": "petroleum/cons/wpsup",
+"id": "WRPUPUS2",
+"how": "id found",
+"rows": 1875,
+"last": "2026-10-16"
+},
+"demDist": {
+"label": "Distillate supplied",
+"route": "petroleum/cons/wpsup",
+"id": "WDIUPUS2",
+"how": "id found",
+"rows": 1863,
+"last": "2026-10-16"
+},
+"demJet": {
+"label": "Jet fuel supplied",
+"route": "petroleum/cons/wpsup",
+"id": "WKJUPUS2",
+"how": "id found",
+"rows": 1863,
+"last": "2026-10-16"
+},
+"wti": {
+"label": "WTI Cushing spot",
+"route": "petroleum/pri/spt",
+"id": "RWTC",
+"how": "id found",
+"rows": 2205,
+"last": "2026-10-20"
+},
+"brent": {
+"label": "Brent spot",
+"route": "petroleum/pri/spt",
+"id": "RBRTE",
+"how": "id found",
+"rows": 2230,
+"last": "2026-10-20"
+},
+"spotDist": {
+"label": "ULSD Gulf Coast spot",
+"route": "petroleum/pri/spt",
+"id": "EER_EPD2DXL0_PF4_RGC_DPG",
+"how": "id found",
+"rows": 2207,
+"last": "2026-10-20"
+},
+"spotGaso": {
+"label": "Gasoline Gulf Coast spot",
+"route": "petroleum/pri/spt",
+"id": "EER_EPMRU_PF4_RGC_DPG",
+"how": "id found",
+"rows": 2207,
+"last": "2026-10-20"
+},
+"ofut1": {
+"label": "WTI contract 1",
+"route": "petroleum/pri/fut",
+"id": "RCLC1",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"ofut2": {
+"label": "WTI contract 2",
+"route": "petroleum/pri/fut",
+"id": "RCLC2",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"ofut3": {
+"label": "WTI contract 3",
+"route": "petroleum/pri/fut",
+"id": "RCLC3",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"ofut4": {
+"label": "WTI contract 4",
+"route": "petroleum/pri/fut",
+"id": "RCLC4",
+"how": "id found",
+"rows": 1591,
+"last": "2024-04-05"
+},
+"hofut1": {
+"label": "ULSD contract 1",
+"route": "petroleum/pri/fut",
+"id": "EER_EPD2F_PE1_Y35NY_DPG",
+"how": "id found",
+"rows": 1580,
+"last": "2024-04-05"
+},
+"rbfut1": {
+"label": "RBOB contract 1",
+"route": "petroleum/pri/fut",
+"id": "EER_EPMRR_PE1_Y35NY_DPG",
+"how": "id found",
+"rows": 1580,
+"last": "2024-04-05"
+},
+"steoProd": {
+"label": "STEO dry gas production",
+"route": "steo",
+"id": "NGPRPUS",
+"how": "id found",
+"rows": 456,
+"last": "2027-12"
+},
+"steoCons": {
+"label": "STEO gas consumption",
+"route": "steo",
+"id": "NGTCPUS",
+"how": "id found",
+"rows": 348,
+"last": "2027-12"
+},
+"steoLng": {
+"label": "STEO LNG exports",
+"route": "steo",
+"id": "NGEXPUS_LNG",
+"how": "name matched",
+"rows": 348,
+"last": "2027-12"
+},
+"steoStor": {
+"label": "STEO end-of-month storage",
+"route": "steo",
+"id": "NGUSPUS",
+"how": "name matched",
+"rows": 456,
+"last": "2027-12"
+},
+"steoHdd": {
+"label": "STEO heating degree days",
+"route": "steo",
+"id": "ZWHDPUS_PCT",
+"how": "name matched",
+"rows": 456,
+"last": "2027-12"
+},
+"steoCdd": {
+"label": "STEO cooling degree days",
+"route": "steo",
+"id": "ZWCDPUS_PCT",
+"how": "name matched",
+"rows": 456,
+"last": "2027-12"
+}
+},
+"generated": "2026-10-21 17:36 UTC"
+}

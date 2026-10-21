@@ -1,10 +1,10 @@
 """Archive NASS report text files from ESMIS (first prints, as released), no key.
 
 For each publication, crawl the listing pages and download every .txt release not yet stored to
-data/esmis/<slug>/<filename>. Parsing happens in models/ (first-print values + release dates for
+data/esmis/<slug>/<filename>.gz (gzip of the .txt; pipelines/retention.py compresses older plain files). Parsing happens in models/ (first-print values + release dates for
 honest backtests).
 """
-import re, sys, time
+import gzip, re, sys, time
 from pathlib import Path
 import requests
 
@@ -47,7 +47,7 @@ def year_of(name):
 def crawl(slug, oldest):
     d = OUT / slug
     d.mkdir(parents=True, exist_ok=True)
-    have = {p.name for p in d.glob("*.txt")}
+    have = {p.name.removesuffix(".gz") for p in d.glob("*.txt*")}
     new = 0
     for page in range(0, 60):
         r = get(f"{BASE}/publication/{slug}?page={page}")
@@ -69,7 +69,7 @@ def crawl(slug, oldest):
             rr = get(BASE + f if f.startswith("/") else f)
             if rr is None:
                 continue
-            (d / key).write_bytes(rr.content)
+            (d / (key + ".gz")).write_bytes(gzip.compress(rr.content, 9, mtime=0))
             have.add(key)
             new += 1
             time.sleep(0.3)

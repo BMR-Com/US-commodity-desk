@@ -23,6 +23,7 @@ jobs:
         continue-on-error: true
         env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}'}
       - run: python pipelines/esmis.py
+      - run: python pipelines/retention.py   # delete dated files older than ~6 months (OI totals kept), gzip report archives
         continue-on-error: true
       - run: python models/dairy_class.py
         continue-on-error: true

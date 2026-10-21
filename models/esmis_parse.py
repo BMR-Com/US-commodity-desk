@@ -5,6 +5,13 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
 ESMIS = ROOT / "data" / "esmis"
+
+
+def read(p):
+    """A stored release as text (files are gzipped: <name>.txt.gz; older plain .txt still read)."""
+    import gzip
+    b = p.read_bytes()
+    return (gzip.decompress(b) if p.name.endswith(".gz") else b).decode("utf-8", "ignore")
 MONTHS = {m: i for i, m in enumerate(["January", "February", "March", "April", "May", "June", "July", "August",
                                        "September", "October", "November", "December"], 1)}
 NUM = r"([\d,]+|\(NA\)|\(D\)|-)"
@@ -25,8 +32,8 @@ def n(x):
 def hogs_and_pigs():
     """One row per release: quarter reported (first print), weight groups, breeding, market; prev-year column too."""
     rows = []
-    for p in sorted((ESMIS / "hogs-and-pigs").glob("*.txt")):
-        t = p.read_text(errors="ignore")
+    for p in sorted((ESMIS / "hogs-and-pigs").glob("*.txt*")):
+        t = read(p)
         rel = released(t)
         if rel is None or "Special" in p.name:
             continue
@@ -66,8 +73,8 @@ def hogs_and_pigs():
 def milk_production():
     """First-print US milk production headline per monthly release."""
     rows = []
-    for p in sorted((ESMIS / "milk-production").glob("*.txt")):
-        t = re.sub(r"\s+", " ", p.read_text(errors="ignore"))
+    for p in sorted((ESMIS / "milk-production").glob("*.txt*")):
+        t = re.sub(r"\s+", " ", read(p))
         rel = released(t)
         m = re.search(r"Milk production in the United States during (\w+) totaled ([\d.]+) billion pounds, (up|down) ([\d.]+) percent from \w+ (\d{4})", t)
         if not (rel and m):

@@ -29,7 +29,7 @@ def val(s):
 
 
 def read_dir(sub):
-    fs = sorted((RAW / sub).glob("*.csv"))
+    fs = sorted((RAW / sub).glob("*.csv*"))
     return pd.concat([pd.read_csv(f, low_memory=False) for f in fs]) if fs else pd.DataFrame()
 
 

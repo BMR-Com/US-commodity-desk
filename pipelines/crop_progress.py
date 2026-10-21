@@ -2,10 +2,10 @@
 
 Batched to stay under QuickStats' 50,000-row cap: one request per (commodity, year, level);
 a batch that is too large is split by state. Completed years are stored once
-(data/grains/raw/crop_progress/<commodity>/<year>.csv); the current year is refreshed each run.
+(data/grains/raw/crop_progress/<commodity>/<year>.csv.gz); the current year is refreshed each run.
 Needs NASS_API_KEY.
 """
-import csv, os, sys, time
+import csv, gzip, os, sys, time
 from pathlib import Path
 import requests
 
@@ -52,15 +52,18 @@ def batch(q):
 
 def write(path, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", newline="") as f:
+    old = path.with_suffix("")   # an uncompressed <year>.csv from before the switch
+    if old.exists():
+        old.unlink()
+    with gzip.open(path, "wt", newline="") as f:
         w = csv.DictWriter(f, fieldnames=KEEP, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
 
 
 def weekly(commodity, year, cur_year):
-    p = OUT / "crop_progress" / commodity.lower() / f"{year}.csv"
-    if p.exists() and year < cur_year:
+    p = OUT / "crop_progress" / commodity.lower() / f"{year}.csv.gz"
+    if (p.exists() or p.with_suffix("").exists()) and year < cur_year:
         return None
     rows = []
     for level in ("NATIONAL", "STATE"):
@@ -73,8 +76,8 @@ def weekly(commodity, year, cur_year):
 
 
 def annual(commodity, year, cur_year):
-    p = OUT / "annual" / commodity.lower() / f"{year}.csv"
-    if p.exists() and year < cur_year - 1:  # final estimates arrive the following January
+    p = OUT / "annual" / commodity.lower() / f"{year}.csv.gz"
+    if (p.exists() or p.with_suffix("").exists()) and year < cur_year - 1:  # final estimates arrive the following January
         return None
     rows = []
     for level in ("NATIONAL", "STATE"):

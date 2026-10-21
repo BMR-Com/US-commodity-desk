@@ -84,8 +84,11 @@ def oi_changes(syms):
     """Futures OI by month for the latest day with day-over-day change; total OI history (real CME days only)."""
     days = [d for d in cme_days() if (ROOT / "data" / "cme" / d / "fut_volume_oi.csv").exists()]
     res = {}
+    hp = ROOT / "data" / "cme" / "oi_history.csv"   # days older than ~6 months, kept by pipelines/retention.py
+    hist = pd.read_csv(hp, dtype={"date": str}) if hp.exists() else pd.DataFrame(columns=["date", "sym", "oi", "volume"])
     for sym in syms:
-        tot = []
+        h = hist[(hist.sym == sym) & ~hist.date.isin(days)]
+        tot = [[r.date, int(r.oi), int(r.volume)] for r in h.sort_values("date").itertuples()]
         for day in days:
             f = pd.read_csv(ROOT / "data" / "cme" / day / "fut_volume_oi.csv")
             f = f[f.sym == sym]

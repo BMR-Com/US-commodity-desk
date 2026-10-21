@@ -18,6 +18,8 @@ sys.path.insert(0, str(ROOT / "models"))
 import grains_rv as RV  # noqa: E402
 
 ES = ROOT / "data" / "esmis"
+sys.path.insert(0, str(ROOT / "models"))
+from esmis_parse import read  # noqa: E402
 OUT = ROOT / "data" / "grains" / "derived" / "report_reaction.json"
 REPORTS = {  # type: (esmis slug, after the close?)
     "WASDE / Crop Production": ("crop-production", False),
@@ -40,9 +42,9 @@ MONTHS = {m: i for i, m in enumerate(["January", "February", "March", "April", "
 
 def release_dates(slug):
     out = set()
-    for f in (ES / slug).glob("*.txt"):
+    for f in (ES / slug).glob("*.txt*"):
         try:
-            t = f.read_text(errors="ignore")[:6000]
+            t = read(f)[:6000]
         except Exception:
             continue
         m = re.search(r"Released\s+([A-Z][a-z]+)\s+(\d{1,2}),\s+(\d{4})", t)

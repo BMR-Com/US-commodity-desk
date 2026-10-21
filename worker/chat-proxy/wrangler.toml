@@ -1,0 +1,18 @@
+# Cloudflare Worker that holds the Groq key for the desk chatbot and limits each user to DAILY_LIMIT questions a day.
+# Deployed by .github/workflows/chat_proxy.yml (secrets: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, GROQ_API_KEY, DESK_USERS).
+name = "ags-desk-chat"
+main = "index.js"
+compatibility_date = "2025-04-01"
+workers_dev = true
+
+[vars]
+DAILY_LIMIT = "500"
+ALLOWED_ORIGINS = "https://bmr-com.github.io,http://localhost:8765"
+
+[[durable_objects.bindings]]
+name = "COUNTER"
+class_name = "Counter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Counter"]

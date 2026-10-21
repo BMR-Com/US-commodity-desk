@@ -1,0 +1,49 @@
+name: chat_proxy
+# Deploys worker/chat-proxy to Cloudflare Workers (free plan) with the Groq key and user access codes from GitHub
+# secrets, then records the Worker URL in data/ai/proxy.json so the chatbot uses it. Needs repository secrets:
+# CLOUDFLARE_API_TOKEN (template "Edit Cloudflare Workers"), CLOUDFLARE_ACCOUNT_ID, GROQ_API_KEY,
+# DESK_USERS ("name:code;name2:code2"). Re-run after changing DESK_USERS or GROQ_API_KEY.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['worker/chat-proxy/**', '.github/workflows/chat_proxy.yml']
+permissions: {contents: write}
+concurrency: {group: chat_proxy, cancel-in-progress: false}
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: check secrets
+        id: chk
+        env: {T: '${{ secrets.CLOUDFLARE_API_TOKEN }}', A: '${{ secrets.CLOUDFLARE_ACCOUNT_ID }}', G: '${{ secrets.GROQ_API_KEY }}', U: '${{ secrets.DESK_USERS }}'}
+        run: |
+          miss=""; [ -z "$T" ] && miss="$miss CLOUDFLARE_API_TOKEN"; [ -z "$A" ] && miss="$miss CLOUDFLARE_ACCOUNT_ID"; [ -z "$G" ] && miss="$miss GROQ_API_KEY"; [ -z "$U" ] && miss="$miss DESK_USERS"
+          if [ -n "$miss" ]; then echo "::warning::chat proxy not deployed; missing secrets:$miss"; echo "go=0" >> $GITHUB_OUTPUT; else echo "go=1" >> $GITHUB_OUTPUT; fi
+      - name: deploy worker
+        id: dep
+        if: steps.chk.outputs.go == '1'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker/chat-proxy
+          secrets: |
+            GROQ_API_KEY
+            DESK_USERS
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          DESK_USERS: ${{ secrets.DESK_USERS }}
+      - name: record the proxy URL
+        if: steps.chk.outputs.go == '1'
+        env: {URL: '${{ steps.dep.outputs.deployment-url }}', OUT: '${{ steps.dep.outputs.command-output }}'}
+        run: |
+          u="$URL"; [ -z "$u" ] && u=$(printf '%s' "$OUT" | grep -o 'https://[a-zA-Z0-9.-]*workers\.dev' | head -1)
+          [ -z "$u" ] && { echo "::error::could not read the Worker URL"; exit 1; }
+          mkdir -p data/ai; printf '{"url":"%s","limit":500,"deployed":"%s"}\n' "$u" "$(date -u +%F' '%H:%M' UTC')" > data/ai/proxy.json; cat data/ai/proxy.json
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/ai/proxy.json; git diff --cached --quiet && exit 0
+          git commit -q -m "chat proxy: Worker URL"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || exit 1

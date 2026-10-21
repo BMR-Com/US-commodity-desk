@@ -1,6 +1,20 @@
 {
-"generated": "2026-10-21 18:54 UTC",
+"generated": "2026-10-21 19:11 UTC",
 "events": [
+{
+"date": "2026-10-14",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
 {
 "date": "2026-10-14",
 "time": "11:00 AM CT",
@@ -16,6 +30,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-10-15",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -79,6 +105,19 @@
 },
 {
 "date": "2026-10-16",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-16",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -121,6 +160,46 @@
 "estimated": false
 },
 {
+"date": "2026-10-20",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-20",
+"time": "",
+"event": "WTI crude Nov 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"CL"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-10-21",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-10-21",
 "time": "11:00 AM CT",
 "event": "USDA NDPSR dairy product prices (weekly)",
@@ -135,6 +214,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-10-22",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -251,6 +342,19 @@
 },
 {
 "date": "2026-10-23",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-23",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -293,6 +397,34 @@
 "estimated": false
 },
 {
+"date": "2026-10-27",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-28",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-10-28",
 "time": "11:00 AM CT",
 "event": "USDA NDPSR dairy product prices (weekly)",
@@ -307,6 +439,30 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-10-28",
+"time": "",
+"event": "Natural gas Nov 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"NG"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-10-29",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -369,6 +525,19 @@
 },
 {
 "date": "2026-10-30",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-10-30",
 "time": "",
 "event": "Soybeans Nov 26: first notice day",
 "cat": "CME contract",
@@ -408,10 +577,34 @@
 {
 "date": "2026-10-30",
 "time": "",
+"event": "ULSD (heating oil) Nov 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"HO"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-10-30",
+"time": "",
 "event": "Live cattle Oct 26: last trading day",
 "cat": "CME contract",
 "markets": [
 "LE"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-10-30",
+"time": "",
+"event": "RBOB gasoline Nov 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"RB"
 ],
 "importance": 1,
 "link": null,
@@ -462,6 +655,34 @@
 "estimated": false
 },
 {
+"date": "2026-11-03",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-04",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-11-04",
 "time": "11:00 AM CT",
 "event": "USDA class & component milk prices (DC/GDK settle)",
@@ -489,6 +710,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-11-05",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -551,6 +784,19 @@
 "ZW"
 ],
 "importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-06",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
 "link": null,
 "estimated": false
 },
@@ -647,6 +893,49 @@
 "estimated": false
 },
 {
+"date": "2026-11-10",
+"time": "11:00 AM CT",
+"event": "EIA Short-Term Energy Outlook (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": "https://www.eia.gov/outlooks/steo/",
+"estimated": true
+},
+{
+"date": "2026-11-10",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-11",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-11-11",
 "time": "11:00 AM CT",
 "event": "USDA NDPSR dairy product prices (weekly)",
@@ -661,6 +950,32 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-11-11",
+"time": "",
+"event": "OPEC Monthly Oil Market Report (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-12",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -724,6 +1039,33 @@
 },
 {
 "date": "2026-11-13",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-13",
+"time": "",
+"event": "IEA Oil Market Report (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-13",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -778,6 +1120,34 @@
 "estimated": false
 },
 {
+"date": "2026-11-17",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-18",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-11-18",
 "time": "11:00 AM CT",
 "event": "USDA NDPSR dairy product prices (weekly)",
@@ -792,6 +1162,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-11-19",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -893,6 +1275,19 @@
 },
 {
 "date": "2026-11-20",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-20",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -902,6 +1297,18 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2026-11-20",
+"time": "",
+"event": "WTI crude Dec 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"CL"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 },
 {
 "date": "2026-11-23",
@@ -974,6 +1381,34 @@
 "estimated": false
 },
 {
+"date": "2026-11-24",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-25",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-11-25",
 "time": "11:00 AM CT",
 "event": "USDA NDPSR dairy product prices (weekly)",
@@ -989,6 +1424,18 @@
 "importance": 2,
 "link": null,
 "estimated": false
+},
+{
+"date": "2026-11-25",
+"time": "",
+"event": "Natural gas Dec 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"NG"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 },
 {
 "date": "2026-11-26",
@@ -1043,6 +1490,19 @@
 "cat": "CFTC",
 "markets": [
 "CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-11-27",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
 ],
 "importance": 2,
 "link": null,
@@ -1166,6 +1626,30 @@
 "estimated": false
 },
 {
+"date": "2026-11-30",
+"time": "",
+"event": "ULSD (heating oil) Dec 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"HO"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-30",
+"time": "",
+"event": "RBOB gasoline Dec 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
 "date": "2026-12-01",
 "time": "2:00 PM CT",
 "event": "NASS Fats & Oils",
@@ -1180,6 +1664,20 @@
 },
 {
 "date": "2026-12-01",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-01",
 "time": "",
 "event": "Live cattle Dec 26: delivery month begins",
 "cat": "CME contract",
@@ -1189,6 +1687,20 @@
 "importance": 1,
 "link": null,
 "estimated": true
+},
+{
+"date": "2026-12-02",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
 },
 {
 "date": "2026-12-02",
@@ -1218,6 +1730,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-12-03",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -1285,6 +1809,19 @@
 },
 {
 "date": "2026-12-04",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-04",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -1312,6 +1849,35 @@
 },
 {
 "date": "2026-12-08",
+"time": "11:00 AM CT",
+"event": "EIA Short-Term Energy Outlook (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": "https://www.eia.gov/outlooks/steo/",
+"estimated": true
+},
+{
+"date": "2026-12-08",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-08",
 "time": "",
 "event": "Cotton Dec 26: last trading day",
 "cat": "ICE contract",
@@ -1321,6 +1887,20 @@
 "importance": 1,
 "link": null,
 "estimated": true
+},
+{
+"date": "2026-12-09",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
 },
 {
 "date": "2026-12-09",
@@ -1353,6 +1933,18 @@
 ],
 "importance": 3,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=12&day=10&report_id=11001",
+"estimated": false
+},
+{
+"date": "2026-12-10",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -1436,6 +2028,33 @@
 },
 {
 "date": "2026-12-11",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-11",
+"time": "",
+"event": "OPEC Monthly Oil Market Report (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-11",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -1445,6 +2064,20 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2026-12-14",
+"time": "",
+"event": "IEA Oil Market Report (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": null,
+"estimated": true
 },
 {
 "date": "2026-12-14",
@@ -1534,6 +2167,34 @@
 "estimated": true
 },
 {
+"date": "2026-12-15",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-16",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-12-16",
 "time": "11:00 AM CT",
 "event": "USDA NDPSR dairy product prices (weekly)",
@@ -1548,6 +2209,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-12-17",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -1624,6 +2297,19 @@
 },
 {
 "date": "2026-12-18",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-18",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -1648,6 +2334,18 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2026-12-21",
+"time": "",
+"event": "WTI crude Jan 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"CL"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 },
 {
 "date": "2026-12-22",
@@ -1675,6 +2373,20 @@
 "estimated": false
 },
 {
+"date": "2026-12-22",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
 "date": "2026-12-23",
 "time": "2:00 PM CT",
 "event": "NASS Hogs and Pigs",
@@ -1684,6 +2396,20 @@
 ],
 "importance": 3,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=12&day=23&report_id=13002",
+"estimated": false
+},
+{
+"date": "2026-12-23",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
 "estimated": false
 },
 {
@@ -1716,6 +2442,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2026-12-24",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -1817,6 +2555,46 @@
 "estimated": false
 },
 {
+"date": "2026-12-29",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2026-12-29",
+"time": "",
+"event": "Natural gas Jan 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"NG"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-30",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2026-12-30",
 "time": "11:00 AM CT",
 "event": "USDA NDPSR dairy product prices (weekly)",
@@ -1845,6 +2623,18 @@
 ],
 "importance": 1,
 "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=12&day=30&report_id=12001",
+"estimated": false
+},
+{
+"date": "2026-12-31",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -1932,10 +2722,34 @@
 {
 "date": "2026-12-31",
 "time": "",
+"event": "ULSD (heating oil) Jan 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"HO"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-31",
+"time": "",
 "event": "Live cattle Dec 26: last trading day",
 "cat": "CME contract",
 "markets": [
 "LE"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-31",
+"time": "",
+"event": "RBOB gasoline Jan 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"RB"
 ],
 "importance": 1,
 "link": null,
@@ -1981,6 +2795,34 @@
 "estimated": false
 },
 {
+"date": "2027-01-05",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-06",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
 "date": "2027-01-06",
 "time": "11:00 AM CT",
 "event": "USDA class & component milk prices (DC/GDK settle)",
@@ -2008,6 +2850,18 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2027-01-07",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -2058,6 +2912,19 @@
 },
 {
 "date": "2027-01-08",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-08",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -2087,6 +2954,20 @@
 },
 {
 "date": "2027-01-11",
+"time": "",
+"event": "OPEC Monthly Oil Market Report (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-01-11",
 "time": "10:00 AM CT",
 "event": "USDA export inspections",
 "cat": "USDA",
@@ -2098,6 +2979,49 @@
 ],
 "importance": 1,
 "link": null,
+"estimated": false
+},
+{
+"date": "2027-01-12",
+"time": "11:00 AM CT",
+"event": "EIA Short-Term Energy Outlook (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": "https://www.eia.gov/outlooks/steo/",
+"estimated": true
+},
+{
+"date": "2027-01-12",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-13",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
 "estimated": false
 },
 {
@@ -2115,6 +3039,32 @@
 ],
 "importance": 2,
 "link": null,
+"estimated": false
+},
+{
+"date": "2027-01-13",
+"time": "",
+"event": "IEA Oil Market Report (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-01-14",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
 "estimated": false
 },
 {
@@ -2214,6 +3164,19 @@
 },
 {
 "date": "2027-01-15",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-15",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -2246,6 +3209,20 @@
 "ZS",
 "ZW",
 "KE"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-19",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
 ],
 "importance": 1,
 "link": null,

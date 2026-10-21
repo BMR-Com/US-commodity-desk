@@ -67,3 +67,10 @@ jobs:
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data/grains
           git diff --cached --quiet || { git commit -q -m "data: grains crop progress $C $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q && break; sleep 8; done; }
+      - name: condition model and WASDE cross-check after Crop Progress
+        continue-on-error: true
+        run: |
+          pip install -q numpy
+          python models/grains_condition.py && python -W ignore models/grains_wasde_brief.py
+          git add data/grains
+          git diff --cached --quiet || { git commit -q -m "data: grains condition model $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep 8; done; }

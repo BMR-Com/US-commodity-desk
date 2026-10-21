@@ -1,0 +1,28 @@
+name: wasde
+# WASDE day (USDA releases at 11 am CT around the 8th–14th). BMR-Com/wasde-analytics parses the release at 20:00 UTC;
+# this rebuilds the desk's grains balance sheets and WASDE briefs right after, with a later retry.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '25 20 8-14 * *'
+    - cron: '50 21 8-14 * *'
+    - cron: '30 23 8-14 * *'
+permissions: {contents: write}
+concurrency: {group: wasde, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy
+      - run: python models/grains_wasde.py && python -W ignore models/grains_wasde_brief.py && python -W ignore models/summary.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: WASDE $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep 8; done

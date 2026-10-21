@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['pipelines/grains_trade.py', '.github/workflows/grains_trade.yml']
+    paths: ['pipelines/grains_trade.py', 'models/grains_esr_brief.py', 'models/grains_wasde_brief.py', '.github/workflows/grains_trade.yml']
   schedule:
     - cron: '30 21 * * 1'     # Monday after Crop Progress (4 pm ET) and inspections
     - cron: '0 14 * * 2-5'    # weekday mornings: flash sales, Thursday export sales
@@ -18,11 +18,18 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install -q requests pandas
+      - run: pip install -q requests pandas numpy
       - name: trade (inspections, export sales, flash)
         run: python pipelines/grains_trade.py
         continue-on-error: true
         env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
+      - name: export sales analytics (brief engine, sales/flash models, WASDE cross-check)
+        continue-on-error: true
+        run: |
+          python -W ignore models/grains_sales.py || true
+          python -W ignore models/grains_flash.py || true
+          python -W ignore models/grains_esr_brief.py
+          python -W ignore models/grains_wasde_brief.py
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

@@ -30,7 +30,7 @@ jobs:
           else python pipelines/geo.py $(echo $S | sed 's/weather//'); fi
       - name: crop-region weather vs history (Open-Meteo)
         continue-on-error: true
-        run: python pipelines/geo_weather.py
+        run: timeout 1500 python -u pipelines/geo_weather.py
         env: {GEO_WX_NEW: '8'}   # new 15-year histories per run (Open-Meteo free tier: ~10k weighted calls/day)
       - name: assemble
         run: python models/geo.py

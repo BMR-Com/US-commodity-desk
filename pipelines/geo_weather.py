@@ -90,17 +90,25 @@ R = [
 ]
 
 
-def get(url, params, tries=3):
+LIMITED = {"hit": False}
+
+
+def get(url, params, tries=2):
+    """Open-Meteo free tier: 600 weighted calls/min, 5,000/hour, 10,000/day (a call weighs ~days/14 for history).
+    On a rate limit, stop asking (keep last run's numbers) instead of retrying in a loop."""
+    if LIMITED["hit"]:
+        return None
     for i in range(tries):
         try:
             r = requests.get(url, params=params, timeout=120)
             if r.status_code == 200:
                 return r.json()
-            print("  HTTP", r.status_code, r.text[:150])
+            print("  HTTP", r.status_code, r.text[:150], flush=True)
             if r.status_code == 429:
-                time.sleep(30)
+                LIMITED["hit"] = True
+                return None
         except Exception as e:
-            print("  err", e)
+            print("  err", e, flush=True)
         time.sleep(5 * (i + 1))
     return None
 
@@ -149,6 +157,7 @@ def main():
     budget = int(os.environ.get("GEO_WX_NEW", "12"))
     today = date.today()
     out = []
+    prev = {r["id"]: r for r in (json.loads((OUT / "weather.json").read_text()).get("regions", []) if (OUT / "weather.json").exists() else [])}
     for rid, name, country, lat, lon, comms, sstart, note in R:
         hp = HIST / f"{rid}.csv.gz"
         hist = None
@@ -161,16 +170,18 @@ def main():
             if hist is not None:
                 hist.round(3).to_csv(hp, compression="gzip")
                 budget -= 1
-                print("history", rid, len(hist))
-            time.sleep(8)
-        rec = to_df(get("https://archive-api.open-meteo.com/v1/archive", {"latitude": lat, "longitude": lon, "start_date": (today - timedelta(days=420)).isoformat(),
+                print("history", rid, len(hist), flush=True)
+            time.sleep(50)  # a 15-year request weighs ~390 calls; stay under 600/min
+        rec = to_df(get("https://archive-api.open-meteo.com/v1/archive", {"latitude": lat, "longitude": lon, "start_date": (today - timedelta(days=400)).isoformat(),
                                                                            "end_date": (today - timedelta(days=1)).isoformat(), "daily": ",".join(VARS), "timezone": "auto"}))
         fc = to_df(get("https://api.open-meteo.com/v1/forecast", {"latitude": lat, "longitude": lon, "daily": "precipitation_sum,temperature_2m_max,temperature_2m_min,et0_fao_evapotranspiration",
                                                                   "forecast_days": 16, "past_days": 7, "timezone": "auto"}),
                    ["precipitation_sum", "temperature_2m_max", "temperature_2m_min", "et0_fao_evapotranspiration"])
-        time.sleep(1.5)
+        time.sleep(4)
         if rec is None:
-            print("no recent data", rid)
+            print("no recent data", rid, "(kept last run's reading)" if rid in prev else "", flush=True)
+            if rid in prev:
+                out.append(prev[rid])
             continue
         # observed series: ERA5 recent, gap to yesterday filled by the forecast model's past days
         obs = rec.dropna(subset=["rain"])
@@ -285,7 +296,7 @@ def main():
             flags.append("next 16 days " + ("dry" if o["f16_rain_p"] <= 25 else "wet" if o["f16_rain_p"] >= 75 else "near normal"))
         o["flags"] = flags
         out.append({k: (round(v, 2) if isinstance(v, float) else v) for k, v in o.items()})
-        print(rid, o.get("r60"), o.get("r60_p"), o.get("sm100_p"), flags)
+        print(rid, o.get("r60"), o.get("r60_p"), o.get("sm100_p"), flags, flush=True)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "weather.json").write_text(json.dumps({"generated": date.today().isoformat(), "history": f"{H0[:4]}-{H1[:4]}",
                                                    "source": "Open-Meteo (ERA5 / ERA5-Land reanalysis for history and recent days; best-match forecast model for 16 days)",

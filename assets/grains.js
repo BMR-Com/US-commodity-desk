@@ -81,7 +81,7 @@ const Grains = (() => {
       <nav class="tabs" id="gTabs">
         <button data-t="g-primer" class="on">1 · Primer</button><button data-t="g-sd">2 · Supply &amp; demand</button>
         <button data-t="g-esr">3 · Export sales</button><button data-t="g-wasde">4 · WASDE</button>
-        <button data-t="g-flows">5 · Futures, options &amp; COT</button><button data-t="g-outlook">6 · Outlook</button></nav>
+        <button data-t="g-flows">5 · Futures, options &amp; COT</button><button data-t="g-rv">6 · Spreads, crush &amp; vol</button><button data-t="g-outlook">7 · Outlook</button></nav>
       <main><div id="gBody"></div></main>`;
     $$('#gCom button').forEach(b => b.onclick = () => { com = b.dataset.com; $$('#gCom button').forEach(x => x.classList.toggle('on', x === b)); render(); });
     $$('#gTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#gTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
@@ -92,7 +92,7 @@ const Grains = (() => {
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
-    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-sd', 'g-esr', 'g-wasde', 'g-flows', 'g-outlook'].includes(h[2])) tab = h[2]; }
+    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-sd', 'g-esr', 'g-wasde', 'g-flows', 'g-rv', 'g-outlook'].includes(h[2])) tab = h[2]; }
     $$('#gCom button').forEach(x => x.classList.toggle('on', x.dataset.com === com)); $$('#gTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab));
   }
   async function show() {
@@ -105,7 +105,7 @@ const Grains = (() => {
     if (com === 'sa') { history.replaceState(null, '', '#g/sa'); saPage(); return; }
     history.replaceState(null, '', `#g/${com}/${tab}`);
     const c = GC[com];
-    ({ 'g-primer': primer, 'g-sd': sd, 'g-esr': esrTab, 'g-wasde': wasdeTab, 'g-flows': flows, 'g-outlook': outlook })[tab](c);
+    ({ 'g-primer': primer, 'g-sd': sd, 'g-esr': esrTab, 'g-wasde': wasdeTab, 'g-flows': flows, 'g-rv': c => RVView.mount(el('#gBody'), c.sym), 'g-outlook': outlook })[tab](c);
   }
   // ── EXPORT SALES (tab 3) and WASDE (tab 4) ──
   async function esrTab(c) {

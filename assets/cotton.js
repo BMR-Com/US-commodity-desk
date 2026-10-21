@@ -6,7 +6,7 @@ const Cotton = (() => {
   const SITE = { wasde: ORG + '/wasde-analytics/', esr: ORG + '/usd-export-sales-email/', crop: ORG + '/cotton-crop-progress/', oncall: ORG + '/cotton-on-call/',
     cot: ORG + '/cftc-cot-full/', opts: ORG + '/softs--options-/' };
   const TABS = [['ct-primer', 'Primer'], ['ct-wasde', 'WASDE'], ['ct-esr', 'Export sales'], ['ct-crop', 'Crop progress'], ['ct-oncall', 'On-call'],
-    ['ct-flows', 'Futures, options &amp; COT'], ['ct-outlook', 'Outlook']];
+    ['ct-flows', 'Futures, options &amp; COT'], ['ct-rv', 'Spreads &amp; vol'], ['ct-outlook', 'Outlook']];
   function shell() {
     $('#cotton').innerHTML = `<nav class="tabs" id="ctTabs">${TABS.map(([k, l], i) => `<button data-t="${k}" class="${k === tab ? 'on' : ''}">${i + 1} · ${l}</button>`).join('')}</nav><main><div id="ctBody"></div></main>`;
     $$('#ctTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#ctTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
@@ -22,7 +22,7 @@ const Cotton = (() => {
     history.replaceState(null, '', '#' + tab);
     ({ 'ct-primer': primer, 'ct-wasde': wasde, 'ct-esr': esr, 'ct-crop': () => frame(SITE.crop, 'Cotton crop progress', 'NASS crop progress and condition, crop predicted from ratings and drought, ginning and classing pace, grades and tenderability, FSA acreage.'),
       'ct-oncall': () => frame(SITE.oncall, 'Cotton on-call', 'CFTC weekly cotton on-call: unfixed call sales and purchases by contract month, mill fixation pace and what it means for futures.'),
-      'ct-flows': flows, 'ct-outlook': outlook })[tab]();
+      'ct-flows': flows, 'ct-rv': () => RVView.mount(body(), 'CT'), 'ct-outlook': outlook })[tab]();
   }
   function primer() {
     body().innerHTML = `<div class="grid g2">

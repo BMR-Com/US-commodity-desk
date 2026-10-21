@@ -45,6 +45,8 @@ jobs:
         continue-on-error: true
       - run: python -W ignore models/grains_esr_brief.py && python -W ignore models/grains_wasde_brief.py && python -W ignore models/summary.py
         continue-on-error: true
+      - run: python -W ignore models/grains_rv.py && python -W ignore models/report_reaction.py && python -W ignore models/trader_sheet.py
+        continue-on-error: true
       - run: python -W ignore models/hogs.py && python -W ignore models/hogs_sd.py && python models/convergence_bias.py && python -W ignore models/hogs_convergence.py && python -W ignore models/hogs_expiry.py && python -W ignore models/cattle.py && python -W ignore models/cattle_sd.py
         continue-on-error: true
       - name: commit

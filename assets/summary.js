@@ -12,7 +12,7 @@ const Summary = (() => {
     const el = document.getElementById('summary');
     const M = S.markets;
     const groups = [['grains', 'Grains & oilseeds'], ['softs', 'Cotton'], ['livestock', 'Livestock'], ['dairy', 'Dairy']];
-    el.innerHTML = `<main><div class="card"><h2>Desk summary</h2>
+    el.innerHTML = `<main><div class="card" style="margin-bottom:12px"><h2>Trader sheet</h2><div id="svSheet"><p class="note">Loading…</p></div></div><div class="card"><h2>Desk summary</h2>
       <p class="note">Built automatically from the data and models behind every tab (updated ${S.generated}). Fundamentals weigh 40%, technicals 30%, flows 30%. Each trade idea names its method and says how that method has tested; untested ideas are context, not edges. A standing caveat from the back-tests: in these cash-settled and delivery markets futures have been the best forecast of their own settlement, so the edge is in timing, structure and the few tested biases (e.g. the live cattle convergence premium), not in out-forecasting the curve. Research only, not investment advice.</p>
       <div class="tbl"><table class="sv-tbl"><tr><th>Market</th><th>Contract</th><th>Last</th><th>1 wk</th><th>Overall view</th><th>Fundamental</th><th>Technical</th><th>Flows</th><th>Funds pct 3y · 10y · all</th><th>Trend score</th><th>Ideas</th></tr>
       ${groups.map(([g, gl]) => `<tr class="sv-sec"><td colspan="11">${gl}</td></tr>` + M.filter(m => m.group === g).map(m => `<tr><td><a href="#" data-go="${m.key}">${m.name}</a></td><td>${m.contract || ''}</td><td>${f(m.price, m.dp)}</td>
@@ -30,10 +30,11 @@ const Summary = (() => {
           : '<p class="note">No method currently gives a trade signal here.</p>'}
         <div class="grid g2"><div><h3>This market's next events</h3><div class="sv-cal" data-m="${m.sym}"></div></div><div><h3>Recent headlines</h3><div class="sv-news" data-k="${m.key}"></div></div></div></div>`).join('')).join('')}</main>`;
     el.querySelectorAll('[data-go]').forEach(a => a.onclick = e => { e.preventDefault(); go(M.find(m => m.key === a.dataset.go)); });
+    RVView.sheet(document.getElementById('svSheet'));
     Intel.calendar(document.getElementById('svCal'), { days: 21, minImp: 2 });
     Intel.news(document.getElementById('svNews'), { n: 18 });
     Intel.weather(document.getElementById('svWx'));
-    const NT = { corn: ['corn'], soybeans: ['soybeans', 'south_america'], meal: ['meal'], oil: ['oil'], wheat: ['wheat'], kc: ['wheat'], hogs: ['hogs'], cattle: ['cattle'], feeders: ['cattle'], class3: ['dairy'], class4: ['dairy'] };
+    const NT = { corn: ['corn'], soybeans: ['soybeans', 'south_america'], meal: ['meal'], oil: ['oil'], wheat: ['wheat'], kc: ['wheat'], hogs: ['hogs'], cattle: ['cattle'], feeders: ['cattle'], class3: ['dairy'], class4: ['dairy'], cotton: ['cotton'] };
     el.querySelectorAll('.sv-cal').forEach(x => Intel.calendar(x, { markets: [x.dataset.m], days: 30, minImp: 2 }));
     el.querySelectorAll('.sv-news').forEach(x => Intel.news(x, { tags: NT[x.dataset.k], n: 4, chips: false }));
   }

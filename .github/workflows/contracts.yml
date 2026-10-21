@@ -21,6 +21,8 @@ jobs:
       - run: python pipelines/contracts.py GDK CSC CB GNF DY
       - run: python pipelines/contracts.py ZC ZS ZM ZL ZW KE
       - run: python pipelines/contracts.py CT
+      - run: python pipelines/contracts.py NG CL HO RB
+        continue-on-error: true
       - name: spreads, crush, vol and trader sheet on the evening closes
         continue-on-error: true
         run: python -W ignore models/grains_rv.py && python -W ignore models/trader_sheet.py

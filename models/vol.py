@@ -32,12 +32,17 @@ SPEC = {
     "DC": ("Class III milk", "Dairy", "$/cwt", 2000, 0.25, 2, "dairy"), "GDK": ("Class IV milk", "Dairy", "$/cwt", 2000, 0.25, 2, "dairy"),
     "CSC": ("Cheese (cash-settled)", "Dairy", "$/lb", 20000, 0.01, 3, "dairy"), "CB": ("Butter (cash-settled)", "Dairy", "¢/lb", 200, 1, 2, "dairy"),
     "GNF": ("Nonfat dry milk", "Dairy", "¢/lb", 440, 1, 2, "dairy"), "DY": ("Dry whey", "Dairy", "¢/lb", 440, 1, 2, "dairy"),
+    "NG": ("Natural gas", "Energy", "$/MMBtu", 10000, 0.05, 3, "ng"), "CL": ("WTI crude", "Energy", "$/bbl", 1000, 0.5, 2, "cl"),
+    "HO": ("ULSD (heating oil)", "Energy", "$/gal", 42000, 0.01, 4, "pr"), "RB": ("RBOB gasoline", "Energy", "$/gal", 42000, 0.01, 4, "pr"),
 }
 RULE_TEXT = {"grain": "last Friday at least 2 business days before the last business day of the month before the contract month",
              "cotton": "last Friday at least 5 business days before the last business day of the month before the contract month",
              "le": "first Friday of the contract month", "gf": "last Thursday of the contract month (same as futures)",
              "he": "10th business day of the contract month (same as futures)",
-             "dairy": "business day before the USDA class/product price announcement (about the first Wednesday after the contract month)"}
+             "dairy": "business day before the USDA class/product price announcement (about the first Wednesday after the contract month)",
+             "ng": "business day before the futures expire (futures: 3 business days before the first day of the contract month)",
+             "cl": "about 4 business days before the 25th of the month before the contract month (futures expire 3 business days before the 25th)",
+             "pr": "about 3 business days before the last business day of the month before the contract month"}
 
 
 def bdays_back(d, n):
@@ -81,6 +86,15 @@ def expiry(rule, y, m):
                 if n == 10:
                     return d
             d += timedelta(days=1)
+    if rule == "ng":
+        return bdays_back(date(y, m, 1), 4)
+    if rule == "cl":
+        d = date(py, pm, 25)
+        while d.weekday() >= 5:
+            d -= timedelta(days=1)
+        return bdays_back(d, 4)
+    if rule == "pr":
+        return bdays_back(last_bday(py, pm), 3)
     if rule == "dairy":
         ny, nm = (y, m + 1) if m < 12 else (y + 1, 1)
         d = date(ny, nm, 1)

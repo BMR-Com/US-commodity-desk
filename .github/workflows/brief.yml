@@ -34,6 +34,7 @@ jobs:
         run: |
           python -W ignore models/trader_sheet.py || true
           python -W ignore models/summary.py || true
+          python models/energy_summary.py || true
           python -W ignore models/morning_brief.py
       - name: commit
         run: |

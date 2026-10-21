@@ -227,8 +227,10 @@ const Options = (() => {
       options: { plugins: { legend: { display: false }, title: { display: true, text: '20-day realized vol, last year (%)' } }, scales: { x: { ticks: { maxTicksLimit: 6 } } } } });
   }
   async function show() {
-    if (!built) { V = await getJSON('data/vol/vol.json').catch(() => null); built = true; if (V && !V.markets[sym]) sym = Object.keys(V.markets)[0]; if (V) { await loadOpt(sym); newState(); } }
-    history.replaceState(null, '', '#options');
+    const hs = (location.hash.split('/')[1] || '').toUpperCase();
+    if (!built) { V = await getJSON('data/vol/vol.json').catch(() => null); built = true; if (V && V.markets[hs]) sym = hs; if (V && !V.markets[sym]) sym = Object.keys(V.markets)[0]; if (V) { await loadOpt(sym); newState(); } }
+    else if (V && V.markets[hs] && hs !== sym) { sym = hs; await loadOpt(sym); newState(); }
+    history.replaceState(null, '', '#options/' + sym);
     if (!V) { document.getElementById('options').innerHTML = '<main><div class="card"><p class="note">Volatility data not built yet.</p></div></main>'; return; }
     render();
   }

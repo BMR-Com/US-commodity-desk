@@ -9,7 +9,8 @@
 (async (DAYS = 1, MAXEXP = 10, GAP = 700) => {
   // futures product id -> symbol (option product ids come from CME's own expiration list)
   const P = [['DC', 27], ['GDK', 778], ['CSC', 5201], ['CB', 26], ['GNF', 781], ['DY', 36], ['HE', 19], ['LE', 22], ['GF', 34],
-             ['ZC', 300], ['ZS', 320], ['ZM', 310], ['ZL', 312], ['ZW', 323], ['KE', 348]];
+             ['ZC', 300], ['ZS', 320], ['ZM', 310], ['ZL', 312], ['ZW', 323], ['KE', 348],
+             ['NG', 444], ['CL', 425], ['HO', 426], ['RB', 429]];   // NYMEX energy (energy desk)
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   let fails = 0;
   const j = async u => {

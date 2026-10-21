@@ -28,6 +28,9 @@ SPEC = {  # sym: (exchange, TV root, months, first year)
     "ZW": ("CBOT", "ZW", "HKNUZ", 2006),
     "KE": ("CBOT", "KE", "HKNUZ", 2008),
     "CT": ("ICEUS", "CT", "HKNZ", 2006),   # ICE cotton No. 2: Mar, May, Jul, Dec (October ignored)
+    # energy desk (NYMEX, every month)
+    "NG": ("NYMEX", "NG", CODES, 2015), "CL": ("NYMEX", "CL", CODES, 2015),
+    "HO": ("NYMEX", "HO", CODES, 2015), "RB": ("NYMEX", "RB", CODES, 2015),
 }
 
 

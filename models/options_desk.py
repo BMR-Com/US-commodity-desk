@@ -24,7 +24,8 @@ SRC = D / "cme" / "options"
 OUT = D / "options"
 NAMES = {"ZC": "Corn", "ZS": "Soybeans", "ZM": "Soybean meal", "ZL": "Soybean oil", "ZW": "Chicago wheat", "KE": "KC HRW wheat",
          "LE": "Live cattle", "GF": "Feeder cattle", "HE": "Lean hogs", "DC": "Class III milk", "GDK": "Class IV milk",
-         "CSC": "Cheese", "CB": "Butter", "GNF": "Nonfat dry milk", "DY": "Dry whey"}
+         "CSC": "Cheese", "CB": "Butter", "GNF": "Nonfat dry milk", "DY": "Dry whey",
+         "NG": "Natural gas", "CL": "WTI crude", "HO": "ULSD (heating oil)", "RB": "RBOB gasoline"}
 
 
 def smile(g):

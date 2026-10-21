@@ -161,3 +161,4 @@ tr.mk-today td{background:#eef6ee}tr.mk-past td{opacity:.6}
 .geo-mini{font-size:12px}
 .us-rates,.us-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:6px 0}
 .us-tile{border:1px solid var(--line);border-radius:6px;padding:7px 9px;background:#fbfbf9}.us-v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+nav.comm a.navlink{color:#cfe3d2;padding:.55rem .9rem;font-size:13px;text-decoration:none;border-bottom:3px solid transparent;display:inline-block}nav.comm a.navlink:hover{color:#fff}

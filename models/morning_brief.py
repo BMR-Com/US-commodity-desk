@@ -145,6 +145,7 @@ def main():
     # macro: read, key cross-market numbers (Yahoo), US/China releases today and tomorrow
     macro = J("macro/macro.json") or {}
     us_econ = J("macro/us_econ.json") or {}
+    energy = J("energy/summary.json") or {}
     mk = {x["sym"]: x for x in (J("markets/markets.json") or {}).get("items", [])}
     macro_nums = [{"name": mk[k]["name"], "last": mk[k]["last"], "d1": mk[k]["d1"], "m1": mk[k]["m1"], "kind": mk[k]["kind"], "time": mk[k]["time"]}
                   for k in ("ES=F", "^GSPC", "^VIX", "^TNX", "DX-Y.NYB", "EURUSD=X", "BRL=X", "CNY=X", "CL=F", "NG=F", "GC=F", "HG=F", "^SPGSCI") if k in mk]
@@ -161,7 +162,8 @@ def main():
          "events_today": ev_today, "events_ahead": ev_ahead, "flash": fl, "markets": markets,
          "crush": sheet.get("crush"), "ratios": sheet.get("ratios"), "general_news": recent_news(None, 24, 6),
          "macro": {"view": macro.get("view"), "score": macro.get("score"), "summary": macro.get("summary"), "sections": macro.get("sections", []),
-                   "caveat": macro.get("caveat")}, "macro_numbers": macro_nums, "econ": econ, "us_econ": us_econ.get("read")}
+                   "caveat": macro.get("caveat")}, "macro_numbers": macro_nums, "econ": econ, "us_econ": us_econ.get("read"),
+         "energy": {"read": energy.get("read"), "prices": energy.get("prices"), "inventories": energy.get("inventories"), "vol": energy.get("vol"), "cracks": energy.get("cracks")}}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "latest.json").write_text(json.dumps(B, indent=1, default=str))
     md = to_md(B)
@@ -181,6 +183,15 @@ def to_md(B):
         L += ["## US & China economic releases (today, tomorrow)", ""] + [
             f"- {e['date'][5:]} {e['time'] or 'all day'} · {e['country']} {e['title']} ({e['impact']})" + (f" · forecast {e['forecast']}" if e['forecast'] else "") + (f", previous {e['previous']}" if e['previous'] else "")
             for e in B["econ"]] + [""]
+    en = B.get("energy") or {}
+    if en.get("read") or en.get("prices"):
+        L += ["## Energy (full desk: energy.html)", ""]
+        if en.get("prices"):
+            NM = {"NG": "Natural gas", "CL": "WTI crude", "HO": "ULSD", "RB": "RBOB", "BZ": "Brent"}
+            L += ["| Market | Last | 1 d | 1 wk | 1 m |", "|---|---|---|---|---|"] + [
+                f"| {NM.get(k, k)} | {v['last']:,.4g} | {v['d1']:+.1f}% | {v['w1']:+.1f}% | " + ("–" if v.get('m1') is None else f"{v['m1']:+.1f}%") + " |" for k, v in en["prices"].items()] + [""]
+        if en.get("read"):
+            L += [en["read"], ""]
     if B.get("us_econ"):
         L += ["## US economy", "", B["us_econ"], ""]
     if B.get("macro", {}).get("summary"):

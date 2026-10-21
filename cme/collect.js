@@ -26,6 +26,11 @@
     { sym: 'KE', name: 'KC HRW wheat', exch: 'CBOT', fut_id: 348, opt_id: 349 },
     { sym: 'ZO', name: 'Oats', exch: 'CBOT', fut_id: 331, opt_id: null },
     { sym: 'ZR', name: 'Rough rice', exch: 'CBOT', fut_id: 336, opt_id: null },
+    // energy (NYMEX): futures volume/OI and settlements; option settlements come from collect_options.js
+    { sym: 'NG', name: 'Henry Hub natural gas', exch: 'NYMEX', fut_id: 444, opt_id: null },
+    { sym: 'CL', name: 'WTI crude oil', exch: 'NYMEX', fut_id: 425, opt_id: null },
+    { sym: 'HO', name: 'NY Harbor ULSD', exch: 'NYMEX', fut_id: 426, opt_id: null },
+    { sym: 'RB', name: 'RBOB gasoline', exch: 'NYMEX', fut_id: 429, opt_id: null },
   ];
   const num = s => (s == null || s === '-' || s === '') ? '' : String(s).replace(/,/g, '');
   const j = u => fetch(u, { credentials: 'include' }).then(r => { if (!r.ok) throw new Error(r.status + ' ' + u); return r.json(); });

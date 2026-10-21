@@ -1,0 +1,73 @@
+{
+ "generated": "2026-10-21 16:49 UTC",
+ "inventories": {},
+ "prices": {
+  "NG": {
+   "date": "2026-10-20",
+   "last": 2.973,
+   "d1": -2.779594506213212,
+   "w1": -9.442583003350592,
+   "m1": 4.830747531734847
+  },
+  "CL": {
+   "date": "2026-10-20",
+   "last": 98.480003,
+   "d1": -4.997106695075959,
+   "w1": 4.6101593861287204,
+   "m1": 2.818964322603512
+  },
+  "HO": {
+   "date": "2026-10-20",
+   "last": 4.7779,
+   "d1": -2.890185158838232,
+   "w1": -3.1716115434500702,
+   "m1": -2.282441967481341
+  },
+  "RB": {
+   "date": "2026-10-20",
+   "last": 3.0684,
+   "d1": -3.8541079150216095,
+   "w1": -5.590597212393467,
+   "m1": -11.57093864376495
+  },
+  "BZ": {
+   "date": "2026-10-20",
+   "last": 109.510002,
+   "d1": -0.03651391958429118,
+   "w1": 3.6143437673508583,
+   "m1": 9.138933989991394
+  }
+ },
+ "cracks": {
+  "321": 54.32579700000002,
+  "ho": 102.191797,
+  "rb": 30.392797000000016
+ },
+ "vol": {
+  "NG": {
+   "atm": null,
+   "label": null,
+   "rr25": null,
+   "rv20": null
+  },
+  "CL": {
+   "atm": null,
+   "label": null,
+   "rr25": null,
+   "rv20": null
+  },
+  "HO": {
+   "atm": null,
+   "label": null,
+   "rr25": null,
+   "rv20": null
+  },
+  "RB": {
+   "atm": null,
+   "label": null,
+   "rr25": null,
+   "rv20": null
+  }
+ },
+ "read": "3-2-1 crack $54.33/bbl (ULSD $102.19, gasoline $30.39). For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
+}

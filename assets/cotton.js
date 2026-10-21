@@ -5,7 +5,7 @@ const Cotton = (() => {
   const ORG = location.hostname === 'bmr-com.github.io' ? '' : 'https://bmr-com.github.io';   // sibling Pages sites (same origin when live)
   const SITE = { wasde: ORG + '/wasde-analytics/', esr: ORG + '/usd-export-sales-email/', crop: ORG + '/cotton-crop-progress/', oncall: ORG + '/cotton-on-call/',
     cot: ORG + '/cftc-cot-full/', opts: ORG + '/softs--options-/' };
-  const TABS = [['ct-primer', 'Primer'], ['ct-wasde', 'WASDE'], ['ct-esr', 'Export sales'], ['ct-crop', 'Crop progress'], ['ct-oncall', 'On-call'],
+  const TABS = [['ct-primer', 'Primer'], ['ct-geo', "Where it's grown, trade &amp; weather"], ['ct-wasde', 'WASDE'], ['ct-esr', 'Export sales'], ['ct-crop', 'Crop progress'], ['ct-oncall', 'On-call'],
     ['ct-flows', 'Futures, options &amp; COT'], ['ct-rv', 'Spreads &amp; vol'], ['ct-outlook', 'Outlook']];
   function shell() {
     $('#cotton').innerHTML = `<nav class="tabs" id="ctTabs">${TABS.map(([k, l], i) => `<button data-t="${k}" class="${k === tab ? 'on' : ''}">${i + 1} · ${l}</button>`).join('')}</nav><main><div id="ctBody"></div></main>`;
@@ -20,7 +20,7 @@ const Cotton = (() => {
   const src = (u, l) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`;
   function render() {
     history.replaceState(null, '', '#' + tab);
-    ({ 'ct-primer': primer, 'ct-wasde': wasde, 'ct-esr': esr, 'ct-crop': () => frame(SITE.crop, 'Cotton crop progress', 'NASS crop progress and condition, crop predicted from ratings and drought, ginning and classing pace, grades and tenderability, FSA acreage.'),
+    ({ 'ct-primer': primer, 'ct-geo': () => Geo.mount(body(), 'cotton'), 'ct-wasde': wasde, 'ct-esr': esr, 'ct-crop': () => frame(SITE.crop, 'Cotton crop progress', 'NASS crop progress and condition, crop predicted from ratings and drought, ginning and classing pace, grades and tenderability, FSA acreage.'),
       'ct-oncall': () => frame(SITE.oncall, 'Cotton on-call', 'CFTC weekly cotton on-call: unfixed call sales and purchases by contract month, mill fixation pace and what it means for futures.'),
       'ct-flows': flows, 'ct-rv': () => RVView.mount(body(), 'CT'), 'ct-outlook': outlook })[tab]();
   }

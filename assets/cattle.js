@@ -3,7 +3,7 @@ const Cattle = (() => {
   const L = 'data/livestock/derived/';
   let built = false, tab = 'c-primer', C, F, BIAS, CS;
   function shell() {
-    $('#cattle').innerHTML = `<nav class="tabs" id="cTabs"><button data-t="c-primer" class="on">1 · Primer</button><button data-t="c-sd">2 · Supply &amp; demand</button>
+    $('#cattle').innerHTML = `<nav class="tabs" id="cTabs"><button data-t="c-primer" class="on">1 · Primer</button><button data-t="c-geo">Where it's produced, trade &amp; weather</button><button data-t="c-sd">2 · Supply &amp; demand</button>
       <button data-t="c-flows">3 · Futures, options &amp; COT</button><button data-t="c-outlook">4 · Outlook</button></nav><main><div id="cBody"></div></main>`;
     $$('#cTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#cTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
@@ -12,7 +12,7 @@ const Cattle = (() => {
     const h = location.hash.slice(1); if (/^c-/.test(h)) { tab = h; $$('#cTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab)); }
     render();
   }
-  function render() { history.replaceState(null, '', '#' + tab); ({ 'c-primer': primer, 'c-sd': sd, 'c-flows': flows, 'c-outlook': outlook })[tab](); }
+  function render() { history.replaceState(null, '', '#' + tab); ({ 'c-primer': primer, 'c-geo': () => Geo.mount($('#cBody'), 'beef'), 'c-sd': sd, 'c-flows': flows, 'c-outlook': outlook })[tab](); }
   const body = h => { $('#cBody').innerHTML = h; };
 
   function primer() {

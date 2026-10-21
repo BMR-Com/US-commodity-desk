@@ -3,7 +3,7 @@ const Hogs = (() => {
   const L = 'data/livestock/derived/';
   let built = false, tab = 'h-primer', H, SDH, CV, EX, F, CB, BIAS;
   function shell() {
-    $('#hogs').innerHTML = `<nav class="tabs" id="hTabs"><button data-t="h-primer" class="on">1 · Primer</button><button data-t="h-sd">2 · Supply &amp; demand</button>
+    $('#hogs').innerHTML = `<nav class="tabs" id="hTabs"><button data-t="h-primer" class="on">1 · Primer</button><button data-t="h-geo">Where it's produced, trade &amp; weather</button><button data-t="h-sd">2 · Supply &amp; demand</button>
       <button data-t="h-flows">3 · Futures, options &amp; COT</button><button data-t="h-outlook">4 · Outlook</button></nav><main><div id="hBody"></div></main>`;
     $$('#hTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#hTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
@@ -17,7 +17,7 @@ const Hogs = (() => {
     const h = location.hash.slice(1); if (/^h-/.test(h)) { tab = h; $$('#hTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab)); }
     render();
   }
-  function render() { history.replaceState(null, '', '#' + tab); ({ 'h-primer': primer, 'h-sd': sd, 'h-flows': flows, 'h-outlook': outlook })[tab](); }
+  function render() { history.replaceState(null, '', '#' + tab); ({ 'h-primer': primer, 'h-geo': () => Geo.mount($('#hBody'), 'pork'), 'h-sd': sd, 'h-flows': flows, 'h-outlook': outlook })[tab](); }
   const body = html => { $('#hBody').innerHTML = html; };
 
   function primer() {

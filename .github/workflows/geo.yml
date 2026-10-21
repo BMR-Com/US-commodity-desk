@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install -q requests pandas numpy
+      - run: pip install -q requests pandas numpy pycountry
       - name: PSD, Comtrade, NASS states, Drought Monitor
         continue-on-error: true
         env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}'}
@@ -31,6 +31,7 @@ jobs:
       - name: crop-region weather vs history (Open-Meteo)
         continue-on-error: true
         run: python pipelines/geo_weather.py
+        env: {GEO_WX_NEW: '8'}   # new 15-year histories per run (Open-Meteo free tier: ~10k weighted calls/day)
       - name: assemble
         run: python models/geo.py
       - name: commit

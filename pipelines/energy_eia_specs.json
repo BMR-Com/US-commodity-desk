@@ -906,10 +906,14 @@
    "steo"
   ],
   "must": [
-   "(working gas|natural gas).*(invent|stor)"
+   "working gas"
   ],
   "prefer": [],
-  "not": []
+  "not": [
+   "change",
+   "percent",
+   "_PCT"
+  ]
  },
  {
   "k": "steoHdd",
@@ -926,7 +930,12 @@
   "prefer": [
    "u\\.s\\.|united states"
   ],
-  "not": []
+  "not": [
+   "change",
+   "normal",
+   "percent",
+   "_PCT"
+  ]
  },
  {
   "k": "steoCdd",
@@ -943,6 +952,11 @@
   "prefer": [
    "u\\.s\\.|united states"
   ],
-  "not": []
+  "not": [
+   "change",
+   "normal",
+   "percent",
+   "_PCT"
+  ]
  }
 ]

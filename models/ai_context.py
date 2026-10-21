@@ -151,7 +151,7 @@ def main():
             v = next((x for x in c.get("variants", []) if x.get("crop_type") == "all"), None)
             if not v:
                 continue
-            mm = v["categories"].get("managed_money", {}); pm = v["categories"].get("producer_merchant", {})
+            mm = v["categories"].get("managed_money", {}); pm = v["categories"].get("prod_merc", {})
             p = mm.get("pctiles", {})
             L.append(f"{c['name']} ({c['ticker']}): MM net {mm.get('net'):,} ({mm.get('net_pct_oi')}% OI), w/w {mm.get('wk_chg_net'):+,}, pct 3y {p.get('net_3yr')} / 10y {p.get('net_10yr')} / full {p.get('net_full')}; "
                      f"producers pct {(pm.get('pctiles') or {}).get('net_full')}")

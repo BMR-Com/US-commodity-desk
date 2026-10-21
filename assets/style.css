@@ -156,3 +156,6 @@ tr.mk-today td{background:#eef6ee}tr.mk-past td{opacity:.6}
 .op-x{border:0;background:none;color:var(--dn);cursor:pointer}
 .geo-wx{font-size:12px}.geo-wx td{white-space:nowrap;vertical-align:top}.geo-wx td:first-child{min-width:170px;white-space:normal}
 .geo-wx td:last-child{min-width:200px;max-width:260px;white-space:normal}
+.geo-cal td.geo-cell{width:26px;min-width:22px;border-left:1px solid #fff}.geo-cal .geo-now{outline:2px solid #1a1a1a;outline-offset:-2px}
+.geo-cty{border:1px solid var(--line);border-radius:6px;padding:8px 10px}.geo-cty h3{margin:0 0 4px}.geo-cty p{margin:4px 0}
+.geo-mini{font-size:12px}

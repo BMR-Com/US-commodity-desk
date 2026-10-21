@@ -15,6 +15,9 @@ import json
 from datetime import date
 from pathlib import Path
 import pandas as pd
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from crop_calendar import CAL, stage_now, read as wx_read  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 D = ROOT / "data"
@@ -236,12 +239,35 @@ def main():
             top_states = [s["abbr"] for s in st["states"][:8] if s["abbr"] in U["data"]]
             usdm = {"cols": U.get("cols"), "latest": {s: U["data"][s][0] for s in top_states}, "month_ago": {s: U["data"][s][min(4, len(U["data"][s]) - 1)] for s in top_states},
                     "conus": (U["data"].get("CONUS") or [None])[0]}
+        # crop calendar by country: stage today, weather impact for that stage, production and yield vs history
+        month = date.today().month
+        wx = {r["id"]: r for r in W["regions"]}
+        share = {p["country"]: p["share"] for p in production}
+        def hist_of(country, attr):
+            t = df[(df.country == country) & (df.attr == attr)].groupby("my").value.sum()
+            if latest not in t.index:
+                return None
+            prev5 = [t[y] for y in range(latest - 5, latest) if y in t.index]
+            return {"now": round(float(t[latest]), 2), "prev": round(float(t.get(latest - 1)), 2) if latest - 1 in t.index else None,
+                    "avg5": round(float(sum(prev5) / len(prev5)), 2) if prev5 else None,
+                    "series": [[int(y), round(float(v), 2)] for y, v in t.items() if y >= latest - 9]}
+        cal = []
+        for country, c in CAL.get(key if key in CAL else pk, {}).items():
+            stg, nxt = stage_now(c["stages"], month)
+            cregs = [wx[r] for r in c["regions"] if r in wx]
+            txt, sc = wx_read(stg, cregs)
+            cal.append({"country": country, "share": share.get(country), "stages": [list(x) for x in c["stages"]],
+                        "now": list(stg) if stg else None, "next": list(nxt) if nxt else None, "regions": c["regions"],
+                        "read": txt, "score": sc, "production": hist_of(country, "Production"), "yield": hist_of(country, "Yield"),
+                        "area": hist_of(country, "Area Harvested")})
+        cal.sort(key=lambda x: -(x["share"] or 0))
+        regs = list(dict.fromkeys(regs + [r for c_ in cal for r in c_["regions"] if r in wx]))
         links = [{"country": c, "links": [{"name": a, "url": b, "what": w} for a, b, w in LINKS[c]]} for c in
                  ["United States"] + sorted(keyc - {"United States"}) if c in LINKS]
         out = {"key": key, "name": name, "unit": unit, "units": P[pk].get("units"), "my": int(latest), "years": [int(y) for y in yrs[-10:]],
                "world": round(world, 1), "threshold": SHARE_MAP, "production": production, "exporters": ex, "exports_world": round(ex_tot, 1),
                "importers": im, "imports_world": round(im_tot, 1), "flows": flows, "flows_year": max([f["year"] for f in flows], default=None),
-               "us_dest": us, "us_states": st, "weather_regions": regs, "usdm": usdm, "links": links, "links_common": [{"name": a, "url": b, "what": w} for a, b, w in LINKS_COMMON],
+               "us_dest": us, "us_states": st, "weather_regions": regs, "calendar": cal, "month": month, "yield_unit": (P[pk].get("units") or {}).get("Yield"), "usdm": usdm, "links": links, "links_common": [{"name": a, "url": b, "what": w} for a, b, w in LINKS_COMMON],
                "sources": "USDA FAS PSD (production/trade by country, marketing years), UN Comtrade (bilateral flows, calendar year), USDA FAS Export Sales (US destinations), "
                           "USDA NASS (US states), U.S. Drought Monitor, Open-Meteo (weather)", "generated": date.today().isoformat()}
         (G / f"{key}.json").write_text(json.dumps(out, default=lambda o: None))

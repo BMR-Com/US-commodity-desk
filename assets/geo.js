@@ -100,6 +100,36 @@ const Geo = (() => {
           options: { plugins: { legend: { display: false }, title: { display: true, text: '28–100 cm soil moisture (m³/m³), last 52 weeks vs 2011–25 10th–90th pct', font: { size: 11 } } }, scales: { x: { ticks: { maxTicksLimit: 6 } } } } }); }
     }
   }
+  const STC = { planting: '#9fd3a4', vegetative: '#5fae6b', critical: '#d9822b', harvest: '#a0743c' };
+  function calendarCard(G, regs) {
+    if (!G.calendar || !G.calendar.length) return '';
+    const M = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'], now = G.month;
+    const inW = (m, a, b) => a <= b ? m >= a && m <= b : m >= a || m <= b;
+    const wx = Object.fromEntries(WX.regions.map(r => [r.id, r]));
+    const yu = (G.yield_unit || '').replace(/[()]/g, '');
+    const cmp = (h, d = 2) => !h ? '–' : `${n1(h.now)} <span class="note">(last yr ${h.prev == null ? '–' : n1(h.prev)}, 5-yr ${h.avg5 == null ? '–' : n1(h.avg5)}; ${pct(h.now, h.avg5)} vs avg)</span>`;
+    const bars = (h) => { if (!h || !h.series || h.series.length < 2) return ''; const v = h.series.map(x => x[1]), lo = Math.min(...v) * .95, hi = Math.max(...v);
+      return `<svg width="120" height="26" class="mk-spark">${h.series.map((x, i) => `<rect x="${i * 12}" y="${26 - 24 * (x[1] - lo) / (hi - lo || 1)}" width="9" height="${24 * (x[1] - lo) / (hi - lo || 1) + 1}" fill="${i === h.series.length - 1 ? '#c48a1c' : '#9bb7d9'}"><title>${x[0]}: ${x[1]}</title></rect>`).join('')}</svg>`; };
+    return `<div class="card" style="margin-top:12px"><h2>Crop calendar and conditions by country <span class="note">where each crop stands this month and what the weather means for it</span></h2>
+      <div class="tbl"><table class="geo-cal"><tr><th class="l">Country (share)</th>${M.map((m, i) => `<th class="${i + 1 === now ? 'geo-now' : ''}">${m}</th>`).join('')}<th class="l">Now</th></tr>
+      ${G.calendar.map(c => `<tr><td class="l"><b>${c.country}</b> <span class="note">${c.share != null ? c.share + '%' : ''}</span></td>
+        ${M.map((_, i) => { const st = c.stages.filter(x => inW(i + 1, x[1], x[2])).sort((a, b) => b[3] - a[3])[0];
+          return `<td class="geo-cell ${i + 1 === now ? 'geo-now' : ''}" style="${st ? `background:${STC[st[0]]}` : ''}" title="${st ? st[0] + ': ' + st[4] : ''}"></td>`; }).join('')}
+        <td class="l">${c.now ? `<b>${c.now[0]}</b>` : '<span class="note">between seasons</span>'}</td></tr>`).join('')}</table></div>
+      <p class="note">${Object.entries(STC).map(([k, v]) => `<span class="geo-key"><i style="background:${v};height:10px"></i>${k === 'critical' ? 'critical (yield-setting)' : k}</span>`).join('')} Column with the border = this month. Typical windows after USDA FAS / GEOGLAM crop calendars; timing moves a few weeks with each season.</p>
+      <div class="grid g2" style="margin-top:6px">${G.calendar.map(c => {
+        const rr = c.regions.map(id => wx[id]).filter(Boolean);
+        const col = c.score < 0 ? 'var(--dn)' : c.score > 0 ? 'var(--up)' : '#555';
+        return `<div class="geo-cty"><h3>${c.country} <span class="note">${c.share != null ? c.share + '% of world output' : ''}</span></h3>
+          <p>${c.now ? `Stage now: <b>${c.now[0]}</b>${c.now[3] >= 3 ? ' (yield-setting)' : ''}: ${c.now[4]}.` : `Between seasons; next: <b>${c.next[0]}</b> (${M[c.next[1] - 1]}): ${c.next[4]}.`}</p>
+          <p>Weather impact: <b style="color:${col}">${c.read}</b></p>
+          ${rr.length ? `<div class="tbl"><table class="geo-mini"><tr><th class="l">Region</th><th>Rain 60 d</th><th>Season rain</th><th>Soil moist.</th><th>Max temp anom.</th><th>Next 16 d</th></tr>${rr.map(r => `<tr><td class="l">${r.name}</td>
+            <td class="${pcol(r.r60_p)}">${r.r60_p != null ? ord(r.r60_p) + ' pct' : (r.r60 != null ? n0(r.r60) + ' mm' : '–')}</td><td>${r.rstd_n ? pct(r.rstd, r.rstd_n) : '–'}</td>
+            <td class="${pcol(r.sm100_p)}">${r.sm100_p != null ? ord(r.sm100_p) + ' pct' : '–'}</td><td>${r.tmax30_n != null ? (r.tmax30 - r.tmax30_n > 0 ? '+' : '') + (r.tmax30 - r.tmax30_n).toFixed(1) + '°C' : '–'}</td>
+            <td>${r.f16_rain != null ? n0(r.f16_rain) + ' mm' + (r.f16_rain_n ? ' (' + pct(r.f16_rain, r.f16_rain_n) + ')' : '') : '–'}</td></tr>`).join('')}</table></div>` : '<p class="note">No weather region tracked for this country yet.</p>'}
+          <p class="note">USDA estimate ${G.my}/${String(G.my + 1).slice(2)} — production: ${cmp(c.production)}${c.yield ? `; yield (${yu}): ${cmp(c.yield)}` : ''}</p>
+          ${bars(c.yield)}${c.yield ? '<span class="note"> yield, last 10 years</span>' : ''}</div>`; }).join('')}</div></div>`;
+  }
   async function render(el, key) {
     el.innerHTML = '<p class="note">Loading maps…</p>';
     try { await ready(); } catch (e) { el.innerHTML = '<p class="note">Map libraries could not load.</p>'; return; }
@@ -117,6 +147,7 @@ const Geo = (() => {
         <div><p class="note">Shaded: countries with at least ${G.threshold}% of world output (darker = larger share). World total ${n1(G.world)} ${unit}.</p>
         <div class="tbl"><table><tr><th class="l">Country</th><th>Production</th><th>Share</th><th>vs last yr</th><th>vs 5-yr avg</th></tr>
         ${G.production.map(p => `<tr class="${p.mapped ? '' : 'note'}"><td class="l">${p.mapped ? '<b>' + p.country + '</b>' : p.country}</td><td>${n1(p.value)}</td><td>${p.share}%</td><td class="${cls(p.value - p.prev)}">${pct(p.value, p.prev)}</td><td class="${cls(p.value - p.avg5)}">${pct(p.value, p.avg5)}</td></tr>`).join('')}</table></div></div></div></div>
+      ${calendarCard(G)}
       ${G.us_states ? `<div class="card" style="margin-top:12px"><h2>United States by state <span class="note">USDA NASS ${G.us_states.year}: ${G.us_states.what.toLowerCase()}</span></h2>
         <div class="geo-wrap"><svg class="geo-map" id="geoU"></svg><div class="tbl"><table><tr><th class="l">State</th><th>${G.us_states.unit.toLowerCase()}</th><th>Share</th></tr>
         ${G.us_states.states.slice(0, 12).map(s => `<tr><td class="l">${s.state}</td><td>${n0(s.value)}</td><td>${s.share}%</td></tr>`).join('')}</table></div></div></div>` : ''}

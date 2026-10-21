@@ -22,7 +22,7 @@ jobs:
           python pipelines/crop_progress.py CORN
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data/grains
-          git diff --cached --quiet || { git commit -q -m "data: grains crop progress $C $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q && break; sleep 8; done; }
+          git diff --cached --quiet || { git commit -q -m "data: grains crop progress $C $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }; }
       - name: crop progress SOYBEANS
         continue-on-error: true
         env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}', CP_MAX_BATCHES: '2000', C: 'SOYBEANS'}
@@ -30,7 +30,7 @@ jobs:
           python pipelines/crop_progress.py SOYBEANS
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data/grains
-          git diff --cached --quiet || { git commit -q -m "data: grains crop progress $C $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q && break; sleep 8; done; }
+          git diff --cached --quiet || { git commit -q -m "data: grains crop progress $C $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }; }
       - name: crop progress WHEAT
         continue-on-error: true
         env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}', CP_MAX_BATCHES: '2000', C: 'WHEAT'}
@@ -38,4 +38,4 @@ jobs:
           python pipelines/crop_progress.py WHEAT
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data/grains
-          git diff --cached --quiet || { git commit -q -m "data: grains crop progress $C $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q && break; sleep 8; done; }
+          git diff --cached --quiet || { git commit -q -m "data: grains crop progress $C $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }; }

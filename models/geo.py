@@ -217,6 +217,8 @@ def main():
                                "top": [{"country": p[1], "iso3": p[2], "value": p[3], "share": round(100 * p[3] / tot, 1) if tot else None} for p in e["partners"][:10]]}}
         # US states
         st = None
+        if nk not in N and "milk" in N and pk in ("cheese", "butter", "nfdm"):
+            nk = "milk"
         if nk in N and N[nk]["rows"]:
             sd = pd.DataFrame(N[nk]["rows"], columns=["year", "fips", "abbr", "state", "value", "unit"])
             sd = sd[~sd.fips.isin(["98", "99", "00"])]

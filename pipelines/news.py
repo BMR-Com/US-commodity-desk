@@ -15,7 +15,7 @@ import requests
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "news"
 H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk; +https://bmr-com.github.io/us--Ags-desk/)"}
-SITES = ["reuters.com", "bloomberg.com", "wsj.com", "marketwatch.com", "barrons.com", "dtnpf.com", "agriculture.com",
+SITES = ["rigzone.com", "naturalgasintel.com", "oilprice.com", "reuters.com", "bloomberg.com", "wsj.com", "marketwatch.com", "barrons.com", "dtnpf.com", "agriculture.com",
          "farmprogress.com", "agweb.com", "brownfieldagnews.com", "feedstuffs.com", "dairyherd.com", "nationalhogfarmer.com",
          "drovers.com", "spglobal.com", "hoards.com", "farmdocdaily.illinois.edu", "successful-farming.com", "agrimoney.com", "ft.com"]
 QUERIES = {  # topic: search terms
@@ -31,6 +31,9 @@ QUERIES = {  # topic: search terms
     "usda": "USDA WASDE OR USDA report OR crop progress OR export sales",
     "trade_policy": "China tariffs soybeans OR farm trade deal OR biofuel RVO OR EPA biofuel",
     "weather": "Corn Belt weather OR Brazil drought OR Argentina dry OR La Nina crops OR El Nino crops",
+    "natgas": "natural gas futures OR natural gas prices OR Henry Hub OR LNG exports OR gas storage OR LNG terminal",
+    "crude": "oil prices OR crude oil futures OR OPEC OR WTI crude OR Brent crude OR crude inventories OR shale output",
+    "products": "diesel prices OR gasoline prices OR refinery outage OR crack spread OR heating oil futures OR distillate stocks",
 }
 TAGS = {
     "corn": r"\bcorn\b|maize|safrinha|ethanol",
@@ -44,6 +47,9 @@ TAGS = {
     "dairy": r"dairy|\bmilk\b|cheese|butter|whey|nonfat",
     "south_america": r"brazil|argentin|conab|safrinha|rosario|parana|mato grosso",
     "usda": r"\bUSDA\b|WASDE|crop progress|export sales|NASS",
+    "natgas": r"natural gas|\bnat ?gas\b|\bLNG\b|Henry Hub|gas storage|liquefaction",
+    "crude": r"\bcrude\b|\boil price|\bOPEC|\bWTI\b|\bBrent\b|shale|oil output|oil futures|barrel",
+    "products": r"diesel|gasoline|refiner|crack spread|heating oil|distillate|jet fuel|\bRBOB\b",
 }
 
 
@@ -124,7 +130,7 @@ def main():
     df["time"] = df.time.fillna(pd.Timestamp.now("UTC").strftime("%Y-%m-%dT%H:%MZ"))
     cutoff = (pd.Timestamp.now("UTC") - pd.Timedelta(days=45)).strftime("%Y-%m-%d")
     df = df[df.time >= cutoff]
-    AG = r"cotton|soy|corn|maize|grain|crop|safra|safrinha|harvest|plant|wheat|cattle|beef|hog|pork|dairy|milk|cheese|butter|farm|ag\b|agri|fertili|ethanol|biofuel|crush|livestock|feed|USDA|WASDE|export sales|tariff"
+    AG = r"crude|\boil\b|OPEC|\bLNG\b|natural gas|diesel|gasoline|refiner|Brent|WTI|cotton|soy|corn|maize|grain|crop|safra|safrinha|harvest|plant|wheat|cattle|beef|hog|pork|dairy|milk|cheese|butter|farm|ag\b|agri|fertili|ethanol|biofuel|crush|livestock|feed|USDA|WASDE|export sales|tariff"
     def tags(t):
         if not re.search(AG, t, re.I):
             return []

@@ -7,7 +7,10 @@ const Chat = (() => {
                      energy: ['NG', 'CL', 'HO', 'RB'], cotfull: [], markets: [], summary: [], signals: [], options: [] };
   const BUDGET = 16000;   // characters of desk cards per question (~4k tokens; the free tier allows 6-30k tokens a minute)
   const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
-  let CTX = null, hist = [], lastIds = [], busy = false, PROXY;
+  let CTX = null, hist = [], lastIds = [], busy = false, PROXY, DAILY;
+  const CAP = 1000;   // questions per browser per day (own-key mode; the server proxy enforces its own limit per user)
+  const dayKey = () => 'chatCount_' + new Date().toISOString().slice(0, 10);
+  const count = () => +(LS.get(dayKey()) || 0);
   const proxy = async () => { if (PROXY === undefined) PROXY = await getJSON('data/ai/proxy.json').then(j => j && j.url ? j : null).catch(() => null); return PROXY; };
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/^#{1,4} (.*)$/gm, '<b>$1</b>').replace(/^\s*[-*] (.*)$/gm, '• $1').replace(/\n/g, '<br>');
@@ -43,7 +46,8 @@ const Chat = (() => {
     const P = await proxy();
     const key = LS.get('groqApiKey'), user = LS.get('deskUser'), code = LS.get('deskCode');
     if (P && !(user && code)) { settings(true); add('bot', 'Enter your desk user name and access code in the settings above (ask the desk owner for one).'); return; }
-    if (!P && !key) { settings(true); add('bot', 'Paste your Groq API key in the settings above first (free at console.groq.com/keys). It stays in this browser only.'); return; }
+    if (!P && !key) { await canned(q); return; }
+    if (!P && count() >= CAP) { add('bot', `Daily limit reached: ${CAP} questions a day in this browser (resets 00:00 UTC). The pre-written reads still work: sign out of the key to see them.`); return; }
     if (!CTX) CTX = await getJSON('data/ai/context.json').catch(() => null);
     if (!CTX) { add('bot', 'The desk context file is not built yet (data/ai/context.json).'); return; }
     const cards = pick(q); lastIds = cards.map(c => c.id);
@@ -80,7 +84,24 @@ Rules: quote numbers with units, contract and date; if the data does not contain
     thinking.remove();
     if (!txt) { add('bot', 'No answer: ' + (err || 'unknown error') + '. On the free tier, wait a minute if you hit the per-minute limit.'); return; }
     hist.push({ role: 'user', content: q }, { role: 'assistant', content: txt });
+    if (!P) LS.set(dayKey(), String(count() + 1));
+    if (!usage && !P) usage = { used: count(), limit: CAP };
     add('bot', txt, `${used.split('/').pop()}${usage ? ` · ${usage.used}/${usage.limit} today` : ''} · sources: ${cards.map(c => c.title).join(', ')}${page ? ', open tab' : ''}`);
+  }
+  async function canned(q) {
+    if (!CTX) CTX = await getJSON('data/ai/context.json').catch(() => null);
+    if (!DAILY) DAILY = await getJSON('data/ai/daily.json').catch(() => null);
+    if (!CTX || !DAILY || !DAILY.items) { settings(true); add('bot', 'Live answers need a Groq API key (free at console.groq.com/keys); paste it in the settings above. It stays in this browser only.'); return; }
+    const ids = pick(q).map(c => c.id).filter(id => DAILY.items[id] && id !== 'table');
+    const ql = q.toLowerCase(), words = ql.split(/\W+/).filter(w => w.length > 3);
+    const out = [];
+    for (const id of ids.slice(0, 3)) {
+      const it = DAILY.items[id];
+      const best = (it.faq || []).map(f => [words.filter(w => f.q.toLowerCase().includes(w)).length, f]).sort((a, b) => b[0] - a[0]);
+      out.push(`**${it.title}**\n${it.read || ''}` + (best[0] && best[0][0] > 0 ? `\n\n**${best[0][1].q}**\n${best[0][1].a}` : (it.faq || []).slice(0, 2).map(f => `\n\n**${f.q}**\n${f.a}`).join('')));
+    }
+    if (!out.length) out.push(`**${DAILY.items.overview?.title || 'Desk'}**\n${DAILY.items.overview?.read || 'No pre-written read matched.'}`);
+    add('bot', out.join('\n\n'), `pre-written by the desk AI at ${DAILY.generated} (data as of ${DAILY.data_date}) · for live answers to any question, add a Groq key in ⚙`);
   }
   function add(who, text, foot) {
     const box = document.getElementById('chat-msgs'), d = document.createElement('div');
@@ -107,13 +128,13 @@ Rules: quote numbers with units, contract and date; if the data does not contain
           <div id="chat-own"><label>Groq API key <input id="chat-key" type="password" placeholder="gsk_…" autocomplete="off"></label></div>
           <label>Model <select id="chat-model">${MODELS.map(m => `<option value="${m[0]}">${m[1]}</option>`).join('')}</select></label>
           <div class="chat-row"><button id="chat-save">Save</button><button id="chat-forget">Sign out</button></div>
-          <p class="note" id="chat-note">Free key: console.groq.com/keys. Kept only in this browser and sent only to Groq. Free-tier limits are per minute; the bot falls back to another model when one is busy.</p></div>
+          <p class="note" id="chat-note">Without a key you get the desk AI's pre-written reads (refreshed each morning and after the close). For live answers to any question, paste a free Groq key (console.groq.com/keys): kept only in this browser, sent only to Groq, up to 1,000 questions a day.</p></div>
         <div id="chat-msgs"><div class="chat-m chat-bot">Ask about any number on the desk, for example:<div class="chat-sugg">
           ${['Why is corn rated strongly bearish?', 'Which markets have crowded fund positioning?', 'Compare carry and trend for soybeans and soy oil', 'What does the options market imply for Class III milk?', 'Summarize this tab'].map(s => `<button class="chat-s">${s}</button>`).join('')}</div></div></div>
         <form id="chat-f"><textarea id="chat-q" rows="2" placeholder="Ask about prices, fundamentals, COT, options, signals…"></textarea><button type="submit">Send</button></form></div>`;
     document.body.appendChild(el);
     const panel = document.getElementById('chat-panel');
-    document.getElementById('chat-btn').onclick = () => { panel.style.display = panel.style.display === 'none' ? '' : 'none'; if (!LS.get('groqApiKey') && !LS.get('deskCode')) settings(true); document.getElementById('chat-q').focus(); };
+    document.getElementById('chat-btn').onclick = () => { panel.style.display = panel.style.display === 'none' ? '' : 'none';  document.getElementById('chat-q').focus(); };
     document.getElementById('chat-x').onclick = () => panel.style.display = 'none';
     document.getElementById('chat-gear').onclick = () => settings();
     document.getElementById('chat-clear').onclick = () => { hist = []; lastIds = []; $$('#chat-msgs .chat-m').slice(1).forEach(x => x.remove()); };

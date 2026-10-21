@@ -91,6 +91,18 @@ def rules(start, end):
         if wd == 4:
             dd = d if bday(d) else d + pd.Timedelta(days=3)
             ev.append({"date": str(dd.date()), "time": "2:30 PM CT", "event": "CFTC Commitments of Traders", "cat": "CFTC", "markets": ["ALL"], "importance": 1})
+        # energy (EIA weekly reports shift a day after a Monday holiday)
+        late = not bday(d - pd.Timedelta(days=wd))   # Monday holiday this week
+        if wd == 1 and bday(d):
+            ev.append({"date": ds, "time": "3:30 PM CT", "event": "API weekly crude & product inventories (industry)", "cat": "Energy", "markets": ["CL", "HO", "RB"], "importance": 1})
+        if wd == (3 if late else 2) and bday(d):
+            ev.append({"date": ds, "time": "9:30 AM CT" if not late else "10:00 AM CT", "event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)", "cat": "Energy",
+                       "markets": ["CL", "HO", "RB"], "importance": 3, "link": "https://www.eia.gov/petroleum/supply/weekly/"})
+        if wd == (4 if late else 3) and bday(d):
+            ev.append({"date": ds, "time": "9:30 AM CT", "event": "EIA Weekly Natural Gas Storage Report", "cat": "Energy", "markets": ["NG"], "importance": 3,
+                       "link": "https://ir.eia.gov/ngs/ngs.html"})
+        if wd == 4 and bday(d):
+            ev.append({"date": ds, "time": "12:00 PM CT", "event": "Baker Hughes rig count", "cat": "Energy", "markets": ["CL", "NG"], "importance": 2})
         if wd == 2 and bday(d):
             ev.append({"date": ds, "time": "11:00 AM CT", "event": "USDA NDPSR dairy product prices (weekly)", "cat": "Dairy", "markets": ["DC", "GDK", "CSC", "CB", "GNF", "DY"], "importance": 2})
         if d.day == 1 or (d.day <= 3 and wd == 0):
@@ -123,6 +135,20 @@ def rules(start, end):
             d += pd.Timedelta(days=7)
         if start <= d <= end:
             ev.append({"date": str(d.date()), "time": "11:00 AM CT", "event": "USDA class & component milk prices (DC/GDK settle)", "cat": "Dairy", "markets": ["DC", "GDK"], "importance": 3, "estimated": True})
+    # EIA Short-Term Energy Outlook: usually the Tuesday between the 6th and 12th (estimated)
+    for m in pd.date_range(start - pd.Timedelta(days=31), end, freq="MS"):
+        d = m + pd.Timedelta(days=5)
+        while d.weekday() != 1:
+            d += pd.Timedelta(days=1)
+        if start <= d <= end:
+            ev.append({"date": str(d.date()), "time": "11:00 AM CT", "event": "EIA Short-Term Energy Outlook (date estimated)", "cat": "Energy", "markets": ["CL", "NG", "HO", "RB"],
+                       "importance": 2, "estimated": True, "link": "https://www.eia.gov/outlooks/steo/"})
+        for day, what in [(11, "OPEC Monthly Oil Market Report (date estimated)"), (13, "IEA Oil Market Report (date estimated)")]:
+            d = m + pd.Timedelta(days=day - 1)
+            while not bday(d):
+                d += pd.Timedelta(days=1)
+            if start <= d <= end:
+                ev.append({"date": str(d.date()), "time": "", "event": what, "cat": "Energy", "markets": ["CL", "HO", "RB"], "importance": 2, "estimated": True})
     return ev
 
 
@@ -178,9 +204,29 @@ def contract_events(start, end):
                 while not bday(d):  # holiday Thursday (Thanksgiving): the Thursday before
                     d -= pd.Timedelta(days=7)
                 out = [(d, "last trading day (settles to CME Feeder Index)")]
+            elif sym == "NG":            # 3 business days before the first calendar day of the contract month
+                d, n = mstart, 0
+                while n < 3:
+                    d -= pd.Timedelta(days=1)
+                    n += bday(d)
+                out = [(d, "last trading day")]
+            elif sym == "CL":            # 3 business days before the 25th of the prior month (4 if the 25th is not a business day)
+                pm = mstart - pd.offsets.MonthBegin(1)
+                d25 = pm + pd.Timedelta(days=24)
+                d, n = d25, 0
+                k = 3 if bday(d25) else 4
+                while n < k:
+                    d -= pd.Timedelta(days=1)
+                    n += bday(d)
+                out = [(d, "last trading day")]
+            elif sym in ("HO", "RB"):    # last business day of the month before the contract month
+                d = mstart - pd.Timedelta(days=1)
+                while not bday(d):
+                    d -= pd.Timedelta(days=1)
+                out = [(d, "last trading day")]
             for d, what in out:
                 if start <= d <= end:
-                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "ICE contract" if sym == "CT" else "CME contract", "markets": [sym],
+                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "ICE contract" if sym == "CT" else "NYMEX contract" if sym in ("NG", "CL", "HO", "RB") else "CME contract", "markets": [sym],
                                "importance": 2 if "first notice" in what or "settles" in what else 1, "estimated": True})
     return ev
 

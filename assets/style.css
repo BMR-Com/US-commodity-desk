@@ -110,3 +110,8 @@ table.cal td{vertical-align:top}td.cal-d{white-space:nowrap;font-weight:600;widt
 .tbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}.grp{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
 .lab{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-right:2px}
 .chip{font:inherit;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#444;cursor:pointer}.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* WASDE view */
+.wv-top{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.wv-top select{font:inherit;padding:3px 6px;margin-left:4px}
+.wtag{display:inline-block;border-radius:5px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.wv tr.wv-hl td{background:#f6faf6;font-weight:600}
+.wv table.wv-ch td,.wv table.wv-ch th{white-space:nowrap}

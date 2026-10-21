@@ -80,7 +80,8 @@ const Grains = (() => {
       <nav class="tabs" id="gCom" style="background:#f0f6f1">${Object.entries(GC).map(([k, v]) => `<button data-com="${k}" class="${k === com ? 'on' : ''}">${v.name}</button>`).join('')}<button data-com="sa" class="${com === 'sa' ? 'on' : ''}">Brazil &amp; Argentina</button></nav>
       <nav class="tabs" id="gTabs">
         <button data-t="g-primer" class="on">1 · Primer</button><button data-t="g-sd">2 · Supply &amp; demand</button>
-        <button data-t="g-flows">3 · Futures, options &amp; COT</button><button data-t="g-outlook">4 · Outlook</button></nav>
+        <button data-t="g-esr">3 · Export sales</button><button data-t="g-wasde">4 · WASDE</button>
+        <button data-t="g-flows">5 · Futures, options &amp; COT</button><button data-t="g-outlook">6 · Outlook</button></nav>
       <main><div id="gBody"></div></main>`;
     $$('#gCom button').forEach(b => b.onclick = () => { com = b.dataset.com; $$('#gCom button').forEach(x => x.classList.toggle('on', x === b)); render(); });
     $$('#gTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#gTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
@@ -91,7 +92,7 @@ const Grains = (() => {
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
-    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-sd', 'g-flows', 'g-outlook'].includes(h[2])) tab = h[2]; }
+    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-sd', 'g-esr', 'g-wasde', 'g-flows', 'g-outlook'].includes(h[2])) tab = h[2]; }
     $$('#gCom button').forEach(x => x.classList.toggle('on', x.dataset.com === com)); $$('#gTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab));
   }
   async function show() {
@@ -104,7 +105,24 @@ const Grains = (() => {
     if (com === 'sa') { history.replaceState(null, '', '#g/sa'); saPage(); return; }
     history.replaceState(null, '', `#g/${com}/${tab}`);
     const c = GC[com];
-    ({ 'g-primer': primer, 'g-sd': sd, 'g-flows': flows, 'g-outlook': outlook })[tab](c);
+    ({ 'g-primer': primer, 'g-sd': sd, 'g-esr': esrTab, 'g-wasde': wasdeTab, 'g-flows': flows, 'g-outlook': outlook })[tab](c);
+  }
+  // ── EXPORT SALES (tab 3) and WASDE (tab 4) ──
+  async function esrTab(c) {
+    const body = el('#gBody'); body.innerHTML = '<div class="card"><p class="note">Loading export sales…</p></div>';
+    const D = await getJSON(G + 'esr_brief.json').catch(() => null);
+    const key = c === GC.kc ? 'kc' : c.wasde;
+    const B = D && D.commodities.find(x => x.key === key);
+    if (!B) { body.innerHTML = '<div class="card"><p class="note">Export sales brief not built yet; it fills in after the next Thursday data run.</p></div>'; return; }
+    ESR.mount(body, { generated: D.generated, commodities: [B] }, { name: B.name });
+    body.insertAdjacentHTML('beforeend', `<p class="note" style="margin:4px 2px">USDA FAS weekly export sales vs the latest WASDE · same engine as the BMR-Com cotton export sales brief · updated ${D.generated}.</p>`);
+  }
+  async function wasdeTab(c) {
+    const body = el('#gBody'); body.innerHTML = '<div class="card"><p class="note">Loading WASDE analysis…</p></div>';
+    const key = c === GC.kc ? 'kc' : c.wasde;
+    const idx = await getJSON(G + 'wasde_brief/index.json').catch(() => null);
+    if (!idx) { body.innerHTML = '<div class="card"><p class="note">WASDE analysis not built yet.</p></div>'; return; }
+    WasdeView.mount(body, { base: G + 'wasde_brief/', index: idx, key });
   }
   const us = c => { const b = W.commodities[c.wasde].us; const my = Object.keys(b).sort(); return { b, my, cur: my.at(-1), prev: my.at(-2) }; };
 

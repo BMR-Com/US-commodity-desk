@@ -4,7 +4,7 @@ const Chat = (() => {
   const MODELS = [['auto', 'Automatic (best available today)'], ['openai/gpt-oss-120b', 'GPT-OSS 120B'], ['openai/gpt-oss-20b', 'GPT-OSS 20B (fastest)']];
   const TAB_SYMS = { grains: ['ZC', 'ZS', 'ZM', 'ZL', 'ZW', 'KE'], dairy: ['DC', 'GDK', 'CSC', 'CB', 'GNF', 'DY'], hogs: ['HE'], cattle: ['LE', 'GF'], cotton: ['CT'],
                      energy: ['NG', 'CL', 'HO', 'RB'], cotfull: [], markets: [], summary: [], signals: [], options: [] };
-  const BUDGET = 16000;   // characters of desk cards per question (~4k tokens; the free tier allows 6-30k tokens a minute)
+  const BUDGET = 14000;   // characters of desk cards per question (~3.5k tokens; the free tier allows 6-30k tokens a minute)
   const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
   let CTX = null, hist = [], lastIds = [], busy = false, PROXY, DAILY;
   const CAP = 1000;   // questions per browser per day (own-key mode; the server proxy enforces its own limit per user)
@@ -14,31 +14,77 @@ const Chat = (() => {
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/^#{1,4} (.*)$/gm, '<b>$1</b>').replace(/^\s*[-*] (.*)$/gm, '• $1').replace(/\n/g, '<br>');
   function activeTab() { const b = document.querySelector('nav.comm button.on'); return b ? b.dataset.c : 'summary'; }
-  function pageText() {
+  function pageText(limit = 6000) {
     const t = activeTab(), sec = document.getElementById(t);
     if (!sec) return '';
     let txt = '';
     const fr = sec.querySelector('iframe');
-    try { txt = fr ? fr.contentDocument.body.innerText : sec.innerText; } catch (e) { txt = sec.innerText; }
-    return txt.replace(/[ \t]+/g, ' ').replace(/\n{2,}/g, '\n').trim().slice(0, 3500);
+    const vis = fr && fr.offsetParent !== null;
+    try { txt = vis ? fr.contentDocument.body.innerText : sec.innerText; } catch (e) { txt = sec.innerText; }
+    return txt.replace(/[ \t]+/g, ' ').replace(/\n{2,}/g, '\n').trim().slice(0, limit);
   }
-  function pick(q) {
+  // Numbers behind the charts on the open tab (Chart.js), so questions about a chart can be answered.
+  function chartText(limit = 3500) {
+    const sec = document.getElementById(activeTab());
+    if (!sec) return '';
+    const wins = [window];
+    const fr = sec.querySelector('iframe');
+    try { if (fr && fr.offsetParent !== null && fr.contentWindow.Chart) wins.push(fr.contentWindow); } catch (e) {}
+    const fmtv = v => v == null || isNaN(v) ? '–' : Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : (+v).toFixed(Math.abs(v) < 10 ? 3 : 2).replace(/\.?0+$/, '');
+    const out = [];
+    for (const w of wins) {
+      const insts = w.Chart && w.Chart.instances ? Object.values(w.Chart.instances) : [];
+      for (const ch of insts) {
+        const cv = ch.canvas;
+        if (!cv || cv.offsetParent === null || !(w === window ? sec.contains(cv) : true)) continue;
+        const card = cv.closest('.card') || cv.closest('.chart-section') || cv.parentElement?.parentElement;
+        const head = ((ch.options?.plugins?.title?.text) || card?.querySelector('h2,h3,h4')?.innerText || '').toString().replace(/\s+/g, ' ').slice(0, 120);
+        const labels = (ch.data.labels || []).map(String);
+        const lines = [`Chart: ${head || 'untitled'}${labels.length ? ` (x: ${labels[0]} … ${labels[labels.length - 1]}, ${labels.length} points)` : ''}`];
+        for (const ds of (ch.data.datasets || []).slice(0, 8)) {
+          if (!ds.label || ds.label.startsWith('_')) continue;
+          const pts = (ds.data || []).map((v, i) => [typeof v === 'object' && v !== null ? (v.x ?? labels[i]) : labels[i], typeof v === 'object' && v !== null ? v.y : v]).filter(p => p[1] != null && !isNaN(p[1]));
+          if (!pts.length) continue;
+          const last = pts[pts.length - 1], mx = pts.reduce((a, b) => b[1] > a[1] ? b : a), mn = pts.reduce((a, b) => b[1] < a[1] ? b : a);
+          const step = Math.max(1, Math.ceil(pts.length / 8));
+          const sample = pts.filter((_, i) => i % step === 0 || i === pts.length - 1).map(p => `${p[0]}: ${fmtv(p[1])}`).join(', ');
+          lines.push(`- ${ds.label}: last ${fmtv(last[1])} (${last[0]}), high ${fmtv(mx[1])} (${mx[0]}), low ${fmtv(mn[1])} (${mn[0]}); points: ${sample}`);
+        }
+        if (lines.length > 1) out.push(lines.join('\n'));
+      }
+    }
+    return out.join('\n').slice(0, limit);
+  }
+  function pick(q, budget = BUDGET) {
     const ql = ' ' + q.toLowerCase().replace(/[^a-z0-9/&.%-]+/g, ' ') + ' ';
     const tabSyms = TAB_SYMS[activeTab()] || [];
     const hs = (location.hash.split('/')[1] || '').toUpperCase();
+    const STOP = new Set(['what', 'which', 'where', 'when', 'about', 'there', 'their', 'with', 'from', 'this', 'that', 'does', 'have', 'show', 'tell', 'much', 'many', 'price', 'prices', 'market', 'markets', 'today', 'week']);
+    const qw = [...new Set(ql.split(' ').filter(w => w.length > 4 && !STOP.has(w)))];
     const score = CTX.cards.map(c => {
       let s = 0;
       for (const a of c.aliases || []) {
         const hit = a.length <= 3 ? ql.includes(' ' + a + ' ') : ql.includes(a);
         if (hit) s += a.length > 4 ? 3 : 2;
       }
+      const al = s;
       if (c.kind === 'market' && (tabSyms.includes(c.id) || c.id === hs)) s += 1.5;
+      const tl = c.text.toLowerCase(); let tw = 0;   // distinctive question words found in the card text
+      for (const w of qw) if (tl.includes(w)) tw += 1;
+      s += Math.min(tw, 4) * 0.6;
       if (lastIds.includes(c.id)) s += 1;
-      return [s, c];
+      return [s, c, al];
     }).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]);
     const always = ['overview', 'table'].map(id => CTX.cards.find(c => c.id === id)).filter(Boolean);
     const out = [...always]; let n = always.reduce((a, c) => a + c.text.length, 0);
-    for (const [, c] of score) { if (out.includes(c)) continue; if (n + c.text.length > BUDGET) continue; out.push(c); n += c.text.length; }
+    // first the best alias-matched card of each kind (so a question about corn and CPI gets both), then by score
+    const seen = new Set(), share = Math.round(budget / 4);
+    const put = (c, cap) => { const room = Math.min(cap, budget - n); if (room < 700 || out.some(o => o.id === c.id)) return; const t = c.text.length > room ? c.text.slice(0, room) + ' …' : c.text; out.push({ ...c, text: t }); n += t.length; };
+    const firsts = [];
+    for (const [, c, al] of [...score].sort((a, b) => b[2] - a[2] || b[0] - a[0])) { if (al < 2 || seen.has(c.kind)) continue; seen.add(c.kind); firsts.push(c); }
+    const each = firsts.length ? Math.max(900, Math.floor((budget - n) / firsts.length)) : share;
+    for (const c of firsts) put(c, each);
+    for (const [, c] of score) put(c, 1e9);
     return out;
   }
   async function ask(q) {
@@ -49,13 +95,17 @@ const Chat = (() => {
     if (!P && count() >= CAP) { add('bot', `Daily limit reached: ${CAP} questions a day in this browser (resets 00:00 UTC). The pre-written reads still work: sign out of the key to see them.`); return; }
     if (!CTX) CTX = await getJSON('data/ai/context.json').catch(() => null);
     if (!CTX) { add('bot', 'The desk context file is not built yet (data/ai/context.json).'); return; }
-    const cards = pick(q); lastIds = cards.map(c => c.id);
-    const page = pageText();
     const sys = `You are the assistant of the BMR-Com US Ags Desk, a research site on US agricultural and energy futures (grains, oilseeds, cotton, livestock, dairy, energy).
-Answer ONLY from the DATA below: the desk's cards (built ${CTX.generated}, market data as of ${CTX.data_date}) and the text of the tab the user has open.
+Answer ONLY from the DATA below: the desk's cards (built ${CTX.generated}, market data as of ${CTX.data_date}), the text of the tab the user has open, and the numbers behind the charts on that tab.
 Rules: quote numbers with units, contract and date; if the data does not contain the answer, say so plainly and name the tab where it may be (Summary, Markets & macro, Options pricer, Signals, Dairy, Grains & oilseeds, Cotton, Lean hogs, Live & feeder cattle, COT (full), Energy). Never invent numbers. Be concise: short paragraphs or bullets. Explain jargon briefly when helpful. This is research, not investment advice; describe the desk's own views and signals rather than giving personal trade recommendations.`;
-    const data = cards.map(c => `### ${c.title}\n${c.text}`).join('\n\n') + (page ? `\n\n### Text of the open tab (${activeTab()})\n${page}` : '');
-    const msgs = [{ role: 'system', content: sys + '\n\nDATA:\n' + data }, ...hist.slice(-6), { role: 'user', content: q }];
+    let cards = [], page = '', charts = '';
+    const build = scale => {
+      cards = pick(q, Math.round(BUDGET * scale)); lastIds = cards.map(c => c.id);
+      page = pageText(Math.round(6000 * scale)); charts = chartText(Math.round(3500 * scale));
+      const data = cards.map(c => `### ${c.title}\n${c.text}`).join('\n\n') + (page ? `\n\n### Text of the open tab (${activeTab()})\n${page}` : '') + (charts ? `\n\n### Numbers behind the charts on the open tab\n${charts}` : '');
+      return [{ role: 'system', content: sys + '\n\nDATA:\n' + data }, ...hist.slice(-4).map(m => ({ role: m.role, content: m.content.slice(0, 1500) })), { role: 'user', content: q }];
+    };
+    let msgs = build(1);
     const thinking = add('bot', '…');
     const avail = await getJSON('data/ai/models.json').then(j => j.models || []).catch(() => []);
     const pref = LS.get('groqModel');
@@ -76,7 +126,16 @@ Rules: quote numbers with units, contract and date; if the data does not contain
         const r = await fetch('https://api.groq.com/openai/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
           body: JSON.stringify({ model, messages: msgs, temperature: 0.2, max_tokens: 900 }) });
         if (r.status === 401) { err = 'Groq rejected the key (401). Check it at console.groq.com/keys.'; break; }
-        if (r.status === 429 || r.status === 413 || r.status === 400 || r.status === 404 || r.status >= 500) { err = `${model}: HTTP ${r.status}`; continue; }
+        if (r.status === 413 || r.status === 429) {   // too big for this model's per-minute budget: retry once with less context
+          const t = await r.text(); err = `${model}: HTTP ${r.status}`;
+          if (/token|too large|context|TPM/i.test(t) && !msgs.shrunk) { msgs = build(0.55); msgs.shrunk = true;
+            const r2 = await fetch('https://api.groq.com/openai/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+              body: JSON.stringify({ model, messages: msgs, temperature: 0.2, max_tokens: 900 }) });
+            if (r2.ok) { const j2 = await r2.json(); txt = j2.choices?.[0]?.message?.content; used = model; if (txt) break; }
+          }
+          continue;
+        }
+        if (r.status === 400 || r.status === 404 || r.status >= 500) { err = `${model}: HTTP ${r.status}`; continue; }
         const j = await r.json();
         txt = j.choices?.[0]?.message?.content; used = model;
         if (txt) break;
@@ -87,7 +146,7 @@ Rules: quote numbers with units, contract and date; if the data does not contain
     hist.push({ role: 'user', content: q }, { role: 'assistant', content: txt });
     if (!P) LS.set(dayKey(), String(count() + 1));
     if (!usage && !P) usage = { used: count(), limit: CAP };
-    add('bot', txt, `${used.split('/').pop()}${usage ? ` · ${usage.used}/${usage.limit} today` : ''} · sources: ${cards.map(c => c.title).join(', ')}${page ? ', open tab' : ''}`);
+    add('bot', txt, `${used.split('/').pop()}${usage ? ` · ${usage.used}/${usage.limit} today` : ''} · sources: ${cards.map(c => c.title).join(', ')}${page ? ', open tab' : ''}${charts ? ', charts on the tab' : ''}`);
   }
   async function canned(q) {
     if (!CTX) CTX = await getJSON('data/ai/context.json').catch(() => null);

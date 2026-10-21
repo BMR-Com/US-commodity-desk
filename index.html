@@ -23,7 +23,7 @@
   <button data-c="cotton">Cotton</button>
   <button data-c="hogs">Lean hogs</button>
   <button data-c="cattle">Live &amp; feeder cattle</button>
-  <a href="energy.html" class="navlink" title="Natural gas, crude and products desk">Energy desk ↗</a>
+  <button data-c="energy" title="Natural gas, crude and refined products: EIA storage and stocks, weather, cracks, COT, ETF options">Energy</button>
 </nav>
 
 <section id="summary"></section>
@@ -224,6 +224,7 @@
 <section id="grains" style="display:none"></section>
 <section id="hogs" style="display:none"></section>
 <section id="cattle" style="display:none"></section>
+<section id="energy" style="display:none;padding:0"><iframe id="energy-frame" title="Energy desk" style="display:block;width:100%;height:calc(100vh - 92px);min-height:640px;border:0;background:#0b111b"></iframe></section>
 <footer>Data: USDA AMS (mandatory reporting datamart), USDA ERS, USDA WASDE, CFTC, CME Group. Prices and positions as of the dates shown. Research use only; not investment advice.</footer>
 <script src="assets/lib.js"></script>
 <script src="assets/tech.js"></script>
@@ -242,12 +243,32 @@
 <script src="assets/cattle.js"></script>
 <script src="assets/cotton.js"></script>
 <script>
+// Energy: the energy terminal (energy.html) runs in a frame inside this tab; #energy/<tab> deep-links a sub-tab
+const Energy = {
+  show() {
+    const f = $('#energy-frame'), t = (location.hash.match(/^#energy\/(\w+)/) || [])[1];
+    if (!f.src) f.src = 'energy.html' + (t ? '#' + t : '');
+    if (!location.hash.startsWith('#energy')) history.replaceState(null, '', '#energy');
+    window.scrollTo(0, 0);
+  }
+};
+window.addEventListener('message', e => {
+  if (e.source !== $('#energy-frame').contentWindow) return;
+  if (e.data && e.data.energyTab) history.replaceState(null, '', '#energy/' + e.data.energyTab);
+  if (e.data && e.data.deskGo) {   // links inside the energy tab to other desk tabs
+    const h = e.data.deskGo; history.pushState(null, '', h);
+    const c = h.startsWith('#options') ? 'options' : h.startsWith('#markets') ? 'markets' : 'summary';
+    $('nav.comm button[data-c="' + c + '"]').click();
+    if (c === 'options' && window.Options && Options.goto) Options.goto(h.split('/')[1]);
+  }
+});
 $$('nav.comm button[data-c]').forEach(b => b.onclick = () => {
   $$('nav.comm button').forEach(x => x.classList.toggle('on', x === b));
-  ['summary', 'markets', 'options', 'dairy', 'grains', 'cotton', 'hogs', 'cattle'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
-  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
+  ['summary', 'markets', 'options', 'dairy', 'grains', 'cotton', 'hogs', 'cattle', 'energy'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
+  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (b.dataset.c === 'energy') Energy.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
 });
-if (location.hash.startsWith('#d-')) $('nav.comm button[data-c="dairy"]').click();
+if (location.hash.startsWith('#energy')) $('nav.comm button[data-c="energy"]').click();
+else if (location.hash.startsWith('#d-')) $('nav.comm button[data-c="dairy"]').click();
 else if (location.hash === '#markets') $('nav.comm button[data-c="markets"]').click();
 else if (location.hash.startsWith('#options')) $('nav.comm button[data-c="options"]').click();
 else if (!/^#(g|h-|c-|ct-)/.test(location.hash)) $('nav.comm button[data-c="summary"]').click();

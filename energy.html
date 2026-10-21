@@ -155,6 +155,14 @@ tfoot td{border-top:1px solid var(--line2);border-bottom:0;font-weight:600}
   border-radius:3px;padding:3px 7px;cursor:pointer;user-select:none}
 .tgl input{vertical-align:-1px;margin-right:3px;accent-color:var(--flame)}
 </style>
+<style>
+html.embed .brand{display:none}
+html.embed header.top{padding-top:6px}
+</style>
+<script>
+const EMBED = window.self !== window.top;
+if (EMBED) document.documentElement.classList.add("embed");
+</script>
 </head>
 <body>
 
@@ -1259,7 +1267,12 @@ const S = { stor:[], regions:{}, prod:[], cons:{}, trade:{}, spot:[], futs:{},
             o:{}, ofv:null, cotAll:null, deskScores:null,
             local:null, localOpt:null, px:{}, pxSrc:{}, pxIsEtf:{} };
 
-$$(".tab").forEach(b => b.addEventListener("click", () => {
+$$(".tab").forEach(b => b.addEventListener("click", ev => {
+  if (!b.dataset.t) {   // links to the main desk: inside the desk's Energy tab, switch the parent instead of navigating
+    if (EMBED) { ev.preventDefault(); parent.postMessage({ deskGo: b.getAttribute("href").replace(/^index\.html/, "") }, "*"); }
+    return;
+  }
+  if (EMBED) parent.postMessage({ energyTab: b.dataset.t }, "*");
   $$(".tab").forEach(x => x.setAttribute("aria-selected", x===b));
   $$("main > section").forEach(s => s.hidden = true);
   $("#s-" + b.dataset.t).hidden = false;
@@ -3957,6 +3970,9 @@ let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTime
   $("#stamp").textContent = new Date().toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
   loadAll();
 })();
+</script>
+<script>
+(() => { const t = location.hash.slice(1); const b = t && document.querySelector('.tab[data-t="' + t + '"]'); if (b) b.click(); })();
 </script>
 </body>
 </html>

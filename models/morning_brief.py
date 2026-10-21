@@ -185,7 +185,7 @@ def to_md(B):
             for e in B["econ"]] + [""]
     en = B.get("energy") or {}
     if en.get("read") or en.get("prices"):
-        L += ["## Energy (full desk: energy.html)", ""]
+        L += ["## Energy (desk: Energy tab)", ""]
         if en.get("prices"):
             NM = {"NG": "Natural gas", "CL": "WTI crude", "HO": "ULSD", "RB": "RBOB", "BZ": "Brent"}
             L += ["| Market | Last | 1 d | 1 wk | 1 m |", "|---|---|---|---|---|"] + [

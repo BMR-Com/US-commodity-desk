@@ -1,7 +1,7 @@
 // Backtest tab: trend, COT, carry, fundamental, seasonal and combined rules tested on every market (data/backtest/lab.json,
 // models/backtest_lab.py). Deep link: #backtest/<SYM>.
 const Backtest = (() => {
-  let L = null, EQ = null, BK = null, sym = 'ZC', key = null, bkey = null, built = false, sub = 'bt-baskets';
+  let L = null, EQ = null, BK = null, TL = null, tsym = 'ZC', sym = 'ZC', key = null, bkey = null, built = false, sub = 'bt-baskets';
   const n = (v, d = 2) => v == null ? '–' : (+v).toFixed(d);
   const sg = (v, d = 2) => v == null ? '–' : `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(d)}</span>`;
   const tbl = (head, rows, cls = '') => `<div class="tbl"><table class="${cls}"><tr>${head.map((h, i) => `<th class="${i < 2 ? 'l' : ''}">${h}</th>`).join('')}</tr>${rows.join('')}</table></div>`;
@@ -35,7 +35,8 @@ const Backtest = (() => {
   }
   function render() {
     const el = document.getElementById('backtest');
-    el.innerHTML = `<nav class="tabs" id="btTabs"><button data-t="bt-baskets">Baskets (portfolios across commodities)</button><button data-t="bt-rules">Single-market rules</button><button data-t="bt-dairy">Dairy deep dive</button></nav><div id="btBody"></div>`;
+    el.innerHTML = `<nav class="tabs" id="btTabs"><button data-t="bt-baskets">Baskets (portfolios across commodities)</button><button data-t="bt-rules">Single-market rules</button><button data-t="bt-tech">Technical patterns</button><button data-t="bt-dairy">Dairy deep dive</button></nav><div id="btBody"></div>`;
+    el.insertAdjacentHTML('afterbegin', topFindings());
     $$('#btTabs button').forEach(b => b.onclick = () => { sub = b.dataset.t; history.replaceState(null, '', '#' + sub); paint(); });
     paint();
   }
@@ -43,6 +44,7 @@ const Backtest = (() => {
     $$('#btTabs button').forEach(b => b.classList.toggle('on', b.dataset.t === sub));
     if (sub === 'bt-baskets') return baskets();
     if (sub === 'bt-dairy') return dairy();
+    if (sub === 'bt-tech') return tech();
     rules();
   }
   function bstat(x, k) { return x[k] ? x[k].sharpe : null; }
@@ -89,6 +91,64 @@ const Backtest = (() => {
     chart('dyAc', { type: 'bar', data: { labels: d.autocorr.map(a => a.market), datasets: [{ label: 'weekly return autocorrelation', data: d.autocorr.map(a => a.ac1), backgroundColor: d.autocorr.map(a => a.group === 'Dairy' ? '#d68910' : '#9bb7d9') }] },
       options: { plugins: { legend: { display: false } }, scales: { x: { ticks: { autoSkip: false, maxRotation: 70, font: { size: 9 } } } } } });
   }
+
+  // the few results worth acting on, from all three labs, always shown above the sub-tabs
+  function topFindings() {
+    const li = [];
+    if (BK) {
+      const b = BK.strategies.filter(x => x.key !== 'long_only' && (x.oos?.sharpe ?? 0) > 0 && (x.is?.sharpe ?? 0) > 0).sort((a, c) => c.sharpe - a.sharpe).slice(0, 4);
+      li.push(`<li><b>Best baskets</b> (positive in 2008-18 and 2019+): ${b.map(x => `${x.name} <b>${n(x.sharpe)}</b> <span class="note">(2019+ ${n(x.oos.sharpe)}, max DD ${n(x.maxdd, 0)}%)</span>`).join('; ')}.</li>`);
+    }
+    if (TL) {
+      const p = TL.pooled.filter(r => r.markets >= 12).slice(0, 3);
+      li.push(`<li><b>Best technical patterns across markets</b>: ${p.map(r => `${r.rule} (${r.side}, ${r.hold}d) median Sharpe <b>${n(r.sharpe)}</b>, win ${n(r.win, 0)}%, positive in ${r.pos_share}% of markets`).join('; ')}.</li>`);
+      const t = TL.top.slice(0, 4);
+      li.push(`<li><b>Best single-market patterns</b> (robust in both halves): ${t.map(r => `${r.name_m} ${r.rule} (${r.side}, ${r.hold}d) <b>${n(r.sharpe)}</b>, win ${n(r.win, 0)}%`).join('; ')}.</li>`);
+      const fm = TL.families.filter(f => f.side === 'long').sort((a, c) => c.sharpe - a.sharpe);
+      li.push(`<li><b>By family (long side, median Sharpe)</b>: ${fm.map(f => `${f.family} ${sg(f.sharpe)}`).join(' · ')}. Breakouts and trend-following crossovers beat oversold / mean-reversion buys, which lose after costs in most markets.</li>`);
+      const r = (TL.recovery.pooled || []).find(x => x.k == 5);
+      if (r) li.push(`<li><b>Price 5% below the 9-day MA</b>: it "recovers" to the 9-day MA in ${n(r.recovered_pct, 0)}% of cases within 20 days, but mostly because the average falls to meet price; it regains the signal day's 9-day MA level only ${n(r.orig_pct, 0)}% of the time and the 10-day return is ${sg(r.r10)}% - no edge on its own.</li>`);
+    }
+    if (L) li.push(`<li><b>COT on its own</b> has no reliable timing edge; trend (20-55 day breakouts, moving-average crosses) is the only family that works broadly, and dairy is the strongest trending group.</li>`);
+    return `<main style="padding-bottom:0"><div class="card"><h2>Top findings <span class="note">best results from every test on this tab; details in the sub-tabs below</span></h2><ul class="read">${li.join('')}</ul></div></main>`;
+  }
+  function tech() {
+    const el = $('#btBody');
+    if (!TL) { el.innerHTML = '<main><p class="note">Technical pattern tests not built yet.</p></main>'; return; }
+    const pt = (rows) => tbl(['Market', 'Pattern', 'Side', 'Hold (days)', 'Trades', 'Win %', 'Avg %', 'Edge vs any day %', 'Profit factor', 'Avg worst dip %', 'Sharpe', '2007-18', '2019+', 'Max DD %'],
+      rows.map(r => `<tr><td class="l"><b>${r.name_m}</b></td><td class="l">${r.rule}</td><td>${r.side}</td><td>${r.hold}</td><td>${r.n}</td><td>${n(r.win, 0)}</td><td>${sg(r.avg)}</td><td>${sg(r.edge)}</td><td>${n(r.pf)}</td><td>${n(r.mae, 1)}</td><td><b>${sg(r.sharpe)}</b></td><td>${sg(r.is_sharpe)}</td><td>${sg(r.oos_sharpe)}</td><td>${n(r.maxdd, 0)}</td></tr>`), 'bt-t');
+    const pool = (rows) => tbl(['Pattern', 'Family', 'Side', 'Hold', 'Markets', 'Trades', 'Median win %', 'Median edge %', 'Median avg worst dip %', 'Median Sharpe', '% markets positive', '% robust', 'Median 2019+'],
+      rows.map(r => `<tr><td class="l">${r.rule}</td><td class="l note">${r.family}</td><td>${r.side}</td><td>${r.hold}</td><td>${r.markets}</td><td>${r.trades}</td><td>${n(r.win, 0)}</td><td>${sg(r.edge)}</td><td>${n(r.mae, 1)}</td><td><b>${sg(r.sharpe)}</b></td><td>${r.pos_share}%</td><td>${r.robust}%</td><td>${sg(r.oos)}</td></tr>`), 'bt-t');
+    const P = TL.pooled.filter(r => r.markets >= 12);
+    const rec = TL.recovery.pooled, pb = TL.pullback.pooled;
+    const mk = Object.keys(TL.per_market);
+    if (!TL.per_market[tsym]) tsym = mk[0];
+    el.innerHTML = `<main>
+      <div class="card"><h2>Technical patterns <span class="note">${TL.generated} · ${TL.n_tests} pattern × market × holding-period tests · daily, 2007 on</span></h2>
+        <p>Classic chart setups on the daily roll-adjusted price of every desk market: RSI(14) and RSI(2) oversold / overbought, % below or above the 9-day average, Bollinger re-entry, runs of down days, stochastic, pullbacks to the 9/20/50-day average in a trend, MACD and moving-average crosses, 20/55-day breakouts and RSI / MACD divergences, each long and short and with or without a 200-day trend filter. Signal at a day's close, entry at the next close, exit after 5, 10 or 20 days; no overlapping trades; 5 bp cost per side.</p>
+        <p class="note"><b>Edge vs any day</b> = average trade return minus the average return of holding any day for the same length in the same direction (markets drift, so a win rate alone flatters long rules). <b>Avg worst dip</b> = average maximum drawdown inside a trade. Sharpe is per market at 10% volatility. With ${TL.n_tests} tests, a t-stat near ${TL.noise_t} is what the luckiest test shows by chance: trust patterns that work in many markets and in both 2007-18 and 2019+.</p>
+        <h3>What the tests say (best first)</h3><ul class="read">${TL.learnings.slice(0, 4).map(x => `<li>${x}</li>`).join('')}</ul>
+        <details><summary>All ${TL.learnings.length} findings (weakest patterns, families, 9-day MA recovery, dip buying)</summary><ul class="read">${TL.learnings.slice(4).map(x => `<li>${x}</li>`).join('')}</ul></details></div>
+      <div class="card" style="margin-top:12px"><h2>Best patterns across markets <span class="note">median over the markets tested; patterns tested in 12+ markets</span></h2>${pool(P.slice(0, 12))}
+        <details><summary>All ${P.length} pooled patterns (best to worst)</summary>${pool(P)}</details></div>
+      <div class="card" style="margin-top:12px"><h2>Best single-market patterns <span class="note">20+ trades, positive in both halves</span></h2>${pt(TL.top)}
+        <details><summary>Highest win rate (robust, 30+ trades)</summary>${pt(TL.best_win)}</details>
+        <details><summary>Lowest drawdown with Sharpe above 0.3</summary>${pt(TL.low_dd)}</details>
+        <details><summary>Worst 10</summary>${pt(TL.worst)}</details></div>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>After a close X% below the 9-day MA <span class="note">all markets, next 20 days</span></h2>${tbl(['Below 9-day by', '', 'Cases', 'Touches 9-day MA %', 'Median days', 'Regains signal-day MA level %', 'Avg dip first %', 'Worst dip %', '5d %', '10d %', '20d %', 'Up after 10d %'],
+          rec.map(r => `<tr><td class="l"><b>${r.k}%</b></td><td></td><td>${r.events}</td><td>${n(r.recovered_pct, 0)}</td><td>${n(r.days_median, 0)}</td><td>${n(r.orig_pct, 0)}</td><td>${n(r.mae_avg, 1)}</td><td>${n(r.mae_worst, 0)}</td><td>${sg(r.r5)}</td><td>${sg(r.r10)}</td><td>${sg(r.r20)}</td><td>${n(r.win10, 0)}</td></tr>`))}
+          <p class="note">"Touches" counts any close at or above the moving 9-day average, which falls toward price, so it is almost always true; "regains signal-day level" asks whether price gets back to where the average was. 10% cases are rare (mostly energy and hogs) and dominated by a few crash rebounds.</p>
+          <details><summary>By market</summary>${tbl(['Market', '', 'Below by', 'Cases', 'Regains level %', 'Avg dip %', '10d %', 'Up after 10d %'], Object.entries(TL.recovery.by_market).flatMap(([m, v]) => Object.entries(v).map(([k, r]) => `<tr><td class="l">${m}</td><td></td><td>${k}%</td><td>${r.events}</td><td>${n(r.orig_pct, 0)}</td><td>${n(r.mae_avg, 1)}</td><td>${sg(r.r10)}</td><td>${n(r.win10, 0)}</td></tr>`)))}</details></div>
+        <div class="card"><h2>Buying the dip in an uptrend <span class="note">50-day above a rising 200-day; first close at or below the average</span></h2>${tbl(['Dip to', '', 'Cases', 'New 20-day high within 20d %', 'Closed below 50-day %', 'Avg dip %', '10d %', '20d %', 'Up after 20d %'],
+          pb.map(r => `<tr><td class="l"><b>${r.k}-day MA</b></td><td></td><td>${r.events}</td><td>${n(r.new_high_pct, 0)}</td><td>${n(r.broke50_pct, 0)}</td><td>${n(r.mae_avg, 1)}</td><td>${sg(r.r10)}</td><td>${sg(r.r20)}</td><td>${n(r.win20, 0)}</td></tr>`))}
+          <details><summary>By market</summary>${tbl(['Market', '', 'Dip to', 'Cases', 'New high %', 'Avg dip %', '20d %', 'Up %'], Object.entries(TL.pullback.by_market).flatMap(([m, v]) => Object.entries(v).map(([k, r]) => `<tr><td class="l">${m}</td><td></td><td>${k}-day</td><td>${r.events}</td><td>${n(r.new_high_pct, 0)}</td><td>${n(r.mae_avg, 1)}</td><td>${sg(r.r20)}</td><td>${n(r.win20, 0)}</td></tr>`)))}</details></div></div>
+      <div class="card" style="margin-top:12px"><h2>By market <select id="tlSel">${mk.map(k => `<option value="${k}"${k === tsym ? ' selected' : ''}>${TL.per_market[k].name}</option>`).join('')}</select></h2><div id="tlMkt"></div></div>
+      <div class="card" style="margin-top:12px"><h2>By family</h2>${tbl(['Family', 'Side', 'Tests', 'Median Sharpe', 'Median win %', 'Median edge %', '% positive', '% robust'], TL.families.map(f => `<tr><td class="l"><b>${f.family}</b></td><td class="l">${f.side}</td><td>${f.tests}</td><td>${sg(f.sharpe)}</td><td>${n(f.win, 0)}</td><td>${sg(f.edge)}</td><td>${f.pos}%</td><td>${f.robust}%</td></tr>`))}</div></main>`;
+    const pm = () => { const x = TL.per_market[tsym]; $('#tlMkt').innerHTML = `<h3>Best (robust)</h3>${x.best.length ? pt(x.best) : '<p class="note">No pattern was positive in both halves with 20+ trades.</p>'}<h3>Worst</h3>${pt(x.worst)}`; };
+    $('#tlSel').onchange = e => { tsym = e.target.value; pm(); };
+    pm();
+  }
   function rules() {
     const el = $('#btBody');
     el.innerHTML = `<main>
@@ -111,8 +171,8 @@ const Backtest = (() => {
   }
   async function show() {
     const hs = (location.hash.split('/')[1] || '').toUpperCase();
-    if (!built) { [L, BK] = await Promise.all([getJSON('data/backtest/lab.json').catch(() => null), getJSON('data/backtest/baskets.json').catch(() => null)]); built = true; }
-    const h = location.hash.slice(1); if (/^bt-(baskets|rules|dairy)$/.test(h)) sub = h; else if (hs) sub = 'bt-rules';
+    if (!built) { [L, BK] = await Promise.all([getJSON('data/backtest/lab.json').catch(() => null), getJSON('data/backtest/baskets.json').catch(() => null)]); TL = await getJSON('data/backtest/tech.json').catch(() => null); built = true; }
+    const h = location.hash.slice(1); if (/^bt-(baskets|rules|dairy|tech)$/.test(h)) sub = h; else if (hs) sub = 'bt-rules';
     if (!L) { document.getElementById('backtest').innerHTML = '<main><div class="card"><p class="note">Backtests not built yet.</p></div></main>'; return; }
     if (L.per_market[hs]) sym = hs;
     render();

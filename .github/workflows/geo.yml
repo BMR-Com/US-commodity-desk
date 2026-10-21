@@ -14,7 +14,7 @@ concurrency: {group: geo, cancel-in-progress: false}
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 80
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -30,7 +30,7 @@ jobs:
           else python pipelines/geo.py $(echo $S | sed 's/weather//'); fi
       - name: crop-region weather vs history (Open-Meteo)
         continue-on-error: true
-        run: timeout 1500 python -u pipelines/geo_weather.py
+        run: timeout 3000 python -u pipelines/geo_weather.py
         env: {GEO_WX_NEW: '8'}   # new 15-year histories per run (Open-Meteo free tier: ~10k weighted calls/day)
       - name: assemble
         run: python models/geo.py

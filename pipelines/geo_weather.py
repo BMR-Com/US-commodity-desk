@@ -158,7 +158,9 @@ def main():
     today = date.today()
     out = []
     prev = {r["id"]: r for r in (json.loads((OUT / "weather.json").read_text()).get("regions", []) if (OUT / "weather.json").exists() else [])}
-    for rid, name, country, lat, lon, comms, sstart, note in R:
+    # stalest regions first, so a run that hits the time limit still rotates through every region over a few days
+    order = sorted(R, key=lambda r: (prev.get(r[0], {}).get("history", False), prev.get(r[0], {}).get("data_through", "")))
+    for rid, name, country, lat, lon, comms, sstart, note in order:
         hp = HIST / f"{rid}.csv.gz"
         hist = None
         if hp.exists():

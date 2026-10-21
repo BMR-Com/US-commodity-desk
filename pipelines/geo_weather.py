@@ -296,7 +296,12 @@ def main():
             flags.append("next 16 days " + ("dry" if o["f16_rain_p"] <= 25 else "wet" if o["f16_rain_p"] >= 75 else "near normal"))
         o["flags"] = flags
         out.append({k: (round(v, 2) if isinstance(v, float) else v) for k, v in o.items()})
+        save(out + [prev[r[0]] for r in R if r[0] in prev and r[0] not in {x["id"] for x in out}])  # write as we go (a timeout keeps what is done)
         print(rid, o.get("r60"), o.get("r60_p"), o.get("sm100_p"), flags, flush=True)
+    save(out)
+
+
+def save(out):
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "weather.json").write_text(json.dumps({"generated": date.today().isoformat(), "history": f"{H0[:4]}-{H1[:4]}",
                                                    "source": "Open-Meteo (ERA5 / ERA5-Land reanalysis for history and recent days; best-match forecast model for 16 days)",

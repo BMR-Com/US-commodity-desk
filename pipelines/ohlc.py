@@ -97,9 +97,11 @@ def main():
         ex, root, months, _ = SPEC[sym]
         frames = []
         for series, symbol, n in [("cont", f"{root}1!", 2700)] + [(c, c, 800) for c in active(sym, today)]:
-            d = yahoo(yahoo_symbol(series, root, ex), "10y" if series == "cont" else "max")
+            # range=max makes Yahoo return weekly bars for some contracts; 2y (contracts) / 10y (front) stay daily
+            d = yahoo(yahoo_symbol(series, root, ex), "10y" if series == "cont" else "2y")
             time.sleep(0.4)
-            if d is not None and len(d) >= 20:
+            daily = d is not None and len(d) >= 20 and pd.Series(pd.to_datetime(d.index)).diff().dt.days.tail(60).median() <= 3
+            if daily:
                 src["yahoo"] += 1
             else:
                 if tv is None:

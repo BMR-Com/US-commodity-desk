@@ -22,7 +22,7 @@ jobs:
       - run: pip install -q requests pandas numpy openpyxl git+https://github.com/rongardF/tvdatafeed.git
       - name: overnight prices and technicals
         continue-on-error: true
-        run: python pipelines/ohlc.py && python -W ignore models/technicals.py
+        run: python pipelines/ohlc.py && python -W ignore models/technicals.py && python models/vol.py
       - name: cross-market snapshot (Yahoo), US/China economic calendar, macro read
         continue-on-error: true
         run: python pipelines/markets.py; python pipelines/econ_calendar.py; python models/macro.py

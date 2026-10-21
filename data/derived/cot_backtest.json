@@ -67,9 +67,9 @@
   "w4": {
    "all": {
     "n": 448,
-    "mean_pct": -0.08,
+    "mean_pct": -0.04,
     "up_share": 0.51,
-    "t_approx": -0.26
+    "t_approx": -0.13
    },
    "extreme_short": {
     "n": 54,
@@ -79,17 +79,17 @@
    },
    "extreme_long": {
     "n": 47,
-    "mean_pct": 1.46,
-    "up_share": 0.72,
-    "t_approx": 2.05
+    "mean_pct": 1.84,
+    "up_share": 0.74,
+    "t_approx": 2.27
    }
   },
   "w8": {
    "all": {
     "n": 424,
-    "mean_pct": -0.17,
+    "mean_pct": -0.12,
     "up_share": 0.53,
-    "t_approx": -0.24
+    "t_approx": -0.17
    },
    "extreme_short": {
     "n": 49,
@@ -99,17 +99,17 @@
    },
    "extreme_long": {
     "n": 43,
-    "mean_pct": 3.02,
+    "mean_pct": 3.44,
     "up_share": 0.81,
-    "t_approx": 2.24
+    "t_approx": 2.32
    }
   },
   "w13": {
    "all": {
     "n": 405,
-    "mean_pct": -0.26,
+    "mean_pct": -0.21,
     "up_share": 0.52,
-    "t_approx": -0.22
+    "t_approx": -0.18
    },
    "extreme_short": {
     "n": 46,
@@ -119,9 +119,9 @@
    },
    "extreme_long": {
     "n": 38,
-    "mean_pct": 4.67,
+    "mean_pct": 5.18,
     "up_share": 0.95,
-    "t_approx": 2.15
+    "t_approx": 1.97
    }
   },
   "first_week": "2015-04-28",
@@ -323,45 +323,45 @@
   "w4": {
    "all": {
     "n": 125,
-    "mean_pct": 0.09,
-    "up_share": 0.49,
-    "t_approx": 0.13
+    "mean_pct": 0.43,
+    "up_share": 0.5,
+    "t_approx": 0.52
    },
    "extreme_short": {
     "n": 39,
-    "mean_pct": 0.29,
-    "up_share": 0.44,
-    "t_approx": 0.41
+    "mean_pct": 1.38,
+    "up_share": 0.46,
+    "t_approx": 0.87
    },
    "extreme_long": null
   },
   "w8": {
    "all": {
     "n": 97,
-    "mean_pct": -0.25,
-    "up_share": 0.46,
-    "t_approx": -0.15
+    "mean_pct": 0.18,
+    "up_share": 0.47,
+    "t_approx": 0.1
    },
    "extreme_short": {
     "n": 29,
-    "mean_pct": 0.16,
-    "up_share": 0.59,
-    "t_approx": 0.16
+    "mean_pct": 1.59,
+    "up_share": 0.62,
+    "t_approx": 0.64
    },
    "extreme_long": null
   },
   "w13": {
    "all": {
     "n": 82,
-    "mean_pct": 0.13,
-    "up_share": 0.48,
-    "t_approx": 0.04
+    "mean_pct": 0.64,
+    "up_share": 0.49,
+    "t_approx": 0.19
    },
    "extreme_short": {
     "n": 19,
-    "mean_pct": -1.33,
-    "up_share": 0.37,
-    "t_approx": -0.5
+    "mean_pct": 0.18,
+    "up_share": 0.42,
+    "t_approx": 0.04
    },
    "extreme_long": null
   },

@@ -6,7 +6,7 @@ const Chat = (() => {
                      energy: ['NG', 'CL', 'HO', 'RB'], cotfull: [], markets: [], summary: [], signals: [], options: [] };
   const BUDGET = 14000;   // characters of desk cards per question (~3.5k tokens; the free tier allows 6-30k tokens a minute)
   const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
-  let CTX = null, hist = [], lastIds = [], busy = false, PROXY, DAILY;
+  let CTX = null, hist = [], lastIds = [], busy = false, PROXY, LIVE = null;
   const CAP = 1000;   // questions per browser per day (own-key mode; the server proxy enforces its own limit per user)
   const dayKey = () => 'chatCount_' + new Date().toISOString().slice(0, 10);
   const count = () => +(LS.get(dayKey()) || 0);
@@ -55,7 +55,7 @@ const Chat = (() => {
     }
     return out.join('\n').slice(0, limit);
   }
-  function pick(q, budget = BUDGET) {
+  function pick(q, budget = BUDGET, prefer = []) {
     const ql = ' ' + q.toLowerCase().replace(/[^a-z0-9/&.%-]+/g, ' ') + ' ';
     const tabSyms = TAB_SYMS[activeTab()] || [];
     const hs = (location.hash.split('/')[1] || '').toUpperCase();
@@ -80,34 +80,66 @@ const Chat = (() => {
     // first the best alias-matched card of each kind (so a question about corn and CPI gets both), then by score
     const seen = new Set(), share = Math.round(budget / 4);
     const put = (c, cap) => { const room = Math.min(cap, budget - n); if (room < 700 || out.some(o => o.id === c.id)) return; const t = c.text.length > room ? c.text.slice(0, room) + ' …' : c.text; out.push({ ...c, text: t }); n += t.length; };
-    const firsts = [];
-    for (const [, c, al] of [...score].sort((a, b) => b[2] - a[2] || b[0] - a[0])) { if (al < 2 || seen.has(c.kind)) continue; seen.add(c.kind); firsts.push(c); }
+    const firsts = prefer.map(id => CTX.cards.find(c => c.id === id)).filter(Boolean);
+    firsts.forEach(c => seen.add(c.kind + ':' + c.id));
+    for (const [, c, al] of [...score].sort((a, b) => b[2] - a[2] || b[0] - a[0])) { if (al < 2 || seen.has(c.kind) || (prefer.length && firsts.length >= prefer.length + 2)) continue; seen.add(c.kind); firsts.push(c); }
     const each = firsts.length ? Math.max(900, Math.floor((budget - n) / firsts.length)) : share;
     for (const c of firsts) put(c, each);
     for (const [, c] of score) put(c, 1e9);
     return out;
   }
+  const PREF = ['gpt-oss-120b', 'llama-4-maverick', 'llama-4-scout', 'llama-3.3-70b', 'qwen3', 'kimi-k2', 'gpt-oss-20b', 'llama-3.1-8b'];
+  async function liveModels(key) {   // the chat models this key can use today (Groq retires models)
+    if (LIVE) return LIVE;
+    try {
+      const j = await fetch('https://api.groq.com/openai/v1/models', { headers: { Authorization: 'Bearer ' + key } }).then(r => r.json());
+      const ids = (j.data || []).filter(m => m.active !== false).map(m => m.id).filter(i => !/whisper|guard|tts|playai|orpheus|prompt|compound|distil|allam/.test(i));
+      const rank = i => { const k = PREF.findIndex(p => i.includes(p)); return k < 0 ? PREF.length : k; };
+      LIVE = ids.sort((a, b) => rank(a) - rank(b));
+    } catch (e) { LIVE = []; }
+    return LIVE;
+  }
+  // Step 1: a fast model reads the catalogue of the desk's knowledge cards and picks the ones the question needs.
+  async function route(q, key, models) {
+    const fast = models.find(m => /gpt-oss-20b|8b|scout|qwen/.test(m)) || models[models.length - 1];
+    if (!fast) return [];
+    const cat = CTX.cards.map(c => `${c.id} | ${c.title} | ${c.text.split('\n')[0].slice(0, 90)}`).join('\n');
+    const recent = hist.slice(-2).map(m => `${m.role}: ${m.content.slice(0, 300)}`).join('\n');
+    try {
+      const r = await fetch('https://api.groq.com/openai/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+        body: JSON.stringify({ model: fast, temperature: 0, max_tokens: 300, messages: [
+          { role: 'system', content: 'You route questions for a commodity research desk. Given a catalogue of knowledge cards (id | title | first line), return ONLY JSON {"ids": [up to 6 card ids, most useful first]}. Pick every card needed to answer fully, including for comparisons across markets, follow-up questions, history, macro, calendar or news. Return {"ids": []} if only the open web page is needed.' },
+          { role: 'user', content: `Catalogue:\n${cat}\n\n${recent ? 'Conversation so far:\n' + recent + '\n\n' : ''}Question: ${q}` }] }) });
+      if (!r.ok) return [];
+      const t = (await r.json()).choices?.[0]?.message?.content || '';
+      const j = JSON.parse(t.slice(t.indexOf('{'), t.lastIndexOf('}') + 1));
+      const ok = new Set(CTX.cards.map(c => c.id));
+      return (j.ids || []).filter(i => ok.has(i)).slice(0, 6);
+    } catch (e) { return []; }
+  }
   async function ask(q) {
     const P = await proxy();
     const key = LS.get('groqApiKey'), user = LS.get('deskUser'), code = LS.get('deskCode');
     if (P && !(user && code)) { settings(true); add('bot', 'Enter your desk user name and access code in the settings above (ask the desk owner for one).'); return; }
-    if (!P && !key) { await canned(q); return; }
-    if (!P && count() >= CAP) { add('bot', `Daily limit reached: ${CAP} questions a day in this browser (resets 00:00 UTC). The pre-written reads still work: sign out of the key to see them.`); return; }
+    if (!P && !key) { settings(true); add('bot', 'To ask questions, paste a free Groq API key in the settings above (console.groq.com/keys, about a minute to sign up). It stays in this browser only and is sent only to Groq.'); return; }
+    if (!P && count() >= CAP) { add('bot', `Daily limit reached: ${CAP} questions a day in this browser (resets 00:00 UTC).`); return; }
     if (!CTX) CTX = await getJSON('data/ai/context.json').catch(() => null);
     if (!CTX) { add('bot', 'The desk context file is not built yet (data/ai/context.json).'); return; }
     const sys = `You are the assistant of the BMR-Com US Ags Desk, a research site on US agricultural and energy futures (grains, oilseeds, cotton, livestock, dairy, energy).
 Answer ONLY from the DATA below: the desk's cards (built ${CTX.generated}, market data as of ${CTX.data_date}), the text of the tab the user has open, and the numbers behind the charts on that tab.
-Rules: quote numbers with units, contract and date; if the data does not contain the answer, say so plainly and name the tab where it may be (Summary, Markets & macro, Options pricer, Signals, Dairy, Grains & oilseeds, Cotton, Lean hogs, Live & feeder cattle, COT (full), Energy). Never invent numbers. Be concise: short paragraphs or bullets. Explain jargon briefly when helpful. This is research, not investment advice; describe the desk's own views and signals rather than giving personal trade recommendations.`;
+Rules: quote numbers with units, contract and date; if the data does not contain the answer, say so plainly and name the tab where it may be (Summary, Markets & macro, Options pricer, Signals, Dairy, Grains & oilseeds, Cotton, Lean hogs, Live & feeder cattle, COT (full), Energy). Never invent numbers. Reason like an analyst: compare, compute changes, spreads and ratios from the data (show the arithmetic briefly), connect fundamentals, positioning, technicals and macro, and point out conflicting signals. Be concise: short paragraphs or bullets. Explain jargon briefly when helpful. This is research, not investment advice; describe the desk's own views and signals rather than giving personal trade recommendations.`;
     let cards = [], page = '', charts = '';
+    const thinking = add('bot', '…');
+    const models = P ? [] : await liveModels(key);
+    const routed = P ? [] : await route(q, key, models);
     const build = scale => {
-      cards = pick(q, Math.round(BUDGET * scale)); lastIds = cards.map(c => c.id);
+      cards = pick(q, Math.round(BUDGET * scale), routed); lastIds = cards.map(c => c.id);
       page = pageText(Math.round(6000 * scale)); charts = chartText(Math.round(3500 * scale));
       const data = cards.map(c => `### ${c.title}\n${c.text}`).join('\n\n') + (page ? `\n\n### Text of the open tab (${activeTab()})\n${page}` : '') + (charts ? `\n\n### Numbers behind the charts on the open tab\n${charts}` : '');
       return [{ role: 'system', content: sys + '\n\nDATA:\n' + data }, ...hist.slice(-4).map(m => ({ role: m.role, content: m.content.slice(0, 1500) })), { role: 'user', content: q }];
     };
     let msgs = build(1);
-    const thinking = add('bot', '…');
-    const avail = await getJSON('data/ai/models.json').then(j => j.models || []).catch(() => []);
+    const avail = models;
     const pref = LS.get('groqModel');
     const order = [...(pref && pref !== 'auto' ? [pref] : []), ...avail, ...MODELS.map(m => m[0])].filter((m, i, a) => m !== 'auto' && a.indexOf(m) === i);
     let txt = null, used = null, err = '', usage = null;
@@ -148,21 +180,6 @@ Rules: quote numbers with units, contract and date; if the data does not contain
     if (!usage && !P) usage = { used: count(), limit: CAP };
     add('bot', txt, `${used.split('/').pop()}${usage ? ` · ${usage.used}/${usage.limit} today` : ''} · sources: ${cards.map(c => c.title).join(', ')}${page ? ', open tab' : ''}${charts ? ', charts on the tab' : ''}`);
   }
-  async function canned(q) {
-    if (!CTX) CTX = await getJSON('data/ai/context.json').catch(() => null);
-    if (!DAILY) DAILY = await getJSON('data/ai/daily.json').catch(() => null);
-    if (!CTX || !DAILY || !DAILY.items) { settings(true); add('bot', 'Live answers need a Groq API key (free at console.groq.com/keys); paste it in the settings above. It stays in this browser only.'); return; }
-    const ids = pick(q).map(c => c.id).filter(id => DAILY.items[id] && id !== 'table');
-    const ql = q.toLowerCase(), words = ql.split(/\W+/).filter(w => w.length > 3);
-    const out = [];
-    for (const id of ids.slice(0, 3)) {
-      const it = DAILY.items[id];
-      const best = (it.faq || []).map(f => [words.filter(w => f.q.toLowerCase().includes(w)).length, f]).sort((a, b) => b[0] - a[0]);
-      out.push(`**${it.title}**\n${it.read || ''}` + (best[0] && best[0][0] > 0 ? `\n\n**${best[0][1].q}**\n${best[0][1].a}` : (it.faq || []).slice(0, 2).map(f => `\n\n**${f.q}**\n${f.a}`).join('')));
-    }
-    if (!out.length) out.push(`**${DAILY.items.overview?.title || 'Desk'}**\n${DAILY.items.overview?.read || 'No pre-written read matched.'}`);
-    add('bot', out.join('\n\n'), `pre-written by the desk AI at ${DAILY.generated} (data as of ${DAILY.data_date}) · for live answers to any question, add a Groq key in ⚙`);
-  }
   function add(who, text, foot) {
     const box = document.getElementById('chat-msgs'), d = document.createElement('div');
     d.className = 'chat-m chat-' + who;
@@ -188,7 +205,7 @@ Rules: quote numbers with units, contract and date; if the data does not contain
           <div id="chat-own"><label>Groq API key <input id="chat-key" type="password" placeholder="gsk_…" autocomplete="off"></label></div>
           <label>Model <select id="chat-model">${MODELS.map(m => `<option value="${m[0]}">${m[1]}</option>`).join('')}</select></label>
           <div class="chat-row"><button id="chat-save">Save</button><button id="chat-forget">Sign out</button></div>
-          <p class="note" id="chat-note">Without a key you get the desk AI's pre-written reads (refreshed each morning and after the close). For live answers to any question, paste a free Groq key (console.groq.com/keys): kept only in this browser, sent only to Groq, up to 1,000 questions a day.</p></div>
+          <p class="note" id="chat-note">Paste a free Groq key (console.groq.com/keys) to ask anything about the desk. It is kept only in this browser and sent only to Groq; up to 1,000 questions a day.</p></div>
         <div id="chat-msgs"><div class="chat-m chat-bot">Ask about any number on the desk, for example:<div class="chat-sugg">
           ${['Why is corn rated strongly bearish?', 'Which markets have crowded fund positioning?', 'Compare carry and trend for soybeans and soy oil', 'What does the options market imply for Class III milk?', 'Summarize this tab'].map(s => `<button class="chat-s">${s}</button>`).join('')}</div></div></div>
         <form id="chat-f"><textarea id="chat-q" rows="2" placeholder="Ask about prices, fundamentals, COT, options, signals…"></textarea><button type="submit">Send</button></form></div>`;

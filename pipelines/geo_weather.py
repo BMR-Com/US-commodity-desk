@@ -93,14 +93,14 @@ R = [
 LIMITED = {"hit": False}
 
 
-def get(url, params, tries=2):
+def get(url, params, tries=3):
     """Open-Meteo free tier: 600 weighted calls/min, 5,000/hour, 10,000/day (a call weighs ~days/14 for history).
     On a rate limit, stop asking (keep last run's numbers) instead of retrying in a loop."""
     if LIMITED["hit"]:
         return None
     for i in range(tries):
         try:
-            r = requests.get(url, params=params, timeout=120)
+            r = requests.get(url, params=params, timeout=40)  # the archive sometimes stalls right after a large request
             if r.status_code == 200:
                 return r.json()
             print("  HTTP", r.status_code, r.text[:150], flush=True)
@@ -109,7 +109,7 @@ def get(url, params, tries=2):
                 return None
         except Exception as e:
             print("  err", e, flush=True)
-        time.sleep(5 * (i + 1))
+        time.sleep(10 * (i + 1))
     return None
 
 

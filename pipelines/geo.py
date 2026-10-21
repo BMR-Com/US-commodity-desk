@@ -23,7 +23,7 @@ NASS_KEY = os.environ.get("NASS_API_KEY", "")
 
 # key: PSD commodity description, HS codes, Comtrade label
 COMMS = {
-    "corn": ("Corn", "1005"), "soybeans": ("Soybeans", "1201"), "meal": ("Meal, Soybean", "2304"), "oil": ("Oil, Soybean", "1507"),
+    "corn": ("Corn", "1005"), "soybeans": ("Oilseed, Soybean", "1201"), "meal": ("Meal, Soybean", "2304"), "oil": ("Oil, Soybean", "1507"),
     "wheat": ("Wheat", "1001"), "cotton": ("Cotton", "5201"), "pork": ("Meat, Swine", "0203"), "beef": ("Meat, Beef and Veal", "0201,0202"),
     "cheese": ("Dairy, Cheese", "0406"), "butter": ("Dairy, Butter", "0405"), "nfdm": ("Dairy, Milk, Nonfat Dry", "040210"),
     "milk": ("Dairy, Milk, Fluid", None), "sorghum": ("Sorghum", "1007"),

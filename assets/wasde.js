@@ -49,6 +49,12 @@ const WasdeView = (() => {
           <tr><th class="l" rowspan=2>Region</th>${['Production', 'Domestic use', 'Exports', 'Imports', 'Ending stocks', 'Stocks/use'].map(x => `<th colspan=2>${x}</th>`).join('')}</tr>
           <tr>${Array(6).fill('<th>Now</th><th>Chg</th>').join('')}</tr>${CH}</table></div>
           <p class="note">US in ${esc(U)}; other regions in ${esc(WU)}. Stocks/use for countries = ending stocks ÷ (domestic use + exports); world = ÷ domestic use.</p></div>
+        ${C.preview ? `<div class="card" style="margin-top:12px"><h2>Next report preview — ${C.preview.month} WASDE</h2><div class="grid g2">
+          <div><h3>How USDA usually revises in ${C.preview.month}</h3><div class="tbl"><table><tr><th class="l">Line</th><th>Now</th><th>Raised</th><th>Cut</th><th>Unch.</th><th>Avg change</th><th>Avg size</th></tr>
+            ${C.preview.rows.map(r => `<tr><td class="l">${esc(r.region)} · ${esc(r.attr.toLowerCase())}</td><td>${f(r.now, r.attr === 'Yield' ? 1 : undefined)}</td><td>${r.up}</td><td>${r.down}</td><td>${r.unch}</td><td>${ch(r.avg)}</td><td>±${f(r.avg_abs)}</td></tr>`).join('')}</table></div></div>
+          <div><h3>Desk signals going in</h3>${C.preview.signals.length ? `<div class="tbl"><table><tr><th class="l">Line</th><th>USDA now</th><th>Desk</th><th>Leans</th><th class="l">Basis</th></tr>
+            ${C.preview.signals.map(x => `<tr><td class="l">${esc(x.line)}</td><td>${f(x.usda, /yield/.test(x.line) ? 1 : undefined)}</td><td><b>${f(x.desk, /yield/.test(x.line) ? 1 : undefined)}</b></td><td class="${x.dir === 'up' ? 'up' : x.dir === 'down' ? 'dn' : ''}">${x.dir}</td><td class="l sv-w">${esc(x.basis)}</td></tr>`).join('')}</table></div>` : '<p class="note">See the cotton brief for the crop and export cross-checks.</p>'}
+            <p class="note">Counts are past ${C.preview.month} reports for the marketing year in focus. Trade estimates (analyst surveys) are not public data, so compare with your own survey sheet before the release.</p></div></div></div>` : ''}
         ${B ? `<div class="card" style="margin-top:12px"><h2>Balance sheets — this report vs previous, last three marketing years</h2>
           <div class="tbar"><div class="grp"><span class="lab">Region</span>${Object.keys(B.regions).map(r => `<button class="chip ${r === (S.region && B.regions[S.region] ? S.region : Object.keys(B.regions)[0]) ? 'on' : ''}" data-r="${esc(r)}">${esc(r)}</button>`).join('')}</div></div>
           <div class="tbl" id="wvBS"></div></div>` : ''}

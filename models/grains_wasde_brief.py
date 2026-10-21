@@ -522,6 +522,44 @@ def text(cfg, df, rd, prev, my, ch, hist, rep, now, F, label, is_latest):
     return T
 
 
+def preview(df, cfg, rd, my, now):
+    """Next report: how USDA has usually revised each key line in that month, plus the desk's own signals."""
+    nm = (rd + pd.DateOffset(months=1)).month
+    MN = pd.Timestamp(2000, nm, 1).strftime("%B")
+    rels = sorted(df[df.reg == "United States"].rd.unique())
+    rows = []
+    for reg, attr in cfg["hist"]:
+        h = []
+        for t in rels:
+            if t.month != nm:
+                continue
+            i = rels.index(t)
+            if i == 0:
+                continue
+            m_ = focus_my(df, t); a, b = get(df, reg, attr, m_, t), get(df, reg, attr, m_, rels[i - 1])
+            if a is not None and b is not None:
+                h.append(a - b)
+        if len(h) >= 5:
+            h = np.array(h)
+            rows.append({"region": reg, "attr": attr, "n": len(h), "up": int((h > 1e-9).sum()), "down": int((h < -1e-9).sum()), "unch": int((np.abs(h) <= 1e-9).sum()),
+                         "avg": round(float(h.mean()), 3), "avg_abs": round(float(np.abs(h).mean()), 3), "now": get(df, reg, attr, my, rd)})
+    sig = []
+    im = now.get("implied")
+    if im:
+        sig.append({"line": "US yield", "usda": im["usda"], "desk": im["yield"], "dir": "up" if im["yield"] > im["usda"] + 0.5 * (im.get("mae") or 0) else "down" if im["yield"] < im["usda"] - 0.5 * (im.get("mae") or 0) else "flat",
+                    "basis": f"crop-ratings model (average miss ±{fmt(im.get('mae'), 1)})"})
+    ex = now.get("export_sales")
+    if ex and ex.get("implied"):
+        d = ex["implied"] / ex["usda"] - 1
+        sig.append({"line": "US exports", "usda": ex["usda"], "desk": ex["implied"], "dir": "up" if d > 0.04 else "down" if d < -0.04 else "flat",
+                    "basis": f"export-sales pace at week {ex['wk']} (early-season pace is a weak guide)" if ex["wk"] < 15 else f"export-sales pace at week {ex['wk']}"})
+    cb = now.get("conab")
+    if cb:
+        sig.append({"line": f"Brazil production {cb['season']}", "usda": cb["usda_mmt"], "desk": cb["conab_mmt"], "dir": "up" if cb["gap"] > 1 else "down" if cb["gap"] < -1 else "flat",
+                    "basis": f"CONAB survey {cb['survey']}"})
+    return {"month": MN, "rows": rows, "signals": sig}
+
+
 def revisions(df, cfg):
     """Value of key estimates at each release, for the current and previous 5 marketing years."""
     out = {}
@@ -589,7 +627,7 @@ def main():
                                                     "history": cb.get("history") or hist, "checks": cb.get("checks"), "latest": cb.get("latest"),
                                                     "factors": cb.get("factors", []), "score": cb.get("score"), "outlook": cb.get("outlook", "neutral"),
                                                     "balance": balance(df, rd, prev, cfg["regions"], US_ROWS), "brief": cb.get("brief", []),
-                                                    "source": "BMR-Com/wasde-analytics"}
+                                                    "source": "BMR-Com/wasde-analytics", "preview": preview(df, cfg, rd, my, {}) if nxt is None else None}
                 continue
             rep = checks(k, cfg, df, rd, prev, my, ctx, rcut)
             now = checks(k, cfg, df, rd, prev, my, ctx, ncut, pcut=rcut)
@@ -597,7 +635,8 @@ def main():
             bs = balance(df, rd, prev, cfg["regions"], US_ROWS)
             reports.setdefault(rd, {})[k] = {"name": cfg["name"], "my": my, "unit": cfg["unit"], "wunit": cfg.get("wunit"), "changes": ch, "history": hist,
                                             "checks": rep, "latest": now, "factors": F, "score": score, "outlook": label, "balance": bs,
-                                            "brief": text(cfg, df, rd, prev, my, ch, hist, rep, now, F, label, nxt is None)}
+                                            "brief": text(cfg, df, rd, prev, my, ch, hist, rep, now, F, label, nxt is None),
+                                            "preview": preview(df, cfg, rd, my, now) if nxt is None else None}
     index = []
     for rd in sorted(reports):
         key = rd.strftime("%Y-%m")

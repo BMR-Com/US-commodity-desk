@@ -142,10 +142,25 @@ def main():
         heads.append("Through a trend-follower trigger: " + "; ".join(
             f"{m['name']} {'above' if m['cta_up'] and m['last'] > m['cta_up'] else 'below'} {fmt(m['cta_up'] if m['cta_up'] and m['last'] > m['cta_up'] else m['cta_dn'], m['dp'])}" for m in tech_flips) + ".")
 
+    # macro: read, key cross-market numbers (Yahoo), US/China releases today and tomorrow
+    macro = J("macro/macro.json") or {}
+    mk = {x["sym"]: x for x in (J("markets/markets.json") or {}).get("items", [])}
+    macro_nums = [{"name": mk[k]["name"], "last": mk[k]["last"], "d1": mk[k]["d1"], "m1": mk[k]["m1"], "kind": mk[k]["kind"], "time": mk[k]["time"]}
+                  for k in ("ES=F", "^GSPC", "^VIX", "^TNX", "DX-Y.NYB", "EURUSD=X", "BRL=X", "CNY=X", "CL=F", "NG=F", "GC=F", "HG=F", "^SPGSCI") if k in mk]
+    econ = [e for e in (J("macro/econ_calendar.json") or {}).get("events", [])
+            if d0 <= e["date"] <= (today + timedelta(days=1)).isoformat() and e["impact"] in ("High", "Medium") and e["country"] in ("US", "China", "Global")]
+    hi = [e for e in econ if e["date"] == d0 and e["impact"] == "High"]
+    if hi:
+        heads.append("Macro releases today: " + "; ".join(f"{e['country']} {e['title']} {e['time']}" + (f" (f'cast {e['forecast']}, prev {e['previous']})" if e["forecast"] else "") for e in hi) + ".")
+    if macro.get("view"):
+        heads.append(f"Macro backdrop for ags: {macro['view']} ({macro['score']:+d}).")
+
     B = {"generated": now.strftime("%Y-%m-%d %H:%M UTC"), "generated_et": now.astimezone(ET).strftime("%a %b %d, %Y %I:%M %p ET"),
          "date": d0, "prices_from": sheet.get("generated"), "cme_oi_date": oi_date, "headlines": heads,
          "events_today": ev_today, "events_ahead": ev_ahead, "flash": fl, "markets": markets,
-         "crush": sheet.get("crush"), "ratios": sheet.get("ratios"), "general_news": recent_news(None, 24, 6)}
+         "crush": sheet.get("crush"), "ratios": sheet.get("ratios"), "general_news": recent_news(None, 24, 6),
+         "macro": {"view": macro.get("view"), "score": macro.get("score"), "summary": macro.get("summary"), "sections": macro.get("sections", []),
+                   "caveat": macro.get("caveat")}, "macro_numbers": macro_nums, "econ": econ}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "latest.json").write_text(json.dumps(B, indent=1, default=str))
     md = to_md(B)
@@ -156,11 +171,23 @@ def main():
 
 def to_md(B):
     L = [f"# Morning brief · {B['generated_et']}", "",
-         f"Prices: front contracts, last vs prior settle (indicative before the open; data {B['prices_from']}). CME open interest from {B['cme_oi_date']}. Research only, not investment advice.", ""]
+         f"Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data {B['prices_from']}). CME open interest from {B['cme_oi_date']}. Research only, not investment advice.", ""]
     L += ["## Key points", ""] + [f"- {h}" for h in B["headlines"]] + [""]
     L += ["## Calendar", ""]
     L += [f"- **Today** {e['time_et']} · {e['event']}" for e in B["events_today"]] or ["- Nothing scheduled today."]
     L += [f"- {e['date']} {e['time_et']} · {e['event']}" for e in B["events_ahead"]] + [""]
+    if B.get("econ"):
+        L += ["## US & China economic releases (today, tomorrow)", ""] + [
+            f"- {e['date'][5:]} {e['time'] or 'all day'} · {e['country']} {e['title']} ({e['impact']})" + (f" · forecast {e['forecast']}" if e['forecast'] else "") + (f", previous {e['previous']}" if e['previous'] else "")
+            for e in B["econ"]] + [""]
+    if B.get("macro", {}).get("summary"):
+        L += ["## Macro outlook and what it means for ags", "", B["macro"]["summary"], ""]
+        L += [f"- **{x['title']}**: {x['text']}" for x in B["macro"]["sections"]]
+        if B.get("macro_numbers"):
+            L += ["", "Cross-market (Yahoo Finance, delayed): " + "; ".join(
+                f"{x['name']} {x['last']:,.3f}" + (f" ({x['d1']:+.0f} bp d/d)" if x['kind'] == 'yield' and x['d1'] is not None else f" ({x['d1']:+.2f}% d/d)" if x['d1'] is not None else "")
+                for x in B["macro_numbers"]) + "."]
+        L += ["", f"_{B['macro'].get('caveat') or ''}_", ""]
     L += ["## Key numbers", "", "| Market | Contract | Last | Chg | 1 wk | 1 m | Rating | RSI | Support | Resistance | Funds net (chg) | OI chg | View |",
           "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for g, gl in GROUPS:

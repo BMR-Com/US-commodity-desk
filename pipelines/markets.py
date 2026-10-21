@@ -8,9 +8,10 @@ deviations (vs 60-day daily vol). Yields change in basis points.
 
 Writes data/markets/markets.json (snapshot) and data/markets/hist/<group>.csv (daily closes, for the brief).
 """
-import json, math, sys, time
+import json, math, re, sys, time
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 import requests
 import pandas as pd
 
@@ -64,6 +65,30 @@ def chart(sym):
             print("  err", sym, e)
         time.sleep(2)
     return None
+
+
+ET = ZoneInfo("America/New_York")
+MONTHS = {m: c for m, c in zip(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], "FGHJKMNQUVXZ")}
+SUFFIX = {"CBT": "CBT", "CME": "CME", "NYM": "NYM", "CMX": "CMX", "NYB": "NYB"}
+
+
+def series(j):
+    q = j["indicators"]["quote"][0]
+    tz = j["meta"].get("exchangeTimezoneName") or "America/New_York"
+    idx = (pd.to_datetime(j["timestamp"], unit="s", utc=True).tz_convert(tz) + pd.Timedelta(hours=8)).date  # evening session -> trade date
+    c = pd.Series(q["close"], index=idx, dtype=float).dropna()
+    return c[~c.index.duplicated(keep="last")]
+
+
+def contract_symbol(sym, meta):
+    """'ZC=F' with shortName 'Corn Futures,Dec-2026' -> 'ZCZ26.CBT'."""
+    if not sym.endswith("=F"):
+        return None
+    mm = re.search(r"([A-Z][a-z]{2})-(\d{4})\s*$", meta.get("shortName") or "")
+    sx = SUFFIX.get(meta.get("exchangeName"))
+    if not mm or not sx or mm[1] not in MONTHS:
+        return None
+    return f"{sym[:-2]}{MONTHS[mm[1]]}{mm[2][-2:]}.{sx}"
 
 
 def pct(a, b):
@@ -131,12 +156,23 @@ def main():
             print("missing", sym)
             continue
         m = j["meta"]
-        q = j["indicators"]["quote"][0]
-        c = pd.Series(q["close"], index=pd.to_datetime(j["timestamp"], unit="s", utc=True).tz_convert("America/New_York").date, dtype=float).dropna()
-        c = c[~c.index.duplicated(keep="last")]
-        if len(c) < 30:
+        c = series(j)
+        contract = None
+        # Yahoo's =F history switches contract at each roll (e.g. Class III Oct -> Nov: +17% that is not a move).
+        # Use the current front contract's own history so every change is like-for-like.
+        cs = contract_symbol(sym, m)
+        if cs:
+            jc = chart(cs)
+            time.sleep(0.4)
+            cc = series(jc) if jc and jc.get("timestamp") else None
+            if cc is not None and len(cc) >= 5:
+                c, contract = cc, m.get("shortName", "").split(",")[-1].strip()
+                m = {**m, **{k: jc["meta"].get(k) for k in ("regularMarketPrice", "regularMarketTime") if jc["meta"].get(k)}}
+        if len(c) < 5:
             continue
         last = float(m.get("regularMarketPrice") or c.iloc[-1])
+        if c.index[-1] < datetime.fromtimestamp(m.get("regularMarketTime", now), timezone.utc).astimezone(ET).date():
+            c.loc[datetime.fromtimestamp(m["regularMarketTime"], timezone.utc).astimezone(ET).date()] = last
         prev = float(c.iloc[-2])
         def back(days):
             s = c[c.index <= c.index[-1] - pd.Timedelta(days=days)]
@@ -148,7 +184,7 @@ def main():
         hi, lo = float(y1.max()), float(y1.min())
         ma = {n: float(c.iloc[-n:].mean()) for n in (20, 50, 200) if len(c) >= n}
         chg = (lambda b: None if b is None else (100 * (last - b) if kind == "yield" else pct(last, b)))  # yields: bp
-        it = {"group": g, "sym": sym, "name": name, "unit": unit, "kind": kind, "last": last, "prev": prev,
+        it = {"group": g, "sym": sym, "name": name, "contract": contract, "unit": unit, "kind": kind, "last": last, "prev": prev,
               "time": datetime.fromtimestamp(m.get("regularMarketTime", now), timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
               "age_min": round((now - m.get("regularMarketTime", now)) / 60), "exch": m.get("exchangeName"), "delay_min": EXCH_DELAY.get(m.get("exchangeName")),
               "d1": chg(prev), "w1": chg(back(7)), "m1": chg(back(30)), "m3": chg(back(91)), "ytd": chg(float(ytd.iloc[-1]) if len(ytd) else None), "y1": chg(back(365)),

@@ -122,3 +122,19 @@ table.ts tr.ts-f td{border-top:0;padding-top:0;background:#fbfcfb}
 .flag{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:999px;padding:1px 8px;margin:2px 4px 2px 0;background:#fff;color:#444}
 .flag.up{border-color:#9bd3ad;background:#effaf2;color:var(--up)}.flag.dn{border-color:#f0b0aa;background:#fdf1f0;color:var(--dn)}
 svg.spark{vertical-align:middle}
+/* markets & macro */
+.mk-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0 10px}
+.mk-bar button{font:inherit;font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#444;cursor:pointer}
+.mk-bar button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mk-g{margin:12px 0 6px}
+.mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:6px}
+.mk-tile{border-radius:6px;padding:7px 8px;border:1px solid rgba(0,0,0,.06);color:#111;min-height:78px;cursor:default}
+.mk-n{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-v{font-size:13px;font-variant-numeric:tabular-nums}
+.mk-c{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.mk-spark{display:block;margin-top:2px;opacity:.7}
+.mk-age{font-size:10px;color:#333;opacity:.8}
+.mk-imp{font-size:11px;padding:1px 6px;border-radius:999px;border:1px solid var(--line)}
+.mk-high{color:#fff;background:var(--dn);border-color:var(--dn)}.mk-medium{color:var(--warn);background:var(--warnbg);border-color:#e5c98a}
+tr.mk-today td{background:#eef6ee}tr.mk-past td{opacity:.6}
+.mk-k{font-weight:400;font-size:10px;opacity:.75}

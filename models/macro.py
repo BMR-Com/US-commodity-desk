@@ -71,7 +71,11 @@ def main():
                 + f"USD/BRL {f(g('BRL=X', 'last'), 3, False)} ({f(brl)}% in a month): "
                 + ("a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. " if s_brl > 0 else
                    "a firmer real slows Brazilian farmer selling and supports world prices. " if s_brl < 0 else "little changed. ")
-                + f"USD/CNY {f(g('CNY=X', 'last'), 3, False)} ({f(cny)}%); USD/MXN {f(g('MXN=X', 'last'), 2, False)} ({f(mxn)}%), Mexico being the top buyer of US corn, pork and dairy."))
+                + f"USD/CNY {f(g('CNY=X', 'last'), 3, False)} ({f(cny)}%); USD/MXN {f(g('MXN=X', 'last'), 2, False)} ({f(mxn)}%)"
+                + ("; a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)." if (mxn or 0) > 3 else
+                   "; a firmer peso supports Mexican buying of US corn, pork, dairy and wheat." if (mxn or 0) < -3 else ".")))
+    if (mxn or 0) > 3:
+        score["mxn"] = -1
     # risk appetite
     spx, vix = g("^GSPC"), g("^VIX", "last")
     s = sgn(spx, 3.0) - (1 if (vix or 0) > 25 else 0) + (1 if vix is not None and vix < 15 else 0)

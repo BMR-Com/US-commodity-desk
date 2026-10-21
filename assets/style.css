@@ -191,3 +191,5 @@ nav.comm a.navlink{color:#cfe3d2;padding:.55rem .9rem;font-size:13px;text-decora
 .chat-s{background:#fff;border:1px solid #cfd8cf;border-radius:12px;padding:3px 8px;font-size:12px;cursor:pointer}
 #chat-f{display:flex;gap:6px;padding:8px;border-top:1px solid #e3e8e3}
 #chat-f textarea{flex:1;resize:none;padding:6px;font:inherit}
+
+.bt-t td,.bt-t th{white-space:nowrap}.bt-row{cursor:pointer}.bt-row:hover td{background:#f7faf7}.bt-row.on td{background:#e8f2ea}

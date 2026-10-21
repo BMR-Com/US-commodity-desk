@@ -1,0 +1,28 @@
+name: backtest
+# Weekly re-run of the backtest lab after the Friday CFTC release and the evening contract update.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['models/backtest_lab.py', '.github/workflows/backtest.yml']
+  schedule:
+    - cron: '30 15 * * 6'
+permissions: {contents: write}
+concurrency: {group: backtest, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q pandas numpy
+      - run: python -W ignore models/backtest_lab.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/backtest
+          git diff --cached --quiet && exit 0
+          git commit -q -m "backtest: weekly rerun $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

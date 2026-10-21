@@ -1,8 +1,7 @@
 // Ask the desk: a chatbot over the desk's own numbers (data/ai/context.json + the text of the open tab), answered by
 // Groq (free tier). The Groq key is pasted once and kept only in this browser (localStorage), sent only to api.groq.com.
 const Chat = (() => {
-  const MODELS = [['llama-3.3-70b-versatile', 'Llama 3.3 70B (best)'], ['meta-llama/llama-4-scout-17b-16e-instruct', 'Llama 4 Scout (more context)'],
-                  ['openai/gpt-oss-120b', 'GPT-OSS 120B'], ['llama-3.1-8b-instant', 'Llama 3.1 8B (fastest)']];
+  const MODELS = [['auto', 'Automatic (best available today)'], ['openai/gpt-oss-120b', 'GPT-OSS 120B'], ['openai/gpt-oss-20b', 'GPT-OSS 20B (fastest)']];
   const TAB_SYMS = { grains: ['ZC', 'ZS', 'ZM', 'ZL', 'ZW', 'KE'], dairy: ['DC', 'GDK', 'CSC', 'CB', 'GNF', 'DY'], hogs: ['HE'], cattle: ['LE', 'GF'], cotton: ['CT'],
                      energy: ['NG', 'CL', 'HO', 'RB'], cotfull: [], markets: [], summary: [], signals: [], options: [] };
   const BUDGET = 16000;   // characters of desk cards per question (~4k tokens; the free tier allows 6-30k tokens a minute)
@@ -58,7 +57,9 @@ Rules: quote numbers with units, contract and date; if the data does not contain
     const data = cards.map(c => `### ${c.title}\n${c.text}`).join('\n\n') + (page ? `\n\n### Text of the open tab (${activeTab()})\n${page}` : '');
     const msgs = [{ role: 'system', content: sys + '\n\nDATA:\n' + data }, ...hist.slice(-6), { role: 'user', content: q }];
     const thinking = add('bot', '…');
-    const order = [LS.get('groqModel') || MODELS[0][0], ...MODELS.map(m => m[0])].filter((m, i, a) => a.indexOf(m) === i);
+    const avail = await getJSON('data/ai/models.json').then(j => j.models || []).catch(() => []);
+    const pref = LS.get('groqModel');
+    const order = [...(pref && pref !== 'auto' ? [pref] : []), ...avail, ...MODELS.map(m => m[0])].filter((m, i, a) => m !== 'auto' && a.indexOf(m) === i);
     let txt = null, used = null, err = '', usage = null;
     if (P) {
       try {

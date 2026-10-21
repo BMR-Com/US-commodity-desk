@@ -13,7 +13,23 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 D = ROOT / "data" / "ai"
 KEY = os.environ.get("GROQ_API_KEY", "")
-MODELS = ["llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "openai/gpt-oss-120b", "llama-3.1-8b-instant"]
+PREF = ["gpt-oss-120b", "llama-4-maverick", "llama-4-scout", "llama-3.3-70b", "qwen3-32b", "kimi-k2", "gpt-oss-20b", "llama-3.1-8b"]
+MODELS = []
+
+
+def models():
+    """Chat models this key can use now (Groq retires models), in preference order; saved for the chatbot."""
+    global MODELS
+    try:
+        r = requests.get("https://api.groq.com/openai/v1/models", headers={"Authorization": "Bearer " + KEY}, timeout=30)
+        ids = [m["id"] for m in r.json().get("data", []) if m.get("active", True)]
+    except Exception as e:
+        print("models list failed", e); ids = []
+    ids = [i for i in ids if not any(x in i for x in ("whisper", "guard", "tts", "playai", "orpheus", "prompt", "compound", "distil"))]
+    rank = lambda i: next((k for k, p in enumerate(PREF) if p in i), len(PREF))
+    MODELS = sorted(ids, key=rank)
+    print("models:", MODELS)
+    (D / "models.json").write_text(json.dumps({"checked": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "models": MODELS}))
 QUESTIONS = {
     "market": ["What is the desk's view and why?", "What are funds (COT) doing?", "What are the key levels and next catalysts?", "What do the fundamentals say?"],
     "overview": ["What matters most today?", "What is the macro backdrop for ags?"],
@@ -27,16 +43,23 @@ def ask(messages, max_tokens=900):
         for attempt in range(3):
             try:
                 r = requests.post("https://api.groq.com/openai/v1/chat/completions", headers={"Authorization": "Bearer " + KEY},
-                                  json={"model": m, "messages": messages, "temperature": 0.2, "max_tokens": max_tokens, "response_format": {"type": "json_object"}}, timeout=90)
+                                  json={"model": m, "messages": messages, "temperature": 0.2, "max_tokens": max_tokens}, timeout=90)
             except Exception as e:
                 print("  err", e); time.sleep(10); continue
             if r.status_code == 200:
-                return m, r.json()["choices"][0]["message"]["content"]
+                txt = r.json()["choices"][0]["message"]["content"] or ""
+                a, b = txt.find("{"), txt.rfind("}")
+                if a >= 0 and b > a:
+                    try:
+                        json.loads(txt[a:b + 1]); return m, txt[a:b + 1]
+                    except Exception:
+                        pass
+                print("  ", m, "no JSON in reply"); break
             print("  ", m, r.status_code, r.text[:160])
             if r.status_code == 401:
                 sys.exit("GROQ_API_KEY rejected (401)")
             if r.status_code == 429:
-                time.sleep(20 * (attempt + 1)); continue
+                time.sleep(25 * (attempt + 1)); continue
             break
     return None, None
 
@@ -45,6 +68,9 @@ def main():
     if not KEY:
         print("ai_daily: no GROQ_API_KEY secret")
         return
+    models()
+    if not MODELS:
+        sys.exit("no Groq models available for this key")
     C = json.loads((D / "context.json").read_text())
     cards = [c for c in C["cards"] if c["kind"] in ("overview", "market")]
     only = set(sys.argv[1:])
@@ -53,9 +79,9 @@ def main():
         if only and c["id"] not in only:
             continue
         qs = QUESTIONS["overview" if c["kind"] == "overview" else "market"]
-        prompt = (f"DATA ({c['title']}):\n{c['text']}\n\nReturn JSON: {{\"read\": \"3-5 sentence desk read of {c['title']}\", "
+        prompt = (f"DATA ({c['title']}):\n{c['text']}\n\nReply with ONLY a JSON object, no other text: {{\"read\": \"3-5 sentence desk read of {c['title']}\", "
                   f"\"faq\": [{{\"q\": question, \"a\": answer of 2-5 sentences}}] for these questions: {json.dumps(qs)}}}")
-        m, txt = ask([{"role": "system", "content": SYS}, {"role": "user", "content": prompt}])
+        m, txt = ask([{"role": "system", "content": SYS}, {"role": "user", "content": prompt}], 1200)
         if not txt:
             print(c["id"], "no answer"); continue
         try:
@@ -64,7 +90,7 @@ def main():
             print(c["id"], "bad JSON"); continue
         out["items"][c["id"]] = {"title": c["title"], "model": m, "read": j.get("read"), "faq": [x for x in j.get("faq", []) if x.get("q") and x.get("a")]}
         print(c["id"], m, (j.get("read") or "")[:100], flush=True)
-        time.sleep(8)   # stay under the free tier's tokens-per-minute
+        time.sleep(20)   # stay under the free tier's tokens-per-minute (6-8k tokens a minute on most models)
     D.mkdir(parents=True, exist_ok=True)
     (D / "daily.json").write_text(json.dumps(out, ensure_ascii=False, indent=0))
     print(len(out["items"]), "items")

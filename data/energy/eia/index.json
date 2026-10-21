@@ -181,8 +181,8 @@
 "route": "petroleum/stoc/wstk",
 "id": "WCESTUS1",
 "how": "id found",
-"rows": 2298,
-"last": "2026-10-09"
+"rows": 2299,
+"last": "2026-10-16"
 },
 "spr": {
 "label": "SPR crude stocks",
@@ -205,16 +205,16 @@
 "route": "petroleum/stoc/wstk",
 "id": "WGTSTUS1",
 "how": "id found",
-"rows": 1919,
-"last": "2026-10-09"
+"rows": 1920,
+"last": "2026-10-16"
 },
 "dist": {
 "label": "Distillate stocks",
 "route": "petroleum/stoc/wstk",
 "id": "WDISTUS1",
 "how": "id found",
-"rows": 2298,
-"last": "2026-10-09"
+"rows": 2299,
+"last": "2026-10-16"
 },
 "jet": {
 "label": "Jet fuel stocks",
@@ -229,8 +229,8 @@
 "route": "petroleum/sum/sndw",
 "id": "WCRFPUS2",
 "how": "id found",
-"rows": 2281,
-"last": "2026-10-09"
+"rows": 2282,
+"last": "2026-10-16"
 },
 "imp": {
 "label": "Crude imports",
@@ -261,8 +261,8 @@
 "route": "petroleum/pnp/wiup",
 "id": "WPULEUS3",
 "how": "id found",
-"rows": 1876,
-"last": "2026-10-09"
+"rows": 1877,
+"last": "2026-10-16"
 },
 "demGaso": {
 "label": "Gasoline supplied",
@@ -395,15 +395,15 @@
 "steoStor": {
 "label": "STEO end-of-month storage",
 "route": "steo",
-"id": "NGUSPUS",
-"how": "name matched",
-"rows": 456,
-"last": "2027-12"
+"id": "NGESPUS",
+"how": "unresolved",
+"rows": 0,
+"last": null
 },
 "steoHdd": {
 "label": "STEO heating degree days",
 "route": "steo",
-"id": "ZWHDPUS_PCT",
+"id": "ZWHDPUS",
 "how": "name matched",
 "rows": 456,
 "last": "2027-12"
@@ -411,11 +411,11 @@
 "steoCdd": {
 "label": "STEO cooling degree days",
 "route": "steo",
-"id": "ZWCDPUS_PCT",
+"id": "ZWCDPUS",
 "how": "name matched",
 "rows": 456,
 "last": "2027-12"
 }
 },
-"generated": "2026-10-21 17:36 UTC"
+"generated": "2026-10-21 17:44 UTC"
 }

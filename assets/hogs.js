@@ -22,7 +22,7 @@ const Hogs = (() => {
 
   function primer() {
     const ld = H.last_days || [];
-    body(`<div class="grid g2">
+    body(Specs.slot('hogs') + `<div class="grid g2">
       <div class="card"><h2>Lean hog futures</h2><div class="tbl"><table>
         <tr><td>Contract</td><td class="l">CME Lean Hogs (HE)</td></tr><tr><td>Size</td><td class="l">40,000 lb carcass weight</td></tr>
         <tr><td>Quote / tick</td><td class="l">¢/lb; 0.025¢ = $10</td></tr><tr><td>Months</td><td class="l">Feb, Apr, May, Jun, Jul, Aug, Oct, Dec</td></tr>

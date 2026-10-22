@@ -59,6 +59,7 @@ function calc() {
   $('#tSens').innerHTML = `<tr><th>Move</th><th>Class III $/cwt</th><th>Class IV $/cwt</th></tr>` + rows.join('');
 }
 function initPrimer() {
+  Specs.load().then(Specs.fill);
   for (const k in SL) $('#' + SL[k]).oninput = calc;
   const last = REB.at(-1);
   const presets = {

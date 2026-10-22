@@ -25,7 +25,7 @@ const Cotton = (() => {
       'ct-flows': flows, 'ct-rv': () => RVView.mount(body(), 'CT'), 'ct-outlook': outlook })[tab]();
   }
   function primer() {
-    body().innerHTML = `<div class="grid g2">
+    body().innerHTML = Specs.slot('cotton') + `<div class="grid g2">
       <div class="card"><h2>ICE Cotton No. 2 (CT)</h2><div class="tbl"><table>
         <tr><td>Size</td><td class="l">50,000 lb net weight (~100 running bales)</td></tr><tr><td>Quote / tick</td><td class="l">¢/lb; 0.01¢ = $5</td></tr>
         <tr><td>Months that matter</td><td class="l">Mar, May, Jul (old crop) and Dec (new crop). October trades but is thin and is ignored here.</td></tr>

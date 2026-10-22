@@ -69,7 +69,7 @@ const Energy = (() => {
         <h3>Seasonality</h3><p>${p.season}</p>
         <h3>Links to the ag markets</h3><ul class="read">${p.links.map(x => `<li>${x}</li>`).join('')}</ul></div>
       <div class="card"><h2>What moves the price</h2><div class="tbl"><table><tr><th class="l">Driver</th><th class="l">Mechanism</th><th class="l">Watch</th></tr>
-        ${p.sd.map(r => `<tr><td class="l"><b>${r[0]}</b></td><td class="l">${r[1]}</td><td class="l">${r[2]}</td></tr>`).join('')}</table></div></div></div>
+        ${p.sd.map(r => `<tr><td class="l"><b>${r[0]}</b></td><td class="l">${r[1]}</td><td class="l">${r[2]}</td></tr>`).join('')}</table></div></div></div>${Specs.slot('energy', [mk])}
       <div class="card" style="margin-top:12px"><h2>Key reports</h2><div class="tbl"><table><tr><th class="l">Report</th><th class="l">When</th><th class="l">What</th></tr>
         ${REPORTS.map(r => `<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td><td class="l">${r[2]}</td></tr>`).join('')}</table></div>
         <p class="note">Live numbers for each driver are in the Energy terminal tabs (Gas storage, Gas S&amp;D, Weather, Oil stocks, Refining &amp; cracks) and in Production, trade &amp; LNG. Learn more: <a href="https://www.cmegroup.com/education.html" target="_blank" rel="noopener">CME Group education (energy courses)</a> · <a href="https://www.eia.gov/energyexplained/" target="_blank" rel="noopener">EIA Energy Explained</a> · <a href="https://www.iea.org/topics" target="_blank" rel="noopener">IEA topics</a>.</p></div>`;

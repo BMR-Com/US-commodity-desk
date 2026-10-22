@@ -16,7 +16,7 @@ const Cattle = (() => {
   const body = h => { $('#cBody').innerHTML = h; };
 
   function primer() {
-    body(`<div class="grid g2">
+    body(Specs.slot('cattle') + `<div class="grid g2">
       <div class="card"><h2>The contracts</h2><div class="tbl"><table><tr><th></th><th class="l">Live cattle (LE)</th><th class="l">Feeder cattle (GF)</th></tr>
         <tr><td>Size</td><td class="l">40,000 lb</td><td class="l">50,000 lb</td></tr><tr><td>Quote</td><td class="l">¢/lb; 0.025¢ = $10</td><td class="l">¢/lb; 0.025¢ = $12.50</td></tr>
         <tr><td>Months</td><td class="l">Feb, Apr, Jun, Aug, Oct, Dec</td><td class="l">Jan, Mar, Apr, May, Aug, Sep, Oct, Nov</td></tr>

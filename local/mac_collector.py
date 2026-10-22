@@ -52,6 +52,11 @@ async def collect():
             log("CME", res.get("dates"), "settlement rows", res.get("fut_settlements", "").count("\n"), "errors", len(res.get("errors") or []))
         except Exception as e:
             log("CME failed:", str(e)[:300])
+        try:   # exchange margins for the primers' contract tables
+            out["margins"] = await page.evaluate((REPO / "cme" / "collect_margins.js").read_text())
+            log("CME margins rows", len(out["margins"].get("rows") or []))
+        except Exception as e:
+            log("CME margins failed:", str(e)[:300])
         # USDA FAS flash sales
         try:
             await page.goto("https://www.fas.usda.gov/newsroom/search?news%5B0%5D=news_type%3A10106", wait_until="domcontentloaded", timeout=90000)
@@ -72,11 +77,15 @@ def main():
         (tmp / "cme.json").write_text(json.dumps(res["cme"]))
         r = sh(sys.executable, "cme/ingest.py", str(tmp / "cme.json"))
         log(r.stdout.strip()[-500:])
+    if res.get("margins") and len(res["margins"].get("rows") or []) > 30:
+        m = res["margins"]; m["source"] = "CME Group margins (outright maintenance), collected from cmegroup.com"
+        (REPO / "data" / "specs" / "margins.json").write_text(json.dumps(m, indent=0))
+        sh(sys.executable, "models/contract_specs.py")
     if res.get("flash"):
         (tmp / "flash.b64").write_text(res["flash"])
         r = sh(sys.executable, "pipelines/flash.py", str(tmp / "flash.b64"))
         log(r.stdout.strip()[:300])
-    sh("git", "add", "data/cme", "data/grains/raw/flash")
+    sh("git", "add", "data/cme", "data/grains/raw/flash", "data/specs")
     if sh("git", "diff", "--cached", "--quiet").returncode == 0:
         log("nothing new")
         return

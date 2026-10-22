@@ -1,0 +1,1376 @@
+{
+"generated": "2026-10-22",
+"margins_asof": "2026-10-21",
+"groups": {
+"grains": [
+{
+"sym": "ZC",
+"name": "Corn",
+"ex": "CBOT",
+"code": "C",
+"size": "5,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.25\u00a2 = $12.50",
+"usd": 50,
+"price": 465.0,
+"months": "Mar, May, Jul, Sep, Dec",
+"settle": "Physical (shipping certificates, Illinois River)",
+"options": "Yes, incl. weeklies and short-dated new crop",
+"of": "ZC",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 23250,
+"day_move": 361,
+"hv20": 24.6,
+"margin_period": "12/2026",
+"maint": 1100,
+"initial": 1210,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 1100
+},
+{
+"period": "03/2027",
+"maint": 1050
+},
+{
+"period": "05/2027",
+"maint": 1000
+}
+],
+"margin_pct": 4.7,
+"leverage": 21.1,
+"days_covered": 3.0
+},
+{
+"sym": "XC",
+"name": "Mini corn",
+"ex": "CBOT",
+"code": "YC",
+"size": "1,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.125\u00a2 = $1.25",
+"usd": 10,
+"price": 465.0,
+"months": "as corn",
+"settle": "Physical",
+"options": "No",
+"of": "ZC",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 4650,
+"day_move": 72,
+"hv20": 24.6,
+"margin_period": "12/2026",
+"maint": 220,
+"initial": 242,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 220
+}
+],
+"margin_pct": 4.7,
+"leverage": 21.1,
+"days_covered": 3.1
+},
+{
+"sym": "MZC",
+"name": "Micro corn",
+"ex": "CBOT",
+"code": "MZC",
+"size": "500 bu",
+"quote": "\u00a2/bu",
+"tick": "0.50\u00a2 = $2.50",
+"usd": 5,
+"price": 465.0,
+"months": "as corn",
+"settle": "Cash-settled to the corn future",
+"options": "No",
+"of": "ZC",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 2325,
+"day_move": 36,
+"hv20": 24.6,
+"margin_period": "12/2026",
+"maint": 110,
+"initial": 121,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 110
+}
+],
+"margin_pct": 4.7,
+"leverage": 21.1,
+"days_covered": 3.1
+},
+{
+"sym": "ZS",
+"name": "Soybeans",
+"ex": "CBOT",
+"code": "S",
+"size": "5,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.25\u00a2 = $12.50",
+"usd": 50,
+"price": 1245.5,
+"months": "Jan, Mar, May, Jul, Aug, Sep, Nov",
+"settle": "Physical (shipping certificates)",
+"options": "Yes",
+"of": "ZS",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 62275,
+"day_move": 506,
+"hv20": 12.9,
+"margin_period": "11/2026",
+"maint": 2300,
+"initial": 2530,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 2300
+},
+{
+"period": "01/2027",
+"maint": 2250
+},
+{
+"period": "03/2027",
+"maint": 2050
+}
+],
+"margin_pct": 3.7,
+"leverage": 27.1,
+"days_covered": 4.5
+},
+{
+"sym": "XK",
+"name": "Mini soybeans",
+"ex": "CBOT",
+"code": "YK",
+"size": "1,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.125\u00a2 = $1.25",
+"usd": 10,
+"price": 1245.5,
+"months": "as soybeans",
+"settle": "Physical",
+"options": "No",
+"of": "ZS",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 12455,
+"day_move": 101,
+"hv20": 12.9,
+"margin_period": "11/2026",
+"maint": 460,
+"initial": 506,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 460
+}
+],
+"margin_pct": 3.7,
+"leverage": 27.1,
+"days_covered": 4.6
+},
+{
+"sym": "MZS",
+"name": "Micro soybeans",
+"ex": "CBOT",
+"code": "MZS",
+"size": "500 bu",
+"quote": "\u00a2/bu",
+"tick": "0.50\u00a2 = $2.50",
+"usd": 5,
+"price": 1245.5,
+"months": "as soybeans",
+"settle": "Cash-settled to the soybean future",
+"options": "No",
+"of": "ZS",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 6228,
+"day_move": 51,
+"hv20": 12.9,
+"margin_period": "11/2026",
+"maint": 230,
+"initial": 253,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 230
+}
+],
+"margin_pct": 3.7,
+"leverage": 27.1,
+"days_covered": 4.5
+},
+{
+"sym": "ZM",
+"name": "Soybean meal",
+"ex": "CBOT",
+"code": "06",
+"size": "100 short tons",
+"quote": "$/short ton",
+"tick": "$0.10 = $10",
+"usd": 100,
+"price": 347.8,
+"months": "Jan, Mar, May, Jul, Aug, Sep, Oct, Dec",
+"settle": "Physical (shipping certificates)",
+"options": "Yes",
+"of": "ZM",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 34780,
+"day_move": 535,
+"hv20": 24.4,
+"margin_period": "10/2026-12/2026",
+"maint": 1550,
+"initial": 1705,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026-12/2026",
+"maint": 1550
+},
+{
+"period": "01/2027",
+"maint": 1500
+},
+{
+"period": "03/2027",
+"maint": 1400
+}
+],
+"margin_pct": 4.5,
+"leverage": 22.4,
+"days_covered": 2.9
+},
+{
+"sym": "MZM",
+"name": "Micro soybean meal",
+"ex": "CBOT",
+"code": "MZM",
+"size": "10 short tons",
+"quote": "$/short ton",
+"tick": "$0.20 = $2",
+"usd": 10,
+"price": 347.8,
+"months": "as meal",
+"settle": "Cash-settled",
+"options": "No",
+"of": "ZM",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 3478,
+"day_move": 54,
+"hv20": 24.4,
+"margin_period": "12/2026",
+"maint": 155,
+"initial": 170,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 155
+}
+],
+"margin_pct": 4.5,
+"leverage": 22.4,
+"days_covered": 2.9
+},
+{
+"sym": "ZL",
+"name": "Soybean oil",
+"ex": "CBOT",
+"code": "07",
+"size": "60,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.01\u00a2 = $6",
+"usd": 600,
+"price": 65.98,
+"months": "Jan, Mar, May, Jul, Aug, Sep, Oct, Dec",
+"settle": "Physical (warehouse receipts)",
+"options": "Yes",
+"of": "ZL",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 39588,
+"day_move": 436,
+"hv20": 17.5,
+"margin_period": "10/2026-12/2026",
+"maint": 2100,
+"initial": 2310,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026-12/2026",
+"maint": 2100
+},
+{
+"period": "01/2027",
+"maint": 2050
+},
+{
+"period": "03/2027",
+"maint": 2000
+}
+],
+"margin_pct": 5.3,
+"leverage": 18.9,
+"days_covered": 4.8
+},
+{
+"sym": "MZL",
+"name": "Micro soybean oil",
+"ex": "CBOT",
+"code": "MZL",
+"size": "6,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.02\u00a2 = $1.20",
+"usd": 60,
+"price": 65.98,
+"months": "as oil",
+"settle": "Cash-settled",
+"options": "No",
+"of": "ZL",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 3959,
+"day_move": 44,
+"hv20": 17.5,
+"margin_period": "12/2026",
+"maint": 210,
+"initial": 231,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 210
+}
+],
+"margin_pct": 5.3,
+"leverage": 18.9,
+"days_covered": 4.8
+},
+{
+"sym": "ZW",
+"name": "Chicago SRW wheat",
+"ex": "CBOT",
+"code": "W",
+"size": "5,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.25\u00a2 = $12.50",
+"usd": 50,
+"price": 628.75,
+"months": "Mar, May, Jul, Sep, Dec",
+"settle": "Physical (shipping certificates)",
+"options": "Yes",
+"of": "ZW",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 31438,
+"day_move": 442,
+"hv20": 22.3,
+"margin_period": "12/2026",
+"maint": 2050,
+"initial": 2255,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 2050
+},
+{
+"period": "03/2027",
+"maint": 2000
+},
+{
+"period": "05/2027",
+"maint": 1900
+}
+],
+"margin_pct": 6.5,
+"leverage": 15.3,
+"days_covered": 4.6
+},
+{
+"sym": "XW",
+"name": "Mini wheat",
+"ex": "CBOT",
+"code": "YW",
+"size": "1,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.125\u00a2 = $1.25",
+"usd": 10,
+"price": 628.75,
+"months": "as wheat",
+"settle": "Physical",
+"options": "No",
+"of": "ZW",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 6288,
+"day_move": 88,
+"hv20": 22.3,
+"margin_period": "12/2026",
+"maint": 410,
+"initial": 451,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 410
+}
+],
+"margin_pct": 6.5,
+"leverage": 15.3,
+"days_covered": 4.7
+},
+{
+"sym": "MZW",
+"name": "Micro wheat",
+"ex": "CBOT",
+"code": "MZW",
+"size": "500 bu",
+"quote": "\u00a2/bu",
+"tick": "0.50\u00a2 = $2.50",
+"usd": 5,
+"price": 628.75,
+"months": "as wheat",
+"settle": "Cash-settled",
+"options": "No",
+"of": "ZW",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 3144,
+"day_move": 44,
+"hv20": 22.3,
+"margin_period": "12/2026",
+"maint": 205,
+"initial": 226,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 205
+}
+],
+"margin_pct": 6.5,
+"leverage": 15.3,
+"days_covered": 4.7
+},
+{
+"sym": "KE",
+"name": "KC HRW wheat",
+"ex": "CBOT",
+"code": "KW",
+"size": "5,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.25\u00a2 = $12.50",
+"usd": 50,
+"price": 672.5,
+"months": "Mar, May, Jul, Sep, Dec",
+"settle": "Physical",
+"options": "Yes",
+"of": "KE",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 33625,
+"day_move": 440,
+"hv20": 20.8,
+"margin_period": "12/2026",
+"maint": 2000,
+"initial": 2200,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 2000
+},
+{
+"period": "03/2027",
+"maint": 1950
+},
+{
+"period": "05/2027",
+"maint": 1900
+}
+],
+"margin_pct": 5.9,
+"leverage": 16.8,
+"days_covered": 4.5
+},
+{
+"sym": "MKC",
+"name": "Mini KC HRW wheat",
+"ex": "CBOT",
+"code": "MKC",
+"size": "1,000 bu",
+"quote": "\u00a2/bu",
+"tick": "0.125\u00a2 = $1.25",
+"usd": 10,
+"price": 672.5,
+"months": "as KC wheat",
+"settle": "Physical",
+"options": "No",
+"of": "KE",
+"front_contract": "Dec 26",
+"price_date": "2026-10-22",
+"notional": 6725,
+"day_move": 88,
+"hv20": 20.8,
+"margin_period": "12/2026",
+"maint": 400,
+"initial": 440,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 400
+}
+],
+"margin_pct": 5.9,
+"leverage": 16.8,
+"days_covered": 4.5
+}
+],
+"cotton": [
+{
+"sym": "CT",
+"name": "Cotton No. 2",
+"ex": "ICE US",
+"code": null,
+"size": "50,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.01\u00a2 = $5",
+"usd": 500,
+"price": 81.92,
+"months": "Mar, May, Jul, Oct, Dec",
+"settle": "Physical (certificated cotton at ICE warehouses)",
+"options": "Yes",
+"margin_note": "ICE margin: see ICE Clear US (risk-based, not published as a flat rate)",
+"of": "CT",
+"front_contract": "Dec 26",
+"price_date": "2026-10-21",
+"notional": 40960,
+"day_move": 584,
+"hv20": 22.6,
+"maint_est": 1924,
+"margin_pct": 4.7,
+"leverage": 21.3
+}
+],
+"hogs": [
+{
+"sym": "HE",
+"name": "Lean hogs",
+"ex": "CME",
+"code": "LN",
+"size": "40,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.025\u00a2 = $10",
+"usd": 400,
+"price": 65.75,
+"months": "Feb, Apr, May, Jun, Jul, Aug, Oct, Dec",
+"settle": "Cash-settled to the CME Lean Hog Index",
+"options": "Yes",
+"of": "HE",
+"front_contract": "Dec 26",
+"price_date": "2026-10-21",
+"notional": 26300,
+"day_move": 343,
+"hv20": 20.7,
+"margin_period": "10/2026-12/2026",
+"maint": 1500,
+"initial": 1650,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026-12/2026",
+"maint": 1500
+},
+{
+"period": "02/2027",
+"maint": 1500
+},
+{
+"period": "04/2027",
+"maint": 1500
+}
+],
+"margin_pct": 5.7,
+"leverage": 17.5,
+"days_covered": 4.4
+},
+{
+"sym": "PRK",
+"name": "Pork cutout",
+"ex": "CME",
+"code": "PRK",
+"size": "40,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.025\u00a2 = $10",
+"usd": 400,
+"price": null,
+"months": "as lean hogs",
+"settle": "Cash-settled to the CME Pork Cutout Index",
+"options": "Yes (thin)",
+"of": null,
+"margin_period": "10/2026-12/2026",
+"maint": 1950,
+"initial": 2145,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026-12/2026",
+"maint": 1950
+}
+]
+}
+],
+"cattle": [
+{
+"sym": "LE",
+"name": "Live cattle",
+"ex": "CME",
+"code": "48",
+"size": "40,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.025\u00a2 = $10",
+"usd": 400,
+"price": 231.05,
+"months": "Feb, Apr, Jun, Aug, Oct, Dec",
+"settle": "Physical delivery or certificate",
+"options": "Yes, incl. weeklies",
+"of": "LE",
+"front_contract": "Dec 26",
+"price_date": "2026-10-21",
+"notional": 92420,
+"day_move": 690,
+"hv20": 11.9,
+"margin_period": "12/2026",
+"maint": 3000,
+"initial": 3300,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 3000
+},
+{
+"period": "12/2026",
+"maint": 3000
+},
+{
+"period": "02/2027",
+"maint": 3000
+}
+],
+"margin_pct": 3.2,
+"leverage": 30.8,
+"days_covered": 4.3
+},
+{
+"sym": "GF",
+"name": "Feeder cattle",
+"ex": "CME",
+"code": "62",
+"size": "50,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.025\u00a2 = $12.50",
+"usd": 500,
+"price": 348.95,
+"months": "Jan, Mar, Apr, May, Aug, Sep, Oct, Nov",
+"settle": "Cash-settled to the CME Feeder Cattle Index",
+"options": "Yes",
+"of": "GF",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 174475,
+"day_move": 1765,
+"hv20": 16.1,
+"margin_period": "11/2026",
+"maint": 5400,
+"initial": 5940,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 5400
+},
+{
+"period": "11/2026",
+"maint": 5400
+},
+{
+"period": "01/2027-10/2027",
+"maint": 5400
+}
+],
+"margin_pct": 3.1,
+"leverage": 32.3,
+"days_covered": 3.1
+}
+],
+"dairy": [
+{
+"sym": "DC",
+"name": "Class III milk",
+"ex": "CME",
+"code": "DA",
+"size": "200,000 lb (2,000 cwt)",
+"quote": "$/cwt",
+"tick": "$0.01 = $20",
+"usd": 2000,
+"price": 17.47,
+"months": "24 consecutive months",
+"settle": "Cash-settled to USDA Class III price",
+"options": "Yes",
+"of": "DC",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 34940,
+"day_move": 650,
+"hv20": 29.5,
+"margin_period": "11/2026",
+"maint": 1550,
+"initial": 1705,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 900
+},
+{
+"period": "11/2026",
+"maint": 1550
+},
+{
+"period": "12/2026-02/2027",
+"maint": 1550
+}
+],
+"margin_pct": 4.4,
+"leverage": 22.5,
+"days_covered": 2.4
+},
+{
+"sym": "GDK",
+"name": "Class IV milk",
+"ex": "CME",
+"code": "DK",
+"size": "200,000 lb (2,000 cwt)",
+"quote": "$/cwt",
+"tick": "$0.01 = $20",
+"usd": 2000,
+"price": 20.83,
+"months": "24 consecutive months",
+"settle": "Cash-settled to USDA Class IV price",
+"options": "Yes",
+"of": "GDK",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 41660,
+"day_move": 488,
+"hv20": 18.6,
+"margin_period": "11/2026",
+"maint": 1750,
+"initial": 1925,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 750
+},
+{
+"period": "11/2026",
+"maint": 1750
+},
+{
+"period": "12/2026-02/2027",
+"maint": 1800
+}
+],
+"margin_pct": 4.2,
+"leverage": 23.8,
+"days_covered": 3.6
+},
+{
+"sym": "CSC",
+"name": "Cash-settled cheese",
+"ex": "CME",
+"code": "CSC",
+"size": "20,000 lb",
+"quote": "$/lb",
+"tick": "$0.001 = $20",
+"usd": 20000,
+"price": 1.639,
+"months": "24 consecutive months",
+"settle": "Cash-settled to USDA monthly cheese price",
+"options": "Yes",
+"of": "CSC",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 32780,
+"day_move": 603,
+"hv20": 29.2,
+"margin_period": "11/2026",
+"maint": 1500,
+"initial": 1650,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 700
+},
+{
+"period": "11/2026",
+"maint": 1500
+},
+{
+"period": "12/2026-01/2027",
+"maint": 1500
+}
+],
+"margin_pct": 4.6,
+"leverage": 21.9,
+"days_covered": 2.5
+},
+{
+"sym": "CB",
+"name": "Cash-settled butter",
+"ex": "CME",
+"code": "CB",
+"size": "20,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.025\u00a2 = $5",
+"usd": 200,
+"price": 140.0,
+"months": "24 consecutive months",
+"settle": "Cash-settled to USDA monthly butter price",
+"options": "Yes",
+"of": "CB",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 28000,
+"day_move": 522,
+"hv20": 29.6,
+"margin_period": "11/2026",
+"maint": 1800,
+"initial": 1980,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 1000
+},
+{
+"period": "11/2026",
+"maint": 1800
+},
+{
+"period": "12/2026-01/2027",
+"maint": 1950
+}
+],
+"margin_pct": 6.4,
+"leverage": 15.6,
+"days_covered": 3.4
+},
+{
+"sym": "GNF",
+"name": "Nonfat dry milk",
+"ex": "CME",
+"code": "NF",
+"size": "44,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.025\u00a2 = $11",
+"usd": 440,
+"price": 202.375,
+"months": "24 consecutive months",
+"settle": "Cash-settled to USDA monthly NDM price",
+"options": "Yes",
+"of": "GNF",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 89045,
+"day_move": 1340,
+"hv20": 23.9,
+"margin_period": "11/2026",
+"maint": 2900,
+"initial": 3190,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 1200
+},
+{
+"period": "11/2026",
+"maint": 2900
+},
+{
+"period": "12/2026-06/2027",
+"maint": 3100
+}
+],
+"margin_pct": 3.3,
+"leverage": 30.7,
+"days_covered": 2.2
+},
+{
+"sym": "DY",
+"name": "Dry whey",
+"ex": "CME",
+"code": "DY",
+"size": "44,000 lb",
+"quote": "\u00a2/lb",
+"tick": "0.025\u00a2 = $11",
+"usd": 440,
+"price": 72.5,
+"months": "24 consecutive months",
+"settle": "Cash-settled to USDA monthly dry whey price",
+"options": "Yes",
+"of": "DY",
+"front_contract": "Oct 26",
+"price_date": "2026-10-21",
+"notional": 31900,
+"day_move": 367,
+"hv20": 18.3,
+"margin_period": "10/2026",
+"maint": 900,
+"initial": 990,
+"margin_long": null,
+"margin_short": null,
+"margin_all": [
+{
+"period": "10/2026",
+"maint": 900
+},
+{
+"period": "11/2026",
+"maint": 1600
+},
+{
+"period": "12/2026-03/2027",
+"maint": 1600
+}
+],
+"margin_pct": 2.8,
+"leverage": 35.4,
+"days_covered": 2.5
+}
+],
+"energy": [
+{
+"sym": "CL",
+"name": "WTI crude oil",
+"ex": "NYMEX",
+"code": "CL",
+"size": "1,000 barrels",
+"quote": "$/bbl",
+"tick": "$0.01 = $10",
+"usd": 1000,
+"price": 101.79,
+"months": "Every month, about 10 years out",
+"settle": "Physical delivery at Cushing, Oklahoma",
+"options": "Yes, incl. weeklies",
+"of": "CL",
+"front_contract": "Nov 26",
+"price_date": "2026-10-20",
+"notional": 101790,
+"day_move": 2192,
+"hv20": 34.2,
+"margin_period": "12/2026",
+"maint": 9515,
+"initial": 10466,
+"margin_long": 8878,
+"margin_short": 9515,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 8878
+},
+{
+"period": "01/2027",
+"maint": 8285
+},
+{
+"period": "02/2027",
+"maint": 7276
+}
+],
+"margin_pct": 9.3,
+"leverage": 10.7,
+"days_covered": 4.3
+},
+{
+"sym": "QM",
+"name": "E-mini crude oil",
+"ex": "NYMEX",
+"code": "QM",
+"size": "500 barrels",
+"quote": "$/bbl",
+"tick": "$0.025 = $12.50",
+"usd": 500,
+"price": 101.79,
+"months": "Every month",
+"settle": "Cash-settled to CL",
+"options": "No",
+"of": "CL",
+"front_contract": "Nov 26",
+"price_date": "2026-10-20",
+"notional": 50895,
+"day_move": 1096,
+"hv20": 34.2,
+"margin_period": "12/2026",
+"maint": 4767,
+"initial": 5244,
+"margin_long": 4449,
+"margin_short": 4767,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 4449
+}
+],
+"margin_pct": 9.4,
+"leverage": 10.7,
+"days_covered": 4.3
+},
+{
+"sym": "MCL",
+"name": "Micro WTI crude oil",
+"ex": "NYMEX",
+"code": "MCL",
+"size": "100 barrels",
+"quote": "$/bbl",
+"tick": "$0.01 = $1",
+"usd": 100,
+"price": 101.79,
+"months": "Every month",
+"settle": "Cash-settled to CL",
+"options": "Yes",
+"of": "CL",
+"front_contract": "Nov 26",
+"price_date": "2026-10-20",
+"notional": 10179,
+"day_move": 219,
+"hv20": 34.2,
+"margin_period": "12/2026",
+"maint": 953,
+"initial": 1048,
+"margin_long": 890,
+"margin_short": 953,
+"margin_all": [
+{
+"period": "12/2026",
+"maint": 890
+}
+],
+"margin_pct": 9.4,
+"leverage": 10.7,
+"days_covered": 4.4
+},
+{
+"sym": "NG",
+"name": "Henry Hub natural gas",
+"ex": "NYMEX",
+"code": "NG",
+"size": "10,000 MMBtu",
+"quote": "$/MMBtu",
+"tick": "$0.001 = $10",
+"usd": 10000,
+"price": 2.776,
+"months": "Every month, about 12 years out",
+"settle": "Physical delivery at Henry Hub, Louisiana",
+"options": "Yes, incl. weeklies",
+"of": "NG",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 27760,
+"day_move": 775,
+"hv20": 44.3,
+"margin_period": "11/2026",
+"maint": 3222,
+"initial": 3544,
+"margin_long": 3147,
+"margin_short": 3222,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 3147
+},
+{
+"period": "12/2026",
+"maint": 2562
+},
+{
+"period": "01/2027",
+"maint": 2643
+}
+],
+"margin_pct": 11.6,
+"leverage": 8.6,
+"days_covered": 4.2
+},
+{
+"sym": "QG",
+"name": "E-mini natural gas",
+"ex": "NYMEX",
+"code": "QG",
+"size": "2,500 MMBtu",
+"quote": "$/MMBtu",
+"tick": "$0.005 = $12.50",
+"usd": 2500,
+"price": 2.776,
+"months": "Every month",
+"settle": "Cash-settled to NG",
+"options": "No",
+"of": "NG",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 6940,
+"day_move": 194,
+"hv20": 44.3,
+"margin_period": "11/2026",
+"maint": 811,
+"initial": 892,
+"margin_long": 792,
+"margin_short": 811,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 792
+}
+],
+"margin_pct": 11.7,
+"leverage": 8.6,
+"days_covered": 4.2
+},
+{
+"sym": "MNG",
+"name": "Micro Henry Hub natural gas",
+"ex": "NYMEX",
+"code": "MNG",
+"size": "1,000 MMBtu",
+"quote": "$/MMBtu",
+"tick": "$0.001 = $1",
+"usd": 1000,
+"price": 2.776,
+"months": "Every month",
+"settle": "Cash-settled to NG",
+"options": "No",
+"of": "NG",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 2776,
+"day_move": 77,
+"hv20": 44.3,
+"margin_period": "11/2026",
+"maint": 324,
+"initial": 356,
+"margin_long": 317,
+"margin_short": 324,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 317
+}
+],
+"margin_pct": 11.7,
+"leverage": 8.6,
+"days_covered": 4.2
+},
+{
+"sym": "HO",
+"name": "NY Harbor ULSD (heating oil)",
+"ex": "NYMEX",
+"code": "HO",
+"size": "42,000 gal (1,000 bbl)",
+"quote": "$/gal",
+"tick": "$0.0001 = $4.20",
+"usd": 42000,
+"price": 4.8253,
+"months": "Every month",
+"settle": "Physical delivery in New York Harbor",
+"options": "Yes",
+"of": "HO",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 202663,
+"day_move": 4669,
+"hv20": 36.6,
+"margin_period": "11/2026",
+"maint": 14264,
+"initial": 15690,
+"margin_long": 14264,
+"margin_short": 13790,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 14264
+},
+{
+"period": "12/2026",
+"maint": 13510
+},
+{
+"period": "01/2027",
+"maint": 12825
+}
+],
+"margin_pct": 7.0,
+"leverage": 14.2,
+"days_covered": 3.1
+},
+{
+"sym": "MHO",
+"name": "Micro NY Harbor ULSD",
+"ex": "NYMEX",
+"code": "MHO",
+"size": "4,200 gal",
+"quote": "$/gal",
+"tick": "$0.0001 = $0.42",
+"usd": 4200,
+"price": 4.8253,
+"months": "Every month",
+"settle": "Cash-settled to HO",
+"options": "No",
+"of": "HO",
+"front_contract": "Nov 26",
+"price_date": "2026-10-22",
+"notional": 20266,
+"day_move": 467,
+"hv20": 36.6,
+"margin_period": "11/2026",
+"maint": 1427,
+"initial": 1570,
+"margin_long": 1427,
+"margin_short": 1380,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 1427
+}
+],
+"margin_pct": 7.0,
+"leverage": 14.2,
+"days_covered": 3.1
+},
+{
+"sym": "RB",
+"name": "RBOB gasoline",
+"ex": "NYMEX",
+"code": "RB",
+"size": "42,000 gal (1,000 bbl)",
+"quote": "$/gal",
+"tick": "$0.0001 = $4.20",
+"usd": 42000,
+"price": 3.1455,
+"months": "Every month",
+"settle": "Physical delivery in New York Harbor",
+"options": "Yes",
+"of": "RB",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 132111,
+"day_move": 2876,
+"hv20": 34.6,
+"margin_period": "11/2026",
+"maint": 9290,
+"initial": 10219,
+"margin_long": 9290,
+"margin_short": 7929,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 9290
+},
+{
+"period": "12/2026",
+"maint": 8587
+},
+{
+"period": "01/2027",
+"maint": 8173
+}
+],
+"margin_pct": 7.0,
+"leverage": 14.2,
+"days_covered": 3.2
+},
+{
+"sym": "MRB",
+"name": "Micro RBOB gasoline",
+"ex": "NYMEX",
+"code": "MRB",
+"size": "4,200 gal",
+"quote": "$/gal",
+"tick": "$0.0001 = $0.42",
+"usd": 4200,
+"price": 3.1455,
+"months": "Every month",
+"settle": "Cash-settled to RB",
+"options": "No",
+"of": "RB",
+"front_contract": "Nov 26",
+"price_date": "2026-10-21",
+"notional": 13211,
+"day_move": 288,
+"hv20": 34.6,
+"margin_period": "11/2026",
+"maint": 930,
+"initial": 1023,
+"margin_long": 930,
+"margin_short": 794,
+"margin_all": [
+{
+"period": "11/2026",
+"maint": 930
+}
+],
+"margin_pct": 7.0,
+"leverage": 14.2,
+"days_covered": 3.2
+}
+]
+}
+}

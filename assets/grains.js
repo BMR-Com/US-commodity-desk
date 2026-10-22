@@ -207,6 +207,7 @@ const Grains = (() => {
           ${c.lines.map(l => `<tr><td class="l">${l[0]}</td><td class="l">${l[1]}</td><td class="l">${l[2]}</td></tr>`).join('')}</table></div>
           <h3>Linkages</h3><ul class="read">${c.links.map(x => `<li>${x}</li>`).join('')}</ul></div>
       </div>
+      ${Specs.slot('grains', [c.sym])}
       <div class="card" style="margin-top:12px" id="gWhatIf"></div>
       ${c.crush ? '<div class="card" style="margin-top:12px" id="gCrush"></div>' : ''}`;
     whatIf(c, it, su, u.cur);

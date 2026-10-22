@@ -1,0 +1,590 @@
+{
+"asof": "2026-10-21",
+"source": "CME Group margins (outright maintenance), collected from cmegroup.com",
+"rows": [
+{
+"code": "C",
+"period": "12/2026",
+"name": "CORN FUTURES",
+"maint": "1,100 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "C",
+"period": "03/2027",
+"name": "CORN FUTURES",
+"maint": "1,050 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "C",
+"period": "05/2027",
+"name": "CORN FUTURES",
+"maint": "1,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "S",
+"period": "11/2026",
+"name": "SOYBEAN FUTURES",
+"maint": "2,300 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "S",
+"period": "01/2027",
+"name": "SOYBEAN FUTURES",
+"maint": "2,250 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "S",
+"period": "03/2027",
+"name": "SOYBEAN FUTURES",
+"maint": "2,050 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "06",
+"period": "10/2026-12/2026",
+"name": "SOYBEAN MEAL FUTURES",
+"maint": "1,550 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "06",
+"period": "01/2027",
+"name": "SOYBEAN MEAL FUTURES",
+"maint": "1,500 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "06",
+"period": "03/2027",
+"name": "SOYBEAN MEAL FUTURES",
+"maint": "1,400 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "07",
+"period": "10/2026-12/2026",
+"name": "SOYBEAN OIL FUTURES",
+"maint": "2,100 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "07",
+"period": "01/2027",
+"name": "SOYBEAN OIL FUTURES",
+"maint": "2,050 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "07",
+"period": "03/2027",
+"name": "SOYBEAN OIL FUTURES",
+"maint": "2,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "W",
+"period": "12/2026",
+"name": "WHEAT FUTURES",
+"maint": "2,050 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "W",
+"period": "03/2027",
+"name": "WHEAT FUTURES",
+"maint": "2,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "W",
+"period": "05/2027",
+"name": "WHEAT FUTURES",
+"maint": "1,900 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "KW",
+"period": "12/2026",
+"name": "KC  HRW WHEAT FUTURES",
+"maint": "2,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "KW",
+"period": "03/2027",
+"name": "KC  HRW WHEAT FUTURES",
+"maint": "1,950 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "KW",
+"period": "05/2027",
+"name": "KC  HRW WHEAT FUTURES",
+"maint": "1,900 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "YC",
+"period": "12/2026",
+"name": "MINI-SIZED CORN FUTURES",
+"maint": "220 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "YK",
+"period": "11/2026",
+"name": "MINI-SIZED SOYBEANS FUTURES",
+"maint": "460 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "YW",
+"period": "12/2026",
+"name": "MINI-SIZED WHEAT FUTURES",
+"maint": "410 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "MKC",
+"period": "12/2026",
+"name": "MINI-SIZED KC HRW WHEAT FUTURES",
+"maint": "400 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "MZC",
+"period": "12/2026",
+"name": "MICRO CORN FUTURES",
+"maint": "110 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "MZS",
+"period": "11/2026",
+"name": "MICRO SOYBEAN FUTURES",
+"maint": "230 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "MZM",
+"period": "12/2026",
+"name": "MICRO SOYBEAN MEAL FUTURES",
+"maint": "155 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "MZL",
+"period": "12/2026",
+"name": "MICRO SOYBEAN OIL FUTURES",
+"maint": "210 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "MZW",
+"period": "12/2026",
+"name": "MICRO WHEAT FUTURES",
+"maint": "205 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DA",
+"period": "10/2026",
+"name": "CLASS III MILK FUTURES",
+"maint": "900 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DA",
+"period": "11/2026",
+"name": "CLASS III MILK FUTURES",
+"maint": "1,550 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DA",
+"period": "12/2026-02/2027",
+"name": "CLASS III MILK FUTURES",
+"maint": "1,550 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DK",
+"period": "10/2026",
+"name": "CLASS IV MILK FUTURE",
+"maint": "750 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DK",
+"period": "11/2026",
+"name": "CLASS IV MILK FUTURE",
+"maint": "1,750 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DK",
+"period": "12/2026-02/2027",
+"name": "CLASS IV MILK FUTURE",
+"maint": "1,800 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "CSC",
+"period": "10/2026",
+"name": "CASH CHEESE FUTURES",
+"maint": "700 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "CSC",
+"period": "11/2026",
+"name": "CASH CHEESE FUTURES",
+"maint": "1,500 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "CSC",
+"period": "12/2026-01/2027",
+"name": "CASH CHEESE FUTURES",
+"maint": "1,500 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "CB",
+"period": "10/2026",
+"name": "CASH BUTTER FUTURE",
+"maint": "1,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "CB",
+"period": "11/2026",
+"name": "CASH BUTTER FUTURE",
+"maint": "1,800 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "CB",
+"period": "12/2026-01/2027",
+"name": "CASH BUTTER FUTURE",
+"maint": "1,950 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "NF",
+"period": "10/2026",
+"name": "NONFAT DRY MILK FUTURES",
+"maint": "1,200 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "NF",
+"period": "11/2026",
+"name": "NONFAT DRY MILK FUTURES",
+"maint": "2,900 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "NF",
+"period": "12/2026-06/2027",
+"name": "NONFAT DRY MILK FUTURES",
+"maint": "3,100 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DY",
+"period": "10/2026",
+"name": "CME DRY WHEY FUTURES",
+"maint": "900 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DY",
+"period": "11/2026",
+"name": "CME DRY WHEY FUTURES",
+"maint": "1,600 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "DY",
+"period": "12/2026-03/2027",
+"name": "CME DRY WHEY FUTURES",
+"maint": "1,600 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "48",
+"period": "10/2026",
+"name": "LIVE CATTLE FUTURES",
+"maint": "3,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "48",
+"period": "12/2026",
+"name": "LIVE CATTLE FUTURES",
+"maint": "3,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "48",
+"period": "02/2027",
+"name": "LIVE CATTLE FUTURES",
+"maint": "3,000 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "62",
+"period": "10/2026",
+"name": "FEEDER CATTLE FUTURES",
+"maint": "5,400 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "62",
+"period": "11/2026",
+"name": "FEEDER CATTLE FUTURES",
+"maint": "5,400 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "62",
+"period": "01/2027-10/2027",
+"name": "FEEDER CATTLE FUTURES",
+"maint": "5,400 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "LN",
+"period": "10/2026-12/2026",
+"name": "LEAN HOG FUTURES",
+"maint": "1,500 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "LN",
+"period": "02/2027",
+"name": "LEAN HOG FUTURES",
+"maint": "1,500 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "LN",
+"period": "04/2027",
+"name": "LEAN HOG FUTURES",
+"maint": "1,500 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "PRK",
+"period": "10/2026-12/2026",
+"name": "PORK CUTOUT FUTURE",
+"maint": "1,950 USD",
+"maint_long": null,
+"maint_short": null
+},
+{
+"code": "CL",
+"period": "12/2026",
+"name": "CRUDE OIL FUTURE NYMEX",
+"maint": null,
+"maint_long": "8,878 USD",
+"maint_short": "9,515 USD"
+},
+{
+"code": "CL",
+"period": "01/2027",
+"name": "CRUDE OIL FUTURE NYMEX",
+"maint": null,
+"maint_long": "8,285 USD",
+"maint_short": "8,422 USD"
+},
+{
+"code": "CL",
+"period": "02/2027",
+"name": "CRUDE OIL FUTURE NYMEX",
+"maint": null,
+"maint_long": "7,276 USD",
+"maint_short": "7,278 USD"
+},
+{
+"code": "QM",
+"period": "12/2026",
+"name": "E-MINI CRUDE OIL FUTURES",
+"maint": null,
+"maint_long": "4,449 USD",
+"maint_short": "4,767 USD"
+},
+{
+"code": "MCL",
+"period": "12/2026",
+"name": "MICRO WTI CRUDE OIL FUTURES",
+"maint": null,
+"maint_long": "890 USD",
+"maint_short": "953 USD"
+},
+{
+"code": "NG",
+"period": "11/2026",
+"name": "NATURAL GAS HENRY HUB FUTURE",
+"maint": null,
+"maint_long": "3,147 USD",
+"maint_short": "3,222 USD"
+},
+{
+"code": "NG",
+"period": "12/2026",
+"name": "NATURAL GAS HENRY HUB FUTURE",
+"maint": null,
+"maint_long": "2,562 USD",
+"maint_short": "2,435 USD"
+},
+{
+"code": "NG",
+"period": "01/2027",
+"name": "NATURAL GAS HENRY HUB FUTURE",
+"maint": null,
+"maint_long": "2,643 USD",
+"maint_short": "2,539 USD"
+},
+{
+"code": "QG",
+"period": "11/2026",
+"name": "E-MINI NATURAL GAS FUTURES",
+"maint": null,
+"maint_long": "792 USD",
+"maint_short": "811 USD"
+},
+{
+"code": "MNG",
+"period": "11/2026",
+"name": "MICRO HENRY HUB NATURAL GAS FUTURES",
+"maint": null,
+"maint_long": "317 USD",
+"maint_short": "324 USD"
+},
+{
+"code": "HO",
+"period": "11/2026",
+"name": "NY HARBOR ULSD FUT",
+"maint": null,
+"maint_long": "14,264 USD",
+"maint_short": "13,790 USD"
+},
+{
+"code": "HO",
+"period": "12/2026",
+"name": "NY HARBOR ULSD FUT",
+"maint": null,
+"maint_long": "13,510 USD",
+"maint_short": "13,101 USD"
+},
+{
+"code": "HO",
+"period": "01/2027",
+"name": "NY HARBOR ULSD FUT",
+"maint": null,
+"maint_long": "12,825 USD",
+"maint_short": "12,140 USD"
+},
+{
+"code": "MHO",
+"period": "11/2026",
+"name": "MICRO NY HARBOR ULSD FUT",
+"maint": null,
+"maint_long": "1,427 USD",
+"maint_short": "1,380 USD"
+},
+{
+"code": "RB",
+"period": "11/2026",
+"name": "RBOB GASOLINE FUTURES",
+"maint": null,
+"maint_long": "9,290 USD",
+"maint_short": "7,929 USD"
+},
+{
+"code": "RB",
+"period": "12/2026",
+"name": "RBOB GASOLINE FUTURES",
+"maint": null,
+"maint_long": "8,587 USD",
+"maint_short": "7,187 USD"
+},
+{
+"code": "RB",
+"period": "01/2027",
+"name": "RBOB GASOLINE FUTURES",
+"maint": null,
+"maint_long": "8,173 USD",
+"maint_short": "6,949 USD"
+},
+{
+"code": "MRB",
+"period": "11/2026",
+"name": "MICRO RBOB GASOLINE FUTURE",
+"maint": null,
+"maint_long": "930 USD",
+"maint_short": "794 USD"
+}
+]
+}

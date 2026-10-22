@@ -235,3 +235,23 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
 - `models/lab_export.py` (nightly) writes `data/lab_export/manifest.json`: back-test results, strategy labs, playbooks,
   calendar and the model code, each with sha256 and Pages URL. A private repo can mirror them with the sync workflow
   (`sync_desk_lab.yml`, given to the owner to add there; it needs no secrets).
+
+## Desk clock (2026-10-22): reliable timing without GitHub cron
+- GitHub's cron on this repo delivered runs 1-5 hours late or not at all (on Thu 2026-10-22 none of the eight export-sales
+  crons fired; the morning brief cron ran ~5 h late). `.github/workflows/clock.yml` + `pipelines/clock.py` now start each
+  data workflow with workflow_dispatch (runs immediately) on an America/New_York timetable (DST handled), skipping any
+  workflow that already ran after the entry time and catching up missed entries (up to 4 h) once per workflow. One clock
+  runs at a time (≤ ~5h50m), hands over to the next during the day, stops overnight and at weekends; seven weekday crons
+  restart it. Uses GITHUB_TOKEN (actions: write); no secrets. `python3 pipelines/clock.py --plan` prints the week.
+- Workflows keep their own crons as a backstop; duplicates are harmless (each workflow has a concurrency group).
+
+## What needs Claude (scheduled tasks on Ma's account) vs what does not
+- GitHub Actions (no Claude): every data pipeline, model, lab, playbook and the site.
+- Claude task "CME ags evening download + FAS flash sales" (weekdays 21:41 CT, uses the Claude desktop browser on Ma's
+  computer): CME futures volume/OI/settlement files, option settlements, FAS flash sales. The no-Claude alternative is
+  `local/mac_collector.py` (launchd via `bash local/install_mac.sh`; now also collects options and margins); once it is
+  installed and pushing ("CME data and FAS flash (Mac collector)" commits), the Claude task can be disabled.
+- Claude task "US Ags morning brief" (07:46 ET daily): sends the brief to Ma's phone with a news search; the brief data
+  itself is built by brief.yml.
+- Claude task "Weekly research report (cotton, sugar, coffee)" (Fri 16:48 CT): the research blog artifact.
+- Site chat: Groq via the chat proxy (GROQ_API_KEY), not Claude.

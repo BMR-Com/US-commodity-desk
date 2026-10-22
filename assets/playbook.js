@@ -7,7 +7,7 @@ const Playbook = (() => {
   function statLine(s) {
     if (!s) return '';
     if (s.sharpe == null) return `<p class="note">Track record: right ${n(s.hit, 0)}% of the time, ${usd(s.avg_usd_per_class_contract)} average per Class contract, ${s.months ?? '–'} months.</p>`;
-    return `<p class="note">Track record (one lot per signal, after costs): Sharpe <b>${n(s.sharpe)}</b> (2020-23 ${n(s.sharpe_2020_23)}, 2024-26 ${n(s.sharpe_2024_26)}) · right ${n(s.hit, 0)}% · average win ${usd(s.avg_win_usd)} vs loss ${usd(s.avg_loss_usd)} · ${usd(s.ann_usd)} a year · worst drawdown ${usd(s.maxdd_usd)} · worst week ${usd(s.worst_week_usd)} · ${s.trades} trades${s.avg_lots ? `, ${s.avg_lots} lots open on average` : ''}</p>`;
+    return `<p class="note">Track record (one lot per signal, after costs): Sharpe <b>${n(s.sharpe)}</b> (${s.sharpe_2012_19 != null ? `2012-19 ${n(s.sharpe_2012_19)}, ` : ''}2020-23 ${n(s.sharpe_2020_23)}, 2024-26 ${n(s.sharpe_2024_26)}) · right ${n(s.hit, 0)}% · average win ${usd(s.avg_win_usd)} vs loss ${usd(s.avg_loss_usd)} · ${usd(s.ann_usd)} a year · worst drawdown ${usd(s.maxdd_usd)} · worst week ${usd(s.worst_week_usd)} · ${s.trades} trades${s.avg_lots ? `, ${s.avg_lots} lots open on average` : ''}</p>`;
   }
   function posTable(P) {
     if (!P.length) return '<p><b>Now:</b> no position. Nothing meets the entry rule today.</p>';
@@ -30,16 +30,26 @@ const Playbook = (() => {
       ${t.levels ? `<p class="note">Levels on ${t.levels.month} as of ${t.levels.date}: close ${n(t.levels.close, 3)} · buy above ${n(t.levels.buy_above, 3)} · sell below ${n(t.levels.sell_below, 3)} · long exit below ${n(t.levels.exit_long_below, 3)} · short exit above ${n(t.levels.exit_short_above, 3)}</p>` : ''}
       ${posTable(t.positions)}${statLine(t.stats)}</details>`;
   }
+  const sg = v => v == null ? '–' : `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${(+v).toFixed(2)}</span>`;
+  function gridHtml(G) {
+    if (!G || !G.length) return '';
+    return `<details><summary>Every variant tested, best first (ranked by the weakest of 2012-19, 2020-23, 2024-26)</summary>${T(['Variant', 'Family', 'Sharpe', '2012-19', '2020-23', '2024-26', 'Hit', 'Win / loss', '$ / year', 'Worst drawdown', 'Avg lots'],
+      G.map(g => `<tr><td class="l">${g.key}</td><td class="l">${g.group}</td><td><b>${sg(g.sharpe)}</b></td><td>${sg(g.sharpe_2012_19)}</td><td>${sg(g.sharpe_2020_23)}</td><td>${sg(g.sharpe_2024_26)}</td><td>${n(g.hit, 0)}%</td><td>${n(g.payoff)}</td><td>${usd(g.ann_usd)}</td><td>${usd(g.maxdd_usd)}</td><td>${n(g.avg_lots, 1)}</td></tr>`))}</details>`;
+  }
+  function accHtml(A) {
+    if (!A) return '';
+    return Object.entries(A).map(([s, a]) => `<p class="note">How well each method predicts the final settlement (${s}, mean abs error, % of price): ${Object.entries(a).map(([h, x]) => `${h.replace('le_', '≤')}: futures ${x.futures_mae_pct}%, cash ${x.rw_mae_pct}%, cash + seasonal ${x.sea_mae_pct}%, model ${x.ridge_mae_pct}%, model + futures ${x.ridge_b_mae_pct}%`).join(' · ')}. Futures are the best single forecast at every horizon.</p>`).join('');
+  }
   async function mount(el) {
     const d = await getJSON(el.dataset.playbook).catch(() => null);
     if (!d) { el.innerHTML = ''; return; }
     const live = d.trades.filter(t => t.positions.length);
-    el.innerHTML = `<div class="card"><h2>Trade playbook <span class="note">positions as of ${d.as_of} settlements (updated nightly); track records refreshed ${d.stats_generated || '–'} (weekly), tested from ${d.stats_since || '–'}</span></h2>
+    el.innerHTML = `<div class="card"><h2>Trade playbook <span class="note">positions as of ${d.as_of} settlements (updated nightly); track records refreshed ${d.stats_generated || "–"}, tested from ${d.stats_since || '–'}</span></h2>
       <p>Every strategy the desk has tested, written as a trade: when to get in, when to get out, the risk, and what to watch. ${live.length ? `Live today: ${live.map(t => `<b>${t.name}</b> (${t.positions.length})`).join(', ')}.` : 'No strategy has a live signal today.'}</p>
-      ${d.intro ? `<p>${d.intro}</p>` : ''}</div>${d.trades.map(card).join('')}
+      ${d.intro ? `<p>${d.intro}</p>` : ''}${accHtml(d.accuracy)}${gridHtml(d.grid)}</div>${d.trades.map(card).join('')}
       <p class="note">Research only, not advice. Results assume fills at settlement for one lot per signal after half a bid-ask per side; these markets are thin, so larger size moves prices. Check live quotes before acting.</p>`;
   }
-  const run = () => document.querySelectorAll('[data-playbook]').forEach(mount);
+  const run = () => document.querySelectorAll('[data-playbook]').forEach(el => el.dataset.mounted || (el.dataset.mounted = 1, mount(el)));
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', run) : run();
   return { mount };
 })();

@@ -208,3 +208,17 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
   dairy strategy as a trade card (thesis, entry, exit, risk, what to track), today's positions from the latest settlements and
   spot nowcast, and the track record from `dairy_ideas.json` (weekly, Wednesdays).
 - `assets/playbook.js` renders any `<div data-playbook="...json">`; shared with the meats playbook.
+
+## Meats strategy lab and playbooks (hogs / cattle Outlook tabs)
+- `models/meats_lab.py` (nightly in contracts.yml, ~2-3 min) tests on HE, LE, GF since 2012 with walk-forward models and
+  2012-19 / 2020-23 / 2024-26 splits: cash convergence (rebuilt Lean Hog Index; 5-area weekly live steer price), expiry
+  premium, 4-week trend, seasonal, breakout with stops, feeders vs the feeding margin. Live cattle positions end on the
+  last business day before the contract month (delivery); `premx_LE_*` holds through the delivery month for comparison.
+- Writes `data/livestock/derived/meats_lab.json`, `playbook_hogs.json`, `playbook_cattle.json`; rendered by
+  `assets/playbook.js` at the top of the hogs and cattle Outlook tabs. Positions are listed only for ideas whose weakest
+  period Sharpe is at least 0.3.
+- Findings (Oct 2026): futures beat every cash-based forecast of the final settlement at every horizon. Hogs: nothing
+  robust. Live cattle: cash + seasonal convergence within 6 weeks (gap > $2) is the only idea positive in all periods
+  (Sharpe ~0.6). The long live-cattle premium (Sharpe ~1.1) is earned almost entirely in the delivery month.
+- No Feeder Cattle Index history yet (the Mac collector stores the last 5 values in data/cme/indexes.csv); a GF cash
+  convergence test can be added once enough history accumulates.

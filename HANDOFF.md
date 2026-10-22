@@ -222,3 +222,16 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
   (Sharpe ~0.6). The long live-cattle premium (Sharpe ~1.1) is earned almost entirely in the delivery month.
 - No Feeder Cattle Index history yet (the Mac collector stores the last 5 values in data/cme/indexes.csv); a GF cash
   convergence test can be added once enough history accumulates.
+
+## Contract calendar (roll / notice / last trading days)
+- `models/contract_calendar.py` (nightly in contracts.yml) codes the CME / ICE expiry rules for every desk market (CBOT grains,
+  ICE cotton, CME livestock and dairy, NYMEX energy) with the US exchange holiday calendar and writes `data/specs/calendar.json`:
+  next contracts with first position day, first notice day, last trading day, USDA announcement (dairy) and a desk
+  "roll / exit by" date. On Mondays (or with `--check`) it checks the rules against every expired contract's last bar.
+- Rendered under every primer's "Contracts, size and margin" card (`assets/specs.js`), and as a "Roll / exit by" column on
+  every playbook position (`assets/playbook.js`).
+
+## Lab export (mirroring into another repo)
+- `models/lab_export.py` (nightly) writes `data/lab_export/manifest.json`: back-test results, strategy labs, playbooks,
+  calendar and the model code, each with sha256 and Pages URL. A private repo can mirror them with the sync workflow
+  (`sync_desk_lab.yml`, given to the owner to add there; it needs no secrets).

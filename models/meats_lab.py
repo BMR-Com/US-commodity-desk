@@ -477,7 +477,7 @@ def main():
         stt = bstate[s]
         pos = []
         if stt.get("pos"):
-            pos.append({"contract": f"{SPEC[s][2]} {pd.Period(stt['month'], 'M').strftime('%b %Y')}", "side": "long" if stt["pos"] > 0 else "short",
+            pos.append({"contract": f"{SPEC[s][2]} {pd.Period(stt['month'], 'M').strftime('%b %Y')}", "sym": s, "month": stt["month"], "side": "long" if stt["pos"] > 0 else "short",
                         "entry_price": round(stt["entry"], 3), "entry_date": stt["entry_date"], "futures": round(stt["close"], 3), "stop": round(stt["stop"], 3),
                         "unit": SPEC[s][3], "open_pnl_usd": stt["open_pnl_usd"],
                         "exit_signal": (f"close on a settle below {stt['exit_long_below']:.3f} or the stop {stt['stop']:.3f}" if stt["pos"] > 0 else

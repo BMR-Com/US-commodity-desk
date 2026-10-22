@@ -1,0 +1,1464 @@
+{
+"generated": "2026-10-22",
+"explain": {
+"fpd": "First position day: the first day a short can declare intent to deliver (CBOT). Longs still holding can be assigned delivery after it.",
+"fnd": "First notice day: the first day delivery notices can be issued to long holders.",
+"ltd": "Last trading day: trading in the contract ends; cash-settled contracts settle to the index or USDA price, physical ones go to delivery.",
+"out_by": "Desk rule: the last day to roll or exit a speculative position (business day before the first position / notice day for physical contracts, the last trading day for cash-settled ones; two business days before the last trading day for energy)."
+},
+"markets": {
+"ZC": {
+"name": "Corn",
+"settle": "physical",
+"roll": "Roll or exit before first position day; most volume rolls 5-15 days before it (index funds roll on the 5th-9th business day of the month before).",
+"rule": "CBOT grains: LTD = business day before the 15th; FND = last business day of the prior month; FPD = the business day before FND (two business days before the delivery month). Longs must be out before FPD to avoid delivery.",
+"contracts": [
+{
+"contract": "ZCZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-14",
+"out_by": "2026-11-25",
+"days_to_out": 24
+},
+{
+"contract": "ZCH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-12",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "ZCK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-14",
+"out_by": "2027-04-28",
+"days_to_out": 128
+},
+{
+"contract": "ZCN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-14",
+"out_by": "2027-06-28",
+"days_to_out": 169
+},
+{
+"contract": "ZCU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-14",
+"out_by": "2027-08-27",
+"days_to_out": 212
+},
+{
+"contract": "ZCZ2027",
+"month": "2027-12",
+"fpd": "2027-11-29",
+"fnd": "2027-11-30",
+"ltd": "2027-12-14",
+"out_by": "2027-11-26",
+"days_to_out": 275
+},
+{
+"contract": "ZCH2028",
+"month": "2028-03",
+"fpd": "2028-02-28",
+"fnd": "2028-02-29",
+"ltd": "2028-03-14",
+"out_by": "2028-02-25",
+"days_to_out": 336
+}
+]
+},
+"ZS": {
+"name": "Soybeans",
+"settle": "physical",
+"roll": "As corn.",
+"rule": "CBOT grains: LTD = business day before the 15th; FND = last business day of the prior month; FPD = the business day before FND (two business days before the delivery month). Longs must be out before FPD to avoid delivery.",
+"contracts": [
+{
+"contract": "ZSX2026",
+"month": "2026-11",
+"fpd": "2026-10-29",
+"fnd": "2026-10-30",
+"ltd": "2026-11-13",
+"out_by": "2026-10-28",
+"days_to_out": 4
+},
+{
+"contract": "ZSF2027",
+"month": "2027-01",
+"fpd": "2026-12-30",
+"fnd": "2026-12-31",
+"ltd": "2027-01-14",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "ZSH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-12",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "ZSK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-14",
+"out_by": "2027-04-28",
+"days_to_out": 128
+},
+{
+"contract": "ZSN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-14",
+"out_by": "2027-06-28",
+"days_to_out": 169
+},
+{
+"contract": "ZSQ2027",
+"month": "2027-08",
+"fpd": "2027-07-29",
+"fnd": "2027-07-30",
+"ltd": "2027-08-13",
+"out_by": "2027-07-28",
+"days_to_out": 190
+},
+{
+"contract": "ZSU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-14",
+"out_by": "2027-08-27",
+"days_to_out": 212
+}
+]
+},
+"ZM": {
+"name": "Soybean meal",
+"settle": "physical",
+"roll": "As corn.",
+"rule": "CBOT grains: LTD = business day before the 15th; FND = last business day of the prior month; FPD = the business day before FND (two business days before the delivery month). Longs must be out before FPD to avoid delivery.",
+"contracts": [
+{
+"contract": "ZMZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-14",
+"out_by": "2026-11-25",
+"days_to_out": 24
+},
+{
+"contract": "ZMF2027",
+"month": "2027-01",
+"fpd": "2026-12-30",
+"fnd": "2026-12-31",
+"ltd": "2027-01-14",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "ZMH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-12",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "ZMK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-14",
+"out_by": "2027-04-28",
+"days_to_out": 128
+},
+{
+"contract": "ZMN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-14",
+"out_by": "2027-06-28",
+"days_to_out": 169
+},
+{
+"contract": "ZMQ2027",
+"month": "2027-08",
+"fpd": "2027-07-29",
+"fnd": "2027-07-30",
+"ltd": "2027-08-13",
+"out_by": "2027-07-28",
+"days_to_out": 190
+},
+{
+"contract": "ZMU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-14",
+"out_by": "2027-08-27",
+"days_to_out": 212
+}
+]
+},
+"ZL": {
+"name": "Soybean oil",
+"settle": "physical",
+"roll": "As corn.",
+"rule": "CBOT grains: LTD = business day before the 15th; FND = last business day of the prior month; FPD = the business day before FND (two business days before the delivery month). Longs must be out before FPD to avoid delivery.",
+"contracts": [
+{
+"contract": "ZLZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-14",
+"out_by": "2026-11-25",
+"days_to_out": 24
+},
+{
+"contract": "ZLF2027",
+"month": "2027-01",
+"fpd": "2026-12-30",
+"fnd": "2026-12-31",
+"ltd": "2027-01-14",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "ZLH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-12",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "ZLK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-14",
+"out_by": "2027-04-28",
+"days_to_out": 128
+},
+{
+"contract": "ZLN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-14",
+"out_by": "2027-06-28",
+"days_to_out": 169
+},
+{
+"contract": "ZLQ2027",
+"month": "2027-08",
+"fpd": "2027-07-29",
+"fnd": "2027-07-30",
+"ltd": "2027-08-13",
+"out_by": "2027-07-28",
+"days_to_out": 190
+},
+{
+"contract": "ZLU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-14",
+"out_by": "2027-08-27",
+"days_to_out": 212
+}
+]
+},
+"ZW": {
+"name": "Chicago wheat",
+"settle": "physical",
+"roll": "As corn.",
+"rule": "CBOT grains: LTD = business day before the 15th; FND = last business day of the prior month; FPD = the business day before FND (two business days before the delivery month). Longs must be out before FPD to avoid delivery.",
+"contracts": [
+{
+"contract": "ZWZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-14",
+"out_by": "2026-11-25",
+"days_to_out": 24
+},
+{
+"contract": "ZWH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-12",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "ZWK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-14",
+"out_by": "2027-04-28",
+"days_to_out": 128
+},
+{
+"contract": "ZWN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-14",
+"out_by": "2027-06-28",
+"days_to_out": 169
+},
+{
+"contract": "ZWU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-14",
+"out_by": "2027-08-27",
+"days_to_out": 212
+},
+{
+"contract": "ZWZ2027",
+"month": "2027-12",
+"fpd": "2027-11-29",
+"fnd": "2027-11-30",
+"ltd": "2027-12-14",
+"out_by": "2027-11-26",
+"days_to_out": 275
+},
+{
+"contract": "ZWH2028",
+"month": "2028-03",
+"fpd": "2028-02-28",
+"fnd": "2028-02-29",
+"ltd": "2028-03-14",
+"out_by": "2028-02-25",
+"days_to_out": 336
+}
+]
+},
+"KE": {
+"name": "KC wheat",
+"settle": "physical",
+"roll": "As corn.",
+"rule": "CBOT grains: LTD = business day before the 15th; FND = last business day of the prior month; FPD = the business day before FND (two business days before the delivery month). Longs must be out before FPD to avoid delivery.",
+"contracts": [
+{
+"contract": "KEZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-14",
+"out_by": "2026-11-25",
+"days_to_out": 24
+},
+{
+"contract": "KEH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-12",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "KEK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-14",
+"out_by": "2027-04-28",
+"days_to_out": 128
+},
+{
+"contract": "KEN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-14",
+"out_by": "2027-06-28",
+"days_to_out": 169
+},
+{
+"contract": "KEU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-14",
+"out_by": "2027-08-27",
+"days_to_out": 212
+},
+{
+"contract": "KEZ2027",
+"month": "2027-12",
+"fpd": "2027-11-29",
+"fnd": "2027-11-30",
+"ltd": "2027-12-14",
+"out_by": "2027-11-26",
+"days_to_out": 275
+},
+{
+"contract": "KEH2028",
+"month": "2028-03",
+"fpd": "2028-02-28",
+"fnd": "2028-02-29",
+"ltd": "2028-03-14",
+"out_by": "2028-02-25",
+"days_to_out": 336
+}
+]
+},
+"CT": {
+"name": "Cotton No. 2",
+"settle": "physical",
+"roll": "Exit or roll before first notice day; open interest and liquidity move to the next month 1-3 weeks earlier.",
+"rule": "ICE cotton No. 2: FND = five business days before the first business day of the delivery month; LTD = seventeen business days from the end of the delivery month.",
+"contracts": [
+{
+"contract": "CTZ2026",
+"month": "2026-12",
+"fnd": "2026-11-23",
+"ltd": "2026-12-08",
+"out_by": "2026-11-20",
+"days_to_out": 21
+},
+{
+"contract": "CTH2027",
+"month": "2027-03",
+"fnd": "2027-02-22",
+"ltd": "2027-03-08",
+"out_by": "2027-02-19",
+"days_to_out": 81
+},
+{
+"contract": "CTK2027",
+"month": "2027-05",
+"fnd": "2027-04-26",
+"ltd": "2027-05-06",
+"out_by": "2027-04-23",
+"days_to_out": 125
+},
+{
+"contract": "CTN2027",
+"month": "2027-07",
+"fnd": "2027-06-24",
+"ltd": "2027-07-08",
+"out_by": "2027-06-23",
+"days_to_out": 166
+},
+{
+"contract": "CTV2027",
+"month": "2027-10",
+"fnd": "2027-09-24",
+"ltd": "2027-10-07",
+"out_by": "2027-09-23",
+"days_to_out": 230
+},
+{
+"contract": "CTZ2027",
+"month": "2027-12",
+"fnd": "2027-11-23",
+"ltd": "2027-12-07",
+"out_by": "2027-11-22",
+"days_to_out": 272
+},
+{
+"contract": "CTH2028",
+"month": "2028-03",
+"fnd": "2028-02-23",
+"ltd": "2028-03-09",
+"out_by": "2028-02-22",
+"days_to_out": 333
+}
+]
+},
+"LE": {
+"name": "Live cattle",
+"settle": "physical",
+"roll": "Speculators exit before the contract month: from its first business day, longs can be assigned live cattle.",
+"rule": "Live cattle: physical delivery; LTD = last business day of the contract month (noon CT). Deliveries can be tendered from the first business day of the contract month, so speculative longs exit before it.",
+"contracts": [
+{
+"contract": "LEV2026",
+"month": "2026-10",
+"fnd": "2026-10-01",
+"ltd": "2026-10-30",
+"out_by": "2026-09-30",
+"days_to_out": 0
+},
+{
+"contract": "LEZ2026",
+"month": "2026-12",
+"fnd": "2026-12-01",
+"ltd": "2026-12-31",
+"out_by": "2026-11-30",
+"days_to_out": 26
+},
+{
+"contract": "LEG2027",
+"month": "2027-02",
+"fnd": "2027-02-01",
+"ltd": "2027-02-26",
+"out_by": "2027-01-29",
+"days_to_out": 67
+},
+{
+"contract": "LEJ2027",
+"month": "2027-04",
+"fnd": "2027-04-01",
+"ltd": "2027-04-30",
+"out_by": "2027-03-31",
+"days_to_out": 108
+},
+{
+"contract": "LEM2027",
+"month": "2027-06",
+"fnd": "2027-06-01",
+"ltd": "2027-06-30",
+"out_by": "2027-05-28",
+"days_to_out": 150
+},
+{
+"contract": "LEQ2027",
+"month": "2027-08",
+"fnd": "2027-08-02",
+"ltd": "2027-08-31",
+"out_by": "2027-07-30",
+"days_to_out": 192
+},
+{
+"contract": "LEV2027",
+"month": "2027-10",
+"fnd": "2027-10-01",
+"ltd": "2027-10-29",
+"out_by": "2027-09-30",
+"days_to_out": 235
+}
+]
+},
+"GF": {
+"name": "Feeder cattle",
+"settle": "cash",
+"roll": "No delivery: can be held to final cash settlement on the CME Feeder Cattle Index; liquidity thins in the last week.",
+"rule": "Feeder cattle: cash-settled to the CME Feeder Cattle Index; LTD = last Thursday of the contract month, except November (the Thursday before Thanksgiving); if that Thursday or any of the four weekdays before it is a holiday, the Thursday before.",
+"contracts": [
+{
+"contract": "GFV2026",
+"month": "2026-10",
+"ltd": "2026-10-29",
+"out_by": "2026-10-29",
+"days_to_out": 5
+},
+{
+"contract": "GFX2026",
+"month": "2026-11",
+"ltd": "2026-11-19",
+"out_by": "2026-11-19",
+"days_to_out": 20
+},
+{
+"contract": "GFF2027",
+"month": "2027-01",
+"ltd": "2027-01-28",
+"out_by": "2027-01-28",
+"days_to_out": 66
+},
+{
+"contract": "GFH2027",
+"month": "2027-03",
+"ltd": "2027-03-25",
+"out_by": "2027-03-25",
+"days_to_out": 105
+},
+{
+"contract": "GFJ2027",
+"month": "2027-04",
+"ltd": "2027-04-29",
+"out_by": "2027-04-29",
+"days_to_out": 129
+},
+{
+"contract": "GFK2027",
+"month": "2027-05",
+"ltd": "2027-05-27",
+"out_by": "2027-05-27",
+"days_to_out": 149
+},
+{
+"contract": "GFQ2027",
+"month": "2027-08",
+"ltd": "2027-08-26",
+"out_by": "2027-08-26",
+"days_to_out": 211
+}
+]
+},
+"HE": {
+"name": "Lean hogs",
+"settle": "cash",
+"roll": "No delivery: can be held to final cash settlement on the CME Lean Hog Index (10th business day); liquidity thins in the last days.",
+"rule": "Lean hogs: cash-settled to the CME Lean Hog Index; LTD = 10th business day of the contract month (noon CT).",
+"contracts": [
+{
+"contract": "HEZ2026",
+"month": "2026-12",
+"ltd": "2026-12-14",
+"out_by": "2026-12-14",
+"days_to_out": 36
+},
+{
+"contract": "HEG2027",
+"month": "2027-02",
+"ltd": "2027-02-12",
+"out_by": "2027-02-12",
+"days_to_out": 77
+},
+{
+"contract": "HEJ2027",
+"month": "2027-04",
+"ltd": "2027-04-14",
+"out_by": "2027-04-14",
+"days_to_out": 118
+},
+{
+"contract": "HEK2027",
+"month": "2027-05",
+"ltd": "2027-05-14",
+"out_by": "2027-05-14",
+"days_to_out": 140
+},
+{
+"contract": "HEM2027",
+"month": "2027-06",
+"ltd": "2027-06-14",
+"out_by": "2027-06-14",
+"days_to_out": 160
+},
+{
+"contract": "HEN2027",
+"month": "2027-07",
+"ltd": "2027-07-15",
+"out_by": "2027-07-15",
+"days_to_out": 181
+},
+{
+"contract": "HEQ2027",
+"month": "2027-08",
+"ltd": "2027-08-13",
+"out_by": "2027-08-13",
+"days_to_out": 202
+}
+]
+},
+"DC": {
+"name": "Class III milk",
+"settle": "cash",
+"roll": "No delivery: held contracts settle to the USDA announced price; the spot month is thin, so the desk's convergence trades usually hold to settlement.",
+"rule": "Class III / IV milk, cheese, butter, NDM, dry whey: cash-settled; LTD = business day before the USDA announcement.",
+"contracts": [
+{
+"contract": "DCV2026",
+"month": "2026-10",
+"ltd": "2026-11-03",
+"settles": "2026-11-04",
+"out_by": "2026-11-03",
+"days_to_out": 8
+},
+{
+"contract": "DCX2026",
+"month": "2026-11",
+"ltd": "2026-12-01",
+"settles": "2026-12-02",
+"out_by": "2026-12-01",
+"days_to_out": 27
+},
+{
+"contract": "DCZ2026",
+"month": "2026-12",
+"ltd": "2026-12-29",
+"settles": "2026-12-30",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "DCF2027",
+"month": "2027-01",
+"ltd": "2027-02-02",
+"settles": "2027-02-03",
+"out_by": "2027-02-02",
+"days_to_out": 69
+},
+{
+"contract": "DCG2027",
+"month": "2027-02",
+"ltd": "2027-03-02",
+"settles": "2027-03-03",
+"out_by": "2027-03-02",
+"days_to_out": 88
+},
+{
+"contract": "DCH2027",
+"month": "2027-03",
+"ltd": "2027-03-30",
+"settles": "2027-03-31",
+"out_by": "2027-03-30",
+"days_to_out": 107
+},
+{
+"contract": "DCJ2027",
+"month": "2027-04",
+"ltd": "2027-05-04",
+"settles": "2027-05-05",
+"out_by": "2027-05-04",
+"days_to_out": 132
+}
+]
+},
+"GDK": {
+"name": "Class IV milk",
+"settle": "cash",
+"roll": "As Class III.",
+"rule": "Class III / IV milk, cheese, butter, NDM, dry whey: cash-settled; LTD = business day before the USDA announcement.",
+"contracts": [
+{
+"contract": "GDKV2026",
+"month": "2026-10",
+"ltd": "2026-11-03",
+"settles": "2026-11-04",
+"out_by": "2026-11-03",
+"days_to_out": 8
+},
+{
+"contract": "GDKX2026",
+"month": "2026-11",
+"ltd": "2026-12-01",
+"settles": "2026-12-02",
+"out_by": "2026-12-01",
+"days_to_out": 27
+},
+{
+"contract": "GDKZ2026",
+"month": "2026-12",
+"ltd": "2026-12-29",
+"settles": "2026-12-30",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "GDKF2027",
+"month": "2027-01",
+"ltd": "2027-02-02",
+"settles": "2027-02-03",
+"out_by": "2027-02-02",
+"days_to_out": 69
+},
+{
+"contract": "GDKG2027",
+"month": "2027-02",
+"ltd": "2027-03-02",
+"settles": "2027-03-03",
+"out_by": "2027-03-02",
+"days_to_out": 88
+},
+{
+"contract": "GDKH2027",
+"month": "2027-03",
+"ltd": "2027-03-30",
+"settles": "2027-03-31",
+"out_by": "2027-03-30",
+"days_to_out": 107
+},
+{
+"contract": "GDKJ2027",
+"month": "2027-04",
+"ltd": "2027-05-04",
+"settles": "2027-05-05",
+"out_by": "2027-05-04",
+"days_to_out": 132
+}
+]
+},
+"CSC": {
+"name": "Cheese",
+"settle": "cash",
+"roll": "As Class III.",
+"rule": "Class III / IV milk, cheese, butter, NDM, dry whey: cash-settled; LTD = business day before the USDA announcement.",
+"contracts": [
+{
+"contract": "CSCV2026",
+"month": "2026-10",
+"ltd": "2026-11-03",
+"settles": "2026-11-04",
+"out_by": "2026-11-03",
+"days_to_out": 8
+},
+{
+"contract": "CSCX2026",
+"month": "2026-11",
+"ltd": "2026-12-01",
+"settles": "2026-12-02",
+"out_by": "2026-12-01",
+"days_to_out": 27
+},
+{
+"contract": "CSCZ2026",
+"month": "2026-12",
+"ltd": "2026-12-29",
+"settles": "2026-12-30",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "CSCF2027",
+"month": "2027-01",
+"ltd": "2027-02-02",
+"settles": "2027-02-03",
+"out_by": "2027-02-02",
+"days_to_out": 69
+},
+{
+"contract": "CSCG2027",
+"month": "2027-02",
+"ltd": "2027-03-02",
+"settles": "2027-03-03",
+"out_by": "2027-03-02",
+"days_to_out": 88
+},
+{
+"contract": "CSCH2027",
+"month": "2027-03",
+"ltd": "2027-03-30",
+"settles": "2027-03-31",
+"out_by": "2027-03-30",
+"days_to_out": 107
+},
+{
+"contract": "CSCJ2027",
+"month": "2027-04",
+"ltd": "2027-05-04",
+"settles": "2027-05-05",
+"out_by": "2027-05-04",
+"days_to_out": 132
+}
+]
+},
+"CB": {
+"name": "Butter",
+"settle": "cash",
+"roll": "As Class III.",
+"rule": "Class III / IV milk, cheese, butter, NDM, dry whey: cash-settled; LTD = business day before the USDA announcement.",
+"contracts": [
+{
+"contract": "CBV2026",
+"month": "2026-10",
+"ltd": "2026-11-03",
+"settles": "2026-11-04",
+"out_by": "2026-11-03",
+"days_to_out": 8
+},
+{
+"contract": "CBX2026",
+"month": "2026-11",
+"ltd": "2026-12-01",
+"settles": "2026-12-02",
+"out_by": "2026-12-01",
+"days_to_out": 27
+},
+{
+"contract": "CBZ2026",
+"month": "2026-12",
+"ltd": "2026-12-29",
+"settles": "2026-12-30",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "CBF2027",
+"month": "2027-01",
+"ltd": "2027-02-02",
+"settles": "2027-02-03",
+"out_by": "2027-02-02",
+"days_to_out": 69
+},
+{
+"contract": "CBG2027",
+"month": "2027-02",
+"ltd": "2027-03-02",
+"settles": "2027-03-03",
+"out_by": "2027-03-02",
+"days_to_out": 88
+},
+{
+"contract": "CBH2027",
+"month": "2027-03",
+"ltd": "2027-03-30",
+"settles": "2027-03-31",
+"out_by": "2027-03-30",
+"days_to_out": 107
+},
+{
+"contract": "CBJ2027",
+"month": "2027-04",
+"ltd": "2027-05-04",
+"settles": "2027-05-05",
+"out_by": "2027-05-04",
+"days_to_out": 132
+}
+]
+},
+"GNF": {
+"name": "Nonfat dry milk",
+"settle": "cash",
+"roll": "As Class III.",
+"rule": "Class III / IV milk, cheese, butter, NDM, dry whey: cash-settled; LTD = business day before the USDA announcement.",
+"contracts": [
+{
+"contract": "GNFV2026",
+"month": "2026-10",
+"ltd": "2026-11-03",
+"settles": "2026-11-04",
+"out_by": "2026-11-03",
+"days_to_out": 8
+},
+{
+"contract": "GNFX2026",
+"month": "2026-11",
+"ltd": "2026-12-01",
+"settles": "2026-12-02",
+"out_by": "2026-12-01",
+"days_to_out": 27
+},
+{
+"contract": "GNFZ2026",
+"month": "2026-12",
+"ltd": "2026-12-29",
+"settles": "2026-12-30",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "GNFF2027",
+"month": "2027-01",
+"ltd": "2027-02-02",
+"settles": "2027-02-03",
+"out_by": "2027-02-02",
+"days_to_out": 69
+},
+{
+"contract": "GNFG2027",
+"month": "2027-02",
+"ltd": "2027-03-02",
+"settles": "2027-03-03",
+"out_by": "2027-03-02",
+"days_to_out": 88
+},
+{
+"contract": "GNFH2027",
+"month": "2027-03",
+"ltd": "2027-03-30",
+"settles": "2027-03-31",
+"out_by": "2027-03-30",
+"days_to_out": 107
+},
+{
+"contract": "GNFJ2027",
+"month": "2027-04",
+"ltd": "2027-05-04",
+"settles": "2027-05-05",
+"out_by": "2027-05-04",
+"days_to_out": 132
+}
+]
+},
+"DY": {
+"name": "Dry whey",
+"settle": "cash",
+"roll": "As Class III.",
+"rule": "Class III / IV milk, cheese, butter, NDM, dry whey: cash-settled; LTD = business day before the USDA announcement.",
+"contracts": [
+{
+"contract": "DYV2026",
+"month": "2026-10",
+"ltd": "2026-11-03",
+"settles": "2026-11-04",
+"out_by": "2026-11-03",
+"days_to_out": 8
+},
+{
+"contract": "DYX2026",
+"month": "2026-11",
+"ltd": "2026-12-01",
+"settles": "2026-12-02",
+"out_by": "2026-12-01",
+"days_to_out": 27
+},
+{
+"contract": "DYZ2026",
+"month": "2026-12",
+"ltd": "2026-12-29",
+"settles": "2026-12-30",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "DYF2027",
+"month": "2027-01",
+"ltd": "2027-02-02",
+"settles": "2027-02-03",
+"out_by": "2027-02-02",
+"days_to_out": 69
+},
+{
+"contract": "DYG2027",
+"month": "2027-02",
+"ltd": "2027-03-02",
+"settles": "2027-03-03",
+"out_by": "2027-03-02",
+"days_to_out": 88
+},
+{
+"contract": "DYH2027",
+"month": "2027-03",
+"ltd": "2027-03-30",
+"settles": "2027-03-31",
+"out_by": "2027-03-30",
+"days_to_out": 107
+},
+{
+"contract": "DYJ2027",
+"month": "2027-04",
+"ltd": "2027-05-04",
+"settles": "2027-05-05",
+"out_by": "2027-05-04",
+"days_to_out": 132
+}
+]
+},
+"CL": {
+"name": "WTI crude oil",
+"settle": "physical",
+"roll": "Roll at least 2 business days before the last trading day; most volume moves to the next month about a week before it. Micro and E-mini crude are cash-settled and stop trading a few days earlier.",
+"rule": "WTI: LTD = 3 business days before the 25th of the month before delivery (or before the business day preceding the 25th when it is not a business day). Physical: positions open after LTD go to delivery at Cushing.",
+"contracts": [
+{
+"contract": "CLZ2026",
+"month": "2026-12",
+"ltd": "2026-11-20",
+"out_by": "2026-11-18",
+"days_to_out": 19
+},
+{
+"contract": "CLF2027",
+"month": "2027-01",
+"ltd": "2026-12-21",
+"out_by": "2026-12-17",
+"days_to_out": 39
+},
+{
+"contract": "CLG2027",
+"month": "2027-02",
+"ltd": "2027-01-20",
+"out_by": "2027-01-15",
+"days_to_out": 58
+},
+{
+"contract": "CLH2027",
+"month": "2027-03",
+"ltd": "2027-02-22",
+"out_by": "2027-02-18",
+"days_to_out": 80
+},
+{
+"contract": "CLJ2027",
+"month": "2027-04",
+"ltd": "2027-03-22",
+"out_by": "2027-03-18",
+"days_to_out": 100
+},
+{
+"contract": "CLK2027",
+"month": "2027-05",
+"ltd": "2027-04-20",
+"out_by": "2027-04-16",
+"days_to_out": 120
+},
+{
+"contract": "CLM2027",
+"month": "2027-06",
+"ltd": "2027-05-20",
+"out_by": "2027-05-18",
+"days_to_out": 142
+}
+]
+},
+"NG": {
+"name": "Henry Hub natural gas",
+"settle": "physical",
+"roll": "Roll at least 2 business days before the last trading day (3 business days before the delivery month).",
+"rule": "Henry Hub: LTD = 3 business days before the first calendar day of the delivery month. Physical delivery.",
+"contracts": [
+{
+"contract": "NGX2026",
+"month": "2026-11",
+"ltd": "2026-10-28",
+"out_by": "2026-10-26",
+"days_to_out": 2
+},
+{
+"contract": "NGZ2026",
+"month": "2026-12",
+"ltd": "2026-11-25",
+"out_by": "2026-11-23",
+"days_to_out": 22
+},
+{
+"contract": "NGF2027",
+"month": "2027-01",
+"ltd": "2026-12-29",
+"out_by": "2026-12-24",
+"days_to_out": 44
+},
+{
+"contract": "NGG2027",
+"month": "2027-02",
+"ltd": "2027-01-27",
+"out_by": "2027-01-25",
+"days_to_out": 63
+},
+{
+"contract": "NGH2027",
+"month": "2027-03",
+"ltd": "2027-02-24",
+"out_by": "2027-02-22",
+"days_to_out": 82
+},
+{
+"contract": "NGJ2027",
+"month": "2027-04",
+"ltd": "2027-03-29",
+"out_by": "2027-03-24",
+"days_to_out": 104
+},
+{
+"contract": "NGK2027",
+"month": "2027-05",
+"ltd": "2027-04-28",
+"out_by": "2027-04-26",
+"days_to_out": 126
+}
+]
+},
+"HO": {
+"name": "NY Harbor ULSD",
+"settle": "physical",
+"roll": "Roll before the last business day of the month before delivery.",
+"rule": "ULSD (HO) and RBOB (RB): LTD = last business day of the month before delivery. Physical delivery in NY Harbor.",
+"contracts": [
+{
+"contract": "HOX2026",
+"month": "2026-11",
+"ltd": "2026-10-30",
+"out_by": "2026-10-28",
+"days_to_out": 4
+},
+{
+"contract": "HOZ2026",
+"month": "2026-12",
+"ltd": "2026-11-30",
+"out_by": "2026-11-25",
+"days_to_out": 24
+},
+{
+"contract": "HOF2027",
+"month": "2027-01",
+"ltd": "2026-12-31",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "HOG2027",
+"month": "2027-02",
+"ltd": "2027-01-29",
+"out_by": "2027-01-27",
+"days_to_out": 65
+},
+{
+"contract": "HOH2027",
+"month": "2027-03",
+"ltd": "2027-02-26",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "HOJ2027",
+"month": "2027-04",
+"ltd": "2027-03-31",
+"out_by": "2027-03-29",
+"days_to_out": 106
+},
+{
+"contract": "HOK2027",
+"month": "2027-05",
+"ltd": "2027-04-30",
+"out_by": "2027-04-28",
+"days_to_out": 128
+}
+]
+},
+"RB": {
+"name": "RBOB gasoline",
+"settle": "physical",
+"roll": "As ULSD.",
+"rule": "ULSD (HO) and RBOB (RB): LTD = last business day of the month before delivery. Physical delivery in NY Harbor.",
+"contracts": [
+{
+"contract": "RBX2026",
+"month": "2026-11",
+"ltd": "2026-10-30",
+"out_by": "2026-10-28",
+"days_to_out": 4
+},
+{
+"contract": "RBZ2026",
+"month": "2026-12",
+"ltd": "2026-11-30",
+"out_by": "2026-11-25",
+"days_to_out": 24
+},
+{
+"contract": "RBF2027",
+"month": "2027-01",
+"ltd": "2026-12-31",
+"out_by": "2026-12-29",
+"days_to_out": 46
+},
+{
+"contract": "RBG2027",
+"month": "2027-02",
+"ltd": "2027-01-29",
+"out_by": "2027-01-27",
+"days_to_out": 65
+},
+{
+"contract": "RBH2027",
+"month": "2027-03",
+"ltd": "2027-02-26",
+"out_by": "2027-02-24",
+"days_to_out": 84
+},
+{
+"contract": "RBJ2027",
+"month": "2027-04",
+"ltd": "2027-03-31",
+"out_by": "2027-03-29",
+"days_to_out": 106
+},
+{
+"contract": "RBK2027",
+"month": "2027-05",
+"ltd": "2027-04-30",
+"out_by": "2027-04-28",
+"days_to_out": 128
+}
+]
+}
+},
+"check": {
+"ZC": {
+"checked": 59,
+"exact": 59,
+"offsets_business_days": {
+"0": 59
+}
+},
+"ZS": {
+"checked": 83,
+"exact": 83,
+"offsets_business_days": {
+"0": 83
+}
+},
+"ZM": {
+"checked": 94,
+"exact": 94,
+"offsets_business_days": {
+"0": 94
+}
+},
+"ZL": {
+"checked": 94,
+"exact": 94,
+"offsets_business_days": {
+"0": 94
+}
+},
+"ZW": {
+"checked": 59,
+"exact": 59,
+"offsets_business_days": {
+"0": 59
+}
+},
+"KE": {
+"checked": 59,
+"exact": 59,
+"offsets_business_days": {
+"0": 59
+}
+},
+"CT": {
+"checked": 47,
+"exact": 36,
+"offsets_business_days": {
+"-1": 10,
+"0": 36,
+"1": 1
+}
+},
+"LE": {
+"checked": 70,
+"exact": 70,
+"offsets_business_days": {
+"0": 70
+}
+},
+"GF": {
+"checked": 94,
+"exact": 55,
+"offsets_business_days": {
+"0": 55,
+"1": 39
+}
+},
+"HE": {
+"checked": 94,
+"exact": 60,
+"offsets_business_days": {
+"0": 60,
+"1": 3,
+"2": 31
+}
+},
+"DC": {
+"checked": 141,
+"exact": 19,
+"offsets_business_days": {
+"-4": 4,
+"-2": 2,
+"-1": 1,
+"0": 19,
+"1": 115
+}
+},
+"GDK": {
+"checked": 141,
+"exact": 24,
+"offsets_business_days": {
+"-4": 4,
+"-2": 2,
+"-1": 1,
+"0": 24,
+"1": 110
+}
+},
+"CSC": {
+"checked": 141,
+"exact": 24,
+"offsets_business_days": {
+"-4": 4,
+"-2": 2,
+"-1": 1,
+"0": 24,
+"1": 110
+}
+},
+"CB": {
+"checked": 141,
+"exact": 24,
+"offsets_business_days": {
+"-4": 4,
+"-2": 2,
+"-1": 1,
+"0": 24,
+"1": 110
+}
+},
+"GNF": {
+"checked": 141,
+"exact": 24,
+"offsets_business_days": {
+"-4": 4,
+"-2": 2,
+"-1": 1,
+"0": 24,
+"1": 110
+}
+},
+"DY": {
+"checked": 141,
+"exact": 27,
+"offsets_business_days": {
+"-4": 4,
+"-2": 2,
+"-1": 1,
+"0": 27,
+"1": 107
+}
+},
+"CL": {
+"checked": 142,
+"exact": 142,
+"offsets_business_days": {
+"0": 142
+}
+},
+"NG": {
+"checked": 142,
+"exact": 141,
+"offsets_business_days": {
+"0": 141,
+"1": 1
+}
+},
+"HO": {
+"checked": 142,
+"exact": 142,
+"offsets_business_days": {
+"0": 142
+}
+},
+"RB": {
+"checked": 142,
+"exact": 142,
+"offsets_business_days": {
+"0": 142
+}
+}
+},
+"check_note": "Rule vs the last daily bar of every expired contract since 2015 (offset in business days). Data bars of +1 or +2 days after the rule date are the final-settlement price posted on the settlement day (dairy, hogs, feeders), not trading days."
+}

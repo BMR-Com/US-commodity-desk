@@ -13,11 +13,12 @@ const Playbook = (() => {
     if (!P.length) return '<p><b>Now:</b> no position. Nothing meets the entry rule today.</p>';
     const keys = [['contract', 'Contract'], ['side', 'Trade'], ['futures', 'Futures'], ['estimate', 'Settlement estimate'], ['edge_usd', 'Edge $/lot'], ['cost_usd', 'Cost $/lot'],
       ['gap_cwt', 'Gap $/cwt'], ['chg_4w_pct', '4-week %'], ['entry_date', 'Entered'], ['entry_price', 'Entry'], ['stop', 'Stop'], ['open_pnl_usd', 'Open $/lot'],
-      ['weeks_published', 'Weeks published'], ['settles', 'Settles'], ['legs_per_10', 'Legs (per 10)'], ['exit_signal', 'Exit when'], ['note', '']]
+      ['weeks_published', 'Weeks published'], ['settles', 'Settles'], ['out_by', 'Roll / exit by'], ['legs_per_10', 'Legs (per 10)'], ['exit_signal', 'Exit when'], ['note', '']]
       .filter(([k]) => P.some(p => p[k] != null && p[k] !== ''));
     return `<p><b>Now:</b> ${P.length} position${P.length > 1 ? 's' : ''}${P[0].unit ? '' : ''}.</p>` + T(keys.map(k => k[1]), P.map(p => `<tr>${keys.map(([k], i) => {
       const v = p[k]; let h = v ?? '';
       if (k === 'side') h = side(v); else if (/usd/.test(k)) h = usd(v); else if (k === 'futures' || k === 'estimate') h = `${v} <span class="note">${p.unit || ''}</span>`;
+      else if (k === 'out_by') h = `<b class="${p.out_days <= 5 ? 'dn' : p.out_days <= 15 ? 'warn' : ''}">${v}</b> <span class="note">${p.out_days} bdays${p.physical ? ', physical' : ''}</span>`;
       else if (k === 'chg_4w_pct') h = `<span class="${v > 0 ? 'up' : 'dn'}">${v > 0 ? '+' : ''}${v}%</span>`;
       return `<td class="${i < 2 ? 'l' : ''}">${h}</td>`; }).join('')}</tr>`));
   }
@@ -43,6 +44,11 @@ const Playbook = (() => {
   async function mount(el) {
     const d = await getJSON(el.dataset.playbook).catch(() => null);
     if (!d) { el.innerHTML = ''; return; }
+    const cal = await getJSON('data/specs/calendar.json').catch(() => null);
+    if (cal) d.trades.forEach(t => t.positions.forEach(p => {
+      const m = cal.markets[p.sym], c = m?.contracts.find(x => x.month === p.month);
+      if (c) { p.out_by = c.out_by; p.out_days = c.days_to_out; p.physical = m.settle === 'physical'; }
+    }));
     const live = d.trades.filter(t => t.positions.length);
     el.innerHTML = `<div class="card"><h2>Trade playbook <span class="note">positions as of ${d.as_of} settlements (updated nightly); track records refreshed ${d.stats_generated || "–"}, tested from ${d.stats_since || '–'}</span></h2>
       <p>Every strategy the desk has tested, written as a trade: when to get in, when to get out, the risk, and what to watch. ${live.length ? `Live today: ${live.map(t => `<b>${t.name}</b> (${t.positions.length})`).join(', ')}.` : 'No strategy has a live signal today.'}</p>

@@ -193,3 +193,4 @@ nav.comm a.navlink{color:#cfe3d2;padding:.55rem .9rem;font-size:13px;text-decora
 #chat-f textarea{flex:1;resize:none;padding:6px;font:inherit}
 
 .bt-t td,.bt-t th{white-space:nowrap}.bt-row{cursor:pointer}.bt-row:hover td{background:#f7faf7}.bt-row.on td{background:#e8f2ea}
+.warn{color:var(--warn);font-weight:600}

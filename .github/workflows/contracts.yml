@@ -32,13 +32,16 @@ jobs:
       - name: dairy forecasting and trading lab (Wednesdays, after the NDPSR release)
         continue-on-error: true
         run: if [ "$(date -u +%u)" = "3" ]; then python -W ignore models/dairy_lab.py && python -W ignore models/dairy_ideas.py; fi
+      - name: dairy trade playbook (nightly positions; stats from the weekly ideas run)
+        continue-on-error: true
+        run: python -W ignore models/dairy_playbook.py
       - name: contract specs (value per contract at today's price, margins)
         continue-on-error: true
         run: python models/contract_specs.py
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/contracts data/dairy/derived/dairy_arb.json data/dairy/derived/dairy_lab.json data/dairy/derived/dairy_ideas.json data/dairy/derived/dairy_panel.csv.gz data/specs data/grains/derived/rv.json data/summary/sheet.json data/research data/ai
+          git add data/contracts data/dairy/derived/dairy_arb.json data/dairy/derived/dairy_lab.json data/dairy/derived/dairy_ideas.json data/dairy/derived/playbook.json data/dairy/derived/dairy_panel.csv.gz data/specs data/grains/derived/rv.json data/summary/sheet.json data/research data/ai
           git diff --cached --quiet && exit 0
           git commit -q -m "data: per-contract futures history $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

@@ -202,3 +202,9 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
 - Desk book = two pre-specified sleeves on all six contracts, one lot per signal: convergence (spot nowcast gap, ≤2 months out) + trend (4-week futures momentum, ≤5 months). 2020-26 Sharpe ≈1.8 (2020-23 1.65, 2024-26 2.16). Fundamentals regressions do not beat no-change out of sample.
 - UI: `assets/dairylab.js` (`DairyLab.mount`) into `#dairyLab` on the dairy primer.
 - `models/dairy_ideas.py` → `data/dairy/derived/dairy_ideas.json` (after dairy_lab on Wednesdays): convergence variants (all six, butter+whey, 2x cost, trend-confirmed, spot month after first print, calendar spread), daily breakout with trailing stop per contract, 4-week trend; Sharpe by period, hit, payoff, max drawdown, Calmar; worked examples; today's signals. Reads the panel `dairy_panel.csv.gz` written by dairy_lab. Shown on the Dairy primer (data check, the convergence trade explained, ideas table).
+
+## Dairy trade playbook (Outlook tab)
+- `models/dairy_playbook.py` (nightly in contracts.yml, after dairy_arb) writes `data/dairy/derived/playbook.json`: every tested
+  dairy strategy as a trade card (thesis, entry, exit, risk, what to track), today's positions from the latest settlements and
+  spot nowcast, and the track record from `dairy_ideas.json` (weekly, Wednesdays).
+- `assets/playbook.js` renders any `<div data-playbook="...json">`; shared with the meats playbook.

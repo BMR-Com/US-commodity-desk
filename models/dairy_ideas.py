@@ -109,8 +109,9 @@ def daily_breakout(F, T, s, n_in=20, n_out=10, atr_mult=2.0, h_target=2):
     f = F[s]
     dates = sorted(f.date.unique())
     st = f.pivot_table(index="date", columns="m", values="close").sort_index()
-    pos, entry, stop, m_held = 0, None, None, None
+    pos, entry, stop, m_held, edate = 0, None, None, None, None
     pnl_d, trades, cur = [], [], 0.0
+    state = {}
     for t in st.index:
         if t < pd.Timestamp("2013-01-01"):
             continue
@@ -139,9 +140,9 @@ def daily_breakout(F, T, s, n_in=20, n_out=10, atr_mult=2.0, h_target=2):
                 trades.append(cur - cost); cur = 0.0; pos = 0
         if not pos and not expiring:
             if c > hi:
-                pos, entry, stop = 1, c, c - atr_mult * atr
+                pos, entry, stop, edate = 1, c, c - atr_mult * atr, t
             elif c < lo:
-                pos, entry, stop = -1, c, c + atr_mult * atr
+                pos, entry, stop, edate = -1, c, c + atr_mult * atr, t
             if pos:
                 cost += SPEC[s][3] / 2 * SPEC[s][2]; cur -= SPEC[s][3] / 2 * SPEC[s][2]
         elif pos > 0:
@@ -149,6 +150,13 @@ def daily_breakout(F, T, s, n_in=20, n_out=10, atr_mult=2.0, h_target=2):
         elif pos < 0:
             stop = min(stop, c + atr_mult * atr)
         pnl_d.append((t, day - cost))
+        state = {"date": str(t.date()), "month": str(m_held), "close": float(c), "pos": int(pos), "entry": float(entry) if pos else None,
+                 "entry_date": str(edate.date()) if pos and edate is not None else None, "stop": float(stop) if pos else None,
+                 "buy_above": float(ser.iloc[-n_in:].max()), "sell_below": float(ser.iloc[-n_in:].min()),
+                 "exit_long_below": float(ser.iloc[-n_out:].min()), "exit_short_above": float(ser.iloc[-n_out:].max()), "atr": float(atr),
+                 "open_pnl_usd": int(round(pos * (c - entry) * SPEC[s][2])) if pos else 0}
+    daily_breakout.state = getattr(daily_breakout, "state", {})
+    daily_breakout.state[s] = state
     d = pd.Series(dict(pnl_d))
     wk = d.resample("W-WED").sum()
     R = pd.DataFrame({"pnl": wk, "cost": 0.0, "n": 1.0})

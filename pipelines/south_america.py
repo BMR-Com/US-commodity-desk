@@ -5,7 +5,8 @@
 - CONAB weekly crop progress bulletin ("Acompanhamento das Lavouras"): newest file saved for parsing.
 - USDA PSD (FAS API, FAS_API_KEY): Brazil, Argentina and China balances (area, production, crush, exports/imports,
   ending stocks), current and previous marketing year.
-- Comex Stat (Brazil's Ministry of Development, open API): monthly export volumes of soybeans, corn, meal, oil.
+- Comex Stat (Brazil's Ministry of Development, open API): monthly export volumes of soybeans, corn, meal, oil; and by destination
+  country (plus raw cotton) for the export-sales briefs, refreshed weekly.
 - MAGyP (Argentina's agriculture ministry, open data): planted/harvested area and production by campaign.
 Writes data/south_america/*.csv|json.
 """
@@ -161,26 +162,37 @@ def comex():
     return {"comex_rows": len(rows)}
 
 
-def comex_cotton():
-    """Brazil raw-cotton exports by destination country and month (NCM 5201.00.20 / 5201.00.90), for the cotton export-sales brief."""
+def comex_by_country():
+    """Brazil's exports by destination country and month for the export-sales briefs (soybeans, corn, meal, oil, raw cotton).
+    Comex Stat publishes monthly (first working days of the month), so this runs once a week (Mondays) or when the file is missing."""
+    p = OUT / "brazil_exports_by_country.csv"
+    if p.exists() and pd.Timestamp.now().dayofweek != 0:
+        return {"by_country": "skipped (weekly, Mondays)"}
+    ncm = {**{k: v for k, v in NCM.items() if not k.endswith("imports")}, "cotton": ["52010020", "52010090"]}
     rows = {}
     yr = pd.Timestamp.now().year
-    for y0 in range(2015, yr + 1, 3):
-        y1 = min(y0 + 2, yr)
-        f = {"yearStart": str(y0), "yearEnd": str(y1), "typeForm": 1, "typeOrder": 1, "filterList": [{"id": "noNcmpt"}],
-             "filterArray": [{"item": ["52010020", "52010090"], "idInput": "noNcmpt"}], "detailDatabase": [{"id": "noNcmpt", "text": ""}, {"id": "noPaispt", "text": ""}],
-             "monthDetail": True, "metricFOB": True, "metricKG": True, "monthStart": "01", "monthEnd": "12", "formQueue": "general", "langDefault": "pt"}
-        r = get("https://api-comexstat.mdic.gov.br/general?filter=" + quote(json.dumps(f, separators=(",", ":"))))
-        if not r:
-            continue
-        for x in r.json().get("data", {}).get("list", []):
-            k = (int(x["coAno"]), int(x["coMes"]), str(x.get("noPaispt", "")).replace(",", " "))
-            rows[k] = rows.get(k, 0) + float(x.get("kgLiquido") or 0)
-        time.sleep(2)
+    for com, ncms in ncm.items():
+        for y0 in range(2015, yr + 1, 3):
+            y1 = min(y0 + 2, yr)
+            f = {"yearStart": str(y0), "yearEnd": str(y1), "typeForm": 1, "typeOrder": 1, "filterList": [{"id": "noNcmpt"}],
+                 "filterArray": [{"item": ncms, "idInput": "noNcmpt"}], "detailDatabase": [{"id": "noNcmpt", "text": ""}, {"id": "noPaispt", "text": ""}],
+                 "monthDetail": True, "metricFOB": True, "metricKG": True, "monthStart": "01", "monthEnd": "12", "formQueue": "general", "langDefault": "pt"}
+            r = get("https://api-comexstat.mdic.gov.br/general?filter=" + quote(json.dumps(f, separators=(",", ":"))))
+            if not r:
+                continue
+            for x in r.json().get("data", {}).get("list", []):
+                if x.get("coNcm") not in ncms:
+                    continue
+                k = (com, int(x["coAno"]), int(x["coMes"]), str(x.get("noPaispt", "")).replace(",", " "))
+                rows[k] = rows.get(k, 0) + float(x.get("kgLiquido") or 0)
+            time.sleep(2)
     if rows:
-        d = pd.DataFrame([{"year": k[0], "month": k[1], "country": k[2], "t": round(v / 1000)} for k, v in rows.items()]).sort_values(["year", "month", "t"], ascending=[True, True, False])
-        d.to_csv(OUT / "brazil_cotton_by_country.csv", index=False)
-    return {"cotton_rows": len(rows)}
+        d = pd.DataFrame([{"commodity": k[0], "year": k[1], "month": k[2], "country": k[3], "t": round(v / 1000)} for k, v in rows.items()])
+        if p.exists():      # keep anything a partial run failed to fetch
+            old = pd.read_csv(p)
+            d = pd.concat([old[~old.set_index(["commodity", "year", "month"]).index.isin(d.set_index(["commodity", "year", "month"]).index)], d])
+        d.sort_values(["commodity", "year", "month", "t"], ascending=[True, True, True, False]).to_csv(p, index=False)
+    return {"by_country_rows": len(rows)}
 
 
 def magyp():
@@ -206,7 +218,7 @@ def magyp():
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     log = {"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC")}
-    for name, fn in (("conab", conab), ("psd", psd), ("comex", comex), ("comex_cotton", comex_cotton), ("magyp", magyp)):
+    for name, fn in (("conab", conab), ("psd", psd), ("comex", comex), ("comex_by_country", comex_by_country), ("magyp", magyp)):
         try:
             log[name] = fn()
         except Exception as e:

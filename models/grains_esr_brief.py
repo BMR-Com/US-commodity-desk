@@ -42,13 +42,13 @@ GROUPS["kc"] = GROUPS["wheat"]
 GROUPS["cotton"] = groups([(c, [c]) for c in ("Vietnam", "Bangladesh", "China", "Pakistan", "Turkey", "Indonesia", "Mexico", "India", "Thailand")])
 WHEAT_CLASSES = [("wheat_hrw", "HRW"), ("wheat_srw", "SRW"), ("wheat_hrs", "HRS"), ("wheat_white", "White"), ("wheat_durum", "Durum")]
 COMMS = [
-    {"key": "corn", "name": "Corn", "sym": "ZC", "dirs": [("corn", "Corn")], "wasde": "Corn.json", "start": 9, "to_world": 0.0254012,
+    {"key": "corn", "name": "Corn", "sym": "ZC", "dirs": [("corn", "Corn")], "wasde": "Corn.json", "start": 9, "to_world": 0.0254012, "brazil": "corn",
      "w_unit": "m bu", "w_fmt": 0, "px": "CBOT corn", "px_unit": "¢/bu", "px_fmt": 2},
-    {"key": "soybeans", "name": "Soybeans", "sym": "ZS", "dirs": [("soybeans", "Soybeans")], "wasde": "Oilseed,_Soybean.json", "start": 9, "to_world": 0.0272155,
+    {"key": "soybeans", "name": "Soybeans", "sym": "ZS", "dirs": [("soybeans", "Soybeans")], "wasde": "Oilseed,_Soybean.json", "start": 9, "to_world": 0.0272155, "brazil": "soybeans",
      "w_unit": "m bu", "w_fmt": 0, "px": "CBOT soybeans", "px_unit": "¢/bu", "px_fmt": 2},
-    {"key": "meal", "name": "Soybean meal", "sym": "ZM", "dirs": [("soybean_meal", "Meal")], "wasde": "Meal,_Soybean.json", "start": 10, "to_world": 0.000907185,
+    {"key": "meal", "name": "Soybean meal", "sym": "ZM", "dirs": [("soybean_meal", "Meal")], "wasde": "Meal,_Soybean.json", "start": 10, "to_world": 0.000907185, "brazil": "meal",
      "w_unit": "k short tons", "w_fmt": 0, "px": "CBOT soybean meal", "px_unit": "$/st", "px_fmt": 1},
-    {"key": "oil", "name": "Soybean oil", "sym": "ZL", "dirs": [("soybean_oil", "Oil")], "wasde": "Oil,_Soybean.json", "start": 10, "to_world": 0.000453592,
+    {"key": "oil", "name": "Soybean oil", "sym": "ZL", "dirs": [("soybean_oil", "Oil")], "wasde": "Oil,_Soybean.json", "start": 10, "to_world": 0.000453592, "brazil": "oil",
      "w_unit": "m lb", "w_fmt": 0, "px": "CBOT soybean oil", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1.0, "disp_unit": "MT"},
     {"key": "wheat", "name": "All wheat", "sym": "ZW", "dirs": [("wheat_all", "All wheat")], "classes": WHEAT_CLASSES, "wasde": "Wheat.json", "start": 6,
      "to_world": 0.0272155, "w_unit": "m bu", "w_fmt": 0, "px": "CBOT Chicago wheat", "px_unit": "¢/bu", "px_fmt": 2},
@@ -57,7 +57,7 @@ COMMS = [
     # cotton (upland + Pima, running bales): the desk's own copy, so the cotton tab does not depend on the separate export-sales repo
     {"key": "cotton", "name": "Cotton", "sym": "CT", "dirs": [("cotton_upland", "Upland"), ("cotton_pima", "Pima")], "wasde": "Cotton.json", "start": 8,
      "to_world": 1.0, "w_unit": "m bales", "w_fmt": 2, "px": "ICE cotton", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1e3, "disp_unit": "'000 bales",
-     "sscale": 1.0, "world_unit": "m bales", "competitor_flows": "brazil"},
+     "sscale": 1.0, "world_unit": "m bales", "brazil": "cotton"},
 ]
 NOUN = {"corn": "corn", "soybeans": "soybeans", "meal": "soybean meal", "oil": "soybean oil", "wheat": "wheat", "kc": "HRW wheat", "cotton": "cotton"}
 for c_ in COMMS:
@@ -73,43 +73,54 @@ SUPPLY = {"corn": (["Brazil", "Argentina", "Ukraine", "South Africa", "Russia"],
 SUPPLY["kc"] = SUPPLY["wheat"]
 SUPPLY["cotton"] = (["Brazil", "Australia", "India", "Afr. Fr. Zone", "Central Asia"], ["China", "Vietnam", "Bangladesh", "Pakistan", "Turkey", "Indonesia", "Mexico", "India", "Thailand"])
 # Brazil's raw-cotton exports by destination (Comex Stat, NCM 5201.00.20/90), Portuguese names -> export-sales names
-BR_COTTON = ROOT / "data" / "south_america" / "brazil_cotton_by_country.csv"
+BR_FILE = ROOT / "data" / "south_america" / "brazil_exports_by_country.csv"   # commodity, year, month, country, t
 PT = {"Vietnã": "Vietnam", "Turquia": "Turkey", "Paquistão": "Pakistan", "Indonésia": "Indonesia", "Malásia": "Malaysia", "Índia": "India", "Coreia do Sul": "South Korea",
       "Tailândia": "Thailand", "Egito": "Egypt", "Taiwan (Formosa)": "Taiwan", "Itália": "Italy", "Japão": "Japan", "México": "Mexico", "Colômbia": "Colombia",
       "Mianmar": "Burma", "Filipinas": "Philippines", "Marrocos": "Morocco", "Espanha": "Spain", "Alemanha": "Germany", "Grécia": "Greece", "Peru": "Peru",
       "Equador": "Ecuador", "Guatemala": "Guatemala", "Honduras": "Honduras", "El Salvador": "El Salvador", "Hong Kong": "Hong Kong", "Singapura": "Singapore",
-      "Tunísia": "Tunisia", "Argélia": "Algeria", "Emirados Árabes Unidos": "United Arab Emirates", "Reino Unido": "United Kingdom", "Países Baixos (Holanda)": "Netherlands"}
+      "Tunísia": "Tunisia", "Argélia": "Algeria", "Emirados Árabes Unidos": "United Arab Emirates", "Reino Unido": "United Kingdom", "Países Baixos (Holanda)": "Netherlands",
+      "Irã": "Iran", "Arábia Saudita": "Saudi Arabia", "República Dominicana": "Dominican Republic", "França": "France", "Bélgica": "Belgium-Luxembourg", "Polônia": "Poland",
+      "Dinamarca": "Denmark", "Irlanda": "Ireland", "Romênia": "Romania", "Bulgária": "Bulgaria", "Croácia": "Croatia", "Eslovênia": "Slovenia", "Chipre": "Cyprus",
+      "Finlândia": "Finland", "Suécia": "Sweden", "Lituânia": "Lithuania", "Letônia": "Latvia", "Estônia": "Estonia", "Áustria": "Austria", "Tcheca  República": "Czech Republic",
+      "Eslováquia": "Slovakia", "Noruega": "Norway", "Suíça": "Switzerland", "Rússia": "Russia", "Ucrânia": "Ukraine", "Iraque": "Iraq", "Jordânia": "Jordan", "Líbano": "Lebanon",
+      "Líbia": "Libya", "Omã": "Oman", "Catar": "Qatar", "Coveite (Kuweit)": "Kuwait", "Iêmen": "Yemen", "Síria": "Syria", "Barein": "Bahrain", "Israel": "Israel",
+      "Camboja": "Cambodia", "Nigéria": "Nigeria", "África do Sul": "South Africa", "Quênia": "Kenya", "Canadá": "Canada", "Chile": "Chile", "Venezuela": "Venezuela",
+      "Cuba": "Cuba", "Panamá": "Panama", "Costa Rica": "Costa Rica", "Nicarágua": "Nicaragua", "Jamaica": "Jamaica", "Nova Zelândia": "New Zealand", "Austrália": "Australia",
+      "Coreia do Norte": "North Korea", "Uruguai": "Uruguay", "Paraguai": "Paraguay", "Bolívia": "Bolivia", "Senegal": "Senegal", "Gana": "Ghana", "Costa do Marfim": "Ivory Coast",
+      "Angola": "Angola", "Moçambique": "Mozambique", "Sudão": "Sudan", "Etiópia": "Ethiopia", "Geórgia": "Georgia", "Armênia": "Armenia", "Azerbaijão": "Azerbaijan"}
 KG_PER_BALE = 217.724
 INDIA_EXPORT_RATIO = 1.5
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
-def brazil_flows():
-    """Brazil raw-cotton exports by destination and month ('000 480-lb bales)."""
-    if not BR_COTTON.exists():
+def brazil_flows(cfg, GR):
+    """Brazil's exports of this commodity by destination and month, in export-sales units (MT, or running bales for cotton),
+    with destinations grouped into USDA's importing regions where the desk groups them."""
+    key = cfg.get("brazil")
+    if not key or not BR_FILE.exists():
         return None
-    b = pd.read_csv(BR_COTTON)
-    b["c"] = b.country.map(lambda x: PT.get(x, x))
-    b["kb"] = b.t * 1000 / KG_PER_BALE / 1000
+    b = pd.read_csv(BR_FILE)
+    b = b[b.commodity == key].copy()
+    if b.empty:
+        return None
+    b["c"] = b.country.map(lambda x: PT.get(x, x)).map(lambda n: GR.get(n, n))
+    b["kb"] = b.t * (1000 / KG_PER_BALE if cfg["key"] == "cotton" else 1.0) / cfg["disp"]
     b["d"] = pd.to_datetime(dict(year=b.year, month=b.month, day=1))
     return b
 
 
 def brazil_for(B, nm, months=3):
-    """Last `months` of Brazil shipments to a destination vs the same months a year earlier, and Brazil's season (Aug-) to date."""
+    """Last `months` of Brazil's shipments to a destination vs the same months a year earlier."""
     if B is None or B.empty:
         return None
     last = B.d.max()
     g = B[B.c == nm]
     win = (g.d > last - pd.DateOffset(months=months)) & (g.d <= last)
     win_ly = (g.d > last - pd.DateOffset(months=12 + months)) & (g.d <= last - pd.DateOffset(months=12))
-    s0 = last.year if last.month >= 8 else last.year - 1
-    sd = (g.d >= pd.Timestamp(s0, 8, 1)) & (g.d <= last)
-    sd_ly = (g.d >= pd.Timestamp(s0 - 1, 8, 1)) & (g.d <= last - pd.DateOffset(months=12))
     tot3 = B[(B.d > last - pd.DateOffset(months=months)) & (B.d <= last)].kb.sum()
     r = {"last": f"{last:%b %Y}", "from": f"{last - pd.DateOffset(months=months - 1):%b}", "b3": float(g[win].kb.sum()), "b3_ly": float(g[win_ly].kb.sum()),
-         "bsd": float(g[sd].kb.sum()), "bsd_ly": float(g[sd_ly].kb.sum()), "share_of_brazil": float(g[win].kb.sum() / tot3) if tot3 else None}
-    r["b3_yoy"] = r["b3"] / r["b3_ly"] - 1 if r["b3_ly"] > 1 else None
+         "share_of_brazil": float(g[win].kb.sum() / tot3) if tot3 else None}
+    r["b3_yoy"] = r["b3"] / r["b3_ly"] - 1 if r["b3_ly"] > 0.5 else None
     return r
 
 
@@ -482,7 +493,7 @@ def build(cfg):
         dest.append(row)
     for row in dest:      # far below normal this season AND last season at this point: a lost market, not room to catch up
         row["structural_low"] = bool(row.get("avg5") and row["commit"] < 0.5 * row["avg5"] and (row.get("ly") or 0) < 0.5 * row["avg5"])
-    BRZ = brazil_flows() if cfg.get("competitor_flows") == "brazil" else None
+    BRZ = brazil_flows(cfg, GR)
     if BRZ is not None:
         for row in dest:
             row["brazil"] = brazil_for(BRZ, row["c"])
@@ -566,44 +577,53 @@ def build(cfg):
               + (f" Left out of that sum: {', '.join(lost)}, running far below normal for a second season (treated as a lost market, not room to catch up)." if lost else ""))
         if t:
             T.append({"h": "Destinations vs import forecasts", "t": t})
-    if BRZ is not None:
-        lines, room, crowded, brup = [], [], [], []
-        for d in sorted([d for d in dest if d.get("imports")], key=lambda d: -(d.get("exp_us") or 0))[:8]:
+    room, crowded, brup = [], [], []
+    cand = [d for d in dest if (d.get("avg5") or 0) > 0 or d.get("imports")]
+    if cand:
+        lines = []
+        wu = cfg.get("world_unit", "MMT")
+        for d in sorted(cand, key=lambda d: -max((d.get("exp_us") or 0) / cfg.get("to_world", 1.0) * ratio / D, d.get("avg5") or 0, d["commit"]))[:8]:
             b = d.get("brazil") or {}
             yy = d["commit"] / d["ly"] - 1 if d.get("ly") else None
             v5 = d["commit"] / d["avg5"] - 1 if d.get("avg5") else None
-            iy = d["imports"] / d["imports_ly"] - 1 if d.get("imports_ly") else None
+            iy = d["imports"] / d["imports_ly"] - 1 if d.get("imports") and d.get("imports_ly") else None
             by = b.get("b3_yoy")
-            ahead = (d.get("vs_usual") or 0) > 0.10
-            behind = (d.get("vs_usual") or 0) < -0.10
+            if d.get("implied_share") is not None and d.get("vs_usual") is not None:
+                rel = d["vs_usual"]; basis = f"pace points to {d['implied_share']*100:.0f}% of its {d['imports']:,.2f} {wu} imports vs {d['us_share5']*100:.0f}% usual"
+            else:
+                rel = v5; basis = (f"usual US share {d['us_share5']*100:.0f}% of its {d['imports']:,.2f} {wu} imports" if d.get("us_share5") and np.isfinite(d["us_share5"]) else "no USDA import forecast")
+            ahead = rel is not None and rel > 0.15
+            behind = rel is not None and rel < -0.15
             br_up = by is not None and by > 0.15
             if d.get("structural_low"):
                 tag = "far below normal for a second season — treat as lost demand, not room"
             elif ahead and br_up:
-                tag = "already well bought and Brazil is shipping more — little extra room"
-                crowded.append(d["c"])
+                tag = "already well bought and Brazil is shipping more — little extra room"; crowded.append(d["c"])
             elif ahead:
-                tag = "ahead of its usual US share — limited extra upside"
-                crowded.append(d["c"])
+                tag = "ahead of normal — limited extra upside"; crowded.append(d["c"])
             elif behind and br_up:
-                tag = "Brazil is taking share — the gap may not close"
-                brup.append(d["c"])
-            elif behind and (iy is None or iy > -0.05) and not d.get("structural_low"):
-                tag = "behind its usual US share with steady or rising import needs — room for more US sales"
-                room.append(d)
+                tag = "Brazil is taking share — the gap may not close"; brup.append(d["c"])
+            elif behind and iy is not None and iy > -0.05:
+                tag = "behind normal with steady or rising import needs — room for more US sales"; room.append(d)
+            elif behind and iy is None:
+                tag = "behind normal (no USDA import forecast to judge the room)"
+            elif behind:
+                tag = "behind normal, but its imports are falling too"
             else:
                 tag = "close to normal"
-            lines.append(f"**{d['c']}**: US commitments {q(d['commit'])} ({'' if yy is None else f'{yy:+.0%} y/y, '}{'' if v5 is None else f'{v5:+.0%} vs 5-yr avg'}); "
-                         + (f"pace points to {d['implied_share']*100:.0f}% of its {d['imports']:,.2f} {cfg.get('world_unit', 'MMT')} imports vs {d['us_share5']*100:.0f}% usual" if d.get("implied_share") is not None else f"usual US share {d['us_share5']*100:.0f}%")
+            lines.append(f"**{d['c']}**: US commitments {q(d['commit'])} ({'' if yy is None else f'{yy:+.0%} y/y, '}{'' if v5 is None else f'{v5:+.0%} vs 5-yr avg'}); {basis}"
                          + (f", USDA imports {iy:+.0%} y/y" if iy is not None else "")
-                         + (f"; Brazil shipped {q(b['b3'])} in {b['from']}–{b['last']} ({by:+.0%} y/y)" if b and b.get("b3_ly", 0) > 1 else f"; Brazil shipped {q(b['b3'])} in {b['from']}–{b['last']}" if b else "")
+                         + (f"; Brazil shipped {q(b['b3'])} in {b['from']}–{b['last']} ({by:+.0%} y/y)" if b and by is not None else f"; Brazil shipped {q(b['b3'])} in {b['from']}–{b['last']}" if b else "")
                          + f" — {tag}.")
         if lines:
-            gap_room = sum((d["exp_us"] - d["implied_us"]) for d in room if d.get("implied_us") is not None)
-            summ = ((f"Room for more US sales in {', '.join(d['c'] for d in room)} (about {gap_room:,.2f} {cfg['w_unit']} below their usual US volumes). " if room else "")
+            gap_room = sum((d["exp_us"] - d["implied_us"]) for d in room if d.get("implied_us") is not None and d.get("exp_us") is not None) / cfg.get("to_world", 1.0)
+            summ = ((f"Room for more US sales in {', '.join(d['c'] for d in room)}" + (f" (about {fu(gap_room)} {cfg['w_unit']} below their usual US volumes)" if gap_room > 0 else "") + ". " if room else "")
                     + (f"Already well bought: {', '.join(crowded)}. " if crowded else "") + (f"Brazil gaining: {', '.join(brup)}. " if brup else ""))
-            bt = BRZ[BRZ.d > BRZ.d.max() - pd.DateOffset(months=3)].kb.sum(); bt_ly = BRZ[(BRZ.d > BRZ.d.max() - pd.DateOffset(months=15)) & (BRZ.d <= BRZ.d.max() - pd.DateOffset(months=12))].kb.sum()
-            T.append({"h": "By destination: room vs competition", "t": summ + (f"Brazil's total shipments {q(bt)} '000 bales in the last 3 months ({bt / bt_ly - 1:+.0%} y/y). " if bt_ly else "") + " ".join(lines)})
+            bline = ""
+            if BRZ is not None:
+                bt = BRZ[BRZ.d > BRZ.d.max() - pd.DateOffset(months=3)].kb.sum(); bt_ly = BRZ[(BRZ.d > BRZ.d.max() - pd.DateOffset(months=15)) & (BRZ.d <= BRZ.d.max() - pd.DateOffset(months=12))].kb.sum()
+                bline = f"Brazil's total {cfg['noun']} shipments {q(bt)} {cfg['disp_unit']} in the last 3 months ({bt / bt_ly - 1:+.0%} y/y). " if bt_ly else ""
+            T.append({"h": "By destination: room vs competition", "t": summ + bline + " ".join(lines)})
     st = supply_text(S, cfg, fu)
     if st:
         T.append({"h": "Competition and import need", "t": st})
@@ -819,11 +839,11 @@ def build(cfg):
     if projw.get("central"):
         bl += f"Middle projection {fu(projw['central'])} {cfg['w_unit']} ({projw['central'] / target - 1:+.0%}); "
         bl += f"the sales USDA's number needs were reached in {feas['sales_ok5']} of the last {feas['n5']} seasons ({feas['sales_ok10']} of {feas['n10']}). "
-    if cfg.get("competitor_flows") == "brazil":
-        room_ = [d["c"] for d in dest if d.get("imports") and (d.get("vs_usual") or 0) < -0.10 and not d.get("structural_low") and not ((d.get("brazil") or {}).get("b3_yoy") or 0) > 0.15]
-        crowd_ = [d["c"] for d in dest if (d.get("vs_usual") or 0) > 0.10]
-        if room_ or crowd_:
-            bl += ("Where extra US sales can come from: " + ", ".join(room_) + ". " if room_ else "") + ("Already well bought: " + ", ".join(crowd_) + ". " if crowd_ else "")
+    room_ = [d["c"] for d in room]; crowd_ = crowded
+    if room_ or crowd_ or brup:
+        if True:
+            bl += (("Where extra US sales can come from: " + ", ".join(room_) + ". " if room_ else "") + ("Already well bought: " + ", ".join(crowd_) + ". " if crowd_ else "")
+                   + ("Brazil gaining in: " + ", ".join(brup) + ". " if brup else ""))
     if neg and pos:
         bl += ("Less competition usually shows up later in the season, once rival origins run short — "
                "watch whether US sales accelerate into the new year before reading the slow start as lost demand.")

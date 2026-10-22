@@ -35,7 +35,7 @@ const Backtest = (() => {
   }
   function render() {
     const el = document.getElementById('backtest');
-    el.innerHTML = `<nav class="tabs" id="btTabs"><button data-t="bt-baskets">Baskets (portfolios across commodities)</button><button data-t="bt-rules">Single-market rules</button><button data-t="bt-tech">Technical patterns</button><button data-t="bt-dairy">Dairy deep dive</button></nav><div id="btBody"></div>`;
+    el.innerHTML = `<nav class="tabs" id="btTabs"><button data-t="bt-baskets">Baskets (portfolios across commodities)</button><button data-t="bt-rules">Single-market rules</button><button data-t="bt-tech">Technical patterns</button><button data-t="bt-regime">2020-23 vs 2024-25</button><button data-t="bt-dairy">Dairy deep dive</button></nav><div id="btBody"></div>`;
     el.insertAdjacentHTML('afterbegin', topFindings());
     $$('#btTabs button').forEach(b => b.onclick = () => { sub = b.dataset.t; history.replaceState(null, '', '#' + sub); paint(); });
     paint();
@@ -45,6 +45,7 @@ const Backtest = (() => {
     if (sub === 'bt-baskets') return baskets();
     if (sub === 'bt-dairy') return dairy();
     if (sub === 'bt-tech') return tech();
+    if (sub === 'bt-regime') return regime();
     rules();
   }
   function bstat(x, k) { return x[k] ? x[k].sharpe : null; }
@@ -109,6 +110,10 @@ const Backtest = (() => {
       const r = (TL.recovery.pooled || []).find(x => x.k == 5);
       if (r) li.push(`<li><b>Price 5% below the 9-day MA</b>: it "recovers" to the 9-day MA in ${n(r.recovered_pct, 0)}% of cases within 20 days, but mostly because the average falls to meet price; it regains the signal day's 9-day MA level only ${n(r.orig_pct, 0)}% of the time and the 10-day return is ${sg(r.r10)}% - no edge on its own.</li>`);
     }
+    if (BK && BK.strategies[0].r_oos !== undefined) {
+      const ok = BK.strategies.filter(x => x.key !== 'long_only' && x.r_is && x.r_oos && x.r_is.sharpe > 0 && x.r_oos.sharpe > 0).sort((a, c) => Math.min(c.r_is.sharpe, c.r_oos.sharpe) - Math.min(a.r_is.sharpe, a.r_oos.sharpe)).slice(0, 3);
+      li.push(`<li><b>Recent regime (fit 2020-23, test 2024-25)</b>: ${ok.map(x => `${x.name} ${n(x.r_is.sharpe)} → <b>${n(x.r_oos.sharpe)}</b>`).join('; ')}. Single-market breakouts and MACD/EMA trend entries stopped working in 2024-25 while short-term mean reversion inside a trend improved; diversified trend baskets kept working. See the 2020-23 vs 2024-25 sub-tab.</li>`);
+    }
     if (L) li.push(`<li><b>COT on its own</b> has no reliable timing edge; trend (20-55 day breakouts, moving-average crosses) is the only family that works broadly, and dairy is the strongest trending group.</li>`);
     return `<main style="padding-bottom:0"><div class="card"><h2>Top findings <span class="note">best results from every test on this tab; details in the sub-tabs below</span></h2><ul class="read">${li.join('')}</ul></div></main>`;
   }
@@ -149,6 +154,52 @@ const Backtest = (() => {
     $('#tlSel').onchange = e => { tsym = e.target.value; pm(); };
     pm();
   }
+
+  // recent regime: 2020-2023 as the fitting window, 2024-2025 as the test, 2026 so far; short-term (about a week) and long-term (several weeks) separately
+  function regime() {
+    const el = $('#btBody');
+    const R = TL && TL.regime;
+    const sh = (x) => x ? sg(x.sharpe) : '–';
+    const mn = (a, b) => (a == null || b == null) ? -9 : Math.min(a, b);
+    const HZ = [['Short-term (about a week)', 'st', 'Short-term: positions that last about a week'], ['Long-term', 'lt', 'Long-term: positions held for several weeks']];
+    const isH = (h, k) => (h || '').startsWith(k === 'st' ? 'Short' : 'Long');
+    let html = `<main><div class="card"><h2>Recent regime check <span class="note">fit window 2020-2023 · test window 2024-2025 · 2026 so far</span></h2>
+      <p>Markets may have changed after 2019 (COVID, the 2021-22 inflation spike, then falling grain prices and record cattle). Here every test is re-scored on two recent windows: <b>2020-2023</b> (the period a trader would have chosen a strategy on) and <b>2024-2025</b> (the test), with 2026 so far shown as a live check. Strategies are split by how long a position lasts: <b>short-term</b> (about one week) and <b>long-term</b> (several weeks). Ranking is by the weaker of the two windows, so a strategy only ranks high if it worked in both.</p>
+      <p class="note">Two years is short: a single market's 2024-25 result rests on 5-30 trades, so treat single-market rows as leads. Pooled results across 20 markets and diversified baskets are much more reliable. Sharpe at 10% volatility, after costs.</p>
+      ${R ? `<h3>What the tests say</h3><ul class="read">${R.learnings.slice(0, 4).map(x => `<li>${x}</li>`).join('')}</ul><details><summary>More</summary><ul class="read">${R.learnings.slice(4).map(x => `<li>${x}</li>`).join('')}</ul></details>` : ''}</div>`;
+    if (BK) {
+      const bt = (rows) => tbl(['Basket', 'Avg hold (wk)', 'Full', '2008-18', '2020-23', '2024-25', '2026', 'Max DD 2024-25 %', 'Worked in both'], rows.map(x => `<tr><td class="l">${x.name}</td><td>${n(x.hold_wk, 1)}</td><td>${sg(x.sharpe)}</td><td>${sh(x.is)}</td><td><b>${sh(x.r_is)}</b></td><td><b>${sh(x.r_oos)}</b></td><td>${sh(x.live)}</td><td>${x.r_oos ? n(x.r_oos.maxdd, 0) : '–'}</td><td>${x.r_is && x.r_oos && x.r_is.sharpe > 0 && x.r_oos.sharpe > 0 ? '✓' : ''}</td></tr>`), 'bt-t');
+      const S = BK.strategies.filter(x => x.key !== 'long_only').sort((a, c) => mn(c.r_is?.sharpe, c.r_oos?.sharpe) - mn(a.r_is?.sharpe, a.r_oos?.sharpe));
+      const lo = BK.strategies.find(x => x.key === 'long_only');
+      html += `<div class="card" style="margin-top:12px"><h2>Baskets across commodities <span class="note">benchmark equal-risk long-only: 2020-23 ${sh(lo?.r_is)}, 2024-25 ${sh(lo?.r_oos)}</span></h2>
+        ${HZ.map(([h, k, t]) => { const rr = S.filter(x => isH(x.horizon, k)); return rr.length ? `<h3>${t}</h3>${bt(rr.slice(0, 8))}${rr.length > 8 ? `<details><summary>All ${rr.length}</summary>${bt(rr.slice(8))}</details>` : ''}` : ''; }).join('')}
+        <h3>Blends</h3>${bt(S.filter(x => x.group === 'Blend'))}
+        <p class="note">"Recent blend" picks the sleeves with Sharpe above 0.3 in 2020-2023 only, so its 2024-25 column is a fair test. Avg hold = 2 × gross position / weekly turnover.</p></div>`;
+    }
+    if (L && L.results[0].r_oos_sharpe !== undefined) {
+      const ok = L.results.filter(r => r.enough && r.family !== 'Benchmark');
+      const rt = (rows) => tbl(['Market', 'Rule', 'Avg hold (wk)', 'Full', '2007-18', '2020-23', '2024-25', '2026', 'Ann. % 2024-25'], rows.map(r => `<tr class="bt-row" data-s="${r.market}" data-k="${r.key}"><td class="l"><b>${r.name_m}</b></td><td class="l">${r.strategy}</td><td>${n(r.hold_wk, 1)}</td><td>${sg(r.sharpe)}</td><td>${sg(r.is_sharpe)}</td><td><b>${sg(r.r_is_sharpe)}</b></td><td><b>${sg(r.r_oos_sharpe)}</b></td><td>${sg(r.live_sharpe)}</td><td>${sg(r.r_oos_ann, 1)}</td></tr>`), 'bt-t');
+      const fams = [...new Set(ok.map(r => r.family))];
+      const med = (a) => { a = a.filter(v => v != null).sort((x, y) => x - y); return a.length ? a[Math.floor(a.length / 2)] : null; };
+      html += `<div class="card" style="margin-top:12px"><h2>Single-market weekly rules (trend, carry, COT, fundamentals)</h2>
+        ${HZ.map(([h, k, t]) => { const rr = ok.filter(r => isH(r.horizon, k) && r.r_is_sharpe > 0 && r.r_oos_sharpe > 0).sort((a, c) => mn(c.r_is_sharpe, c.r_oos_sharpe) - mn(a.r_is_sharpe, a.r_oos_sharpe)); const all = ok.filter(r => isH(r.horizon, k));
+          return `<h3>${t} · <span class="note">${rr.length} of ${all.length} rule-market pairs positive in both windows</span></h3>${rr.length ? rt(rr.slice(0, 10)) : '<p class="note">None.</p>'}${rr.length > 10 ? `<details><summary>All ${rr.length}</summary>${rt(rr.slice(10))}</details>` : ''}`; }).join('')}
+        <details><summary>By family (median Sharpe)</summary>${tbl(['Family', 'Horizon', 'Pairs', 'Full', '2007-18', '2020-23', '2024-25', '2026'], fams.flatMap(f => HZ.map(([h, k]) => { const rr = ok.filter(r => r.family === f && isH(r.horizon, k)); return rr.length ? `<tr><td class="l">${f}</td><td class="l">${k === 'st' ? 'short-term' : 'long-term'}</td><td>${rr.length}</td><td>${sg(med(rr.map(r => r.sharpe)))}</td><td>${sg(med(rr.map(r => r.is_sharpe)))}</td><td>${sg(med(rr.map(r => r.r_is_sharpe)))}</td><td>${sg(med(rr.map(r => r.r_oos_sharpe)))}</td><td>${sg(med(rr.map(r => r.live_sharpe)))}</td></tr>` : ''; })))}</details></div>`;
+    }
+    if (R) {
+      const pt = (rows) => tbl(['Pattern', 'Side', 'Hold (days)', 'Markets', '2020-23', '2024-25', '2026', 'Trades 2024-25', 'Win % 2024-25', 'Avg % 2024-25', '% markets up 2024-25', 'Full period'], rows.map(r => `<tr><td class="l">${r.rule}${r.both ? ' ✓' : ''}</td><td>${r.side}</td><td>${r.hold}</td><td>${r.markets}</td><td><b>${sg(r.r_is)}</b></td><td><b>${sg(r.r_oos)}</b></td><td>${sg(r.live)}</td><td>${r.oos_n}</td><td>${n(r.oos_win, 0)}</td><td>${sg(r.oos_avg)}</td><td>${r.oos_pos ?? '–'}%</td><td>${sg(r.full)}</td></tr>`), 'bt-t');
+      const st = (rows) => tbl(['Market', 'Pattern', 'Side', 'Hold', '2020-23', '2024-25', '2026', 'Trades (20-23 / 24-25)', 'Win % 2024-25', 'Avg % 2024-25', 'Full period'], rows.map(r => `<tr><td class="l"><b>${r.name_m}</b></td><td class="l">${r.rule}</td><td>${r.side}</td><td>${r.hold}</td><td><b>${sg(r.r_is_sharpe)}</b></td><td><b>${sg(r.r_oos_sharpe)}</b></td><td>${sg(r.live_sharpe)}</td><td>${r.r_is_n} / ${r.r_oos_n}</td><td>${n(r.r_oos_win, 0)}</td><td>${sg(r.r_oos_avg)}</td><td>${sg(r.sharpe)}</td></tr>`), 'bt-t');
+      html += `<div class="card" style="margin-top:12px"><h2>Technical patterns (daily)</h2>
+        ${HZ.map(([h, k, t]) => `<h3>${t} · <span class="note">${k === 'st' ? '5-day holds' : '10, 20 and 40-day holds'} · ${R['n_both_' + k]} of ${R['n_' + k]} pooled patterns positive in both windows (✓)</span></h3>
+          <p class="note">Across markets (median of 12-20 markets):</p>${pt(R['pooled_' + k].slice(0, 8))}
+          <details><summary>Best single markets</summary>${st(R['single_' + k])}</details>
+          <details><summary>Worked over 2007-2026 but failed in 2024-25</summary>${pt(R['flipped_' + k])}</details>
+          <details><summary>Worst in 2024-25</summary>${pt(R['pooled_' + k + '_worst'])}</details>`).join('')}
+        <details><summary>By family</summary>${tbl(['Family', 'Horizon', 'Tests', 'Full', '2007-18', '2020-23', '2024-25', '2026'], R.families.map(f => `<tr><td class="l">${f.family}</td><td class="l">${f.horizon}</td><td>${f.tests}</td><td>${sg(f.full)}</td><td>${sg(f.early)}</td><td>${sg(f.r_is)}</td><td>${sg(f.r_oos)}</td><td>${sg(f.live)}</td></tr>`))}</details></div>`;
+    }
+    el.innerHTML = html + '</main>';
+    $$('#btBody .bt-row').forEach(r => r.onclick = () => { if (r.dataset.s) { sym = r.dataset.s; key = r.dataset.k; sub = 'bt-rules'; history.replaceState(null, '', '#bt-rules'); paint(); setTimeout(() => document.getElementById('btMkt')?.scrollIntoView({ behavior: 'smooth' }), 50); } });
+  }
   function rules() {
     const el = $('#btBody');
     el.innerHTML = `<main>
@@ -172,7 +223,7 @@ const Backtest = (() => {
   async function show() {
     const hs = (location.hash.split('/')[1] || '').toUpperCase();
     if (!built) { [L, BK] = await Promise.all([getJSON('data/backtest/lab.json').catch(() => null), getJSON('data/backtest/baskets.json').catch(() => null)]); TL = await getJSON('data/backtest/tech.json').catch(() => null); built = true; }
-    const h = location.hash.slice(1); if (/^bt-(baskets|rules|dairy|tech)$/.test(h)) sub = h; else if (hs) sub = 'bt-rules';
+    const h = location.hash.slice(1); if (/^bt-(baskets|rules|dairy|tech|regime)$/.test(h)) sub = h; else if (hs) sub = 'bt-rules';
     if (!L) { document.getElementById('backtest').innerHTML = '<main><div class="card"><p class="note">Backtests not built yet.</p></div></main>'; return; }
     if (L.per_market[hs]) sym = hs;
     render();

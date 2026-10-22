@@ -37,6 +37,28 @@ GROUP = {"ZC": "Grains", "ZS": "Grains", "ZM": "Grains", "ZL": "Grains", "ZW": "
 EXTRA = {"KC": "Coffee", "SB": "Sugar", "CC": "Cocoa", "GC": "Gold", "SI": "Silver", "HG": "Copper", "CO": "Brent crude"}
 PSD = {"ZC": ("corn", 9), "ZS": ("soybeans", 9), "ZM": ("meal", 10), "ZL": ("oil", 10), "ZW": ("wheat", 6), "KE": ("wheat", 6), "CT": ("cotton", 8)}
 SPLIT = pd.Timestamp("2019-01-01")
+# recent-regime check (asked for after 2019 felt different): fit 2020-2023, test 2024-2025, plus 2026 so far
+WINDOWS = {"r_is": ("2020-01-01", "2023-12-31"), "r_oos": ("2024-01-01", "2025-12-31"), "live": ("2026-01-01", "2100-01-01")}
+
+
+def avg_hold_weeks(pos):
+    """Average length (weeks) of a run of the same non-zero position."""
+    sg = np.sign(pd.Series(pos).fillna(0).values)
+    runs, cur = [], 0
+    for i, x in enumerate(sg):
+        if x != 0 and i > 0 and x == sg[i - 1]:
+            cur += 1
+        else:
+            if cur:
+                runs.append(cur)
+            cur = 1 if x != 0 else 0
+    if cur:
+        runs.append(cur)
+    return round(float(np.mean(runs)), 1) if runs else None
+
+
+def horizon(hw):
+    return None if hw is None else ("Short-term (about a week)" if hw <= 2.5 else "Long-term (several weeks+)")
 TARGET, COST = 0.10, 0.0005
 
 
@@ -289,9 +311,9 @@ def strategies(f, sym):
 
 
 # ---------------------------------------------------------------- evaluation
-def stats(r, pos):
+def stats(r, pos, mn=52):
     r = r.dropna()
-    if len(r) < 52 or r.std() == 0:
+    if len(r) < mn or r.std() == 0:
         return None
     eq = r.cumsum()
     dd = float((eq - eq.cummax()).min())
@@ -322,6 +344,12 @@ def evaluate(f, sym):
         row = {"market": sym, "name_m": f.name.iloc[0], "group": GROUP.get(sym), "key": key, "strategy": name, "family": fam, **full,
                "is_sharpe": ins["sharpe"] if ins else None, "oos_sharpe": oos["sharpe"] if oos else None, "oos_ann": oos["ann"] if oos else None,
                "trades": trades, "exposure": exp, "sharpe_4x_cost": s4["sharpe"] if s4 else None}
+        for wk, (a, b) in WINDOWS.items():
+            sw = stats(r[(r.index >= a) & (r.index <= b)], pos, 26)
+            row[wk + "_sharpe"], row[wk + "_ann"] = (sw["sharpe"], sw["ann"]) if sw else (None, None)
+            row[wk + "_dd"] = sw["maxdd"] if sw else None
+        hw = avg_hold_weeks(pos.reindex(r.index))
+        row["hold_wk"], row["horizon"] = hw, horizon(hw)
         if event is not None:
             ev = event.reindex(f.index).fillna(False)
             ev = ev & ~ev.shift(1, fill_value=False)

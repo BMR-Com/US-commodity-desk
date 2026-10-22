@@ -87,9 +87,9 @@ def run(W, P, name, hold=1):
     return r, wf
 
 
-def stats(r):
+def stats(r, mn=52):
     r = r.dropna()
-    if len(r) < 52 or r.std() == 0:
+    if len(r) < mn or r.std() == 0:
         return None
     eq = r.cumsum()
     dd = float((eq - eq.cummax()).min())
@@ -115,7 +115,8 @@ def main():
         if full:
             gs = stats(r.attrs["gross"])
             S[key] = {"key": key, "name": name, "lit": lit, "group": group, "hold": hold, "r": r, "w": wf, **full, "sharpe_gross": gs["sharpe"] if gs else None, "cost_pa": round(r.attrs["cost_pa"], 2),
-                      "is": stats(r[r.index < SPLIT]), "oos": stats(r[r.index >= SPLIT])}
+                      "is": stats(r[r.index < SPLIT]), "oos": stats(r[r.index >= SPLIT]),
+                      **{wk: stats(r[(r.index >= a) & (r.index <= b)], 26) for wk, (a, b) in BL.WINDOWS.items()}}
     # carry
     add("xs_carry", "Carry: long most backwardated third, short most contangoed third", "Koijen et al. 2018; Gorton-Rouwenhorst; Erb-Harvey", xs(P["carry"]))
     add("xs_carry_adj", "Carry vs its own seasonal norm (cross-section)", "seasonal adjustment for crops and gas", xs(P["carry_adj"]))
@@ -179,7 +180,28 @@ def main():
         b = b * TARGET / (b.rolling(52, min_periods=26).std().shift(1) * math.sqrt(52))
         b = b.dropna()
         S["blend"] = {"key": "blend", "name": f"Blend: equal risk of the {len(cands)} sleeves with Sharpe > 0.3 in 2008-2018", "lit": "diversified multi-factor (selection without hindsight)", "group": "Blend",
-                      "hold": 1, "r": b, "w": None, **stats(b), "is": stats(b[b.index < SPLIT]), "oos": stats(b[b.index >= SPLIT]), "members": cands}
+                      "hold": 1, "r": b, "w": None, **stats(b), "is": stats(b[b.index < SPLIT]), "oos": stats(b[b.index >= SPLIT]), "members": cands, **{wk: stats(b[(b.index >= a_) & (b.index <= b_)], 26) for wk, (a_, b_) in BL.WINDOWS.items()}}
+    # recent-regime blends: sleeves picked on 2020-2023 only (Sharpe > 0.3), tested on 2024-2025; short-term and long-term books separately
+    def est_hold(v):
+        w = v["w"].loc[v["r"].index]
+        tw = float(w.diff().abs().sum(axis=1).mean())
+        return 2 * float(w.abs().sum(axis=1).mean()) / tw if tw > 0 else 99
+    a0, b0 = BL.WINDOWS["r_is"]
+    base = {k: v for k, v in S.items() if k not in ("long_only", "blend") and v.get("w") is not None and v.get("r_is") and v["r_is"]["sharpe"] > 0.3}
+    for key, nm, keep in (("blend_recent", "Recent blend: equal risk of sleeves with Sharpe > 0.3 in 2020-2023", lambda h: True),
+                          ("blend_recent_st", "Recent short-term blend: 2020-2023 winners that hold about a week", lambda h: h <= 2),
+                          ("blend_recent_lt", "Recent long-term blend: 2020-2023 winners that hold several weeks", lambda h: h > 2)):
+        cs = [k for k, v in base.items() if keep(est_hold(v))]
+        if len(cs) < 2:
+            continue
+        rr = pd.DataFrame({k: S[k]["r"] for k in cs})
+        rr = rr.div(rr.rolling(52, min_periods=26).std().shift(1), axis=0) * TARGET / math.sqrt(52)
+        b = rr.mean(axis=1)
+        b = (b * TARGET / (b.rolling(52, min_periods=26).std().shift(1) * math.sqrt(52))).dropna()
+        S[key] = {"key": key, "name": nm, "lit": "selection on 2020-2023 only; 2024-2025 is the test", "group": "Blend", "hold": 1, "r": b, "w": None, **stats(b),
+                  "is": stats(b[b.index < SPLIT]), "oos": stats(b[b.index >= SPLIT]), "members": cs,
+                  "horizon": None if key == "blend_recent" else BL.horizon(1 if key.endswith("st") else 9),
+                  **{wk: stats(b[(b.index >= a_) & (b.index <= b_)], 26) for wk, (a_, b_) in BL.WINDOWS.items()}}
     # correlations among sleeves
     keys = [k for k in S if k != "long_only"]
     C = pd.DataFrame({k: S[k]["r"] for k in keys}).corr().round(2)
@@ -194,10 +216,13 @@ def main():
             v["n_long"] = round(float((v["w"] > 1e-4).sum(axis=1).loc[v["r"].index].mean()), 1)
             v["n_short"] = round(float((v["w"] < -1e-4).sum(axis=1).loc[v["r"].index].mean()), 1)
             v["turnover"] = round(float(v["w"].diff().abs().sum(axis=1).loc[v["r"].index].mean() * 52), 1)
+            g = float(v["w"].abs().sum(axis=1).loc[v["r"].index].mean()); tw = v["turnover"] / 52
+            v["hold_wk"] = round(2 * g / tw, 1) if tw > 0 else None
+            v["horizon"] = BL.horizon(v["hold_wk"])
     out_s = []
     for k, v in S.items():
         out_s.append({x: v.get(x) for x in ("key", "name", "lit", "group", "hold", "ann", "vol", "sharpe", "t", "maxdd", "calmar", "hit", "worst_week", "longest_dd_weeks", "years",
-                                              "n_long", "n_short", "turnover", "book", "book_date", "members", "sharpe_gross", "cost_pa")} | {"is": v["is"], "oos": v["oos"],
+                                              "n_long", "n_short", "turnover", "book", "book_date", "members", "sharpe_gross", "cost_pa", "hold_wk", "horizon", "r_is", "r_oos", "live")} | {"is": v["is"], "oos": v["oos"],
                       "equity": [[str(d.date())[:7], round(float(x) * 100, 1)] for d, x in v["r"].cumsum().resample("ME").last().items()]})
     out_s.sort(key=lambda x: -(x["sharpe"] or -9))
     # findings

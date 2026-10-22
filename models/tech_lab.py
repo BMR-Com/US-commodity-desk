@@ -31,7 +31,7 @@ from research import held_series, AHEAD   # noqa: E402
 import backtest_lab as BL   # noqa: E402
 
 SPLIT = pd.Timestamp("2019-01-01")
-HOLDS = (5, 10, 20)
+HOLDS = (5, 10, 20, 40)
 COST = 0.0005
 
 
@@ -160,13 +160,13 @@ def trades(f, ev, side, h):
     return out
 
 
-def pstats(tr, h):
-    if len(tr) < 8:
+def pstats(tr, h, mn=8, yrs=None):
+    if len(tr) < mn:
         return None
     r = np.array([t[1] for t in tr]); mae = np.array([t[2] for t in tr])
     v = np.array([t[3] for t in tr]); v = np.where(np.isnan(v) | (v <= 0), np.nanmedian(v), v)
     ru = r / (v * math.sqrt(h / 252))                      # return in units of the trade's expected volatility
-    yrs = max((tr[-1][0] - tr[0][0]).days / 365.25, 1)
+    yrs = yrs or max((tr[-1][0] - tr[0][0]).days / 365.25, 1)
     per_year = len(tr) / yrs
     sr = float(ru.mean() / ru.std() * math.sqrt(per_year * 1)) if ru.std() > 0 else 0.0
     # equity at 10% vol per trade-period scaled to risk units: cumulative of ru * 10% * sqrt(h/252)
@@ -235,6 +235,56 @@ def pullbacks(f, N=20):
     return out
 
 
+def regime_summary(df):
+    """2020-2023 fit vs 2024-2025 test, pooled across markets, short-term (5-day) and long-term (10-40 day) holds separately."""
+    d = df.copy()
+    for wk in ("r_is", "r_oos", "live"):
+        d[f"{wk}_wsum"] = d[f"{wk}_win"].fillna(0) * d[f"{wk}_n"]
+        d[f"{wk}_asum"] = d[f"{wk}_avg"].fillna(0) * d[f"{wk}_n"]
+    g = d.groupby(["rule", "family", "side", "hold", "horizon"])
+    P = g.agg(markets=("market", "count"), r_is=("r_is_sharpe", "median"), r_oos=("r_oos_sharpe", "median"), live=("live_sharpe", "median"), full=("sharpe", "median"),
+              is_n=("r_is_n", "sum"), oos_n=("r_oos_n", "sum"), live_n=("live_n", "sum"),
+              is_w=("r_is_wsum", "sum"), oos_w=("r_oos_wsum", "sum"), oos_a=("r_oos_asum", "sum"), live_w=("live_wsum", "sum"), live_a=("live_asum", "sum"),
+              oos_pos=("r_oos_sharpe", lambda s: round(100 * (s.dropna() > 0).mean()) if s.notna().any() else None)).reset_index()
+    P["is_win"] = (P.is_w / P.is_n.replace(0, np.nan)).round(1)
+    P["oos_win"] = (P.oos_w / P.oos_n.replace(0, np.nan)).round(1)
+    P["oos_avg"] = (P.oos_a / P.oos_n.replace(0, np.nan)).round(2)
+    P["live_win"] = (P.live_w / P.live_n.replace(0, np.nan)).round(1)
+    P["live_avg"] = (P.live_a / P.live_n.replace(0, np.nan)).round(2)
+    P = P.drop(columns=["is_w", "oos_w", "oos_a", "live_w", "live_a"])
+    P = P[(P.markets >= 12) & P.r_is.notna() & P.r_oos.notna() & (P.oos_n >= 40) & (P.is_n >= 80)]
+    P["both"] = (P.r_is > 0) & (P.r_oos > 0)
+    P["score"] = P[["r_is", "r_oos"]].min(axis=1)   # the weaker of the two windows: rewards rules that worked in both
+    out = {"windows": {k: list(v) for k, v in BL.WINDOWS.items()}}
+    for hz, key in (("Short-term (about a week)", "st"), ("Long-term (several weeks)", "lt")):
+        x = P[P.horizon == hz].sort_values("score", ascending=False)
+        out[f"pooled_{key}"] = x.head(15).round(2).to_dict("records")
+        out[f"pooled_{key}_worst"] = x.sort_values("r_oos").head(8).round(2).to_dict("records")
+        out[f"flipped_{key}"] = x[(x.full > 0.1) & (x.r_oos < 0)].sort_values("r_oos").head(8).round(2).to_dict("records")
+        mi, mo = (15, 10) if key == "st" else (10, 6)
+        s1 = d[(d.horizon == hz) & (d.hold <= 20) & (d.r_is_n >= mi) & (d.r_oos_n >= mo) & (d.r_is_sharpe > 0) & (d.r_oos_sharpe > 0)].copy()
+        s1["score"] = s1[["r_is_sharpe", "r_oos_sharpe"]].min(axis=1)
+        out[f"single_{key}"] = s1.sort_values("score", ascending=False).head(15)[["market", "name_m", "rule", "family", "side", "hold", "r_is_sharpe", "r_oos_sharpe", "live_sharpe",
+                                                                                     "r_is_n", "r_oos_n", "r_is_win", "r_oos_win", "r_oos_avg", "sharpe", "is_sharpe", "oos_sharpe"]].round(2).to_dict("records")
+    F = d.groupby(["family", "horizon"]).agg(tests=("market", "count"), full=("sharpe", "median"), early=("is_sharpe", "median"), r_is=("r_is_sharpe", "median"),
+                                            r_oos=("r_oos_sharpe", "median"), live=("live_sharpe", "median")).reset_index()
+    out["families"] = F.round(2).to_dict("records")
+    L = []
+    for key, lab in (("st", "Short-term (5-day holds)"), ("lt", "Long-term (10-40 day holds)")):
+        top = out[f"pooled_{key}"][:4]
+        if top:
+            L.append(f"{lab}, best in both 2020-23 and 2024-25: " + "; ".join(f"{r['rule']} ({r['side']}, {r['hold']}d) median Sharpe {r['r_is']:.2f} then {r['r_oos']:.2f}, win {r['oos_win'] or 0:.0f}% in 2024-25" for r in top) + ".")
+        fl = out[f"flipped_{key}"][:3]
+        if fl:
+            L.append(f"{lab} that worked over 2007-2026 but failed in 2024-25: " + "; ".join(f"{r['rule']} ({r['side']}, {r['hold']}d) full {r['full']:.2f} vs 2024-25 {r['r_oos']:.2f}" for r in fl) + ".")
+    fam = F.sort_values("r_oos", ascending=False)
+    L.append("By family, median Sharpe 2007-18 → 2020-23 → 2024-25: " + "; ".join(f"{r.family} {r.horizon.split(' ')[0].lower()} {r.early:+.2f} → {r.r_is:+.2f} → {r.r_oos:+.2f}" for r in fam.itertuples() if pd.notna(r.r_oos)) + ".")
+    out["learnings"] = L
+    out["n_both_st"] = int(P[(P.horizon.str.startswith("Short")) & P.both].shape[0]); out["n_st"] = int(P.horizon.str.startswith("Short").sum())
+    out["n_both_lt"] = int(P[(P.horizon.str.startswith("Long")) & P.both].shape[0]); out["n_lt"] = int(P.horizon.str.startswith("Long").sum())
+    return out
+
+
 def main():
     rows, rec, pb, names = [], {}, {}, {}
     for sym, nm in BL.DESK.items():
@@ -256,7 +306,14 @@ def main():
                     rows.append({"market": sym, "name_m": nm, "group": BL.GROUP.get(sym), "rule": rule, "family": fam, "side": "long" if side > 0 else "short", "hold": h, **s,
                                  "base": round(base_rate(f[f.index >= pd.Timestamp("2007-01-01")], side, h), 2),
                                  "is_sharpe": s_is["sharpe"] if s_is else None, "oos_sharpe": s_oos["sharpe"] if s_oos else None,
-                                 "oos_win": s_oos["win"] if s_oos else None, "oos_n": s_oos["n"] if s_oos else 0})
+                                 "oos_win": s_oos["win"] if s_oos else None, "oos_n": s_oos["n"] if s_oos else 0,
+                                 "horizon": "Short-term (about a week)" if h <= 5 else "Long-term (several weeks)"})
+                    for wk, (a, b) in BL.WINDOWS.items():
+                        a, b = pd.Timestamp(a), pd.Timestamp(b)
+                        yw = min((b - a).days, (f.index[-1] - a).days) / 365.25
+                        sw = pstats([t for t in tr if a <= t[0] <= b], h, 3, max(yw, 0.25))
+                        rows[-1].update({f"{wk}_sharpe": sw["sharpe"] if sw else None, f"{wk}_n": sw["n"] if sw else 0,
+                                         f"{wk}_win": sw["win"] if sw else None, f"{wk}_avg": sw["avg"] if sw else None})
         rec[sym] = recovery(f); pb[sym] = pullbacks(f)
         print(sym, len(rows), flush=True)
     df = pd.DataFrame(rows)
@@ -316,7 +373,8 @@ def main():
         L.append(f"First dip to the {r['k']}-day MA in an uptrend ({r['events']} cases): new 20-day high within 20 days {r['new_high_pct']:.0f}%, closed below the 50-day {r['broke50_pct']:.0f}%, "
                  f"average dip {r['mae_avg']:.1f}%, return after 20 days {r['r20']:+.2f}% (up {r['win20']:.0f}%).")
     L.append(f"{n_tests} rule x market x holding-period tests: a t-stat around {noise_t} is what the luckiest test would show by chance, so prefer rules that work across many markets and in both 2007-18 and 2019+.")
-    out = {"generated": date.today().isoformat(), "split": str(SPLIT.date()), "holds": HOLDS, "n_tests": n_tests, "noise_t": noise_t, "learnings": L,
+    regime = regime_summary(df)
+    out = {"regime": regime, "generated": date.today().isoformat(), "split": str(SPLIT.date()), "holds": HOLDS, "n_tests": n_tests, "noise_t": noise_t, "learnings": L,
            "families": fam.round(2).to_dict("records"), "pooled": pool.round(2).to_dict("records"), "top": top.round(2).to_dict("records"), "worst": worst.round(2).to_dict("records"),
            "best_win": best_win.round(2).to_dict("records"), "low_dd": low_dd.round(2).to_dict("records"), "per_market": per,
            "recovery": {"pooled": rp, "by_market": {names[k]: v for k, v in rec.items()}}, "pullback": {"pooled": pp, "by_market": {names[k]: v for k, v in pb.items()}}}

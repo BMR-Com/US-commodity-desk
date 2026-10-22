@@ -178,3 +178,7 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
 - `models/tech_lab.py` → `data/backtest/tech.json` (weekly in backtest.yml, ~1 min). Daily roll-adjusted closes for the 20 desk markets; ~55 patterns (RSI14/RSI2, % below 9-day MA, Bollinger, down-day runs, stochastic, trend pullbacks to 9/20/50-day, MACD/EMA/SMA crosses, 20/55-day breakouts, RSI/MACD divergences) × long/short × hold 5/10/20 days; next-close entry, non-overlapping, 5 bp/side; IS/OOS split 2019.
 - Also: recovery-to-9-day-MA study (touch vs regain signal-day level) and uptrend dip-to-MA study.
 - A "Top findings" card (built client-side from baskets.json + tech.json + lab.json) sits above the Backtest sub-tabs; long lists are collapsed in <details>.
+
+## Recent-regime check (Backtest → 2020-23 vs 2024-25)
+- `backtest_lab.WINDOWS` = fit 2020-2023, test 2024-2025, live 2026+. backtest_lab rows gain r_is/r_oos/live Sharpe, `hold_wk` (avg run of the same position) and `horizon` (short-term ≤2.5 weeks, else long-term); basket_lab sleeves gain r_is/r_oos/live stats, hold_wk (2×gross/weekly turnover) and three "recent blends" picked on 2020-23 only (all / short-term / long-term); tech_lab adds 40-day holds, per-window stats and `regime` (pooled + single-market, short vs long, flipped patterns, families).
+- UI sub-tab `#bt-regime` is built client-side from lab.json, baskets.json and tech.json; ranking = the weaker of the two windows.

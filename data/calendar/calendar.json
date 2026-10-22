@@ -1,37 +1,6 @@
 {
-"generated": "2026-10-21 22:32 UTC",
+"generated": "2026-10-22 02:08 UTC",
 "events": [
-{
-"date": "2026-10-14",
-"time": "9:30 AM CT",
-"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
-"cat": "Energy",
-"markets": [
-"CL",
-"HO",
-"RB"
-],
-"importance": 3,
-"link": "https://www.eia.gov/petroleum/supply/weekly/",
-"estimated": false
-},
-{
-"date": "2026-10-14",
-"time": "11:00 AM CT",
-"event": "USDA NDPSR dairy product prices (weekly)",
-"cat": "Dairy",
-"markets": [
-"DC",
-"GDK",
-"CSC",
-"CB",
-"GNF",
-"DY"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-10-15",
 "time": "9:30 AM CT",
@@ -3227,6 +3196,35 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-01-20",
+"time": "11:00 AM CT",
+"event": "USDA NDPSR dairy product prices (weekly)",
+"cat": "Dairy",
+"markets": [
+"DC",
+"GDK",
+"CSC",
+"CB",
+"GNF",
+"DY"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-20",
+"time": "",
+"event": "WTI crude Feb 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"CL"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 }
 ]
 }

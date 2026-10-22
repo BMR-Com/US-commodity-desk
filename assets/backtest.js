@@ -1,7 +1,7 @@
 // Backtest tab: trend, COT, carry, fundamental, seasonal and combined rules tested on every market (data/backtest/lab.json,
 // models/backtest_lab.py). Deep link: #backtest/<SYM>.
 const Backtest = (() => {
-  let L = null, EQ = null, BK = null, TL = null, tsym = 'ZC', sym = 'ZC', key = null, bkey = null, built = false, sub = 'bt-baskets';
+  let L = null, EQ = null, BK = null, TL = null, DA = null, dsym = 'CB', tsym = 'ZC', sym = 'ZC', key = null, bkey = null, built = false, sub = 'bt-baskets';
   const n = (v, d = 2) => v == null ? '–' : (+v).toFixed(d);
   const sg = (v, d = 2) => v == null ? '–' : `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(d)}</span>`;
   const tbl = (head, rows, cls = '') => `<div class="tbl"><table class="${cls}"><tr>${head.map((h, i) => `<th class="${i < 2 ? 'l' : ''}">${h}</th>`).join('')}</tr>${rows.join('')}</table></div>`;
@@ -81,7 +81,7 @@ const Backtest = (() => {
     const el = $('#btBody');
     if (!BK || !BK.dairy) { el.innerHTML = '<main><p class="note">Not built yet.</p></main>'; return; }
     const d = BK.dairy, b = d.basket || {};
-    el.innerHTML = `<main><div class="card"><h2>Why trend rules work in dairy futures</h2>
+    el.innerHTML = arbHtml() + `<main><div class="card"><h2>Why trend rules work in dairy futures</h2>
       <p><b>The mechanism.</b> CME Class III and IV milk, cheese, butter, nonfat dry milk and dry whey futures are cash-settled to USDA's monthly announced prices, which are averages of four or five weekly NDPSR survey prices (and, for Class III/IV, formulas built on those product prices). Once a month is under way, part of its settlement price is already known, and the weekly survey prices themselves move in steps that follow the CME spot cheese, butter and powder markets with a lag. So futures prices inherit slow, persistent moves: when a contract starts rising it tends to keep rising for several weeks, and breakout or moving-average rules ride that.</p>
       <p><b>The evidence.</b> Weekly returns of the roll-adjusted series since 2012 have positive autocorrelation in dairy (Class IV ${d.markets.find(m => m.sym === 'GDK')?.ac1}, cheese ${d.markets.find(m => m.sym === 'CSC')?.ac1}, nonfat ${d.markets.find(m => m.sym === 'GNF')?.ac1}, Class III ${d.markets.find(m => m.sym === 'DC')?.ac1}) against a median of ${d.other_median_ac1} for the other markets, where returns are close to random week to week. The dairy trend basket (20-day breakouts in all six, equal risk) has Sharpe <b>${n(b.sharpe)}</b> (2008-18 ${n(d.basket_is?.sharpe)}, 2019+ ${n(d.basket_oos?.sharpe)}), max drawdown ${n(b.maxdd, 1)}% and a weekly hit rate of ${n(b.hit, 0)}% at 10% volatility.</p>
       <p><b>The catch.</b> These markets are thin: average daily volume (all months) is roughly ${d.markets.map(m => `${m.market} ${m.adv ? m.adv.toLocaleString() : '–'}`).join(', ')} contracts, versus hundreds of thousands in corn or crude. Bid-ask spreads are wide and a fund could only run small size; the backtest uses closing settlements, so real fills would be worse (the 4x-cost column shows the edge mostly survives higher costs, but not slippage from moving the market). Class III milk, the most liquid, has the weakest out-of-sample result. Butter, Class IV and nonfat carry the edge.</p></div>
@@ -91,6 +91,7 @@ const Backtest = (() => {
       <div class="card" style="margin-top:12px"><h2>Persistence by market <span class="note">lag-1 autocorrelation of weekly returns, 2012 on</span></h2><div class="chart" style="height:300px"><canvas id="dyAc"></canvas></div></div></main>`;
     chart('dyAc', { type: 'bar', data: { labels: d.autocorr.map(a => a.market), datasets: [{ label: 'weekly return autocorrelation', data: d.autocorr.map(a => a.ac1), backgroundColor: d.autocorr.map(a => a.group === 'Dairy' ? '#d68910' : '#9bb7d9') }] },
       options: { plugins: { legend: { display: false } }, scales: { x: { ticks: { autoSkip: false, maxRotation: 70, font: { size: 9 } } } } } });
+    arbCharts();
   }
 
   // the few results worth acting on, from all three labs, always shown above the sub-tabs
@@ -200,6 +201,62 @@ const Backtest = (() => {
     el.innerHTML = html + '</main>';
     $$('#btBody .bt-row').forEach(r => r.onclick = () => { if (r.dataset.s) { sym = r.dataset.s; key = r.dataset.k; sub = 'bt-rules'; history.replaceState(null, '', '#bt-rules'); paint(); setTimeout(() => document.getElementById('btMkt')?.scrollIntoView({ behavior: 'smooth' }), 50); } });
   }
+
+  // weekly NDPSR -> monthly settlement: nowcast vs futures, gap trades, formula arbitrage
+  function arbHtml() {
+    if (!DA) return '';
+    const S = DA.specs, nm = k => S[k]?.name || k;
+    const g1 = DA.gap_trades.filter(t => t.signal === 'Spot-based nowcast' && t.threshold_x_cost === 1 && t.window === 'All').sort((a, b) => (b.t ?? -9) - (a.t ?? -9));
+    const cb = g1.find(t => t.sym === 'CB'), dc = g1.find(t => t.sym === 'DC');
+    const acc = k => DA.accuracy.filter(a => a.sym === k);
+    const dcA = acc('DC'), ll = Object.fromEntries(DA.leadlag.map(r => [r.product, r]));
+    const f3 = DA.formula_arb.class3, f4 = DA.formula_arb.class4;
+    const t3 = f3.trades.find(t => t.threshold === 0.2), t4 = f4.trades.find(t => t.threshold === 0.2);
+    const sv = DA.surprise.find(r => r.sym === 'DC');
+    const top = [
+      `<b>How settlement is built.</b> Each contract settles on USDA's monthly price, the sales-weighted average of the weekly NDPSR survey for the weeks ending in that month (Class III / IV through the FMMO formulas). The survey follows the CME spot market with a lag: weekly block cheese tracks the spot price of <b>one to two weeks earlier</b> (correlation of weekly changes ${ll.block?.corr_changes['2']} with two weeks before, ${ll.block?.corr_changes['0']} with the same week); butter about one week earlier; nonfat and whey about two weeks. So the "monthly average" is mostly decided by CME spot trading from mid-previous-month to mid-month.`,
+      `<b>Liquid contracts already price it.</b> Class III futures miss the final price by $${dcA.map(a => a.mae_futures.toFixed(2)).join(' → $')}/cwt as the month fills in; a nowcast from published weeks plus CME spot misses by $${dcA.map(a => a.mae_nowcast.toFixed(2)).join(' → $')}. The market beats the model at every stage, and a gap trade on Class III ${dc ? `makes ${dc.avg_usd >= 0 ? '+' : ''}$${dc.avg_usd} per contract (t ${dc.t})` : 'has no edge'}. Cheese futures look the same. There is no free arbitrage between the weekly print and the monthly settlement in Class III or cheese.`,
+      cb ? `<b>Butter is the exception.</b> Buying butter futures when the spot-based nowcast is above them (selling when below), entering on NDPSR release days and holding to settlement, made <b>$${cb.avg_usd.toLocaleString()} per contract</b> after a $${cb.cost_usd} round-trip cost, hit ${cb.hit}%, over ${cb.months} contract months (month-clustered t ${cb.t}); longs $${cb.long_usd.toLocaleString()}, shorts $${cb.short_usd.toLocaleString()}; 2021-23 $${cb.avg_usd_2021_23.toLocaleString()}, 2024-26 $${cb.avg_usd_2024_26.toLocaleString()}. Most of it comes from contracts a month or more out, where butter futures put in a curve that the spot market did not follow. Butter trades a few hundred lots a day across all months, so size is small.` : '',
+      t3 ? `<b>Formula arbitrage.</b> Class III futures and the Class III implied by cheese, butter and whey futures of the same month settle on the same USDA averages, so any gap must close. The gap averages $${f3.mean_abs_gap}/cwt; when it passed $0.20 (${t3.months} months since 2012), trading it to expiry made $${t3.avg_usd} per Class III contract after costs, ${t3.hit}% of the time. Class IV vs butter + nonfat: $${t4?.avg_usd} per contract, ${t4?.hit}% of the time. Ratio per 10 Class III: ${Object.entries(DA.formula_arb.hedge_per_10.class3).map(([k, v]) => `${v} ${k}`).join(', ')}; per 10 Class IV: ${Object.entries(DA.formula_arb.hedge_per_10.class4).map(([k, v]) => `${v} ${k}`).join(', ')}. Caveat: the history uses each contract's last trade of the day, which can be hours apart, so part of each gap is timing, not a price you could have hit.` : '',
+      sv ? `<b>Release days.</b> When a weekly print differs from what spot implied, Class III futures move only ${sv.reaction_slope}x of the change it makes to the monthly average, because traders had already priced the print from spot; there is no follow-through over the next 1-5 days (hit ${sv.drift3_hit}% after costs). Trading the Wednesday print does not pay.` : ''
+    ].filter(Boolean);
+    const lv = DA.live || [];
+    const months = [...new Set(lv.map(r => r.month))];
+    const liveT = tbl(['Contract', 'Month', 'Weeks published', 'Futures (last)', 'Spot-based nowcast', 'Last-print nowcast', 'Gap (nowcast - futures)', '$ per contract', 'Round-trip cost $'], lv.map(r => `<tr><td class="l"><b>${r.name}</b></td><td class="l">${r.month}</td><td>${r.known_weeks} / ${r.weeks}</td><td>${r.futures} <span class="note">${r.last_trade ? 'traded ' + r.last_trade.slice(5) : ''}</span></td><td><b>${r.nowcast}</b></td><td>${r.naive}</td><td>${sg(r.gap_ticks, 0)} ticks</td><td>${sg(r.gap_usd, 0)}</td><td>${r.cost_usd}</td></tr>`), 'bt-t');
+    const gt = rows => tbl(['Contract', 'Signal', 'Window', 'Threshold (x cost)', 'Entries', 'Months', 'Hit %', '$ / contract', 'Longs $', 'Shorts $', '2021-23 $', '2024-26 $', 'Worst $', 't (by month)'],
+      rows.map(t => `<tr><td class="l"><b>${t.name}</b></td><td class="l">${t.signal}</td><td class="l note">${t.window}</td><td>${t.threshold_x_cost}</td><td>${t.trades}</td><td>${t.months}</td><td>${t.hit}</td><td><b>${sg(t.avg_usd, 0)}</b></td><td>${sg(t.long_usd, 0)}</td><td>${sg(t.short_usd, 0)}</td><td>${sg(t.avg_usd_2021_23, 0)}</td><td>${sg(t.avg_usd_2024_26, 0)}</td><td>${sg(t.worst_usd, 0)}</td><td>${sg(t.t)}</td></tr>`), 'bt-t');
+    const arbT = (k, a) => tbl(['Threshold $/cwt', 'Months', 'Hit %', '$ per Class contract', 'Avg days to expiry at entry'], a.trades.map(t => `<tr><td class="l">> ${t.threshold.toFixed(2)}</td><td>${t.months}</td><td>${t.hit}</td><td><b>${sg(t.avg_usd, 0)}</b></td><td>${t.avg_days_to_close}</td></tr>`));
+    return `<main style="padding-bottom:0"><div class="card"><h2>Weekly NDPSR → monthly settlement: is there an arbitrage? <span class="note">${DA.generated} · CME spot from ${DA.spot_from} · NDPSR from 2012</span></h2>
+      <ul class="read">${top.map(x => `<li>${x}</li>`).join('')}</ul>
+      <p class="note">Method: on every trading day since late 2021 each contract month's settlement is estimated from the NDPSR weeks already published plus a forecast of the remaining weeks from CME spot prices (regressions refit monthly on past data only; future weeks assume spot stays where it is). Futures prices are the day's last trade (days without trades are skipped). Costs assume one bid-ask spread per round trip: Class III $0.05/cwt, Class IV $0.10, cheese $0.005/lb, butter, nonfat and whey 0.5 c/lb. Research only.</p></div>
+      <div class="card" style="margin-top:12px"><h2>Today: nowcast vs futures <span class="note">as of ${lv[0]?.date || '–'}; a gap is only worth acting on in contracts where the backtest below shows an edge (butter)</span></h2>${lv.length ? liveT : '<p class="note">No open months.</p>'}</div>
+      <div class="grid g2" style="margin-top:12px"><div class="card"><h2>How close each estimate gets to final settlement <select id="daSel">${Object.keys(S).map(k => `<option value="${k}"${k === dsym ? ' selected' : ''}>${nm(k)}</option>`).join('')}</select></h2><div class="chart" style="height:280px"><canvas id="daAcc"></canvas></div>
+        <p class="note">Average absolute error vs the announced price by stage of the contract. "Last print" carries the latest weekly NDPSR forward; "blend" is the average of futures and the spot-based nowcast.</p></div>
+        <div class="card"><h2>Gap trade, by contract <span class="note">threshold = 1x cost, hold to settlement</span></h2>${gt(g1)}
+        <details><summary>Inside the last two weeks before and during the month only</summary>${gt(DA.gap_trades.filter(t => t.signal === 'Spot-based nowcast' && t.threshold_x_cost === 1 && t.window !== 'All'))}</details>
+        <details><summary>All thresholds and the naive (last print) signal</summary>${gt(DA.gap_trades)}</details>
+        <details><summary>By stage of the month</summary>${tbl(['Contract', 'Stage', 'Entries', 'Hit %', '$ / contract', 't (by month)'], DA.gap_by_phase.map(r => `<tr><td class="l">${nm(r.sym)}</td><td class="l">${r.phase}</td><td>${r.trades}</td><td>${r.hit}</td><td>${sg(r.avg_usd, 0)}</td><td>${sg(r.t)}</td></tr>`))}</details></div></div>
+      <div class="grid g2" style="margin-top:12px"><div class="card"><h2>Formula arbitrage: Class III and IV vs component futures</h2>
+        <p>Class III vs cheese + butter + whey: average gap $${f3.mean_abs_gap}/cwt, above 10 cents on ${f3.share_gt_10c}% of days, above 25 cents ${f3.share_gt_25c}%; at expiry $${f3.end_gap_mean_abs}. Class IV vs butter + nonfat: $${f4.mean_abs_gap}, ${f4.share_gt_10c}% and ${f4.share_gt_25c}%; $${f4.end_gap_mean_abs} at expiry. Costs $${DA.formula_arb.cost_cwt.class3} (III) and $${DA.formula_arb.cost_cwt.class4} (IV) per cwt.</p>
+        <h3>Class III</h3>${arbT('class3', f3)}<h3>Class IV</h3>${arbT('class4', f4)}
+        <details><summary>Latest gaps by month</summary>${tbl(['Month', '', 'Class futures', 'Implied from components', 'Gap $/cwt'], [...f3.now.map(r => ['III', r]), ...f4.now.map(r => ['IV', r])].map(([c, r]) => `<tr><td class="l">${c} ${r.month}</td><td></td><td>${r.futures}</td><td>${r.implied}</td><td>${sg(r.gap)}</td></tr>`))}</details></div>
+        <div class="card"><h2>NDPSR vs CME spot <span class="note">weekly survey price vs the spot market's weekly average</span></h2>${tbl(['Product', '', 'Weeks', 'Weight: same week', 'Week before', 'Two weeks before', 'Corr. of changes (0 / 1 / 2 / 3 wk lag)', 'Typical miss %'], DA.leadlag.map(r => `<tr><td class="l"><b>${r.product}</b></td><td></td><td>${r.weeks}</td><td>${r.coef.same_week}</td><td>${r.coef.one_week_before}</td><td>${r.coef.two_weeks_before}</td><td>${Object.values(r.corr_changes).join(' / ')}</td><td>${r.resid_sd_pct}</td></tr>`))}
+        <p class="note">Barrels are moisture-adjusted; before June 2025 Class III cheese blended blocks and barrels (+3 c), since then blocks only.</p>
+        <h3>Release-day reaction</h3>${tbl(['Contract', '', 'Prints', 'Reaction (1 = full)', 'Same-day direction right %', 'Drift 1d ticks', 'Drift 3d ticks', 'Net $ 3d', 'Hit % 3d'], DA.surprise.map(r => `<tr><td class="l">${r.name}</td><td></td><td>${r.events}</td><td>${r.reaction_slope}</td><td>${r.same_day_hit}</td><td>${sg(r.drift1_ticks, 1)}</td><td>${sg(r.drift3_ticks, 1)}</td><td>${sg(r.drift3_usd_net, 0)}</td><td>${r.drift3_hit}</td></tr>`))}</div></div></main>`;
+  }
+  function arbCharts() {
+    if (!DA) return;
+    const draw = () => {
+      const a = DA.accuracy.filter(x => x.sym === dsym);
+      chart('daAcc', { type: 'bar', data: { labels: a.map(x => x.phase.replace(/^\d\. /, '')), datasets: [
+        { label: 'futures', data: a.map(x => x.mae_futures), backgroundColor: PAL[0] }, { label: 'spot-based nowcast', data: a.map(x => x.mae_nowcast), backgroundColor: PAL[1] },
+        { label: 'last print', data: a.map(x => x.mae_naive), backgroundColor: '#bbb' }, { label: 'blend', data: a.map(x => x.mae_blend), backgroundColor: PAL[2] }] },
+        options: { scales: { x: { ticks: { font: { size: 9 }, maxRotation: 40 } }, y: { title: { display: true, text: 'avg miss vs settlement', font: { size: 10 } } } } } });
+    };
+    const sel = document.getElementById('daSel');
+    if (sel) sel.onchange = e => { dsym = e.target.value; draw(); };
+    draw();
+  }
   function rules() {
     const el = $('#btBody');
     el.innerHTML = `<main>
@@ -222,7 +279,7 @@ const Backtest = (() => {
   }
   async function show() {
     const hs = (location.hash.split('/')[1] || '').toUpperCase();
-    if (!built) { [L, BK] = await Promise.all([getJSON('data/backtest/lab.json').catch(() => null), getJSON('data/backtest/baskets.json').catch(() => null)]); TL = await getJSON('data/backtest/tech.json').catch(() => null); built = true; }
+    if (!built) { [L, BK] = await Promise.all([getJSON('data/backtest/lab.json').catch(() => null), getJSON('data/backtest/baskets.json').catch(() => null)]); TL = await getJSON('data/backtest/tech.json').catch(() => null); DA = await getJSON('data/dairy/derived/dairy_arb.json').catch(() => null); built = true; }
     const h = location.hash.slice(1); if (/^bt-(baskets|rules|dairy|tech|regime)$/.test(h)) sub = h; else if (hs) sub = 'bt-rules';
     if (!L) { document.getElementById('backtest').innerHTML = '<main><div class="card"><p class="note">Backtests not built yet.</p></div></main>'; return; }
     if (L.per_market[hs]) sym = hs;

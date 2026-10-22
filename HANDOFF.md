@@ -182,3 +182,8 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
 ## Recent-regime check (Backtest → 2020-23 vs 2024-25)
 - `backtest_lab.WINDOWS` = fit 2020-2023, test 2024-2025, live 2026+. backtest_lab rows gain r_is/r_oos/live Sharpe, `hold_wk` (avg run of the same position) and `horizon` (short-term ≤2.5 weeks, else long-term); basket_lab sleeves gain r_is/r_oos/live stats, hold_wk (2×gross/weekly turnover) and three "recent blends" picked on 2020-23 only (all / short-term / long-term); tech_lab adds 40-day holds, per-window stats and `regime` (pooled + single-market, short vs long, flipped patterns, families).
 - UI sub-tab `#bt-regime` is built client-side from lab.json, baskets.json and tech.json; ranking = the weaker of the two windows.
+
+## Dairy weekly-to-monthly convergence lab (Backtest → Dairy deep dive, top)
+- `models/dairy_arb.py` → `data/dairy/derived/dairy_arb.json`, run nightly in contracts.yml after the per-contract refresh.
+- Daily nowcast of each open contract month (DC, GDK, CSC, CB, GNF, DY): published NDPSR weeks + unpublished weeks predicted from CME spot (data/ams/cme_daily_dairy, 2021+; OLS on same/1/2-week-earlier spot, refit monthly on past data); naive = last print carried. Evaluation uses traded days only (TradingView history repeats the last trade on no-volume days; the last row per contract is the final settlement and is excluded).
+- Tests: accuracy by stage, gap trade on NDPSR release days to settlement (costs = 1 bid-ask: DC 0.05, GDK 0.10, CSC 0.005, CB/GNF/DY 0.5c; t-stats clustered by contract month), release-day reaction/drift, Class III/IV vs component-futures formula arbitrage (2012+, hedge ratios per 10 lots), live nowcast vs futures table.

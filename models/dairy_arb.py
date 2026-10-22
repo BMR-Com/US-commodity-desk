@@ -61,6 +61,10 @@ def cme_spot():
     d["p"] = key
     d = d[d.p != ""]
     s = d.pivot_table(index="date", columns="p", values="close_price", aggfunc="last").sort_index()
+    hp = ROOT / "data" / "ams" / "cme_daily_dairy_hist" / "history.csv"     # Nov 2018 on, from DMN weekly recaps
+    if hp.exists():
+        h = pd.read_csv(hp, parse_dates=["date"]).pivot_table(index="date", columns="product", values="close", aggfunc="last")
+        s = pd.concat([h[h.index < s.index.min()], s]).sort_index()
     return s[list(PRODUCTS)]
 
 
@@ -91,12 +95,8 @@ def ndpsr():
 
 
 def futures():
-    out = {}
-    for s in SPEC:
-        f = pd.read_csv(ROOT / "data" / "contracts" / f"{s}.csv", parse_dates=["date"])
-        f["m"] = [pd.Period(f"{c[len(s) + 1:]}-{CODES.index(c[len(s)]) + 1:02d}", "M") for c in f.contract]
-        out[s] = f
-    return out
+    from futures_io import load_contracts      # settlements on exchange trade dates
+    return {s: load_contracts(s) for s in SPEC}
 
 
 def targets(cp):

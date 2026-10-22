@@ -66,8 +66,9 @@ def main():
         r = get(f"{B}/publication/cme-group-weekly-recaptrading?page={page}")
         if r is None:
             break
+        anyf = re.findall(r'href="([^"]+\.(?:txt|pdf))"', r.text, re.I)
         files = sorted(set(re.findall(r'href="([^"]+\.txt)"', r.text, re.I)))
-        if not files and page > 2:
+        if not anyf:
             break
         for f in files:
             rr = get(B + f if f.startswith("/") else f)

@@ -1,0 +1,30 @@
+# Desk clock: starts the data workflows at the right US Eastern times (pipelines/clock.py), because GitHub's own cron
+# runs arrive hours late or not at all on this repo. A workflow_dispatch starts immediately. One clock at a time; each
+# runs up to ~5h50m and hands over to the next while the day still has entries; the crons below restart it each
+# weekday morning (several, because any of them may be late or skipped). No secrets: uses the job's GITHUB_TOKEN.
+name: clock
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '13 6 * * 1-5'
+    - cron: '41 7 * * 1-5'
+    - cron: '9 9 * * 1-5'
+    - cron: '47 9 * * 1-5'
+    - cron: '27 11 * * 1-5'
+    - cron: '17 15 * * 1-5'
+    - cron: '37 18 * * 1-5'
+permissions:
+  actions: write
+  contents: read
+concurrency: {group: clock, cancel-in-progress: false}
+jobs:
+  clock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: {sparse-checkout: pipelines/clock.py, sparse-checkout-cone-mode: false}
+      - name: run the timetable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 -u pipelines/clock.py

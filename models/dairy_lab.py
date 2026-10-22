@@ -466,6 +466,9 @@ def main():
     D, cp, T, W, P, S, pub, E, F, settle, ann = build_panel()
     print("panel", len(D), D.t.min().date(), D.t.max().date())
     D = walk_forward(D, T)
+    # weekly decision panel with every forecast, for the strategy-ideas module (models/dairy_ideas.py)
+    keep = ["t", "sym", "m", "h", "F", "y", "cash", "basis", "seas", "mom4", "fmom", "sbasis_spot", "nc_gap", "spot_mom", "nc_or_spot"] + [c for c in D.columns if c.startswith("p_")]
+    D[keep].assign(m=D.m.astype(str)).to_csv(ROOT / "data" / "dairy" / "derived" / "dairy_panel.csv.gz", index=False, float_format="%.6g")
     out = {"generated": date.today().isoformat(), "models": MODELS, "specs": {s: {"name": v[4], "usd_per_unit": v[2], "cost": v[3]} for s, v in SPEC.items()}}
     out["persistence"] = persistence(P, S, ann, settle)
     out["fundamentals"] = fundamentals_forecast(ann, E)

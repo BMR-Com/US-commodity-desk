@@ -1,13 +1,39 @@
 // Dairy primer: convergence, persistence and trading lab (data/dairy/derived/dairy_lab.json + dairy_arb.json).
 const DairyLab = (() => {
-  let LB = null, AR = null, done = false;
+  let LB = null, AR = null, ID = null, done = false;
   const n = (v, d = 2) => v == null ? '–' : (+v).toFixed(d);
   const sg = (v, d = 2) => v == null ? '–' : `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(d)}</span>`;
   const usd = v => v == null ? '–' : `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${v < 0 ? '-' : ''}$${Math.abs(Math.round(v)).toLocaleString()}</span>`;
   const T = (head, rows, cls = 'bt-t') => `<div class="tbl"><table class="${cls}"><tr>${head.map((h, i) => `<th class="${i < 2 ? 'l' : ''}">${h}</th>`).join('')}</tr>${rows.join('')}</table></div>`;
+
+  function ideasHtml() {
+    if (!ID) return '';
+    const u = v => v == null ? '–' : `${v < 0 ? '-' : ''}$${Math.abs(Math.round(v)).toLocaleString()}`;
+    const I = ID.ideas, E = ID.examples || [], es = ID.examples_summary || {};
+    const conv = I.find(x => x.key === 'conv_all'), cbdy = I.find(x => x.key === 'conv_butter_whey');
+    const lowdd = I.filter(x => x.maxdd_usd > -10000 && (x.sharpe ?? 0) > 0.6).sort((a, b) => (b.calmar ?? 0) - (a.calmar ?? 0));
+    const row = x => `<tr><td class="l" title="${x.how}"><b>${x.name}</b></td><td>${sg(x.sharpe)}</td><td>${sg(x.sharpe_2020_23)}</td><td>${sg(x.sharpe_2024_26)}</td><td>${n(x.hit, 0)}%</td><td>${n(x.payoff)}</td><td>${usd(x.ann_usd)}</td><td>${usd(x.maxdd_usd)}</td><td>${n(x.calmar)}</td><td>${x.avg_lots}</td></tr>`;
+    const tbl = rows => T(['Idea', 'Sharpe', '2020-23', '2024-26', 'Hit', 'Win / loss size', '$ / year', 'Worst drawdown', 'Return / drawdown', 'Avg lots'], rows.map(row));
+    const now = ID.now || {};
+    const sideL = a => (a || []).map(x => `${x.side === 'long' ? '<b class="up">long</b>' : '<b class="dn">short</b>'} ${x.name} ${x.month}`).join('; ') || 'none';
+    return `<div class="card" style="margin-top:12px"><h2>Is the data right? <span class="note">checked ${ID.generated}</span></h2>
+        <ul class="read"><li><b>Futures prices are not delayed.</b> They are CME's own daily settlements. The problem found earlier was a date label: TradingView stamps sessions that open the evening before with the previous day's date, so every dairy and energy bar was filed one day early. After re-dating, the stored dairy settlements match CME's settlement files to the cent on every day checked (6 contracts, 84 contract-days).</li>
+        <li><b>The lag is in the USDA survey, not in CME prices.</b> CME spot cheese, butter, powder and whey trade daily and are public the same day. USDA's weekly survey (NDPSR) of plant sales covers the week ending Saturday and is published the following Wednesday; its prices track CME spot from one to two weeks earlier (block cheese: correlation of weekly changes 0.06 with the same week, 0.54 with the week before, 0.70 with two weeks before) because plants price much of what they ship off earlier CME levels. The monthly settlement is built from that survey, so today's CME spot tells you a lot about a settlement that will be announced weeks later. That is the arbitrage.</li></ul></div>
+      <div class="card" style="margin-top:12px"><h2>The high-Sharpe trade, in plain terms</h2>
+        <p><b>Rule.</b> Every Wednesday after the USDA weekly report, estimate where each contract will settle: the weeks already published, plus the remaining weeks predicted from CME spot (the survey follows spot with a 1-2 week lag). Compare with the futures price. If the estimate is above futures by more than the round-trip cost, buy one lot; if below, sell one. Re-check next Wednesday. Contracts up to 2 months out.</p>
+        <p><b>Why it works.</b> Futures traders in the thin products (butter, whey, nonfat) often anchor on where the curve was, while spot has already moved; the settlement is mechanically tied to spot, so the futures have to converge. Class III and cheese are liquid enough that the market already prices it.</p>
+        <p><b>Track record</b> (one lot per signal, after costs, ${ID.start} on): all six contracts Sharpe ${n(conv?.sharpe)}, about ${u(conv?.ann_usd)} a year, worst drawdown ${u(conv?.maxdd_usd)}; butter and whey only Sharpe ${n(cbdy?.sharpe)} (2020-23 ${n(cbdy?.sharpe_2020_23)}, 2024-26 ${n(cbdy?.sharpe_2024_26)}), ${u(cbdy?.ann_usd)} a year, worst drawdown ${u(cbdy?.maxdd_usd)}. Taking the first signal on each butter or whey contract month and holding it to settlement: right ${es.hit}% of the time over ${es.n} contract months, average ${u(es.avg_usd)} per lot.</p>
+        <details><summary>Recent examples (first signal on each contract month, held to settlement)</summary>${T(['Signal date', 'Contract', 'Month', 'Futures', 'Spot nowcast', 'Trade', 'Settled', '$ per lot'], E.map(e => `<tr><td class="l">${e.date}</td><td class="l">${e.name}</td><td>${e.month}</td><td>${e.futures}</td><td>${e.nowcast}</td><td>${e.side}</td><td>${e.settled}</td><td>${usd(e.usd_to_settlement)}</td></tr>`))}</details></div>
+      <div class="card" style="margin-top:12px"><h2>Strategy ideas <span class="note">ranked by the weaker of 2020-23 and 2024-26 Sharpe; one lot per signal, after half a bid-ask per trade</span></h2>${tbl(I)}
+        <details><summary>How each idea trades and why it should work</summary><ul class="read">${I.map(x => `<li><b>${x.name}.</b> ${x.how} <i>${x.why}</i>${x.risk ? ' ' + x.risk : ''}</li>`).join('')}</ul></details>
+        <h3>Low drawdown, big winners</h3><p>${lowdd.map(x => `<b>${x.name}</b>: worst drawdown ${u(x.maxdd_usd)} per lot, right ${n(x.hit, 0)}% of the time but winners ${n(x.payoff)}x the size of losers`).join('; ')}. These keep losses small (stops, or only trading once part of the price is locked in) and let a minority of trades carry the result.</p>
+        <p><b>Formula arbitrage</b> (Class III vs cheese + butter + whey futures, Class IV vs butter + nonfat): both sides settle on the same USDA averages, so the gap must close; gaps above 20 cents/cwt closed profitably ${ID.formula_arb?.class3?.trades?.find(t => t.threshold === 0.2)?.hit ?? '–'}% of the time for Class III. It needs four legs in thin markets, so treat it as an opportunistic trade when the gap is wide.</p>
+        <p><b>Today</b> (${now.date}): convergence ${sideL(now.convergence)}. Spot month, lowest-risk version: ${sideL(now.late)}. Calendar spreads: ${sideL(now.calendar)}.</p>
+        <p class="note">Research only. Dairy futures are thin: these results assume fills at settlement for one lot per signal; size beyond a few lots will move the price.</p></div>`;
+  }
   async function mount(el) {
     if (!el) return;
-    if (!done) { [LB, AR] = await Promise.all([getJSON('data/dairy/derived/dairy_lab.json').catch(() => null), getJSON('data/dairy/derived/dairy_arb.json').catch(() => null)]); done = true; }
+    if (!done) { [LB, AR] = await Promise.all([getJSON('data/dairy/derived/dairy_lab.json').catch(() => null), getJSON('data/dairy/derived/dairy_arb.json').catch(() => null)]); ID = await getJSON('data/dairy/derived/dairy_ideas.json').catch(() => null); done = true; }
     if (!LB) { el.innerHTML = ''; return; }
     const M = LB.models, nm = s => LB.specs[s]?.name || s;
     const S = LB.strategies, desk = LB.desk_book || {}, D0 = desk['Convergence (spot gap) + trend, all six'];
@@ -18,7 +44,7 @@ const DairyLab = (() => {
     const arbB = AR?.gap_trades?.find(t => t.sym === 'CB' && t.signal === 'Spot-based nowcast' && t.threshold_x_cost === 1 && t.window === 'All');
     const fund = LB.fundamentals.filter(r => r.model === 'fundamentals only' && r.horizon_m === 3);
     const top = [
-      `<b>Prices checked.</b> Futures are daily CME settlements on exchange trade dates (TradingView stamps evening-open sessions a day early; corrected, and 93-100% of closes now match CME's own settlement files). Cash is the CME daily spot (2018 on, from USDA Dairy Market News) and the weekly NDPSR survey (2012 on). Every test below is walk-forward: models only use data that existed on the decision day.`,
+      `<b>Prices checked.</b> Futures are daily CME settlements on exchange trade dates (TradingView stamps evening-open sessions a day early; corrected, and every stored dairy settlement now matches CME's own settlement files to the cent). Cash is the CME daily spot (2018 on, from USDA Dairy Market News) and the weekly NDPSR survey (2012 on). Every test below is walk-forward: models only use data that existed on the decision day.`,
       `<b>Cash prices are persistent; futures much less.</b> Month-to-month changes in the announced price have autocorrelation ${pers.map(p => `${p.name} ${p.monthly_ac1}`).join(', ')} (averaging alone gives about 0.25). Weekly futures returns: ${pers.map(p => `${p.name} ${p.futures_weekly_ac1}`).join(', ')}. The market prices most of the persistence, but not all of it: a 4-week futures trend still pays in Class IV, nonfat and butter.`,
       `<b>Convergence edge (cash arbitrage).</b> The settlement is decided by CME spot trading from mid-previous-month to mid-month. Holding the nearest two months in the direction of the gap between a spot-based nowcast and the futures price paid in ${conv.filter(r => (r.sharpe_2020_26 ?? 0) > 0.8).map(r => `${r.name} (Sharpe ${n(r.sharpe_2020_26)} in 2020-26; ${n(r.sharpe_2020_23)} in 2020-23, ${n(r.sharpe_2024_26)} in 2024-26)`).join(', ') || 'butter and whey'}. Class III, cheese and Class IV are priced efficiently on this measure.${arbB ? ` Held to settlement, the butter gap trade made $${arbB.avg_usd.toLocaleString()} per contract after costs over ${arbB.months} months, right ${arbB.hit}% of the time.` : ''}`,
       `<b>Trend edge (persistence).</b> 4-week futures momentum on contracts up to 5 months out: ${trend.filter(r => (r.sharpe ?? 0) > 0.5).map(r => `${r.name} Sharpe ${n(r.sharpe_2014_19)} in 2014-19 and ${n(r.sharpe_2020_26)} in 2020-26`).join('; ')}. Positive in both halves, which a lucky backtest rarely is.`,
@@ -45,6 +71,7 @@ const DairyLab = (() => {
     const acc = AR?.accuracy || [];
     el.innerHTML = `<div class="card" style="margin-top:12px"><h2>Convergence, persistence and a trading book <span class="note">${LB.generated} · walk-forward since 2013 · details in Backtest → Dairy deep dive</span></h2>
         <ul class="read">${top.map(x => `<li>${x}</li>`).join('')}</ul></div>
+      ${ideasHtml()}
       <div class="card" style="margin-top:12px"><h2>Today's signals <span class="note">decision day ${LB.live_date}; convergence uses contracts up to 2 months out, trend up to 5; a signal needs the gap or trend to beat the round-trip cost</span></h2>${liveT}
         <p class="note">Research signals, not advice. Sizes in the backtest are one contract per signal; dairy futures are thin, so real fills beyond a few lots will be worse than settlement prices.</p></div>
       <div class="grid g2" style="margin-top:12px"><div class="card"><h2>Desk book: cumulative $ (one lot per signal) <span class="note">2020 on</span></h2><div class="chart" style="height:260px"><canvas id="dlEq"></canvas></div>

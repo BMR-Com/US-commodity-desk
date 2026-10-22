@@ -8,6 +8,8 @@ import sys, time
 from pathlib import Path
 import pandas as pd
 from tvDatafeed import TvDatafeed, Interval
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from tvdates import trade_dates, fix_stored  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "contracts"
 CODES = "FGHJKMNQUVXZ"
@@ -38,6 +40,8 @@ def run(sym):
     ex, root, months, y0 = SPEC[sym]
     p = OUT / f"{sym}.csv"
     have = pd.read_csv(p) if p.exists() else pd.DataFrame(columns=["contract", "date", "close", "volume"])
+    if len(have):   # one-time repair of rows stored before the trade-date fix (idempotent on corrected data)
+        have["date"] = have.groupby("contract", group_keys=False).date.apply(lambda s: fix_stored(s.values).dt.strftime("%Y-%m-%d").set_axis(s.index))
     done = set(have.contract.unique())
     today = pd.Timestamp.now()
     tv = TvDatafeed()
@@ -62,7 +66,7 @@ def run(sym):
             time.sleep(1.2)
             if d is None or not len(d):
                 continue
-            f = pd.DataFrame({"contract": c, "date": pd.to_datetime(d.index).date.astype(str),
+            f = pd.DataFrame({"contract": c, "date": trade_dates(d.index).date.astype(str),
                               "close": d.close.round(4).values, "volume": d.volume.values})
             frames.append(f)
             done.add(c)

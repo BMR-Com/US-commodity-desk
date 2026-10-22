@@ -83,7 +83,10 @@ def get(tv, symbol, ex, n):
         try:
             d = tv.get_hist(symbol=symbol, exchange=ex, interval=Interval.in_daily, n_bars=n)
             if d is not None and len(d):
-                return d
+                import sys as _s; _s.path.insert(0, str(Path(__file__).resolve().parent))
+                from tvdates import trade_dates
+                d.index = trade_dates(d.index)        # evening-session bars belong to the next trade date
+                return d[~d.index.duplicated(keep="last")]
         except Exception as e:
             print(symbol, "err", str(e)[:80])
         time.sleep(4)

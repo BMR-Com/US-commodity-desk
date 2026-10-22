@@ -1,0 +1,28 @@
+name: cme-dairy-history
+# One-off (and monthly top-up) backfill of CME daily cash dairy closes from USDA Dairy Market News releases on ESMIS.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipelines/cme_dairy_hist.py', '.github/workflows/cme_hist.yml']
+  schedule:
+    - cron: '20 12 3 * *'
+permissions: {contents: write}
+concurrency: {group: cme-hist, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q pandas requests
+      - run: python pipelines/cme_dairy_hist.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/ams/cme_daily_dairy_hist
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: CME daily cash dairy history (DMN weekly recap) $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

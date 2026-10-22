@@ -6,7 +6,10 @@ CME collector (data/cme/); this file gives the long continuous history for chart
 import time
 from pathlib import Path
 import pandas as pd
+import sys
 from tvDatafeed import TvDatafeed, Interval
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from tvdates import trade_dates  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "prices"
 SYMS = {  # desk symbol: (exchange, TradingView root candidates)
@@ -31,6 +34,8 @@ if __name__ == "__main__":
                     print(sym, root, n, "err", str(e)[:80])
                 time.sleep(1.5)
                 if d is not None and len(d):
+                    d.index = trade_dates(d.index)          # evening-session bars belong to the next trade date
+                    d = d[~d.index.duplicated(keep="last")]
                     frames[n] = d
                     break
         if not frames:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nightly CME + USDA flash-sales collector for Ma's Mac. Runs WITHOUT Claude.
+"""Nightly CME (futures, margins, options) + USDA flash-sales collector for Ma's Mac. Runs WITHOUT Claude.
 
 CME (cmegroup.com) and USDA FAS (fas.usda.gov) block GitHub's servers, so these two feeds are fetched from
 a home connection. This script opens each site in a real browser (Google Chrome via Playwright), runs the
@@ -57,6 +57,12 @@ async def collect():
             log("CME margins rows", len(out["margins"].get("rows") or []))
         except Exception as e:
             log("CME margins failed:", str(e)[:300])
+        try:   # option settlements, all desk markets (nearest 10 expiries; requests spaced out because CME's edge
+            # blocks a burst of a few hundred), for the options desk and pricer
+            out["options"] = await page.evaluate((REPO / "cme" / "collect_options.js").read_text())
+            log("CME options payload", len(out["options"] or ""))
+        except Exception as e:
+            log("CME options failed:", str(e)[:300])
         # USDA FAS flash sales
         try:
             await page.goto("https://www.fas.usda.gov/newsroom/search?news%5B0%5D=news_type%3A10106", wait_until="domcontentloaded", timeout=90000)
@@ -81,11 +87,16 @@ def main():
         m = res["margins"]; m["source"] = "CME Group margins (outright maintenance), collected from cmegroup.com"
         (REPO / "data" / "specs" / "margins.json").write_text(json.dumps(m, indent=0))
         sh(sys.executable, "models/contract_specs.py")
+    if res.get("options") and len(res["options"]) > 1000:
+        (tmp / "options.b64").write_text(res["options"])
+        r = sh(sys.executable, "cme/ingest_options.py", str(tmp / "options.b64"))
+        log(r.stdout.strip()[-300:])
+        sh(sys.executable, "models/options_desk.py")
     if res.get("flash"):
         (tmp / "flash.b64").write_text(res["flash"])
         r = sh(sys.executable, "pipelines/flash.py", str(tmp / "flash.b64"))
         log(r.stdout.strip()[:300])
-    sh("git", "add", "data/cme", "data/grains/raw/flash", "data/specs")
+    sh("git", "add", "data/cme", "data/grains/raw/flash", "data/specs", "data/options")
     if sh("git", "diff", "--cached", "--quiet").returncode == 0:
         log("nothing new")
         return

@@ -125,7 +125,7 @@ const Chat = (() => {
     if (!P && count() >= CAP) { add('bot', `Daily limit reached: ${CAP} questions a day in this browser (resets 00:00 UTC).`); return; }
     if (!CTX) CTX = await getJSON('data/ai/context.json').catch(() => null);
     if (!CTX) { add('bot', 'The desk context file is not built yet (data/ai/context.json).'); return; }
-    const sys = `You are the assistant of the BMR-Com US Ags Desk, a research site on US agricultural and energy futures (grains, oilseeds, cotton, livestock, dairy, energy).
+    const sys = `You are the assistant of the BMR-Com US Commodity Desk, a research site on US agricultural and energy futures (grains, oilseeds, cotton, livestock, dairy, energy).
 Answer ONLY from the DATA below: the desk's cards (built ${CTX.generated}, market data as of ${CTX.data_date}), the text of the tab the user has open, and the numbers behind the charts on that tab.
 Rules: quote numbers with units, contract and date; if the data does not contain the answer, say so plainly and name the tab where it may be (Summary, Markets & macro, Options pricer, Signals, Dairy, Grains & oilseeds, Cotton, Lean hogs, Live & feeder cattle, COT (full), Energy). Never invent numbers. Reason like an analyst: compare, compute changes, spreads and ratios from the data (show the arithmetic briefly), connect fundamentals, positioning, technicals and macro, and point out conflicting signals. Be concise: short paragraphs or bullets. Explain jargon briefly when helpful. This is research, not investment advice; describe the desk's own views and signals rather than giving personal trade recommendations.`;
     let cards = [], page = '', charts = '';

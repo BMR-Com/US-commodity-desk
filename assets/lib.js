@@ -1,4 +1,4 @@
-// Shared helpers for the US Ags desk pages.
+// Shared helpers for the US Commodity Desk pages.
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const fmt = (v, d = 2) => v == null || isNaN(v) ? '–' : Number(v).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });

@@ -1,4 +1,4 @@
-// Chat proxy for the BMR-Com US Ags Desk: keeps the Groq API key server-side (Worker secret GROQ_API_KEY),
+// Chat proxy for the BMR-Com US Commodity Desk: keeps the Groq API key server-side (Worker secret GROQ_API_KEY),
 // checks a per-user access code (secret DESK_USERS = "name:code;name2:code2") and counts questions per user per
 // UTC day in a Durable Object; above DAILY_LIMIT it answers 429. The page never sees the Groq key.
 const MODELS = new Set(['llama-3.3-70b-versatile', 'meta-llama/llama-4-scout-17b-16e-instruct', 'openai/gpt-oss-120b', 'llama-3.1-8b-instant']);

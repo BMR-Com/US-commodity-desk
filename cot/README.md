@@ -1,4 +1,4 @@
-> Ported into the US Ags Desk (BMR-Com/us--Ags-desk) as the **COT (full)** tab: this folder is served at /cot/, data is built by `.github/workflows/cot_full.yml` into `cot/data/web/` and `cot/data/latest_summary.json`; the large CSVs live in the Actions cache, not in git.
+> Ported into the US Commodity Desk (BMR-Com/US-commodity-desk) as the **COT (full)** tab: this folder is served at /cot/, data is built by `.github/workflows/cot_full.yml` into `cot/data/web/` and `cot/data/latest_summary.json`; the large CSVs live in the Actions cache, not in git.
 
 # BMR-Com · COT Positioning Desk
 

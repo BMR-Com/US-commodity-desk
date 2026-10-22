@@ -1,4 +1,4 @@
-# US Ags Desk — build notes (handoff)
+# US Commodity Desk — build notes (handoff)
 
 Status as of 2026-10-19. Read this first when picking the work up in a new session.
 

@@ -14,7 +14,7 @@ import pandas as pd
 import requests
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "news"
-H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk; +https://bmr-com.github.io/us--Ags-desk/)"}
+H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk; +https://bmr-com.github.io/US-commodity-desk/)"}
 SITES = ["rigzone.com", "naturalgasintel.com", "oilprice.com", "reuters.com", "bloomberg.com", "wsj.com", "marketwatch.com", "barrons.com", "dtnpf.com", "agriculture.com",
          "farmprogress.com", "agweb.com", "brownfieldagnews.com", "feedstuffs.com", "dairyherd.com", "nationalhogfarmer.com",
          "drovers.com", "spglobal.com", "hoards.com", "farmdocdaily.illinois.edu", "successful-farming.com", "agrimoney.com", "ft.com"]

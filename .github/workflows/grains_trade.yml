@@ -8,6 +8,12 @@ on:
     - cron: '30 21 * * 1'     # Monday after Crop Progress (4 pm ET) and inspections
     - cron: '31 12 * * 4'     # Thursday weekly export sales, 8:30 ET in daylight time (12:30 UTC): waits for the release
     - cron: '31 13 * * 4'     # same in standard time (13:30 UTC); exits at once if the week is already stored
+    # GitHub delays or drops scheduled runs at busy times (12:31 UTC never started on 22 Oct 2026), so retry at off-peak minutes
+    - cron: '43 12 * * 4'
+    - cron: '53 12 * * 4'
+    - cron: '7 13 * * 4'
+    - cron: '43 13 * * 4'
+    - cron: '53 13 * * 4'
     - cron: '0 14 * * 2-5'    # weekday mornings: flash sales; catches a holiday-shifted (Friday) export sales report
     - cron: '30 17 * * 4'     # Thursday backstop
 permissions: {contents: write}

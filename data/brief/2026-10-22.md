@@ -1,12 +1,11 @@
-# Morning brief · Thu Oct 22, 2026 07:53 AM ET
+# Morning brief · Thu Oct 22, 2026 09:01 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-22 11:53 UTC). CME open interest from 20261020. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-22 13:01 UTC). CME open interest from 20261020. Research only, not investment advice.
 
 ## Key points
 
 - Biggest moves vs prior settle: Lean hogs -1.425 (-2.1%); Class IV milk -0.37 (-1.7%); Cotton -0.84 (-1.0%).
 - Today: EIA Weekly Natural Gas Storage Report 10:30 AM ET; USDA weekly export sales 8:30 AM ET; NASS Cotton Ginnings 12:00 PM ET; NASS Milk Production 3:00 PM ET; CFTC cotton on-call report 3:30 PM ET.
-- 1 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported the following sales activity for MY 2026/2027: 114,000 MT of soybeans for delivery to China and 261,000 MT of soybeans for delivery to unknown destinations.
 - Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.
 - Macro backdrop for ags: headwind (-3).
 
@@ -73,7 +72,7 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Soybean oil | Dec 26 | 66.23 | +0.26 (+0.4%) | -1.4% | -2.3% | Sell | 39 | 66.10 | 67.68 | 89,328 (-10,119) | +1,129 | mildly bearish |
 | Chicago wheat | Dec 26 | 627.25 | -1.00 (-0.2%) | -6.4% | -11.5% | Sell | 26 | 626.25 | 634.00 | -33,038 (-3,495) | +3,244 | bearish |
 | KC HRW wheat | Dec 26 | 671.00 | -2.00 (-0.3%) | -5.9% | -13.1% | Strong sell | 23 | 658.25 | 673.00 | 17,391 (-6,649) | +2,138 | strongly bearish |
-| Cotton | Dec 26 | 80.99 | -0.84 (-1.0%) | +1.2% | -2.3% | Neutral | 47 | 80.71 | 81.61 | 65,699 (+1,862) | – | neutral |
+| Cotton | Dec 26 | 80.99 | -0.84 (-1.0%) | +1.2% | -2.3% | Neutral | 47 | 80.71 | 81.61 | 65,699 (+1,862) | – | mildly bearish |
 | Lean hogs | Dec 26 | 65.725 | -1.425 (-2.1%) | -0.5% | -7.4% | Strong sell | 36 | – | 71.200 | -42,088 (-6,816) | +3,315 | bearish |
 | Live cattle | Dec 26 | 231.125 | +0.950 (+0.4%) | +2.7% | +5.3% | Strong buy | 67 | 228.025 | 235.900 | 48,748 (-2,172) | +3,243 | mildly bullish |
 | Feeder cattle | Nov 26 | 348.825 | +2.525 (+0.7%) | +3.1% | +7.9% | Strong buy | 68 | 347.000 | 355.400 | 8,852 (+65) | +204 | mildly bullish |
@@ -82,38 +81,34 @@ _Directional channels from macro to ag prices are standard relationships, not si
 
 Board crush 2.451 $/bu (10-yr pct 91), oil share 48.7%. Soybean / corn price ratio 2.680. Chicago wheat − corn 164.00 ¢/bu. KC HRW − Chicago SRW 43.50 ¢/bu. Soybean oil / meal value 0.948.
 
-## Flash export sales (last 3 days)
-
-- 2026-10-19: Private exporters reported the following sales activity for MY 2026/2027: 114,000 MT of soybeans for delivery to China and 261,000 MT of soybeans for delivery to unknown destinations.
-
 ## Technical outlook by market
 
 ### Grains & oilseeds
 
 **Corn** (Dec 26, strongly bearish). Dec 26 trades at 464.25 ¢/bu (-2.9% on the week, -12.2% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 27 (oversold) and ADX 39 (trending). Nearest support 458.25, resistance 466.00; 52-week range 425.75–549.75. Levels to watch: a close above 468.79 (60-day momentum flip) would bring trend-follower buying; below 453.50 (55-day breakout low) adds selling; the 458.25–466.00 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
-Flags: RSI 27: oversold; Export commitments -25% vs normal pace; Weather watch: South-central Nebraska; Rio Verde, Goiás.
+Flags: RSI 27: oversold; Export commitments -26% vs normal pace; Weather watch: South-central Nebraska; Rio Verde, Goiás.
 Research signals: trend short 1.8x for 40% vol (12m excess -4%); carry -12.3%/yr (47th percentile for the month).
 - [Dry weather hammers western Kanas corn yields](https://news.google.com/rss/articles/CBMihwFBVV95cUxNVGs2YlFlbVlxZ1pad3V4QmxiUTIyRkZjQWJwRFJTR1QzVXZiMVVNT2kzek1CemFwZFJTSjJpZVFPdmFMaWlzZHI0TURJNlJqSHNTaVEySmlXZTUtXzB2WVJVcGFIeHVhbzdrNVZqckp3QVdjdW5vZ0FjcGZvek9aWXl0RmlIQ0E?oc=5) · Brownfield Ag News
 - [South Dakota farmer says corn yield a ‘real mystery’ because of dry summer](https://news.google.com/rss/articles/CBMiqwFBVV95cUxQYVpGX2lxT1FTZkFFUmtCLXBURXN6cG94MklZVkFrWlk4bm9oTUpQQUFLZG1OZFRsUWl3bTdqa2dHbUl6YmxCVnotMUZ2TDh2TlNMNWRob0NPazUwczdmdjI1blZQcGZwNXVpUFByNVd5TUw0VU1DRVFvM09TYkZ2SnloTENwdDJ1S1VaaGxBcmVsWWlGOThaTURnaGRneFlVVjJhMUVEbVd1OFU?oc=5) · Brownfield Ag News
 - [Corn Rises for Second Day on Dip-Buying and Demand Signal](https://news.google.com/rss/articles/CBMirAFBVV95cUxQcGRDVFNiQjduUFJFZzUxblVYbmMtbDJGeFl6bi03cldUd2xCc1JoTlNMTXg3RTJEeDk5cy1fSnQzd1ViaUxNVFkyWDVJRXl6Z2dvUTZnM2R4UVdhcEtMaWVnRVl1TmVJX01rWDZzM3lRc190Q0RseHFlbm9JRTdmRjNpZTYzY1YyMDktRnp1TXlrandfUzBTV3A1WnpSb1dDYVlTQ1I2TXp6bnE0?oc=5) · Bloomberg.com
 
 **Soybeans** (Nov 26, neutral). Nov 26 trades at 1247.00 ¢/bu (-1.3% on the week, -5.4% on the month), in a mixed trend: the daily rating is neutral and the weekly buy. RSI is 35 and ADX 21 (weak trend). Nearest support 1167.00, resistance 1256.50; 52-week range 1055.50–1335.25. Levels to watch: a close above 1280.82 (50-day average) would bring trend-follower buying; below 1237.99 (120-day momentum flip) adds selling; the 1167.00–1256.50 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
-Flags: Funds near a 10-yr long extreme (99th pct); Export commitments +17% vs normal pace; Weather watch: South-central Nebraska; Rio Verde, Goiás.
+Flags: Funds near a 10-yr long extreme (99th pct); Export commitments +21% vs normal pace; Weather watch: South-central Nebraska; Rio Verde, Goiás.
 Research signals: trend long 2.4x for 40% vol (12m excess +12%); carry -3.9%/yr (64th percentile for the month). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Crowded: managed money at the 98th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR).
 - [New soybean herbicide premix snuffs weeds before they emerge](https://news.google.com/rss/articles/CBMiqAFBVV95cUxNVjhpV0Z0UW9ZMGlaTXNUaXBqN2tQVHNWZjJacGFWeWpiMklDMWpQR040YnRIOHd2RTBCUGgwVEpPRDZlUHV2MjNvMXYwemRfQThJRm5mX29UbmpRS3h3U0lybmUzMzNGWWZBN2VCRnhVeXNPRGcxd2pjY3dFdU5WX2owNUNRUGZ6ODVZWmRwZmt0LUh2VnVaSWhfQlVDUXpOLUl0UElxZ3M?oc=5) · Farm Progress
 - [As growing season winds down, soybean experts offer key takeaways](https://news.google.com/rss/articles/CBMimgFBVV95cUxQNVZUN0NLOHNBTnBndnBMUkxPSkx6RGNjTWE5VlJOSDlFWDF0OUZYMXp4UXBKTEpRMkpkOFRJbFdKUnBfdThTaWJxS2VsY3UzM3Fra1MyX25KcXJnUE80ZE9xXzVUT0ZFaktGaGlGVjFFUzNscy0tVkFFendieUdnbzhGSUN3ZTRqVDlQYWtJdlVoZEJQbi1hXzZR?oc=5) · Farm Progress
 - [Is Corn Bottoming? After Market Bounces Despite Fresh Lows in Soybeans and Wheat](https://news.google.com/rss/articles/CBMipgFBVV95cUxOTHNmQ0VzbGk4QjRMWXRpNmlpNG5lcVVzcW5wVkZkNVFocFNQU3E3Z0RVLWhMMWxWQTN1X3MtR3MtOUtHR0FOTGp3bE9mZkppeXRWT19vX0Vsb1liY00xN3hCUjRMbmFNWWxPdE5NQlUzRnRIdk9zLUdBWE1kM1JMbEF5VFBXUmpSS3hSYk9HZ0pheWpORzcwaUhnU2N4SHRoSFI0NFJB?oc=5) · AgWeb
 
 **Soybean meal** (Dec 26, neutral). Dec 26 trades at 348.0 $/st (-3.3% on the week, -6.1% on the month), in a mixed trend: the daily rating is sell and the weekly buy. RSI is 43 and ADX 21 (weak trend). Nearest support 344.2, resistance 369.1; 52-week range 299.1–376.9. Levels to watch: a close above 351.0 (50-day average) would bring trend-follower buying; below 343.1 (20-day breakout low) adds selling; the 344.2–369.1 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; USDA weekly export sales Oct 29; USDA weekly export sales Nov 5.
-Flags: Funds near a 10-yr long extreme (100th pct); Export commitments -14% vs normal pace; Weather watch: Marcos Juárez, Córdoba.
+Flags: Funds near a 10-yr long extreme (100th pct); Export commitments -16% vs normal pace; Weather watch: Marcos Juárez, Córdoba.
 Research signals: trend long 1.8x for 40% vol (12m excess +17%); carry +5.9%/yr (66th percentile for the month). Crowded: managed money at the 99th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR).
 
 **Soybean oil** (Dec 26, mildly bearish). Dec 26 trades at 66.23 ¢/lb (-1.4% on the week, -2.3% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 39 and ADX 11 (range-bound). Nearest support 66.10, resistance 67.68; 52-week range 48.53–74.55. Levels to watch: a close above 67.83 (20-day momentum flip) would bring trend-follower buying; below 65.44 (200-day average) adds selling; the 66.10–67.68 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; USDA weekly export sales Oct 29; USDA weekly export sales Nov 5.
-Flags: Weather watch: Marcos Juárez, Córdoba.
+Flags: Export commitments -18% vs normal pace; Weather watch: Marcos Juárez, Córdoba.
 Research signals: trend long 1.7x for 40% vol (12m excess +30%); carry -4.4%/yr (70th percentile for the month). Crowded: managed money at the 87th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR).
 - [Palm Oil Glut Lures Indian Buyers as Price Gap to Rivals Widens](https://news.google.com/rss/articles/CBMiyAFBVV95cUxNR0t0SVZCdTk2T0pYNkx6S3c3THhiaEpPcnBpTVVrbHNxX05rS1gyQ1ZXcFhPWkFTNzI2R21qRXVuVHJqSWRudXR5OGtjTHhyMlpuN2FrQ0VyS2t1RTR2OXpQSTR0a21aMGViVERxUVk5QjkxVm1rZVFEVjdWTENkSHZfTGttTEx0aW9Vc2Z6RVNldzB1eUVKTV9mdUF4WUxyTFhQa3dOaTQ2TWRmc05RZlNxUUVqVlU0WDJHbVFMSzN6b2NRcVo0Sw?oc=5) · Bloomberg.com
 - [Biofuels sector confident in meeting higher blending requirements](https://news.google.com/rss/articles/CBMiogFBVV95cUxQc1FjbV82TUFQa1ZUWDV2czZjajV5d2tSTkV1OHlGLWZVZHpTc1lYUDRyaFZ1ckpJdW40bFRnYXNoeWg1ZzN0cUNJQ1lUYjh5dnpLZkNCY0dOWHozOHUwS3FTT2ZENEoxNGRkcW1oQTNNbUEwN3lsV2p6WGtXZXNrNzZqTzEzNktuamtJT01VOVdUWVUxWDFKd0ZjNHpLdVJQcEE?oc=5) · Brownfield Ag News
-- [EPA proposal shifts biofuel burden to big refiners, boosting soy oil hopes](https://news.google.com/rss/articles/CBMitgFBVV95cUxNekl6ODc3b3ZnRzFqZ09IdDc5OGJvaEJnc2Uyb29lcjhJV2VFMnV1dVJrWEswZWRhWlVHYTJacE0tSzVKT0s1azFnYkFrcExZZldSdWRLTkhLUFVwMlhxaUpfT29Va3d0Wi11SW9PVThwTUZXYWJld0NkSnhoVVJVNzVGSTNzSzNkbEVIaWw0ckZRWGVyWEVlMGNrRDROSVpmbGN3eENJM3VMQ2RWbm84TEhkcmdQdw?oc=5) · Farm Progress
+- [Biofuels sector confident in meeting higher blending requirements](https://news.google.com/rss/articles/CBMiogFBVV95cUxQc1FjbV82TUFQa1ZUWDV2czZjajV5d2tSTkV1OHlGLWZVZHpTc1lYUDRyaFZ1ckpJdW40bFRnYXNoeWg1ZzN0cUNJQ1lUYjh5dnpLZkNCY0dOWHozOHUwS3FTT2ZENEoxNGRkcW1oQTNNbUEwN3lsV2p6WGtXZXNrNzZqTzEzNktuamtJT01VOVdUWVUxWDFKd0ZjNHpLdVJQcEE?oc=5) · Brownfield Ag News
 
 **Chicago wheat** (Dec 26, bearish). Dec 26 trades at 627.25 ¢/bu (-6.4% on the week, -11.5% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 26 (oversold) and ADX 28 (trending). Nearest support 626.25, resistance 634.00; 52-week range 557.25–795.00. Levels to watch: a close above 651.10 (200-day average) would bring trend-follower buying; below 590.50 (100-day breakout low) adds selling; the 626.25–634.00 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
 Flags: 76% of fund shorts under water; RSI 26: oversold.
@@ -123,7 +118,7 @@ Research signals: trend long 1.4x for 40% vol (12m excess +13%); carry -9.2%/yr 
 - [Black Sea, Red Sea disruptions could boost U.S. wheat demand](https://news.google.com/rss/articles/CBMimAFBVV95cUxNUG82UkdtbU9FUXg3Vm95bVhqWDdNWjh5TWx0a3RSbVNvb3hobHA5Si1zYWVuSVlTcENtMkJ4N3l0SHdSOTE2b0VJR09MaVN2Q2tLd3FsNXJDaXJPT2lXWXA2Q0V4QWVncUxfQ2czYmduRVc1Vl9nenY4QjFyZ1VhaWNjVG9NTy0tYlVuMzhsQzBSM2JjaHdWbA?oc=5) · Brownfield Ag News
 
 **KC HRW wheat** (Dec 26, strongly bearish). Dec 26 trades at 671.00 ¢/bu (-5.9% on the week, -13.1% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 23 (oversold) and ADX 29 (trending). Nearest support 658.25, resistance 673.00; 52-week range 564.00–858.25. Levels to watch: a close above 690.42 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 658.25–673.00 band is the immediate range. Next catalysts: USDA weekly export sales Oct 22; Crop Progress Oct 26; USDA weekly export sales Oct 29.
-Flags: RSI 23: oversold; Export commitments -16% vs normal pace; Realized vol low (18%, 9th pct): cheap to own optionality into catalysts; Weather watch: SW Kansas (HRW).
+Flags: RSI 23: oversold; Export commitments -17% vs normal pace; Realized vol low (18%, 9th pct): cheap to own optionality into catalysts; Weather watch: SW Kansas (HRW).
 Research signals: trend long 1.4x for 40% vol (12m excess +25%); carry -7.0%/yr (56th percentile for the month). Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).
 - [Nebraska and Kansas Rain Could Slow Harvest, Give Wheat a Boost](https://news.google.com/rss/articles/CBMioAFBVV95cUxOVFFaX2VIQlBpVzlMMXgzaUZiWHBSc09qOEFEU0pUbXRQcGh4blNDZTNQajd0LW1HV1BxaU52TG5seEpvS2Joa0tOUDM0RVp6TExpZjd3X2NrWG9kWDFtcTN0ekcyOEJTSzNhaTY4SndBNG0tVjN2eklVbGx2VDYxdXA4NDJXZTdNaVhPSnBjOXVfMjFRdE1xc1owU2s3Y1gx?oc=5) · Successful Farming
 - [Wheat markets sink as weak exports outweigh drought concerns](https://news.google.com/rss/articles/CBMimwFBVV95cUxPY2VUWDFuQU9wZ1NNUmNndmxUX1FiNkNCaE54M3E0cnFrZmNYWDF4WG9NT0FSWjJBSFM4SFY0M1dTWWk3VHptMFJHX2dkdS1RVm4zVi1Ta0JwMTNKTXFkUFhHbDVUaEFHcGhzeENJMC1GTUUtOXFNUDA5Z1R4WVJka0toUzRiWU1WbVhVdVVGekdiZE5SNEEtdndLNA?oc=5) · Farm Progress
@@ -131,7 +126,7 @@ Research signals: trend long 1.4x for 40% vol (12m excess +25%); carry -7.0%/yr 
 
 ### Cotton
 
-**Cotton** (Dec 26, neutral). Dec 26 trades at 80.99 ¢/lb (+1.2% on the week, -2.3% on the month), in a mixed trend: the daily rating is neutral and the weekly neutral. RSI is 47 and ADX 15 (range-bound). Nearest support 80.71, resistance 81.61; 52-week range 66.86–93.74. Levels to watch: a close above 81.92 (100-day average) would bring trend-follower buying; below 80.73 (60-day momentum flip) adds selling; the 80.71–81.61 band is the immediate range. Next catalysts: Cotton Ginnings Oct 22; USDA weekly export sales Oct 22; Crop Progress Oct 26.
+**Cotton** (Dec 26, mildly bearish). Dec 26 trades at 80.99 ¢/lb (+1.2% on the week, -2.3% on the month), in a mixed trend: the daily rating is neutral and the weekly neutral. RSI is 47 and ADX 15 (range-bound). Nearest support 80.71, resistance 81.61; 52-week range 66.86–93.74. Levels to watch: a close above 81.92 (100-day average) would bring trend-follower buying; below 80.73 (60-day momentum flip) adds selling; the 80.71–81.61 band is the immediate range. Next catalysts: Cotton Ginnings Oct 22; USDA weekly export sales Oct 22; Crop Progress Oct 26.
 Flags: Weather watch: Greenwood, Mississippi Delta (cotton); Lubbock, West Texas (cotton).
 Research signals: trend long 1.7x for 40% vol (12m excess +12%); carry -16.9%/yr (16th percentile for the month). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).
 - [USDA adjusts rice, cotton production projections](https://news.google.com/rss/articles/CBMiigFBVV95cUxOcjJaTVdicDRGMjhmT1huNUMwY1JzS1dGZ1htTFp3VnFySEMxTjRJV1BNTlJXM2hCRFdpZ1dVYkc5OGZkSm1waFFCRGM4bGtEcEFEaTRHeVpNdC14OTZiSjZYejJIdHp2WC1BR1ZvRXI4ZnpRbXI4TjZuNUVONVgxbTQxVzFrYy1kNFE?oc=5) · Brownfield Ag News

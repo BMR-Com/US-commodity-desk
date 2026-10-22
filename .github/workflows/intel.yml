@@ -35,4 +35,11 @@ jobs:
           git add data
           git diff --cached --quiet && exit 0
           git commit -q -m "intel: news, weather, calendar $(date -u +%F' '%H:%M)"
-          for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+          for i in 1 2 3 4; do
+            if ! git pull -q --rebase -X theirs origin main; then
+              # a file deleted on main but rewritten here (modify/delete) cannot be auto-merged: follow main's deletion
+              git status --porcelain | awk '/^(UD|DU) /{print $2}' | xargs -r git rm -q
+              GIT_EDITOR=true git rebase --continue 2>/dev/null || { git rebase --abort 2>/dev/null || true; sleep 8; continue; }
+            fi
+            git push -q && ok=1 && break; sleep 8
+          done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

@@ -49,10 +49,16 @@ const Cotton = (() => {
   }
   async function esr() {
     body().innerHTML = '<div class="card"><p class="note">Loading export sales…</p></div>';
-    const D = await fetch(SITE.esr + 'data/brief.json?t=' + Date.now()).then(r => r.json()).catch(() => null);
+    // two sources: the separate cotton export-sales repo and the desk's own Thursday run; show whichever has the later week
+    const [X, OWN] = await Promise.all([fetch(SITE.esr + 'data/brief.json?t=' + Date.now()).then(r => r.json()).catch(() => null),
+      getJSON('data/grains/derived/esr_brief.json').catch(() => null)]);
+    const own = OWN && OWN.commodities.find(c => c.key === 'cotton');
+    const wk = d => (d?.commodities || []).map(c => c.week || '').sort().pop() || '';
+    const useOwn = own && (!X || (own.week || '') > wk(X));
+    const D = useOwn ? { generated: OWN.generated, commodities: [own] } : X;
     if (!D) { body().innerHTML = `<div class="card"><p class="note">Could not load the cotton export sales brief. Open ${src(SITE.esr, 'the export sales page')}.</p></div>`; return; }
     ESR.mount(body(), D, { name: 'Cotton' });
-    body().insertAdjacentHTML('beforeend', `<p class="note" style="margin:4px 2px">From ${src(SITE.esr, 'BMR-Com US cotton export sales')} (upland + Pima, USDA FAS) · ${D.generated}.</p>`);
+    body().insertAdjacentHTML('beforeend', `<p class="note" style="margin:4px 2px">${useOwn ? `Desk's own Thursday export-sales run (upland + Pima, USDA FAS), week ending ${own.week} · ${OWN.generated}${X ? ` · the ${src(SITE.esr, 'cotton export sales page')} has week ending ${wk(X) || '?'}` : ''}` : `From ${src(SITE.esr, 'BMR-Com US cotton export sales')} (upland + Pima, USDA FAS) · ${D.generated}`}.</p>`);
   }
   function frame(u, title, what) {
     body().innerHTML = `<div class="card" style="margin-bottom:8px"><h2 style="display:inline">${title}</h2> <span class="note">${what} Live view of the ${src(u, 'full dashboard')}.</span></div>

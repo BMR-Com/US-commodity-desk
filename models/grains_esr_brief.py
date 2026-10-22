@@ -53,8 +53,11 @@ COMMS = [
      "to_world": 0.0272155, "w_unit": "m bu", "w_fmt": 0, "px": "CBOT Chicago wheat", "px_unit": "¢/bu", "px_fmt": 2},
     {"key": "kc", "name": "HRW wheat", "sym": "KE", "dirs": [("wheat_hrw", "HRW")], "wasde": "Hard_Red_Winter.json", "world": "Wheat.json", "start": 6, "to_world": 0.0272155,
      "w_unit": "m bu", "w_fmt": 0, "px": "KC HRW wheat", "px_unit": "¢/bu", "px_fmt": 2, "class_share": True},
+    # cotton (upland + Pima, running bales): the desk's own copy, so the cotton tab does not depend on the separate export-sales repo
+    {"key": "cotton", "name": "Cotton", "sym": "CT", "dirs": [("cotton_upland", "Upland"), ("cotton_pima", "Pima")], "wasde": "Cotton.json", "start": 8,
+     "to_world": 1.0, "w_unit": "m bales", "w_fmt": 2, "px": "ICE cotton", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1e3, "disp_unit": "'000 bales"},
 ]
-NOUN = {"corn": "corn", "soybeans": "soybeans", "meal": "soybean meal", "oil": "soybean oil", "wheat": "wheat", "kc": "HRW wheat"}
+NOUN = {"corn": "corn", "soybeans": "soybeans", "meal": "soybean meal", "oil": "soybean oil", "wheat": "wheat", "kc": "HRW wheat", "cotton": "cotton"}
 for c_ in COMMS:
     c_["noun"] = NOUN[c_["key"]]
     c_.setdefault("sscale", 3)          # world tables in MMT: changes below ~1 MMT are noise

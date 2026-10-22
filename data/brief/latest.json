@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-22 13:10 UTC",
- "generated_et": "Thu Oct 22, 2026 09:10 AM ET",
+ "generated": "2026-10-22 13:34 UTC",
+ "generated_et": "Thu Oct 22, 2026 09:34 AM ET",
  "date": "2026-10-22",
- "prices_from": "2026-10-22 13:10 UTC",
+ "prices_from": "2026-10-22 13:34 UTC",
  "cme_oi_date": "20261020",
  "headlines": [
   "Biggest moves vs prior settle: Lean hogs -1.425 (-2.1%); Class IV milk -0.37 (-1.7%); Cotton -0.84 (-1.0%).",
@@ -654,13 +654,17 @@
    "spread": "Dec 26 / Mar 27",
    "spread_v": -3.43,
    "spread_read": "wide vs history",
-   "esr_pace": null,
-   "esr_norm": null,
+   "esr_pace": 0.47419,
+   "esr_norm": 0.54464,
    "view": "mildly bearish",
    "conviction": "low",
    "technical": "Dec 26 trades at 80.99 \u00a2/lb (+1.2% on the week, -2.3% on the month), in a mixed trend: the daily rating is neutral and the weekly neutral. RSI is 47 and ADX 15 (range-bound). Nearest support 80.71, resistance 81.61; 52-week range 66.86\u201393.74.",
    "levels": "Levels to watch: a close above 81.92 (100-day average) would bring trend-follower buying; below 80.73 (60-day momentum flip) adds selling; the 80.71\u201381.61 band is the immediate range. Next catalysts: Cotton Ginnings Oct 22; USDA weekly export sales Oct 22; Crop Progress Oct 26.",
    "flags": [
+    {
+     "tilt": "bear",
+     "text": "Export commitments -13% vs normal pace"
+    },
     {
      "tilt": "neutral",
      "text": "Weather watch: Greenwood, Mississippi Delta (cotton); Lubbock, West Texas (cotton)"

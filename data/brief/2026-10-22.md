@@ -1,6 +1,6 @@
-# Morning brief · Thu Oct 22, 2026 09:10 AM ET
+# Morning brief · Thu Oct 22, 2026 09:34 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-22 13:10 UTC). CME open interest from 20261020. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-22 13:34 UTC). CME open interest from 20261020. Research only, not investment advice.
 
 ## Key points
 
@@ -127,7 +127,7 @@ Research signals: trend long 1.4x for 40% vol (12m excess +25%); carry -7.0%/yr 
 ### Cotton
 
 **Cotton** (Dec 26, mildly bearish). Dec 26 trades at 80.99 ¢/lb (+1.2% on the week, -2.3% on the month), in a mixed trend: the daily rating is neutral and the weekly neutral. RSI is 47 and ADX 15 (range-bound). Nearest support 80.71, resistance 81.61; 52-week range 66.86–93.74. Levels to watch: a close above 81.92 (100-day average) would bring trend-follower buying; below 80.73 (60-day momentum flip) adds selling; the 80.71–81.61 band is the immediate range. Next catalysts: Cotton Ginnings Oct 22; USDA weekly export sales Oct 22; Crop Progress Oct 26.
-Flags: Weather watch: Greenwood, Mississippi Delta (cotton); Lubbock, West Texas (cotton).
+Flags: Export commitments -13% vs normal pace; Weather watch: Greenwood, Mississippi Delta (cotton); Lubbock, West Texas (cotton).
 Research signals: trend long 1.7x for 40% vol (12m excess +12%); carry -16.9%/yr (16th percentile for the month). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).
 - [USDA adjusts rice, cotton production projections](https://news.google.com/rss/articles/CBMiigFBVV95cUxOcjJaTVdicDRGMjhmT1huNUMwY1JzS1dGZ1htTFp3VnFySEMxTjRJV1BNTlJXM2hCRFdpZ1dVYkc5OGZkSm1waFFCRGM4bGtEcEFEaTRHeVpNdC14OTZiSjZYejJIdHp2WC1BR1ZvRXI4ZnpRbXI4TjZuNUVONVgxbTQxVzFrYy1kNFE?oc=5) · Brownfield Ag News
 - [Dry weather helps finish off Arkansas cotton](https://news.google.com/rss/articles/CBMimgFBVV95cUxQS01BWmRQYnkwS3NwYjJacjNnN0VkVU1ocGRBR0JfYXBZREE0c0xKME9NWTREaUsyWnhiQjh2M2NqbE5mckFkQkRMQ0xMdUVEc2tXVzBfcFJaS2xDMTdUM3AwclNFaFJpbzRwLVM4RFVxYzgxYlZQUmh4bTBGblNPSk9CXzFuRXlpNTYtM3VVQXdJMVpaOWxRY1ZR?oc=5) · Farm Progress

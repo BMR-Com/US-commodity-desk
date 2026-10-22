@@ -192,3 +192,12 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
 - `models/contract_specs.py` → `data/specs/specs.json` (nightly in contracts.yml; also after the Mac collector): standard / mini / micro contracts per market with size, tick, front price (data/technicals), contract value in $, 20-day typical daily move in $, CME maintenance margin for the front month (initial ≈ 110%), margin % of value, leverage. Cotton (ICE) has no flat published margin: shown as an estimate (99% two-day move), marked *.
 - Margins: `data/specs/margins.json` from `cme/collect_margins.js` (CME Group CmeWS / services margins endpoints, run in a cmegroup.com page by `local/mac_collector.py`; first seeded 2026-10-21 through the Mac browser).
 - UI: `assets/specs.js` (`Specs.slot(group, [syms])`) placed in the dairy, grains, cotton, hogs, cattle and energy primers.
+
+## Price dates fix (important)
+- TradingView daily bars for evening-open sessions (CME dairy, NYMEX energy, ICE cotton Sundays) were stamped one day early. `pipelines/tvdates.py` converts timestamps to exchange trade dates (contracts.py, prices.py, ohlc.py); `contracts.py` repairs stored rows on its next run (idempotent); `models/futures_io.load_contracts` repairs at read time. Checked against CME settlement files in data/cme: 93-100% exact matches after the fix (0-50% before).
+
+## Dairy forecasting and trading lab (Dairy → Primer, bottom)
+- `models/dairy_lab.py` → `data/dairy/derived/dairy_lab.json` (Wednesdays in contracts.yml; ~20 min). Weekly decisions on NDPSR release days since 2013, every open contract month up to 6 out; walk-forward models refit monthly on settled contracts; forecasts y = log(settlement/futures).
+- Inputs: NDPSR weekly, CME daily spot (MARS 2021+ plus `data/ams/cme_daily_dairy_hist/history.csv` from DMN weekly recaps Nov 2018+, `pipelines/cme_dairy_hist.py`, workflow cme_hist.yml), ERS product supply/use (stocks, production, exports, disappearance; 55-day availability lag), announced class/product prices.
+- Desk book = two pre-specified sleeves on all six contracts, one lot per signal: convergence (spot nowcast gap, ≤2 months out) + trend (4-week futures momentum, ≤5 months). 2020-26 Sharpe ≈1.8 (2020-23 1.65, 2024-26 2.16). Fundamentals regressions do not beat no-change out of sample.
+- UI: `assets/dairylab.js` (`DairyLab.mount`) into `#dairyLab` on the dairy primer.

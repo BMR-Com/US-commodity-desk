@@ -63,7 +63,8 @@ def cme_spot():
     s = d.pivot_table(index="date", columns="p", values="close_price", aggfunc="last").sort_index()
     hp = ROOT / "data" / "ams" / "cme_daily_dairy_hist" / "history.csv"     # Nov 2018 on, from DMN weekly recaps
     if hp.exists():
-        h = pd.read_csv(hp, parse_dates=["date"]).pivot_table(index="date", columns="product", values="close", aggfunc="last")
+        h = pd.read_csv(hp, parse_dates=["date"])
+        h = h[h.date.dt.dayofweek < 5].pivot_table(index="date", columns="product", values="close", aggfunc="last")
         s = pd.concat([h[h.index < s.index.min()], s]).sort_index()
     return s[list(PRODUCTS)]
 

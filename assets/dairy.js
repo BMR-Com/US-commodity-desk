@@ -60,6 +60,7 @@ function calc() {
 }
 function initPrimer() {
   Specs.load().then(Specs.fill);
+  DairyLab.mount($('#dairyLab'));
   for (const k in SL) $('#' + SL[k]).oninput = calc;
   const last = REB.at(-1);
   const presets = {

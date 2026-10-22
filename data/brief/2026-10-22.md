@@ -1,6 +1,6 @@
-# Morning brief · Thu Oct 22, 2026 02:01 PM ET
+# Morning brief · Thu Oct 22, 2026 02:09 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-22 18:01 UTC). CME open interest from 20261020. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-22 18:09 UTC). CME open interest from 20261020. Research only, not investment advice.
 
 ## Key points
 

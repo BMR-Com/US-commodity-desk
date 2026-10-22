@@ -4,9 +4,9 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const fmt = (v, d = 2) => v == null || isNaN(v) ? '–' : Number(v).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
 const sgn = (v, d = 1, suf = '') => { if (v == null || isNaN(v)) return '–'; v = +(+v).toFixed(d) || 0; return `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${v > 0 ? '+' : ''}${fmt(v, d)}${suf}</span>`; };
 const cache = {};
-async function getJSON(u) { if (!cache[u]) cache[u] = fetch(u + '?v=' + Date.now().toString().slice(0, 7)).then(r => r.json()); return cache[u]; }
+async function getJSON(u) { if (!cache[u]) cache[u] = fetch(u + '?v=' + Date.now().toString().slice(0, 8)).then(r => r.json()); return cache[u]; }
 async function getCSV(u) {
-  if (!cache[u]) cache[u] = fetch(u + '?v=' + Date.now().toString().slice(0, 7)).then(r => r.text()).then(t => {
+  if (!cache[u]) cache[u] = fetch(u + '?v=' + Date.now().toString().slice(0, 8)).then(r => r.text()).then(t => {
     const [h, ...rows] = t.trim().split(/\r?\n/); const cols = h.split(',');
     return rows.map(r => { const v = r.split(','); const o = {}; cols.forEach((c, i) => { const x = v[i]; o[c] = x === '' || x === undefined ? null : isNaN(+x) ? x : +x; }); return o; });
   });

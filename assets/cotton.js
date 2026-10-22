@@ -54,7 +54,7 @@ const Cotton = (() => {
       getJSON('data/grains/derived/esr_brief.json').catch(() => null)]);
     const own = OWN && OWN.commodities.find(c => c.key === 'cotton');
     const wk = d => (d?.commodities || []).map(c => c.week || '').sort().pop() || '';
-    const useOwn = own && (!X || (own.week || '') > wk(X));
+    const useOwn = own && (!X || (own.week || '') >= wk(X));   // same week: the desk's brief has the fuller destination and Brazil analysis
     const D = useOwn ? { generated: OWN.generated, commodities: [own] } : X;
     if (!D) { body().innerHTML = `<div class="card"><p class="note">Could not load the cotton export sales brief. Open ${src(SITE.esr, 'the export sales page')}.</p></div>`; return; }
     ESR.mount(body(), D, { name: 'Cotton' });

@@ -73,7 +73,7 @@ const ESR = (() => {
     B=D.commodities.filter(function(c){return c.name===cur;})[0]; if(!B)return; PF=B.px_fmt==null?2:B.px_fmt; WU=B.key?'MMT':'m 480-lb bales';
     $('pills').style.display=D.commodities.length>1?'':'none';
     $('pills').innerHTML=D.commodities.map(function(c){return '<button class="pill'+(c.name===cur?' on':'')+'" data-c="'+c.name+'">'+c.name+'</button>';}).join('');
-    var tl={strong:['strong','Running ahead of USDA'],weak:['weak','Running behind USDA'],'on track':['on','On track with USDA']}[B.tilt],wf=B.w_fmt!=null?B.w_fmt:2;
+    var tl={strong:['strong','Leaning above USDA'],weak:['weak','Leaning below USDA'],'on track':['on','Balanced around USDA']}[B.tilt],wf=B.w_fmt!=null?B.w_fmt:2;
     var S={};B.score.forEach(function(x){S[x.k]=x;});
     var h='<div class="head"><div><h2>US '+B.name.toLowerCase()+' exports · '+B.my+'</h2><div class="meta">Week ending '+B.week+' (week '+B.wk+' of the marketing year) · USDA forecast from the '+B.report+' WASDE'+(B.key?'':' · upland + Pima')+'</div></div><span class="tag '+tl[0]+'">'+tl[1]+'</span></div>';
     var SL=S;

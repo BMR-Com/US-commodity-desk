@@ -848,9 +848,10 @@ def build(cfg):
         bl += ("Less competition usually shows up later in the season, once rival origins run short — "
                "watch whether US sales accelerate into the new year before reading the slow start as lost demand.")
     T.append({"h": "Bottom line", "t": bl})
-    tilt = "strong" if implied and implied / target > 1.04 else "weak" if implied and implied / target < 0.96 else "on track"
+    # headline follows the bottom line (sales projections, destinations, competitors), not the pace projection alone
+    tilt = "weak" if net < 0 else "strong" if net > 0 else "on track"
     return {"name": cfg["name"], "w_fmt": cfg["w_fmt"], "my": my, "week": f"{last_date:%Y-%m-%d}", "wk": wk + 1, "unit": cfg["disp_unit"], "w_unit": cfg["w_unit"],
-            "report": f"{rd:%B %Y}", "ratio": None, "coverage": ratio / (cfg["to_world"] * 1e6), "key": cfg["key"], "sym": cfg["sym"],
+            "report": f"{rd:%B %Y}", "world_unit": cfg.get("world_unit", "MMT"), "ratio": None, "coverage": ratio / (cfg["to_world"] * 1e6), "key": cfg["key"], "sym": cfg["sym"],
             "px_label": cfg["px"], "px_unit": cfg["px_unit"], "px_fmt": cfg["px_fmt"], "start_month": MONTHS[cfg["start"] - 1], "classes_label": "All classes" if cfg.get("classes") else None, "target": target, "target_prev": prev_t, "target_esr": round(t_esr / D, 3),
             "commit": round(L.commit / D, 3), "shipped": round(L.accumulatedExports / D, 3), "outstanding": round(L.outstandingSales / D, 3),
             "pace": pace, "pace_norm": pace_n, "ship_pct": ship, "ship_norm": ship_n, "implied": implied, "ly_commit": round(ly_commit / D, 3) if ly_commit else None,

@@ -39,6 +39,7 @@ GROUPS = {
                      ("Pakistan", ["Pakistan"]), ("European Union", EU), ("Southeast Asia", SEA), ("N. Africa", NAF), ("Sel. Mideast", MIDEAST)]),
 }
 GROUPS["kc"] = GROUPS["wheat"]
+GROUPS["cotton"] = groups([(c, [c]) for c in ("Vietnam", "Bangladesh", "China", "Pakistan", "Turkey", "Indonesia", "Mexico", "India", "Thailand")])
 WHEAT_CLASSES = [("wheat_hrw", "HRW"), ("wheat_srw", "SRW"), ("wheat_hrs", "HRS"), ("wheat_white", "White"), ("wheat_durum", "Durum")]
 COMMS = [
     {"key": "corn", "name": "Corn", "sym": "ZC", "dirs": [("corn", "Corn")], "wasde": "Corn.json", "start": 9, "to_world": 0.0254012,
@@ -55,7 +56,8 @@ COMMS = [
      "w_unit": "m bu", "w_fmt": 0, "px": "KC HRW wheat", "px_unit": "¢/bu", "px_fmt": 2, "class_share": True},
     # cotton (upland + Pima, running bales): the desk's own copy, so the cotton tab does not depend on the separate export-sales repo
     {"key": "cotton", "name": "Cotton", "sym": "CT", "dirs": [("cotton_upland", "Upland"), ("cotton_pima", "Pima")], "wasde": "Cotton.json", "start": 8,
-     "to_world": 1.0, "w_unit": "m bales", "w_fmt": 2, "px": "ICE cotton", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1e3, "disp_unit": "'000 bales"},
+     "to_world": 1.0, "w_unit": "m bales", "w_fmt": 2, "px": "ICE cotton", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1e3, "disp_unit": "'000 bales",
+     "sscale": 1.0, "world_unit": "m bales", "competitor_flows": "brazil"},
 ]
 NOUN = {"corn": "corn", "soybeans": "soybeans", "meal": "soybean meal", "oil": "soybean oil", "wheat": "wheat", "kc": "HRW wheat", "cotton": "cotton"}
 for c_ in COMMS:
@@ -69,8 +71,46 @@ SUPPLY = {"corn": (["Brazil", "Argentina", "Ukraine", "South Africa", "Russia"],
           "soybeans": (["Brazil", "Argentina", "Paraguay"], ["China", "European Union", "Mexico", "Japan", "Southeast Asia"]),
           "wheat": (["European Union", "Russia", "Canada", "Australia", "Argentina", "Ukraine", "Kazakhstan"], ["N. Africa", "Sel. Mideast", "Southeast Asia", "China", "Japan", "Brazil", "Nigeria", "Pakistan", "Bangladesh"])}
 SUPPLY["kc"] = SUPPLY["wheat"]
+SUPPLY["cotton"] = (["Brazil", "Australia", "India", "Afr. Fr. Zone", "Central Asia"], ["China", "Vietnam", "Bangladesh", "Pakistan", "Turkey", "Indonesia", "Mexico", "India", "Thailand"])
+# Brazil's raw-cotton exports by destination (Comex Stat, NCM 5201.00.20/90), Portuguese names -> export-sales names
+BR_COTTON = ROOT / "data" / "south_america" / "brazil_cotton_by_country.csv"
+PT = {"Vietnã": "Vietnam", "Turquia": "Turkey", "Paquistão": "Pakistan", "Indonésia": "Indonesia", "Malásia": "Malaysia", "Índia": "India", "Coreia do Sul": "South Korea",
+      "Tailândia": "Thailand", "Egito": "Egypt", "Taiwan (Formosa)": "Taiwan", "Itália": "Italy", "Japão": "Japan", "México": "Mexico", "Colômbia": "Colombia",
+      "Mianmar": "Burma", "Filipinas": "Philippines", "Marrocos": "Morocco", "Espanha": "Spain", "Alemanha": "Germany", "Grécia": "Greece", "Peru": "Peru",
+      "Equador": "Ecuador", "Guatemala": "Guatemala", "Honduras": "Honduras", "El Salvador": "El Salvador", "Hong Kong": "Hong Kong", "Singapura": "Singapore",
+      "Tunísia": "Tunisia", "Argélia": "Algeria", "Emirados Árabes Unidos": "United Arab Emirates", "Reino Unido": "United Kingdom", "Países Baixos (Holanda)": "Netherlands"}
+KG_PER_BALE = 217.724
 INDIA_EXPORT_RATIO = 1.5
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def brazil_flows():
+    """Brazil raw-cotton exports by destination and month ('000 480-lb bales)."""
+    if not BR_COTTON.exists():
+        return None
+    b = pd.read_csv(BR_COTTON)
+    b["c"] = b.country.map(lambda x: PT.get(x, x))
+    b["kb"] = b.t * 1000 / KG_PER_BALE / 1000
+    b["d"] = pd.to_datetime(dict(year=b.year, month=b.month, day=1))
+    return b
+
+
+def brazil_for(B, nm, months=3):
+    """Last `months` of Brazil shipments to a destination vs the same months a year earlier, and Brazil's season (Aug-) to date."""
+    if B is None or B.empty:
+        return None
+    last = B.d.max()
+    g = B[B.c == nm]
+    win = (g.d > last - pd.DateOffset(months=months)) & (g.d <= last)
+    win_ly = (g.d > last - pd.DateOffset(months=12 + months)) & (g.d <= last - pd.DateOffset(months=12))
+    s0 = last.year if last.month >= 8 else last.year - 1
+    sd = (g.d >= pd.Timestamp(s0, 8, 1)) & (g.d <= last)
+    sd_ly = (g.d >= pd.Timestamp(s0 - 1, 8, 1)) & (g.d <= last - pd.DateOffset(months=12))
+    tot3 = B[(B.d > last - pd.DateOffset(months=months)) & (B.d <= last)].kb.sum()
+    r = {"last": f"{last:%b %Y}", "from": f"{last - pd.DateOffset(months=months - 1):%b}", "b3": float(g[win].kb.sum()), "b3_ly": float(g[win_ly].kb.sum()),
+         "bsd": float(g[sd].kb.sum()), "bsd_ly": float(g[sd_ly].kb.sum()), "share_of_brazil": float(g[win].kb.sum() / tot3) if tot3 else None}
+    r["b3_yoy"] = r["b3"] / r["b3_ly"] - 1 if r["b3_ly"] > 1 else None
+    return r
 
 
 def supply_context(cfg, w, my):
@@ -334,13 +374,53 @@ def build(cfg):
     implied = L.commit / pace_n / ratio if pace_n > 0 else None
     weeks_left = max(1, 52 - (wk + 1))
     need_ship = (t_esr - L.accumulatedExports) / weeks_left
-    CARRY = 0
+    CARRY = 0      # replaced below by the typical end-of-season carry-over of the last 5 seasons
     sales_left = t_esr + CARRY - L.commit; ship_left = t_esr - L.accumulatedExports
     need_sales = sales_left / weeks_left
     rec = c.tail(4); net4 = float(rec.currentMYNetSales.mean()); ship4 = float(rec.weeklyExports.mean())
     ly = H[H.y == cur_y - 1]; ly_commit = float(ly.commit.iloc[0]) if len(ly) else None
     net4_5y = float(H5.net4.mean())
     D = cfg["disp"]
+
+    # ── projections and feasibility from what past seasons did over the REST of the season (not just % of USDA) ──
+    rest = []
+    for y in H.y:
+        g = tot[tot.marketYear == y].sort_values("wk")
+        at = g[g.wk <= wk]
+        if not len(at):
+            continue
+        after = g[g.wk > wk]
+        rest.append({"y": y, "my": labels[y][1], "commit_wk": float(at.commit.iloc[-1]), "fin": float(g.accumulatedExports.iloc[-1]),
+                     "carry": float(g.outstandingSales.iloc[-1]), "rem_sales": float(after.currentMYNetSales.sum()), "rem_ship": float(after.weeklyExports.sum()),
+                     "n_rem": int(len(after))})
+    R = pd.DataFrame(rest)
+    R["add"] = R.fin - R.commit_wk
+    R5 = R.tail(5)
+    carry = float(R5.carry.median()) if len(R5) else 0.0
+    CARRY = carry
+    proj = {"share": L.commit / pace_n if pace_n > 0 else None,
+            "add": L.commit + float(R5["add"].median()) if len(R5) else None,
+            "add_lo": L.commit + float(R5["add"].min()) if len(R5) else None, "add_hi": L.commit + float(R5["add"].max()) if len(R5) else None,
+            "ly": L.commit + float(R["add"].iloc[-1]) if len(R) else None}
+    vals = [v for v in (proj["share"], proj["add"], proj["ly"]) if v is not None]
+    proj["central"] = float(np.median(vals)) if vals else None
+    projw = {k: (v / ratio if v is not None else None) for k, v in proj.items()}           # USDA (census) units
+    if projw["central"]:
+        implied = projw["central"]
+    sales_need_tot = t_esr + carry - L.commit
+    ship_need_tot = t_esr - L.accumulatedExports
+    feas = {"sales_need": sales_need_tot, "ship_need": ship_need_tot, "carry": carry,
+            "sales_ok5": int((R5.rem_sales >= sales_need_tot).sum()), "sales_ok10": int((R.rem_sales >= sales_need_tot).sum()),
+            "ship_ok5": int((R5.rem_ship >= ship_need_tot).sum()), "ship_ok10": int((R.rem_ship >= ship_need_tot).sum()), "n5": int(len(R5)), "n10": int(len(R)),
+            "rem_sales_wk5": float((R5.rem_sales / R5.n_rem.clip(lower=1)).mean()) if len(R5) else None,
+            "rem_sales_wk_lo": float((R5.rem_sales / R5.n_rem.clip(lower=1)).min()) if len(R5) else None,
+            "rem_sales_wk_hi": float((R5.rem_sales / R5.n_rem.clip(lower=1)).max()) if len(R5) else None,
+            "rem_sales_wk_ly": float(R.rem_sales.iloc[-1] / max(R.n_rem.iloc[-1], 1)) if len(R) else None,
+            "rem_ship_wk5": float((R5.rem_ship / R5.n_rem.clip(lower=1)).mean()) if len(R5) else None,
+            "rem_ship_wk_hi": float((R5.rem_ship / R5.n_rem.clip(lower=1)).max()) if len(R5) else None,
+            "fin_ly": float(R.fin.iloc[-1]) if len(R) else None, "fin_max5": float(R5.fin.max()) if len(R5) else None}
+    sales_left = sales_need_tot
+    need_sales = sales_left / weeks_left
 
     # this week's buyers
     tw = e[(e.marketYear == cur_y) & (e.weekEndingDate == last_date)]
@@ -396,7 +476,16 @@ def build(cfg):
                     impl = float(cn.get(nm, 0)) / row["norm_pct"] / ratio * cfg.get("to_world", 1.0)
                     row["implied_us"] = round(impl, 3); row["implied_share"] = impl / imp
                     row["vs_usual"] = impl / exp_us - 1 if exp_us else None
+        if reg:
+            pmy_ = f"{int(my[:4]) - 1}/{my[2:4]}"
+            row["imports_ly"] = w_latest(ww, reg, "Imports", pmy_)[0]
         dest.append(row)
+    for row in dest:      # far below normal this season AND last season at this point: a lost market, not room to catch up
+        row["structural_low"] = bool(row.get("avg5") and row["commit"] < 0.5 * row["avg5"] and (row.get("ly") or 0) < 0.5 * row["avg5"])
+    BRZ = brazil_flows() if cfg.get("competitor_flows") == "brazil" else None
+    if BRZ is not None:
+        for row in dest:
+            row["brazil"] = brazil_for(BRZ, row["c"])
 
     # shipment seasonality by destination: share of the season's shipments by calendar month (last 5 seasons)
     seas = []
@@ -427,15 +516,28 @@ def build(cfg):
             + f"(Export sales usually capture {ratio / (cfg['to_world'] * 1e6):.0%} of USDA's census-basis exports — median of the last 5 seasons — so USDA's {fu(target)} {cfg['w_unit']} is taken as {q(t_esr / D)} {cfg['disp_unit']} on the export-sales basis.) ")
     if ly_commit:
         head += f"Commitments are {L.commit / ly_commit - 1:+.0%} vs a year ago. "
-    if implied:
-        gap = implied / target - 1
-        head += (f"At the usual seasonal pace that points to about **{fu(implied)} {cfg['w_unit']}** ({gap:+.0%} vs USDA)"
+    if projw.get("central"):
+        gap = projw["central"] / target - 1
+        pp = lambda k: fu(projw[k]) if projw.get(k) else "n/a"
+        head += (f"Three ways to project the season from here (USDA units): if this week's {pace*100:.0f}% is the usual share of the final, about {pp('share')}; "
+                 f"if the rest of the season adds what it added in the last 5 seasons, about **{pp('add')}** (range {pp('add_lo')}–{pp('add_hi')}); "
+                 f"if it repeats last season's finish, {pp('ly')}. Middle estimate **{fu(projw['central'])} {cfg['w_unit']}** ({gap:+.0%} vs USDA)"
                  + ((" — early-season sales are a weak guide to the final number for this crop, so treat this as a direction, not a forecast." if cfg["key"] in ("corn", "sorghum") and abs(gap) > 0.04 else "")
-                    or (" — USDA looks too high; risk of a cut." if gap < -0.04 else " — room for USDA to raise." if gap > 0.04 else " — in line with USDA.")))
+                    or (" — below USDA; a cut is possible unless sales pick up." if gap < -0.04 else " — above USDA; room for a raise." if gap > 0.04 else " — in line with USDA."))
+                 + (" The %-of-USDA comparison understates the pace when USDA's target is larger than in past seasons; the second method does not depend on the target." if pace < pace_n and ly_commit and L.commit > ly_commit else ""))
     T.append({"h": "Pace vs USDA", "t": head})
-    t = (f"Shipments {ship*100:.0f}% of target (norm {ship_n*100:.0f}%). To reach USDA's number, shipments need to average "
-         f"{q(need_ship / D)} {cfg['disp_unit']}/week for the remaining {weeks_left} weeks vs {q(ship4 / D)} over the last 4 weeks; "
-         f"new sales need {q(max(need_sales, 0) / D)}/week vs {q(net4 / D)} recently (5-yr avg for these weeks {q(net4_5y / D)}).")
+    F_ = feas
+    def ease(ok, n, ok10=0):
+        return ("comfortably achievable" if ok >= max(n - 1, 1) and n else "achievable" if ok >= (n + 1) // 2 else "a stretch" if ok >= 1
+                else "a stretch (last done more than 5 seasons ago)" if ok10 > 0 else "not achieved in any recent season")
+    t = (f"To reach USDA's {fu(target)} {cfg['w_unit']}, the US needs {q(F_['sales_need'] / D)} {cfg['disp_unit']} more net sales "
+         f"(including the usual {q(F_['carry'] / D)} carried into next season) — {q(need_sales / D)}/week for {weeks_left} weeks. "
+         f"Over the same weeks the last 5 seasons sold {q(F_['rem_sales_wk5'] / D)}/week on average (range {q(F_['rem_sales_wk_lo'] / D)}–{q(F_['rem_sales_wk_hi'] / D)}; last season {q(F_['rem_sales_wk_ly'] / D)}); "
+         f"that total was reached in {F_['sales_ok5']} of the last {F_['n5']} seasons and {F_['sales_ok10']} of {F_['n10']} — **sales look {ease(F_['sales_ok5'], F_['n5'], F_['sales_ok10'])}**. "
+         f"Recent pace: {q(net4 / D)}/week over the last 4 weeks (5-yr avg for these weeks {q(net4_5y / D)}). "
+         f"Shipments need {q(need_ship / D)}/week vs {q(F_['rem_ship_wk5'] / D)}/week shipped over the rest of the season on average (best of 5: {q(F_['rem_ship_wk_hi'] / D)}); "
+         f"reached in {F_['ship_ok5']} of {F_['n5']} seasons — shipping capacity looks {ease(F_['ship_ok5'], F_['n5'], F_['ship_ok10'])}. "
+         f"Shipped so far {ship*100:.0f}% of target (norm {ship_n*100:.0f}%).")
     T.append({"h": "What USDA's number requires", "t": t})
     if prev_t is not None and abs(target - prev_t) > 1e-9:
         T.append({"h": "Latest WASDE", "t": f"USDA {'raised' if target > prev_t else 'cut'} the {my} export forecast to {fu(target)} {cfg['w_unit']} ({target - prev_t:+,.{cfg['w_fmt']}f}) in the {rd:%B} report."})
@@ -454,14 +556,54 @@ def build(cfg):
         behind = sorted([d for d in dd if d["vs_usual"] < -0.15], key=lambda d: d["vs_usual"])[:3]
         t = ""
         if ahead:
-            t += "Buying more US than usual: " + "; ".join(f"{d['c']} (pace implies {d['implied_share']*100:.0f}% US share of its {d['imports']:,.2f} MMT import forecast vs {d['us_share5']*100:.0f}% usual)" for d in ahead) + ". "
+            t += "Buying more US than usual: " + "; ".join(f"{d['c']} (pace implies {d['implied_share']*100:.0f}% US share of its {d['imports']:,.2f} {cfg.get('world_unit', 'MMT')} import forecast vs {d['us_share5']*100:.0f}% usual)" for d in ahead) + ". "
         if behind:
             t += "Buying less US than usual: " + "; ".join(f"{d['c']} ({d['implied_share']*100:.0f}% vs {d['us_share5']*100:.0f}% usual)" for d in behind) + "."
-        xs = sum((d["implied_us"] - d["exp_us"]) for d in dd) / cfg.get("to_world", 1.0)
+        xs = sum((d["implied_us"] - d["exp_us"]) for d in dd if not d.get("structural_low")) / cfg.get("to_world", 1.0)
+        lost = [d["c"] for d in dd if d.get("structural_low")]
         t += (f" Across these destinations, the sales pace adds up to {fu(xs) if abs(xs) >= 10 else f'{xs:+.2f}'} {cfg['w_unit']} vs their usual US-origin volumes"
-              + (" — supports a higher US export forecast." if xs > 0.03 * target else " — argues against raising USDA's number." if xs < -0.03 * target else "."))
+              + (" — supports a higher US export forecast." if xs > 0.03 * target else " — argues against raising USDA's number." if xs < -0.03 * target else ".")
+              + (f" Left out of that sum: {', '.join(lost)}, running far below normal for a second season (treated as a lost market, not room to catch up)." if lost else ""))
         if t:
             T.append({"h": "Destinations vs import forecasts", "t": t})
+    if BRZ is not None:
+        lines, room, crowded, brup = [], [], [], []
+        for d in sorted([d for d in dest if d.get("imports")], key=lambda d: -(d.get("exp_us") or 0))[:8]:
+            b = d.get("brazil") or {}
+            yy = d["commit"] / d["ly"] - 1 if d.get("ly") else None
+            v5 = d["commit"] / d["avg5"] - 1 if d.get("avg5") else None
+            iy = d["imports"] / d["imports_ly"] - 1 if d.get("imports_ly") else None
+            by = b.get("b3_yoy")
+            ahead = (d.get("vs_usual") or 0) > 0.10
+            behind = (d.get("vs_usual") or 0) < -0.10
+            br_up = by is not None and by > 0.15
+            if d.get("structural_low"):
+                tag = "far below normal for a second season — treat as lost demand, not room"
+            elif ahead and br_up:
+                tag = "already well bought and Brazil is shipping more — little extra room"
+                crowded.append(d["c"])
+            elif ahead:
+                tag = "ahead of its usual US share — limited extra upside"
+                crowded.append(d["c"])
+            elif behind and br_up:
+                tag = "Brazil is taking share — the gap may not close"
+                brup.append(d["c"])
+            elif behind and (iy is None or iy > -0.05) and not d.get("structural_low"):
+                tag = "behind its usual US share with steady or rising import needs — room for more US sales"
+                room.append(d)
+            else:
+                tag = "close to normal"
+            lines.append(f"**{d['c']}**: US commitments {q(d['commit'])} ({'' if yy is None else f'{yy:+.0%} y/y, '}{'' if v5 is None else f'{v5:+.0%} vs 5-yr avg'}); "
+                         + (f"pace points to {d['implied_share']*100:.0f}% of its {d['imports']:,.2f} {cfg.get('world_unit', 'MMT')} imports vs {d['us_share5']*100:.0f}% usual" if d.get("implied_share") is not None else f"usual US share {d['us_share5']*100:.0f}%")
+                         + (f", USDA imports {iy:+.0%} y/y" if iy is not None else "")
+                         + (f"; Brazil shipped {q(b['b3'])} in {b['from']}–{b['last']} ({by:+.0%} y/y)" if b and b.get("b3_ly", 0) > 1 else f"; Brazil shipped {q(b['b3'])} in {b['from']}–{b['last']}" if b else "")
+                         + f" — {tag}.")
+        if lines:
+            gap_room = sum((d["exp_us"] - d["implied_us"]) for d in room if d.get("implied_us") is not None)
+            summ = ((f"Room for more US sales in {', '.join(d['c'] for d in room)} (about {gap_room:,.2f} {cfg['w_unit']} below their usual US volumes). " if room else "")
+                    + (f"Already well bought: {', '.join(crowded)}. " if crowded else "") + (f"Brazil gaining: {', '.join(brup)}. " if brup else ""))
+            bt = BRZ[BRZ.d > BRZ.d.max() - pd.DateOffset(months=3)].kb.sum(); bt_ly = BRZ[(BRZ.d > BRZ.d.max() - pd.DateOffset(months=15)) & (BRZ.d <= BRZ.d.max() - pd.DateOffset(months=12))].kb.sum()
+            T.append({"h": "By destination: room vs competition", "t": summ + (f"Brazil's total shipments {q(bt)} '000 bales in the last 3 months ({bt / bt_ly - 1:+.0%} y/y). " if bt_ly else "") + " ".join(lines)})
     st = supply_text(S, cfg, fu)
     if st:
         T.append({"h": "Competition and import need", "t": st})
@@ -674,6 +816,14 @@ def build(cfg):
         bl += "Pointing lower: " + ", ".join(neg) + ". "
     if pos:
         bl += "Pointing higher: " + ", ".join(pos) + ". "
+    if projw.get("central"):
+        bl += f"Middle projection {fu(projw['central'])} {cfg['w_unit']} ({projw['central'] / target - 1:+.0%}); "
+        bl += f"the sales USDA's number needs were reached in {feas['sales_ok5']} of the last {feas['n5']} seasons ({feas['sales_ok10']} of {feas['n10']}). "
+    if cfg.get("competitor_flows") == "brazil":
+        room_ = [d["c"] for d in dest if d.get("imports") and (d.get("vs_usual") or 0) < -0.10 and not d.get("structural_low") and not ((d.get("brazil") or {}).get("b3_yoy") or 0) > 0.15]
+        crowd_ = [d["c"] for d in dest if (d.get("vs_usual") or 0) > 0.10]
+        if room_ or crowd_:
+            bl += ("Where extra US sales can come from: " + ", ".join(room_) + ". " if room_ else "") + ("Already well bought: " + ", ".join(crowd_) + ". " if crowd_ else "")
     if neg and pos:
         bl += ("Less competition usually shows up later in the season, once rival origins run short — "
                "watch whether US sales accelerate into the new year before reading the slow start as lost demand.")

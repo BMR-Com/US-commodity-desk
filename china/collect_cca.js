@@ -19,7 +19,7 @@
   const rowsOf = d => [...table(d).querySelectorAll('tr')].map(tr => [...tr.cells].map(c => c.innerText.trim()));
   // page a data table until a row's first cell is <= stop (dates) or maxPages
   const pageTable = async (key, stop, maxPages) => {
-    const d = await load(`/data?key=${key}`, d => table(d)?.querySelector('tr td'));
+    const d = await load(`/data?key=${key}`, d => { const t = table(d); return t && t.querySelector('tr td') && !t.innerText.includes('暂无数据') && d.body.innerText.includes('最新统计'); });
     if (!d) throw new Error('table ' + key + ' did not load');
     const rows = [];
     for (let p = 0; p < maxPages; p++) {

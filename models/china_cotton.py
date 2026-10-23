@@ -84,7 +84,7 @@ def parse_articles():
                             "prod_kt": float(m[1]) * 10, "area_kmu": float(ar[1]) * 10 if ar else None,
                             "yield_kg_mu": float(yl[1]) if yl else None, "title": title, "url": url})
         # seed-cotton selling price
-        for m in re.finditer(r"(?:平均)?交售(?:平均)?价格?(?:为|是)?\s*(\d{1,2}\.\d{1,2})\s*元/公斤[，,]?\s*(?:同比(上涨|下跌|下降|增长|提高)(\d+(?:\.\d+)?)%)?", text):
+        for m in ([] if not re.search(r"全国|新疆", title) else re.finditer(r"(?:平均)?交售(?:平均|均)?价(?:格)?(?:为|是)?\s*(\d{1,2}\.\d{1,2})\s*元/公斤[，,]?\s*(?:同比(上涨|下跌|下降|增长|提高)(\d+(?:\.\d+)?)%)?", text)):
             v = float(m[1])
             yoy = float(m[3]) * (1 if m[2] in ("上涨", "增长", "提高") else -1) if m[2] else None
             price.append({"pub": pub.isoformat(), "season": _season(pub) if pub.month >= 8 or pub.month <= 3 else None, "yuan_kg": v, "yoy_pct": yoy, "title": title})

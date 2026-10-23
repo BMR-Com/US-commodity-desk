@@ -38,6 +38,11 @@ const ChinaCotton = (() => {
           <p class="note" id="cnYtdNote"></p></div>
       </div>
       <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>Cumulative imports (thousand t)</h2><div class="ctrls" id="cnCumSel"></div><div class="chart"><canvas id="cCnCum"></canvas></div>
+          <p class="note" id="cnCumNote"></p></div>
+        <div class="card"><h2>USDA check: marketing-year imports and mill use</h2><div class="tbl" id="cnUsda"></div><p class="note" id="cnUsdaNote"></p></div>
+      </div>
+      <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>China vs world prices (¢/lb, weekly)</h2><div class="ctrls" id="cnPxSel"></div><div class="chart"><canvas id="cCnPx"></canvas></div>
           <p class="note">CCIndex 3128B (spot, delivered to mill) and Zhengzhou cotton front month converted at USD/CNY; both include 9% VAT, shown ex-VAT with the toggle. Target price: 18,600 yuan/t, Xinjiang, 2026–28.</p></div>
         <div class="card"><h2>Import margin, target-price gap and spinning margin (yuan/t)</h2><div class="chart"><canvas id="cCnMg"></canvas></div>
@@ -53,7 +58,7 @@ const ChinaCotton = (() => {
         <div class="card"><h2>China grain and fibre imports, year to date (customs, thousand t)</h2><div class="tbl" id="cnGr"></div></div>
         <div class="card"><h2>Seed-cotton price paid to farmers (yuan/kg, CCA surveys)</h2><div class="chart"><canvas id="cCnSeed"></canvas></div></div>
       </div>`;
-    for (const f of [progress, estimates, imports, prices, tables]) { try { f(); } catch (e) { console.error('china', f.name, e); } }
+    for (const f of [progress, estimates, imports, cumulative, usdaCheck, prices, tables]) { try { f(); } catch (e) { console.error('china', f.name, e); } }
   }
   const a = (u, l) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`;
 
@@ -106,6 +111,35 @@ const ChinaCotton = (() => {
       $('#cnYtdNote').innerHTML = Object.keys(cb).length ? `Cotton + yarn as lint (yarn ×${I.combined.factor}), Jan–${MON[I.combined.through_month - 1]}: ${Object.keys(cb).sort().map(y => `${y} ${fmt(cb[y].total, 0)} kt`).join(' · ')}.` : '';
     };
     if (keys.length) draw();
+  }
+
+  let cumKey = 'cotton', cumBasis = 'my';
+  function cumulative() {
+    const C = D.imports?.cumulative; if (!C) return;
+    const draw = () => {
+      $('#cnCumSel').innerHTML = [['cotton', 'Raw cotton'], ['yarn', 'Cotton yarn']].map(([k, l]) => `<button class="btn ${k === cumKey ? 'on' : ''}" data-k="${k}">${l}</button>`).join(' ') + ' &nbsp; ' +
+        [['my', 'Marketing year Aug–Jul'], ['calendar', 'Calendar year']].map(([k, l]) => `<button class="btn ${k === cumBasis ? 'on' : ''}" data-b="${k}">${l}</button>`).join(' ');
+      $$('#cnCumSel button[data-k]').forEach(b => b.onclick = () => { cumKey = b.dataset.k; draw(); });
+      $$('#cnCumSel button[data-b]').forEach(b => b.onclick = () => { cumBasis = b.dataset.b; draw(); });
+      const S = C[cumKey][cumBasis], keys = Object.keys(S).sort().slice(-6), cy = keys.at(-1);
+      const labels = cumBasis === 'my' ? C[cumKey].my_months : MON;
+      const ds = keys.map((k, i) => ({ label: k, data: S[k], spanGaps: true, borderColor: k === cy ? '#c0392b' : i === keys.length - 2 ? '#2c6fbb' : PAL[(i + 2) % PAL.length], borderWidth: k === cy ? 2.6 : 1.2, pointRadius: k === cy ? 3 : 0 }));
+      const U = D.imports.usda_check?.imports;
+      if (cumKey === 'cotton' && cumBasis === 'my' && U?.usda_kt) ds.push({ label: `USDA ${U.my}`, data: labels.map(() => U.usda_kt), borderColor: '#555', borderDash: [5, 4], borderWidth: 1.2, pointRadius: 0 });
+      chart('cCnCum', { type: 'line', data: { labels, datasets: ds }, options: { scales: { y: { min: 0, title: { display: true, text: 'thousand t' } } } } });
+      const f = D.imports.filled_from_cca || [];
+      $('#cnCumNote').innerHTML = `China customs, cumulative from ${cumBasis === 'my' ? 'August (USDA and CCA marketing year for cotton)' : 'January'}. Months the bulletin skipped are interpolated.${f.length ? ` Latest month from the CCA import report (customs figures, ahead of the English bulletin): ${f.join(', ')}.` : ''}`;
+    };
+    draw();
+  }
+  function usdaCheck() {
+    const U = D.imports?.usda_check; if (!U) return;
+    const a = U.imports, kt = v => v == null ? '–' : fmt(v, 0);
+    $('#cnUsda').innerHTML = `<table><tr><th>Marketing year</th><th>Imports by end-${a.through} (kt)</th><th>Full year, customs</th><th>USDA</th><th>Share by ${a.through}</th></tr>
+      ${a.hist.slice().reverse().map(h => `<tr><td>${h.my}</td><td>${kt(h.full_kt * h.share_pct / 100)}</td><td>${kt(h.full_kt)}</td><td>${kt(h.usda_kt)}</td><td>${fmt(h.share_pct, 0)}%</td></tr>`).join('')}
+      <tr><td><b>${a.my}</b></td><td><b>${kt(a.to_date_kt)}</b></td><td>pace ≈ ${kt(a.pace_implied_kt)}</td><td>${kt(a.usda_kt)}</td><td>${fmt(a.usda_pct_done, 0)}% of USDA</td></tr></table>`;
+    const u = U.use || {};
+    $('#cnUsdaNote').innerHTML = `USDA ${a.my}: mill use ${kt(u.usda_kt)} kt (${fmt(u.usda_kt / 217.725, 1)} m bales), production ${kt(u.usda_prod_kt)} kt, ending stocks ${kt(u.usda_end_kt)} kt. Yarn imports Aug–${a.through}: ${kt(u.yarn_to_date_kt)} kt vs ${kt(u.yarn_to_date_prev_kt)} kt a year earlier. USDA PSD (Aug–Jul, 480-lb bales converted).`;
   }
 
   let exVat = false;

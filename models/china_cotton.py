@@ -229,6 +229,17 @@ def gacc_monthly():
         mult = g.mult.dropna().iloc[0] if g.mult.notna().any() else np.nan
         ytd = g.ytd_q * mult
         ytv = g.ytd_v / 1000.0                       # USD million
+        # months the bulletin skipped (e.g. Sep-Oct 2024) between two published months: interpolate the year-to-date
+        known_m = sorted(m for m in ytd.index if pd.notna(ytd.get(m)))
+        if known_m:
+            full = pd.Series(ytd.reindex(range(known_m[0], known_m[-1] + 1)).values, index=range(known_m[0], known_m[-1] + 1)).interpolate()
+            fullv = pd.Series(ytv.reindex(range(known_m[0], known_m[-1] + 1)).values, index=range(known_m[0], known_m[-1] + 1)).interpolate()
+            est = [m for m in full.index if m not in g.index and m > 2]   # Jan missing = released with Feb, not interpolated
+            for m in est:
+                g.loc[m] = np.nan
+            ytd = pd.concat([ytd, full[est]]).sort_index()
+            ytv = pd.concat([ytv, fullv[est]]).sort_index()
+            g = g.sort_index()
         prev_q, prev_v = 0.0, 0.0
         for m in range(1, 13):
             if m not in g.index:
@@ -242,6 +253,111 @@ def gacc_monthly():
     return pd.DataFrame(rows)
 
 
+def cca_import_reports():
+    """Monthly cotton and cotton-yarn imports from the CCA's monthly import reports (they quote customs before the
+    English bulletin is out): {(year, month): {"cotton": kt, "yarn": kt, "url": ...}}."""
+    p = RAW / "cca_production_articles.json"
+    if not p.exists():
+        return {}
+    d = json.loads(p.read_text())
+    out = {}
+    for u, a in d["art"].items():
+        m = re.search(r"进口月度报告（(\d{4})年(\d{1,2})月）", a.get("t", ""))
+        if not m:
+            continue
+        y, mo = int(m[1]), int(m[2])
+        b = a["body"]
+        r = {}
+        c = re.search(rf"{mo}月(?:我国)?(?:进口棉花|棉花进口量?)(?:为|仅)?\s*([\d.]+)\s*万吨", b) or re.search(r"当月棉花进口[^。]{0,30}?([\d.]+)万吨", b)
+        if c:
+            r["cotton"] = float(c[1]) * 10
+        yv = re.search(r"棉纱线?进口(?:量)?(?:为)?\s*([\d.]+)\s*万吨", b)
+        if yv:
+            r["yarn"] = float(yv[1]) * 10
+        if r:
+            r["url"] = u
+            out[(y, mo)] = r
+    return out
+
+
+def fill_from_reports(g, rep):
+    """Add months the customs English bulletin has not published yet, from the CCA import reports (flagged)."""
+    if not len(g) or not rep:
+        return g, []
+    add, used = [], []
+    for (y, mo), r in sorted(rep.items()):
+        for key, c in (("cotton", "Cotton"), ("yarn", "Cotton yarn")):
+            if key not in r:
+                continue
+            s = g[(g.c == c) & (g.year == y)]
+            if len(s[s.m == mo]) or not len(s[s.m == mo - 1]):
+                continue
+            prev = s[s.m == mo - 1].iloc[0]
+            add.append({"c": c, "year": y, "m": mo, "ytd_kt": prev.ytd_kt + r[key], "ytd_musd": np.nan, "m_kt": r[key], "m_musd": np.nan, "src": "CCA report"})
+            used.append(f"{c} {y}-{mo:02d} {r[key]:.0f} kt")
+    if add:
+        g = pd.concat([g, pd.DataFrame(add)], ignore_index=True)
+    return g, used
+
+
+def my_cumulative(g, c):
+    """Cumulative imports by calendar year and by Aug-Jul marketing year (thousand t)."""
+    s = g[g.c == c]
+    ytd = {(int(r.year), int(r.m)): r.ytd_kt for r in s.itertuples()}
+    years = sorted({y for y, _ in ytd})
+    cal = {y: [rnd(ytd.get((y, m)), 0) for m in range(1, 13)] for y in years}
+    my = {}
+    for y in years:
+        base = ytd.get((y, 7))
+        if base is None:
+            continue
+        row = []
+        for k, (yy, m) in enumerate([(y, m) for m in range(8, 13)] + [(y + 1, m) for m in range(1, 8)]):
+            if yy == y:
+                v = ytd.get((y, m))
+                row.append(rnd(v - base, 0) if v is not None else None)
+            else:
+                dec = ytd.get((y, 12))
+                v = ytd.get((yy, m))
+                row.append(rnd(dec - base + v, 0) if v is not None and dec is not None else None)
+        if any(v is not None for v in row):
+            my[f"{y}/{str(y + 1)[2:]}"] = row
+    return {"calendar": cal, "my": my, "my_months": ["Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]}
+
+
+def usda_check(I, cum, psd):
+    """Compare China's marketing-year (Aug-Jul) imports so far with USDA's forecast, and USDA's mill use with the CCA's."""
+    if not cum or not psd:
+        return None
+    out = {}
+    my = cum["cotton"]["my"]
+    keys = sorted(my)
+    cur = keys[-1]
+    row = my[cur]
+    k = max(i for i, v in enumerate(row) if v is not None)
+    y0 = int(cur[:4])
+    usda = lambda y, a: (psd.get(y) or {}).get(a)
+    f = usda(y0, "Imports")
+    shares = []
+    for key in keys[:-1]:
+        r = my[key]
+        if r[11] is not None and r[k] is not None and r[11] > 0:
+            shares.append({"my": key, "share_pct": rnd(r[k] / r[11] * 100), "full_kt": r[11], "usda_kt": usda(int(key[:4]), "Imports")})
+    med = np.median([x["share_pct"] for x in shares]) if shares else None
+    out["imports"] = {"my": cur, "through": cum["cotton"]["my_months"][k], "to_date_kt": row[k], "usda_kt": f,
+                      "usda_pct_done": rnd(row[k] / f * 100) if f else None, "hist": shares,
+                      "median_share_pct": rnd(med) if med else None, "pace_implied_kt": rnd(row[k] / med * 100, 0) if med else None}
+    last = keys[-2] if len(keys) > 1 else None
+    if last and my[last][11] is not None:
+        out["imports"]["last_my"] = {"my": last, "actual_kt": my[last][11], "usda_kt": usda(int(last[:4]), "Imports")}
+    yarn_my = cum.get("yarn", {}).get("my", {})
+    out["use"] = {"my": cur, "usda_kt": usda(y0, "Domestic Use"), "usda_prev_kt": usda(y0 - 1, "Domestic Use"),
+                  "usda_prod_kt": usda(y0, "Production"), "usda_end_kt": usda(y0, "Ending Stocks"),
+                  "yarn_last_my_kt": yarn_my.get(last, [None] * 12)[11] if last else None,
+                  "yarn_to_date_kt": (yarn_my.get(cur) or [None] * 12)[k], "yarn_to_date_prev_kt": (yarn_my.get(last) or [None] * 12)[k] if last else None}
+    return out
+
+
 def comtrade():
     p = RAW / "comtrade_china_monthly.csv"
     return pd.read_csv(p) if p.exists() else pd.DataFrame()
@@ -250,6 +366,18 @@ def comtrade():
 PARTNER = {704: "Vietnam", 699: "India", 586: "Pakistan", 860: "Uzbekistan", 458: "Malaysia", 360: "Indonesia", 50: "Bangladesh",
            490: "Taiwan", 116: "Cambodia", 156: "China (re-imports)", 76: "Brazil", 842: "USA", 36: "Australia", 398: "Kazakhstan",
            792: "Türkiye", 818: "Egypt", 854: "Burkina Faso", 120: "Cameroon", 466: "Mali", 204: "Benin", 32: "Argentina", 4: "Afghanistan", 834: "Tanzania"}
+
+
+def unit_values(s, years, cy):
+    """USD/t year to date, at the last month with customs values (CCA-filled months carry no value)."""
+    v = s[s.ytd_musd.notna()]
+    lm = int(v[v.year == cy].m.max()) if len(v[v.year == cy]) else None
+    out = {}
+    for y in years:
+        r = v[(v.year == y) & (v.m == lm)]
+        if lm and len(r) and r.ytd_kt.iloc[0]:
+            out[int(y)] = rnd(r.ytd_musd.iloc[0] / r.ytd_kt.iloc[0] * 1000, 0)
+    return out
 
 
 def imports_block(g, ct, cca_yearly):
@@ -272,7 +400,8 @@ def imports_block(g, ct, cca_yearly):
                      "ytd_yoy_pct": rnd((ytd[cy] / ytd[cy - 1] - 1) * 100) if ytd.get(cy - 1) else None,
                      "ytd_vs_avg5_pct": rnd((ytd[cy] / np.mean(prev) - 1) * 100) if prev else None,
                      "avg5_kt": rnd(np.mean(prev), 0) if prev else None,
-                     "unit_usd_t": {y: rnd(ytdv[y] / ytd[y] * 1000, 0) for y in years if ytd.get(y)},
+                     "unit_usd_t": unit_values(s, years, cy),
+                     "src_last_month": "CCA import report (customs data quoted before the English bulletin)" if "src" in s and s[(s.year == cy) & (s.m == last_m)].src.notna().any() else "China customs",
                      "rank": int(sorted([ytd[y] for y in years], reverse=True).index(ytd[cy]) + 1), "n_years": len(years)}
     if "yarn" in out and "cotton" in out:
         y, c = out["yarn"], out["cotton"]
@@ -438,15 +567,18 @@ def prices_block(tv, cc, cl, latest_quotes):
 
 
 def psd_china():
-    p = ROOT / "data" / "geo" / "raw" / "psd.json"
-    if not p.exists():
-        return None
-    rows = json.loads(p.read_text())["data"]["cotton"]["rows"]
+    """USDA PSD China cotton by marketing year (Aug-Jul), thousand t."""
     o = {}
-    for cc, _, y, attr, v in rows:
-        if cc == "CH":
-            o.setdefault(int(y), {})[attr] = v
-    # 480-lb bales (thousand) -> thousand t
+    p = ROOT / "data" / "geo" / "raw" / "psd.json"
+    if p.exists():
+        for cc, _, y, attr, v in json.loads(p.read_text())["data"]["cotton"]["rows"]:
+            if cc == "CH":
+                o.setdefault(int(y), {})[attr] = v
+    snap = RAW / "usda_psd_china.json"
+    if snap.exists():
+        for y, a in json.loads(snap.read_text())["rows"].items():
+            for k, v in a.items():
+                o.setdefault(int(y), {}).setdefault(k, v)
     return {y: {k: rnd(v * 0.217725, 0) if k not in ("Yield", "Area Harvested") else v for k, v in a.items()} for y, a in sorted(o.items()) if y >= 2015}
 
 
@@ -533,6 +665,38 @@ def brief(E, P, I, X, SP, G):  # noqa: C901
                      "the binding limit is quota, which is why foreign yarn (no quota) fills the gap")
         if m:
             S.append({"h": "What it means for demand", "t": ("; ".join(m) + ".")[0].upper() + ("; ".join(m) + ".")[1:]})
+    # USDA check: marketing-year (Aug-Jul) imports so far vs the WASDE number, and mill use
+    U = (I or {}).get("usda_check")
+    if U and U.get("imports", {}).get("usda_kt"):
+        a = U["imports"]
+        hs = a["hist"]
+        lo = min(x["share_pct"] for x in hs) if hs else None
+        hi = max(x["share_pct"] for x in hs) if hs else None
+        t = (f"USDA has China importing {a['usda_kt']/1000:.2f} mt ({a['usda_kt']/217.725:.1f} m bales) in {a['my']} (Aug–Jul). Aug–{a['through']} arrivals were {a['to_date_kt']:,.0f} kt, "
+             f"{a['usda_pct_done']:.0f}% of that; in the last {len(hs)} seasons {lo:.0f}–{hi:.0f}% (median {a['median_share_pct']:.0f}%) had arrived by the end of {a['through']}, "
+             f"so the pace points to about {a['pace_implied_kt']/1000:.2f} mt.")
+        if a.get("last_my"):
+            l = a["last_my"]
+            t += f" For {l['my']} customs shows {l['actual_kt']/1000:.2f} mt against USDA's {l['usda_kt']/1000:.2f} mt, so USDA tracks customs closely once the year is done."
+        gap = a["pace_implied_kt"] - a["usda_kt"]
+        if gap < -150:
+            t += (f" Read: on pace alone USDA looks about {abs(gap)/217.725:.1f} m bales high (two months is a weak guide: the share by now has ranged {lo:.0f}–{hi:.0f}%), and it holds only if buying picks up when the {int(a['my'][:4])+1} quota is issued in January; "
+                  "early arrivals are slow because this year's quota is used up, the domestic crop is early and large, and mills are importing yarn instead.")
+        elif gap > 150:
+            t += f" Read: the pace runs ahead of USDA by about {gap/217.725:.1f} m bales; an upward revision is likely if it holds."
+        else:
+            t += " Read: the pace is in line with USDA."
+        u = U.get("use") or {}
+        if u.get("usda_kt"):
+            bal = (E or {}).get("balance") or []
+            cca_use = sorted(bal, key=lambda r: r["season"])[-1]["use"] * 10 if bal else None
+            t += (f" USDA's mill use is {u['usda_kt']/1000:.2f} mt ({u['usda_kt']/217.725:.1f} m bales, {(u['usda_kt']/u['usda_prev_kt']-1)*100:+.1f}%)"
+                  + (f" vs the CCA's {cca_use/1000:.2f} mt" if cca_use else "") + ".")
+            if u.get("yarn_to_date_kt") and u.get("yarn_to_date_prev_kt"):
+                t += (f" Yarn imports Aug–{a['through']} are {u['yarn_to_date_kt']:,.0f} kt vs {u['yarn_to_date_prev_kt']:,.0f} kt a year earlier "
+                      f"({(u['yarn_to_date_kt']/u['yarn_to_date_prev_kt']-1)*100:+.0f}%): every tonne of imported yarn is about {YARN_TO_LINT} t of lint that Chinese mills do not spin, "
+                      "so a mill-use increase looks optimistic while yarn imports run this high; China's fibre demand is real but it is being met offshore, which helps exporters that sell to Vietnam, Pakistan and India more than those selling lint to China.")
+        S.append({"h": "USDA check", "t": t})
     # the association's balance sheet: demand and stocks
     bal = (E or {}).get("balance") or []
     if bal:
@@ -622,9 +786,14 @@ def main():
     E = estimates_block(est, nbs, bal, psd, T.get("cca_final"))
     P = progress_block(pr)
     G = gacc_monthly()
+    G, filled = fill_from_reports(G, cca_import_reports())
     I = imports_block(G, comtrade(), T.get("cotton_imports_yearly"))
+    if I is not None:
+        I["filled_from_cca"] = filled
+        I["cumulative"] = {"cotton": my_cumulative(G, "Cotton"), "yarn": my_cumulative(G, "Cotton yarn")}
+        I["usda_check"] = usda_check(I, I["cumulative"], psd)
     X = prices_block(tv, cc, cl, quotes)
-    GR = grains_block(G)
+    GR = grains_block(G[G.get("src", pd.Series(index=G.index, dtype=object)).isna()] if "src" in G else G)
     out = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "brief": brief(E, P, I, X, sp, GR),
            "estimates": E, "progress": P, "seed_price": sp.to_dict("records") if len(sp) else [], "imports": I, "prices": X, "grains": GR,
            "sources": {"cca": "https://www.china-cotton.org/", "gacc": "http://english.customs.gov.cn/statics/report/monthly.html",

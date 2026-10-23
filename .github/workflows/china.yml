@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['data/china/raw/**', 'models/china_cotton.py', 'pipelines/china_prices.py', '.github/workflows/china.yml']
+    paths: ['data/china/raw/**', 'models/china_cotton.py', 'pipelines/china_prices.py', 'pipelines/china_collect.py', 'china/**', '.github/workflows/china.yml']
   schedule:
     - cron: '40 8 * * 1-5'    # after the Zhengzhou day session (15:00 Beijing)
     - cron: '30 21 * * 1-5'   # after the ICE close
@@ -17,7 +17,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install -q pandas numpy requests git+https://github.com/rongardF/tvdatafeed.git
+      - run: pip install -q pandas numpy requests beautifulsoup4 playwright git+https://github.com/rongardF/tvdatafeed.git
+      - name: China customs monthly bulletin and China Cotton Association pages (new data only)
+        continue-on-error: true
+        timeout-minutes: 12
+        run: python -m playwright install --with-deps chromium >/dev/null && python pipelines/china_collect.py gacc cca
       - name: Zhengzhou cotton and yarn, USD/CNY, ICE (TradingView)
         continue-on-error: true
         run: python pipelines/china_prices.py
@@ -26,7 +30,7 @@ jobs:
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/china/tv_prices.csv data/china/cotton.json
+          git add data/china
           git diff --cached --quiet && exit 0
           git commit -q -m "data: China cotton $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

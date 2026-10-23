@@ -28,7 +28,7 @@ COMMS = {
     "cheese": ("Dairy, Cheese", "0406"), "butter": ("Dairy, Butter", "0405"), "nfdm": ("Dairy, Milk, Nonfat Dry", "040210"),
     "milk": ("Dairy, Milk, Fluid", None), "sorghum": ("Sorghum", "1007"),
 }
-ATTRS = ["Production", "Exports", "Imports", "Domestic Consumption", "Ending Stocks", "TY Exports", "TY Imports", "Area Harvested", "Yield",
+ATTRS = ["Production", "Exports", "Imports", "Domestic Consumption", "Domestic Use", "Beginning Stocks", "Ending Stocks", "TY Exports", "TY Imports", "Area Harvested", "Yield",
          "Total Supply", "Feed Dom. Consumption", "Crush", "Cow Milk Production", "Fluid Use Dom. Consum."]
 
 

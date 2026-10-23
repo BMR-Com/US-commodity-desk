@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths: ['pipelines/cotton_loan.py', 'models/cotton_loan.py', '.github/workflows/cotton_loan.yml']
   schedule:
-    - cron: '37 15 * * 2-5'   # PSL-61R weekly (as of Monday) posts early in the week; monthly reports after month end
+    - cron: '37 15 * * 5'     # Fridays: PSL-61R weekly (as of Monday) and any new month-end reports
 permissions: {contents: write}
 concurrency: {group: cotton_loan, cancel-in-progress: false}
 jobs:

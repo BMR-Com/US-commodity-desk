@@ -19,7 +19,7 @@ jobs:
       - run: pip install -q pandas numpy requests
       - name: US textile and apparel imports by HS6, monthly (UN Comtrade, new months only)
         continue-on-error: true
-        timeout-minutes: 24
+        timeout-minutes: 25
         run: python pipelines/us_fiber.py
       - name: cotton vs man-made share, ERS check, price lead/lag
         continue-on-error: true

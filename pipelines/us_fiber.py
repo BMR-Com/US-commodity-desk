@@ -22,7 +22,7 @@ COLS = ["period", "cmd", "value_usd", "net_kg", "qty", "qty_unit"]
 START = (2015, 1)
 H = {"User-Agent": "Mozilla/5.0 (research desk; contact via GitHub BMR-Com)"}
 BASE = "https://comtradeapi.un.org/public/v1/preview/C/M/HS"
-BUDGET = 1200   # seconds per run; a first backfill finishes over a few runs
+BUDGET = 1260   # seconds per run; a first backfill finishes over a few runs
 
 MMF = re.compile(r"man-made|manmade|synthetic|artificial|polyester|nylon|polyamide|polyethylene|polypropylene|acrylic|viscose|aramid|elastomeric|filament", re.I)
 COT = re.compile(r"\bcotton\b", re.I)
@@ -38,25 +38,46 @@ def classify(code, text):
     if ch in (50, 51, 53):
         return "other"
     t = text.split(" - ", 1)[-1]
-    if COT.search(t) and not NOT_COT.search(t) and not MMF.search(t):
+    # HS classes a good by its predominant fibre; "of textile materials other than cotton or man-made fibres" is the
+    # residual (wool, silk, flax...), so strip those phrases before testing which fibre the line is "of"
+    excl = re.search(r"other than|excluding|n\.e\.c\. in item", t, re.I)
+    core = re.sub(r"\((?:other than|excluding)[^)]*\)|(?:other than|excluding)[^,;)]*", " ", t, flags=re.I)
+    cot, mmf = bool(COT.search(core)), bool(MMF.search(core))
+    if cot and not mmf:
         return "cotton"
-    if MMF.search(t) and not COT.search(t):
+    if mmf and not cot:
         return "mmf"
-    if re.search(r"\bwool|fine animal hair|silk|flax|jute|sisal|abaca|vegetable textile|bast", t, re.I) and not COT.search(t) and not MMF.search(t):
+    if re.search(r"\bwool|fine animal hair|silk|flax|jute|sisal|abaca|vegetable textile|bast|ramie", core, re.I):
         return "other"
-    return "mixed"   # "of other textile materials", "knitted" without fibre, cotton/man-made mixes, 6309 worn clothing
+    if excl:
+        ex = " ".join(re.findall(r"(?:other than|excluding)[^,;)]*", t, re.I))
+        if re.search(r"cotton", ex, re.I) and not re.search(r"man-made|synthetic", ex, re.I):
+            return "mmf"     # e.g. 6109.90 T-shirts "other than cotton": no separate man-made line, mostly polyester
+        if re.search(r"cotton|man-made|synthetic", ex, re.I):
+            return "other"
+    return "mixed"   # no fibre named (swimwear, hosiery, gloves...), blends, worn clothing
 
 
-def get(url, tries=4):
+LAST = [0.0]
+
+
+def get(url, tries=5):
+    """Public preview: one period per call, about one call per 3 seconds."""
     for i in range(tries):
+        gap = time.time() - LAST[0]
+        if gap < 3.3:
+            time.sleep(3.3 - gap)
+        LAST[0] = time.time()
         try:
             r = requests.get(url, headers=H, timeout=90)
             if r.status_code == 200:
                 return r.json()
-            print("http", r.status_code, url[:120])
+            print("http", r.status_code, r.text[:120], url[:100])
+            if r.status_code == 400:
+                return None
         except Exception as e:
             print("error", str(e)[:120])
-        time.sleep(6 * (i + 1))
+        time.sleep(4 * (i + 1))
     return None
 
 
@@ -115,16 +136,15 @@ def main():
     # months already stored are skipped, except the latest two (revisions); empty months (not yet published) retried
     todo = [p for p in months() if p not in have or p in have[-2:]]
     todo.reverse()                      # newest first, then backfill
-    groups = [C[i:i + 110] for i in range(0, len(C), 110)]
+    groups = [C[i:i + 300] for i in range(0, len(C), 300)]     # <500 rows per call
     t0, calls, got = time.time(), 0, 0
-    for i in range(0, len(todo), 4):
-        per = todo[i:i + 4]
+    for per in todo:
+        if time.time() - t0 > BUDGET:
+            break
+        n0 = got
         for g in groups:
-            if time.time() - t0 > BUDGET:
-                break
-            j = get(f"{BASE}?reporterCode=842&period={','.join(per)}&flowCode=M&partnerCode=0&cmdCode={','.join(g)}")
+            j = get(f"{BASE}?reporterCode=842&period={per}&flowCode=M&partnerCode=0&cmdCode={','.join(g)}")
             calls += 1
-            time.sleep(1.2)
             if not j:
                 continue
             d = j.get("data") or []
@@ -137,8 +157,7 @@ def main():
                 rows[k] = {"period": k[0], "cmd": k[1], "value_usd": x.get("primaryValue") or 0, "net_kg": x.get("netWgt") or 0,
                            "qty": x.get("qty") or 0, "qty_unit": x.get("qtyUnitCode")}
                 got += 1
-        if time.time() - t0 > BUDGET:
-            break
+        print(per, got - n0, "rows")
         save(rows, n_old)
     save(rows, n_old)
     have = sorted({p for p, _ in rows})

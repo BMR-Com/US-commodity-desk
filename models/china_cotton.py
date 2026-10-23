@@ -660,6 +660,38 @@ def prices_block(tv, cc, cl, latest_quotes):
     return out
 
 
+def polyester_block(tv):
+    """Cotton vs polyester in China: Zhengzhou cotton (CF) against polyester staple fibre (PF) and PTA (TA), and Brent."""
+    need = {"CF1", "PF1"}
+    if not len(tv) or not need.issubset(tv.columns) or tv.PF1.notna().sum() < 100:
+        return None
+    w = tv.resample("W-FRI").last()
+    w = w[w.index >= "2020-10-01"]
+    w["ratio"] = w.CF1 / w.PF1
+    w["pf_clb"] = c_lb(w.PF1, w.USDCNY.ffill())
+    w["pf_clb_xvat"] = w.pf_clb / (1 + VAT)
+    w["ct_pf"] = w.CT1 / w.pf_clb_xvat
+    w = w.dropna(subset=["ratio"])
+    last = w.iloc[-1]
+    ago = lambda col, weeks: w[col].dropna().iloc[-weeks - 1] if w[col].notna().sum() > weeks else None
+    chg = lambda col, weeks: rnd((w[col].dropna().iloc[-1] / ago(col, weeks) - 1) * 100) if ago(col, weeks) else None
+    r = w.ratio.dropna()
+    out = {"date": w.index[-1].strftime("%Y-%m-%d"), "cf": rnd(last.CF1, 0), "pf": rnd(last.PF1, 0), "ta": rnd(last.get("TA1"), 0), "brent": rnd(last.get("BRENT"), 2),
+           "ratio": rnd(last.ratio, 2), "ratio_pctile": rnd((r < r.iloc[-1]).mean() * 100, 0), "ratio_avg": rnd(r.mean(), 2), "ratio_min": rnd(r.min(), 2), "ratio_max": rnd(r.max(), 2),
+           "ratio_26w_ago": rnd(r.iloc[-27], 2) if len(r) > 27 else None, "pf_clb": rnd(last.pf_clb, 1), "pf_clb_xvat": rnd(last.pf_clb_xvat, 1),
+           "ct_pf": rnd(last.ct_pf, 2), "ct_pf_avg": rnd(w.ct_pf.mean(), 2),
+           "chg_26w": {k: chg(c, 26) for k, c in (("brent", "BRENT"), ("pta", "TA1"), ("psf", "PF1"), ("cotton", "CF1"), ("ice", "CT1"))},
+           "chg_52w": {k: chg(c, 52) for k, c in (("brent", "BRENT"), ("pta", "TA1"), ("psf", "PF1"), ("cotton", "CF1"), ("ice", "CT1"))}}
+    if "BRENT" in w:
+        x = w[["PF1", "BRENT"]].dropna().pct_change().dropna()
+        x = x[x.index >= x.index[-1] - pd.DateOffset(years=3)]
+        out["corr_psf_brent_3y"] = rnd(x.PF1.corr(x.BRENT), 2)
+    out["weekly"] = {"date": [d.strftime("%Y-%m-%d") for d in w.index], "cf": [rnd(v, 0) for v in w.CF1], "pf": [rnd(v, 0) for v in w.PF1],
+                     "ta": [rnd(v, 0) for v in w.get("TA1", pd.Series(index=w.index, dtype=float))], "brent": [rnd(v, 2) for v in w.get("BRENT", pd.Series(index=w.index, dtype=float))],
+                     "ratio": [rnd(v, 3) for v in w.ratio]}
+    return out
+
+
 def psd_china():
     """USDA PSD China cotton by marketing year (Aug-Jul), thousand t."""
     o = {}
@@ -857,6 +889,24 @@ def brief(E, P, I, X, SP, G):  # noqa: C901
                 "strong yarn imports are the main channel through which China adds to world cotton demand this year.") if (X and (X.get("latest", {}).get("imp_margin_1pct") or 0) > 1000) else \
                "Domestic and world prices are close, so import demand depends on quota and mill margins rather than price."
         S.insert(0, {"h": "Bottom line", "t": "China has " + ", ".join(bl) + ". " + read})
+    PY = (X or {}).get("polyester")
+    if PY:
+        c6 = PY["chg_26w"]
+        t = (f"Brent {PY['brent']:.0f}$ ({c6['brent']:+.0f}% in 6 months) has pushed PTA {c6['pta']:+.0f}% and polyester staple fibre {c6['psf']:+.0f}% "
+             f"to {PY['pf']:,.0f} yuan/t ({PY['pf_clb']:.0f}¢/lb, {PY['pf_clb_xvat']:.0f}¢ ex-VAT), while Zhengzhou cotton moved {c6['cotton']:+.0f}%. "
+             f"Cotton now costs {PY['ratio']:.2f}× polyester in China, {ordinal(PY['ratio_pctile'])} percentile since PSF futures listed (range {PY['ratio_min']:.2f}–{PY['ratio_max']:.2f}, average {PY['ratio_avg']:.2f}"
+             + (f"; {PY['ratio_26w_ago']:.2f} six months ago" if PY.get("ratio_26w_ago") else "") + "). "
+             f"ICE cotton is {PY['ct_pf']:.2f}× Chinese PSF ex-VAT (average {PY['ct_pf_avg']:.2f}). ")
+        if PY["ratio"] < PY["ratio_avg"] * 0.9:
+            t += ("Cotton is unusually cheap against polyester: spinners shift blends toward cotton when the ratio is this low, which adds to cotton use with a lag of a few months, "
+                  "provided crude stays high; polyester capacity is ample, so the PSF rally depends on oil rather than tight fibre supply.")
+        elif PY["ratio"] > PY["ratio_avg"] * 1.1:
+            t += "Cotton is expensive against polyester, so blends lean toward synthetics."
+        else:
+            t += "The ratio is near its average, so substitution is not a strong force either way."
+        if PY.get("corr_psf_brent_3y") is not None:
+            t += f" Weekly PSF and Brent changes correlate {PY['corr_psf_brent_3y']:.2f} over three years."
+        S.append({"h": "Cotton vs polyester", "t": t})
     if G:
         r = {x["name"]: x for x in G["rows"]}
         t = ", ".join(f"{k.lower()} {r[k]['ytd'][G['year']]/1000:.1f} mt ({pct(r[k]['yoy_pct'],0)})" for k in ("Soybeans", "Corn", "Wheat", "Barley", "Sorghum") if k in r and r[k]["ytd"].get(G["year"]))
@@ -944,6 +994,8 @@ def main():
         I["origin_demand"] = origin_demand(I, ct, esr)
         I["usda_check"] = usda_check(I, I["cumulative"], psd)
     X = prices_block(tv, cc, cl, quotes)
+    if X is not None:
+        X["polyester"] = polyester_block(tv)
     GR = grains_block(G[G.get("src", pd.Series(index=G.index, dtype=object)).isna()] if "src" in G else G)
     out = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "brief": brief(E, P, I, X, sp, GR),
            "estimates": E, "progress": P, "seed_price": sp.to_dict("records") if len(sp) else [], "imports": I, "prices": X, "grains": GR,

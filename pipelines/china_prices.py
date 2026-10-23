@@ -10,7 +10,10 @@ import pandas as pd
 from tvDatafeed import TvDatafeed, Interval
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "china" / "tv_prices.csv"
-SYMS = {"CF1": ("ZCE", "CF1!"), "CY1": ("ZCE", "CY1!"), "USDCNY": ("FX_IDC", "USDCNY"), "CT1": ("ICEUS", "CT1!")}
+SYMS = {"CF1": ("ZCE", "CF1!"), "CY1": ("ZCE", "CY1!"), "USDCNY": ("FX_IDC", "USDCNY"), "CT1": ("ICEUS", "CT1!"),
+        "PF1": ("ZCE", "PF1!"),      # polyester staple fibre, yuan/t (listed Oct 2020)
+        "TA1": ("ZCE", "TA1!"),      # PTA, the main polyester feedstock, yuan/t
+        "BRENT": ("ICEEUR", "BRN1!")}
 
 
 def zce_date(ix):
@@ -25,7 +28,8 @@ if __name__ == "__main__":
     for k, (ex, sym) in SYMS.items():
         for i in range(3):
             try:
-                d = tv.get_hist(symbol=sym, exchange=ex, interval=Interval.in_daily, n_bars=120)
+                n = 120 if (len(old) and k in old and old[k].notna().sum() > 200) else 3000   # backfill a new column once
+                d = tv.get_hist(symbol=sym, exchange=ex, interval=Interval.in_daily, n_bars=n)
                 if d is not None and len(d):
                     s = d["close"]
                     s.index = zce_date(s.index) if ex == "ZCE" else pd.DatetimeIndex(s.index).normalize()

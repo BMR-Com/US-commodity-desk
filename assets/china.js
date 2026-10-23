@@ -46,6 +46,7 @@ const ChinaCotton = (() => {
           <p class="note" id="cnCumNote"></p></div>
         <div class="card"><h2>USDA check: marketing-year imports and mill use</h2><div class="tbl" id="cnUsda"></div><p class="note" id="cnUsdaNote"></p></div>
       </div>
+      <div class="card" style="margin-top:12px" id="cnPolyCard"><h2>Cotton vs polyester in China (weekly)</h2><div class="chart"><canvas id="cCnPoly"></canvas></div><p class="note" id="cnPolyNote"></p></div>
       <div class="card" style="margin-top:12px"><h2>Demand pulled into the countries that sell China yarn</h2><div class="tbl" id="cnOrgD"></div><p class="note" id="cnOrgDNote"></p></div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>China vs world prices (¢/lb, weekly)</h2><div class="ctrls" id="cnPxSel"></div><div class="chart"><canvas id="cCnPx"></canvas></div>
@@ -63,7 +64,7 @@ const ChinaCotton = (() => {
         <div class="card"><h2>China grain and fibre imports, year to date (customs, thousand t)</h2><div class="tbl" id="cnGr"></div></div>
         <div class="card"><h2>Seed-cotton price paid to farmers (yuan/kg, CCA surveys)</h2><div class="chart"><canvas id="cCnSeed"></canvas></div></div>
       </div>`;
-    for (const f of [progress, estimates, imports, cumulative, usdaCheck, originDemand, prices, tables]) { try { f(); } catch (e) { console.error('china', f.name, e); } }
+    for (const f of [progress, estimates, imports, cumulative, usdaCheck, originDemand, polyester, prices, tables]) { try { f(); } catch (e) { console.error('china', f.name, e); } }
   }
   const a = (u, l) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`;
 
@@ -145,6 +146,21 @@ const ChinaCotton = (() => {
       <tr><td><b>${a.my}</b></td><td><b>${kt(a.to_date_kt)}</b></td><td>pace ≈ ${kt(a.pace_implied_kt)}</td><td>${kt(a.usda_kt)}</td><td>${fmt(a.usda_pct_done, 0)}% of USDA</td></tr></table>`;
     const u = U.use || {};
     $('#cnUsdaNote').innerHTML = `USDA ${a.my}: mill use ${kt(u.usda_kt)} kt (${fmt(u.usda_kt / 217.725, 1)} m bales), production ${kt(u.usda_prod_kt)} kt, ending stocks ${kt(u.usda_end_kt)} kt. Yarn imports Aug–${a.through}: ${kt(u.yarn_to_date_kt)} kt vs ${kt(u.yarn_to_date_prev_kt)} kt a year earlier. USDA PSD (Aug–Jul, 480-lb bales converted).`;
+  }
+
+  function polyester() {
+    const P = D.prices?.polyester;
+    if (!P) { $('#cnPolyCard').style.display = 'none'; return; }
+    const W = P.weekly;
+    chart('cCnPoly', { type: 'line', data: { labels: W.date, datasets: [
+      { label: 'Zhengzhou cotton CF (yuan/t)', data: W.cf, borderColor: '#c0392b', borderWidth: 1.6, pointRadius: 0, yAxisID: 'y' },
+      { label: 'Polyester staple fibre PF (yuan/t)', data: W.pf, borderColor: '#2c6fbb', borderWidth: 1.6, pointRadius: 0, yAxisID: 'y' },
+      { label: 'PTA (yuan/t)', data: W.ta, borderColor: '#7f8c8d', borderWidth: 1, pointRadius: 0, yAxisID: 'y', hidden: true },
+      { label: 'Cotton ÷ polyester', data: W.ratio, borderColor: '#2f6b3a', borderWidth: 2, pointRadius: 0, yAxisID: 'y1' },
+      { label: 'Brent ($/bbl)', data: W.brent, borderColor: '#d68910', borderDash: [4, 3], borderWidth: 1.2, pointRadius: 0, yAxisID: 'y2' }] },
+      options: { scales: { x: { ticks: { callback: function (v) { return this.getLabelForValue(v).slice(0, 7); } } }, y: { title: { display: true, text: 'yuan/t' } },
+        y1: { position: 'right', grid: { display: false }, title: { display: true, text: 'cotton ÷ PSF' } }, y2: { display: false } } } });
+    $('#cnPolyNote').innerHTML = `Latest ${P.date}: cotton ${fmt(P.cf, 0)}, PSF ${fmt(P.pf, 0)} yuan/t (${fmt(P.pf_clb, 1)}¢/lb incl. VAT), ratio ${fmt(P.ratio, 2)} (${fmt(P.ratio_pctile, 0)}th percentile since Oct 2020, average ${fmt(P.ratio_avg, 2)}). Six-month change: Brent ${sgn(P.chg_26w.brent, 0, '%')}, PTA ${sgn(P.chg_26w.pta, 0, '%')}, PSF ${sgn(P.chg_26w.psf, 0, '%')}, cotton ${sgn(P.chg_26w.cotton, 0, '%')}. Zhengzhou front months and ICE Brent via TradingView.`;
   }
 
   function originDemand() {

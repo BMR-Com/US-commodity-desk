@@ -2,7 +2,7 @@
  "DC": {
   "w4": {
    "all": {
-    "n": 953,
+    "n": 954,
     "mean_pct": 0.13,
     "up_share": 0.52,
     "t_approx": 0.55
@@ -22,10 +22,10 @@
   },
   "w8": {
    "all": {
-    "n": 948,
+    "n": 949,
     "mean_pct": 0.3,
-    "up_share": 0.51,
-    "t_approx": 0.58
+    "up_share": 0.5,
+    "t_approx": 0.57
    },
    "extreme_short": {
     "n": 167,
@@ -42,7 +42,7 @@
   },
   "w13": {
    "all": {
-    "n": 943,
+    "n": 944,
     "mean_pct": 0.51,
     "up_share": 0.52,
     "t_approx": 0.59
@@ -61,15 +61,15 @@
    }
   },
   "first_week": "2008-06-03",
-  "current_pctl_3y": 25.0
+  "current_pctl_3y": 23.0
  },
  "GDK": {
   "w4": {
    "all": {
     "n": 474,
-    "mean_pct": -0.12,
+    "mean_pct": -0.11,
     "up_share": 0.5,
-    "t_approx": -0.4
+    "t_approx": -0.38
    },
    "extreme_short": {
     "n": 58,
@@ -79,17 +79,17 @@
    },
    "extreme_long": {
     "n": 47,
-    "mean_pct": 1.39,
+    "mean_pct": 1.46,
     "up_share": 0.72,
-    "t_approx": 1.94
+    "t_approx": 2.05
    }
   },
   "w8": {
    "all": {
     "n": 469,
-    "mean_pct": -0.32,
+    "mean_pct": -0.31,
     "up_share": 0.52,
-    "t_approx": -0.5
+    "t_approx": -0.49
    },
    "extreme_short": {
     "n": 58,
@@ -99,17 +99,17 @@
    },
    "extreme_long": {
     "n": 43,
-    "mean_pct": 2.95,
+    "mean_pct": 3.02,
     "up_share": 0.81,
-    "t_approx": 2.18
+    "t_approx": 2.24
    }
   },
   "w13": {
    "all": {
     "n": 463,
-    "mean_pct": -0.62,
+    "mean_pct": -0.61,
     "up_share": 0.49,
-    "t_approx": -0.57
+    "t_approx": -0.56
    },
    "extreme_short": {
     "n": 57,
@@ -119,7 +119,7 @@
    },
    "extreme_long": {
     "n": 38,
-    "mean_pct": 4.58,
+    "mean_pct": 4.67,
     "up_share": 0.95,
     "t_approx": 2.15
    }
@@ -130,10 +130,10 @@
  "CSC": {
   "w4": {
    "all": {
-    "n": 662,
+    "n": 663,
     "mean_pct": -0.07,
     "up_share": 0.48,
-    "t_approx": -0.23
+    "t_approx": -0.25
    },
    "extreme_short": {
     "n": 126,
@@ -150,10 +150,10 @@
   },
   "w8": {
    "all": {
-    "n": 657,
-    "mean_pct": -0.09,
-    "up_share": 0.46,
-    "t_approx": -0.14
+    "n": 658,
+    "mean_pct": -0.1,
+    "up_share": 0.45,
+    "t_approx": -0.15
    },
    "extreme_short": {
     "n": 125,
@@ -170,8 +170,8 @@
   },
   "w13": {
    "all": {
-    "n": 652,
-    "mean_pct": -0.23,
+    "n": 653,
+    "mean_pct": -0.24,
     "up_share": 0.44,
     "t_approx": -0.22
    },
@@ -189,21 +189,21 @@
    }
   },
   "first_week": "2014-01-07",
-  "current_pctl_3y": 19.0
+  "current_pctl_3y": 27.0
  },
  "CB": {
   "w4": {
    "all": {
     "n": 787,
-    "mean_pct": -0.17,
+    "mean_pct": -0.16,
     "up_share": 0.47,
-    "t_approx": -0.54
+    "t_approx": -0.51
    },
    "extreme_short": {
     "n": 256,
-    "mean_pct": -0.22,
+    "mean_pct": -0.18,
     "up_share": 0.44,
-    "t_approx": -0.46
+    "t_approx": -0.39
    },
    "extreme_long": {
     "n": 92,
@@ -215,15 +215,15 @@
   "w8": {
    "all": {
     "n": 782,
-    "mean_pct": -0.23,
+    "mean_pct": -0.22,
     "up_share": 0.49,
-    "t_approx": -0.35
+    "t_approx": -0.33
    },
    "extreme_short": {
     "n": 252,
-    "mean_pct": -0.34,
+    "mean_pct": -0.31,
     "up_share": 0.45,
-    "t_approx": -0.38
+    "t_approx": -0.35
    },
    "extreme_long": {
     "n": 92,
@@ -235,9 +235,9 @@
   "w13": {
    "all": {
     "n": 777,
-    "mean_pct": -0.26,
+    "mean_pct": -0.25,
     "up_share": 0.49,
-    "t_approx": -0.24
+    "t_approx": -0.23
    },
    "extreme_short": {
     "n": 249,
@@ -261,7 +261,7 @@
     "n": 566,
     "mean_pct": -0.36,
     "up_share": 0.47,
-    "t_approx": -1.77
+    "t_approx": -1.83
    },
    "extreme_short": {
     "n": 56,
@@ -279,9 +279,9 @@
   "w8": {
    "all": {
     "n": 561,
-    "mean_pct": -0.72,
+    "mean_pct": -0.73,
     "up_share": 0.45,
-    "t_approx": -1.68
+    "t_approx": -1.71
    },
    "extreme_short": {
     "n": 56,
@@ -299,9 +299,9 @@
   "w13": {
    "all": {
     "n": 556,
-    "mean_pct": -1.21,
+    "mean_pct": -1.22,
     "up_share": 0.41,
-    "t_approx": -1.71
+    "t_approx": -1.73
    },
    "extreme_short": {
     "n": 56,
@@ -322,65 +322,65 @@
  "DY": {
   "w4": {
    "all": {
-    "n": 171,
-    "mean_pct": 0.71,
+    "n": 172,
+    "mean_pct": 0.49,
     "up_share": 0.51,
-    "t_approx": 1.02
+    "t_approx": 0.79
    },
    "extreme_short": {
-    "n": 53,
-    "mean_pct": 1.5,
-    "up_share": 0.49,
-    "t_approx": 1.14
+    "n": 54,
+    "mean_pct": 0.78,
+    "up_share": 0.48,
+    "t_approx": 0.96
    },
    "extreme_long": null
   },
   "w8": {
    "all": {
-    "n": 163,
-    "mean_pct": 1.12,
+    "n": 164,
+    "mean_pct": 0.88,
     "up_share": 0.53,
-    "t_approx": 0.8
+    "t_approx": 0.66
    },
    "extreme_short": {
-    "n": 47,
-    "mean_pct": 1.63,
-    "up_share": 0.6,
-    "t_approx": 0.71
+    "n": 48,
+    "mean_pct": 0.8,
+    "up_share": 0.58,
+    "t_approx": 0.45
    },
    "extreme_long": null
   },
   "w13": {
    "all": {
-    "n": 159,
-    "mean_pct": 1.34,
+    "n": 160,
+    "mean_pct": 1.08,
     "up_share": 0.53,
-    "t_approx": 0.57
+    "t_approx": 0.48
    },
    "extreme_short": {
-    "n": 41,
-    "mean_pct": 0.27,
-    "up_share": 0.44,
-    "t_approx": 0.08
+    "n": 42,
+    "mean_pct": -0.36,
+    "up_share": 0.43,
+    "t_approx": -0.12
    },
    "extreme_long": null
   },
   "first_week": "2018-02-20",
-  "current_pctl_3y": 0.0
+  "current_pctl_3y": 3.0
  },
  "HE": {
   "w4": {
    "all": {
     "n": 954,
-    "mean_pct": 0.17,
+    "mean_pct": 0.16,
     "up_share": 0.51,
     "t_approx": 0.28
    },
    "extreme_short": {
     "n": 113,
-    "mean_pct": -0.62,
+    "mean_pct": -0.65,
     "up_share": 0.42,
-    "t_approx": -0.33
+    "t_approx": -0.34
    },
    "extreme_long": {
     "n": 169,
@@ -392,13 +392,13 @@
   "w8": {
    "all": {
     "n": 949,
-    "mean_pct": 0.32,
+    "mean_pct": 0.31,
     "up_share": 0.5,
     "t_approx": 0.28
    },
    "extreme_short": {
     "n": 109,
-    "mean_pct": -1.13,
+    "mean_pct": -1.16,
     "up_share": 0.46,
     "t_approx": -0.27
    },
@@ -412,13 +412,13 @@
   "w13": {
    "all": {
     "n": 944,
-    "mean_pct": 0.47,
+    "mean_pct": 0.46,
     "up_share": 0.48,
-    "t_approx": 0.26
+    "t_approx": 0.25
    },
    "extreme_short": {
     "n": 104,
-    "mean_pct": -1.18,
+    "mean_pct": -1.2,
     "up_share": 0.47,
     "t_approx": -0.19
    },

@@ -75,6 +75,8 @@ def get(url, tries=5):
             print("http", r.status_code, r.text[:120], url[:100])
             if r.status_code == 400:
                 return None
+            if r.status_code == 403:      # hourly call quota used up: stop this run, the next run continues
+                raise SystemExit("quota")
         except Exception as e:
             print("error", str(e)[:120])
         time.sleep(4 * (i + 1))
@@ -132,12 +134,26 @@ def main():
     C = sorted(codes())
     rows = load()
     n_old = len(rows)
-    have = sorted({p for p, _ in rows})
-    # months already stored are skipped, except the latest two (revisions); empty months (not yet published) retried
+    from collections import Counter
+    cnt = Counter(p for p, _ in rows)
+    med = sorted(cnt.values())[len(cnt) // 2] if cnt else 0
+    have = sorted(p for p, n in cnt.items() if n >= 0.8 * med)      # a month cut short by the quota is read again
+    # complete months are skipped, except the latest two (revisions); months not yet published are retried
     todo = [p for p in months() if p not in have or p in have[-2:]]
     todo.reverse()                      # newest first, then backfill
-    groups = [C[i:i + 300] for i in range(0, len(C), 300)]     # <500 rows per call
+    groups = [C[i:i + 470] for i in range(0, len(C), 470)]     # ~370 rows per call, under the 500 cap
     t0, calls, got = time.time(), 0, 0
+    try:
+        _loop(todo, groups, rows, n_old, t0)
+    except SystemExit:
+        print("call quota reached; stored months kept, the next run continues")
+    save(rows, n_old)
+    have = sorted({p for p, _ in rows})
+    print(f"us_fiber: {len(rows)} stored, months {have[0] if have else '-'}..{have[-1] if have else '-'}")
+
+
+def _loop(todo, groups, rows, n_old, t0):
+    calls = got = 0
     for per in todo:
         if time.time() - t0 > BUDGET:
             break
@@ -159,9 +175,7 @@ def main():
                 got += 1
         print(per, got - n0, "rows")
         save(rows, n_old)
-    save(rows, n_old)
-    have = sorted({p for p, _ in rows})
-    print(f"us_fiber: {calls} calls, {got} rows read, {len(rows)} stored, months {have[0] if have else '-'}..{have[-1] if have else '-'}")
+
 
 
 if __name__ == "__main__":

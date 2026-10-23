@@ -31,26 +31,7 @@ def day(d):
     return rows
 
 
-if __name__ == "__main__":
-    old = []
-    if OUT.exists():
-        with OUT.open() as f:
-            old = list(csv.reader(f))[1:]
-    have = {r[0] for r in old}
-    last = max((date.fromisoformat(d) for d in have), default=START - timedelta(days=1))
-    d, new, n = max(START, last - timedelta(days=3)), [], 0
-    while d <= date.today():
-        if d.weekday() != 6 and (d.isoformat() not in have or d >= last - timedelta(days=3)):
-            try:
-                rows = day(d)
-                new += rows
-                n += 1
-            except Exception as e:
-                print(d, "error", str(e)[:120])
-                if n == 0 and d > START + timedelta(days=5):
-                    sys.exit(1)
-            time.sleep(0.6)
-        d += timedelta(days=1)
+def save(old, new):
     keep = {(r[0], r[1], r[2], r[3], r[6]): r for r in old}
     for r in new:
         keep[(r[0], r[1], r[2], r[3], r[6])] = [str(v) for v in r]
@@ -65,4 +46,28 @@ if __name__ == "__main__":
     tmp = OUT.with_suffix(".tmp")
     tmp.write_text(buf.getvalue())
     tmp.replace(OUT)
-    print(f"cai: {n} dates read, {len(new)} rows, {len(keep)} stored")
+    return list(keep.values())
+
+
+MAX_DATES = 80          # per run, so a first backfill finishes over a few runs and every run saves what it got
+
+
+if __name__ == "__main__":
+    old = []
+    if OUT.exists():
+        with OUT.open() as f:
+            old = list(csv.reader(f))[1:]
+    have = {r[0] for r in old}
+    last = max((date.fromisoformat(d) for d in have), default=START - timedelta(days=1))
+    d, new, n, t0 = max(START, last - timedelta(days=3)), [], 0, time.time()
+    while d <= date.today() and n < MAX_DATES and time.time() - t0 < 420:
+        if d.weekday() != 6:
+            try:
+                new += day(d)
+                n += 1
+            except Exception as e:
+                print(d, "error", str(e)[:120])
+            time.sleep(0.5)
+        d += timedelta(days=1)
+    rows = save(old, new) if new else old
+    print(f"cai: {n} dates read up to {d - timedelta(days=1)}, {len(new)} rows, {len(rows)} stored")

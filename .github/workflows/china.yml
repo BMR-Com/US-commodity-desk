@@ -31,7 +31,7 @@ jobs:
         run: python pipelines/india_cai.py
       - name: China cotton model and brief
         run: python -W ignore models/china_cotton.py
-      - name: commit (also when the model refused to publish: raw data are kept, the page keeps the last good build)
+      - name: commit (always; if the model refused to publish, raw data are kept and the page keeps the last good build)
         if: always()
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

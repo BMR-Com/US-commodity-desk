@@ -1,0 +1,640 @@
+"""China cotton desk: crop progress and estimates, imports of cotton and cotton yarn, domestic prices vs the world
+and vs the Xinjiang target price. Writes data/china/cotton.json for the Cotton > China tab.
+
+Inputs (data/china/raw/ unless noted):
+- cca_production_articles.json  China Cotton Association (china-cotton.org) production-monitoring surveys
+                                 (sowing, growth, output estimates, picking and selling progress), read from the site's pages
+- cca_tables.json               CCA data-centre tables (price indices, NBS output, balance sheet, cotton imports by year)
+- gacc_major_commodities.csv    China customs monthly bulletin, table "Major import commodities" (english.customs.gov.cn)
+- comtrade_china_monthly.csv    UN Comtrade, China imports by HS code and origin (history to the latest year posted)
+- data/china/tv_prices.csv      Zhengzhou cotton (CF) and cotton yarn (CY) front month, USD/CNY, ICE cotton front month
+- data/geo/raw/psd.json         USDA PSD (China cotton balance)
+"""
+import json, re
+from datetime import date, datetime, timezone
+from pathlib import Path
+import numpy as np
+import pandas as pd
+
+ROOT = Path(__file__).resolve().parent.parent
+RAW = ROOT / "data" / "china" / "raw"
+OUT = ROOT / "data" / "china" / "cotton.json"
+LB_PER_T = 2204.62
+TARGET_PRICE = 18600            # Xinjiang cotton target price, yuan/t (NDRC/MoF, 2026-2028 round; same level since 2017)
+VAT = 0.09                      # domestic lint prices (CCIndex, Zhengzhou) include 9% VAT
+YARN_TO_LINT = 1.1              # ~1.1 t lint per t of yarn (spinning waste); blended yarn overstates the cotton content
+MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def c_lb(yuan_t, cny):
+    return yuan_t / cny / LB_PER_T * 100
+
+
+def ordinal(n):
+    n = int(round(n))
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
+def rnd(x, d=1):
+    return None if x is None or (isinstance(x, float) and not np.isfinite(x)) else round(float(x), d)
+
+
+# ── CCA survey articles ───────────────────────────────────────────────────────
+REG = r"(全国|全疆|新疆|南疆|北疆|内地|长江流域|黄河流域|西北内陆|甘肃)"
+REG_KEY = {"全国": "national", "全疆": "xinjiang", "新疆": "xinjiang", "内地": "inland", "长江流域": "yangtze", "黄河流域": "yellow",
+           "西北内陆": "northwest", "南疆": "south_xj", "北疆": "north_xj", "甘肃": "gansu"}
+
+
+def _adate(body):
+    m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", body)
+    return date(int(m[1]), int(m[2]), int(m[3])) if m else None
+
+
+def _season(obs):
+    """Cotton season (crop year) of an observation date: picking runs Sep-Jan, selling into Mar."""
+    return obs.year if obs.month >= 7 else obs.year - 1
+
+
+def parse_articles():
+    p = RAW / "cca_production_articles.json"
+    if not p.exists():
+        return [], [], []
+    d = json.loads(p.read_text())
+    prog, est, price = [], [], []
+    for title, _, url in d["list"]:
+        a = d["art"].get(url)
+        if not a:
+            continue
+        body = a["body"]
+        pub = _adate(body)
+        if not pub:
+            continue
+        text = body[body.find("\n"):]
+        # national output estimate (surveys titled 全国…), from the body or the title
+        if "全国" in title and re.search(r"产量|生长|总产|生产|采摘交售", title):
+            m = re.search(r"总产(?:量)?(?:为|预计为|预计|约|达到|达)?\s*(\d{3}(?:\.\d+)?)\s*万吨", text) or \
+                re.search(r"(?:全国)?(?:棉花)?(?:总)?产量(?:为|预计为|预计|约|达到|达)?\s*(\d{3}(?:\.\d+)?)\s*万吨", text) or \
+                re.search(r"(?:产量|总产预计|总产)(\d{3}(?:\.\d+)?)万吨", title)
+            if m:
+                ar = re.search(r"(?:植棉)?面积(?:为|约)?\s*(\d{4}(?:\.\d+)?)\s*万亩", text)
+                yl = re.search(r"单产(?:为|约|预计为|预计)?\s*(\d{2,3}(?:\.\d+)?)\s*公斤", text)
+                sm = re.search(r"（(\d{4})年(\d{1,2})月", title)
+                survey = date(int(sm[1]), int(sm[2]), 1) if sm else date(pub.year, pub.month, 1)
+                est.append({"pub": pub.isoformat(), "survey": survey.isoformat()[:7], "season": survey.year if survey.month >= 4 else survey.year - 1,
+                            "prod_kt": float(m[1]) * 10, "area_kmu": float(ar[1]) * 10 if ar else None,
+                            "yield_kg_mu": float(yl[1]) if yl else None, "title": title, "url": url})
+        # seed-cotton selling price
+        for m in ([] if not re.search(r"全国|新疆", title) else re.finditer(r"(?:平均)?交售(?:平均|均)?价(?:格)?(?:为|是)?\s*(\d{1,2}\.\d{1,2})\s*元/公斤[，,]?\s*(?:同比(上涨|下跌|下降|增长|提高)(\d+(?:\.\d+)?)%)?", text)):
+            v = float(m[1])
+            yoy = float(m[3]) * (1 if m[2] in ("上涨", "增长", "提高") else -1) if m[2] else None
+            price.append({"pub": pub.isoformat(), "season": _season(pub) if pub.month >= 8 or pub.month <= 3 else None, "yuan_kg": v, "yoy_pct": yoy, "title": title})
+            break
+        # picking / selling progress at "截至M月D日"
+        for para in re.split(r"\n+", text):
+            for anc in re.finditer(r"截[至止](?:到)?(\d{1,2})月(\d{1,2})日", para):
+                mo, dy = int(anc[1]), int(anc[2])
+                yr = pub.year if mo <= pub.month else pub.year - 1
+                try:
+                    obs = date(yr, mo, dy)
+                except ValueError:
+                    continue
+                if obs.month in (4, 5, 6, 7):
+                    continue                     # sowing season: different metric
+                seg = re.split(r"截[至止]", para[anc.end():anc.end() + 300])[0]
+                before = re.findall(REG, para[:anc.start()])
+                region = before[-1] if before else None
+                for cl in re.split(r"[；;。]", seg):
+                    r = re.findall(REG, cl)
+                    if r:
+                        region = r[0]
+                    if not region:
+                        continue
+                    for kind, kw in (("pick", "采摘"), ("sell", "交售")):
+                        for x in re.finditer(kw + r"(?:进度|率)?(?:为|达到|达|已达|已超过|超过|约)?\s*(\d{1,3}(?:\.\d+)?)\s*%", cl):
+                            v = float(x[1])
+                            if v <= 100:
+                                prog.append({"obs": obs.isoformat(), "season": _season(obs), "region": REG_KEY[region], "kind": kind, "pct": v,
+                                             "pub": pub.isoformat(), "title": title})
+    pr = pd.DataFrame(prog)
+    if len(pr):   # one value per (obs, region, kind): keep the latest publication
+        pr = pr.sort_values("pub").drop_duplicates(["obs", "region", "kind"], keep="last")
+    return pr, pd.DataFrame(est), pd.DataFrame(price)
+
+
+def doy(obs, season):
+    """Days since 1 September of the season."""
+    return (pd.Timestamp(obs) - pd.Timestamp(season, 9, 1)).days
+
+
+def progress_block(pr):
+    if pr is None or not len(pr):
+        return None
+    out = {"series": {}, "latest": {}}
+    for reg in ("national", "xinjiang", "inland"):
+        for kind in ("pick", "sell"):
+            s = pr[(pr.region == reg) & (pr.kind == kind)].copy()
+            if not len(s):
+                continue
+            s["d"] = [doy(o, se) for o, se in zip(s.obs, s.season)]
+            s = s[(s.d >= -10) & (s.d <= 200)].sort_values("d")
+            ser = {int(se): [[int(r.d), r.pct, r.obs] for r in g.itertuples()] for se, g in s.groupby("season")}
+            out["series"][f"{reg}_{kind}"] = ser
+    # latest reading vs prior seasons at the same date (linear interpolation; 0 before the first reading in Sep)
+    for key, ser in out["series"].items():
+        cur = max(ser)
+        if not ser[cur]:
+            continue
+        d, v, obs = ser[cur][-1]
+        comp = {}
+        for se, pts in ser.items():
+            if se == cur or len(pts) < 2:
+                continue
+            xs = [p[0] for p in pts]
+            ys = [p[1] for p in pts]
+            # only interpolate between real readings (or from zero when that season's first reading is early and small)
+            if xs[0] > d and not (xs[0] - d <= 20 and ys[0] <= 10):
+                continue
+            if xs[0] > d:
+                xs, ys = [0] + xs, [0] + ys
+            if d <= xs[-1] and min(abs(x - d) for x in xs) <= 20:
+                comp[se] = rnd(np.interp(d, xs, ys))
+        prev = [comp[s] for s in sorted(comp) if s >= cur - 5]
+        out["latest"][key] = {"season": cur, "obs": obs, "pct": v, "last_year": comp.get(cur - 1),
+                              "avg5": rnd(np.mean(prev)) if prev else None, "n_avg": len(prev), "by_season": comp}
+    return out
+
+
+def estimates_block(est, nbs, balance, psd_prod, cca_final=None):
+    if est is None or not len(est):
+        return None
+    est = est.sort_values("pub").drop_duplicates(["season", "survey"], keep="last")
+    paths = {int(s): [[r.survey, r.prod_kt, r.area_kmu, r.yield_kg_mu, r.url] for r in g.itertuples()] for s, g in est.groupby("season")}
+    cur = max(paths)
+    last = paths[cur][-1]
+    # how the CCA estimate moved from the same survey month to the season's last survey (Nov-Jan), past seasons
+    mth = int(last[0][5:7])
+    # "final": the association's balance-sheet / final production figure where published, else its last survey of the season
+    finals = {int(b["season"]): b["prod"] * 10 for b in (balance or []) if int(b["season"]) < cur}
+    for r in (cca_final or []):
+        if r.get("region") == "全国":
+            finals[int(r["year"])] = r["prod_kt"]
+    moves = []
+    for s, p in paths.items():
+        if s == cur:
+            continue
+        same = [x for x in p if int(x[0][5:7]) == mth and int(x[0][:4]) == s]
+        fin = [x for x in p if (int(x[0][:4]) == s and int(x[0][5:7]) >= 11) or int(x[0][:4]) == s + 1]
+        fv, src = (finals[s], "CCA final") if s in finals else ((fin[-1][1], "last survey") if fin else (None, None))
+        if same and fv:
+            moves.append({"season": s, "at": same[0][1], "final": fv, "final_src": src, "chg_pct": rnd((fv / same[0][1] - 1) * 100, 2)})
+    proj = None
+    if moves:
+        ch = [m["chg_pct"] for m in moves]
+        proj = {"median_chg_pct": rnd(np.median(ch), 2), "min_chg_pct": min(ch), "max_chg_pct": max(ch), "n": len(ch),
+                "kt": rnd(last[1] * (1 + np.median(ch) / 100), 0), "lo_kt": rnd(last[1] * (1 + min(ch) / 100), 0),
+                "hi_kt": rnd(last[1] * (1 + max(ch) / 100), 0)}
+    prev = paths.get(cur - 1, [])
+    prev_same = [x for x in prev if int(x[0][5:7]) == mth]
+    return {"season": cur, "latest": {"survey": last[0], "prod_kt": last[1], "area_kmu": last[2], "yield_kg_mu": last[3], "url": last[4],
+                                      "prev_survey_kt": paths[cur][-2][1] if len(paths[cur]) > 1 else None},
+            "last_year_same_survey_kt": prev_same[0][1] if prev_same else None,
+            "last_year_final_kt": finals.get(cur - 1) or (prev[-1][1] if prev else None),
+            "last_year_final_src": "CCA final" if (cur - 1) in finals else "last survey",
+            "finals": {int(k): v for k, v in finals.items()},
+            "table": [{"season": s, "sep": next((x[1] for x in paths.get(s, []) if x[0][5:7] == "09" and int(x[0][:4]) == s), None),
+                       "last_survey": paths[s][-1][1] if s in paths else None, "cca_final": finals.get(s),
+                       "nbs": next((n["prod_kt"] for n in (nbs or []) if n["year"] == s), None),
+                       "usda": (psd_prod or {}).get(s, {}).get("Production")} for s in range(cur - 8, cur + 1)],
+            "paths": paths, "moves": moves, "projection": proj, "nbs": nbs, "balance": balance, "usda": psd_prod}
+
+
+# ── customs: cotton and cotton yarn imports ─────────────────────────────────
+def gacc_monthly():
+    p = RAW / "gacc_major_commodities.csv"
+    if not p.exists():
+        return pd.DataFrame()
+    d = pd.read_csv(p)
+    d = d[d.flow == "M"].copy()
+    d["c"] = d.commodity.replace({"Wheat and wheat flour": "Wheat", "Maize and maize flour": "Maize", "Rice and rice flour": "Rice"})
+    num = lambda s: pd.to_numeric(s.astype(str).str.replace(",", ""), errors="coerce")
+    d["m"] = d.mon.map({m: i + 1 for i, m in enumerate(MON)})
+    d["ytd_q"] = num(d.ytd_qty)
+    d["ytd_v"] = num(d.ytd_val)
+    d["mq"] = num(d.m_qty)
+    d["mv"] = num(d.m_val)
+    d["mult"] = d.unit.map({"10000T": 10.0, "T": 0.001}).fillna(np.nan)     # -> thousand t
+    rows = []
+    for (c, y), g in d.groupby(["c", "year"]):
+        g = g.sort_values("m").drop_duplicates("m", keep="last").set_index("m")
+        mult = g.mult.dropna().iloc[0] if g.mult.notna().any() else np.nan
+        ytd = g.ytd_q * mult
+        ytv = g.ytd_v / 1000.0                       # USD million
+        prev_q, prev_v = 0.0, 0.0
+        for m in range(1, 13):
+            if m not in g.index:
+                continue
+            q, v = ytd.get(m), ytv.get(m)
+            # monthly = YTD difference; a missing previous month (e.g. Jan-Feb released together) leaves a 2-month figure
+            mq = q - prev_q if m - 1 in g.index or m == 1 else (g.mq.get(m) * mult if pd.notna(g.mq.get(m)) else q - prev_q)
+            mv = v - prev_v if m - 1 in g.index or m == 1 else (g.mv.get(m) / 1000 if pd.notna(g.mv.get(m)) else v - prev_v)
+            rows.append({"c": c, "year": int(y), "m": m, "ytd_kt": q, "ytd_musd": v, "m_kt": mq, "m_musd": mv})
+            prev_q, prev_v = q, v
+    return pd.DataFrame(rows)
+
+
+def comtrade():
+    p = RAW / "comtrade_china_monthly.csv"
+    return pd.read_csv(p) if p.exists() else pd.DataFrame()
+
+
+PARTNER = {704: "Vietnam", 699: "India", 586: "Pakistan", 860: "Uzbekistan", 458: "Malaysia", 360: "Indonesia", 50: "Bangladesh",
+           490: "Taiwan", 116: "Cambodia", 156: "China (re-imports)", 76: "Brazil", 842: "USA", 36: "Australia", 398: "Kazakhstan",
+           792: "Türkiye", 818: "Egypt", 854: "Burkina Faso", 120: "Cameroon", 466: "Mali", 204: "Benin", 32: "Argentina", 4: "Afghanistan", 834: "Tanzania"}
+
+
+def imports_block(g, ct, cca_yearly):
+    if not len(g):
+        return None
+    out = {}
+    for key, name in (("Cotton yarn", "yarn"), ("Cotton", "cotton")):
+        s = g[g.c == key]
+        if not len(s):
+            continue
+        years = sorted(s.year.unique())
+        cy = years[-1]
+        last_m = int(s[s.year == cy].m.max())
+        ytd = {int(y): rnd(s[(s.year == y) & (s.m == last_m)].ytd_kt.max(), 0) for y in years}
+        ytdv = {int(y): rnd(s[(s.year == y) & (s.m == last_m)].ytd_musd.max(), 0) for y in years}
+        full = {int(y): rnd(s[(s.year == y) & (s.m == 12)].ytd_kt.max(), 0) for y in years if y < cy}
+        monthly = {int(y): [rnd(s[(s.year == y) & (s.m == m)].m_kt.max(), 0) if len(s[(s.year == y) & (s.m == m)]) else None for m in range(1, 13)] for y in years}
+        prev = [ytd[y] for y in years if cy - 5 <= y < cy and ytd.get(y)]
+        out[name] = {"year": int(cy), "last_month": last_m, "ytd_kt": ytd, "ytd_musd": ytdv, "full_kt": full, "monthly_kt": monthly,
+                     "ytd_yoy_pct": rnd((ytd[cy] / ytd[cy - 1] - 1) * 100) if ytd.get(cy - 1) else None,
+                     "ytd_vs_avg5_pct": rnd((ytd[cy] / np.mean(prev) - 1) * 100) if prev else None,
+                     "avg5_kt": rnd(np.mean(prev), 0) if prev else None,
+                     "unit_usd_t": {y: rnd(ytdv[y] / ytd[y] * 1000, 0) for y in years if ytd.get(y)},
+                     "rank": int(sorted([ytd[y] for y in years], reverse=True).index(ytd[cy]) + 1), "n_years": len(years)}
+    if "yarn" in out and "cotton" in out:
+        y, c = out["yarn"], out["cotton"]
+        cy = y["year"]
+        lm = min(y["last_month"], c["last_month"])
+        comb = {}
+        for yr in y["ytd_kt"]:
+            a = g[(g.c == "Cotton yarn") & (g.year == yr) & (g.m == lm)].ytd_kt.max()
+            b = g[(g.c == "Cotton") & (g.year == yr) & (g.m == lm)].ytd_kt.max()
+            if pd.notna(a) and pd.notna(b):
+                comb[int(yr)] = {"cotton": rnd(b, 0), "yarn_lint_eq": rnd(a * YARN_TO_LINT, 0), "total": rnd(b + a * YARN_TO_LINT, 0),
+                                 "yarn_share_pct": rnd(a * YARN_TO_LINT / (b + a * YARN_TO_LINT) * 100)}
+        out["combined"] = {"through_month": lm, "by_year": comb, "factor": YARN_TO_LINT}
+    # origins (Comtrade, HS 5205 yarn and 5201 cotton)
+    if len(ct):
+        org = {}
+        for hs, name in ((5205, "yarn"), (5201, "cotton")):
+            s = ct[(ct.hs == hs) & (ct.partner_code != 0)].copy()
+            if not len(s):
+                continue
+            s["y"] = s.period // 100
+            s["p"] = s.partner_code.map(PARTNER).fillna("Other")
+            t = s.groupby(["p", "y"]).net_kg.sum().unstack(1).fillna(0) / 1e6
+            share = (t / t.sum() * 100).round(1)
+            last = int(t.columns.max())
+            top = t[last].sort_values(ascending=False).index[:8].tolist()
+            org[name] = {"years": [int(c) for c in t.columns], "kt": {p: [rnd(v, 1) for v in t.loc[p]] for p in top},
+                         "share": {p: [rnd(v, 1) for v in share.loc[p]] for p in top}, "last_year": last}
+        out["origins"] = org
+        # HS 5205 / 5206 split by month, years Comtrade has
+        w = ct[(ct.partner_code == 0) & ct.hs.isin([5205, 5206])].copy()
+        w["y"], w["m"] = w.period // 100, w.period % 100
+        out["hs_split"] = {int(y): {str(h): rnd(gg[gg.hs == h].net_kg.sum() / 1e6, 1) for h in (5205, 5206)} for y, gg in w.groupby("y")}
+    if cca_yearly:
+        out["cotton_cca_yearly"] = cca_yearly
+    return out
+
+
+def grains_block(g):
+    if not len(g):
+        return None
+    keys = [("Soya beans", "Soybeans"), ("Maize", "Corn"), ("Wheat", "Wheat"), ("Barley", "Barley"), ("Grain sorghum", "Sorghum"), ("Cotton", "Cotton"), ("Cotton yarn", "Cotton yarn")]
+    cy = int(g.year.max())
+    lm = int(g[(g.year == cy) & (g.c == "Soya beans")].m.max())
+    rows = []
+    for k, lab in keys:
+        s = g[(g.c == k) & (g.m == lm)]
+        if not len(s):
+            continue
+        v = {int(r.year): rnd(r.ytd_kt, 0) for r in s.itertuples()}
+        prev = [v[y] for y in v if cy - 5 <= y < cy]
+        rows.append({"name": lab, "ytd": v, "yoy_pct": rnd((v[cy] / v[cy - 1] - 1) * 100) if v.get(cy) and v.get(cy - 1) else None,
+                     "vs_avg5_pct": rnd((v[cy] / np.mean(prev) - 1) * 100) if v.get(cy) and prev else None})
+    return {"year": cy, "through_month": lm, "rows": rows}
+
+
+# ── prices ───────────────────────────────────────────────────────────────────
+def load_tv():
+    p = ROOT / "data" / "china" / "tv_prices.csv"
+    if not p.exists():
+        return pd.DataFrame()
+    d = pd.read_csv(p, parse_dates=["date"]).set_index("date").sort_index()
+    return d
+
+
+def cca_prices():
+    p = RAW / "cca_tables.json"
+    if not p.exists():
+        return pd.DataFrame(), pd.DataFrame(), {}
+    t = json.loads(p.read_text())
+    cc = pd.DataFrame()
+    rows = t.get("ccindex") or []
+    if rows:
+        cc = pd.DataFrame([[r[0], r[5]] for r in rows if len(r) > 5], columns=["date", "cc3128"])
+        cc["date"] = pd.to_datetime(cc.date, errors="coerce")
+        cc["cc3128"] = pd.to_numeric(cc.cc3128, errors="coerce")
+        cc = cc.dropna().drop_duplicates("date").set_index("date").sort_index()
+    cl = pd.DataFrame()
+    rows = t.get("cotlook") or []
+    if rows:
+        cl = pd.DataFrame([r[:5] for r in rows], columns=["date", "a", "chg", "l1", "ls"])
+        cl["date"] = pd.to_datetime(cl.date, errors="coerce")
+        for k in ("a", "l1", "ls"):
+            cl[k] = pd.to_numeric(cl[k], errors="coerce")
+        cl = cl.dropna(subset=["date"]).drop_duplicates("date").set_index("date").sort_index()[["a", "l1", "ls"]]
+    return cc, cl, t
+
+
+def prices_block(tv, cc, cl, latest_quotes):
+    out = {"target_yuan_t": TARGET_PRICE}
+    if not len(tv):
+        return out
+    fx = tv.USDCNY.ffill()
+    df = pd.DataFrame(index=tv.index.union(cc.index) if len(cc) else tv.index)
+    df["fx"] = fx.reindex(df.index).ffill()
+    df["cf"] = tv.CF1.reindex(df.index)
+    df["cy"] = tv.CY1.reindex(df.index)
+    df["ct"] = tv.CT1.reindex(df.index).ffill(limit=3)
+    if len(cc):
+        df["cc"] = cc.cc3128.reindex(df.index)
+    if len(cl):
+        df = df.reindex(df.index.union(cl.index))
+        df["fx"] = df.fx.ffill()
+        for k in ("a", "l1", "ls"):
+            df[k] = cl[k].reindex(df.index)
+        df["imp_margin_1pct"] = df.cc - df.l1
+        df["imp_margin_sliding"] = df.cc - df.ls
+    df = df[df.index <= pd.Timestamp(date.today())]
+    for k in ("cf", "cy", "cc"):
+        if k in df:
+            df[k + "_clb"] = c_lb(df[k], df.fx)
+            df[k + "_clb_xvat"] = df[k + "_clb"] / (1 + VAT)
+    df["target_clb"] = c_lb(TARGET_PRICE, df.fx)
+    if "cc" in df:
+        df["cc_vs_target"] = df.cc - TARGET_PRICE
+    wk = df.resample("W-FRI").last().dropna(subset=["fx"])
+    wk = wk[wk.index >= "2017-01-01"]
+    out["weekly"] = {"date": [d.strftime("%Y-%m-%d") for d in wk.index]}
+    for k in ("cf_clb", "cy_clb", "cc_clb", "cc_clb_xvat", "cf_clb_xvat", "ct", "target_clb", "cc", "cf", "cy", "fx", "a", "l1", "ls", "imp_margin_1pct", "imp_margin_sliding", "cc_vs_target"):
+        if k in wk:
+            out["weekly"][k] = [rnd(v, 2) for v in wk[k]]
+    last = df.dropna(subset=["cf"]).iloc[-1]
+    L = {"date": df.dropna(subset=["cf"]).index[-1].strftime("%Y-%m-%d"), "fx": rnd(last.fx, 4), "cf": rnd(last.cf, 0), "cf_clb": rnd(last.cf_clb, 2),
+         "cy": rnd(last.cy, 0), "cy_clb": rnd(last.cy_clb, 2), "ct": rnd(df.ct.dropna().iloc[-1], 2), "target_clb": rnd(c_lb(TARGET_PRICE, last.fx), 2)}
+    if "cc" in df and df.cc.notna().any():
+        lc = df.dropna(subset=["cc"]).iloc[-1]
+        L.update({"cc_date": df.dropna(subset=["cc"]).index[-1].strftime("%Y-%m-%d"), "cc": rnd(lc.cc, 0), "cc_clb": rnd(c_lb(lc.cc, lc.fx), 2),
+                  "cc_clb_xvat": rnd(c_lb(lc.cc, lc.fx) / (1 + VAT), 2), "cc_vs_target": rnd(lc.cc - TARGET_PRICE, 0),
+                  "cc_vs_target_pct": rnd((lc.cc / TARGET_PRICE - 1) * 100, 1)})
+        # Sep-Nov average so far (the target-price subsidy is paid on the gap between 18,600 and the harvest-season market price)
+        s0 = pd.Timestamp(date.today().year if date.today().month >= 9 else date.today().year - 1, 9, 1)
+        win = df.cc[(df.index >= s0) & (df.index < s0 + pd.DateOffset(months=3))].dropna()
+        if len(win):
+            L["harvest_avg_cc"] = rnd(win.mean(), 0)
+            L["implied_subsidy_yuan_t"] = rnd(max(0.0, TARGET_PRICE - win.mean()), 0)
+        # percentile of the domestic price vs the same week of past years
+    if "a" in df and df.a.notna().any():
+        la = df.dropna(subset=["a"]).iloc[-1]
+        L.update({"a_date": df.dropna(subset=["a"]).index[-1].strftime("%Y-%m-%d"), "cotlook_a": rnd(la.a, 2), "a_1pct_yuan": rnd(la.l1, 0), "a_sliding_yuan": rnd(la.ls, 0)})
+        m = df.dropna(subset=["imp_margin_1pct"])
+        if len(m):
+            L["imp_margin_1pct"] = rnd(m.imp_margin_1pct.iloc[-1], 0)
+            L["imp_margin_sliding"] = rnd(m.imp_margin_sliding.iloc[-1], 0)
+    for k, v in (latest_quotes or {}).items():
+        L["q_" + k] = v
+    # spreads
+    if L.get("cc_clb_xvat") and L.get("cotlook_a"):
+        L["cc_xvat_vs_a"] = rnd(L["cc_clb_xvat"] - L["cotlook_a"], 2)
+    L["cf_vs_ct"] = rnd(L["cf_clb"] - L["ct"], 2) if L.get("cf_clb") and L.get("ct") else None
+    L["cf_xvat_vs_ct"] = rnd(L["cf_clb"] / (1 + VAT) - L["ct"], 2) if L.get("cf_clb") and L.get("ct") else None
+    L["cy_minus_cf"] = rnd(L["cy"] - L["cf"], 0) if L.get("cy") and L.get("cf") else None
+    # history of the CF-CT spread: where today's sits (weekly, since 2017)
+    sp = (wk.cf_clb / (1 + VAT) - wk.ct).dropna()
+    if len(sp):
+        out["spread_cf_ct_xvat_pctile"] = rnd((sp < sp.iloc[-1]).mean() * 100, 0)
+        out["spread_cf_ct_xvat_avg"] = rnd(sp.mean(), 2)
+    ym = (wk.cy - wk.cf).dropna()
+    if len(ym):
+        out["yarn_margin_pctile"] = rnd((ym < ym.iloc[-1]).mean() * 100, 0)
+        out["yarn_margin_avg"] = rnd(ym[ym.index >= ym.index[-1] - pd.DateOffset(years=5)].mean(), 0)
+    out["latest"] = L
+    return out
+
+
+def psd_china():
+    p = ROOT / "data" / "geo" / "raw" / "psd.json"
+    if not p.exists():
+        return None
+    rows = json.loads(p.read_text())["data"]["cotton"]["rows"]
+    o = {}
+    for cc, _, y, attr, v in rows:
+        if cc == "CH":
+            o.setdefault(int(y), {})[attr] = v
+    # 480-lb bales (thousand) -> thousand t
+    return {y: {k: rnd(v * 0.217725, 0) if k not in ("Yield", "Area Harvested") else v for k, v in a.items()} for y, a in sorted(o.items()) if y >= 2015}
+
+
+# ── the brief ────────────────────────────────────────────────────────────────
+def brief(E, P, I, X, SP, G):  # noqa: C901
+    S = []
+
+    def f0(v):
+        return "–" if v is None else f"{v:,.0f}"
+
+    def pct(v, d=1):
+        return "–" if v is None else f"{v:+.{d}f}%"
+    # crop
+    if E:
+        L = E["latest"]
+        ly = E.get("last_year_final_kt")
+        pj = E.get("projection")
+        u = (E.get("usda") or {}).get(E["season"], {}).get("Production")
+        txt = (f"The China Cotton Association's latest survey ({L['survey']}) puts the {E['season']} crop at **{L['prod_kt']/1000:.2f} mt**"
+               + (f" ({pct((L['prod_kt']/ly-1)*100)} vs last season's {E['last_year_final_src']} of {ly/1000:.2f} mt)" if ly else "")
+               + (f", {'+' if L['prod_kt'] >= L['prev_survey_kt'] else ''}{(L['prod_kt']-L['prev_survey_kt']):,.0f} kt vs the previous survey" if L.get("prev_survey_kt") else "")
+               + (f"; area {L['area_kmu']/1000:.2f} m mu ({L['area_kmu']/15000:.2f} m ha), yield {L['yield_kg_mu']:.1f} kg/mu ({L['yield_kg_mu']*15:,.0f} kg/ha)" if L.get("area_kmu") and L.get("yield_kg_mu") else "") + ".")
+        if pj:
+            txt += (f" From the same survey month to the association's final number, past seasons moved {pj['min_chg_pct']:+.1f}% to {pj['max_chg_pct']:+.1f}% (median {pj['median_chg_pct']:+.1f}%, {pj['n']} seasons): "
+                    f"that points to a final of **{pj['kt']/1000:.2f} mt** (range {pj['lo_kt']/1000:.2f}–{pj['hi_kt']/1000:.2f}).")
+        up = [m for m in E.get("moves", []) if m["final_src"] == "CCA final"]
+        if up and all(m["chg_pct"] > 0 for m in up):
+            ups = ", ".join("{} {:+.1f}%".format(m["season"], m["chg_pct"]) for m in up)
+            txt += f" In the {len(up)} seasons with a published final figure it came in above the September survey ({ups}), so the risk skews up."
+        if u:
+            txt += f" USDA has {u/1000:.2f} mt ({u/0.217725/1000:.1f} m bales); compare the agencies' revisions rather than their levels."
+        S.append({"h": "Crop size", "t": txt})
+    # progress
+    if P and P.get("latest"):
+        parts = []
+        for key, lab in (("xinjiang_pick", "Xinjiang picking"), ("national_pick", "National picking"), ("national_sell", "National seed-cotton selling"), ("xinjiang_sell", "Xinjiang selling")):
+            z = P["latest"].get(key)
+            if not z:
+                continue
+            p2 = f"{lab} {z['pct']:.1f}% at {z['obs'][5:]}"
+            cmp = []
+            if z.get("last_year") is not None:
+                cmp.append(f"{z['pct']-z['last_year']:+.1f} pts vs last year")
+            if z.get("avg5") is not None:
+                cmp.append(f"{z['pct']-z['avg5']:+.1f} vs the {z['n_avg']}-season average")
+            parts.append(p2 + (f" ({', '.join(cmp)})" if cmp else ""))
+        if parts:
+            pace = P["latest"].get("xinjiang_pick") or P["latest"].get("national_pick")
+            fast = pace and pace.get("last_year") is not None and pace["pct"] > pace["last_year"] + 3
+            slow = pace and pace.get("last_year") is not None and pace["pct"] < pace["last_year"] - 3
+            S.append({"h": "Harvest pace", "t": "; ".join(parts) + "." + (" A fast harvest brings new-crop lint to market early: ginning and hedge selling on Zhengzhou come forward, which usually weighs on nearby prices in Oct–Dec." if fast else
+                      " A slow harvest delays new-crop supply and keeps old-crop stocks and reserve sales in focus." if slow else "")})
+    if SP is not None and len(SP):
+        z = SP.sort_values("pub").iloc[-1]
+        if S and S[-1]["h"] == "Harvest pace":
+            S[-1]["t"] += f" Farmers' seed-cotton price {z.yuan_kg:.1f} yuan/kg" + (f" ({z.yoy_pct:+.1f}% y/y)" if pd.notna(z.yoy_pct) else "") + f" in the {z.pub} survey."
+    # imports
+    if I and "yarn" in I and "cotton" in I:
+        y, c, cb = I["yarn"], I["cotton"], I.get("combined", {})
+        cy, lm = y["year"], y["last_month"]
+        t = (f"Jan–{MON[lm-1]} {cy} cotton yarn imports **{y['ytd_kt'][cy]:,.0f} kt** ({pct(y['ytd_yoy_pct'])} y/y, {pct(y['ytd_vs_avg5_pct'])} vs the 5-year average; #{y['rank']} of {y['n_years']} years) "
+             f"and raw cotton **{c['ytd_kt'][c['year']]:,.0f} kt** ({pct(c['ytd_yoy_pct'])} y/y, {pct(c['ytd_vs_avg5_pct'])} vs average).")
+        bc = cb.get("by_year", {})
+        if bc.get(cy) and bc.get(cy - 1):
+            t += (f" Counting yarn as lint (×{cb['factor']}), China has taken {bc[cy]['total']:,.0f} kt of foreign fibre through {MON[cb['through_month']-1]} vs {bc[cy-1]['total']:,.0f} kt a year ago; "
+                  f"yarn is {bc[cy]['yarn_share_pct']:.0f}% of it.")
+        uv = y["unit_usd_t"]
+        if uv.get(cy) and uv.get(cy - 1):
+            t += f" Imported yarn averages ${uv[cy]:,.0f}/t ({pct((uv[cy]/uv[cy-1]-1)*100)} y/y)."
+        S.append({"h": "Imports", "t": t})
+        # what it means
+        m = []
+        if y.get("ytd_yoy_pct") and y["ytd_yoy_pct"] > 15:
+            m.append("Yarn is coming in much faster than raw cotton: mills and weavers are buying foreign yarn (mainly Vietnam, India, Pakistan, Uzbekistan) instead of spinning domestic lint. "
+                     "Downstream fabric demand is there, but the import-quota and price structure favour yarn; this is demand for cotton outside China's quota system and it caps Chinese spinners' margins")
+        if c.get("ytd_yoy_pct") is not None and c["ytd_yoy_pct"] > 30:
+            m.append("raw cotton imports have recovered from last year's low base as the domestic premium over world prices widened and extra sliding-scale quota was issued")
+        elif c.get("ytd_yoy_pct") is not None and c["ytd_yoy_pct"] < -20:
+            m.append("raw cotton imports are well below last year: domestic supply and quota limits are holding them back")
+        if X and X.get("latest", {}).get("imp_margin_1pct") is not None:
+            L = X["latest"]
+            v = L["imp_margin_1pct"]
+            m.append(f"imported lint is {abs(v):,.0f} yuan/t {'below' if v > 0 else 'above'} the domestic price at 1% duty, so mills with quota {'have every reason to import' if v > 1000 else 'gain a little by importing' if v > 0 else 'have no reason to import'}; "
+                     "the binding limit is quota, which is why foreign yarn (no quota) fills the gap")
+        if m:
+            S.append({"h": "What it means for demand", "t": ("; ".join(m) + ".")[0].upper() + ("; ".join(m) + ".")[1:]})
+    # the association's balance sheet: demand and stocks
+    bal = (E or {}).get("balance") or []
+    if bal:
+        b = sorted(bal, key=lambda r: r["season"])
+        c, p_ = b[-1], (b[-2] if len(b) > 1 else None)
+        su = c["end"] / c["use"] * 100
+        t = (f"CCA balance sheet {c['season']}/{str(c['season']+1)[2:]}: production {c['prod']/100:.2f} mt, imports {c['imp']/100:.2f}, mill use {c['use']/100:.2f}, ending stocks {c['end']/100:.2f} mt "
+             f"(stocks/use {su:.0f}%)")
+        if p_:
+            t += f"; mill use {(c['use']/p_['use']-1)*100:+.1f}% vs {p_['season']}/{str(p_['season']+1)[2:]} and stocks {c['end']-p_['end']:+.0f} 10kt"
+        t += (f". Mill use exceeds the crop by {(c['use']-c['prod'])/100:.2f} mt, covered by lint imports ({c['imp']/100:.2f} mt) and stocks. "
+              "Imported yarn comes on top of this: it is weavers' demand that bypasses Chinese spinners")
+        yl = ((I or {}).get("yarn") or {}).get("full_kt") or {}
+        if yl:
+            ly = max(yl)
+            t += f" (calendar {ly}: {yl[ly]:,.0f} kt of yarn, ≈{yl[ly]*YARN_TO_LINT/1000:.2f} mt of lint), so China's total cotton use is larger than the mill-use line suggests"
+        t += "."
+        S.append({"h": "Balance", "t": t.replace(" 10kt", "0 kt")})
+    # prices and support
+    if X and X.get("latest"):
+        L = X["latest"]
+        t = []
+        if L.get("cc"):
+            t.append(f"CCIndex 3128B {L['cc']:,.0f} yuan/t on {L['cc_date']} = **{L['cc_clb']:.1f}¢/lb** ({L['cc_clb_xvat']:.1f}¢ ex-VAT) at USD/CNY {L['fx']:.3f}")
+            t.append(f"that is {abs(L['cc_vs_target']):,.0f} yuan/t ({L['cc_vs_target_pct']:+.1f}%) {'below' if L['cc_vs_target'] < 0 else 'above'} the 18,600 yuan/t Xinjiang target price ({L['target_clb']:.1f}¢/lb)")
+            if L.get("implied_subsidy_yuan_t") is not None:
+                t.append(f"at the harvest-season average so far ({L['harvest_avg_cc']:,.0f}) the target-price payment would be about {L['implied_subsidy_yuan_t']:,.0f} yuan/t, paid to Xinjiang growers, so it supports planting rather than the lint price")
+        t.append(f"Zhengzhou cotton (CF front) {L['cf']:,.0f} yuan/t = {L['cf_clb']:.1f}¢/lb vs ICE {L['ct']:.2f}¢ ({L['cf_xvat_vs_ct']:+.1f}¢ ex-VAT"
+                 + (f"; {ordinal(X['spread_cf_ct_xvat_pctile'])} percentile since 2017" if X.get("spread_cf_ct_xvat_pctile") is not None else "") + ")")
+        if L.get("cotlook_a"):
+            t.append(f"Cotlook A {L['cotlook_a']:.2f}¢ ({L['a_date']}) lands at {L['a_1pct_yuan']:,.0f} yuan/t inside the 1% quota and {L['a_sliding_yuan']:,.0f} under sliding-scale quota, "
+                     f"so imported cotton is {abs(L['imp_margin_1pct']):,.0f} / {abs(L['imp_margin_sliding']):,.0f} yuan/t {'cheaper' if L['imp_margin_1pct'] > 0 else 'dearer'} than domestic 3128B")
+        if L.get("cy_minus_cf") is not None:
+            t.append(f"Zhengzhou yarn minus cotton {L['cy_minus_cf']:,.0f} yuan/t" + (f" vs a 5-year average of {X['yarn_margin_avg']:,.0f}" if X.get("yarn_margin_avg") else "") + " (a rough spinning margin)")
+        S.append({"h": "Prices and support", "t": "; ".join(t) + "."})
+    # bottom line first
+    bl = []
+    if E:
+        L = E["latest"]; ly = E.get("last_year_final_kt")
+        if ly:
+            ch = (L["prod_kt"] / ly - 1) * 100
+            bl.append(f"a {'smaller' if ch < -1 else 'larger' if ch > 1 else 'similar'} crop ({L['prod_kt']/1000:.2f} mt, {ch:+.1f}%)")
+    if P and P.get("latest", {}).get("xinjiang_pick"):
+        z = P["latest"]["xinjiang_pick"]
+        if z.get("last_year") is not None:
+            bl.append("an early harvest" if z["pct"] > z["last_year"] + 3 else "a late harvest" if z["pct"] < z["last_year"] - 3 else "a normal harvest pace")
+    if I and I.get("yarn", {}).get("ytd_yoy_pct") is not None:
+        bl.append(f"yarn imports {I['yarn']['ytd_yoy_pct']:+.0f}% and cotton imports {I['cotton']['ytd_yoy_pct']:+.0f}% y/y")
+    if X and X.get("latest", {}).get("cc"):
+        Lx = X["latest"]
+        bl.append(f"domestic lint {abs(Lx['cc_vs_target']):,.0f} yuan/t {'under' if Lx['cc_vs_target'] < 0 else 'over'} the target price" + (f" and {Lx['imp_margin_1pct']:,.0f} yuan/t over landed imports" if Lx.get("imp_margin_1pct") else ""))
+    if bl:
+        read = ("Supply is not the constraint and imported fibre is cheap, so Chinese prices should hold a premium to the world but struggle to rally while new-crop sales are heavy; "
+                "strong yarn imports are the main channel through which China adds to world cotton demand this year.") if (X and (X.get("latest", {}).get("imp_margin_1pct") or 0) > 1000) else \
+               "Domestic and world prices are close, so import demand depends on quota and mill margins rather than price."
+        S.insert(0, {"h": "Bottom line", "t": "China has " + ", ".join(bl) + ". " + read})
+    if G:
+        r = {x["name"]: x for x in G["rows"]}
+        t = ", ".join(f"{k.lower()} {r[k]['ytd'][G['year']]/1000:.1f} mt ({pct(r[k]['yoy_pct'],0)})" for k in ("Soybeans", "Corn", "Wheat", "Barley", "Sorghum") if k in r and r[k]["ytd"].get(G["year"]))
+        S.append({"h": "Grains (context)", "t": f"Jan–{MON[G['through_month']-1]} {G['year']} imports, customs: {t}."})
+    return S
+
+
+def clean(o):
+    """JSON-safe: numpy scalars -> python, NaN -> None, dict keys -> str."""
+    if isinstance(o, dict):
+        return {str(int(k)) if isinstance(k, (np.integer,)) else str(k): clean(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [clean(v) for v in o]
+    if isinstance(o, (np.integer,)):
+        return int(o)
+    if isinstance(o, (float, np.floating)):
+        return None if not np.isfinite(o) else float(o)
+    if isinstance(o, (pd.Timestamp, date)):
+        return o.isoformat()[:10]
+    return o
+
+
+def main():
+    pr, est, sp = parse_articles()
+    cc, cl, T = cca_prices()
+    tv = load_tv()
+    psd = psd_china()
+    nbs = T.get("nbs")
+    bal = T.get("balance")
+    quotes = T.get("quotes") or {}
+    E = estimates_block(est, nbs, bal, psd, T.get("cca_final"))
+    P = progress_block(pr)
+    G = gacc_monthly()
+    I = imports_block(G, comtrade(), T.get("cotton_imports_yearly"))
+    X = prices_block(tv, cc, cl, quotes)
+    GR = grains_block(G)
+    out = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "brief": brief(E, P, I, X, sp, GR),
+           "estimates": E, "progress": P, "seed_price": sp.to_dict("records") if len(sp) else [], "imports": I, "prices": X, "grains": GR,
+           "sources": {"cca": "https://www.china-cotton.org/", "gacc": "http://english.customs.gov.cn/statics/report/monthly.html",
+                       "comtrade": "https://comtradeplus.un.org/", "target_price": "NDRC/MoF 2026-2028 cotton target price: 18,600 yuan/t (Xinjiang)"}}
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(clean(out), ensure_ascii=False, separators=(",", ":")))
+    print("wrote", OUT, len(out["brief"]), "brief items")
+    for b in out["brief"]:
+        print("-", b["h"], ":", b["t"][:600])
+
+
+if __name__ == "__main__":
+    main()

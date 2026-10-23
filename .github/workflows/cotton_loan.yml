@@ -1,0 +1,33 @@
+name: cotton_loan
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipelines/cotton_loan.py', 'models/cotton_loan.py', '.github/workflows/cotton_loan.yml']
+  schedule:
+    - cron: '37 15 * * 2-5'   # PSL-61R weekly (as of Monday) posts early in the week; monthly reports after month end
+permissions: {contents: write}
+concurrency: {group: cotton_loan, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q pandas requests
+      - name: FSA cotton loan reports (new snapshots only)
+        continue-on-error: true
+        run: python pipelines/cotton_loan.py monthly weekly
+      - name: cotton loan model
+        continue-on-error: true
+        run: '[ -f models/cotton_loan.py ] && python -W ignore models/cotton_loan.py || true'
+      - name: commit
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          [ -d data/cotton_loan ] && git add data/cotton_loan || exit 0
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: cotton loan $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

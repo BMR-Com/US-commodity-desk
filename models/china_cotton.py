@@ -868,6 +868,14 @@ def brief(E, P, I, X, SP, G):  # noqa: C901
             last_sale = sales[-1]
             imp_sold = last_sale.get("imported_kt") or last_sale["kt"]
             restock = a["pace_implied_kt"] + imp_sold
+            ps = psd_china()
+            yy = int(a["my"][:4])
+            su = {y: 100 * v["Ending Stocks"] / v["Domestic Use"] for y, v in ps.items() if v.get("Ending Stocks") and v.get("Domestic Use")}
+            if yy in su:
+                lower = [y for y in su if y < yy and su[y] <= su[yy] + 3]
+                t += (f" USDA's own balance leaves China's {a['my']} stocks-to-use at {su[yy]:.1f}%"
+                      + (", the lowest since " + "/".join([f"{max(lower)}/{str(max(lower)+1)[2:]}"]) + f" ({su[max(lower)]:.1f}%, when imports were {ps[max(lower)].get('Imports', 0)/1000:.2f} mt)" if lower else "")
+                      + f"; restoring 85% needs about {max(0, 0.85 * ps[yy]['Domestic Use'] - ps[yy]['Ending Stocks'])/217.725:.1f} m bales more stock.")
             t += (f" Policy can change this. Extra sliding-scale quota was issued in {len(given)} of the last {len(q)} years ("
                   + ", ".join(f"{x['year']} {x['kt']} kt" for x in q if x['kt']) + "); the one skip, 2024, came when reserve restocking had already lifted imports. "
                   f"The state reserve sold {last_sale['kt']:,.0f} kt from {last_sale['from'][5:7]}/{last_sale['from'][:4]} to {last_sale['to'][5:7]}/{last_sale['to'][:4]}, {imp_sold:,.0f} kt of it imported cotton. "

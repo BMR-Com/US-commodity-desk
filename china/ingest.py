@@ -93,10 +93,18 @@ def ingest_cca(p):
     b = parse_balance(D.get("balance_text"))
     if b:
         T["balance"] = b
-    if D.get("nbs"):
-        T["nbs"] = [{"year": int(r[0]), "area_kmu": num(r[1]) * 10, "prod_kt": num(r[2]) * 10} for r in D["nbs"] if len(r) >= 3 and r[0].isdigit() and num(r[1]) and num(r[2])]
+    if D.get("nbs"):   # the first page only: merge by year
+        old = {r["year"]: r for r in T.get("nbs", [])}
+        for r in D["nbs"]:
+            if len(r) >= 3 and r[0].isdigit() and num(r[1]) and num(r[2]):
+                old[int(r[0])] = {"year": int(r[0]), "area_kmu": num(r[1]) * 10, "prod_kt": num(r[2]) * 10}
+        T["nbs"] = [old[k] for k in sorted(old, reverse=True)]
     if D.get("cca_prod"):
-        T["cca_final"] = [{"year": int(r[0]), "region": r[3], "area_kmu": num(r[1]) * 10, "prod_kt": num(r[2]) * 10} for r in D["cca_prod"] if len(r) >= 4 and r[0].isdigit() and num(r[2]) is not None]
+        old = {(r["year"], r["region"]): r for r in T.get("cca_final", [])}
+        for r in D["cca_prod"]:
+            if len(r) >= 4 and r[0].isdigit() and num(r[2]) is not None:
+                old[(int(r[0]), r[3])] = {"year": int(r[0]), "region": r[3], "area_kmu": (num(r[1]) or 0) * 10, "prod_kt": num(r[2]) * 10}
+        T["cca_final"] = [old[k] for k in sorted(old, reverse=True)]
     if D.get("imports_yearly"):
         old = {r["year"]: r for r in T.get("cotton_imports_yearly", [])}
         for r in D["imports_yearly"]:

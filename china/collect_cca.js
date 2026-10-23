@@ -40,25 +40,37 @@
   for (const [k, name] of [['6-1', 'nbs'], ['6-2', 'cca_prod'], ['9-1', 'imports_yearly']]) {
     try { out[name] = (await pageTable(k, null, 1)).rows; } catch (e) { out.errors.push(name + ' ' + e); }
   }
-  // production-monitoring list: newest items; capture the article links the list would open
-  try {
-    const d = await load('/newsList?id=6', d => [...d.querySelectorAll('button')].some(b => b.innerText.includes('查看更多')));
-    const W = F.contentWindow, cap = []; W.open = u => { cap.push(String(u)); return null; };
-    const X = d.evaluate("//main//*[string-length(normalize-space(text()))>8]", d, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-    const list = [];
-    for (let i = 0; i < X.snapshotLength; i++) { const e = X.snapshotItem(i); if (e.childElementCount || /^\d{4}-\d\d-\d\d$/.test(e.innerText.trim())) continue;
-      const n0 = cap.length; e.click(); if (cap.length > n0) list.push([e.innerText.trim(), '', cap[cap.length - 1]]); }
-    out.list = list;
-    const known = new Set(KNOWN.urls || []); out.art = {};
-    for (const [t, , u] of list) {
-      if (known.has(u)) continue;
+  // production-monitoring list plus the survey links on the early-warning and home pages (the newest Xinjiang and inland
+  // picking surveys often appear there before the list); capture the article links the pages would open
+  const RX = /采摘交售|产量|生长情况|播种|植棉意向|进口月度报告|形势月报/;
+  const pages = [['/newsList?id=6', d => [...d.querySelectorAll('button')].some(b => b.innerText.includes('查看更多')), null],
+                 ['/warning', d => d.body.innerText.includes('生产监测') && d.body.innerText.includes('进口月报'), RX],
+                 ['/', d => d.body.innerText.includes('棉花资讯') && d.body.innerText.length > 3000, RX]];
+  out.list = []; out.art = {};
+  const seen = new Set();
+  for (const [url, ready, rx] of pages) {
+    try {
+      const d = await load(url, ready);
+      if (!d) { out.errors.push('list ' + url); continue; }
+      await sleep(800);
+      const W = F.contentWindow, cap = []; W.open = u => { cap.push(String(u)); return null; };
+      const X = d.evaluate("//*[string-length(normalize-space(text()))>8]", d, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+      for (let i = 0; i < X.snapshotLength; i++) { const e = X.snapshotItem(i); const t = e.innerText?.trim() || '';
+        if (e.childElementCount || /^\d{4}-\d\d-\d\d$/.test(t) || (rx && !rx.test(t)) || (!rx && !d.querySelector('main')?.contains(e))) continue;
+        const n0 = cap.length; e.click(); if (cap.length > n0 && /\/article\?id=/.test(cap[cap.length - 1]) && !seen.has(cap[cap.length - 1])) { seen.add(cap[cap.length - 1]); out.list.push([t, '', cap[cap.length - 1]]); } }
+    } catch (e) { out.errors.push('list ' + url + ' ' + e); }
+  }
+  const known = new Set(KNOWN.urls || []);
+  for (const [t, , u] of out.list) {
+    if (known.has(u)) continue;
+    try {
       const a = await load(u, d => { const s = d.querySelector('main')?.innerText || ''; return s.includes('出处') && s.length > 300; });
       if (!a) { out.errors.push('article ' + u); continue; }
       await sleep(300);
       const s = a.querySelector('main').innerText, i = s.indexOf('出处'), j = s.indexOf('最新更新');
       out.art[u] = { t, body: s.slice(i, j > 0 ? j : undefined) };
-    }
-  } catch (e) { out.errors.push('articles ' + e); }
+    } catch (e) { out.errors.push('article ' + u + ' ' + e); }
+  }
   F.remove();
   const buf = new Uint8Array(await new Response(new Blob([JSON.stringify(out)]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer());
   let b = ''; for (let i = 0; i < buf.length; i += 0x8000) b += String.fromCharCode.apply(null, buf.subarray(i, i + 0x8000));

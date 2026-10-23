@@ -20,7 +20,13 @@ def day(d):
     r.raise_for_status()
     j = r.json()
     rows = []
-    for x in (j.get("list") or []) + (j.get("master") or []):
+    def rows_of(v):  # the site returns rows as a list, a dict keyed by id/grade, or nested
+        if isinstance(v, dict):
+            return [v] if ("per_candy" in v or "p_per_candy" in v) else [y for w in v.values() for y in rows_of(w)]
+        if isinstance(v, list):
+            return [y for w in v for y in rows_of(w)]
+        return []
+    for x in rows_of(j.get("list")) + rows_of(j.get("master")):
         for season, candy, qtl in (("current", x.get("per_candy"), x.get("per_quintal")), ("previous", x.get("p_per_candy"), x.get("p_per_quintal"))):
             try:
                 c = float(candy or 0)

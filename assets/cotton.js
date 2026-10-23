@@ -21,7 +21,7 @@ const Cotton = (() => {
   function render() {
     history.replaceState(null, '', '#' + tab);
     ({ 'ct-primer': primer, 'ct-geo': () => Geo.mount(body(), 'cotton'), 'ct-wasde': wasde, 'ct-esr': esr, 'ct-crop': () => frame(SITE.crop, 'Cotton crop progress', 'NASS crop progress and condition, crop predicted from ratings and drought, ginning and classing pace, grades and tenderability, FSA acreage.'),
-      'ct-china': () => ChinaCotton.mount(body()), 'ct-oncall': () => frame(SITE.oncall, 'Cotton on-call', 'CFTC weekly cotton on-call: unfixed call sales and purchases by contract month, mill fixation pace and what it means for futures.'),
+      'ct-china': () => { try { window.ChinaCotton ? ChinaCotton.mount(body()) : body().innerHTML = '<div class="card"><p class="note">China module not loaded.</p></div>'; } catch (e) { body().innerHTML = '<div class="card"><p class="note">China tab failed to load.</p></div>'; } }, 'ct-oncall': () => frame(SITE.oncall, 'Cotton on-call', 'CFTC weekly cotton on-call: unfixed call sales and purchases by contract month, mill fixation pace and what it means for futures.'),
       'ct-flows': flows, 'ct-rv': () => RVView.mount(body(), 'CT'), 'ct-outlook': outlook })[tab]();
   }
   function primer() {

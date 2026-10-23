@@ -255,3 +255,13 @@ These markets settle to USDA cash numbers, so models are judged on **convergence
   itself is built by brief.yml.
 - Claude task "Weekly research report (cotton, sugar, coffee)" (Fri 16:48 CT): the research blog artifact.
 - Site chat: Groq via the chat proxy (GROQ_API_KEY), not Claude.
+
+## China cotton (2026-10-23, Ma: "China trade data … cotton crop progress … Chinese cotton prices vs support price … intelligent brief"; "keep this separate")
+Kept isolated from the rest of the desk: own data folder `data/china/`, own workflow `china.yml`, own Mac task, own front-end file `assets/china.js` (Cotton tab 6 · China; guarded so a failure only blanks this tab). Nothing else reads `data/china/`.
+- Sources (none reachable from GitHub runners or the Claude workspace; collected in the Mac's built-in browser):
+  - China Cotton Association, china-cotton.org (cncotton.com redirects there): `china/collect_cca.js` reads the site's own pages in a hidden same-origin frame (CCIndex daily table back to 2013, Cotlook A with 1%/sliding-duty landed prices, latest quotes, balance sheet, NBS and CCA production tables, yearly cotton imports, and new production-monitoring surveys from /newsList?id=6, /warning and the home page). Its data API signs requests; do not call it directly, read the pages. Hidden tabs throttle timers, so the collectors wait on fetch ticks / MutationObserver.
+  - China customs English monthly bulletin, table (14)/(13): `china/collect_gacc.js` on english.customs.gov.cn (monthly{YYYY}.html). Quantities in 10,000 t. The Chinese customs site and stats.customs.gov.cn are blank (blocked).
+  - UN Comtrade monthly China imports by HS/origin (history; China had posted only to Dec 2024 as of Oct 2026) → `data/china/raw/comtrade_china_monthly.csv`.
+  - Zhengzhou CF1!/CY1!, FX_IDC:USDCNY, ICEUS:CT1! via tvdatafeed in `china.yml` → `data/china/tv_prices.csv`.
+- Incremental: `python china/ingest.py known` gives the last stored dates and article URLs; the collectors read only newer rows / unseen articles / missing customs months; `china/ingest.py cca|gacc <payload>` merges into `data/china/raw/`.
+- `models/china_cotton.py` → `data/china/cotton.json`: survey parser (output estimates by survey month, picking/selling % by region at "截至M月D日", seed-cotton price), progress vs last year and earlier seasons at the same date, projected final (past moves from the same survey month to the CCA final), imports (customs YTD, lint-equivalent yarn ×1.1, origins), prices in ¢/lb (incl./ex-VAT), target price 18,600 yuan/t (2026–28), import margins, CY–CF spinning margin, rule-based brief.

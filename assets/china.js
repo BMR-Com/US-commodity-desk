@@ -53,7 +53,7 @@ const ChinaCotton = (() => {
         <div class="card"><h2>China grain and fibre imports, year to date (customs, thousand t)</h2><div class="tbl" id="cnGr"></div></div>
         <div class="card"><h2>Seed-cotton price paid to farmers (yuan/kg, CCA surveys)</h2><div class="chart"><canvas id="cCnSeed"></canvas></div></div>
       </div>`;
-    progress(); estimates(); imports(); prices(); tables();
+    for (const f of [progress, estimates, imports, prices, tables]) { try { f(); } catch (e) { console.error('china', f.name, e); } }
   }
   const a = (u, l) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`;
 

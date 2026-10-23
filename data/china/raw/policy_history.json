@@ -1,0 +1,22 @@
+{
+ "note": "Curated from official announcements as reported by USDA FAS GAIN (CH2024-0053, tables 6-7), China Cotton Association monthly reports, CCFGroup and China Cotton Net. Update when NDRC issues quota or the reserve announces sales/purchases.",
+ "sliding_quota": [
+  {"year": 2018, "kt": 800, "announced": "2018-06-12"},
+  {"year": 2019, "kt": 800, "announced": "2019-04-12"},
+  {"year": 2020, "kt": 400, "announced": "2020-09-01"},
+  {"year": 2021, "kt": 700, "announced": "2021-04-30"},
+  {"year": 2022, "kt": 400, "announced": "2022-03-11"},
+  {"year": 2023, "kt": 750, "announced": "2023-07-22"},
+  {"year": 2024, "kt": 0, "announced": null},
+  {"year": 2025, "kt": 200, "announced": "2025-08-25"},
+  {"year": 2026, "kt": 300, "announced": "2026-03-16"}
+ ],
+ "reserve": [
+  {"year": 2020, "type": "sale", "from": "2020-07-01", "to": "2020-09-30", "kt": 500},
+  {"year": 2021, "type": "sale", "from": "2021-07-05", "to": "2021-11-30", "kt": 1203},
+  {"year": 2022, "type": "purchase", "from": "2022-07-13", "to": "2022-11-11", "kt": 86, "note": "target 500 kt of domestic cotton"},
+  {"year": 2023, "type": "sale", "from": "2023-07-13", "to": "2023-11-14", "kt": 880},
+  {"year": 2024, "type": "purchase", "from": "2023-12-01", "to": "2024-07-31", "kt": null, "note": "restocking mostly through imported cotton: USDA put reserve-bound imports about 3.0 m bales above the prior year in 2023/24, about a third of China's 14.8 m bale imports; US cotton the largest contributor"},
+  {"year": 2026, "type": "sale", "from": "2026-07-20", "to": "2026-09-29", "kt": 409, "imported_kt": 332, "note": "81% imported cotton; ended Sep 30"}
+ ]
+}

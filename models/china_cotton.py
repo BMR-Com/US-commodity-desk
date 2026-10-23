@@ -859,6 +859,23 @@ def brief(E, P, I, X, SP, G):  # noqa: C901
             t += f" Read: the pace runs ahead of USDA by about {gap/217.725:.1f} m bales; an upward revision is likely if it holds."
         else:
             t += " Read: the pace is in line with USDA."
+        # policy: extra sliding-scale quota and state-reserve restocking can lift imports beyond the pace
+        try:
+            P = json.loads((RAW / "policy_history.json").read_text())
+            q = [x for x in P["sliding_quota"] if x["year"] >= 2018]
+            given = [x for x in q if x["kt"]]
+            sales = [x for x in P["reserve"] if x["type"] == "sale"]
+            last_sale = sales[-1]
+            imp_sold = last_sale.get("imported_kt") or last_sale["kt"]
+            restock = a["pace_implied_kt"] + imp_sold
+            t += (f" Policy can change this. Extra sliding-scale quota was issued in {len(given)} of the last {len(q)} years ("
+                  + ", ".join(f"{x['year']} {x['kt']} kt" for x in q if x['kt']) + "); the one skip, 2024, came when reserve restocking had already lifted imports. "
+                  f"The state reserve sold {last_sale['kt']:,.0f} kt from {last_sale['from'][5:7]}/{last_sale['from'][:4]} to {last_sale['to'][5:7]}/{last_sale['to'][:4]}, {imp_sold:,.0f} kt of it imported cotton. "
+                  "After the 2023 sale (880 kt) the reserve restocked mostly with imports in 2023/24, about 3 m bales above the prior year. "
+                  f"Pace plus replacing the imported cotton it just sold gives about {restock/1000:.2f} mt ({restock/217.725:.1f} m bales); an early 2027 sliding-scale quota would add more (the pace already reflects a typical year's quota, so count only an unusually large one). "
+                  "So USDA's number needs restocking or extra quota, and history says at least one usually comes; watch the reserve's purchase announcements and the 2027 quota.")
+        except Exception:
+            pass
         u = U.get("use") or {}
         if u.get("usda_kt"):
             bal = (E or {}).get("balance") or []

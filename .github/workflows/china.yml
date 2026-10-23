@@ -12,7 +12,7 @@ concurrency: {group: china, cancel-in-progress: false}
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,7 +20,7 @@ jobs:
       - run: pip install -q pandas numpy requests beautifulsoup4 playwright git+https://github.com/rongardF/tvdatafeed.git
       - name: China customs monthly bulletin and China Cotton Association pages (new data only)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 25
         run: python -m playwright install --with-deps chromium >/dev/null && python pipelines/china_collect.py gacc cca
       - name: Zhengzhou cotton and yarn, USD/CNY, ICE (TradingView)
         continue-on-error: true

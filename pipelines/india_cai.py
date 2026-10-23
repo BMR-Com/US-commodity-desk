@@ -64,16 +64,19 @@ if __name__ == "__main__":
         with OUT.open() as f:
             old = list(csv.reader(f))[1:]
     have = {r[0] for r in old}
-    last = max((date.fromisoformat(d) for d in have), default=START - timedelta(days=1))
-    d, new, n, t0 = max(START, last - timedelta(days=3)), [], 0, time.time()
-    while d <= date.today() and n < MAX_DATES and time.time() - t0 < 420:
-        if d.weekday() != 6:
-            try:
-                new += day(d)
-                n += 1
-            except Exception as e:
-                print(d, "error", str(e)[:120])
-            time.sleep(0.5)
-        d += timedelta(days=1)
+    today = date.today()
+    # newest first: the last 7 days are always re-read (late postings), then any older day not stored yet, newest first
+    want = [today - timedelta(days=k) for k in range((today - START).days + 1)]
+    want = [d for d in want if d.weekday() != 6 and (d > today - timedelta(days=7) or d.isoformat() not in have)]
+    new, n, t0 = [], 0, time.time()
+    for d in want:
+        if n >= MAX_DATES or time.time() - t0 > 420:
+            break
+        try:
+            new += day(d)
+            n += 1
+        except Exception as e:
+            print(d, "error", str(e)[:120])
+        time.sleep(0.5)
     rows = save(old, new) if new else old
-    print(f"cai: {n} dates read up to {d - timedelta(days=1)}, {len(new)} rows, {len(rows)} stored")
+    print(f"cai: {n} dates read, {len(want) - n} still to backfill, {len(new)} rows, {len(rows)} stored")

@@ -77,7 +77,10 @@ def ers():
 
 def prices():
     p = pd.read_csv(ROOT / "data" / "china" / "tv_prices.csv", parse_dates=["date"]).set_index("date")
-    m = p.resample("M").mean()
+    try:
+        m = p.resample("ME").mean()
+    except ValueError:
+        m = p.resample("M").mean()
     m.index = m.index.to_period("M")
     m["psf_clb"] = m.PF1 / 1.13 / m.USDCNY / 2204.62 * 100     # China PSF ex-VAT (13%) in US cents/lb
     m["ratio"] = m.CT1 / m.psf_clb
@@ -111,6 +114,13 @@ def main():
     calib = {"years": [int(i) for i in cal.index], "corr_kg": float(cal.share_kg.corr(cal.cot_share_imp)) if len(cal) > 3 else None,
              "corr_usd": float(cal.share_usd.corr(cal.cot_share_imp)) if len(cal) > 3 else None,
              "gap_kg": float((cal.share_kg - cal.cot_share_imp).mean()) if len(cal) else None}
+    ea = pd.read_csv(RAW / "ers_cotton_share_by_item.csv").set_index("period")
+    yap = ap.groupby(ap.index.year).agg({"kg_cotton": "sum", "kg_total": "sum"})
+    yap = yap[ap.groupby(ap.index.year).size() == 12]
+    yap["share_kg"] = 100 * yap.kg_cotton / yap.kg_total
+    yap = yap.join(ea[["Apparel"]].rename(columns={"Apparel": "ers_apparel"}), how="left").dropna()
+    calib["apparel"] = [{"year": int(i), "kg_share": float(r.share_kg), "ers": float(r.ers_apparel)} for i, r in yap.iterrows()]
+    calib["apparel_gap"] = float((yap.share_kg - yap.ers_apparel).mean()) if len(yap) else None
     P = prices()
     j = a.join(P[["CT1", "psf_clb", "ratio", "BRENT"]], how="left")
     ll_ratio = leadlag(j.share_kg, j.ratio)
@@ -131,6 +141,9 @@ def main():
                + (f"; {y1.share_kg_12m:.1f}% a year earlier" if y1 is not None and not pd.isna(y1.share_kg_12m) else "") + ").")
     txt.append(f"Apparel only: {ap.share_kg_3m.iloc[-1]:.1f}% cotton by weight over 3 months, {ap12.iloc[-1]:.1f}% over 12 months"
                f" (12-month low/high since {ap12.index[0]}: {ap12.min():.1f}/{ap12.max():.1f}%).")
+    if calib.get("apparel"):
+        txt.append("Apparel check vs USDA ERS raw-fibre cotton share: " + ", ".join(f"{a['year']} {a['kg_share']:.1f}% vs ERS {a['ers']:.1f}%" for a in calib["apparel"])
+                   + "; apparel by weight tracks ERS closely, the all-textile weight series does not (it is dominated by man-made technical textiles and estimated weights).")
     if calib["corr_kg"] is not None:
         txt.append(f"Check vs USDA ERS annual raw-fibre shares {cal.index.min()}-{cal.index.max()}: correlation {calib['corr_kg']:.2f} "
                    f"(weight basis), level gap {calib['gap_kg']:+.1f} pts, so read the monthly series for direction, ERS for level.")

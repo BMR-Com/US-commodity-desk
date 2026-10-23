@@ -10,7 +10,7 @@ Inputs (data/china/raw/ unless noted):
 - data/china/tv_prices.csv      Zhengzhou cotton (CF) and cotton yarn (CY) front month, USD/CNY, ICE cotton front month
 - data/geo/raw/psd.json         USDA PSD (China cotton balance)
 """
-import json, re
+import json, re, sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 import numpy as np
@@ -300,6 +300,100 @@ def fill_from_reports(g, rep):
     return g, used
 
 
+def add_fibre(g):
+    """Cotton + yarn as lint (yarn x YARN_TO_LINT), by year and month where both are known."""
+    a = g[g.c == "Cotton"].set_index(["year", "m"])
+    b = g[g.c == "Cotton yarn"].set_index(["year", "m"])
+    ix = a.index.intersection(b.index)
+    if not len(ix):
+        return g
+    f = pd.DataFrame({"ytd_kt": a.loc[ix, "ytd_kt"] + b.loc[ix, "ytd_kt"] * YARN_TO_LINT,
+                      "m_kt": a.loc[ix, "m_kt"] + b.loc[ix, "m_kt"] * YARN_TO_LINT,
+                      "ytd_musd": a.loc[ix, "ytd_musd"] + b.loc[ix, "ytd_musd"], "m_musd": a.loc[ix, "m_musd"] + b.loc[ix, "m_musd"]}).reset_index()
+    f["c"] = "Cotton+yarn"
+    return pd.concat([g, f], ignore_index=True)
+
+
+def origin_demand(I, ct, esr):
+    """China's extra yarn imports this year, split by supplying country, as extra lint those countries must spin,
+    compared with each country's cotton imports and the US share of them (from the export-sales brief)."""
+    y = (I or {}).get("yarn")
+    if not y:
+        return None
+    cy, lm = y["year"], y["last_month"]
+    cur, prev = y["ytd_kt"].get(cy), y["ytd_kt"].get(cy - 1)
+    if not cur or not prev:
+        return None
+    # shares: the latest month published in the trade press if recent, else the latest full year in Comtrade (HS 5205)
+    shares, src = {}, ""
+    p = RAW / "yarn_origin_shares.csv"
+    if p.exists():
+        sh = pd.read_csv(p)
+        lastp = sh.period.max()
+        if lastp >= f"{cy}-01":
+            shares = dict(zip(sh[sh.period == lastp].country, sh[sh.period == lastp].share_pct))
+            src = f"{sh[sh.period == lastp].source.iloc[0]}, {lastp}"
+    org = (I.get("origins") or {}).get("yarn")
+    if not shares and org:
+        k = org["years"].index(org["last_year"])
+        shares = {c: v[k] for c, v in org["share"].items()}
+        src = f"UN Comtrade {org['last_year']}"
+    base_sh = {}
+    if org:
+        k = org["years"].index(org["last_year"])
+        base_sh = {c: v[k] for c, v in org["share"].items()}
+    dest = {d["c"]: d for d in ((esr or {}).get("dest") or [])}
+    alias = {"Vietnam": "Vietnam", "Pakistan": "Pakistan", "India": "India", "Bangladesh": "Bangladesh", "Indonesia": "Indonesia",
+             "Malaysia": "Malaysia", "Uzbekistan": "Uzbekistan", "Taiwan": "Taiwan", "Cambodia": "Cambodia"}
+    own_crop = {"India", "Uzbekistan"}     # spin mostly home-grown cotton
+    rows = []
+    for c, sh in sorted(shares.items(), key=lambda x: -x[1]):
+        if c == "Other" or sh < 1:
+            continue
+        sh_prev = base_sh.get(c, sh)
+        d_yarn = cur * sh / 100 - prev * sh_prev / 100
+        d_lint = d_yarn * YARN_TO_LINT
+        r = {"country": c, "share_pct": sh, "share_prev_pct": sh_prev, "yarn_ytd_kt": rnd(cur * sh / 100, 0), "yarn_prev_kt": rnd(prev * sh_prev / 100, 0),
+             "extra_yarn_kt": rnd(d_yarn, 0), "extra_lint_kt": rnd(d_lint, 0), "extra_lint_mbales": rnd(d_lint / 217.725, 2)}
+        e = dest.get(alias.get(c, c))
+        if e and e.get("commit") is not None:
+            r["us_commit_kbales"] = rnd(e["commit"], 0)
+            r["us_commit_ly_kbales"] = rnd(e.get("ly"), 0)
+        if e and e.get("imports") and c not in own_crop:
+            r["usda_imports_mbales"] = e["imports"]
+            r["extra_pct_of_imports"] = rnd(d_lint / 217.725 / e["imports"] * 100, 1)
+            us = e.get("us_share5")
+            if us is not None:
+                r["us_share5_pct"] = rnd(us * 100, 0)
+                r["implied_us_mbales"] = rnd(d_lint / 217.725 * us, 2)
+        r["note"] = "spins mostly its own cotton" if c in ("India", "Uzbekistan") else ("spins home-grown and imported cotton" if c == "Pakistan" else "spins imported cotton")
+        rows.append(r)
+    return {"year": cy, "through_month": lm, "yarn_ytd_kt": cur, "yarn_prev_kt": prev, "share_source": src,
+            "share_base": f"UN Comtrade {org['last_year']}" if org else None, "rows": rows}
+
+
+def esr_note(O, I):
+    """Plain-text note for the cotton export-sales page (no charts depend on it)."""
+    if not O or not O.get("rows"):
+        return None
+    m = MON[O["through_month"] - 1]
+    parts = []
+    for r in O["rows"][:6]:
+        t = f"{r['country']}: ~{r['yarn_ytd_kt']:,.0f} kt of yarn to China Jan–{m} ({r['extra_yarn_kt']:+,.0f} kt y/y) ≈ {r['extra_lint_kt']:+,.0f} kt of extra lint ({r['extra_lint_mbales']:+.2f} m bales)"
+        if r.get("extra_pct_of_imports") is not None:
+            t += f", {r['extra_pct_of_imports']:+.0f}% of its {r['usda_imports_mbales']:.1f} m-bale USDA import forecast"
+        if r.get("implied_us_mbales") is not None:
+            t += f"; at the US's usual {r['us_share5_pct']:.0f}% share that is {r['implied_us_mbales']:+.2f} m bales of US cotton"
+        t += f" ({r['note']})"
+        parts.append(t)
+    head = (f"China's cotton-yarn imports are {O['yarn_ytd_kt']:,.0f} kt Jan–{m} {O['year']} vs {O['yarn_prev_kt']:,.0f} kt a year earlier. "
+            "Each tonne is spun abroad from about 1.1 t of lint, so the extra yarn is extra cotton demand in the supplying countries:")
+    tail = (" These are estimates: this year's country split uses " + O["share_source"] + " for the whole year to date" + (f", last year's uses {O['share_base']} (the latest year China has reported to the UN)" if O.get("share_base") else "") +
+            "; customs 'cotton yarn' includes blends, so the lint figures are upper bounds. Read it as a tailwind for US and Brazilian sales to " +
+            (", ".join(r["country"] for r in O["rows"] if (r.get("implied_us_mbales") or 0) >= 0.03) or "the yarn-exporting importers") + ", not as a revision to the projections.")
+    return {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "asof": f"{O['year']}-{O['through_month']:02d}", "text": head, "items": parts, "caveat": tail}
+
+
 def my_cumulative(g, c):
     """Cumulative imports by calendar year and by Aug-Jul marketing year (thousand t)."""
     s = g[g.c == c]
@@ -384,7 +478,7 @@ def imports_block(g, ct, cca_yearly):
     if not len(g):
         return None
     out = {}
-    for key, name in (("Cotton yarn", "yarn"), ("Cotton", "cotton")):
+    for key, name in (("Cotton yarn", "yarn"), ("Cotton", "cotton"), ("Cotton+yarn", "fibre")):
         s = g[g.c == key]
         if not len(s):
             continue
@@ -665,6 +759,16 @@ def brief(E, P, I, X, SP, G):  # noqa: C901
                      "the binding limit is quota, which is why foreign yarn (no quota) fills the gap")
         if m:
             S.append({"h": "What it means for demand", "t": ("; ".join(m) + ".")[0].upper() + ("; ".join(m) + ".")[1:]})
+    O = (I or {}).get("origin_demand")
+    if O and O.get("rows"):
+        top = [r for r in O["rows"] if r["extra_lint_kt"] and r["extra_lint_kt"] > 20][:4]
+        if top:
+            t = ("China's extra yarn is cotton spun elsewhere: " + "; ".join(
+                f"{r['country']} {r['extra_yarn_kt']:+,.0f} kt of yarn ≈ {r['extra_lint_mbales']:+.2f} m bales of lint" +
+                (f" ({r['extra_pct_of_imports']:+.0f}% of its USDA imports; ≈{r['implied_us_mbales']:+.2f} m bales of US cotton at the usual {r['us_share5_pct']:.0f}% US share)" if r.get("implied_us_mbales") is not None else f" ({r['note']})")
+                for r in top) + ". That supports US and Brazilian sales to Vietnam and the South Asian importers even while China's own lint imports are slow; "
+                 "India and Uzbekistan mainly turn their own crops into yarn, which tightens their exportable cotton instead. Country split is an estimate (" + O["share_source"] + ").")
+            S.append({"h": "Demand pulled into supplying countries", "t": t})
     # USDA check: marketing-year (Aug-Jul) imports so far vs the WASDE number, and mill use
     U = (I or {}).get("usda_check")
     if U and U.get("imports", {}).get("usda_kt"):
@@ -775,6 +879,46 @@ def clean(o):
     return o
 
 
+def valid(out):
+    """Refuse to publish a build that lost a block the page needs."""
+    probs = []
+    if len(out.get("brief") or []) < 4:
+        probs.append("brief too short")
+    for k in ("estimates", "progress", "imports", "prices"):
+        if not out.get(k):
+            probs.append(f"missing {k}")
+    if out.get("imports") and not (out["imports"].get("yarn") and out["imports"].get("cotton")):
+        probs.append("imports without cotton/yarn")
+    return probs
+
+
+def save(out, note):
+    """Publish only a valid build; keep a dated copy of every published build (the page falls back to the latest one)."""
+    out = clean(out)
+    probs = valid(out)
+    HIST = OUT.parent / "history"
+    HIST.mkdir(parents=True, exist_ok=True)
+    if probs:
+        print("NOT PUBLISHED (previous cotton.json kept):", "; ".join(probs))
+        sys.exit(1)
+    txt = json.dumps(out, ensure_ascii=False, separators=(",", ":"))
+    tmp = OUT.with_suffix(".tmp")
+    tmp.write_text(txt)
+    json.loads(tmp.read_text())
+    tmp.replace(OUT)
+    day = out["generated"][:10]
+    (HIST / f"cotton_{day}.json").write_text(txt)
+    files = sorted(HIST.glob("cotton_*.json"))
+    for f in files[:-90]:          # keep about four months of daily builds
+        f.unlink()
+    (HIST / "index.json").write_text(json.dumps({"latest": files[-1].name if files else None, "files": [f.name for f in files[-90:]]}))
+    if note:
+        n = OUT.parent / "esr_note.json"
+        n.with_suffix(".tmp").write_text(json.dumps(clean(note), ensure_ascii=False))
+        n.with_suffix(".tmp").replace(n)
+    print("wrote", OUT, len(out["brief"]), "brief items; history", day)
+
+
 def main():
     pr, est, sp = parse_articles()
     cc, cl, T = cca_prices()
@@ -787,10 +931,17 @@ def main():
     P = progress_block(pr)
     G = gacc_monthly()
     G, filled = fill_from_reports(G, cca_import_reports())
-    I = imports_block(G, comtrade(), T.get("cotton_imports_yearly"))
+    G = add_fibre(G)
+    ct = comtrade()
+    I = imports_block(G, ct, T.get("cotton_imports_yearly"))
     if I is not None:
         I["filled_from_cca"] = filled
-        I["cumulative"] = {"cotton": my_cumulative(G, "Cotton"), "yarn": my_cumulative(G, "Cotton yarn")}
+        I["cumulative"] = {"cotton": my_cumulative(G, "Cotton"), "yarn": my_cumulative(G, "Cotton yarn"), "fibre": my_cumulative(G, "Cotton+yarn")}
+        try:
+            esr = next((c for c in json.loads((ROOT / "data" / "grains" / "derived" / "esr_brief.json").read_text())["commodities"] if c["key"] == "cotton"), None)
+        except Exception:
+            esr = None
+        I["origin_demand"] = origin_demand(I, ct, esr)
         I["usda_check"] = usda_check(I, I["cumulative"], psd)
     X = prices_block(tv, cc, cl, quotes)
     GR = grains_block(G[G.get("src", pd.Series(index=G.index, dtype=object)).isna()] if "src" in G else G)
@@ -798,9 +949,7 @@ def main():
            "estimates": E, "progress": P, "seed_price": sp.to_dict("records") if len(sp) else [], "imports": I, "prices": X, "grains": GR,
            "sources": {"cca": "https://www.china-cotton.org/", "gacc": "http://english.customs.gov.cn/statics/report/monthly.html",
                        "comtrade": "https://comtradeplus.un.org/", "target_price": "NDRC/MoF 2026-2028 cotton target price: 18,600 yuan/t (Xinjiang)"}}
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(clean(out), ensure_ascii=False, separators=(",", ":")))
-    print("wrote", OUT, len(out["brief"]), "brief items")
+    save(out, esr_note((I or {}).get("origin_demand"), I))
     for b in out["brief"]:
         print("-", b["h"], ":", b["t"][:600])
 

@@ -11,6 +11,10 @@ const ChinaCotton = (() => {
   async function mount(el) {
     el.innerHTML = '<div class="card"><p class="note">Loading China cotton…</p></div>';
     D = await getJSON('data/china/cotton.json').catch(() => null);
+    if (!D || !D.brief) {   // a failed build never overwrites cotton.json, but fall back to the last dated copy just in case
+      const ix = await getJSON('data/china/history/index.json').catch(() => null);
+      if (ix?.latest) D = await getJSON('data/china/history/' + ix.latest).catch(() => null);
+    }
     if (!D) { el.innerHTML = '<div class="card"><p class="note">China cotton data not built yet.</p></div>'; return; }
     const E = D.estimates || {}, P = D.progress || {}, I = D.imports || {}, X = D.prices || {}, L = X.latest || {};
     const xj = P.latest?.xinjiang_pick, ya = I.yarn, co = I.cotton;
@@ -42,6 +46,7 @@ const ChinaCotton = (() => {
           <p class="note" id="cnCumNote"></p></div>
         <div class="card"><h2>USDA check: marketing-year imports and mill use</h2><div class="tbl" id="cnUsda"></div><p class="note" id="cnUsdaNote"></p></div>
       </div>
+      <div class="card" style="margin-top:12px"><h2>Demand pulled into the countries that sell China yarn</h2><div class="tbl" id="cnOrgD"></div><p class="note" id="cnOrgDNote"></p></div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>China vs world prices (¢/lb, weekly)</h2><div class="ctrls" id="cnPxSel"></div><div class="chart"><canvas id="cCnPx"></canvas></div>
           <p class="note">CCIndex 3128B (spot, delivered to mill) and Zhengzhou cotton front month converted at USD/CNY; both include 9% VAT, shown ex-VAT with the toggle. Target price: 18,600 yuan/t, Xinjiang, 2026–28.</p></div>
@@ -58,7 +63,7 @@ const ChinaCotton = (() => {
         <div class="card"><h2>China grain and fibre imports, year to date (customs, thousand t)</h2><div class="tbl" id="cnGr"></div></div>
         <div class="card"><h2>Seed-cotton price paid to farmers (yuan/kg, CCA surveys)</h2><div class="chart"><canvas id="cCnSeed"></canvas></div></div>
       </div>`;
-    for (const f of [progress, estimates, imports, cumulative, usdaCheck, prices, tables]) { try { f(); } catch (e) { console.error('china', f.name, e); } }
+    for (const f of [progress, estimates, imports, cumulative, usdaCheck, originDemand, prices, tables]) { try { f(); } catch (e) { console.error('china', f.name, e); } }
   }
   const a = (u, l) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`;
 
@@ -93,7 +98,7 @@ const ChinaCotton = (() => {
 
   function imports() {
     const I = D.imports; if (!I) return;
-    const keys = [['yarn', 'Cotton yarn'], ['cotton', 'Raw cotton']].filter(k => I[k[0]]);
+    const keys = [['yarn', 'Cotton yarn'], ['cotton', 'Raw cotton'], ['fibre', 'Cotton + yarn (lint eq.)']].filter(k => I[k[0]]);
     const draw = () => {
       $('#cnImpSel').innerHTML = keys.map(([k, l]) => `<button class="btn ${k === impKey ? 'on' : ''}" data-k="${k}">${l}</button>`).join(' ');
       $$('#cnImpSel button').forEach(b => b.onclick = () => { impKey = b.dataset.k; draw(); });
@@ -102,7 +107,7 @@ const ChinaCotton = (() => {
         borderColor: y === cy ? '#c0392b' : y === cy - 1 ? '#2c6fbb' : PAL[(i + 2) % PAL.length], borderWidth: y === cy ? 2.6 : 1.1, pointRadius: y === cy ? 3 : 0 })) },
         options: { scales: { y: { min: 0, title: { display: true, text: 'thousand t' } } } } });
       $('#cnImpNote').innerHTML = `Jan–${MON[x.last_month - 1]} ${x.year}: ${fmt(x.ytd_kt[x.year], 0)} kt (${pct(x.ytd_yoy_pct)} y/y; 5-yr avg ${fmt(x.avg5_kt, 0)} kt). Customs publishes quantities in 10,000 t, so single months are ±10 kt; Jan–Feb are often released together.
-        ${impKey === 'yarn' ? 'Customs "cotton yarn" covers pure and blended yarn (HS 5204–5207).' : ''}`;
+        ${impKey === 'yarn' ? 'Customs "cotton yarn" covers pure and blended yarn (HS 5204–5207).' : impKey === 'fibre' ? `Raw cotton plus yarn counted as lint (yarn ×${I.combined?.factor || 1.1}).` : ''}`;
       const ys = Object.keys(x.ytd_kt).map(Number).sort();
       chart('cCnYtd', { type: 'bar', data: { labels: ys, datasets: [
         { label: `Jan–${MON[x.last_month - 1]}`, data: ys.map(y => x.ytd_kt[y]), backgroundColor: ys.map(y => y === cy ? '#c0392b' : '#9fb8a5') },
@@ -117,7 +122,7 @@ const ChinaCotton = (() => {
   function cumulative() {
     const C = D.imports?.cumulative; if (!C) return;
     const draw = () => {
-      $('#cnCumSel').innerHTML = [['cotton', 'Raw cotton'], ['yarn', 'Cotton yarn']].map(([k, l]) => `<button class="btn ${k === cumKey ? 'on' : ''}" data-k="${k}">${l}</button>`).join(' ') + ' &nbsp; ' +
+      $('#cnCumSel').innerHTML = [['cotton', 'Raw cotton'], ['yarn', 'Cotton yarn'], ['fibre', 'Cotton + yarn']].filter(([k]) => C[k]).map(([k, l]) => `<button class="btn ${k === cumKey ? 'on' : ''}" data-k="${k}">${l}</button>`).join(' ') + ' &nbsp; ' +
         [['my', 'Marketing year Aug–Jul'], ['calendar', 'Calendar year']].map(([k, l]) => `<button class="btn ${k === cumBasis ? 'on' : ''}" data-b="${k}">${l}</button>`).join(' ');
       $$('#cnCumSel button[data-k]').forEach(b => b.onclick = () => { cumKey = b.dataset.k; draw(); });
       $$('#cnCumSel button[data-b]').forEach(b => b.onclick = () => { cumBasis = b.dataset.b; draw(); });
@@ -140,6 +145,14 @@ const ChinaCotton = (() => {
       <tr><td><b>${a.my}</b></td><td><b>${kt(a.to_date_kt)}</b></td><td>pace ≈ ${kt(a.pace_implied_kt)}</td><td>${kt(a.usda_kt)}</td><td>${fmt(a.usda_pct_done, 0)}% of USDA</td></tr></table>`;
     const u = U.use || {};
     $('#cnUsdaNote').innerHTML = `USDA ${a.my}: mill use ${kt(u.usda_kt)} kt (${fmt(u.usda_kt / 217.725, 1)} m bales), production ${kt(u.usda_prod_kt)} kt, ending stocks ${kt(u.usda_end_kt)} kt. Yarn imports Aug–${a.through}: ${kt(u.yarn_to_date_kt)} kt vs ${kt(u.yarn_to_date_prev_kt)} kt a year earlier. USDA PSD (Aug–Jul, 480-lb bales converted).`;
+  }
+
+  function originDemand() {
+    const O = D.imports?.origin_demand; if (!O?.rows?.length) return;
+    const kt = v => v == null ? '–' : fmt(v, 0), m = MON[O.through_month - 1];
+    $('#cnOrgD').innerHTML = `<table><tr><th>Country</th><th>Yarn to China Jan–${m} ${O.year} (kt)</th><th>Year earlier</th><th>Extra yarn</th><th>Extra lint (m bales)</th><th>% of its USDA imports</th><th>US share (5-yr)</th><th>≈ US cotton (m bales)</th><th>Mills spin</th></tr>
+      ${O.rows.map(r => `<tr><td>${r.country}</td><td>${kt(r.yarn_ytd_kt)}</td><td>${kt(r.yarn_prev_kt)}</td><td>${sgn(r.extra_yarn_kt, 0)}</td><td>${sgn(r.extra_lint_mbales, 2)}</td><td>${r.extra_pct_of_imports != null ? sgn(r.extra_pct_of_imports, 0, '%') : '–'}</td><td>${r.us_share5_pct != null ? fmt(r.us_share5_pct, 0) + '%' : '–'}</td><td>${r.implied_us_mbales != null ? sgn(r.implied_us_mbales, 2) : '–'}</td><td class="l">${/own/.test(r.note) && !/imported/.test(r.note) ? 'own crop' : /home-grown/.test(r.note) ? 'own + imported' : 'imported'}</td></tr>`).join('')}</table>`;
+    $('#cnOrgDNote').innerHTML = `Each tonne of yarn China buys is about ${D.imports.combined?.factor || 1.1} t of lint spun in the supplying country. Country split this year: ${O.share_source}; last year: ${O.share_base || 'same'}. Customs "cotton yarn" includes blends, so the lint is an upper bound. US share and commitments from the desk's cotton export-sales brief; USDA imports are the current WASDE forecast.`;
   }
 
   let exVat = false;

@@ -72,6 +72,17 @@ def parse_balance(t):
     return rows
 
 
+def safe_write(path, text, old_n, new_n, what):
+    """Write via a temp file, and never let an update shrink the stored history."""
+    if new_n < old_n:
+        print(f"REFUSED {what}: would shrink {old_n} -> {new_n} rows; kept the stored file")
+        return False
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text)
+    tmp.replace(path)
+    return True
+
+
 def merge_dated(old, new):
     d = {r[0]: r for r in old if r}
     for r in new:
@@ -83,6 +94,7 @@ def merge_dated(old, new):
 def ingest_cca(p):
     D = payload(p)
     T = load(TAB, {})
+    n0 = len(T.get("ccindex", [])) + len(T.get("cotlook", []))
     if D.get("ccindex"):
         T["ccindex"] = merge_dated(T.get("ccindex", []), D["ccindex"])
     if D.get("cotlook"):
@@ -112,8 +124,9 @@ def ingest_cca(p):
                 old[int(r[0])] = {"year": int(r[0]), "kt": num(r[1]) * 10, "yoy_pct": num(r[2]), "musd": num(r[3])}
         T["cotton_imports_yearly"] = [old[k] for k in sorted(old, reverse=True)]
     T["collected"] = D.get("collected_at", "")[:10]
-    TAB.write_text(json.dumps(T, ensure_ascii=False))
+    safe_write(TAB, json.dumps(T, ensure_ascii=False), n0, len(T.get("ccindex", [])) + len(T.get("cotlook", [])), "cca_tables")
     A = load(ART, {"list": [], "art": {}})
+    a0 = len(A["art"])
     new = 0
     for u, a in (D.get("art") or {}).items():
         if u not in A["art"]:
@@ -121,7 +134,7 @@ def ingest_cca(p):
         A["art"][u] = a
     seen = {x[2] for x in A["list"]}
     A["list"] = [x for x in (D.get("list") or []) if x[2] not in seen] + A["list"]
-    ART.write_text(json.dumps(A, ensure_ascii=False))
+    safe_write(ART, json.dumps(A, ensure_ascii=False), a0, len(A["art"]), "articles")
     print(f"cca: {len(D.get('ccindex') or [])} CCIndex rows read, {len(D.get('cotlook') or [])} Cotlook rows, {new} new articles; quotes {q.get('cc3128')}; errors {D.get('errors')}")
 
 
@@ -145,7 +158,7 @@ def ingest_gacc(p):
     for k in sorted(d, key=lambda k: (k[0], int(k[1]), ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].index(k[2]) if k[2] in
                                       ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] else 99, k[3])):
         w.writerow(d[k])
-    GACC.write_text(buf.getvalue())
+    safe_write(GACC, buf.getvalue(), len(rows), len(d), "gacc")
     print(f"gacc: {n} new rows; log {D.get('log', [])[-4:]}")
 
 

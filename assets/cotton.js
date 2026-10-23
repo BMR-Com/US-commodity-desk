@@ -58,6 +58,10 @@ const Cotton = (() => {
     const D = useOwn ? { generated: OWN.generated, commodities: [own] } : X;
     if (!D) { body().innerHTML = `<div class="card"><p class="note">Could not load the cotton export sales brief. Open ${src(SITE.esr, 'the export sales page')}.</p></div>`; return; }
     ESR.mount(body(), D, { name: 'Cotton' });
+    // China yarn note: text only, from the China module; if it is missing or stale nothing else on this page changes
+    try { const N = await getJSON('data/china/esr_note.json').catch(() => null);
+      if (N?.items?.length) body().insertAdjacentHTML('beforeend', `<div class="card" style="margin-top:12px"><h2>China's yarn imports and demand in its suppliers (as of ${N.asof})</h2><p>${N.text}</p><ul>${N.items.map(x => `<li>${x}</li>`).join('')}</ul><p class="note">${N.caveat} Built ${N.generated}; see Cotton → China.</p></div>`);
+    } catch (e) { /* ignore */ }
     body().insertAdjacentHTML('beforeend', `<p class="note" style="margin:4px 2px">${useOwn ? `Desk's own Thursday export-sales run (upland + Pima, USDA FAS), week ending ${own.week} · ${OWN.generated}${X ? ` · the ${src(SITE.esr, 'cotton export sales page')} has week ending ${wk(X) || '?'}` : ''}` : `From ${src(SITE.esr, 'BMR-Com US cotton export sales')} (upland + Pima, USDA FAS) · ${D.generated}`}.</p>`);
   }
   function frame(u, title, what) {

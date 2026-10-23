@@ -36,7 +36,10 @@ def monthly():
     codes = json.loads((RAW / "hs6_fiber_codes.json").read_text())
     d = pd.read_csv(RAW / "us_imports_hs6.csv", dtype={"period": str, "cmd": str})
     d = d[d.cmd.str.len() == 6]
-    d["fiber"] = d.cmd.map(lambda c: codes.get(c, {}).get("fiber", "mixed"))
+    import importlib.util
+    sp = importlib.util.spec_from_file_location("usf", ROOT / "pipelines" / "us_fiber.py")
+    usf = importlib.util.module_from_spec(sp); sp.loader.exec_module(usf)
+    d["fiber"] = d.cmd.map(lambda c: usf.classify(c, codes[c]["text"]) if c in codes else "mixed")   # classes from the current rules
     d["seg"] = d.cmd.map(lambda c: next(k for k, f in SEG.items() if f(c)))
     d["kg"] = pd.to_numeric(d.net_kg, errors="coerce").fillna(0)
     d["usd"] = pd.to_numeric(d.value_usd, errors="coerce").fillna(0)

@@ -50,7 +50,7 @@ def classify(code, text):
     if re.search(r"\bwool|fine animal hair|silk|flax|jute|sisal|abaca|vegetable textile|bast|ramie", core, re.I):
         return "other"
     if excl:
-        ex = " ".join(re.findall(r"(?:other than|excluding)[^,;)]*", t, re.I))
+        ex = " ".join(re.findall(r"\((?:other than|excluding)[^)]*\)", t, re.I)) or " ".join(re.findall(r"(?:other than|excluding)[^,;)]*", t, re.I))
         if re.search(r"cotton", ex, re.I) and not re.search(r"man-made|synthetic", ex, re.I):
             return "mmf"     # e.g. 6109.90 T-shirts "other than cotton": no separate man-made line, mostly polyester
         if re.search(r"cotton|man-made|synthetic", ex, re.I):

@@ -692,6 +692,43 @@ def polyester_block(tv):
     return out
 
 
+MSP = {2026: {"medium": 8267, "long": 8667}}     # India kapas MSP, Rs/quintal (2026-27 kharif)
+CANDY_LB = 355.62 * 2.20462
+
+
+def india_block():
+    """Indian spot cotton (CAI daily spot, Gujarat ICS-105 29 mm = the Shankar-6 benchmark) in c/lb, vs the MSP."""
+    p = ROOT / "data" / "india" / "cai_spot.csv"
+    m = ROOT / "data" / "markets" / "closes.csv"
+    if not p.exists() or not m.exists():
+        return None
+    d = pd.read_csv(p, parse_dates=["date"])
+    d = d[(d.grade_standard == "ICS-105") & (d.staple == "29 mm") & (d.season == "current")]
+    b = d[d.growth == "GUJ"].set_index("date").per_candy
+    alt = d[d.growth == "M/M(P)"].set_index("date").per_candy
+    s = b.combine_first(alt).sort_index()
+    s = s[~s.index.duplicated(keep="last")]
+    if len(s) < 5:
+        return None
+    fx = pd.read_csv(m, index_col=0, parse_dates=True)["INR=X"].dropna()
+    fx = fx.reindex(fx.index.union(s.index)).ffill().reindex(s.index)
+    clb = s / fx / CANDY_LB * 100
+    yr = s.index[-1].year if s.index[-1].month >= 9 else s.index[-1].year - 1
+    msp = MSP.get(yr)
+    out = {"date": s.index[-1].strftime("%Y-%m-%d"), "rs_candy": rnd(s.iloc[-1], 0), "clb": rnd(clb.iloc[-1], 1), "inr": rnd(fx.iloc[-1], 2),
+           "chg_1y_pct": rnd((s.iloc[-1] / s[s.index <= s.index[-1] - pd.DateOffset(years=1)].iloc[-1] - 1) * 100, 1) if (s.index <= s.index[-1] - pd.DateOffset(years=1)).any() else None,
+           "chg_3m_pct": rnd((s.iloc[-1] / s[s.index <= s.index[-1] - pd.DateOffset(months=3)].iloc[-1] - 1) * 100, 1) if (s.index <= s.index[-1] - pd.DateOffset(months=3)).any() else None,
+           "weekly": {"date": [x.strftime("%Y-%m-%d") for x in s.resample("W-FRI").last().dropna().index],
+                      "clb": [rnd(v, 1) for v in clb.resample("W-FRI").last().dropna()], "rs": [rnd(v, 0) for v in s.resample("W-FRI").last().dropna()]}}
+    if msp:
+        # lint cost implied by buying kapas at MSP: 34% lint out-turn, cottonseed credited at Rs 35/kg, ginning ~Rs 1,500/candy
+        kg = (msp["medium"] / 100 - 0.64 * 35) / 0.34
+        out["msp"] = {"season": f"{yr}/{str(yr + 1)[2:]}", "kapas_medium": msp["medium"], "kapas_long": msp["long"],
+                      "lint_equiv_rs_candy": rnd(kg * 355.62 + 1500, -2), "assumptions": "34% lint out-turn, seed credited at Rs 35/kg, ginning Rs 1,500/candy"}
+        out["msp"]["lint_equiv_clb"] = rnd(out["msp"]["lint_equiv_rs_candy"] / fx.iloc[-1] / CANDY_LB * 100, 1)
+    return out
+
+
 def psd_china():
     """USDA PSD China cotton by marketing year (Aug-Jul), thousand t."""
     o = {}
@@ -889,6 +926,18 @@ def brief(E, P, I, X, SP, G):  # noqa: C901
                 "strong yarn imports are the main channel through which China adds to world cotton demand this year.") if (X and (X.get("latest", {}).get("imp_margin_1pct") or 0) > 1000) else \
                "Domestic and world prices are close, so import demand depends on quota and mill margins rather than price."
         S.insert(0, {"h": "Bottom line", "t": "China has " + ", ".join(bl) + ". " + read})
+    IN = (X or {}).get("india")
+    if IN:
+        L = (X or {}).get("latest", {})
+        t = (f"Shankar-6 (CAI spot, Gujarat 29 mm) {IN['rs_candy']:,.0f} Rs/candy on {IN['date']} = **{IN['clb']:.1f}¢/lb** at {IN['inr']:.1f} Rs/$"
+             + (f" ({IN['chg_1y_pct']:+.0f}% y/y in rupees)" if IN.get("chg_1y_pct") is not None else "") + "; "
+             + (f"Cotlook A {L['cotlook_a']:.1f}¢, " if L.get("cotlook_a") else "") + f"ICE {L.get('ct', 0):.1f}¢, China 3128B {L.get('cc_clb_xvat', 0):.1f}¢ ex-VAT.")
+        if IN.get("msp"):
+            mm = IN["msp"]
+            t += (f" The {mm['season']} MSP (kapas {mm['kapas_medium']:,}/{mm['kapas_long']:,} Rs/quintal medium/long) implies lint at roughly {mm['lint_equiv_rs_candy']:,.0f} Rs/candy "
+                  f"({mm['lint_equiv_clb']:.0f}¢/lb; {mm['assumptions']}), so Indian lint is {'at or below' if IN['rs_candy'] <= mm['lint_equiv_rs_candy'] * 1.02 else 'above'} the support level: "
+                  + ("CCI buying at MSP sets the floor and keeps Indian cotton out of export competition unless world prices rise." if IN['rs_candy'] <= mm['lint_equiv_rs_candy'] * 1.05 else "the market, not CCI, is setting the price."))
+        S.append({"h": "India", "t": t})
     PY = (X or {}).get("polyester")
     if PY:
         c6 = PY["chg_26w"]
@@ -996,6 +1045,10 @@ def main():
     X = prices_block(tv, cc, cl, quotes)
     if X is not None:
         X["polyester"] = polyester_block(tv)
+        try:
+            X["india"] = india_block()
+        except Exception as e:
+            print("india block skipped:", e)
     GR = grains_block(G[G.get("src", pd.Series(index=G.index, dtype=object)).isna()] if "src" in G else G)
     out = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "brief": brief(E, P, I, X, sp, GR),
            "estimates": E, "progress": P, "seed_price": sp.to_dict("records") if len(sp) else [], "imports": I, "prices": X, "grains": GR,

@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['data/china/raw/**', 'models/china_cotton.py', 'pipelines/china_prices.py', 'pipelines/china_collect.py', 'china/**', '.github/workflows/china.yml']
+    paths: ['data/china/raw/**', 'models/china_cotton.py', 'pipelines/china_prices.py', 'pipelines/china_collect.py', 'pipelines/india_cai.py', 'china/**', '.github/workflows/china.yml']
   schedule:
     - cron: '40 8 * * 1-5'    # after the Zhengzhou day session (15:00 Beijing)
     - cron: '30 21 * * 1-5'   # after the ICE close
@@ -25,13 +25,17 @@ jobs:
       - name: Zhengzhou cotton and yarn, USD/CNY, ICE (TradingView)
         continue-on-error: true
         run: python pipelines/china_prices.py
+      - name: India CAI daily spot rates (new dates only)
+        continue-on-error: true
+        timeout-minutes: 10
+        run: python pipelines/india_cai.py
       - name: China cotton model and brief
         run: python -W ignore models/china_cotton.py
       - name: commit (also when the model refused to publish: raw data are kept, the page keeps the last good build)
         if: always()
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/china
+          git add data/china data/india
           git diff --cached --quiet && exit 0
           git commit -q -m "data: China cotton $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

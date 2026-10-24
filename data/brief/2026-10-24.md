@@ -1,6 +1,6 @@
-# Morning brief · Sat Oct 24, 2026 07:45 PM ET
+# Morning brief · Sat Oct 24, 2026 07:53 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-24 23:45 UTC). CME open interest from 20261023. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-24 23:53 UTC). CME open interest from 20261023. Research only, not investment advice.
 
 ## Key points
 
@@ -65,10 +65,6 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Class IV milk | Nov 26 | 20.65 | -0.35 (-1.7%) | -1.7% | +2.3% | Neutral | 53 | 19.60 | – | 1,897 (+74) | +3 | neutral |
 
 Board crush 2.401 $/bu (10-yr pct 91), oil share 49.1%. Soybean / corn price ratio 2.755. Chicago wheat − corn 169.00 ¢/bu. KC HRW − Chicago SRW 39.50 ¢/bu. Soybean oil / meal value 0.965.
-
-## Track record
-
-Track record: 48 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything. Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.
 
 ## Flash export sales (last 3 days)
 
@@ -157,3 +153,7 @@ Research signals: trend long 1.8x for 40% vol (12m excess +39%); carry +55.2%/yr
 - [New research could help dairy producers improve nutrient use efficiency on farm](https://news.google.com/rss/articles/CBMitAFBVV95cUxPWHpWdjJkN1hjWlBZTTdha3VUWmdGU00tZDR0ODNaX1RoWTJnSWJudjBpaW9Td2FwVW1XdDdBbDFRSklxdDFhRWRibWpRQWUzZ3djMDQtLWoxWVN0aW9JbnhZY0k1WVlCd3V2WmsxczZ6VVhMYzR6eWF2SE5fb2pDcS1xOWctTFNKeTlsbDFzNlRYMG4zbHltdXRfREV3Mm9RUFZ1VzJ6SjFlMVdXMmszdWJNdDQ?oc=5) · Brownfield Ag News
 - [Milk futures remain strong for now](https://news.google.com/rss/articles/CBMieEFVX3lxTFBfWWZGcGg5VzN3VWZrN2w1VklBbVRaM3VnQ0EyelZSX0JFTGhPQ29LV0VmSkJwd0NzMU5jNWtKcS1YeDdGY0RzUGhWYnNCdXZ5c05ZZUdkMjZvdFRNR08tSHhJMzY2M0RLU3RsaWhjSmpScFlBbzR5Vw?oc=5) · Brownfield Ag News
 - [CME cash dairy prices mixed](https://news.google.com/rss/articles/CBMib0FVX3lxTE0zYWNOMF9kNkQtRExzRGhmYUE4Z0VnQU45X0VKUEFmVXFPdnNEQVB1V0c0NnQ3bEM5aU1vYWlUVDZNeTFQZVRiN21tSXprS0pnZnotRERJUG9fWnZnS0g0cEttb0dScWNNZU1QcXlDSQ?oc=5) · Brownfield Ag News
+
+## Track record
+
+Track record: 48 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything. Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.

@@ -7,7 +7,8 @@
      data/cme/oi_history.csv first (models/flows.py reads it for the OI history chart);
    - data/cme/options/<YYYYMMDD>/ (CME option settlements): the implied-vol statistics already live in
      data/cme/options/iv_history.csv (models/options_desk.py needs only the latest ~12 days of files);
-   - data/brief/<YYYY-MM-DD>.md (morning brief archive).
+   - data/brief/<YYYY-MM-DD>.md (morning brief archive; the calls themselves live on in data/brief/calls.csv,
+     which is never pruned).
 2. Archives that are read only by the Python models are stored gzipped (5-20x smaller):
    - data/esmis/<slug>/*.txt -> *.txt.gz (NASS report text, read by models/esmis_parse.py);
    - data/grains/raw/crop_progress|annual/<commodity>/<year>.csv -> .csv.gz (NASS QuickStats, read by

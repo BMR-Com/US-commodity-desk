@@ -8,7 +8,7 @@ the last brief, and cross-market numbers (board crush, ratios).
 
 Built from the other models' outputs (trader sheet, summary, technicals, news, calendar, flash, CME files), so run
 it after ohlc/technicals/trader_sheet/summary and news. Writes data/brief/latest.json, data/brief/latest.md and an
-archive copy data/brief/<YYYY-MM-DD>.md.
+archive copy data/brief/<YYYY-MM-DD>.md. models/brief_track.py then logs the calls and scores past ones.
 """
 import csv, json, re
 from datetime import datetime, timedelta, timezone
@@ -167,6 +167,10 @@ def main():
         heads.append("Macro releases today: " + "; ".join(f"{e['title']} {e['time']}" + (f" (f'cast {e['forecast']}, prev {e['previous']})" if e["forecast"] else "") for e in hi) + ".")
     if macro.get("view"):
         heads.append(f"Macro backdrop for ags: {macro['view']} ({macro['score']:+d}).")
+    sc = J("brief/scorecard.json") or {}  # from the previous build (models/brief_track.py runs after this)
+    track = {"line": sc.get("line"), "weak": sc.get("weak", []), "generated": sc.get("generated")} if sc else None
+    if track and track["weak"]:
+        heads.append("Weak desk-view record (5-day): " + "; ".join(f"{w['name']} hit {w['hit']:.0f}%" + (f" ({w['edge']:+.0f} pts vs base)" if w.get("edge") is not None else "") for w in track["weak"]) + " — weight those views less.")
 
     B = {"generated": now.strftime("%Y-%m-%d %H:%M UTC"), "generated_et": now.astimezone(ET).strftime("%a %b %d, %Y %I:%M %p ET"),
          "date": d0, "prices_from": sheet.get("generated"), "cme_oi_date": oi_date, "headlines": heads,
@@ -175,7 +179,7 @@ def main():
          "macro": {"view": macro.get("view"), "score": macro.get("score"), "summary": macro.get("summary"), "sections": macro.get("sections", []),
                    "caveat": macro.get("caveat")}, "macro_numbers": macro_nums, "econ": econ, "us_econ": us_econ.get("read"),
          "energy": {"read": energy.get("read"), "prices": energy.get("prices"), "inventories": energy.get("inventories"), "vol": energy.get("vol"), "cracks": energy.get("cracks")},
-         "research": research}
+         "research": research, "track": track}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "latest.json").write_text(json.dumps(B, indent=1, default=str))
     md = to_md(B)
@@ -231,6 +235,8 @@ def to_md(B):
         L.append(f"Board crush {c['crush']:.3f} $/bu (10-yr pct {c['crush_pct10']:.0f}), oil share {c['oil_share']:.1f}%. "
                  + " ".join(f"{r['name']} {r['now']:.3f}." if r['unit'] == 'ratio' else f"{r['name']} {r['now']:.2f} {r['unit']}." for r in (B.get("ratios") or [])[:4]))
         L.append("")
+    if B.get("track") and B["track"].get("line"):
+        L += ["## Track record", "", B["track"]["line"] + " Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.", ""]
     if B["flash"]:
         L += ["## Flash export sales (last 3 days)", ""] + [f"- {a['t'][:10]}: {a['text'] or a['title']}" for a in B["flash"]] + [""]
     L += ["## Technical outlook by market", ""]

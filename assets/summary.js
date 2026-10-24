@@ -12,7 +12,7 @@ const Summary = (() => {
     const el = document.getElementById('summary');
     const M = S.markets;
     const groups = [['grains', 'Grains & oilseeds'], ['softs', 'Cotton'], ['livestock', 'Livestock'], ['dairy', 'Dairy']];
-    el.innerHTML = `<main><div class="card" style="margin-bottom:12px" id="svBrief"><h2>Morning brief</h2><p class="note">Loading…</p></div><div class="card" style="margin-bottom:12px" id="svTrack"><h2>Brief track record</h2><p class="note">Loading…</p></div><div class="card" style="margin-bottom:12px"><h2>Trader sheet</h2><div id="svSheet"><p class="note">Loading…</p></div></div><div class="card"><h2>Desk summary</h2>
+    el.innerHTML = `<main><div class="card" style="margin-bottom:12px" id="svBrief"><h2>Morning brief</h2><p class="note">Loading…</p></div><div class="card" style="margin-bottom:12px"><h2>Trader sheet</h2><div id="svSheet"><p class="note">Loading…</p></div></div><div class="card"><h2>Desk summary</h2>
       <p class="note">Built automatically from the data and models behind every tab (updated ${S.generated}). Fundamentals weigh 40%, technicals 30%, flows 30%. Each trade idea names its method and says how that method has tested; untested ideas are context, not edges. A standing caveat from the back-tests: in these cash-settled and delivery markets futures have been the best forecast of their own settlement, so the edge is in timing, structure and the few tested biases (e.g. the live cattle convergence premium), not in out-forecasting the curve. Research only, not investment advice.</p>
       <div class="tbl"><table class="sv-tbl"><tr><th>Market</th><th>Contract</th><th>Last</th><th>1 wk</th><th>Overall view</th><th>Fundamental</th><th>Technical</th><th>Flows</th><th>Funds pct 3y · 10y · all</th><th>Trend score</th><th>Ideas</th></tr>
       ${groups.map(([g, gl]) => `<tr class="sv-sec"><td colspan="11">${gl}</td></tr>` + M.filter(m => m.group === g).map(m => `<tr><td><a href="#" data-go="${m.key}">${m.name}</a></td><td>${m.contract || ''}</td><td>${f(m.price, m.dp)}</td>
@@ -28,10 +28,12 @@ const Summary = (() => {
         ${m.ideas.length ? `<h3>Trade ideas by method</h3><div class="tbl"><table><tr><th>Method</th><th>Side</th><th>Instrument</th><th>Entry</th><th>Stop</th><th>Target</th><th>R:R</th><th>Horizon</th><th class="l">Why</th><th class="l">How it has tested</th></tr>
           ${m.ideas.map(i => `<tr><td>${i.method}</td><td class="${/Long|Bull/.test(i.side) ? 'up' : 'dn'}"><b>${i.side}</b></td><td>${i.instrument}</td><td>${f(i.entry, m.dp)}</td><td>${f(i.stop, m.dp)}</td><td>${f(i.target, m.dp)}</td><td>${i.rr ?? '–'}</td><td>${i.horizon}</td><td class="l sv-w">${i.why}</td><td class="l sv-w note">${i.evidence}</td></tr>`).join('')}</table></div>`
           : '<p class="note">No method currently gives a trade signal here.</p>'}
-        <div class="grid g2"><div><h3>This market's next events</h3><div class="sv-cal" data-m="${m.sym}"></div></div><div><h3>Recent headlines</h3><div class="sv-news" data-k="${m.key}"></div></div></div></div>`).join('')).join('')}</main>`;
+        <div class="grid g2"><div><h3>This market's next events</h3><div class="sv-cal" data-m="${m.sym}"></div></div><div><h3>Recent headlines</h3><div class="sv-news" data-k="${m.key}"></div></div></div></div>`).join('')).join('')}
+      <details id="svTrackWrap" style="margin-top:16px"><summary class="note" style="cursor:pointer">Brief track record (how past calls scored)</summary><div class="card" id="svTrack" style="margin-top:8px"><p class="note">Loading…</p></div></details></main>`;
     el.querySelectorAll('[data-go]').forEach(a => a.onclick = e => { e.preventDefault(); go(M.find(m => m.key === a.dataset.go)); });
     brief(document.getElementById('svBrief'));
-    track(document.getElementById('svTrack'));
+    const tw = document.getElementById('svTrackWrap');  // load only when opened
+    tw.addEventListener('toggle', () => { if (tw.open && !tw.dataset.done) { tw.dataset.done = 1; track(document.getElementById('svTrack')); } });
     RVView.sheet(document.getElementById('svSheet'));
     Intel.calendar(document.getElementById('svCal'), { days: 21, minImp: 2 });
     Intel.news(document.getElementById('svNews'), { n: 18 });
@@ -79,7 +81,7 @@ const Summary = (() => {
       <details><summary><b>Technical outlook and headlines by market</b></summary>${B.markets.map(m => `<p><b>${m.name}</b> ${m.technical} ${m.levels}
         ${m.flags.length ? `<br><span class="note">Flags: ${m.flags.map(x => x.text).join('; ')}</span>` : ''}</p>
         ${m.news.length ? `<ul>${m.news.map(n => `<li><a href="${n.link}" target="_blank" rel="noopener">${n.title}</a> <span class="note">${n.source || ''}</span></li>`).join('')}</ul>` : ''}`).join('')}</details>
-      <p class="note">Archive: data/brief/&lt;date&gt;.md in the repo; every call is logged in data/brief/calls.csv and scored below. Research only, not investment advice.</p>`;
+      <p class="note">Archive: data/brief/&lt;date&gt;.md in the repo; every call is logged in data/brief/calls.csv (<a href="#" onclick="const d=document.getElementById('svTrackWrap');d.open=true;d.scrollIntoView();return false">track record</a> at the bottom of this page). Research only, not investment advice.</p>`;
   }
   async function show() {
     if (!built) { S = await getJSON('data/summary/summary.json').catch(() => null); built = true; }

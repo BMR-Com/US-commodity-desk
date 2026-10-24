@@ -276,3 +276,10 @@ Kept isolated from the rest of the desk: own data folder `data/china/`, own work
 - `models/cotton_loan.py` -> `data/cotton_loan/loan.json`; UI `assets/cotton_loan.js` (Cotton > Loan tab, isolated try/catch).
 - US fibre share: `pipelines/us_fiber.py` + `models/us_fiber.py` (workflow `fiber.yml`, weekly): Comtrade preview, one month per call, two calls/month, stops on the hourly quota; apparel share by weight tracks ERS within ~1 pt.
 - China: `data/china/raw/policy_history.json` (sliding-scale quota by year, reserve sales/purchases) feeds the USDA-check paragraph; update by hand when NDRC/reserve announce.
+
+## Brief track record (2026-10-24)
+- `models/brief_track.py` runs after `morning_brief.py` in `brief.yml`: appends one row per market per brief date to `data/brief/calls.csv` (contract, price at the call, rating, desk view/conviction, RSI, support/resistance, trend-follower triggers, ATR, funds, macro view/score; the last pre-open run of the day wins) and scores past calls into `data/brief/scorecard.json`.
+- Scoring: same contract's settlements (`data/contracts`) 1/5/20 trading days later; hit rate vs a 3-year base rate (always calling that direction), average signed move (% and ATRs), t-stat and rank IC with n_eff = distinct call dates ÷ horizon; support/resistance held 5 days; moves after a trigger; macro score vs next-5-day ag move. Groups under 10 independent windows are flagged "too few".
+- Backfilled from git history of `latest.json` (`python models/brief_track.py --backfill`, full clone needed): 2026-10-21 → 24. Expect ~2–3 months before the 5-day numbers can be read.
+- Brief: a "Track record" section, plus a key-points line naming markets whose 5-day view record is weak once they have enough windows. Dashboard: "Brief track record" card under the morning brief (`assets/summary.js`).
+- `calls.csv` is outside the retention job's reach (it prunes only dated folders/files).

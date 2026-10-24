@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['models/morning_brief.py', '.github/workflows/brief.yml']
+    paths: ['models/morning_brief.py', 'models/brief_track.py', '.github/workflows/brief.yml']
   schedule:
     # Ready before 8 am ET all year: 10:35 UTC = 6:35 EDT / 5:35 EST, 11:35 UTC = 7:35 EDT / 6:35 EST.
     # The later run picks up overnight trade and news closer to the open; both are cheap.
@@ -36,6 +36,7 @@ jobs:
           python -W ignore models/summary.py || true
           python models/energy_summary.py || true
           python -W ignore models/morning_brief.py
+          python -W ignore models/brief_track.py || echo "::warning::brief track record failed"
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

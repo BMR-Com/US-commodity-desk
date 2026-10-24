@@ -169,8 +169,8 @@ def main():
         heads.append(f"Macro backdrop for ags: {macro['view']} ({macro['score']:+d}).")
     sc = J("brief/scorecard.json") or {}  # from the previous build (models/brief_track.py runs after this)
     track = {"line": sc.get("line"), "weak": sc.get("weak", []), "generated": sc.get("generated")} if sc else None
-    if track and track["weak"]:
-        heads.append("Weak desk-view record (5-day): " + "; ".join(f"{w['name']} hit {w['hit']:.0f}%" + (f" ({w['edge']:+.0f} pts vs base)" if w.get("edge") is not None else "") for w in track["weak"]) + " — weight those views less.")
+    if track and track["weak"]:  # kept out of the key points; shown only in the Track record section at the end
+        track["weak_line"] = "Weak desk-view record (5-day): " + "; ".join(f"{w['name']} hit {w['hit']:.0f}%" + (f" ({w['edge']:+.0f} pts vs base)" if w.get("edge") is not None else "") for w in track["weak"]) + "."
 
     B = {"generated": now.strftime("%Y-%m-%d %H:%M UTC"), "generated_et": now.astimezone(ET).strftime("%a %b %d, %Y %I:%M %p ET"),
          "date": d0, "prices_from": sheet.get("generated"), "cme_oi_date": oi_date, "headlines": heads,
@@ -235,8 +235,6 @@ def to_md(B):
         L.append(f"Board crush {c['crush']:.3f} $/bu (10-yr pct {c['crush_pct10']:.0f}), oil share {c['oil_share']:.1f}%. "
                  + " ".join(f"{r['name']} {r['now']:.3f}." if r['unit'] == 'ratio' else f"{r['name']} {r['now']:.2f} {r['unit']}." for r in (B.get("ratios") or [])[:4]))
         L.append("")
-    if B.get("track") and B["track"].get("line"):
-        L += ["## Track record", "", B["track"]["line"] + " Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.", ""]
     if B["flash"]:
         L += ["## Flash export sales (last 3 days)", ""] + [f"- {a['t'][:10]}: {a['text'] or a['title']}" for a in B["flash"]] + [""]
     L += ["## Technical outlook by market", ""]
@@ -260,6 +258,9 @@ def to_md(B):
             L.append("")
     if B["general_news"]:
         L += ["## Other headlines", ""] + [f"- [{n['title']}]({n['link']}) · {n.get('source') or ''}" for n in B["general_news"]] + [""]
+    if B.get("track") and B["track"].get("line"):
+        L += ["## Track record", "", B["track"]["line"] + (" " + B["track"]["weak_line"] if B["track"].get("weak_line") else "")
+              + " Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.", ""]
     return "\n".join(L)
 
 

@@ -1,31 +1,6 @@
 {
-"generated": "2026-10-23 22:21 UTC",
+"generated": "2026-10-24 01:01 UTC",
 "events": [
-{
-"date": "2026-10-16",
-"time": "12:00 PM CT",
-"event": "Baker Hughes rig count",
-"cat": "Energy",
-"markets": [
-"CL",
-"NG"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
-{
-"date": "2026-10-16",
-"time": "2:30 PM CT",
-"event": "CFTC Commitments of Traders",
-"cat": "CFTC",
-"markets": [
-"ALL"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-10-19",
 "time": "3:00 PM CT",
@@ -3198,6 +3173,43 @@
 "ZS",
 "ZC",
 "ZW"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-22",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
+"estimated": false
+},
+{
+"date": "2027-01-22",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-22",
+"time": "2:30 PM CT",
+"event": "CFTC Commitments of Traders",
+"cat": "CFTC",
+"markets": [
+"ALL"
 ],
 "importance": 1,
 "link": null,

@@ -1,6 +1,6 @@
-# Morning brief · Sun Oct 25, 2026 07:53 AM ET
+# Morning brief · Sun Oct 25, 2026 08:02 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-25 11:52 UTC). CME open interest from 20261023. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-25 12:02 UTC). CME open interest from 20261023. Research only, not investment advice.
 
 ## Key points
 
@@ -158,4 +158,4 @@ Research signals: trend long 1.8x for 40% vol (12m excess +39%); carry +55.2%/yr
 
 ## Track record
 
-Track record: 48 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything. Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.
+Track record: 60 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything. Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.

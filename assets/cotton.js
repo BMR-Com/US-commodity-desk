@@ -20,7 +20,7 @@ const Cotton = (() => {
   const src = (u, l) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`;
   function render() {
     history.replaceState(null, '', '#' + tab);
-    ({ 'ct-primer': primer, 'ct-geo': () => Geo.mount(body(), 'cotton'), 'ct-wasde': wasde, 'ct-esr': esr, 'ct-crop': () => frame(SITE.crop, 'Cotton crop progress', 'NASS crop progress and condition, crop predicted from ratings and drought, ginning and classing pace, grades and tenderability, FSA acreage.'),
+    ({ 'ct-primer': primer, 'ct-geo': () => Geo.mount(body(), 'cotton'), 'ct-wasde': wasde, 'ct-esr': esr, 'ct-crop': cropTab,
       'ct-china': () => { try { typeof ChinaCotton !== 'undefined' ? ChinaCotton.mount(body()) : body().innerHTML = '<div class="card"><p class="note">China module not loaded.</p></div>'; } catch (e) { body().innerHTML = '<div class="card"><p class="note">China tab failed to load.</p></div>'; } }, 'ct-loan': () => { try { typeof CottonLoan !== 'undefined' ? CottonLoan.mount(body()) : body().innerHTML = '<div class="card"><p class="note">Loan module not loaded.</p></div>'; } catch (e) { body().innerHTML = '<div class="card"><p class="note">Loan tab failed to load.</p></div>'; } },
       'ct-oncall': () => frame(SITE.oncall, 'Cotton on-call', 'CFTC weekly cotton on-call: unfixed call sales and purchases by contract month, mill fixation pace and what it means for futures.'),
       'ct-flows': flows, 'ct-rv': () => RVView.mount(body(), 'CT'), 'ct-outlook': outlook })[tab]();
@@ -64,6 +64,25 @@ const Cotton = (() => {
       if (N?.items?.length) body().insertAdjacentHTML('beforeend', `<div class="card" style="margin-top:12px"><h2>China's yarn imports and demand in its suppliers (as of ${N.asof})</h2><p>${N.text}</p><ul>${N.items.map(x => `<li>${x}</li>`).join('')}</ul><p class="note">${N.caveat} Built ${N.generated}; see Cotton → China.</p></div>`);
     } catch (e) { /* ignore */ }
     body().insertAdjacentHTML('beforeend', `<p class="note" style="margin:4px 2px">${useOwn ? `Desk's own Thursday export-sales run (upland + Pima, USDA FAS), week ending ${own.week} · ${OWN.generated}${X ? ` · the ${src(SITE.esr, 'cotton export sales page')} has week ending ${wk(X) || '?'}` : ''}` : `From ${src(SITE.esr, 'BMR-Com US cotton export sales')} (upland + Pima, USDA FAS) · ${D.generated}`}.</p>`);
+  }
+  // Crop progress tab: BMR-Com crop projection card (output of the cotton-crop-progress repo) above the live dashboard
+  function cropTab() {
+    frame(SITE.crop, 'Cotton crop progress', 'NASS crop progress and condition, crop projection, ginning and classing pace, grades and tenderability, FSA acreage.');
+    const host = document.createElement('div');
+    host.className = 'card'; host.style.marginBottom = '8px';
+    host.innerHTML = '<p class="note">Loading the crop projection…</p>';
+    body().insertBefore(host, body().children[1] || null);
+    fetch(SITE.crop + 'data/crop_projection.json?' + Date.now()).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(P => {
+      const f = x => x.toFixed(2), pc = x => Math.round(x * 100) + '%';
+      const u = P.us_upland, a = P.us_all, t = P.texas, U = P.usda || {};
+      const row = (lab, x, us) => `<tr><td class="l">${lab}</td><td class="n"><b>${f(x.central)}</b></td><td class="n">${f(x.lo68)}–${f(x.hi68)}</td><td class="n">${f(x.lo95)}–${f(x.hi95)}</td><td class="n">${f(x.lo99)}–${f(x.hi99)}</td><td class="n">${us != null ? f(us) : '–'}</td></tr>`;
+      host.innerHTML = `<h2>BMR-Com crop projection <span class="note">as of ${P.asof} · ${P.unit}</span></h2>
+        <div class="tbl"><table><tr><th class="l"></th><th>Projection</th><th>68%</th><th>95%</th><th>99%</th><th>USDA ${U.report || ''}</th></tr>
+        ${row('US all cotton', a, U.us_all)}${row('US upland', u, U.us_upland)}${row('Texas upland', t, U.tx)}</table></div>
+        <p>Texas final abandonment projected at <b>${pc(t.abandonment.central)}</b> (95% ${pc(t.abandonment.lo95)}–${pc(t.abandonment.hi95)}) against ${pc(U.tx_abandonment || 0)} in USDA's numbers.</p>
+        ${P.texas_regions ? `<p>${P.texas_regions}</p>` : ''}${(P.notes || []).map(n => `<p class="note">${n}</p>`).join('')}
+        <p class="note">Inputs through: ${Object.entries(P.inputs_through || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(' · ')}. Built from ${(P.variables || []).length} public USDA data sets; see the ${src(SITE.crop, 'crop progress page')}.</p>`;
+    }).catch(() => { host.innerHTML = '<p class="note">Crop projection not available yet.</p>'; });
   }
   function frame(u, title, what) {
     body().innerHTML = `<div class="card" style="margin-bottom:8px"><h2 style="display:inline">${title}</h2> <span class="note">${what} Live view of the ${src(u, 'full dashboard')}.</span></div>

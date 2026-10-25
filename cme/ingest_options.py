@@ -111,6 +111,16 @@ def main(path):
                 if mm and v:
                     fm[(2000 + int(mm[2]), MON[mm[1]])] = (v, num(oi, sym))
             fut[td] = fm
+        for td in {e["td"] for e in p.get("exps", [])} - set(fut):   # underlying skipped (FUTHAVE): read collect.js's file
+            f = ROOT / "data" / "cme" / datetime.strptime(td, "%m/%d/%Y").strftime("%Y%m%d") / "fut_settlements.csv"
+            fm = {}
+            if f.exists():
+                for r in pd.read_csv(f, dtype=str).query("sym == @sym").itertuples():
+                    mm = re.match(r"([A-Z]{3}) (\d{2})", str(r.month))
+                    v = num(r.settle, sym)
+                    if mm and v:
+                        fm[(2000 + int(mm[2]), MON[mm[1]])] = (v, num(r.oi, sym))
+            fut[td] = fm
         by_td = {}
         for e in p.get("exps", []):
             td = e["td"]

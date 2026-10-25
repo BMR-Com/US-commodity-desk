@@ -283,3 +283,7 @@ Kept isolated from the rest of the desk: own data folder `data/china/`, own work
 - Backfilled from git history of `latest.json` (`python models/brief_track.py --backfill`, full clone needed): 2026-10-21 → 24. Expect ~2–3 months before the 5-day numbers can be read.
 - Brief: a "Track record" section, plus a key-points line naming markets whose 5-day view record is weak once they have enough windows. Dashboard: "Brief track record" card under the morning brief (`assets/summary.js`).
 - `calls.csv` is outside the retention job's reach (it prunes only dated folders/files).
+
+## CME option settlements: cut-off fix (2026-10-25, Ma: "CME download not able to download option settlements")
+- Symptom: since 10/21 the nightly run stopped after ZM every day (CME's edge cuts a browser off after roughly 250-300 requests), so ZL, ZW, KE and NG/CL/HO/RB options were missing for 10/22-10/23 and HO/RB had never been stored; the fixed product order meant the same tail always lost out.
+- Fix: collect_options.js orders products by fewest stored dates (HAVE) so yesterday's gaps go first; new 5th argument FUTHAVE (`python3 cme/options_have.py fut`) skips refetching futures settlements collect.js already stored, and ingest_options.py reads the underlying from data/cme/<date>/fut_settlements.csv. The CME routine now retries the options step once after a STOP.

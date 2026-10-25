@@ -6,11 +6,18 @@
 // requests are spaced out, the nearest MAXEXP expiries only are fetched, and the run stops after repeated failures.
 // It takes a few minutes: start it without awaiting (window.__optp = <this file>; window.__optp.then(v => window.__opt_b64 = v))
 // and poll window.__opt_b64.
-(async (DAYS = 1, MAXEXP = 10, GAP = 700, HAVE = []) => {   // HAVE: ['ZC|10/22/2026', ...] already stored, skipped
+// The cap hits after roughly 250-300 requests, so the products with the fewest stored dates (HAVE) go first: a product
+// cut off one day is collected first the next, instead of the same tail (soyoil, wheat, energy) always missing out.
+// FUTHAVE: ['ZC|10/23/2026', ...] product-dates whose futures settlements collect.js already stored
+// (data/cme/<date>/fut_settlements.csv, see `python3 cme/options_have.py fut`); those are not fetched again and
+// ingest_options.py reads the underlying from that file instead.
+(async (DAYS = 1, MAXEXP = 10, GAP = 700, HAVE = [], FUTHAVE = []) => {   // HAVE: ['ZC|10/22/2026', ...] already stored, skipped
   // futures product id -> symbol (option product ids come from CME's own expiration list)
-  const P = [['DC', 27], ['GDK', 778], ['CSC', 5201], ['CB', 26], ['GNF', 781], ['DY', 36], ['HE', 19], ['LE', 22], ['GF', 34],
+  const P0 = [['DC', 27], ['GDK', 778], ['CSC', 5201], ['CB', 26], ['GNF', 781], ['DY', 36], ['HE', 19], ['LE', 22], ['GF', 34],
              ['ZC', 300], ['ZS', 320], ['ZM', 310], ['ZL', 312], ['ZW', 323], ['KE', 348],
              ['NG', 444], ['CL', 425], ['HO', 426], ['RB', 429]];   // NYMEX energy (energy desk)
+  const nHave = sym => HAVE.filter(h => h.startsWith(sym + '|')).length;
+  const P = P0.map((x, i) => [x, i]).sort((a, b) => nHave(a[0][0]) - nHave(b[0][0]) || a[1] - b[1]).map(x => x[0]);
   // background tabs throttle setTimeout to about once a minute; a MessageChannel loop keeps the pacing honest
   const sleep = ms => new Promise(r => { const t0 = performance.now(); const mc = new MessageChannel();
     mc.port1.onmessage = () => { if (performance.now() - t0 >= ms) { mc.port1.close(); r(); } else mc.port2.postMessage(0); };
@@ -43,7 +50,7 @@
         .sort((a, b) => new Date(b) - new Date(a)).slice(0, DAYS);
       for (const td of all) {
         if (HAVE.includes(`${sym}|${td}`)) continue;
-        try {   // futures settlements for the same trade date (underlying prices)
+        if (!FUTHAVE.includes(`${sym}|${td}`)) try {   // futures settlements for the same trade date (underlying prices)
           const f = await j(`/CmeWS/mvc/Settlements/Futures/Settlements/${fid}/FUT?strategy=DEFAULT&tradeDate=${td}&pageSize=500`);
           prod.futures[td] = (f.settlements || []).filter(r => r.month !== 'Total').map(r => [r.month, r.settle, r.openInterest, r.volume]);
         } catch (e) { out.errors.push(String(e)); if (String(e).includes('STOP')) throw e; }

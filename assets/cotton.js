@@ -79,6 +79,8 @@ const Cotton = (() => {
       host.innerHTML = `<h2>BMR-Com crop projection <span class="note">as of ${P.asof} · ${P.unit}</span></h2>
         <div class="tbl"><table><tr><th class="l"></th><th>Projection</th><th>68%</th><th>95%</th><th>99%</th><th>USDA ${U.report || ''}</th></tr>
         ${row('US all cotton', a, U.us_all)}${row('US upland', u, U.us_upland)}${row('Texas upland', t, U.tx)}</table></div>
+        ${(P.states || []).length ? `<details style="margin:8px 0"><summary>By state (upland)</summary><div class="tbl"><table><tr><th class="l">State</th><th>Projection</th><th>68%</th><th>95%</th><th>99%</th><th>USDA</th></tr>
+          ${P.states.map(x => row(x.name, x, x.usda)).join('')}</table></div></details>` : ''}
         <p>Texas final abandonment projected at <b>${pc(t.abandonment.central)}</b> (95% ${pc(t.abandonment.lo95)}–${pc(t.abandonment.hi95)}) against ${pc(U.tx_abandonment || 0)} in USDA's numbers.</p>
         ${P.texas_regions ? `<p>${P.texas_regions}</p>` : ''}${(P.notes || []).map(n => `<p class="note">${n}</p>`).join('')}
         <p class="note">Inputs through: ${Object.entries(P.inputs_through || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(' · ')}. Built from ${(P.variables || []).length} public USDA data sets; see the ${src(SITE.crop, 'crop progress page')}.</p>`;

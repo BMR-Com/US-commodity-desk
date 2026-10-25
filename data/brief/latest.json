@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-24 23:53 UTC",
- "generated_et": "Sat Oct 24, 2026 07:53 PM ET",
- "date": "2026-10-24",
- "prices_from": "2026-10-24 23:53 UTC",
+ "generated": "2026-10-25 11:53 UTC",
+ "generated_et": "Sun Oct 25, 2026 07:53 AM ET",
+ "date": "2026-10-25",
+ "prices_from": "2026-10-25 11:52 UTC",
  "cme_oi_date": "20261023",
  "headlines": [
   "Biggest moves vs prior settle: Class IV milk -0.35 (-1.7%); Corn -4.50 (-1.0%); Class III milk +0.17 (+1.0%).",
@@ -61,6 +61,66 @@
    "link": null,
    "estimated": false,
    "time_et": "12:00 PM ET"
+  },
+  {
+   "date": "2026-10-29",
+   "time": "7:30 AM CT",
+   "event": "USDA weekly export sales",
+   "cat": "USDA",
+   "markets": [
+    "ZC",
+    "ZS",
+    "ZM",
+    "ZL",
+    "ZW",
+    "KE",
+    "HE",
+    "LE",
+    "CT"
+   ],
+   "importance": 2,
+   "link": null,
+   "estimated": false,
+   "time_et": "8:30 AM ET"
+  },
+  {
+   "date": "2026-10-29",
+   "time": "9:30 AM CT",
+   "event": "EIA Weekly Natural Gas Storage Report",
+   "cat": "Energy",
+   "markets": [
+    "NG"
+   ],
+   "importance": 3,
+   "link": "https://ir.eia.gov/ngs/ngs.html",
+   "estimated": false,
+   "time_et": "10:30 AM ET"
+  },
+  {
+   "date": "2026-10-29",
+   "time": "2:30 PM CT",
+   "event": "CFTC cotton on-call report",
+   "cat": "CFTC",
+   "markets": [
+    "CT"
+   ],
+   "importance": 2,
+   "link": null,
+   "estimated": false,
+   "time_et": "3:30 PM ET"
+  },
+  {
+   "date": "2026-10-29",
+   "time": "",
+   "event": "Feeder cattle Oct 26: last trading day (settles to CME Feeder Index)",
+   "cat": "CME contract",
+   "markets": [
+    "GF"
+   ],
+   "importance": 2,
+   "link": null,
+   "estimated": true,
+   "time_et": ""
   }
  ],
  "flash": [
@@ -130,22 +190,22 @@
    },
    "news": [
     {
+     "title": "Corn Closes Down Nearly 3\u00a2 | Thursday, Oct. 22, 2026",
+     "source": "Successful Farming",
+     "time": "2026-10-25T09:17Z",
+     "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNSnZIU3NtdG5jcllfSnNreUkzaUQ5aUhMdnlZX243VnFyeEEyaEdZUG9ld1dRdDVrck13SHJoNExCWlJuUDVRaVNUTUtFdldnQi1QYjh5UVI0MWE2RDQ0T1poSU5iWDZmX25WSjl1OXVFZ2Z6d1FvWlZjWkwwdGpUcEFHNmxGa1F4allodw?oc=5"
+    },
+    {
      "title": "Record corn, soybean acreage offsets lower USDA yield estimates",
      "source": "Brownfield Ag News",
      "time": "2026-10-24T18:09Z",
      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNYWhUNDR5WTRKQTNxZjVWVzZxMHZjeVNXMUtNMl9XenVOVG9uZnFuaVFsb0laRDZXOF9YUGt5SFMwT1NxMWpVVVVTdU81azNWbkxfNFNhWVZobmdlSjExSmJPNUFnbG9teXNyc0ZRQXAzT2VhNkMyaW5ULWo0bkdZM04yb2ZNWXZyRHd1Y0VBNDItdlBsUzhEUXA5WWRUQQ?oc=5"
     },
     {
-     "title": "Ohio Corn and Wheat says USMCA is essential for U.S. wheat demand",
+     "title": "USDA forecast shows rising costs for corn, soybeans, sorghum and wheat",
      "source": "Brownfield Ag News",
-     "time": "2026-10-24T15:43Z",
-     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOc2NLNzFYZmZtZ3RteW45cGdWQ2xfSG94QlV6cDFoZUo3SWZvWUNlUkdxeHA3X2RNOTZaSHd4SWw3a2xQMVlybHRuN3dVZUlVc0E4NV91b2FvSG05ZF9sd3dqWWthQXdydGpla2NfQnBIdmtQODBEWl9IOFBlVVNZbjJNQlFubE9VbHhyNlpqQXJzdW9QQ1VPcmpJVmRhaUpJ?oc=5"
-    },
-    {
-     "title": "5% of U.S. corn, 6% of soybeans planted",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-24T10:05Z",
-     "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBaUlJHQUZKMmNEeFdubjYyLWk5Y25GRkVUQ0JGNnZidmlRRW5ocWRud25TWkt6aFU2dzU4N2dsWk4tZG1fT2IxemZ6NkQtOFRNd3g4YzdmT3VQZ0NGUFRHdnpmRkZyb3E5VjBwTzNna2s1Q0tIa3hLcm53?oc=5"
+     "time": "2026-10-24T17:34Z",
+     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQSUpfODYtTzhVTmFLV0dtbTFxa185YWx3TWxaamEzc2xKUmFxS3hYb3pjTVhDbTZFd0lSelkzN2R3eWE1OVJsSFJUdTgtb2c0YmgtbEgzVFJGa2JISlpQbFhBNlZyWlV5ZnZ0UXJGZEF3UG5wTUlwYnIxRW9TeGRVWFFtNnFrZU5CTEJ4QXlKczNDckJsX2p2b0pCZ28tdzcwX1VDcnJB?oc=5"
     }
    ]
   },
@@ -208,22 +268,22 @@
    },
    "news": [
     {
+     "title": "Economist says Brazil could play key role in expanded U.S. beef imports",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-25T02:16Z",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQQ3RJeFpWek1qTVVJdndPR25RVTBiejRfcXQwYmtuYmZvUFNLZDdVZjhZWWl6eWJtVjhaMlprYWhTU3dJbEFpbXNKY2UwMlp3TzdXVmlOQ29SUE9tY2FQRGYxcDVYbHpwNlpVQmRTenBVVEZHdVdkTTM1cFhYT05DMWhFT1YyQk5ZQXNsQzRNNWVOcFZsb09xVFNPem9US3NvMDV4cGN5clM?oc=5"
+    },
+    {
      "title": "Record corn, soybean acreage offsets lower USDA yield estimates",
      "source": "Brownfield Ag News",
      "time": "2026-10-24T18:09Z",
      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNYWhUNDR5WTRKQTNxZjVWVzZxMHZjeVNXMUtNMl9XenVOVG9uZnFuaVFsb0laRDZXOF9YUGt5SFMwT1NxMWpVVVVTdU81azNWbkxfNFNhWVZobmdlSjExSmJPNUFnbG9teXNyc0ZRQXAzT2VhNkMyaW5ULWo0bkdZM04yb2ZNWXZyRHd1Y0VBNDItdlBsUzhEUXA5WWRUQQ?oc=5"
     },
     {
-     "title": "Tough cutting soybeans driving up diesel costs",
+     "title": "USDA forecast shows rising costs for corn, soybeans, sorghum and wheat",
      "source": "Brownfield Ag News",
-     "time": "2026-10-24T14:17Z",
-     "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNX1ZibU5NeDVqNkpZWlRhdkFOendtcDZlV0dQOVJ4dEUtUUdfX082UXliTHRQdUdoYkNLTFBTUzhmWWFjRHFubXRmZWZpeWtNUVI1cUhIRHd0aVQ3UWVEa1ZKUkR3bFhiam5pb2VhdkxIUXRtd0xBWVhIRFdldnNIZkRDXzJtQnd4?oc=5"
-    },
-    {
-     "title": "EPA proposal shifts biofuel burden to big refiners, boosting soy oil hopes",
-     "source": "Farm Progress",
-     "time": "2026-10-24T12:11Z",
-     "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNekl6ODc3b3ZnRzFqZ09IdDc5OGJvaEJnc2Uyb29lcjhJV2VFMnV1dVJrWEswZWRhWlVHYTJacE0tSzVKT0s1azFnYkFrcExZZldSdWRLTkhLUFVwMlhxaUpfT29Va3d0Wi11SW9PVThwTUZXYWJld0NkSnhoVVJVNzVGSTNzSzNkbEVIaWw0ckZRWGVyWEVlMGNrRDROSVpmbGN3eENJM3VMQ2RWbm84TEhkcmdQdw?oc=5"
+     "time": "2026-10-24T17:34Z",
+     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQSUpfODYtTzhVTmFLV0dtbTFxa185YWx3TWxaamEzc2xKUmFxS3hYb3pjTVhDbTZFd0lSelkzN2R3eWE1OVJsSFJUdTgtb2c0YmgtbEgzVFJGa2JISlpQbFhBNlZyWlV5ZnZ0UXJGZEF3UG5wTUlwYnIxRW9TeGRVWFFtNnFrZU5CTEJ4QXlKczNDckJsX2p2b0pCZ28tdzcwX1VDcnJB?oc=5"
     }
    ]
   },
@@ -284,14 +344,7 @@
     "vol": 133449,
     "report": "PRELIMINARY"
    },
-   "news": [
-    {
-     "title": "ADA Mideast program helping schools navigate the updated USDA meal guidelines",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-23T18:05Z",
-     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0liajdYcTZGWUhrZVl5TFFuVGxNMDVHbEJqc29hZllfVmowMUNIZlhtMHJNTndmWkF0WkJHZ0YzeThmZWJVMnRJZmRlNnhRczNRVUN3MG1VdkRPbFBQV0xIcnJRMTJyanM1UjVhNllST3lCMnB6N3Zlb3JvdVFfTWVXMXR6N3lVcERDemV6eFdqdUVnZ2hoYmpDYnRIeHp6ZWtEZTQwVUJidGEtbmpUVGJ3?oc=5"
-    }
-   ]
+   "news": []
   },
   {
    "sym": "ZL",
@@ -406,22 +459,22 @@
    },
    "news": [
     {
-     "title": "Ohio Corn and Wheat says USMCA is essential for U.S. wheat demand",
+     "title": "Wheat prices encourage planting, but input costs remain a wildcard",
      "source": "Brownfield Ag News",
-     "time": "2026-10-24T15:43Z",
-     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOc2NLNzFYZmZtZ3RteW45cGdWQ2xfSG94QlV6cDFoZUo3SWZvWUNlUkdxeHA3X2RNOTZaSHd4SWw3a2xQMVlybHRuN3dVZUlVc0E4NV91b2FvSG05ZF9sd3dqWWthQXdydGpla2NfQnBIdmtQODBEWl9IOFBlVVNZbjJNQlFubE9VbHhyNlpqQXJzdW9QQ1VPcmpJVmRhaUpJ?oc=5"
+     "time": "2026-10-25T07:40Z",
+     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNRWo1ZDZsT0w1eGUxZDBDd0xyUmtMWkY5dHdwUE1sMExpZ09tTzFxU053emdCREtuTWpIdXNBS2FWODdkOHdNaS1MMmVmak5yd1lPajlwNlJCNjJ2dGFyMVNJdkN2SUtmbmVpcGNlbUFaaUlwUHUwMFN5aHRDbXlpRWlINWpQS3J2SHdBaVpsb1ZGaEU2YUVza09meXJlMkh5aVE?oc=5"
     },
     {
-     "title": "Illinois farmer expects early wheat harvest, timely double crop planting",
+     "title": "Black Sea, Red Sea disruptions could boost U.S. wheat demand",
      "source": "Brownfield Ag News",
-     "time": "2026-10-24T01:45Z",
-     "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNcWJBRmgxY3ZlOGllUkNyX3JkS2dQaVQtRGhJY3JDRVdWaG16aEpQWklEeDVHMmJVbU5RZ3FwVFpKc01HbHBUaGpHdndFQ3hrc0RZR0ZJc3FBNHc0VzU4RzQ2OXFDUGpfNlJJNmtDRVFIb2prNzIxRHZWMnJXMmFOd1pfZWF0UVl3UlRwOUNTbmk1ZDdWTk93alYyYlFEVVBfRG16VzJ2aDg3dw?oc=5"
+     "time": "2026-10-25T07:17Z",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNUG82UkdtbU9FUXg3Vm95bVhqWDdNWjh5TWx0a3RSbVNvb3hobHA5Si1zYWVuSVlTcENtMkJ4N3l0SHdSOTE2b0VJR09MaVN2Q2tLd3FsNXJDaXJPT2lXWXA2Q0V4QWVncUxfQ2czYmduRVc1Vl9nenY4QjFyZ1VhaWNjVG9NTy0tYlVuMzhsQzBSM2JjaHdWbA?oc=5"
     },
     {
-     "title": "Soybeans Up Friday, Corn and Wheat Falter: What Bottoms the Grain Markets?",
-     "source": "AgWeb",
-     "time": "2026-10-23T22:28Z",
-     "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOX1ZLd2QxZlJBYzhTZjhjUEpNVVYzSEhNUlpOeGU4NzNtOGplQlVMSjlMTm91NzBMX3dqR0l6ai03NXQzOEpReG41QkFDRVNhRW1GUEFWZ05kQXY3NlNyeGxORHk5R0lpeE1mOXRkcEo2RGpseDFrZnR0RHZFOXVRR0xCVUt4VTM0SUVrNmFhQ2hYWmRsV3dWTHln?oc=5"
+     "title": "USDA forecast shows rising costs for corn, soybeans, sorghum and wheat",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-24T17:34Z",
+     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQSUpfODYtTzhVTmFLV0dtbTFxa185YWx3TWxaamEzc2xKUmFxS3hYb3pjTVhDbTZFd0lSelkzN2R3eWE1OVJsSFJUdTgtb2c0YmgtbEgzVFJGa2JISlpQbFhBNlZyWlV5ZnZ0UXJGZEF3UG5wTUlwYnIxRW9TeGRVWFFtNnFrZU5CTEJ4QXlKczNDckJsX2p2b0pCZ28tdzcwX1VDcnJB?oc=5"
     }
    ]
   },
@@ -488,22 +541,22 @@
    },
    "news": [
     {
-     "title": "Ohio Corn and Wheat says USMCA is essential for U.S. wheat demand",
+     "title": "Wheat prices encourage planting, but input costs remain a wildcard",
      "source": "Brownfield Ag News",
-     "time": "2026-10-24T15:43Z",
-     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOc2NLNzFYZmZtZ3RteW45cGdWQ2xfSG94QlV6cDFoZUo3SWZvWUNlUkdxeHA3X2RNOTZaSHd4SWw3a2xQMVlybHRuN3dVZUlVc0E4NV91b2FvSG05ZF9sd3dqWWthQXdydGpla2NfQnBIdmtQODBEWl9IOFBlVVNZbjJNQlFubE9VbHhyNlpqQXJzdW9QQ1VPcmpJVmRhaUpJ?oc=5"
+     "time": "2026-10-25T07:40Z",
+     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNRWo1ZDZsT0w1eGUxZDBDd0xyUmtMWkY5dHdwUE1sMExpZ09tTzFxU053emdCREtuTWpIdXNBS2FWODdkOHdNaS1MMmVmak5yd1lPajlwNlJCNjJ2dGFyMVNJdkN2SUtmbmVpcGNlbUFaaUlwUHUwMFN5aHRDbXlpRWlINWpQS3J2SHdBaVpsb1ZGaEU2YUVza09meXJlMkh5aVE?oc=5"
     },
     {
-     "title": "Illinois farmer expects early wheat harvest, timely double crop planting",
+     "title": "Black Sea, Red Sea disruptions could boost U.S. wheat demand",
      "source": "Brownfield Ag News",
-     "time": "2026-10-24T01:45Z",
-     "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNcWJBRmgxY3ZlOGllUkNyX3JkS2dQaVQtRGhJY3JDRVdWaG16aEpQWklEeDVHMmJVbU5RZ3FwVFpKc01HbHBUaGpHdndFQ3hrc0RZR0ZJc3FBNHc0VzU4RzQ2OXFDUGpfNlJJNmtDRVFIb2prNzIxRHZWMnJXMmFOd1pfZWF0UVl3UlRwOUNTbmk1ZDdWTk93alYyYlFEVVBfRG16VzJ2aDg3dw?oc=5"
+     "time": "2026-10-25T07:17Z",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNUG82UkdtbU9FUXg3Vm95bVhqWDdNWjh5TWx0a3RSbVNvb3hobHA5Si1zYWVuSVlTcENtMkJ4N3l0SHdSOTE2b0VJR09MaVN2Q2tLd3FsNXJDaXJPT2lXWXA2Q0V4QWVncUxfQ2czYmduRVc1Vl9nenY4QjFyZ1VhaWNjVG9NTy0tYlVuMzhsQzBSM2JjaHdWbA?oc=5"
     },
     {
-     "title": "Soybeans Up Friday, Corn and Wheat Falter: What Bottoms the Grain Markets?",
-     "source": "AgWeb",
-     "time": "2026-10-23T22:28Z",
-     "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOX1ZLd2QxZlJBYzhTZjhjUEpNVVYzSEhNUlpOeGU4NzNtOGplQlVMSjlMTm91NzBMX3dqR0l6ai03NXQzOEpReG41QkFDRVNhRW1GUEFWZ05kQXY3NlNyeGxORHk5R0lpeE1mOXRkcEo2RGpseDFrZnR0RHZFOXVRR0xCVUt4VTM0SUVrNmFhQ2hYWmRsV3dWTHln?oc=5"
+     "title": "USDA forecast shows rising costs for corn, soybeans, sorghum and wheat",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-24T17:34Z",
+     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQSUpfODYtTzhVTmFLV0dtbTFxa185YWx3TWxaamEzc2xKUmFxS3hYb3pjTVhDbTZFd0lSelkzN2R3eWE1OVJsSFJUdTgtb2c0YmgtbEgzVFJGa2JISlpQbFhBNlZyWlV5ZnZ0UXJGZEF3UG5wTUlwYnIxRW9TeGRVWFFtNnFrZU5CTEJ4QXlKczNDckJsX2p2b0pCZ28tdzcwX1VDcnJB?oc=5"
     }
    ]
   },
@@ -514,14 +567,14 @@
    "contract": "Dec 26",
    "unit": "\u00a2/lb",
    "dp": 2,
-   "last": 80.2,
-   "chg": -0.59,
-   "chg_pct": -0.7302884020299542,
-   "r1w": 0.25,
-   "r1m": -3.733,
+   "last": 80.34,
+   "chg": -0.45,
+   "chg_pct": -0.5569996286669142,
+   "r1w": 0.425,
+   "r1m": -3.565,
    "rating": "Sell",
    "trend": "mixed",
-   "rsi": 43.6385,
+   "rsi": 44.2457,
    "sup": 79.2,
    "res": 80.47,
    "cta_up": 81.79,
@@ -540,7 +593,7 @@
    "esr_norm": 0.54464,
    "view": "bearish",
    "conviction": "medium",
-   "technical": "Dec 26 trades at 80.20 \u00a2/lb (+0.2% on the week, -3.7% on the month), in a mixed trend: the daily rating is sell and the weekly neutral. RSI is 44 and ADX 14 (range-bound). Nearest support 79.20, resistance 80.47; 52-week range 66.86\u201393.74.",
+   "technical": "Dec 26 trades at 80.34 \u00a2/lb (+0.4% on the week, -3.6% on the month), in a mixed trend: the daily rating is sell and the weekly neutral. RSI is 44 and ADX 14 (range-bound). Nearest support 79.20, resistance 80.47; 52-week range 66.86\u201393.74.",
    "levels": "Levels to watch: a close above 81.79 (60-day momentum flip) would bring trend-follower buying; below 78.20 (200-day average) adds selling; the 79.20\u201380.47 band is the immediate range. Next catalysts: Crop Progress Oct 26; USDA weekly export sales Oct 29; Crop Progress Nov 2.",
    "flags": [
     {
@@ -610,14 +663,8 @@
     {
      "title": "Pasture-raised pork: Answering the protein demand boom",
      "source": "Farm Progress",
-     "time": "2026-10-24T21:25Z",
+     "time": "2026-10-25T09:40Z",
      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPc0dLaXRjd2hlTjBYQjVBdmRvSUg1SDQ4ejZpRWFfQnFMUkZ0UHhySzAzQjVmOUp4T05Gc2ZjRXozY19xX1FuZW1OQmNQek54WExoTjdUa0s3WVdEYkFQSUpSR01wTVp0WkNVX3ZaaXRyOE8yaEJ4U040WmgyRzh0TFJkSG5PSGM2aURaWEdzZnFpRlduakpnNjQ0X0hvWGE1bkE?oc=5"
-    },
-    {
-     "title": "U.S. pork loin finds new market in Korean institutional dining",
-     "source": "National Hog Farmer",
-     "time": "2026-10-23T13:48Z",
-     "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQb3hmT3IyaGNGcmRDc2FjSjNJQmpQWkhlZFVTWkpjNmNCeGxxX0ppNm5GeFNRWDlKUWFiakdkbmkyOXN3MWl2OGFzd1VtMEtmQnhESHhmMU14RGxpVGZKWlI2Q3lEWHIzMGVhdVVJMVVPdWxKM1NpVk5qMFNTSjltX0Z1YnNUdFBzaTVadWRvcmxYRGRPWmotckx6NXUwUzZXU1I3cWsyZXVOMTg?oc=5"
     }
    ]
   },
@@ -628,14 +675,14 @@
    "contract": "Dec 26",
    "unit": "\u00a2/lb",
    "dp": 3,
-   "last": 231.125,
-   "chg": 0.0,
-   "chg_pct": 0.0,
-   "r1w": 1.2152,
-   "r1m": 4.5341,
+   "last": 231.2,
+   "chg": 0.075,
+   "chg_pct": 0.03244997295835587,
+   "r1w": 1.2481,
+   "r1m": 4.5681,
    "rating": "Buy",
    "trend": "mixed",
-   "rsi": 66.6775,
+   "rsi": 66.8123,
    "sup": 228.025,
    "res": 235.9,
    "cta_up": 242.0,
@@ -654,7 +701,7 @@
    "esr_norm": null,
    "view": "mildly bullish",
    "conviction": "low",
-   "technical": "Dec 26 trades at 231.125 \u00a2/lb (+1.2% on the week, +4.5% on the month), in a mixed trend: the daily rating is buy and the weekly strong buy. RSI is 67 and ADX 20 (range-bound). Nearest support 228.025, resistance 235.900; 52-week range 197.050\u2013245.900.",
+   "technical": "Dec 26 trades at 231.200 \u00a2/lb (+1.2% on the week, +4.6% on the month), in a mixed trend: the daily rating is buy and the weekly strong buy. RSI is 67 and ADX 20 (range-bound). Nearest support 228.025, resistance 235.900; 52-week range 197.050\u2013245.900.",
    "levels": "Levels to watch: a close above 242.000 (100-day breakout high) would bring trend-follower buying; below 229.410 (200-day average) adds selling; the 228.025\u2013235.900 band is the immediate range. Next catalysts: USDA weekly export sales Oct 29; USDA weekly export sales Nov 5; USDA WASDE Nov 10.",
    "flags": [],
    "event": "USDA WASDE",
@@ -667,22 +714,22 @@
    },
    "news": [
     {
+     "title": "Economist says Brazil could play key role in expanded U.S. beef imports",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-25T02:16Z",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQQ3RJeFpWek1qTVVJdndPR25RVTBiejRfcXQwYmtuYmZvUFNLZDdVZjhZWWl6eWJtVjhaMlprYWhTU3dJbEFpbXNKY2UwMlp3TzdXVmlOQ29SUE9tY2FQRGYxcDVYbHpwNlpVQmRTenBVVEZHdVdkTTM1cFhYT05DMWhFT1YyQk5ZQXNsQzRNNWVOcFZsb09xVFNPem9US3NvMDV4cGN5clM?oc=5"
+    },
+    {
+     "title": "Turkey industry sees opportunity as consumers feel beef price pressure",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-25T01:05Z",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNU25vejZLUm1yX2tfc00waG9IYUgzaWdVdThTejV3ZGNMNmdxNmI2SnFQRXRjTlotODdRNkFIWUZfdXplMktTT25Lek9KTzFrRzZ4cDM3UE9kS3F4WGhKbDdhWjE2Z0t0SkhfYl82VHlqODFZSFl3LWhCTGlVSE4xN3FSeHcxWDhMQ2dtSGlUZUx4cThPY0pkMVFZZzVDbmdiOWI3Q0dQdzM?oc=5"
+    },
+    {
      "title": "Growing Illinois Beef Expo returns to two-day show in new arena",
      "source": "Brownfield Ag News",
      "time": "2026-10-24T09:52Z",
      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOcTAtWGFqRGFRS0xZbEszRjhPbGFXeWdvZmwzMGVJTVUwTmVDUTNFTFlXRVVJMUJBX0FNVUw4eWlZQ3hNQTZfeGVMT0xGMGdVOHd0dnJCN0tLNjh1UWJXOFZfb2VJMXZqREFGOVlhS01sRVYwTndkZENkSVlfcHNOd0NLajJMYWRWSkpGTTZLanpuVEFsOVg1QUlCS0RLeUk?oc=5"
-    },
-    {
-     "title": "IATP: Beef import plan a win for packers, not much else",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-24T04:38Z",
-     "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPVXhhckVwdUd6SHhEZUxSdndMekJDOGJOR0pkZEZHWDhGdWJ2R1dsMzBhR0Q5LW9oX3phNl9ieGRucGZENll5VUN6cDdFcGtncjBJc04ycEZDMVlFa25PcGEwdUFpc0piMC10dXRoemxyNTBMMHcxRkJtX2k3Y3czZGtwU2t2WW1zREtZRnFxNlN4dw?oc=5"
-    },
-    {
-     "title": "Cattle on Feed Report Delivers Bullish Surprise as September Placements Drop 12%",
-     "source": "Drovers Magazine",
-     "time": "2026-10-23T23:36Z",
-     "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQMURDTnZ4R0l6TlJQZUM1S2hxZ2xsMWJkVnBmUzFwMTJGaXJPRW5BajRJRzJCZ0hpMEV4UG5vMzNweXBwVDRWRmtkUG9NTGt5RUJrR2tDRVhtTFg4ZjJGRVk4TWRaYkZ3eGllRG1ySHhjeGRybWtpX2hJQnk4TmQ4NW92OGdia1g1d2lWVHpzM3p4SDYzRExmN0RjSTI2bGVvdm5Vbw?oc=5"
     }
    ]
   },
@@ -732,22 +779,22 @@
    },
    "news": [
     {
+     "title": "Economist says Brazil could play key role in expanded U.S. beef imports",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-25T02:16Z",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQQ3RJeFpWek1qTVVJdndPR25RVTBiejRfcXQwYmtuYmZvUFNLZDdVZjhZWWl6eWJtVjhaMlprYWhTU3dJbEFpbXNKY2UwMlp3TzdXVmlOQ29SUE9tY2FQRGYxcDVYbHpwNlpVQmRTenBVVEZHdVdkTTM1cFhYT05DMWhFT1YyQk5ZQXNsQzRNNWVOcFZsb09xVFNPem9US3NvMDV4cGN5clM?oc=5"
+    },
+    {
+     "title": "Turkey industry sees opportunity as consumers feel beef price pressure",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-25T01:05Z",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNU25vejZLUm1yX2tfc00waG9IYUgzaWdVdThTejV3ZGNMNmdxNmI2SnFQRXRjTlotODdRNkFIWUZfdXplMktTT25Lek9KTzFrRzZ4cDM3UE9kS3F4WGhKbDdhWjE2Z0t0SkhfYl82VHlqODFZSFl3LWhCTGlVSE4xN3FSeHcxWDhMQ2dtSGlUZUx4cThPY0pkMVFZZzVDbmdiOWI3Q0dQdzM?oc=5"
+    },
+    {
      "title": "Growing Illinois Beef Expo returns to two-day show in new arena",
      "source": "Brownfield Ag News",
      "time": "2026-10-24T09:52Z",
      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOcTAtWGFqRGFRS0xZbEszRjhPbGFXeWdvZmwzMGVJTVUwTmVDUTNFTFlXRVVJMUJBX0FNVUw4eWlZQ3hNQTZfeGVMT0xGMGdVOHd0dnJCN0tLNjh1UWJXOFZfb2VJMXZqREFGOVlhS01sRVYwTndkZENkSVlfcHNOd0NLajJMYWRWSkpGTTZLanpuVEFsOVg1QUlCS0RLeUk?oc=5"
-    },
-    {
-     "title": "IATP: Beef import plan a win for packers, not much else",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-24T04:38Z",
-     "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPVXhhckVwdUd6SHhEZUxSdndMekJDOGJOR0pkZEZHWDhGdWJ2R1dsMzBhR0Q5LW9oX3phNl9ieGRucGZENll5VUN6cDdFcGtncjBJc04ycEZDMVlFa25PcGEwdUFpc0piMC10dXRoemxyNTBMMHcxRkJtX2k3Y3czZGtwU2t2WW1zREtZRnFxNlN4dw?oc=5"
-    },
-    {
-     "title": "Cattle on Feed Report Delivers Bullish Surprise as September Placements Drop 12%",
-     "source": "Drovers Magazine",
-     "time": "2026-10-23T23:36Z",
-     "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQMURDTnZ4R0l6TlJQZUM1S2hxZ2xsMWJkVnBmUzFwMTJGaXJPRW5BajRJRzJCZ0hpMEV4UG5vMzNweXBwVDRWRmtkUG9NTGt5RUJrR2tDRVhtTFg4ZjJGRVk4TWRaYkZ3eGllRG1ySHhjeGRybWtpX2hJQnk4TmQ4NW92OGdia1g1d2lWVHpzM3p4SDYzRExmN0RjSTI2bGVvdm5Vbw?oc=5"
     }
    ]
   },
@@ -802,6 +849,12 @@
    },
    "news": [
     {
+     "title": "Whole Milk for Healthy Kids might be late for school",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-25T01:41Z",
+     "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQckRyRnhsWXhGNmpOalFnLV9YOGZIc3JGbHpUWUdTZHdIU2ZjdXE0MXlhLS0tMGFCNzFpTGlBU2lUbkpDeURLQVlMYkplTTMzTHcyRmN2Y0xac2lqTzNvMC1GWndpa041cVBac2xOZzZULWVuVGdtcHdZcENaUG9INWkwdVRXMDFrSjdPVXV2SHQ?oc=5"
+    },
+    {
      "title": "New research could help dairy producers improve nutrient use efficiency on farm",
      "source": "Brownfield Ag News",
      "time": "2026-10-24T07:01Z",
@@ -812,12 +865,6 @@
      "source": "Brownfield Ag News",
      "time": "2026-10-24T04:46Z",
      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBfWWZGcGg5VzN3VWZrN2w1VklBbVRaM3VnQ0EyelZSX0JFTGhPQ29LV0VmSkJwd0NzMU5jNWtKcS1YeDdGY0RzUGhWYnNCdXZ5c05ZZUdkMjZvdFRNR08tSHhJMzY2M0RLU3RsaWhjSmpScFlBbzR5Vw?oc=5"
-    },
-    {
-     "title": "CME cash dairy prices mixed",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-23T18:25Z",
-     "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE0zYWNOMF9kNkQtRExzRGhmYUE4Z0VnQU45X0VKUEFmVXFPdnNEQVB1V0c0NnQ3bEM5aU1vYWlUVDZNeTFQZVRiN21tSXprS0pnZnotRERJUG9fWnZnS0g0cEttb0dScWNNZU1QcXlDSQ?oc=5"
     }
    ]
   },
@@ -872,6 +919,12 @@
    },
    "news": [
     {
+     "title": "Whole Milk for Healthy Kids might be late for school",
+     "source": "Brownfield Ag News",
+     "time": "2026-10-25T01:41Z",
+     "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQckRyRnhsWXhGNmpOalFnLV9YOGZIc3JGbHpUWUdTZHdIU2ZjdXE0MXlhLS0tMGFCNzFpTGlBU2lUbkpDeURLQVlMYkplTTMzTHcyRmN2Y0xac2lqTzNvMC1GWndpa041cVBac2xOZzZULWVuVGdtcHdZcENaUG9INWkwdVRXMDFrSjdPVXV2SHQ?oc=5"
+    },
+    {
      "title": "New research could help dairy producers improve nutrient use efficiency on farm",
      "source": "Brownfield Ag News",
      "time": "2026-10-24T07:01Z",
@@ -882,12 +935,6 @@
      "source": "Brownfield Ag News",
      "time": "2026-10-24T04:46Z",
      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBfWWZGcGg5VzN3VWZrN2w1VklBbVRaM3VnQ0EyelZSX0JFTGhPQ29LV0VmSkJwd0NzMU5jNWtKcS1YeDdGY0RzUGhWYnNCdXZ5c05ZZUdkMjZvdFRNR08tSHhJMzY2M0RLU3RsaWhjSmpScFlBbzR5Vw?oc=5"
-    },
-    {
-     "title": "CME cash dairy prices mixed",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-23T18:25Z",
-     "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE0zYWNOMF9kNkQtRExzRGhmYUE4Z0VnQU45X0VKUEFmVXFPdnNEQVB1V0c0NnQ3bEM5aU1vYWlUVDZNeTFQZVRiN21tSXprS0pnZnotRERJUG9fWnZnS0g0cEttb0dScWNNZU1QcXlDSQ?oc=5"
     }
    ]
   }
@@ -968,7 +1015,7 @@
  "macro": {
   "view": "mixed",
   "score": 0,
-  "summary": "Macro backdrop for ags: mixed (score +0 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl +; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +11.6%; weakest: KC wheat -13.9%. ",
+  "summary": "Macro backdrop for ags: mixed (score +0 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl +; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +11.6%; weakest: KC wheat -13.9%. Key releases ahead: US Federal Funds Rate (10-28 2:00 PM ET); US FOMC Statement (10-28 2:00 PM ET); US FOMC Press Conference (10-28 2:30 PM ET); US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).",
   "sections": [
    {
     "title": "Rates",
@@ -978,7 +1025,7 @@
    {
     "title": "Dollar & farm currencies",
     "score": 1,
-    "text": "Dollar index 101.75 (+0.6% in a month, +3.5% YTD). USD/BRL 4.996 (-3.3% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.661 (-0.8%); USD/MXN 18.65 (+6.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 101.75 (+0.6% in a month, +3.5% YTD). USD/BRL 4.996 (-3.3% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.670 (-0.6%); USD/MXN 18.65 (+6.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
@@ -988,12 +1035,12 @@
    {
     "title": "Energy",
     "score": 1,
-    "text": "WTI 103.27 $/bbl (+15.4% in a month), Brent 111.70, ULSD 4.787 $/gal (+6.0%), natural gas 2.64 (-16.3%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+    "text": "WTI 103.27 $/bbl (+15.4% in a month), Brent 111.70, ULSD 4.787 $/gal (+6.0%), natural gas 3.05 (-12.7%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -3.6% in a month, Shanghai Composite -6.3%, Hang Seng -7.0%, yuan +0.8% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -3.6% in a month, Shanghai Composite -6.3%, Hang Seng -7.0%, yuan +0.6% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
@@ -1062,11 +1109,11 @@
   },
   {
    "name": "USD/CNY",
-   "last": 6.6606,
-   "d1": -0.2590610508526159,
-   "m1": -0.7524861901535229,
+   "last": 6.6702,
+   "d1": -0.11530327919362371,
+   "m1": -0.6094395978683442,
    "kind": "price",
-   "time": "2026-10-24 21:32 UTC"
+   "time": "2026-10-25 03:30 UTC"
   },
   {
    "name": "WTI crude",
@@ -1078,11 +1125,11 @@
   },
   {
    "name": "Natural gas",
-   "last": 2.64,
-   "d1": -5.5793992704527895,
-   "m1": -16.270221928897723,
+   "last": 3.05,
+   "d1": -3.3586787802849627,
+   "m1": -12.68250863576249,
    "kind": "price",
-   "time": "2026-10-23 20:59 UTC"
+   "time": "2026-10-23 21:00 UTC"
   },
   {
    "name": "Gold",
@@ -1102,9 +1149,9 @@
   },
   {
    "name": "S&P GSCI",
-   "last": 762.0563,
-   "d1": 1.58041690216566,
-   "m1": 2.784738215470961,
+   "last": 762.056,
+   "d1": 1.5803769128301282,
+   "m1": 2.784697752028209,
    "kind": "price",
    "time": "2026-10-23 19:33 UTC"
   }
@@ -1112,7 +1159,7 @@
  "econ": [],
  "us_econ": "Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.0%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 2.2% annualized in 2026-Q2, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.69% (+0.81 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.34%, real 10-year 2.66%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.",
  "energy": {
-  "read": "Gas storage 3,644 Bcf (week to 2026-10-16), +77 Bcf vs a 5-year average +76 for the week; -1 Bcf (-0.0%) vs the 5-year average, -154 vs last year. Crude stocks 412.5 mb (-3.1 mb on the week, -3.7% vs 5-yr avg); gasoline -3.0 mb, distillate +1.7 mb; refinery utilization 93.4%. 3-2-1 crack $51.39/bbl (ULSD $98.32, gasoline $27.92). Options: NG IV 65% vs RV 47%; CL IV 46% vs RV 39%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).",
+  "read": "Gas storage 3,644 Bcf (week to 2026-10-16), +77 Bcf vs a 5-year average +76 for the week; -1 Bcf (-0.0%) vs the 5-year average, -154 vs last year. Crude stocks 412.5 mb (-3.1 mb on the week, -3.7% vs 5-yr avg); gasoline -3.0 mb, distillate +1.7 mb; refinery utilization 93.4%. 3-2-1 crack $51.39/bbl (ULSD $98.32, gasoline $27.92). Options: NG IV 65% vs RV 55%; CL IV 46% vs RV 39%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).",
   "prices": {
    "NG": {
     "date": "2026-10-23",
@@ -1222,7 +1269,7 @@
     "atm": 65.27,
     "label": "Dec 2026",
     "rr25": 10.23,
-    "rv20": 47.1
+    "rv20": 54.9
    },
    "CL": {
     "atm": 45.85,
@@ -1234,13 +1281,13 @@
     "atm": null,
     "label": null,
     "rr25": null,
-    "rv20": 45.0
+    "rv20": 46.4
    },
    "RB": {
     "atm": null,
     "label": null,
     "rr25": null,
-    "rv20": 30.6
+    "rv20": 30.5
    }
   },
   "cracks": {
@@ -1387,6 +1434,6 @@
  "track": {
   "line": "Track record: 48 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-10-24 23:45 UTC"
+  "generated": "2026-10-24 23:54 UTC"
  }
 }

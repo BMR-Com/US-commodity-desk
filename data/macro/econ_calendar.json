@@ -1,5 +1,5 @@
 {
-"generated": "2026-10-24 23:52 UTC",
+"generated": "2026-10-25 11:51 UTC",
 "source": "Forex Factory weekly calendar export (forecast = consensus; no actuals in the export)",
 "events": [
 {
@@ -141,6 +141,266 @@
 "forecast": "",
 "previous": "4.7%",
 "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-10-27",
+"time": "8:15 AM ET",
+"country": "US",
+"title": "ADP Weekly Employment Change",
+"impact": "Low",
+"forecast": "",
+"previous": "18.5K",
+"why": "Labor market sets the Fed path, dollar and demand"
+},
+{
+"date": "2026-10-27",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Core Durable Goods Orders m/m",
+"impact": "Low",
+"forecast": "0.6%",
+"previous": "0.3%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-10-27",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Durable Goods Orders m/m",
+"impact": "Low",
+"forecast": "1.8%",
+"previous": "0.0%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-10-27",
+"time": "9:00 AM ET",
+"country": "US",
+"title": "HPI m/m",
+"impact": "Low",
+"forecast": "0.1%",
+"previous": "0.3%",
+"why": ""
+},
+{
+"date": "2026-10-27",
+"time": "9:00 AM ET",
+"country": "US",
+"title": "S&P/CS Composite-20 HPI y/y",
+"impact": "Low",
+"forecast": "2.7%",
+"previous": "2.5%",
+"why": ""
+},
+{
+"date": "2026-10-27",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "CB Consumer Confidence",
+"impact": "Medium",
+"forecast": "80.5",
+"previous": "81.9",
+"why": "Consumer outlook and inflation expectations"
+},
+{
+"date": "2026-10-27",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "New Home Sales",
+"impact": "Low",
+"forecast": "649K",
+"previous": "684K",
+"why": "Housing cycle: lumber, copper"
+},
+{
+"date": "2026-10-27",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Richmond Manufacturing Index",
+"impact": "Low",
+"forecast": "1",
+"previous": "-2",
+"why": "Manufacturing/services cycle: industrial and energy demand"
+},
+{
+"date": "2026-10-27",
+"time": "4:30 PM ET",
+"country": "US",
+"title": "API Weekly Statistical Bulletin",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-10-28",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Goods Trade Balance",
+"impact": "Low",
+"forecast": "-130.8B",
+"previous": "-132.6B",
+"why": "Trade flows; China imports drive soybeans, corn, cotton, meat"
+},
+{
+"date": "2026-10-28",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Prelim Wholesale Inventories m/m",
+"impact": "Low",
+"forecast": "0.4%",
+"previous": "0.7%",
+"why": ""
+},
+{
+"date": "2026-10-28",
+"time": "10:30 AM ET",
+"country": "US",
+"title": "Crude Oil Inventories",
+"impact": "Low",
+"forecast": "-0.3M",
+"previous": "-3.1M",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-10-28",
+"time": "2:00 PM ET",
+"country": "US",
+"title": "Federal Funds Rate",
+"impact": "High",
+"forecast": "4.00%",
+"previous": "4.00%",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-10-28",
+"time": "2:00 PM ET",
+"country": "US",
+"title": "FOMC Statement",
+"impact": "High",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-10-28",
+"time": "2:30 PM ET",
+"country": "US",
+"title": "FOMC Press Conference",
+"impact": "High",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-10-29",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Advance GDP q/q",
+"impact": "High",
+"forecast": "3.2%",
+"previous": "1.5%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-10-29",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Core PCE Price Index m/m",
+"impact": "High",
+"forecast": "0.3%",
+"previous": "0.2%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-10-29",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Advance GDP Price Index q/q",
+"impact": "Medium",
+"forecast": "3.5%",
+"previous": "6.2%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-10-29",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Unemployment Claims",
+"impact": "Medium",
+"forecast": "198K",
+"previous": "194K",
+"why": "Labor market sets the Fed path, dollar and demand"
+},
+{
+"date": "2026-10-29",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Personal Income m/m",
+"impact": "Low",
+"forecast": "0.3%",
+"previous": "0.2%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-10-29",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Personal Spending m/m",
+"impact": "Low",
+"forecast": "0.6%",
+"previous": "0.9%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-10-29",
+"time": "10:30 AM ET",
+"country": "US",
+"title": "Natural Gas Storage",
+"impact": "Low",
+"forecast": "",
+"previous": "77B",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-10-30",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Employment Cost Index q/q",
+"impact": "Medium",
+"forecast": "0.8%",
+"previous": "0.9%",
+"why": "Labor market sets the Fed path, dollar and demand"
+},
+{
+"date": "2026-10-30",
+"time": "9:45 AM ET",
+"country": "US",
+"title": "Chicago PMI",
+"impact": "Low",
+"forecast": "54.8",
+"previous": "58.8",
+"why": "Manufacturing/services cycle: industrial and energy demand"
+},
+{
+"date": "2026-10-30",
+"time": "12:00 PM ET",
+"country": "US",
+"title": "FOMC Member Daly Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-10-30",
+"time": "12:30 PM ET",
+"country": "US",
+"title": "FOMC Member Musalem Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
 }
 ]
 }

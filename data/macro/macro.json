@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-24 23:52 UTC",
+ "generated": "2026-10-25 11:51 UTC",
  "view": "mixed",
  "score": 0,
  "components": {
@@ -12,7 +12,7 @@
   "china": -1,
   "breadth": 0
  },
- "summary": "Macro backdrop for ags: mixed (score +0 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl +; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +11.6%; weakest: KC wheat -13.9%. ",
+ "summary": "Macro backdrop for ags: mixed (score +0 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl +; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +11.6%; weakest: KC wheat -13.9%. Key releases ahead: US Federal Funds Rate (10-28 2:00 PM ET); US FOMC Statement (10-28 2:00 PM ET); US FOMC Press Conference (10-28 2:30 PM ET); US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -22,7 +22,7 @@
   {
    "title": "Dollar & farm currencies",
    "score": 1,
-   "text": "Dollar index 101.75 (+0.6% in a month, +3.5% YTD). USD/BRL 4.996 (-3.3% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.661 (-0.8%); USD/MXN 18.65 (+6.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 101.75 (+0.6% in a month, +3.5% YTD). USD/BRL 4.996 (-3.3% in a month): a firmer real slows Brazilian farmer selling and supports world prices. USD/CNY 6.670 (-0.6%); USD/MXN 18.65 (+6.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
   },
   {
    "title": "Risk appetite",
@@ -32,12 +32,12 @@
   {
    "title": "Energy",
    "score": 1,
-   "text": "WTI 103.27 $/bbl (+15.4% in a month), Brent 111.70, ULSD 4.787 $/gal (+6.0%), natural gas 2.64 (-16.3%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+   "text": "WTI 103.27 $/bbl (+15.4% in a month), Brent 111.70, ULSD 4.787 $/gal (+6.0%), natural gas 3.05 (-12.7%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -3.6% in a month, Shanghai Composite -6.3%, Hang Seng -7.0%, yuan +0.8% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -3.6% in a month, Shanghai Composite -6.3%, Hang Seng -7.0%, yuan +0.6% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
@@ -46,5 +46,56 @@
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",
- "events_ahead": []
+ "events_ahead": [
+  {
+   "date": "2026-10-28",
+   "time": "2:00 PM ET",
+   "country": "US",
+   "title": "Federal Funds Rate",
+   "impact": "High",
+   "forecast": "4.00%",
+   "previous": "4.00%",
+   "why": "Fed policy path: rates, dollar and fund flows into commodities"
+  },
+  {
+   "date": "2026-10-28",
+   "time": "2:00 PM ET",
+   "country": "US",
+   "title": "FOMC Statement",
+   "impact": "High",
+   "forecast": "",
+   "previous": "",
+   "why": "Fed policy path: rates, dollar and fund flows into commodities"
+  },
+  {
+   "date": "2026-10-28",
+   "time": "2:30 PM ET",
+   "country": "US",
+   "title": "FOMC Press Conference",
+   "impact": "High",
+   "forecast": "",
+   "previous": "",
+   "why": "Fed policy path: rates, dollar and fund flows into commodities"
+  },
+  {
+   "date": "2026-10-29",
+   "time": "8:30 AM ET",
+   "country": "US",
+   "title": "Advance GDP q/q",
+   "impact": "High",
+   "forecast": "3.2%",
+   "previous": "1.5%",
+   "why": "Growth and demand"
+  },
+  {
+   "date": "2026-10-29",
+   "time": "8:30 AM ET",
+   "country": "US",
+   "title": "Core PCE Price Index m/m",
+   "impact": "High",
+   "forecast": "0.3%",
+   "previous": "0.2%",
+   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+  }
+ ]
 }

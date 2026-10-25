@@ -29,10 +29,15 @@
   const sleep = ms => new Promise(r => { const t0 = performance.now(); const mc = new MessageChannel();
     mc.port1.onmessage = () => { if (performance.now() - t0 >= ms) { mc.port1.close(); r(); } else mc.port2.postMessage(0); };
     mc.port2.postMessage(0); });
-  let fails = 0;
+  // Pacing (2026-10-25): CME's edge cut the browser off after ~300 requests at 0.7 s and then again after ~37, so
+  // requests now go at least 3 s apart with 0-60% random extra, plus a 45 s pause every 40 requests. GAP below 3000 ms
+  // (the nightly task passes 700) is raised to 3000. A day's run (~200 requests) takes about 15-18 minutes.
+  const G = Math.max(GAP, 3000);
+  let fails = 0, nreq = 0;
   const j = async u => {
     for (let k = 0; k < 2; k++) {
-      await sleep(GAP);
+      if (++nreq % 40 === 0) await sleep(45000);
+      await sleep(G * (1 + 0.6 * Math.random()));
       try { const r = await fetch(u, { credentials: 'include' }); if (!r.ok) throw new Error(r.status + ' ' + u); fails = 0; return await r.json(); }
       catch (e) { if (++fails >= 4) throw new Error('STOP: CME stopped answering (' + e + ')'); await sleep(15000); }
     }

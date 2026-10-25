@@ -3,7 +3,7 @@
 // Evaluate the whole file; it returns a promise of a gzip+base64 JSON string for `python cme/ingest_options.py`.
 // DAYS = how many of the latest trade dates to fetch (CME keeps the last 5); 1 for the nightly run.
 // CME's edge blocks a browser that fires a few hundred requests quickly (it did on 2026-10-21 after ~300), so
-// requests are spaced out, the nearest MAXEXP expiries only are fetched, and the run stops after repeated failures.
+// requests are spaced out, only the nearest main expiries are fetched (see MAIN/NCAP), and the run stops after repeated failures.
 // It takes a few minutes: start it without awaiting (window.__optp = <this file>; window.__optp.then(v => window.__opt_b64 = v))
 // and poll window.__opt_b64.
 // The cap hits after roughly 250-300 requests, so the products with the fewest stored dates (HAVE) go first: a product
@@ -16,6 +16,13 @@
   const P0 = [['DC', 27], ['GDK', 778], ['CSC', 5201], ['CB', 26], ['GNF', 781], ['DY', 36], ['HE', 19], ['LE', 22], ['GF', 34],
              ['ZC', 300], ['ZS', 320], ['ZM', 310], ['ZL', 312], ['ZW', 323], ['KE', 348],
              ['NG', 444], ['CL', 425], ['HO', 426], ['RB', 429]];   // NYMEX energy (energy desk)
+  // Expiries kept per product (Ma, 2026-10-25: "first 8 main contracts", oil "first 12 months"): options whose month is a
+  // listed futures month (serial and weekly months are skipped), the nearest 8 for ags, livestock and dairy and the
+  // nearest 12 for NYMEX energy. These caps are fixed here; the MAXEXP argument is kept for call compatibility only.
+  const MAIN = { ZC: 'HKNUZ', ZS: 'FHKNQUX', ZM: 'FHKNQUVZ', ZL: 'FHKNQUVZ', ZW: 'HKNUZ', KE: 'HKNUZ',
+                 HE: 'GJKMNQVZ', LE: 'GJMQVZ', GF: 'FHJKQUVX' };   // others (dairy, energy) list every month
+  const NCAP = sym => ['NG', 'CL', 'HO', 'RB'].includes(sym) ? 12 : 8;
+  const isMain = (sym, e) => !MAIN[sym] || MAIN[sym].includes(String(e.contractId).slice(-3, -2));
   const nHave = sym => HAVE.filter(h => h.startsWith(sym + '|')).length;
   const P = P0.map((x, i) => [x, i]).sort((a, b) => nHave(a[0][0]) - nHave(b[0][0]) || a[1] - b[1]).map(x => x[0]);
   // background tabs throttle setTimeout to about once a minute; a MessageChannel loop keeps the pacing honest
@@ -54,7 +61,7 @@
           const f = await j(`/CmeWS/mvc/Settlements/Futures/Settlements/${fid}/FUT?strategy=DEFAULT&tradeDate=${td}&pageSize=500`);
           prod.futures[td] = (f.settlements || []).filter(r => r.month !== 'Total').map(r => [r.month, r.settle, r.openInterest, r.volume]);
         } catch (e) { out.errors.push(String(e)); if (String(e).includes('STOP')) throw e; }
-        for (const e of ame.expirations.slice(0, MAXEXP)) {
+        for (const e of ame.expirations.filter(e => isMain(sym, e)).slice(0, NCAP(sym))) {
           if (!e.tradeDates.some(d => d.formatedDate === td)) continue;
           try {
             const r = await j(`/CmeWS/mvc/Settlements/Options/Settlements/${e.productId}/OOF?strategy=DEFAULT&optionProductId=${e.productId}&monthYear=${e.contractId}&optionExpiration=${e.productId}-${e.expiration.code}&tradeDate=${td}&pageSize=500`);

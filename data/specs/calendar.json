@@ -1,5 +1,5 @@
 {
-"generated": "2026-10-24",
+"generated": "2026-10-26",
 "explain": {
 "fpd": "First position day: the first day a short can declare intent to deliver (CBOT). Longs still holding can be assigned delivery after it.",
 "fnd": "First notice day: the first day delivery notices can be issued to long holders.",
@@ -1304,17 +1304,17 @@
 }
 },
 "ZM": {
-"checked": 94,
-"exact": 94,
+"checked": 95,
+"exact": 95,
 "offsets_business_days": {
-"0": 94
+"0": 95
 }
 },
 "ZL": {
-"checked": 94,
-"exact": 94,
+"checked": 95,
+"exact": 95,
 "offsets_business_days": {
-"0": 94
+"0": 95
 }
 },
 "ZW": {
@@ -1356,12 +1356,12 @@
 }
 },
 "HE": {
-"checked": 94,
+"checked": 95,
 "exact": 60,
 "offsets_business_days": {
 "0": 60,
 "1": 3,
-"2": 31
+"2": 32
 }
 },
 "DC": {

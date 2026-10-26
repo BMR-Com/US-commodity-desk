@@ -1,6 +1,6 @@
-# Morning brief · Mon Oct 26, 2026 01:42 PM ET
+# Morning brief · Mon Oct 26, 2026 04:19 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-26 17:42 UTC). CME open interest from 20261023. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-26 20:19 UTC). CME open interest from 20261023. Research only, not investment advice.
 
 ## Key points
 
@@ -25,7 +25,7 @@ Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, 
 
 ## US & China economic releases (today, tomorrow)
 
-- 10-27 10:00 AM ET · US CB Consumer Confidence (Medium) · forecast 80.7, previous 81.9
+- 10-27 10:00 AM ET · US CB Consumer Confidence (Medium) · forecast 81.2, previous 81.9
 
 ## Energy (desk: Energy tab)
 
@@ -41,20 +41,20 @@ Gas storage 3,644 Bcf (week to 2026-10-16), +77 Bcf vs a 5-year average +76 for 
 
 ## US economy
 
-Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.0%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 2.2% annualized in 2026-Q2, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.69% (+0.81 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.34%, real 10-year 2.66%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.
+Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.0%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 2.2% annualized in 2026-Q2, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.68% (+0.80 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.34%, real 10-year 2.66%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.
 
 ## Macro outlook and what it means for ags
 
-Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl −; mxn −; risk 0; energy +; china −; breadth 0. Strongest ag/soft over the month: Class III milk +13.6%; weakest: Corn -13.9%. Key releases ahead: US Federal Funds Rate (10-28 2:00 PM ET); US FOMC Statement (10-28 2:00 PM ET); US FOMC Press Conference (10-28 2:30 PM ET); US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).
+Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar −; brl −; mxn −; risk 0; energy +; china −; breadth 0. Strongest ag/soft over the month: Class III milk +13.8%; weakest: Oats -14.1%. Key releases ahead: US Federal Funds Rate (10-28 2:00 PM ET); US FOMC Statement (10-28 2:00 PM ET); US FOMC Press Conference (10-28 2:30 PM ET); US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).
 
-- **Rates**: US 10-year 5.00% (-11 bp in a month), 2-year 4.69% (-16 bp); 2s10s curve +31 bp (+5 bp in a month). Yields are little changed on the month. T-bill yield 4.03% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 101.88 (+0.9% in a month, +3.7% YTD). USD/BRL 5.431 (+4.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.658 (-0.8%); USD/MXN 18.56 (+4.6%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
-- **Risk appetite**: S&P 500 -0.8% in a month (+12.2% YTD); VIX 18.2. Neutral risk backdrop. 
-- **Energy**: WTI 102.08 $/bbl (+15.1% in a month), Brent 110.92, ULSD 4.758 $/gal (+8.8%), natural gas 3.04 (-14.0%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
-- **China & industrial demand**: Copper -3.1% in a month, Shanghai Composite -4.9%, Hang Seng -5.3%, yuan +0.8% vs USD. Soft China/industrial signals point to weaker import demand. 
-- **Commodity breadth**: 13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +2.9% in a month; gold -6.6%. 
+- **Rates**: US 10-year 5.00% (-17 bp in a month), 2-year 4.68% (-13 bp); 2s10s curve +32 bp (-4 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.03% sets the cost of carrying inventory.
+- **Dollar & farm currencies**: Dollar index 101.99 (+1.0% in a month, +3.8% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.395 (+3.9% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.8%); USD/MXN 18.56 (+4.6%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
+- **Risk appetite**: S&P 500 -0.9% in a month (+12.1% YTD); VIX 18.4. Neutral risk backdrop. 
+- **Energy**: WTI 101.65 $/bbl (+14.6% in a month), Brent 110.54, ULSD 4.727 $/gal (+8.1%), natural gas 3.04 (-13.8%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
+- **China & industrial demand**: Copper -3.2% in a month, Shanghai Composite -4.9%, Hang Seng -5.3%, yuan +0.8% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Commodity breadth**: 13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +2.7% in a month; gold -6.8%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,715.750 (+0.73% d/d); S&P 500 7,678.230 (+0.72% d/d); VIX 18.210 (-6.38% d/d); US 10-year 4.978 (-1 bp d/d); US dollar index 101.877 (+0.07% d/d); EUR/USD 1.120 (-0.22% d/d); USD/BRL 5.431 (+7.55% d/d); USD/CNY 6.658 (-0.29% d/d); WTI crude 102.080 (-1.15% d/d); Natural gas 3.040 (-0.33% d/d); Gold 4,037.300 (+0.73% d/d); Copper 6.556 (+0.74% d/d); S&P GSCI 758.872 (-0.42% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,712.750 (+0.69% d/d); S&P 500 7,676.770 (+0.70% d/d); VIX 18.430 (-5.24% d/d); US 10-year 4.986 (-0 bp d/d); US dollar index 101.993 (+0.18% d/d); EUR/USD 1.118 (-0.38% d/d); USD/BRL 5.395 (+6.84% d/d); USD/CNY 6.659 (-0.28% d/d); WTI crude 101.650 (-1.57% d/d); Natural gas 3.045 (-0.16% d/d); Gold 4,027.700 (+0.49% d/d); Copper 6.549 (+0.64% d/d); S&P GSCI 757.581 (-0.59% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -82,25 +82,25 @@ Board crush 2.401 $/bu (10-yr pct 91), oil share 49.1%. Soybean / corn price rat
 ### Grains & oilseeds
 
 **Corn** (Dec 26, strongly bearish). Dec 26 trades at 455.00 ¢/bu (-2.6% on the week, -13.9% on the month), in a mixed trend: the daily rating is strong sell and the weekly strong sell. RSI is 23 (oversold) and ADX 41 (trending). Nearest support 454.00, resistance 455.75; 52-week range 425.75–549.75. Levels to watch: a close above 463.54 (60-day momentum flip) would bring trend-follower buying; below 453.50 (55-day breakout low) adds selling; the 454.00–455.75 band is the immediate range. Next catalysts: Crop Progress Oct 26; USDA weekly export sales Oct 29; Crop Progress Nov 2.
-Flags: RSI 23: oversold; Export commitments -26% vs normal pace; Weather watch: Central Iowa; South-central Nebraska.
+Flags: RSI 23: oversold; Export commitments -26% vs normal pace; Weather watch: Pergamino, N Buenos Aires; Central Iowa.
 Research signals: trend short 1.8x for 40% vol (12m excess -6%); carry -12.5%/yr (43rd percentile for the month); IV-RV -5.1. Fat left tail: options price a 10% drop 2.1x as likely as a lognormal at ATM vol. Fat right tail: options price a 10% rally 2.2x as likely as a lognormal at ATM vol.
+- [ADM invests in upgrades at Columbus ethanol facility](https://news.google.com/rss/articles/CBMimAFBVV95cUxPOTVKVGFGMGR3bnhKTFRqMU1NYzQ1T1NuZXZIVVBYUC0tQlpTWTd2RkdHWTlxN3NENTNaQnN4VHh3dF9jS1doclNldFlwTl9sajZNcFVlM1h1eDhrZllCbjFFRTcydnJQa3ZrWE9GQnBReVphSll3eGRWbVFkbW93a2p6ck02NThyMEY2bkYzNjlzaEVKcmthbg?oc=5) · Feedstuffs
 - [USDA Reveals Cause of Data Error That Skewed September Corn Estimates](https://news.google.com/rss/articles/CBMikgFBVV95cUxORWZ6UXdrMDFaaE1LQWJPc21aWnRSa0ZRWGNrR19yWXp5LU8tOXA0dlc5dDhlTGFPT2JIdlcxSUR5MmJGblNMTC1ac3FxeVhsbzJlSjhLcjl5VVNsZjJSdjFyYnM2b0xyeW5YNVZqOVdQS2VmTTZ3ZmQwZURxWGhGVmdfOWFXSWFYM3lDdU5PT0JMZw?oc=5) · AgWeb
 - [Has U.S. Corn Harvest Reached the Halfway Point?](https://news.google.com/rss/articles/CBMiiwFBVV95cUxON2d2WjNHWHZOVkRXQjB3dFZraVViMFJFb1pGSUFWTU5YNmV5WDVvVVVhRjZXQlFOLTN2dktodC14aWRQOTJ3a09sVUYtSkxaY2ZoVWtVdm9FekZDcGNpei1JRUFsdVpfdmEwTUVOUEk5WnZVT3lnYWMwYi02TnRma0hRVUZvNFBsbTRR?oc=5) · Successful Farming
-- [USDA September Corn Forecast Error Raises Fresh Data Concerns](https://news.google.com/rss/articles/CBMiqwFBVV95cUxPaWg0NkxwQXNNZU4waE03Y0NfNFVIbEdWSzFTR0cxcXl3VmladklQb2ZLMldwai12dzNyWGw2XzFTLXVZMjNVSm9CcUtJUTI1LTNqYzIxUFhCNG0tSGt5WWYxNkptZEEtbmVTejVHV09ITFVJRjhnR2wyZFJ5TTFycHc4bUM5U3VkM1M1MmViajhpME1wOE82OXhJNy1sc3dhNHduM05RN2ZaMkE?oc=5) · Successful Farming
 
 **Soybeans** (Nov 26, neutral). Nov 26 trades at 1239.25 ¢/bu (-1.1% on the week, -6.0% on the month), in a mixed trend: the daily rating is sell and the weekly neutral. RSI is 35 and ADX 21 (weak trend). Nearest support 1167.00, resistance 1256.50; 52-week range 1055.50–1335.25. Levels to watch: a close above 1282.51 (50-day average) would bring trend-follower buying; below 1228.68 (100-day average) adds selling; the 1167.00–1256.50 band is the immediate range. Next catalysts: Crop Progress Oct 26; USDA weekly export sales Oct 29; Soybeans Nov 26: first notice day Oct 30.
-Flags: Funds near a 10-yr long extreme (95th pct); Export commitments +21% vs normal pace; Weather watch: Central Iowa; South-central Nebraska.
+Flags: Funds near a 10-yr long extreme (95th pct); Export commitments +21% vs normal pace; Weather watch: Pergamino, N Buenos Aires; Central Iowa.
 Research signals: trend long 2.4x for 40% vol (12m excess +13%); carry -3.5%/yr (69th percentile for the month); IV-RV +1.1. Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Crowded: managed money at the 94th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR).
 - [U.S. Soybean Export Inspections Rise](https://news.google.com/rss/articles/CBMilAFBVV95cUxOU3BfM3oyb1RfT1d6WmE3RllLME54bHlOYi02VW04OWxENzBtbzhWWmdtNzRHNkhpbVh6ZEZhUTdxMnlUdzJhQlhsSmlSWnh0bGFoQkhWSWNVMnIwOTc1NGNwdDY4R3RNLVBNb28tbmhfUlpXOGt0WklscGtsWC1yV2FBRWhITF95NDBWY01kVzU2UmpY?oc=5) · MarketWatch
 - [Cattle See Muted Rally to Report, Cash: Grains Fall on Brazil Election, USDA Report Error](https://news.google.com/rss/articles/CBMisgFBVV95cUxObEk4YWdqdkJFOGw5MFdNaTFEX2Q0UmZsTVY0U0JiSGZpTnNZeUFXNlZvY2tvMDRtWjVBVTFYNDdyZF9zQXhaME11VHV5NUhIRFplR2xRZ1FmVG1SdEVzcE40OUZjbV9jMVNZbC0xRTRfMXlfbUtvbDJQRk5kdnFVYzdXMk5RdGw0RjNuVnJ0Zndxd05vanliY1JrNHZXSVhSaVYwN0o2Zl9DX0M5MTdWOXV3?oc=5) · Drovers Magazine
 - [Soybeans Hit 2-Month Low as Lula’s Win Lifts China Trade Outlook](https://news.google.com/rss/articles/CBMitgFBVV95cUxOZ0dXZW51Tlp0SEJNc0ZJaEpHX3JWcE9tbUVhOHQ3Y2xlNko1X0RDVkxVc2xMc2RjYVc5NUt0OHJQeXBOeF9NT1J3V2N2RXFvcG5Mb3RTNzRxVDhvWHhibUVJUG9RdDFselg4emFuNVcwcUNOc2tJNldZMXcxLXFPY3RGbUx2Y3FFT2tEOHcxR1hJVFdtMl9kNl9mVk5yVl9LWUNWel95bkFDMXR2aUYxcDhBQnJjQQ?oc=5) · Bloomberg.com
 
 **Soybean meal** (Dec 26, neutral). Dec 26 trades at 340.1 $/st (-4.1% on the week, -8.3% on the month), in a mixed trend: the daily rating is sell and the weekly buy. RSI is 37 and ADX 21 (weak trend). Nearest support 316.2, resistance 342.3; 52-week range 299.1–376.9. Levels to watch: a close above 351.6 (50-day average) would bring trend-follower buying; below 343.1 (20-day breakout low) adds selling; the 316.2–342.3 band is the immediate range. Next catalysts: USDA weekly export sales Oct 29; USDA weekly export sales Nov 5; USDA WASDE Nov 10.
-Flags: Funds near a 10-yr long extreme (99th pct); Export commitments -16% vs normal pace; Weather watch: Marcos Juárez, Córdoba.
+Flags: Funds near a 10-yr long extreme (99th pct); Export commitments -16% vs normal pace; Weather watch: Pergamino, N Buenos Aires; Marcos Juárez, Córdoba.
 Research signals: trend long 1.8x for 40% vol (12m excess +16%); carry +4.5%/yr (63rd percentile for the month); IV-RV -4.4. Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Crowded: managed money at the 99th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR). Fat right tail: options price a 12% rally 2.2x as likely as a lognormal at ATM vol.
 
 **Soybean oil** (Dec 26, mildly bearish). Dec 26 trades at 66.80 ¢/lb (+0.2% on the week, -1.5% on the month), in a mixed trend: the daily rating is sell and the weekly neutral. RSI is 43 and ADX 12 (range-bound). Nearest support 66.61, resistance 67.68; 52-week range 48.53–74.55. Levels to watch: a close above 67.66 (20-day momentum flip) would bring trend-follower buying; below 65.53 (200-day average) adds selling; the 66.61–67.68 band is the immediate range. Next catalysts: USDA weekly export sales Oct 29; USDA weekly export sales Nov 5; USDA WASDE Nov 10.
-Flags: Export commitments -18% vs normal pace; Weather watch: Marcos Juárez, Córdoba.
+Flags: Export commitments -18% vs normal pace; Weather watch: Pergamino, N Buenos Aires; Marcos Juárez, Córdoba.
 Research signals: trend long 1.7x for 40% vol (12m excess +33%); carry -3.9%/yr (70th percentile for the month); IV-RV +1.0. Fat right tail: options price a 11% rally 2.1x as likely as a lognormal at ATM vol.
 
 **Chicago wheat** (Dec 26, bearish). Dec 26 trades at 616.00 ¢/bu (-6.0% on the week, -12.4% on the month), in a mixed trend: the daily rating is strong sell and the weekly strong sell. RSI is 24 (oversold) and ADX 31 (trending). Nearest support 612.00, resistance 634.00; 52-week range 557.25–795.00. Levels to watch: a close above 651.36 (200-day average) would bring trend-follower buying; below 590.50 (100-day breakout low) adds selling; the 612.00–634.00 band is the immediate range. Next catalysts: Crop Progress Oct 26; USDA weekly export sales Oct 29; Crop Progress Nov 2.
@@ -120,7 +120,7 @@ Research signals: trend long 1.5x for 40% vol (12m excess +23%); carry -6.2%/yr 
 ### Cotton
 
 **Cotton** (Dec 26, bearish). Dec 26 trades at 79.04 ¢/lb (-1.4% on the week, -4.4% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 39 and ADX 14 (range-bound). Nearest support 77.73, resistance 80.47; 52-week range 66.86–93.74. Levels to watch: a close above 81.91 (100-day average) would bring trend-follower buying; below 78.20 (200-day average) adds selling; the 77.73–80.47 band is the immediate range. Next catalysts: Crop Progress Oct 26; USDA weekly export sales Oct 29; Crop Progress Nov 2.
-Flags: Export commitments -13% vs normal pace; Weather watch: Greenwood, Mississippi Delta (cotton).
+Flags: Export commitments -13% vs normal pace; Weather watch: Lubbock, West Texas (cotton).
 Research signals: trend long 1.7x for 40% vol (12m excess +12%); carry -18.6%/yr (16th percentile for the month). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).
 - [India expected to extend duty-free cotton imports through December, sources say](https://news.google.com/rss/articles/CBMiwAFBVV95cUxOelhncFAwZEx0ZWhGRDRNWkNvd2RSQzlxTGNTMGlMODVSS0U5RW02UDMxeU5YRlBtUXE4djBaSFBYa2dGeHBuZF9zM0ZIU0FGRnF1SG5jRVcxT3NpNjNoRnZ6M21jY0xDd2tmMTdHaWVJWUs0U1NvQWNkbHAtaW5vaXVmUVJHMlV4N3B4Uks2N2ptX3d5ZkRwZ25qNjRSV2ZXdG1ndS1yWVc4clZBMUZHSWdOWXZpVzFZSXRFYmdGOGM?oc=5) · Reuters
 

@@ -1,6 +1,6 @@
-# Morning brief · Tue Oct 27, 2026 12:55 PM ET
+# Morning brief · Tue Oct 27, 2026 03:04 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-27 16:55 UTC). CME open interest from 20261026. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-27 19:04 UTC). CME open interest from 20261026. Research only, not investment advice.
 
 ## Key points
 
@@ -47,16 +47,16 @@ Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core
 
 ## Macro outlook and what it means for ags
 
-Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar −; brl −; mxn −; risk 0; energy +; china −; breadth 0. Strongest ag/soft over the month: Class III milk +13.8%; weakest: Oats -15.5%. Key releases ahead: US Federal Funds Rate (10-28 2:00 PM ET); US FOMC Statement (10-28 2:00 PM ET); US FOMC Press Conference (10-28 2:30 PM ET); US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).
+Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar −; brl −; mxn −; risk 0; energy +; china −; breadth 0. Strongest ag/soft over the month: Class III milk +14.0%; weakest: Oats -15.7%. Key releases ahead: US Federal Funds Rate (10-28 2:00 PM ET); US FOMC Statement (10-28 2:00 PM ET); US FOMC Press Conference (10-28 2:30 PM ET); US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).
 
 - **Rates**: US 10-year 5.00% (-17 bp in a month), 2-year 4.68% (-13 bp); 2s10s curve +32 bp (-4 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.04% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 102.26 (+1.3% in a month, +4.0% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.348 (+3.0% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.655 (-0.8%); USD/MXN 18.67 (+5.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
-- **Risk appetite**: S&P 500 -0.3% in a month (+12.7% YTD); VIX 17.7. Neutral risk backdrop. 
-- **Energy**: WTI 100.21 $/bbl (+13.0% in a month), Brent 109.61, ULSD 4.629 $/gal (+5.8%), natural gas 3.01 (-14.9%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
-- **China & industrial demand**: Copper -1.7% in a month, Shanghai Composite -6.2%, Hang Seng -6.0%, yuan +0.8% vs USD. Soft China/industrial signals point to weaker import demand. 
-- **Commodity breadth**: 13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +1.6% in a month; gold -5.7%. 
+- **Dollar & farm currencies**: Dollar index 102.33 (+1.3% in a month, +4.1% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.339 (+2.9% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.655 (-0.8%); USD/MXN 18.68 (+5.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
+- **Risk appetite**: S&P 500 -0.3% in a month (+12.8% YTD); VIX 17.7. Neutral risk backdrop. 
+- **Energy**: WTI 99.77 $/bbl (+12.5% in a month), Brent 109.44, ULSD 4.630 $/gal (+5.8%), natural gas 3.01 (-14.9%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
+- **China & industrial demand**: Copper -1.6% in a month, Shanghai Composite -6.2%, Hang Seng -6.0%, yuan +0.8% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Commodity breadth**: 13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +1.7% in a month; gold -5.8%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,755.000 (+0.52% d/d); S&P 500 7,717.640 (+0.53% d/d); VIX 17.670 (-3.92% d/d); US 10-year 4.993 (+1 bp d/d); US dollar index 102.260 (+0.29% d/d); EUR/USD 1.115 (-0.65% d/d); USD/BRL 5.348 (+7.82% d/d); USD/CNY 6.655 (-0.35% d/d); WTI crude 100.210 (-1.52% d/d); Natural gas 3.009 (-0.43% d/d); Gold 4,074.400 (+0.89% d/d); Copper 6.653 (+1.70% d/d); S&P GSCI 749.676 (-1.04% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,756.250 (+0.54% d/d); S&P 500 7,718.910 (+0.55% d/d); VIX 17.720 (-3.64% d/d); US 10-year 4.993 (+1 bp d/d); US dollar index 102.325 (+0.36% d/d); EUR/USD 1.114 (-0.71% d/d); USD/BRL 5.339 (+7.64% d/d); USD/CNY 6.655 (-0.35% d/d); WTI crude 99.770 (-1.96% d/d); Natural gas 3.006 (-0.53% d/d); Gold 4,070.800 (+0.80% d/d); Copper 6.657 (+1.76% d/d); S&P GSCI 749.866 (-1.02% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 

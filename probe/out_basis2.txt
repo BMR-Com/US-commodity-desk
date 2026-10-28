@@ -1,0 +1,44 @@
+URL https://api.us.socrata.com/api/catalog/v1 200 129
+URL https://api.us.socrata.com/api/catalog/v1 200 129
+URL https://api.us.socrata.com/api/catalog/v1 200 129
+URL https://agtransport.usda.gov/api/catalog/v1 200 203266
+  DS2 2cj2-jfbr | Basis Master Data Management | Jurisdiction Contact, Description, Unit of Analysis, Format, In Review, Publishing Status, Principal Use, Data Steward, socrata_id, downloadURL, Date Added, Category Search, Basis URL, dataURL, Geojson, Update Frequency, Date Published, Data Steward Notes, Geometry, Data Collection Phase, Source, Pr
+  DS2 8d84-xvtg | BASIS Datasets Tracker | 
+  DS2 u9ep-cz6y | Primary Basis for OIS_2010-2025 | 
+  DS2 876i-yuxh | BASIS Zoning Ordinance Links | link_type, link, county, city
+  DS2 2rxu-2uqk | New York State Corporate Tax Credits by Basis of Taxation: Beginning Tax Year 2001 | Amount of Credit, Group Sort Order, Tax Year, Credit Name, Credit Type Sort Order, Tax Article, Notes, Mean Amount of Credit, Credit Type, Basis Type, Number of Taxpayers, Percent of Credit, Median Amount of Credit
+  DS2 pcn9-j3x9 | Pharmacological basis for the therapy of pain and inflammation with nonsteroidal anti-inflammatory drugs | 
+  DS2 5t5i-ahbe | Non-VA Hospital System (NVH) | 
+  DS2 xcui-jbkq | Agitation in the ICU: part one Anatomical and physiologic basis for the agitated 				state | 
+  DS2 xzkq-xp2w | Current Employee Names, Salaries, and Position Titles | Name, Department, Annual Salary, Typical Hours, Salary or Hourly, Full or Part-Time, Hourly Rate, Job Titles
+  DS2 fgpr-x6yu | Non-VA Care Medical System (Fee) | 
+  DS2 j63r-vtey | Bay Area Census Tracts - Cartographic (2020) | COUNTY, GEOID, FUNCSTAT, TRACT, STATE, MTFCC, the_geom, OBJECTID, INTPTLAT, CENTLON, CENTLAT, AREALAND, BASENAME, NAME, OID, INTPTLON, AREAWATER, LSADC
+  DS2 q2fy-xss3 | San Mateo County Property Parcels | PERIMETER, RETIRE_DAT, REV_DATE, SRC_AGENCY, SRC_COMMEN, SRC_CRTL_S, SRC_DATE, SRC_DOC, SRC_FINL_S, TRACT_ID, TRANSFER, PROPERTY_R, GEOMEDIA_I, GEOMETRY_A, GEOMETRY_L, APN_1, OWNER_NAME, SECOND_OWN, THIRD_OWNE, MAILING_AD, MAILING__1, MAILING_CI, MAILING_ST, MAILING_ZI, APN_as400, ACRES, OBJECTID, A
+  DS2 udk3-z2d5 | General Plan and Zoning 2018 | notes, edit_date, grid_id, zoning_id, grid_8mi, edit_dmy, joinid, gp_id, editor, grid_4mi, grid_2mi
+  DS2 nbhf-veac | Parcel Boundaries | PAGE, MailingAddressZip, TRAPrimary, SortParcel, SitusZip, SitusZip_4, Land, LatestDocumentDate, MailingAddressStreet, MailingAddressCityState, UseCode, EconomicUnit, SUB_PARCEL, CENTROID_X, CENTROID_Y, SitusAddress, MailingAddress, the_geom, PrintParcel, SitusCity, Imps, OTEX, LatestDocumentSeries,
+  DS2 iajg-wftj | Development Pipeline Template | zip, project_id, project_name, street_address, county, x_longitude, y_latitude, non_residential_sqft, building_type, building_sqft, project_status, residential_units, project_description, project_status_date, stories, city_name
+  DS2 mttv-afq4 | HUD LIHTC | Funding, HPVI_AMT, D_TRGT_ELD, TCAP, TYPE, FHA, RENTASST, proj_st, CEILUNIT, TRGT_FAM, FMHA_515, HOME_AMT, BASIS, TRGT_POP, HUD_ID, Y, project, proj_zip, P_LI_Units, N_Room, YR_PIS, NONPROG, HOPEVI, FMHA_538, trgt_spc, ALLOCAMT, NON_PROF, CREDIT, proj_cty, COMPANY, LI_UNITS, TRGT_HML, proj_add, INC_
+  DS2 t7fu-e76f | A basis for a visual language for describing, archiving and analyzing functional models of complex biological systems | 
+  DS2 uesv-chbp | Parcels Public | use_desc, valpp, asmtnum, ycentroid, taxmapnumber, objectid, desc_air_board, st_length(shape), st_area(shape), acreage_diff, the_geom, pcl_inactdate, situs, williamson_act, solar, fund_water, fund_soil_cons, propertychar, taxinfo, status, valtv, sitecity, bedroom, dining, utility, hvac, pool, tac, t
+  DS2 f86g-vq5u | Bay Area Census Block Groups - Cartographic (2020) | MTFCC, STATE, TRACT, BLKGRP, the_geom, FUNCSTAT, LSADC, AREALAND, AREAWATER, CENTLAT, CENTLON, INTPTLAT, INTPTLON, GEOID, OBJECTID, COUNTY, OID, BASENAME, NAME
+  DS2 n4bx-5kf6 | Current Employee Names, Salaries, and Position Titles - Full-time | Salary or Hourly, Full or Part-Time, Job Titles, Typical Hours, Name, Annual Salary, Department, Hourly Rate
+  DS2 bv8n-cszu | Infrastructure Access Areas (2021) | multipolygon, source, area_name
+  DS2 r3wi-hdib | Bay Area Greenprint Version 4 (HESS) | wb303d, wetl_ac, unique_ac, state_ac, soc0_30, slr2050_ac, sfbwts_e, runoff, reten_usd, resi_val, ref1_ac, recharge, pud, prime_ac, pkreten_m3, natbay_ac, local_ac, liq_ac, gw_rc_nc, graz_ac, fl500na_ac, firehaz_ac, exp1_ac, drink_ac, bike1_2_mi, SI1_ac, OBJECTID, MIROC, CoC1_ac, CRNM, CLNefi_ac, CE
+  DS2 mmt9-jiuj | Jurisdiction Parcel Editor Assignments | Jurisdiction_County, Jurisdiction_Name, Jurisdiction_Population, Top Cities, Assignment
+  DS2 syr5-8r5a | Burlingame Parcels General Plan Zoning | Linkfield2, Linkfield1, BOOK, APN, OBJECTID_1, GIS_ADMIN_, PERSONAL_PROP_VALUE, ROOT_VALUE, LAND_VALUE, Join_Count, SBE_NO, COLUMN_END, FIXTURE_VALUE, Join_Count_2, the_geom, Shape.STLength(), Shape.STArea(), Shape_Area, Shape_Length, Zoning_Description, Zoning, General_Plan_Description, PERIMETER, 
+  DS2 5ffp-g9qx | Regional General Plan Map (2018) | gp_code, joinid, recid, geom, min_res, edit_dmy, editor, city_name, gp_description, gp_code_color, regional_lu_class, max_res, county_name, min_far, max_far
+  DS2 rpyb-8ty6 | Immune ablation and stem-cell therapy in autoimmune disease: Experimental basis for autologous stem-cell transplantation | 
+  DS2 k46z-5at9 | Zoning District | Shape.STArea(), created_user, Descr, Prcl_Size_SqFt, Zoning Description, Zoning Classification, StreetAddr, OBJECTID, last_edited_date, last_edited_user, created_date, ASMT, the_geom, Shape.STLength()
+  DS2 hvj3-vw2g | San_Mateo_County_Parcels | Shape__Length, LOT, Shape__Area, PROPERTY_Review, APN, BLOCK, FID, PUC, the_geom, AIR_PARCEL_ADDRESS_COUNT, PUC_DESC, GEOMEDIA_ID
+  DS2 qsxy-qxhc | Public_Parcel_Data | ZONEDESC, Shape__Length, Shape__Area, Area, ZONECLASS, LANDUSECOD, SITUS_NO1, the_geom, SITUS_STAT, FID, APN, SITUS_ADDR, SITUS_CITY
+  DS2 7y6u-ncje | No Development Sites (Plan Bay Area 2040) | NO_DEVLOPMENT_SITES, OBJECTID, geom_id, DATASOURCE, ACRES, X, Y, PLACE_NAME, COUNTY_NAME
+URL https://www.ers.usda.gov/data-products/feed-grains-database 200 35258
+URL https://www.ers.usda.gov/data-products/wheat-data 200 37901
+  link /media/5706/wheat-data-all-years.xlsx?v=27283
+  link /media/5707/wheat-by-class-quarterly.xlsx?v=98155
+  link /media/5708/wheat-by-class-quarterly.zip?v=47566
+  link /media/5709/wheat-data-all-years.zip?v=92971
+URL https://www.ers.usda.gov/data-products/oil-crops-yearbook 200 37385
+  link /media/5218/all-tables-oil-crops-yearbook.csv?v=56157
+  link /media/5220/all-tables-oil-crops-yearbook.xlsx?v=66183
+  link /media/7103/previously-released-oil-crops-yearbooks.zip?v=38730

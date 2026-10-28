@@ -1,20 +1,6 @@
 {
-"generated": "2026-10-27 22:22 UTC",
+"generated": "2026-10-28 01:02 UTC",
 "events": [
-{
-"date": "2026-10-20",
-"time": "3:30 PM CT",
-"event": "API weekly crude & product inventories (industry)",
-"cat": "Energy",
-"markets": [
-"CL",
-"HO",
-"RB"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-10-21",
 "time": "9:30 AM CT",
@@ -2730,6 +2716,20 @@
 "ZS",
 "ZW",
 "KE"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-26",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
 ],
 "importance": 1,
 "link": null,

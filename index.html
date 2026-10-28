@@ -21,6 +21,8 @@
   <button data-c="markets">Markets &amp; macro</button>
   <button data-c="options">Options pricer</button>
   <button data-c="backtest" title="Trend, COT, carry, fundamental and seasonal rules tested on every market">Backtest</button>
+  <button data-c="seasonal" title="Seasonal trades, heat maps, spreads and seasonal charts for every market">Seasonality</button>
+  <button data-c="basis" title="Cash minus nearby futures for cotton, grains and livestock: seasonal pattern, current reading and what followed">Basis</button>
   <button data-c="signals" title="Trend, carry, inventories, options-implied odds, positioning and sizing per market, from the research library">Signals</button>
   <button data-c="dairy">Dairy</button>
   <button data-c="grains">Grains &amp; oilseeds</button>
@@ -35,6 +37,8 @@
 <section id="markets" style="display:none"></section>
 <section id="options" style="display:none"></section>
 <section id="signals" style="display:none"></section>
+<section id="seasonal" style="display:none"></section>
+<section id="basis" style="display:none"></section>
 <section id="backtest" style="display:none"></section>
 <section id="cotton" style="display:none"></section>
 <section id="dairy" style="display:none">
@@ -253,6 +257,8 @@
 <script src="assets/options.js?v=20261022k"></script>
 <script src="assets/signals.js?v=20261022k"></script>
 <script src="assets/backtest.js?v=20261022k"></script>
+<script src="assets/seasonal.js?v=20261028a"></script>
+<script src="assets/basis.js?v=20261028a"></script>
 <script src="assets/energy_geo.js?v=20261022k"></script>
 <script src="assets/energy_desk.js?v=20261022k"></script>
 <script src="assets/dairy.js?v=20261022k"></script>
@@ -261,7 +267,7 @@
 <script src="assets/cattle.js?v=20261022k"></script>
 <script src="assets/china.js?v=20261023e"></script>
 <script src="assets/cotton_loan.js?v=20261023a"></script>
-<script src="assets/cotton.js?v=20261023d"></script>
+<script src="assets/cotton.js?v=20261028a"></script>
 <script>
 // COT (full): the CFTC positioning desk (cot/index.html, port of cftc-cot-full) in a frame; #cot/<tab or ticker> deep-links
 const CotFull = {
@@ -284,14 +290,16 @@ window.addEventListener('message', e => {
 });
 $$('nav.comm button[data-c]').forEach(b => b.onclick = () => {
   $$('nav.comm button').forEach(x => x.classList.toggle('on', x === b));
-  ['summary', 'markets', 'options', 'signals', 'backtest', 'dairy', 'grains', 'cotton', 'hogs', 'cattle', 'cotfull', 'energy'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
-  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (b.dataset.c === 'energy') Energy.show(); else if (b.dataset.c === 'signals') Signals.show(); else if (b.dataset.c === 'backtest') Backtest.show(); else if (b.dataset.c === 'cotfull') CotFull.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
+  ['summary', 'markets', 'options', 'signals', 'seasonal', 'basis', 'backtest', 'dairy', 'grains', 'cotton', 'hogs', 'cattle', 'cotfull', 'energy'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
+  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (b.dataset.c === 'energy') Energy.show(); else if (b.dataset.c === 'signals') Signals.show(); else if (b.dataset.c === 'seasonal') Seasonal.show(); else if (b.dataset.c === 'basis') Basis.show(); else if (b.dataset.c === 'backtest') Backtest.show(); else if (b.dataset.c === 'cotfull') CotFull.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
 });
 if (location.hash.startsWith('#cot/') || location.hash === '#cot') $('nav.comm button[data-c="cotfull"]').click();
 else if (location.hash.startsWith('#energy') || /^#e-(primer|sd|geo|charts|news)$/.test(location.hash)) $('nav.comm button[data-c="energy"]').click();
 else if (location.hash.startsWith('#d-')) $('nav.comm button[data-c="dairy"]').click();
 else if (location.hash === '#markets') $('nav.comm button[data-c="markets"]').click();
 else if (location.hash.startsWith('#backtest') || location.hash.startsWith('#bt-')) $('nav.comm button[data-c="backtest"]').click();
+else if (location.hash.startsWith('#basis')) $('nav.comm button[data-c="basis"]').click();
+else if (location.hash.startsWith('#seasonal')) $('nav.comm button[data-c="seasonal"]').click();
 else if (location.hash.startsWith('#signals')) $('nav.comm button[data-c="signals"]').click();
 else if (location.hash.startsWith('#options')) $('nav.comm button[data-c="options"]').click();
 else if (!/^#(g|h-|c-|ct-)/.test(location.hash)) $('nav.comm button[data-c="summary"]').click();

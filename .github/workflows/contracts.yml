@@ -41,6 +41,12 @@ jobs:
       - name: contract calendar (notice and last trading days, roll-by dates)
         continue-on-error: true
         run: python -W ignore models/contract_calendar.py
+      - name: seasonality for every market (seasonal trades, heat maps, seasonal charts)
+        continue-on-error: true
+        run: python -W ignore models/seasonal_desk.py
+      - name: cash basis (USDA AgTransport weekly grain bids, then basis for grains and livestock)
+        continue-on-error: true
+        run: python pipelines/agtransport_basis.py; python -W ignore models/basis_desk.py
       - name: contract specs (value per contract at today's price, margins)
         continue-on-error: true
         run: python models/contract_specs.py
@@ -50,7 +56,7 @@ jobs:
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/contracts data/dairy/derived/dairy_arb.json data/dairy/derived/dairy_lab.json data/dairy/derived/dairy_ideas.json data/dairy/derived/playbook.json data/livestock/derived/meats_lab.json data/livestock/derived/playbook_hogs.json data/livestock/derived/playbook_cattle.json data/dairy/derived/dairy_panel.csv.gz data/specs data/lab_export data/grains/derived/rv.json data/summary/sheet.json data/research data/ai
+          git add data/contracts data/seasonal data/basis data/grains/raw/agtransport data/dairy/derived/dairy_arb.json data/dairy/derived/dairy_lab.json data/dairy/derived/dairy_ideas.json data/dairy/derived/playbook.json data/livestock/derived/meats_lab.json data/livestock/derived/playbook_hogs.json data/livestock/derived/playbook_cattle.json data/dairy/derived/dairy_panel.csv.gz data/specs data/lab_export data/grains/derived/rv.json data/summary/sheet.json data/research data/ai
           git diff --cached --quiet && exit 0
           git commit -q -m "data: per-contract futures history $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

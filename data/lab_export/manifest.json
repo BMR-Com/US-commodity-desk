@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-27T23:27Z",
+ "generated": "2026-10-28T02:39Z",
  "source": "https://github.com/BMR-Com/US-commodity-desk",
  "base": "https://bmr-com.github.io/US-commodity-desk/",
  "files": [
@@ -8,63 +8,63 @@
    "kind": "results",
    "desc": "Dairy weekly-survey -> monthly settlement convergence: nowcasts, live gaps, formula arbitrage",
    "bytes": 74333,
-   "sha256": "927f7e7961edd6d5a45d80c19611e060ab3f5f4c6a824f1611b03973d5eb09a0",
+   "sha256": "a63a6c20e364e7ded3b190c8b91274e8a22910b0d76da472e0d044ca7c08e1d9",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/dairy/derived/dairy_arb.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/dairy/derived/dairy_lab.json",
    "kind": "results",
    "desc": "Dairy forecasting and trading lab: walk-forward models, strategy grid, desk book",
    "bytes": 466789,
-   "sha256": "d37b968e852ad56958c325379dff8e63c7b0dec361e39a2be695609e4379eeae",
+   "sha256": "7a8e652ffb3fb209a4df00fa5cb6450b33212a1be0f0461dcac251197e67e637",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/dairy/derived/dairy_lab.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/dairy/derived/dairy_ideas.json",
    "kind": "results",
    "desc": "Dairy strategy ideas with track records, worked examples and today's signals",
-   "bytes": 47016,
-   "sha256": "5c57ae025376303c55a71f8fa8bf84f3b9a080d6029f78c388e5a85779822f7c",
+   "bytes": 47023,
+   "sha256": "d994bd3be0c27c7e72b3f4b5fe7b3da64cf62ac6a35f2a9a233b7ca8b702da85",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/dairy/derived/dairy_ideas.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/dairy/derived/playbook.json",
    "kind": "results",
    "desc": "Dairy trade playbook: entry, exit, risk, what to track, live positions (nightly)",
-   "bytes": 22633,
-   "sha256": "b62cbc42de4e9961b27555d3defaba96d8b90025cae0c9c95ac72b9d3ff88105",
+   "bytes": 22632,
+   "sha256": "67ecb571a00fbaecdf0e2bdf48fac9c1ca52b97b0d7d1e10372c7d662bb03db9",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/dairy/derived/playbook.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/livestock/derived/meats_lab.json",
    "kind": "results",
    "desc": "Hogs and cattle strategy lab: convergence, premium, trend, seasonal, breakout, feeding margin",
    "bytes": 161365,
-   "sha256": "f6e3bf44ee1a70e6696b5d44b43dc6be4afb86eccbaff4b63f74606495ad7e9b",
+   "sha256": "f2cbfe3b075bc97337c2ef6171fa1b727705559ec42fd522159b4d369aec0a08",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/livestock/derived/meats_lab.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/livestock/derived/playbook_hogs.json",
    "kind": "results",
    "desc": "Lean hogs trade playbook (nightly)",
    "bytes": 12422,
-   "sha256": "26b072dc463950749ec176ea39caa7c9867581cdcf50dc2266f0adf8eec41b63",
+   "sha256": "e110202d1d9e4212b0948b8c5576bbc55df06a1f36fd942666e616567284b628",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/livestock/derived/playbook_hogs.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/livestock/derived/playbook_cattle.json",
    "kind": "results",
    "desc": "Live and feeder cattle trade playbook (nightly)",
    "bytes": 17728,
-   "sha256": "d7992d31c2d2400fd3e1596fd15fdef70f6c5836200bd88700f6bf8928ae9c81",
+   "sha256": "56eafa4ea5cf76ddce4b2e383c23fceef1c9d6adf5f2b5f6a5b949343b85b172",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/livestock/derived/playbook_cattle.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/livestock/derived/hogs_convergence.json",
@@ -73,7 +73,7 @@
    "bytes": 7982,
    "sha256": "88bf67deecea9914af1ff4fe72ecec3309f2274f320960c4ad89fa1edee0db98",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/livestock/derived/hogs_convergence.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/backtest/lab.json",
@@ -82,7 +82,7 @@
    "bytes": 624724,
    "sha256": "67bd90a891a59126b6c426beba54ae73ab4c8528368e57df515ec4969f5f13ec",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/backtest/lab.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/backtest/tech.json",
@@ -91,7 +91,7 @@
    "bytes": 349976,
    "sha256": "684c3c3b7f2a3ac000cdb8e9e862646ca6c6b2ab394e55d12851b2419a2b3b63",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/backtest/tech.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/backtest/baskets.json",
@@ -100,7 +100,7 @@
    "bytes": 234864,
    "sha256": "67eb9f0e8ff5598fcb91789b4973959af6536ad51f029d76427b01f17c013b51",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/backtest/baskets.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/backtest/equity.json",
@@ -109,25 +109,25 @@
    "bytes": 3050712,
    "sha256": "971bacf6fe5fcef4a8bbc4f69aa1c27453bcac1d2274312d6ec991f47a574ce5",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/backtest/equity.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/specs/calendar.json",
    "kind": "results",
    "desc": "Contract calendar: first position / notice day, last trading day, roll-by date",
    "bytes": 27884,
-   "sha256": "b778808f93abac13d67650b63a68e3d77f85ca7d2eafa7f522c34090431a930e",
+   "sha256": "1e2d81e0ae72e3b0a4b00a5fcf9aca977fb576aee06e19c532a362dea384dbae",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/specs/calendar.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "data/specs/specs.json",
    "kind": "results",
    "desc": "Contract specs, value per contract and margins",
    "bytes": 23235,
-   "sha256": "cd5060d3b0a8761f2211a317f7c598d45e7a2b4fa758313728ff5a1dbb911654",
+   "sha256": "d28eaa4cecc32ad41bbe4443817378e5d2f16f0f1f59d47e2b76c98cacd2b52f",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/specs/specs.json",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/dairy_arb.py",
@@ -136,7 +136,7 @@
    "bytes": 29686,
    "sha256": "9bfa9e8f6b1a7af22544a3b3cd3e04708bf372521f08753d14733a655a1f183d",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/dairy_arb.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/dairy_lab.py",
@@ -145,7 +145,7 @@
    "bytes": 38309,
    "sha256": "9aa730067e76c392a59765de7f8df2b8c1dc9c845b4e713a1abd33be8432e7e3",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/dairy_lab.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/dairy_ideas.py",
@@ -154,7 +154,7 @@
    "bytes": 16987,
    "sha256": "7ce28959eefb5ff706ff818929a5b93a289c88fb1861bffa34ac7ac42c5b2d5d",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/dairy_ideas.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/dairy_playbook.py",
@@ -163,7 +163,7 @@
    "bytes": 13274,
    "sha256": "43e04302960750d5c971135cbd9ad039162847e79313850163bd448823256c6b",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/dairy_playbook.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/dairy_class.py",
@@ -172,7 +172,7 @@
    "bytes": 10171,
    "sha256": "ac62dba1943f86d4e2b9544b310c995355b1515189c0f517caf5a39b76d5ac6b",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/dairy_class.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/meats_lab.py",
@@ -181,7 +181,7 @@
    "bytes": 37427,
    "sha256": "7abe82982d7a06cacbc7e3e97a473f8a1955fd8a60c547856b93751d99e5b6c3",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/meats_lab.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/hogs.py",
@@ -190,7 +190,7 @@
    "bytes": 7602,
    "sha256": "7da81b3cec46577b1d35790b816b0f6e5c4c4768fdab19d9c9f9a7a1a8ad4031",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/hogs.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/hogs_convergence.py",
@@ -199,7 +199,7 @@
    "bytes": 10788,
    "sha256": "83fcf4949f9ac71d77b9de59ce348432a3f7b4bc5bc4eb2b6fc1e0ba17088fe9",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/hogs_convergence.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/tech_lab.py",
@@ -208,7 +208,7 @@
    "bytes": 25438,
    "sha256": "af3848ac57ff1701a8dc90d18187515dabcd5c00d9fc8ea37cf100936864f664",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/tech_lab.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/backtest_lab.py",
@@ -217,7 +217,7 @@
    "bytes": 29703,
    "sha256": "cb42c0041d4313d9c9f2fda64bbb0de353c165190bbac43a3932ec9035089697",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/backtest_lab.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/basket_lab.py",
@@ -226,7 +226,7 @@
    "bytes": 19323,
    "sha256": "0ca50d5124efd0d7c67c743b96aeaf2af3e7b05d908ffc70280dcc679e0a6175",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/basket_lab.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/contract_calendar.py",
@@ -235,7 +235,7 @@
    "bytes": 12064,
    "sha256": "e626eb50f83e4751f6c5036f706c0d336cc844c78fe1ae72a700a665dd9a659e",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/contract_calendar.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/contract_specs.py",
@@ -244,7 +244,7 @@
    "bytes": 13767,
    "sha256": "bd715aea460a78bb4c75c03d3be0fe12dc017b3e888c415e9a69d43c3c860467",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/contract_specs.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "models/futures_io.py",
@@ -253,7 +253,7 @@
    "bytes": 1021,
    "sha256": "9bbd27d5fa8604341f1dfc0a92de7ce79bf74c54055241740c7147357ff994ca",
    "url": "https://bmr-com.github.io/US-commodity-desk/models/futures_io.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "pipelines/tvdates.py",
@@ -262,7 +262,7 @@
    "bytes": 1170,
    "sha256": "942aebcb6633e92591a41cc118c6c6eb7e6549e8dffb27c4fed8ec57143c8812",
    "url": "https://bmr-com.github.io/US-commodity-desk/pipelines/tvdates.py",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   },
   {
    "path": "HANDOFF.md",
@@ -271,7 +271,7 @@
    "bytes": 59815,
    "sha256": "719cf0c6641ee7fd6200576834e1b1b2c041b820c803e9f864307eedd2d1ea60",
    "url": "https://bmr-com.github.io/US-commodity-desk/HANDOFF.md",
-   "updated": "2026-10-27T22:46:04Z"
+   "updated": "2026-10-28T01:42:29Z"
   }
  ]
 }

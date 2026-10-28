@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-28T18:02+00:00",
+ "generated": "2026-10-28T20:49+00:00",
  "since": "2021-02-24",
  "tests": {
   "class3": {
@@ -90,8 +90,8 @@
  "current": {
   "month": "2026-10",
   "spot_date": "2026-10-28",
-  "weeks_done": 3,
-  "weeks_left": 2,
+  "weeks_done": 4,
+  "weeks_left": 1,
   "spot": {
    "barrels": 1.725,
    "butter": 1.285,
@@ -100,13 +100,13 @@
    "whey": 0.81
   },
   "spread": {
-   "cheese": 0.092,
-   "butter": 0.0547,
-   "ndm": -0.22,
-   "whey": -0.1088
+   "cheese": 0.0388,
+   "butter": 0.05,
+   "ndm": -0.2139,
+   "whey": -0.1164
   },
-  "class3": 16.6,
-  "class4": 19.79
+  "class3": 15.66,
+  "class4": 20.12
  },
  "spot_series": {
   "date": [

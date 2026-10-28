@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-28T17:54Z",
+ "generated": "2026-10-28T18:24Z",
  "source": "https://github.com/BMR-Com/US-commodity-desk",
  "base": "https://bmr-com.github.io/US-commodity-desk/",
  "files": [
@@ -7,8 +7,8 @@
    "path": "data/dairy/derived/dairy_arb.json",
    "kind": "results",
    "desc": "Dairy weekly-survey -> monthly settlement convergence: nowcasts, live gaps, formula arbitrage",
-   "bytes": 74332,
-   "sha256": "ab165dfe08d24ca6f17069009807da6da6f82dd9970a606ba91ca7231498de01",
+   "bytes": 74334,
+   "sha256": "72195a2276c31554efdd40bed711ab85885a99341d7e9a1b5f4eea4afe1f4afa",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/dairy/derived/dairy_arb.json",
    "updated": "2026-10-28T12:28:39-05:00"
   },
@@ -34,8 +34,8 @@
    "path": "data/dairy/derived/playbook.json",
    "kind": "results",
    "desc": "Dairy trade playbook: entry, exit, risk, what to track, live positions (nightly)",
-   "bytes": 22372,
-   "sha256": "4fa46d6988e83407263cc3eaf25fcb51fe7fc9ccc62ded32deec91dda94e0a96",
+   "bytes": 22215,
+   "sha256": "025cbe46de4d98bfc9f5bc93fe03e91085843d0e7349607cdfc874541d4a5acd",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/dairy/derived/playbook.json",
    "updated": "2026-10-28T12:28:39-05:00"
   },
@@ -43,8 +43,8 @@
    "path": "data/livestock/derived/meats_lab.json",
    "kind": "results",
    "desc": "Hogs and cattle strategy lab: convergence, premium, trend, seasonal, breakout, feeding margin",
-   "bytes": 161368,
-   "sha256": "99bf6d1f7c178f75d570b301e0f9f787e86bc8586b794c42a6838163e115e934",
+   "bytes": 161362,
+   "sha256": "eb7dc3cecb898009ffed72f095287e36c1202eb30f04a8d7ce8455b17eb035c1",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/livestock/derived/meats_lab.json",
    "updated": "2026-10-28T12:28:39-05:00"
   },
@@ -52,8 +52,8 @@
    "path": "data/livestock/derived/playbook_hogs.json",
    "kind": "results",
    "desc": "Lean hogs trade playbook (nightly)",
-   "bytes": 12417,
-   "sha256": "b64c274d60e444a125038328b3902dd2d9a68a7f7e942943d12a0eef97cb2679",
+   "bytes": 12412,
+   "sha256": "3d9fbd553098e381047e65488890eddfc0cd957fbe0cc9b276958ff1cd2392ac",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/livestock/derived/playbook_hogs.json",
    "updated": "2026-10-28T12:28:39-05:00"
   },
@@ -61,8 +61,8 @@
    "path": "data/livestock/derived/playbook_cattle.json",
    "kind": "results",
    "desc": "Live and feeder cattle trade playbook (nightly)",
-   "bytes": 17729,
-   "sha256": "12c5bb1c376996bf3afc169967850f7331c30413416400e761455dd631dad710",
+   "bytes": 17495,
+   "sha256": "0a9c7d8f0c8cda1d43f953e0e233929e48597a4dd996f949f72b995074b9ee98",
    "url": "https://bmr-com.github.io/US-commodity-desk/data/livestock/derived/playbook_cattle.json",
    "updated": "2026-10-28T12:28:39-05:00"
   },

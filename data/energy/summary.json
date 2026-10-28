@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-28 17:24 UTC",
+ "generated": "2026-10-28 19:58 UTC",
  "inventories": {
   "storL48": {
    "date": "2026-10-16",
@@ -15,71 +15,71 @@
    "unit": "Bcf"
   },
   "crude": {
-   "date": "2026-10-16",
-   "value": 412.517,
-   "chg": -3.06,
-   "yago": 422.824,
-   "avg5": 428.145,
-   "vs_avg5": -15.628,
-   "vs_avg5_pct": -3.650165247754844,
-   "vs_yago": -10.307,
-   "chg_avg5": 2.5482,
+   "date": "2026-10-23",
+   "value": 410.625,
+   "chg": -1.892,
+   "yago": 415.966,
+   "avg5": 426.86,
+   "vs_avg5": -16.235,
+   "vs_avg5_pct": -3.80335472988802,
+   "vs_yago": -5.341,
+   "chg_avg5": -1.285,
    "name": "Crude stocks ex-SPR",
    "unit": "mb"
   },
   "cushing": {
-   "date": "2026-10-16",
-   "value": 27.594,
-   "chg": 0.987,
-   "yago": 21.231,
-   "avg5": 24.2724,
-   "vs_avg5": 3.3215999999999983,
-   "vs_avg5_pct": 13.684678894546876,
-   "vs_yago": 6.363,
-   "chg_avg5": -0.827,
+   "date": "2026-10-23",
+   "value": 26.97,
+   "chg": -0.624,
+   "yago": 22.565,
+   "avg5": 24.8,
+   "vs_avg5": 2.17,
+   "vs_avg5_pct": 8.749999999999991,
+   "vs_yago": 4.405,
+   "chg_avg5": 0.5276000000000001,
    "name": "Cushing crude",
    "unit": "mb"
   },
   "gaso": {
-   "date": "2026-10-16",
-   "value": 205.31,
-   "chg": -2.952,
-   "yago": 216.679,
-   "avg5": 215.4694,
-   "vs_avg5": -10.159399999999994,
-   "vs_avg5_pct": -4.7150082563927835,
-   "vs_yago": -11.369,
-   "chg_avg5": -0.9168,
+   "date": "2026-10-23",
+   "value": 209.18,
+   "chg": 3.87,
+   "yago": 210.738,
+   "avg5": 213.2038,
+   "vs_avg5": -4.023799999999988,
+   "vs_avg5_pct": -1.8873021963023096,
+   "vs_yago": -1.558,
+   "chg_avg5": -2.2656,
    "name": "Gasoline stocks",
    "unit": "mb"
   },
   "dist": {
-   "date": "2026-10-16",
-   "value": 104.286,
-   "chg": 1.675,
-   "yago": 115.551,
-   "avg5": 114.5592,
-   "vs_avg5": -10.273199999999997,
-   "vs_avg5_pct": -8.967590555799966,
-   "vs_yago": -11.265,
-   "chg_avg5": -0.9134,
+   "date": "2026-10-23",
+   "value": 102.824,
+   "chg": -1.462,
+   "yago": 112.189,
+   "avg5": 114.0504,
+   "vs_avg5": -11.226399999999995,
+   "vs_avg5_pct": -9.843367493669463,
+   "vs_yago": -9.365,
+   "chg_avg5": -0.5088,
    "name": "Distillate stocks",
    "unit": "mb"
   }
  },
  "refinery_util": {
-  "date": "2026-10-16",
-  "value": 93.4,
-  "chg": -0.09999999999999432
+  "date": "2026-10-23",
+  "value": 92.8,
+  "chg": -0.6000000000000085
  },
  "crude_prod": {
-  "date": "2026-10-16",
-  "value": 13.269,
+  "date": "2026-10-23",
+  "value": 13.992,
   "unit": "mb/d"
  },
  "henry_hub_spot": {
-  "date": "2026-10-20",
-  "value": 3.1
+  "date": "2026-10-27",
+  "value": 2.76
  },
  "prices": {
   "NG": {
@@ -146,8 +146,8 @@
    "atm": 49.6,
    "label": "Dec 2026",
    "rr25": 6.63,
-   "rv20": 24.7
+   "rv20": 24.8
   }
  },
- "read": "Gas storage 3,644 Bcf (week to 2026-10-16), +77 Bcf vs a 5-year average +76 for the week; -1 Bcf (-0.0%) vs the 5-year average, -154 vs last year. Crude stocks 412.5 mb (-3.1 mb on the week, -3.7% vs 5-yr avg); gasoline -3.0 mb, distillate +1.7 mb; refinery utilization 93.4%. 3-2-1 crack $48.99/bbl (ULSD $94.14, gasoline $26.41). Options: NG IV 70% vs RV 46%; CL IV 51% vs RV 38%; HO IV 63% vs RV 45%; RB IV 50% vs RV 25%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
+ "read": "Gas storage 3,644 Bcf (week to 2026-10-16), +77 Bcf vs a 5-year average +76 for the week; -1 Bcf (-0.0%) vs the 5-year average, -154 vs last year. Crude stocks 410.6 mb (-1.9 mb on the week, -3.8% vs 5-yr avg); gasoline +3.9 mb, distillate -1.5 mb; refinery utilization 92.8%. 3-2-1 crack $48.99/bbl (ULSD $94.14, gasoline $26.41). Options: NG IV 70% vs RV 46%; CL IV 51% vs RV 38%; HO IV 63% vs RV 45%; RB IV 50% vs RV 25%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
 }

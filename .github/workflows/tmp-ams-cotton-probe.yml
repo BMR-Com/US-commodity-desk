@@ -12,4 +12,4 @@ jobs:
         run: python tmp/ams_cotton_probe.py
       - run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          rm -f tmp/out/*.pdf; git add tmp/out; git commit -q -m "tmp: ams cotton probe output" && git push -q origin HEAD:tmp/ams-cotton-probe
+          git add tmp/out tmp/out2; git commit -q -m "tmp: ams cotton probe output" && git push -q origin HEAD:tmp/ams-cotton-probe

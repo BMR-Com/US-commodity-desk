@@ -22,13 +22,16 @@ const BalanceSheet = (() => {
     return m.dec;
   }
   async function mount(el, key) {
+    try { await render(el, key); } catch (e) { console.error('balance sheet', e); el.innerHTML = '<div class="card bs"><p class="note">Balance sheet could not be drawn from the latest data; it refreshes on the next data run.</p></div>'; }
+  }
+  async function render(el, key) {
     if (!document.getElementById('bsCss')) document.head.insertAdjacentHTML('beforeend', css);
     el.innerHTML = '<div class="card bs"><p class="note">Loading balance sheet…</p></div>';
     const D = await getJSON('data/derived/balance_sheets.json').catch(() => null);
     const m = D && D.markets && D.markets[key];
     if (!m) { el.innerHTML = ''; return; }
     const yrs = m.years, cur = m.cur, u = m.unit, d = m.dec;
-    const S = m.summary, us = m.usda_end, prodOnly = m.product;
+    const S = m.summary || {}, us = m.usda_end, prodOnly = m.product || !S.base;
     const diff = v => `${v - us >= 0 ? '+' : '−'}${fmt(Math.abs(v - us), d)}`;
     let sum = '';
     if (!prodOnly) {
@@ -54,7 +57,7 @@ const BalanceSheet = (() => {
     }).join('');
     const notes = prodOnly
       ? `<p class="note">USDA's last three seasons and its ${cur} forecast. No desk scenarios here: meal and oil come out of the soybean crush, so an export miss changes how much is crushed rather than piling up as stocks. See the soybean balance sheet for the crush.</p>`
-      : `<p class="note"><b>Variables used:</b> ${m.vars.join('; ')}. Beginning stocks, imports and domestic use are USDA's ${m.report} numbers.${m.exp_miss != null && m.exp_miss >= 10 ? ` Export sales are only ${m.exp_week} weeks into the season, so the export side is an early read.` : ''} Bearish = larger crop, bullish = smaller crop with strong demand; exports stay within available supply and the US share of world trade. Production and exports as of ${D.generated}.</p>`;
+      : `<p class="note"><b>Variables used:</b> ${(m.vars || ['crop model', 'USDA estimates', 'weekly export sales', 'world trade shares']).join('; ')}. Beginning stocks, imports and domestic use are USDA's ${m.report} numbers.${m.exp_miss != null && m.exp_miss >= 10 ? ` Export sales are only ${m.exp_week} weeks into the season, so the export side is an early read.` : ''} Bearish = larger crop, bullish = smaller crop with strong demand; exports stay within available supply and the US share of world trade. Production and exports as of ${D.generated}.</p>`;
     el.innerHTML = `<div class="card bs"><h2>US balance sheet — ${m.name} <span class="note">USDA ${yrs[0]}–${cur} and desk scenarios · built ${D.generated}</span></h2>
       ${sum}<div class="tbl"><table>${H}${R}</table></div>${notes}</div>`;
   }

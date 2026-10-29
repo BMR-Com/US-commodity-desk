@@ -4,7 +4,7 @@ const Hogs = (() => {
   let built = false, tab = 'h-primer', H, SDH, CV, EX, F, CB, BIAS;
   function shell() {
     $('#hogs').innerHTML = `<nav class="tabs" id="hTabs"><button data-t="h-primer" class="on">1 · Primer</button><button data-t="h-geo">Where it's produced, trade &amp; weather</button><button data-t="h-sd">2 · Supply &amp; demand</button>
-      <button data-t="h-flows">3 · Futures, options &amp; COT</button><button data-t="h-outlook">4 · Outlook</button></nav><main><div id="hBody"></div></main>`;
+      <button data-t="h-flows">3 · Futures, options &amp; COT</button><button data-t="h-outlook">4 · Outlook</button><button data-t="h-seas">5 · Seasonality &amp; technicals</button></nav><main><div id="hBody"></div></main>`;
     $$('#hTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#hTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
   async function show() {
@@ -17,7 +17,7 @@ const Hogs = (() => {
     const h = location.hash.slice(1); if (/^h-/.test(h)) { tab = h; $$('#hTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab)); }
     render();
   }
-  function render() { history.replaceState(null, '', '#' + tab); ({ 'h-primer': primer, 'h-geo': () => Geo.mount($('#hBody'), 'pork'), 'h-sd': sd, 'h-flows': flows, 'h-outlook': outlook })[tab](); }
+  function render() { history.replaceState(null, '', '#' + tab); ({ 'h-primer': primer, 'h-geo': () => Geo.mount($('#hBody'), 'pork'), 'h-sd': sd, 'h-flows': flows, 'h-outlook': outlook, 'h-seas': () => MktStudy.mount($('#hBody'), ['HE']) })[tab](); }
   const body = html => { $('#hBody').innerHTML = html; };
 
   function primer() {
@@ -119,6 +119,8 @@ const Hogs = (() => {
         ${b && b.h20 ? `<h3>Futures vs their own final settlement</h3><p>From 20 business days out ${sgn(b.h20.mean_pct, 2, '%')} (${Math.round(100 * b.h20.up_share)}% up), from 60 ${sgn(b.h60.mean_pct, 2, '%')}: no reliable bias.</p>` : ''}
       </div></div>`);
     Playbook.mount($('#hogsPlaybook')); Tech.mount($('#hTech'), ['HE']);
+    $('#hBody').insertAdjacentHTML('beforeend', '<div id="hSzUp" style="margin-top:12px"></div>');
+    MktStudy.upcoming($('#hSzUp'), ['HE'], () => $('#hTabs button[data-t="h-seas"]').click());
   }
   return { show };
 })();

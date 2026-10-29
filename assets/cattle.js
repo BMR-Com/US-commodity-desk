@@ -4,7 +4,7 @@ const Cattle = (() => {
   let built = false, tab = 'c-primer', C, F, BIAS, CS;
   function shell() {
     $('#cattle').innerHTML = `<nav class="tabs" id="cTabs"><button data-t="c-primer" class="on">1 · Primer</button><button data-t="c-geo">Where it's produced, trade &amp; weather</button><button data-t="c-sd">2 · Supply &amp; demand</button>
-      <button data-t="c-flows">3 · Futures, options &amp; COT</button><button data-t="c-outlook">4 · Outlook</button></nav><main><div id="cBody"></div></main>`;
+      <button data-t="c-flows">3 · Futures, options &amp; COT</button><button data-t="c-outlook">4 · Outlook</button><button data-t="c-seas">5 · Seasonality &amp; technicals</button></nav><main><div id="cBody"></div></main>`;
     $$('#cTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#cTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
   async function show() {
@@ -12,7 +12,7 @@ const Cattle = (() => {
     const h = location.hash.slice(1); if (/^c-/.test(h)) { tab = h; $$('#cTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab)); }
     render();
   }
-  function render() { history.replaceState(null, '', '#' + tab); ({ 'c-primer': primer, 'c-geo': () => Geo.mount($('#cBody'), 'beef'), 'c-sd': sd, 'c-flows': flows, 'c-outlook': outlook })[tab](); }
+  function render() { history.replaceState(null, '', '#' + tab); ({ 'c-primer': primer, 'c-geo': () => Geo.mount($('#cBody'), 'beef'), 'c-sd': sd, 'c-flows': flows, 'c-outlook': outlook, 'c-seas': () => MktStudy.mount($('#cBody'), ['LE', 'GF']) })[tab](); }
   const body = h => { $('#cBody').innerHTML = h; };
 
   function primer() {
@@ -89,6 +89,8 @@ const Cattle = (() => {
         ${[['Live cattle', b], ['Feeder cattle', g]].map(([n, v]) => v && v.h20 ? `<tr><td>${n} (${v.n_contracts})</td>${['h20', 'h60', 'h120'].map(h => `<td>${sgn(v[h].mean_pct, 2, '%')} · ${Math.round(100 * v[h].up_share)}% up</td>`).join('')}</tr>` : '').join('')}</table></div>
         <p class="note">Futures vs their own final price for every expired contract since 2010. The live cattle premium held in both halves of the sample (quarter-clustered t 2.3–3.2), but it coincides with a long cattle-cycle bull market, so treat it as a risk premium that can vanish in a herd-liquidation bear phase. </p>${CS ? `<h3>Placements → marketings pipeline</h3><p>Forecasting monthly fed-cattle marketings from placements by weight with fixed days on feed: mean abs error ${CS.test.mape_pipeline}% vs ${CS.test.mape_naive}% for the trailing marketings trend; the pipeline wins only ${Math.round(100 * CS.test.pipeline_beats_naive)}% of months (n=${CS.test.n}). Days on feed vary too much with feed costs, heifer share and weather for a fixed-lag pipeline; it is shown for context only. Implied y/y marketings from placements already reported: ${CS.forward.map(f => `${f.month} ${sgn(f.yoy_pct, 1, '%')}`).join(', ')}.</p>` : ''}</div></div>`);
     Playbook.mount($('#cattlePlaybook')); Tech.mount($('#cTech'), ['LE', 'GF']);
+    $('#cBody').insertAdjacentHTML('beforeend', '<div id="cSzUp" style="margin-top:12px"></div>');
+    MktStudy.upcoming($('#cSzUp'), ['LE', 'GF'], () => $('#cTabs button[data-t="c-seas"]').click());
   }
   return { show };
 })();

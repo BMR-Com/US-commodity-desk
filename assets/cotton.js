@@ -6,7 +6,7 @@ const Cotton = (() => {
   const SITE = { wasde: ORG + '/wasde-analytics/', esr: ORG + '/usd-export-sales-email/', crop: ORG + '/cotton-crop-progress/', oncall: ORG + '/cotton-on-call/',
     cot: ORG + '/cftc-cot-full/', opts: ORG + '/softs--options-/' };
   const TABS = [['ct-primer', 'Primer'], ['ct-geo', "Where it's grown, trade &amp; weather"], ['ct-wasde', 'WASDE'], ['ct-esr', 'Export sales'], ['ct-crop', 'Crop progress'], ['ct-china', 'China'], ['ct-loan', 'Loan'], ['ct-oncall', 'On-call'], ['ct-basis', 'Basis &amp; ideas'],
-    ['ct-flows', 'Futures, options &amp; COT'], ['ct-rv', 'Spreads &amp; vol'], ['ct-outlook', 'Outlook']];
+    ['ct-flows', 'Futures, options &amp; COT'], ['ct-rv', 'Spreads &amp; vol'], ['ct-outlook', 'Outlook'], ['ct-seas', 'Seasonality &amp; technicals']];
   function shell() {
     $('#cotton').innerHTML = `<nav class="tabs" id="ctTabs">${TABS.map(([k, l], i) => `<button data-t="${k}" class="${k === tab ? 'on' : ''}">${i + 1} · ${l}</button>`).join('')}</nav><main><div id="ctBody"></div></main>`;
     $$('#ctTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#ctTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
@@ -24,7 +24,7 @@ const Cotton = (() => {
       'ct-china': () => { try { typeof ChinaCotton !== 'undefined' ? ChinaCotton.mount(body()) : body().innerHTML = '<div class="card"><p class="note">China module not loaded.</p></div>'; } catch (e) { body().innerHTML = '<div class="card"><p class="note">China tab failed to load.</p></div>'; } }, 'ct-loan': () => { try { typeof CottonLoan !== 'undefined' ? CottonLoan.mount(body()) : body().innerHTML = '<div class="card"><p class="note">Loan module not loaded.</p></div>'; } catch (e) { body().innerHTML = '<div class="card"><p class="note">Loan tab failed to load.</p></div>'; } },
       'ct-oncall': () => frame(SITE.oncall, 'Cotton on-call', 'CFTC weekly cotton on-call: unfixed call sales and purchases by contract month, mill fixation pace and what it means for futures.'),
       'ct-basis': () => frame(SITE.crop + 'basis.html', 'Spot basis &amp; trade ideas', 'USDA spot cotton (41-4-34) minus nearby futures: seasonal pattern, current reading, what followed, and the rule-based trade ideas.'),
-      'ct-flows': flows, 'ct-rv': () => RVView.mount(body(), 'CT'), 'ct-outlook': outlook })[tab]();
+      'ct-flows': flows, 'ct-rv': () => RVView.mount(body(), 'CT'), 'ct-outlook': outlook, 'ct-seas': () => MktStudy.mount(body(), ['CT']) })[tab]();
   }
   function primer() {
     body().innerHTML = Specs.slot('cotton') + `<div class="grid g2">
@@ -101,8 +101,10 @@ const Cotton = (() => {
     body().innerHTML = `<div id="ctTech"></div>
       <div class="grid g2" style="margin-top:12px"><div class="card"><h2>WASDE outlook factors</h2><div id="ctFac"><p class="note">Loading…</p></div></div>
       <div class="card"><h2>Next events</h2><div id="ctCal"></div></div></div>
+      <div id="ctSzUp" style="margin-top:12px"></div>
       <div class="card" style="margin-top:12px"><h2>Cotton headlines</h2><div id="ctNews"></div></div>`;
     Tech.mount($('#ctTech'), ['CT']);
+    MktStudy.upcoming($('#ctSzUp'), ['CT'], () => $('#ctTabs button[data-t="ct-seas"]').click());
     Intel.calendar($('#ctCal'), { markets: ['CT'], days: 30, minImp: 2 });
     Intel.news($('#ctNews'), { tags: ['cotton'], n: 20, chips: false });
     const idx = await getJSON('data/grains/derived/wasde_brief/index.json').catch(() => null);

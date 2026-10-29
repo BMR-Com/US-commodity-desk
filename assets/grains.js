@@ -81,7 +81,7 @@ const Grains = (() => {
       <nav class="tabs" id="gTabs">
         <button data-t="g-primer" class="on">1 · Primer</button><button data-t="g-geo">Where it's grown, trade &amp; weather</button><button data-t="g-sd">2 · Supply &amp; demand</button>
         <button data-t="g-esr">3 · Export sales</button><button data-t="g-wasde">4 · WASDE</button>
-        <button data-t="g-flows">5 · Futures, options &amp; COT</button><button data-t="g-rv">6 · Spreads, crush &amp; vol</button><button data-t="g-outlook">7 · Outlook</button></nav>
+        <button data-t="g-flows">5 · Futures, options &amp; COT</button><button data-t="g-rv">6 · Spreads, crush &amp; vol</button><button data-t="g-outlook">7 · Outlook</button><button data-t="g-seas">8 · Seasonality &amp; technicals</button></nav>
       <main><div id="gBody"></div></main>`;
     $$('#gCom button').forEach(b => b.onclick = () => { com = b.dataset.com; $$('#gCom button').forEach(x => x.classList.toggle('on', x === b)); render(); });
     $$('#gTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#gTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
@@ -92,7 +92,7 @@ const Grains = (() => {
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
-    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-geo', 'g-sd', 'g-esr', 'g-wasde', 'g-flows', 'g-rv', 'g-outlook'].includes(h[2])) tab = h[2]; }
+    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-geo', 'g-sd', 'g-esr', 'g-wasde', 'g-flows', 'g-rv', 'g-outlook', 'g-seas'].includes(h[2])) tab = h[2]; }
     $$('#gCom button').forEach(x => x.classList.toggle('on', x.dataset.com === com)); $$('#gTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab));
   }
   async function show() {
@@ -105,7 +105,7 @@ const Grains = (() => {
     if (com === 'sa') { history.replaceState(null, '', '#g/sa'); saPage(); return; }
     history.replaceState(null, '', `#g/${com}/${tab}`);
     const c = GC[com];
-    ({ 'g-primer': primer, 'g-geo': () => Geo.mount(el('#gBody'), ({ corn: 'corn', soybeans: 'soybeans', meal: 'meal', oil: 'oil', wheat: 'wheat', kc: 'wheat' })[com]), 'g-sd': sd, 'g-esr': esrTab, 'g-wasde': wasdeTab, 'g-flows': flows, 'g-rv': c => RVView.mount(el('#gBody'), c.sym), 'g-outlook': outlook })[tab](c);
+    ({ 'g-primer': primer, 'g-geo': () => Geo.mount(el('#gBody'), ({ corn: 'corn', soybeans: 'soybeans', meal: 'meal', oil: 'oil', wheat: 'wheat', kc: 'wheat' })[com]), 'g-sd': sd, 'g-esr': esrTab, 'g-wasde': wasdeTab, 'g-flows': flows, 'g-rv': c => RVView.mount(el('#gBody'), c.sym), 'g-outlook': outlook, 'g-seas': c => MktStudy.mount(el('#gBody'), [c.sym]) })[tab](c);
   }
   // ── EXPORT SALES (tab 3) and WASDE (tab 4) ──
   async function esrTab(c) {
@@ -477,8 +477,9 @@ const Grains = (() => {
     const t = TESTS?.[c.wasde];
     el('#gBody').innerHTML = `<div id="gTech" style="margin-bottom:12px"></div><div class="grid g2"><div class="card"><h2>${c.name} desk readout</h2><ul class="read">${L.map(l => `<li>${l}</li>`).join('')}</ul>
       <p class="note">Built from tabs 2 and 3 each time the data update; what the numbers say, not a trade recommendation.</p></div>
-      <div class="card"><h2>What the models have been tested to do</h2><div id="gTests">${t ? t.html : '<p class="note">Backtests run once the crop condition, export and contract histories finish downloading.</p>'}</div></div></div>`;
+      <div class="card"><h2>What the models have been tested to do</h2><div id="gTests">${t ? t.html : '<p class="note">Backtests run once the crop condition, export and contract histories finish downloading.</p>'}</div></div></div><div id="gSzUp" style="margin-top:12px"></div>`;
     Tech.mount(el('#gTech'), [c.sym]);
+    MktStudy.upcoming(el('#gSzUp'), [c.sym], () => el('#gTabs button[data-t="g-seas"]').click());
   }
   return { show };
 })();

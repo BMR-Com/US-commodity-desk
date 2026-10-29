@@ -53,7 +53,7 @@ const Energy = (() => {
   function shell() {
     const el = document.getElementById('energy');
     el.innerHTML = `<nav class="tabs" id="eTabs"><button data-t="e-term" class="on">Energy terminal</button><button data-t="e-primer">Primer</button>
-      <button data-t="e-sd">Supply, demand &amp; fair value</button><button data-t="e-geo">Production, trade &amp; LNG</button><button data-t="e-charts">Price charts, technicals &amp; COT</button><button data-t="e-news">News &amp; calendar</button></nav>
+      <button data-t="e-sd">Supply, demand &amp; fair value</button><button data-t="e-geo">Production, trade &amp; LNG</button><button data-t="e-charts">Price charts, technicals &amp; COT</button><button data-t="e-seas">Seasonality &amp; technical studies</button><button data-t="e-news">News &amp; calendar</button></nav>
       <div id="eTerm"><iframe id="energy-frame" title="Energy terminal" style="display:block;width:100%;height:calc(100vh - 130px);min-height:640px;border:0;background:#0b111b"></iframe></div>
       <main id="eMain" style="display:none"><div id="eBody"></div></main>`;
     $$('#eTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; render(); });
@@ -76,7 +76,8 @@ const Energy = (() => {
     wirePicker(primer);
   }
   function charts() {
-    $('#eBody').innerHTML = `<div class="card"><h2>Price charts and technicals</h2><div id="eTech"></div></div><div class="card" style="margin-top:12px"><h2>COT positioning</h2><div id="eCot"></div></div>`;
+    $('#eBody').innerHTML = `<div class="card"><h2>Price charts and technicals</h2><div id="eTech"></div></div><div id="eSzUp" style="margin-top:12px"></div><div class="card" style="margin-top:12px"><h2>COT positioning</h2><div id="eCot"></div></div>`;
+    MktStudy.upcoming($('#eSzUp'), ['NG', 'CL', 'HO', 'RB'], () => { tab = 'e-seas'; render(); });
     Tech.mount($('#eTech'), ['NG', 'CL', 'HO', 'RB']);
     CotDesk.mount($('#eCot'), ['NG', 'CL', 'HO', 'RB']);
   }
@@ -149,12 +150,12 @@ const Energy = (() => {
       return;
     }
     history.replaceState(null, '', '#' + tab);
-    ({ 'e-primer': primer, 'e-sd': sd, 'e-geo': () => EnergyGeo.mount($('#eBody')), 'e-charts': charts, 'e-news': news })[tab]();
+    ({ 'e-primer': primer, 'e-sd': sd, 'e-geo': () => EnergyGeo.mount($('#eBody')), 'e-charts': charts, 'e-seas': () => MktStudy.mount($('#eBody'), ['NG', 'CL', 'HO', 'RB']), 'e-news': news })[tab]();
   }
   function show() {
     if (!built) { shell(); built = true; }
     const h = location.hash.slice(1);
-    if (/^e-(primer|sd|geo|charts|news)$/.test(h)) tab = h; else if (h.startsWith('energy')) tab = 'e-term';
+    if (/^e-(primer|sd|geo|charts|seas|news)$/.test(h)) tab = h; else if (h.startsWith('energy')) tab = 'e-term';
     render(); window.scrollTo(0, 0);
   }
   return { show };

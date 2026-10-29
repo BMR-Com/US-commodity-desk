@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name=”robots” content=”index, follow”>
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+        <meta property="title" content="Cotton Association Of India" />
+        <meta property="site_name" content="Cotton Association Of India" />
+        <meta property="url" content="https://www.caionline.in/" />
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>News & Reports | Upcoming Reports</title>
+        <link rel="icon" href="https://www.caionline.in/web/public/images/icons/favicon-96x96.png" type="image/png" sizes="16x16">
+        <link rel="apple-touch-icon" sizes="57x57" href="https://www.caionline.in/web/public/images/icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="https://www.caionline.in/web/public/images/icons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://www.caionline.in/web/public/images/icons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://www.caionline.in/web/public/images/icons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://www.caionline.in/web/public/images/icons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="https://www.caionline.in/web/public/images/icons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="https://www.caionline.in/web/public/images/icons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://www.caionline.in/web/public/images/icons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://www.caionline.in/web/public/images/icons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="https://www.caionline.in/web/public/images/icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://www.caionline.in/web/public/images/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="https://www.caionline.in/web/public/images/icons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://www.caionline.in/web/public/images/icons/favicon-16x16.png">
+        <link rel="manifest" href="https://www.caionline.in/web/public/images/icons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="https://www.caionline.in/web/public/images/icons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        
+        
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/public/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/public/css/aos.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/public/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/public/css/swiper.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/public/css/responsive.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/admin/app-assets/fonts/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/admin/app-assets/fonts/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.caionline.in/web/public/plugins/intl-tel-input/build/css/intlTelInput.css" />
+        <meta name="meta" content="CAI" />
+        
+        
+        <script type="text/javascript" src="https://www.caionline.in/web/public/js/jquery.min.js"></script>
+        <script>
+            var site_url = "https://www.caionline.in/";
+            var site_name = "CAI";
+            function numberFormat(num_val) {
+                var x = (parseFloat(num_val) > 0) ? parseFloat(num_val) : "";
+                x = x.toString();
+                var lastThree = x.substring(x.length - 3);
+                var otherNumbers = x.substring(0, x.length - 3);
+                if (otherNumbers != '')
+                    lastThree = ',' + lastThree;
+                var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+                return res;
+            }
+            function addCommas(nStr)
+            {
+                nStr += '';
+                x = nStr.split('.');
+                x1 = x[0];
+                x2 = x.length > 1 ? '.' + x[1] : '';
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(x1)) {
+                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                }
+                return x1 + x2;
+            }
+            function indianFormat(num){
+                var n1, n2;
+                num = num + '' || '';
+                // works for integer and floating as well
+                n1 = num.split('.');
+                n2 = n1[1] || null;
+                n1 = n1[0].replace(/(\d)(?=(\d\d)+\d$)/g, "$1,");
+                num = n2 ? n1 + '.' + n2 : n1;
+                return num;
+            }
+            function addFormat(num, deci) {
+                var num_val = parseFloat(num);
+                return indianFormat(num_val.toFixed(deci));
+            }
+        </script>
+    </head>
+    <body class="vertical-layout vertical-menu-modern navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="">
+            <header class="header">        <nav class="navbar navbar-expand-lg">            <div class="container">                <a class="navbar-brand" href="https://www.caionline.in/"><img src="https://www.caionline.in/web/public/images/logo.png" alt="header-logo"></a>                <button class="navbar-toggler">                    <div onclick="myFunction(this)">                        <div class="bar1"></div>                        <div class="bar2"></div>                        <div class="bar3"></div>                    </div>                </button>                <!--Mobile Menu starts-->                <div class="navigation-menu">                    <div class="navigation-menu-data">                        <ul class="parent">                            <!--Home-->                            <li><a href="https://www.caionline.in/">Home</a></li>                            <!--News & reports-->                            <li>                                <a class="dropdown" href=javascript:void(0); onclick="toggleDropdown(this)">News & Reports</a>                                <ul class="child">                                                                          <li><a href="https://www.caionline.in/news_reports/details/7">Govt. Notification</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/12">USDA - WASDE</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/13">U.S. Weekly Export Sales</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/15">Cotton Reports</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/16">Cotton Sowing Area</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/17">Weather Report</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/18">Others</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/19">CAI Special Reports</a></li>                                                                     <li><a href="https://www.caionline.in/news_reports/details/20">Careers</a></li>                                                                </ul>                            </li>                            <!--Cotton Statistics-->                            <li>                                <a class="dropdown" href=javascript:void(0); onclick="toggleDropdown(this)">Cotton Statistics</a>                                <ul class="child">                                    <li><a  href="https://www.caionline.in/news_reports/cab_area_production">CAB/COCPC Cotton Crop Estimates</a></li>                                    <li><a href="https://www.caionline.in/news_reports/cab_balancesheet">CAB/COCPC Cotton Balance sheet</a></li>                                    <li><a href="https://www.caionline.in/news_reports/cci_msp_procurement">CCI Procurement</a></li>                                    <li><a  href="https://www.caionline.in/news_reports/msp_kapas">MSP Kapas</a></li>                                    <li><a  href="https://www.caionline.in/raw/cotton/import">Cotton Import</a></li>                                    <li><a  href="https://www.caionline.in/raw/cotton/export">Cotton Export</a></li>                                    <li><a  href="https://www.caionline.in/yarn/cotton/import">Yarn Import</a></li>                                    <li><a  href="https://www.caionline.in/yarn/cotton/export">Yarn Export</a></li>                                </ul>                            </li>                            <!--CAI Reports-->                            <li>                                <a class="dropdown" href=javascript:void(0); onclick="toggleDropdown(this)">CAI Desk</a>                                <ul class="child">                                    <li><a href="https://www.caionline.in/details/cai/spot-rates">CAI Spot Rate</a></li>                                    <li><a href="https://www.caionline.in/details/cai/daily-arrivals">Daily Arrivals</a></li>                                    <li><a href="https://www.caionline.in/details/cai/monthly-arrivals">Monthly Arrival</a></li>                                    <li><a href="https://www.caionline.in/reports/cai/monthly">CAI Monthly Report</a></li>                                    <li><a href="https://www.caionline.in/reports/cai/notices">CAI Notices / Circular</a>                                    </li>                                    <li><a href="https://www.caionline.in/cai/publications">CAI Publications</a></li>                                    <li><a href="https://www.caionline.in/cai/press">CAI Press Release</a></li>                                    <li><a href="https://www.caionline.in/uploads/front_pdf/FINAL CAI-CITI MODEL COTTON CONTRACT.pdf" class="download-link" target="_blank" >CAI Cotton Contract</a></li>                                </ul>                            </li>                            <!--CAI Services-->                            <li>                                <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">CAI Services</a>                                <ul class="child">                                <li >                                    <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">Arbitration, Conciliation & Mediators</a>                                    <ul class="child">                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/by_laws_of_the_cai">By-laws of the CAI</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/conciliation">Conciliation</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/arbitration">Arbitration</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/mediators">Mediators</a></li>                                    </ul>                                </li>                                <li><a href=javascript:void(0);>Indian Cotton Grade and Standards</a></li>                                <li><a href=javascript:void(0);>Issue Certificate of Origin</a></li>                                <li><a href=javascript:void(0);>Cotton Research and Development</a></li>                                <li><a href=javascript:void(0);>Indian Cotton Statistics</a></li>                                <li><a href="https://www.caionline.in/details/cai/spot-rates">Indian Cotton Spot Rate</a></li>                                <li><a href="https://www.caionline.in/cai/publications">Publications</a></li>                                <li>                                    <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">COTAAP</a>                                    <ul class="child">                                        <li><a href="https://www.caionline.in/cai_services/cotapp/about">About COTAAP</a></li>                                        <li><a href="https://www.caionline.in/cai_services/cotapp/what_does">What COTAAP Does</a></li>                                        <li><a href="https://www.caionline.in/cai_services/cotapp/timeline">Timeline of COTAAP</a></li>                                        <li><a href="https://www.caionline.in/cai_services/cotapp/way_ahead">The Way Ahead</a></li>                                        <li><a href="https://www.caionline.in/cai_services/cotapp/trustees">COTAAP Trustees</a></li>                                    </ul>                                </li>                                <li>                                    <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">Laboratory Services</a>                                    <ul class="child">                                        <li><a  href="https://www.caionline.in/cai_services/lab_services/testing_charges">Cotton Testing Charges</a></li>                                        <li><a href="https://www.caionline.in/cai_services/lab_services/cai_details">CAI Laboratories Details</a></li>                                    </ul>                                </li>                            </ul>                            </li>                            <!--Events-->                            <li>                                <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">Events</a>                                <ul class="child">                                    <li>                                                                                    <a href="https://conference.caionline.in"  onclick="toggleDropdown(this)">Conference</a>                                                                            </li>                                    <li >                                        <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">Other Events</a>                                                                                    <ul class="child">                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/88">104th Annual General Meeting</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/87">Learn with CAI</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/86">80th Independence Day</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/85">Farmers Training Session 2026</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/84">Lord Ganeshji Padya poojan on dated 3rd July 2026</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/83">Varun Yagna - Thursday 04th June, 2026</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/82">CAI National Crop Committee and Stakeholders Meeting Held in Mumbai on Monday 25th May 2026.</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/81">CAI & ICA OUTREACH AND TRAINING COURSES - COIMBATORE</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/80">CAI & ICA OUTREACH AND TRAINING COURSES - AHMEDABAD</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/79">CAI Inaugurates Cotton Contamination Estimation Laboratory in Mumbai</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/78">Ram Navami Celebrations at Shree Ramchandraji Mandir, Cotton Green from 19th March 2026 to 27th March 2026</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/77">Ram Navami Celebrations at Shree Ramchandraji Mandir, Cotton Green from 19th March 2026 to 27th March 2026</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/76">HOLI GET-TO GETHER 9TH MARCH 2026</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/75">15th February 2026 Mahashivratri</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/74">Makar sankranti of 14th January 2026</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/73">CAI Members' Get-Together and Annual Gala Dinner - 19th December 2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/72">103rd Annual General Meeting</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/71">Sneh Sammelan Monday 27th October 2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/70">Delegation from Argentina Visited the Cotton Association of India (CAI), Mumbai on 25th September 2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/69">COTTON - QUALITY ASSESSMENT & MARKETING IN PRESENT SCENARIO 19TH SEPTEMBER, 2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/68">COTTON - QUALITY ASSESSMENT & MARKETING IN PRESENT SCENARIO 18TH SEPTEMBER, 2025	</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/67">COTTON - QUALITY ASSESSMENT & MARKETING IN PRESENT SCENARIO 17TH SEPTEMBER, 2025	</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/66">Shravan Mass Utsav</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/65">79 Independence Day</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/64">Padya Poojan of Lord Ganesh on 17th June 2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/63">Varun Yagna at CAI on 5th June 2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/62">CAI Crop Meeting 18th June 2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/61">CAI TRAINING PROGRAMME FOR FARMERS 12-APR-2025	</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/60">CAI TRAINING PROGRAMME FOR FARMERS 11-APR-2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/59">Ramnavami-2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/58">AUSTRALIAN COTTON SHIPPERS ASSOCIATION (ACSA) AT CRICKET CLUB OF INDIA LTD.</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/57">Australian Cotton Shippers Association comprising ACSA Chair and CEO visited CAI Headquarters</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/56">Australian delegates visited CAI Headquarter on 28-Feb-2025</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/55">78th Independence Day 15th August 2024</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/54">Cotton India 2024</a></li>                                                                                                            <li><a class="dropdown-item" href="https://www.caionline.in/events/53">Ram Sammelan</a></li>                                                                                            </ul>                                                                            </li>                                </ul>                            </li>                            <!--Members-->                            <li>                                <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">Members</a>                                <ul class="child">                                    <li><a href=javascript:void(0);>Log In</a></li>                                    <li><a href=https://www.caionline.in/members/cai_members>List of Members</a></li>                                    <li><a download href=https://www.caionline.in/uploads/members/MEMBERSHIP_APPLICATION_FORM.pdf>Form of Application for membership</a></li>                                </ul>                            </li>                            <!--About Us-->                            <li>                                <a class="dropdown" href=javascript:void(0);  onclick="toggleDropdown(this)">About Us</a>                                <ul class="child">                                <li><a href="https://www.caionline.in/about-us/mgt">MGT-7</a></li>                                <li><a href="https://www.caionline.in/about-us/committees">Committees</a></li>                                <li><a href="https://www.caionline.in/about-us/board_of_directors">Board Of Directors</a></li>                                <li><a href="https://www.caionline.in/about-us/office_bearers">Office Bearers</a></li>                                <li><a href="https://www.caionline.in/about-us/article_of_association">Article of Association</a></li>                                <li><a href="https://www.caionline.in/about-us/memorandum_of_association">Memorandum of Association</a></li>                                <li><a href="https://www.caionline.in/about-us/cai">About CAI</a></li>                                <li><a href="https://www.caionline.in/contact-us">Contact Us</a></li>                            </ul>                            </li>                                                    </ul>                    </div>                </div>                <!--Mobile Menu Ends-->                <!--Desktop Menu Starts-->                <div class="collapse navbar-collapse" id="navbarSupportedContent">                    <ul class="navbar-nav header-menu">                        <li class="nav-item active">                            <a class="nav-link nav-pd" href="https://www.caionline.in/">Home</a>                        </li>                        <li class="nav-item dropdown">                            <a class="nav-link dropdown-toggle drop-menu nav-pd" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">News & Reports</a>                            <ul class="dropdown-menu submenu-text">                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/7" aria-expanded="false">Govt. Notification</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/12" aria-expanded="false">USDA - WASDE</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/13" aria-expanded="false">U.S. Weekly Export Sales</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/15" aria-expanded="false">Cotton Reports</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/16" aria-expanded="false">Cotton Sowing Area</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/17" aria-expanded="false">Weather Report</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/18" aria-expanded="false">Others</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/19" aria-expanded="false">CAI Special Reports</a>                                    </li>                                                                    <li>                                        <a class="dropdown-item" href="https://www.caionline.in/news_reports/details/20" aria-expanded="false">Careers</a>                                    </li>                                                            </ul>                        </li>                        <li class="nav-item dropdown">                            <a class="nav-link dropdown-toggle drop-menu nav-pd" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">Cotton Statistics</a>                            <ul class="dropdown-menu submenu-text">                                <li><a class="dropdown-item" href="https://www.caionline.in/news_reports/cab_area_production">CAB/COCPC Cotton Crop Estimates</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/news_reports/cab_balancesheet">CAB/COCPC Cotton Balance sheet</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/news_reports/cci_msp_procurement">CCI Procurement</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/news_reports/msp_kapas">MSP Kapas</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/raw/cotton/import">Cotton Import</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/raw/cotton/export">Cotton Export</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/yarn/cotton/import">Yarn Import</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/yarn/cotton/export">Yarn Export</a></li>                            </ul>                        </li>                        <li class="nav-item dropdown">                            <a class="nav-link dropdown-toggle drop-menu nav-pd" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">CAI Desk</a>                            <ul class="dropdown-menu submenu-text">                                <li><a class="dropdown-item" href="https://www.caionline.in/details/cai/spot-rates">CAI Spot Rate</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/details/cai/daily-arrivals">Daily Arrivals</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/details/cai/monthly-arrivals">Monthly Arrivals</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/reports/cai/monthly">CAI Monthly Report</a>                                    </li>                                <li><a class="dropdown-item" href="https://www.caionline.in/reports/cai/notices">CAI Notices / Circular</a>                                    </li>                                <li><a class="dropdown-item" href="https://www.caionline.in/cai/publications">CAI Publications</a>                                    </li>                                <li><a class="dropdown-item" href="https://www.caionline.in/cai/press">CAI Press Release</a>                                    </li>                                <li><a href="https://www.caionline.in/uploads/front_pdf/FINAL CAI-CITI MODEL COTTON CONTRACT.pdf" class="download-link" target="_blank" >CAI Cotton Contract</a></li>                            </ul>                        </li>                        <li class="nav-item dropdown">                            <a class="nav-link dropdown-toggle drop-menu nav-pd" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">CAI Services</a>                            <ul class="dropdown-menu submenu-text">                                <li class="nav-item dropend">                                    <a class="nav-link dropdown-toggle drop-menu" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">Arbitration, Conciliation & Mediators</a>                                    <ul class="dropdown-menu submenu-ul">                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/by_laws_of_the_cai">By-laws of the CAI</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/conciliation">Conciliation</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/arbitration">Arbitration</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/mediators">Mediators</a></li>                                    </ul>                                </li>                                <li><a class="dropdown-item" href=javascript:void(0);>Indian Cotton Grade and Standards</a></li>                                <li><a class="dropdown-item" href=javascript:void(0);>Issue Certificate of Origin</a></li>                                <li><a class="dropdown-item" href=javascript:void(0);>Cotton Research and Development</a></li>                                <li><a class="dropdown-item" href=javascript:void(0);>Indian Cotton Statistics</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/details/cai/spot-rates">Indian Cotton Spot Rate</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/cai/publications">Publications</a></li>                                <li class="nav-item dropend">                                    <a class="nav-link dropdown-toggle drop-menu" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">COTAAP</a>                                    <ul class="dropdown-menu submenu-ul">                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/cotapp/about">About COTAAP</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/cotapp/what_does">What COTAAP Does</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/cotapp/timeline">Timeline of COTAAP</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/cotapp/way_ahead">The Way Ahead</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/cotapp/trustees">COTAAP Trustees</a></li>                                    </ul>                                </li>                                <li class="nav-item dropend">                                    <a class="nav-link dropdown-toggle drop-menu" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">Laboratory Services</a>                                    <ul class="dropdown-menu submenu-ul">                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/lab_services/testing_charges">Cotton Testing Charges</a></li>                                        <li><a class="dropdown-item" href="https://www.caionline.in/cai_services/lab_services/cai_details">CAI Laboratories Details</a></li>                                    </ul>                                </li>                            </ul>                        </li>                        <li class="nav-item dropdown">                            <a class="nav-link dropdown-toggle drop-menu nav-pd" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">Events</a>                            <ul class="dropdown-menu submenu-text">                                                                     <li class="nav-item dropend">                                        <a href="https://conference.caionline.in">Conference</a>                                    </li>                                                                <li class="nav-item dropend">                                    <a class="nav-link dropdown-toggle drop-menu" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">Other Events</a>                                                                            <ul class="dropdown-menu submenu-ul events-scroll">                                                                                               <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/88" class="download-link" target="_blank" >                                                        104th Annual General Meeting                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/87" class="download-link" target="_blank" >                                                        Learn with CAI                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/86" class="download-link" target="_blank" >                                                        80th Independence Day                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/85" class="download-link" target="_blank" >                                                        Farmers Training Session 2026                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/84" class="download-link" target="_blank" >                                                        Lord Ganeshji Padya poojan on dated 3rd July 2026                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/83" class="download-link" target="_blank" >                                                        Varun Yagna - Thursday 04th June, 2026                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/82" class="download-link" target="_blank" >                                                        CAI National Crop Committee and Stakeholders Meeting Held in Mumbai on Monday 25th May 2026.                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/81" class="download-link" target="_blank" >                                                        CAI & ICA OUTREACH AND TRAINING COURSES - COIMBATORE                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/80" class="download-link" target="_blank" >                                                        CAI & ICA OUTREACH AND TRAINING COURSES - AHMEDABAD                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/79" class="download-link" target="_blank" >                                                        CAI Inaugurates Cotton Contamination Estimation Laboratory in Mumbai                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/78" class="download-link" target="_blank" >                                                        Ram Navami Celebrations at Shree Ramchandraji Mandir, Cotton Green from 19th March 2026 to 27th March 2026                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/77" class="download-link" target="_blank" >                                                        Ram Navami Celebrations at Shree Ramchandraji Mandir, Cotton Green from 19th March 2026 to 27th March 2026                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/76" class="download-link" target="_blank" >                                                        HOLI GET-TO GETHER 9TH MARCH 2026                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/75" class="download-link" target="_blank" >                                                        15th February 2026 Mahashivratri                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/74" class="download-link" target="_blank" >                                                        Makar sankranti of 14th January 2026                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/73" class="download-link" target="_blank" >                                                        CAI Members' Get-Together and Annual Gala Dinner - 19th December 2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/72" class="download-link" target="_blank" >                                                        103rd Annual General Meeting                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/71" class="download-link" target="_blank" >                                                        Sneh Sammelan Monday 27th October 2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/70" class="download-link" target="_blank" >                                                        Delegation from Argentina Visited the Cotton Association of India (CAI), Mumbai on 25th September 2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/69" class="download-link" target="_blank" >                                                        COTTON - QUALITY ASSESSMENT & MARKETING IN PRESENT SCENARIO 19TH SEPTEMBER, 2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/68" class="download-link" target="_blank" >                                                        COTTON - QUALITY ASSESSMENT & MARKETING IN PRESENT SCENARIO 18TH SEPTEMBER, 2025	                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/67" class="download-link" target="_blank" >                                                        COTTON - QUALITY ASSESSMENT & MARKETING IN PRESENT SCENARIO 17TH SEPTEMBER, 2025	                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/66" class="download-link" target="_blank" >                                                        Shravan Mass Utsav                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/65" class="download-link" target="_blank" >                                                        79 Independence Day                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/64" class="download-link" target="_blank" >                                                        Padya Poojan of Lord Ganesh on 17th June 2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/63" class="download-link" target="_blank" >                                                        Varun Yagna at CAI on 5th June 2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/62" class="download-link" target="_blank" >                                                        CAI Crop Meeting 18th June 2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/61" class="download-link" target="_blank" >                                                        CAI TRAINING PROGRAMME FOR FARMERS 12-APR-2025	                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/60" class="download-link" target="_blank" >                                                        CAI TRAINING PROGRAMME FOR FARMERS 11-APR-2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/59" class="download-link" target="_blank" >                                                        Ramnavami-2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/58" class="download-link" target="_blank" >                                                        AUSTRALIAN COTTON SHIPPERS ASSOCIATION (ACSA) AT CRICKET CLUB OF INDIA LTD.                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/57" class="download-link" target="_blank" >                                                        Australian Cotton Shippers Association comprising ACSA Chair and CEO visited CAI Headquarters                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/56" class="download-link" target="_blank" >                                                        Australian delegates visited CAI Headquarter on 28-Feb-2025                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/55" class="download-link" target="_blank" >                                                        78th Independence Day 15th August 2024                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/54" class="download-link" target="_blank" >                                                        Cotton India 2024                                                    </a>                                                </li>                                                                                                   <li>                                                    <a class="dropdown-item" href="https://www.caionline.in/events/53" class="download-link" target="_blank" >                                                        Ram Sammelan                                                    </a>                                                </li>                                                                                        </ul>                                                                    </li>                            </ul>                        </li>                        <li class="nav-item dropdown">                            <a class="nav-link dropdown-toggle drop-menu nav-pd" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">Members</a>                            <ul class="dropdown-menu submenu-text">                                <!--<li><a class="dropdown-item" href=javascript:void(0);>Log In</a></li>-->                                <li><a class="dropdown-item" href=https://www.caionline.in/members/cai_members>List of Members</a></li>                                <li><a class="dropdown-item" download href=https://www.caionline.in/uploads/members/MEMBERSHIP_APPLICATION_FORM.pdf>Form of Application for membership</a></li>                            </ul>                        </li>                        <li class="nav-item dropdown">                            <a class="nav-link dropdown-toggle drop-menu nav-pd" href=javascript:void(0); role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>                            <ul class="dropdown-menu submenu-text">                                <li><a class="dropdown-item" href="https://www.caionline.in/about-us/cai">About CAI</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/about-us/board_of_directors">Board Of Directors</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/about-us/office_bearers">Office Bearers</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/about-us/committees">Committees</a></li>                                                                <li><a class="dropdown-item" href="https://www.caionline.in/about-us/article_of_association">Article of Association</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/about-us/memorandum_of_association">Memorandum of Association</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/about-us/mgt">MGT-7</a></li>                                <li><a class="dropdown-item" href="https://www.caionline.in/contact-us">Contact Us</a></li>                            </ul>                        </li>                    </ul>                </div>                <!--Desktop Menu Ends-->            </div>        </nav>       </header>
+        
+        <section class="inner-banner">
+    <div class="inner-banner-image">
+        <figure>
+            <img src="https://www.caionline.in/web/public/images/banner-slide-3.jpg" alt="banner-slide-3">
+        </figure>
+        <div class="inner-banner-wrape">
+            <div class="container">
+                <div class="inner-banner-text">
+                    <h1>Details</h1>
+                    <span class="breadcrumb-area"><a href="#">Home</a> / News / Upcoming Reports</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="news-section">
+    <div class="container">
+        <div class="news-parent">
+            <div class="row">
+                                        <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector.</h4>
+                                    <p class="news-p"><strong>29-Oct-2026</strong>
+
+India has approved a $1.05 billion scheme to boost container manufacturing, while ICE cotton futures edged higher on bargain buying and mill demand. China’s cotton yarn exports rose 15.66% in September, and CITI expects the revamped textile PLI scheme to attract investment. Meanwhil</p>
+                                    <a href="https://www.caionline.in/news/4016" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-29_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>U.S. EXPORT SALES</h4>
+                                    <p class="news-p"><strong>For Week Ending 22-Oct-2026</strong>
+
+<strong>Net Upland Sales 2026-27</strong>
+Net sales of Upland totaling 216,500 RB for 2026/2027 were up 8 percent from the previous week and 21 percent from the prior 4-week average. </p>
+                                    <a href="https://www.caionline.in/news/4015" class="read-more">Read More</a>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>28-Oct-2026</strong>
+
+The ICA announced stronger protection against extreme contract delays, while ICE cotton futures extended losses amid a stronger dollar. India’s Leading Economic Index rose 0.6% in September, and the RBI noted economic resilience amid global headwinds. India advanced trade talks with</p>
+                                    <a href="https://www.caionline.in/news/4012" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-28_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector.</h4>
+                                    <p class="news-p"><strong>27-Oct-2026</strong>
+
+India aims to build a $350 billion textile industry and boost exports by 2030, while extending 95% export risk coverage until March 31, 2027. India and Mexico plan to begin PTA talks to counter tariffs of up to 50%. Rising export demand under free trade agreements may increase India</p>
+                                    <a href="https://www.caionline.in/news/4010" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-27_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with Cotlook A Index -26-10-2026 </h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with Cotlook A Index-26-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/4008" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_Cotlook_A_Index__C_F_Ports-26_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with ICE Futures-26-10-2026</h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with ICE Futures-26-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/4007" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_ICE_Futures-26_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>PCCA Cotton Market Weekly</h4>
+                                    <p class="news-p">OCTOBER 26, 2026
+
+<strong>The Week Ahead</strong>
+
+<strong>Cotton heads into a busy week with plenty happening outside the cotton market that could influence prices. Wednesday’s Fed decision, rising crude oil prices, and continued selling across agriculture</strong></p>
+                                    <a href="https://www.caionline.in/news/4006" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/PCCA_Cotton_Market_Weekly_-_26-Oct-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>26-Oct-2026</strong>
+
+CCI increased cotton prices by ₹600 per candy, supporting the Indian market amid slow arrivals, with weekly sales reaching 66,200 bales and total sales touching 99.29 lakh bales. Cotton prices rose in Adilabad and Yavatmal amid drought concerns and increased private procurement, whi</p>
+                                    <a href="https://www.caionline.in/news/4005" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_26_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>23-Oct-2026</strong>
+
+Andhra Pradesh cotton prices may reach ₹10,000, while ex-gin cotton prices have surged by ₹4,000 per candy, raising concerns among Tamil Nadu mills. India’s technical textile sector is exploring ways to reduce reliance on imported medical products, while PHDCCI hosted the Sustainabl</p>
+                                    <a href="https://www.caionline.in/news/4002" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-23_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>22-Oct-2026</strong>
+
+Thiagarajar Mills and Germany’s Euro Textiles announced a ₹100-crore textile venture in Tamil Nadu, while ICE cotton futures rose amid a weaker dollar. Meanwhile, drought threatens Telangana’s cotton yields, India–US FTA talks face delays, India and New Zealand agreed to exchange tr</p>
+                                    <a href="https://www.caionline.in/news/3998" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-22_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>U.S. EXPORT SALES</h4>
+                                    <p class="news-p"><strong>For Week Ending 15-Oct-2026</strong>
+
+<strong>Net Upland Sales 2026-27</strong>
+Net sales of Upland totaling 199,600 RB for 2026/2027 were up 36 percent from the previous week and 7 percent from the prior 4-week average. </p>
+                                    <a href="https://www.caionline.in/news/3997" class="read-more">Read More</a>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>21-Oct-2026</strong>
+
+SKAAT will showcase advanced automation solutions at India ITME 2026, while ICE cotton prices extended gains amid a weaker dollar and firm crude oil prices. Maharashtra’s cotton crop faces potential yield losses due to drought, while Kadi cotton auctions opened on Dussehra. Meanwhil</p>
+                                    <a href="https://www.caionline.in/news/3993" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/_cn_engish_30_0425-21_10_2026-_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>PCCA Cotton Market Weekly</h4>
+                                    <p class="news-p">OCTOBER 19, 2026
+
+<strong>The Week Ahead</strong>
+
+•	<strong>Cotton is heading into another week with plenty of outside influences to watch, even as prices struggle to move much beyond 80 cents. We’re watching the Fed, a commodity sell-off, and harvest progress.</strong></p>
+                                    <a href="https://www.caionline.in/news/3992" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/PCCA_Cotton_Market_Weekly_-_19-Oct-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>19-Oct-2026</strong>
+
+India’s textile sector is seeing mixed developments, with Raymond expanding in Andhra Pradesh and Deloitte projecting 7.1–7.3% GDP growth in FY27. The government plans a ₹25,000-crore textile skilling programme and is promoting the effective use of FTAs. Meanwhile, polyester raw mat</p>
+                                    <a href="https://www.caionline.in/news/3990" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/___cn_engish_30_0425-19_10_2026____-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with Cotlook A Index -17-10-2026  </h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with Cotlook A Index-17-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3989" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_Cotlook_A_Index__C_F_Ports-17_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with ICE Futures-17-10-2026</h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with ICE Futures-17-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3988" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_ICE_Futures-17_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>U.S. EXPORT SALES</h4>
+                                    <p class="news-p"><strong>For Week Ending 08-Oct-2026</strong>
+
+<strong>Net Upland Sales 2026-27</strong>
+Net sales of Upland totaling 146,900 RB for 2026/2027 were down 11 percent from the previous week and 12 percent from the prior 4-week average. </p>
+                                    <a href="https://www.caionline.in/news/3981" class="read-more">Read More</a>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>16-Oct-2026</strong>
+
+The textile industry is focusing on sustainability and circularity, with Wire Waste and NIFT-TEA marking World Circular Textile Day 2026. Bangladesh’s garment sector faces growing pressure to adopt greener practices to retain global markets, while the government plans to form an RMG</p>
+                                    <a href="https://www.caionline.in/news/3979" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-16_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>15-Oct-2026</strong>
+
+Cotton markets witnessed mixed movements, with ICE cotton futures rising slightly but failing to sustain early gains. The Cotton Corporation of India (CCI) has started cotton procurement at Minimum Support Price (MSP), while drought conditions threaten cotton crops in Adilabad. Mean</p>
+                                    <a href="https://www.caionline.in/news/3975" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-15_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>14-Oct-2026</strong>
+
+Global cotton markets remain under pressure, with ICE cotton futures trading within a range amid weather concerns, while global cotton benchmarks have declined over the past month. Pakistan reported a 5.39% increase in cotton arrivals by the end of September. Meanwhile, India and Ca</p>
+                                    <a href="https://www.caionline.in/news/3972" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-14_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>13-Oct-2026</strong>
+
+Global cotton markets are strengthening, with ICE cotton futures extending gains amid crop concerns and rising prices driven by supply uncertainties. In India, reports highlight the spread of HTBt cotton, rain-related damage to paddy and cotton crops in Punjab, and concerns over wet</p>
+                                    <a href="https://www.caionline.in/news/3969" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-13_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with Cotlook A Index -12-10-2026 </h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with Cotlook A Index-12-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3967" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_Cotlook_A_Index_C_F_Ports-12_10_2026_.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with ICE Futures-12-10-2026</h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with ICE Futures-12-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3966" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_ICE_Futures-12_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>PCCA Cotton Market Weekly</h4>
+                                    <p class="news-p">OCTOBER 12, 2026
+
+<strong>The Week Ahead</strong>
+
+<strong>Cotton finished last week on a better note than expected, but a few factors could still test that recovery. Selling across agriculture, Wednesday’s inflation report, and questions surrounding the U.S. crop will all be worth watching.</strong></p>
+                                    <a href="https://www.caionline.in/news/3965" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/PCCA_Cotton_Market_Weekly_-_12-Oct-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>12-Oct-2026</strong>
+
+India’s trade and economic outlook continues to attract attention, with KKR projecting that the economy could double to $8 trillion over the next decade, while India and ASEAN seek faster progress on reviewing their trade agreement. Bangladesh has urged India to remove anti-dumping </p>
+                                    <a href="https://www.caionline.in/news/3963" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-12_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector.</h4>
+                                    <p class="news-p"><strong>09-Oct-2026</strong>
+
+The cotton and textile industry is seeing key developments, including fluctuations in ICE cotton futures and US export sales, revised cotton prices by CCI, and concerns over production losses due to drought and crop damage. Meanwhile, GST reforms, AI-powered embroidery technology, c</p>
+                                    <a href="https://www.caionline.in/news/3961" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-09_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>USDA-WASDE</h4>
+                                    <p class="news-p">Oct-2026
+
+<strong>COTTON:</strong> The 2026/27 U.S. cotton balance sheet shows higher production and ending stocks compared to last month. Projected consumption, exports, imports, and beginning stocks are unchanged. </p>
+                                    <a href="https://www.caionline.in/news/3958" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/WASDE_09-Oct-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>08-Oct-2026</strong>
+
+Global and Indian cotton markets saw mixed developments, with ICE cotton futures declining amid a stronger dollar and weaker crude oil prices. Cotton farmers in Karimnagar and Washim are facing drought-related crop stress, while the CCI organised Sudhar Utsav in Gujarat. India highl</p>
+                                    <a href="https://www.caionline.in/news/3952" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-08_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>U.S. EXPORT SALES</h4>
+                                    <p class="news-p"><strong>For Week Ending 01-Oct-2026</strong>
+
+<strong>Net Upland Sales 2026-27</strong>
+Net sales of Upland totaling 165,100 RB for 2026/2027 were down 19 percent from the previous week, but up 14 percent from the prior 4-week average. </p>
+                                    <a href="https://www.caionline.in/news/3951" class="read-more">Read More</a>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>07-Oct-2026</strong>
+
+India’s cotton and agricultural sectors are facing mixed developments, with ICE cotton prices continuing to rise amid a weaker dollar and improving physical demand. The government is working to strengthen transport and logistics infrastructure, while Maharashtra intensifies drought </p>
+                                    <a href="https://www.caionline.in/news/3946" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-07_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>06-Oct-2026</strong>
+
+India’s economic outlook remains positive, with the World Bank projecting 7.1% growth in FY27, while the government has approved a $1.04 billion SME Growth Fund to support small and medium enterprises. India has also initiated an anti-dumping probe into imports of textile chemicals </p>
+                                    <a href="https://www.caionline.in/news/3944" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-06_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>PCCA Cotton Market Weekly</h4>
+                                    <p class="news-p">OCTOBER 5, 2026
+
+<strong>The Week Ahead</strong>
+
+*Cotton has plenty to sort through again this week after last week’s sell-off. There are a few things underneath the market that look a little better, but the dollar, China, and Friday’s supply and demand update could all have a say in whether cotton can find s</p>
+                                    <a href="https://www.caionline.in/news/3942" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/PCCA_Cotton_Market_Weekly_-_05-Oct-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>05-Oct-2026</strong>
+
+India’s trade and textile sectors are seeing several developments, with India and Switzerland expanding economic ties through new trade and mobility agreements. Global cotton markets remain under pressure, with Brazil’s cotton prices declining amid weak demand and US Upland cotton s</p>
+                                    <a href="https://www.caionline.in/news/3939" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-05_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with Cotlook A Index -03-10-2026    </h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with Cotlook A Index-03-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3938" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_Cotlook_A_Index__C_F_Ports-03_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with ICE Futures-03-10-2026</h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with ICE Futures-03-10-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3937" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_ICE_Futures-03_10_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>01-Oct-2026</strong>
+
+India’s cotton sector is seeing mixed developments, with stakeholders seeking stronger labour rights in Madhya Pradesh and expectations that FTAs could support cotton demand. The RoDTEP scheme has been extended till December 31 with unchanged rates, while ICE cotton continues to fac</p>
+                                    <a href="https://www.caionline.in/news/3935" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-01_10_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>30-Sept-2026</strong>
+
+India and Qatar are accelerating discussions on a Bilateral Investment Treaty, Free Trade Agreement and a proposed $10 billion investment plan, while the Middle Corridor is being highlighted as a potential Europe–Asia trade route. Meanwhile, ICE cotton prices declined amid aggressi</p>
+                                    <a href="https://www.caionline.in/news/3934" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-30_09_2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>U.S. EXPORT SALES</h4>
+                                    <p class="news-p"><strong>For Week Ending 24-Sep-2026</strong>
+
+<strong>Net Upland Sales 2026-27</strong>
+Net sales of Upland totaling 202,600 RB for 2026/2027 were down 12 percent from the previous week, but up noticeably from the prior 4-week average. </p>
+                                    <a href="https://www.caionline.in/news/3928" class="read-more">Read More</a>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>29-Sept-2026</strong>
+
+India’s economy is showing strong growth, with GDP rising 7.8%, while trade initiatives such as the Chabahar rail link are expected to strengthen connectivity with Central Asia. The textile sector faces rising yarn and polyester costs, prompting weavers to seek duty relief. Cotton </p>
+                                    <a href="https://www.caionline.in/news/3921" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-29_09_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>MSP 2026-2027</h4>
+                                    <p class="news-p">Government of India raised Minimum Support Price of Kapas
+
+Medium Staple 8,017 to 8,117
+Medium Long Staple 8,267 to 8,417
+Long Staple 8,567 to 8,667
+Extra Long Staple 8,867 to 9,867</p>
+                                    <a href="https://www.caionline.in/news/3919" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/MSP-Order-2026-27-English.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with Cotlook A Index -28-09-2026</h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with Cotlook A Index-28-09-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3918" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_Cotlook_A_Index-_New_Format-28-09-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with ICE Futures-28-09-2026 </h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with ICE Futures-28-09-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3917" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_ICE_Futures-28-09-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>PCCA Cotton Market Weekly</h4>
+                                    <p class="news-p">SEPTEMBER 28, 2026
+
+<strong>The Week Ahead</strong>
+
+<strong>Cotton has a chance to find its footing this week, but it will need some help. There are a few things working in its favor, but demand and outside markets will have a lot to say about where we go from here.</strong></p>
+                                    <a href="https://www.caionline.in/news/3916" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/PCCA_Cotton_Market_Weekly_-_28-Sep-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>28-Sept-2026</strong>
+
+Cotton trade news is busy this week. India has made origin paperwork easier for imports into the UK under the trade deal (CETA). The new season has started at Balwari Mandi, and Rajkot cotton prices are recovering. Picking has begun in Rajasthan's Patroda, but farmers fear low yiel</p>
+                                    <a href="https://www.caionline.in/news/3913" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_28_09_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>U.S. EXPORT SALES</h4>
+                                    <p class="news-p"><strong>For Week Ending 17-Sep-2026</strong>
+
+<strong>Net Upland Sales 2026-27</strong>
+Net sales of Upland totaling 230,500 RB for 2026/2027 were up noticeably from the previous week and from the prior 4-week average. </p>
+                                    <a href="https://www.caionline.in/news/3908" class="read-more">Read More</a>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>24-Sept-2026</strong>
+
+The cotton market is showing mixed trends, with ICE cotton futures remaining largely stable as traders await demand signals. India is focusing on strengthening physical and digital export support, while the WEF projects India’s FY27 growth at 6.7%. Maharashtra has begun drought rel</p>
+                                    <a href="https://www.caionline.in/news/3906" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-24_09_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>23-Sept-2026</strong>
+
+India’s economic outlook remains positive, with S&P Global raising its FY27 GDP growth forecast to 7%. Meanwhile, ICE cotton prices eased after a sharp rally as export demand remained a concern, while Canada and India aim to conclude trade talks by December. Drought conditions in Y</p>
+                                    <a href="https://www.caionline.in/news/3903" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-23_09_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Daily News Related to Cotton & Textile Sector</h4>
+                                    <p class="news-p"><strong>22-Sept-2026</strong>
+
+The cotton and textile sector is seeing mixed developments, with dry weather affecting cotton and soybean crops in Soygaon, while CCI cotton prices have declined despite sales reaching 94.29 lakh bales. ICE cotton rebounded after a six-session losing streak, and Unava cotton auctio</p>
+                                    <a href="https://www.caionline.in/news/3900" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/cn_engish_30_0425-22_09_2026_-_Copy.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>PCCA Cotton Market Weekly</h4>
+                                    <p class="news-p">SEPTEMBER 21, 2026
+
+<strong>The Week Ahead</strong>
+
+*Cotton stayed under pressure last week, with the Fed’s first rate hike in three years and a stronger dollar giving the market little reason to turn higher. With the Fed now behind us, attention shifts quickly to China and whether this week’s meetings can gi</p>
+                                    <a href="https://www.caionline.in/news/3898" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/PCCA_Cotton_Market_Weekly_-_21-Sep-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-md-6 col-lg-6 col-xl-6 equal">
+                            <div class="equal" >
+                                <div class="news-reports-box equal" data-aos="fade-up" data-aos-duration="1000">
+                                    <h4>Basis Comparison of ICS 105 with Cotlook A Index -21-09-2026</h4>
+                                    <p class="news-p">Tabulation & Chart regarding the <strong>Basis Comparison of ICS 105 with Cotlook A Index-21-09-2026</strong> prepared by CAI for the information of CAI Members.</p>
+                                    <a href="https://www.caionline.in/news/3896" class="read-more">Read More</a>
+                                    <a target="_blank" href="https://caionline.in/uploads/cards/doc/Basis_Comparison_of_ICS_105_with_Cotlook_A_Index-_New_Format-21-09-2026.pdf" class="download-link" > / Download Report</a>                                </div>
+                            </div>
+                        </div>
+                                    </div>
+        </div>
+    </div>
+</section>
+<script>
+    equalheight = function (container) {
+        var wdt = $(window).width();
+        var currentTallest = 0,
+                currentRowStart = 0,
+                rowDivs = new Array(),
+                $el,
+                topPosition = 0;
+        $(container).each(function () {
+            $el = $(this);
+            $($el).height('auto');
+            topPostion = $el.position().top;
+            if (currentRowStart != topPostion) {
+                for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) {
+                    rowDivs[currentDiv].height(currentTallest);
+                }
+                rowDivs.length = 0; // empty the array
+                currentRowStart = topPostion;
+                currentTallest = $el.height();
+                rowDivs.push($el);
+            } else {
+                rowDivs.push($el);
+                currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+            }
+            for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) {
+                rowDivs[currentDiv].height(currentTallest);
+            }
+        });
+    }
+    $(window).on('load', function () {
+        equalheight('.equal');
+//        equalheight('.top-box');
+    });
+</script>
+        
+        
+        <footer class="footer">
+    <div class="container">
+        <div class="foot-parent">
+            <div class="row gx-5">
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="foot-text">
+                        <h3>Contact Information </h3>
+                        <h5>Cotton Association of India</h5>
+                        <p>2nd floor, Cotton Exchange Building, <br>Opp Cotton Green Railway Station,<br>Cotton Green, Mumbai, Maharashtra 400033 </p>
+                        <h6>Email : <a href="mailto:cai@caionline.in">cai@caionline.in</a> </h6>
+                        <h6>Phone : <a href="tel:+918657442944">+91 8657442944</a> </h6>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="foot-text foot-link">
+                        <h3>Reports</h3>
+                        <ul>
+                            <li><a href="https://www.caionline.in/details/cai/spot-rates">Daily Spot Rate </a></li>
+                            <li><a href="https://www.caionline.in/reports/cai/monthly">Cotton Monthly Report </a></li>
+                            <li><a href="#">Cotton Weekly Report </a></li>
+                            <li><a href="https://www.caionline.in/news_reports/cab_balancesheet">CAB BalanceSheet </a></li>
+                            <li><a href="https://www.caionline.in/news_reports/cab_area_production">CAB Area Production </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="foot-text foot-link">
+                        <h3>News</h3>
+                        <ul>
+                            <li><a href="#">Govt. Notification  </a></li>
+                            <li><a href="#">Market Report  </a></li>
+                            <li><a href="#">Press Release  </a></li>
+                            <li><a href="#">Weather Report  </a></li>
+                            <li><a href="#">News & Information  </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="foot-text foot-link">
+                        <h3>About Us</h3>
+                        <ul>
+                            <li><a href="https://www.caionline.in/about-us/committees">Committees</a></li>
+                            <li><a href="https://www.caionline.in/about-us/board_of_directors">Board Of Directors</a></li>
+                            <li><a href="https://www.caionline.in/about-us/office_bearers">Office Bearers</a></li>
+                            <li><a href="https://www.caionline.in/about-us/article_of_association">Article of Association</a></li>
+                            <li><a href="https://www.caionline.in/about-us/memorandum_of_association">Memorandum of Association</a></li>
+                            <li><a href="https://www.caionline.in/about-us/cai">About CAI</a></li>
+                            <li><a href="https://www.caionline.in/terms-conditions">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <div class="copyright-text">
+                <p>&copy; 2026 Cotton Association of India - All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="https://www.caionline.in/web/public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.caionline.in/web/public/js/aos.js"></script>
+<script type="text/javascript" src="https://www.caionline.in/web/public/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://www.caionline.in/web/public/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="https://www.caionline.in/web/public/js/swiper.min.js"></script>
+<script type="text/javascript" src="https://www.caionline.in/web/public/js/script.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCkpwn6aiDYid9Nv7WRvQ2wsQtE2_eAaRU",
+    authDomain: "caionline.firebaseapp.com",
+    projectId: "caionline",
+    storageBucket: "caionline.appspot.com",
+    messagingSenderId: "541614007374",
+    appId: "1:541614007374:web:9d2befd47ec87808494f1f",
+    measurementId: "G-1VQF443RKZ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+<!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ56MZWPD1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LZ56MZWPD1');
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "474f2537a14343afa7de20f71279f8e6"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+    </body>
+</html>

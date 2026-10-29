@@ -1,0 +1,128 @@
+{
+ "news_reports~cab_area_production": {
+  "status": 200,
+  "bytes": 75985,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news_reports/cab_area_production"
+ },
+ "news_reports~cab_balancesheet": {
+  "status": 200,
+  "bytes": 82144,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news_reports/cab_balancesheet"
+ },
+ "news_reports~cci_msp_procurement": {
+  "status": 200,
+  "bytes": 71729,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news_reports/cci_msp_procurement"
+ },
+ "news_reports~msp_kapas": {
+  "status": 200,
+  "bytes": 75777,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news_reports/msp_kapas"
+ },
+ "raw~cotton~export": {
+  "status": 200,
+  "bytes": 80827,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/raw/cotton/export"
+ },
+ "raw~cotton~import": {
+  "status": 200,
+  "bytes": 80856,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/raw/cotton/import"
+ },
+ "yarn~cotton~export": {
+  "status": 200,
+  "bytes": 77073,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/yarn/cotton/export"
+ },
+ "details~cai~daily-arrivals": {
+  "status": 200,
+  "bytes": 74534,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/details/cai/daily-arrivals"
+ },
+ "details~cai~monthly-arrivals": {
+  "status": 200,
+  "bytes": 90504,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/details/cai/monthly-arrivals"
+ },
+ "reports~cai~monthly": {
+  "status": 200,
+  "bytes": 141192,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/reports/cai/monthly"
+ },
+ "cai~press": {
+  "status": 200,
+  "bytes": 91089,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/cai/press"
+ },
+ "cai~publications": {
+  "status": 200,
+  "bytes": 972211,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/cai/publications"
+ },
+ "news_reports~details~20": {
+  "status": 200,
+  "bytes": 66872,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news_reports/details/20"
+ },
+ "news_reports~details~19": {
+  "status": 200,
+  "bytes": 248876,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news_reports/details/19"
+ },
+ "news~4016": {
+  "status": 200,
+  "bytes": 115211,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news/4016"
+ },
+ "news~more": {
+  "status": 200,
+  "bytes": 118986,
+  "type": "text/html; charset=UTF-8",
+  "final": "https://www.caionline.in/news/more"
+ },
+ "comtrade_x": {
+  "status": 200,
+  "bytes": 15298,
+  "type": "application/json; charset=utf-8",
+  "final": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?reporterCode=699&cmdCode=5201&flowCode=X&period=202607"
+ },
+ "comtrade_m": {
+  "status": 200,
+  "bytes": 17347,
+  "type": "application/json; charset=utf-8",
+  "final": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?reporterCode=699&cmdCode=5201&flowCode=M&period=202607"
+ },
+ "comtrade_a": {
+  "status": 200,
+  "bytes": 36300,
+  "type": "application/json; charset=utf-8",
+  "final": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=699&cmdCode=5201&flowCode=M&period=2025"
+ },
+ "psd_csv": {
+  "status": 200,
+  "bytes": 476909,
+  "type": "application/x-zip-compressed",
+  "final": "https://apps.fas.usda.gov/psdonline/downloads/psd_cotton_csv.zip"
+ },
+ "pib_rss": {
+  "status": 200,
+  "bytes": 8603,
+  "type": "text/xml",
+  "final": "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=2&Regid=3&reg=48"
+ }
+}

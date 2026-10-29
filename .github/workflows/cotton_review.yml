@@ -26,10 +26,8 @@ jobs:
       - run: pip install -q requests pdfplumber pandas numpy
       - name: weekly market review
         run: |
-          BF="${{ github.event.inputs.backfill_pages || '0' }}"; [ "${{ github.event_name }}" = "push" ] && BF=1
-          if [ "$BF" != "0" ]; then
-            python pipelines/ams_cotton_review.py --backfill $BF 2>&1 | tee data/cotton_review/backfill.log || true
-          fi
+          BF="${{ github.event.inputs.backfill_pages || '0' }}"
+          if [ "$BF" != "0" ]; then python pipelines/ams_cotton_review.py --backfill $BF || true; fi
           python pipelines/ams_cotton_review.py || true
       - name: forward contracting, monthly prices, daily classing, release schedule
         env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}

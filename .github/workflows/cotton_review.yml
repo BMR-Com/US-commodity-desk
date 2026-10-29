@@ -1,7 +1,6 @@
 name: cotton-review
 # USDA AMS Weekly Cotton Market Review (Fridays) and the monthly Cotton Forward Contracting Report.
 on:
-  push: {branches: [cotton-ams-review]}   # REVIEW ONLY: remove before merge
   schedule:
     - cron: '17 16,19,22 * * 5'   # Friday, three tries (UTC)
     - cron: '23 14 * * 6'         # Saturday catch-up
@@ -33,7 +32,7 @@ jobs:
         env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}
         run: |
           python pipelines/ams_cotton_fc.py || true
-          python pipelines/ams_cotton_extra.py 2>&1 | tee data/cotton_review/extra.log || true   # REVIEW ONLY log
+          python pipelines/ams_cotton_extra.py || true
       - name: refresh the cotton outlook brief
         run: python -W ignore models/outlook_brief.py || true
       - name: commit

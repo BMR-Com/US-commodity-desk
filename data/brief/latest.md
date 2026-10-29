@@ -1,6 +1,6 @@
-# Morning brief · Thu Oct 29, 2026 08:58 AM ET
+# Morning brief · Thu Oct 29, 2026 09:07 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-29 12:58 UTC). CME open interest from 20261028. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-29 13:07 UTC). CME open interest from 20261028. Research only, not investment advice.
 
 ## Key points
 
@@ -48,16 +48,16 @@ Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core
 
 ## Macro outlook and what it means for ags
 
-Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl −; mxn −; risk 0; energy +; china −; breadth 0. Strongest ag/soft over the month: Class III milk +19.1%; weakest: Oats -17.9%. Key releases ahead: US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).
+Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl −; mxn −; risk 0; energy +; china −; breadth 0. Strongest ag/soft over the month: Class III milk +19.0%; weakest: Oats -17.9%. Key releases ahead: US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).
 
 - **Rates**: US 10-year 5.05% (-19 bp in a month), 2-year 4.67% (-25 bp); 2s10s curve +38 bp (+6 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.00% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 102.15 (+0.8% in a month, +3.9% YTD). USD/BRL 5.349 (+2.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.651 (-0.9%); USD/MXN 18.74 (+4.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
-- **Risk appetite**: S&P 500 +0.8% in a month (+13.1% YTD); VIX 17.1. Neutral risk backdrop. 
-- **Energy**: WTI 101.47 $/bbl (+16.3% in a month), Brent 110.18, ULSD 4.560 $/gal (+5.3%), natural gas 3.04 (-8.8%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. 
+- **Dollar & farm currencies**: Dollar index 102.18 (+0.8% in a month, +4.0% YTD). USD/BRL 5.345 (+2.3% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.651 (-0.9%); USD/MXN 18.75 (+4.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
+- **Risk appetite**: S&P 500 +0.8% in a month (+13.1% YTD); VIX 17.2. Neutral risk backdrop. 
+- **Energy**: WTI 101.53 $/bbl (+16.4% in a month), Brent 110.48, ULSD 4.553 $/gal (+5.1%), natural gas 2.93 (-12.1%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
 - **China & industrial demand**: Copper -0.2% in a month, Shanghai Composite -4.7%, Hang Seng -6.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. 
 - **Commodity breadth**: 13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +4.5% in a month; gold -3.4%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,757.750 (-0.33% d/d); S&P 500 7,743.980 (+0.28% d/d); VIX 17.090 (+1.06% d/d); US 10-year 5.045 (+5 bp d/d); US dollar index 102.149 (-0.04% d/d); EUR/USD 1.115 (+0.18% d/d); USD/BRL 5.349 (-0.02% d/d); USD/CNY 6.651 (-0.26% d/d); WTI crude 101.470 (-1.27% d/d); Natural gas 3.044 (+0.40% d/d); Gold 4,039.300 (-0.30% d/d); Copper 6.588 (-1.25% d/d); S&P GSCI 755.341 (+0.00% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,750.750 (-0.42% d/d); S&P 500 7,743.980 (+0.28% d/d); VIX 17.180 (+1.60% d/d); US 10-year 5.007 (-4 bp d/d); US dollar index 102.180 (-0.01% d/d); EUR/USD 1.114 (+0.07% d/d); USD/BRL 5.345 (-0.10% d/d); USD/CNY 6.651 (-0.26% d/d); WTI crude 101.530 (-1.22% d/d); Natural gas 2.933 (-3.27% d/d); Gold 4,037.200 (-0.36% d/d); Copper 6.592 (-1.19% d/d); S&P GSCI 755.341 (+0.00% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -68,7 +68,7 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Corn | Dec 26 | 451.25 | -0.50 (-0.1%) | -2.0% | -9.9% | Sell | 24 | 451.00 | 452.50 | 146,257 (-84,620) | +29,205 | strongly bearish |
 | Soybeans | Nov 26 | 1,215.50 | -9.00 (-0.7%) | -3.0% | -6.0% | Sell | 28 | 1,167.00 | 1,256.50 | 206,936 (-30,555) | -26,149 | mildly bearish |
 | Soybean meal | Dec 26 | 333.7 | -2.0 (-0.6%) | -3.9% | -6.5% | Sell | 33 | 316.2 | 336.0 | 204,693 (-1,438) | -7,670 | neutral |
-| Soybean oil | Dec 26 | 64.73 | -0.83 (-1.3%) | -3.0% | -5.2% | Strong sell | 33 | 64.63 | 65.53 | 69,858 (-19,470) | +11,464 | bearish |
+| Soybean oil | Dec 26 | 64.73 | -0.83 (-1.3%) | -3.0% | -5.2% | Strong sell | 33 | 64.63 | 65.53 | 69,858 (-19,470) | +11,464 | neutral |
 | Chicago wheat | Dec 26 | 600.00 | +1.00 (+0.2%) | -4.0% | -11.2% | Sell | 21 | 598.50 | 601.75 | -51,134 (-18,096) | +4,933 | bearish |
 | KC HRW wheat | Dec 26 | 642.50 | -0.50 (-0.1%) | -3.5% | -12.3% | Sell | 17 | 641.25 | 646.00 | 6,395 (-10,996) | +2,938 | strongly bearish |
 | Cotton | Dec 26 | 78.15 | +0.00 (+0.0%) | -3.3% | -0.5% | Sell | 36 | 77.73 | 80.47 | 66,466 (+767) | – | mildly bearish |
@@ -107,7 +107,7 @@ Flags: Funds near a 10-yr long extreme (99th pct); Export commitments -15% vs no
 Research signals: trend long 1.8x for 40% vol (12m excess +6%); carry +1.4%/yr (55th percentile for the month); IV-RV -3.3. Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Crowded: managed money at the 99th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR).
 - [Argentina sees EU soymeal opportunity as deforestation rules threaten Brazil trade](https://news.google.com/rss/articles/CBMiygFBVV95cUxOYVhTUW1FTzJQVHVEbTc4QUdaaHpqd21IM1hQRWdWMDMzYjVGVThBU3h1YzN1bVFka1BzUU9SZXg0cC15Z0kxYzM5YzhxODVrMEtqak9fTHVocjBRQjJPNE9UQThxUHV1NFpsTnpHRXJIT3AtRmZGSExmRkloUGlvTG45TDJvVFp6b3A0RFpQZFdZRGlZaFVlSnYxM04tdXRYbW5iX3B4YURFMGl0YWxVRm13SVUzWkpJREk0UlBNbEVJNlBZelNzaHNR?oc=5) · Reuters
 
-**Soybean oil** (Dec 26, bearish). Dec 26 trades at 64.73 ¢/lb (-3.0% on the week, -5.2% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 33 and ADX 15 (range-bound). Nearest support 64.63, resistance 65.53; 52-week range 48.53–74.55. Levels to watch: a close above 65.84 (200-day average) would bring trend-follower buying; below 64.58 (100-day breakout low) adds selling; the 64.63–65.53 band is the immediate range. Next catalysts: USDA weekly export sales Oct 29; USDA weekly export sales Nov 5; USDA WASDE Nov 10.
+**Soybean oil** (Dec 26, neutral). Dec 26 trades at 64.73 ¢/lb (-3.0% on the week, -5.2% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 33 and ADX 15 (range-bound). Nearest support 64.63, resistance 65.53; 52-week range 48.53–74.55. Levels to watch: a close above 65.84 (200-day average) would bring trend-follower buying; below 64.58 (100-day breakout low) adds selling; the 64.63–65.53 band is the immediate range. Next catalysts: USDA weekly export sales Oct 29; USDA weekly export sales Nov 5; USDA WASDE Nov 10.
 Flags: Weather watch: Marcos Juárez, Córdoba.
 Research signals: trend long 1.7x for 40% vol (12m excess +29%); carry -5.2%/yr (70th percentile for the month); IV-RV -0.3. Fat right tail: options price a 10% rally 2.1x as likely as a lognormal at ATM vol.
 - [The 45Z Biofuel Tax Credit, Part 4: Inside the Updated USDA Feedstock Carbon Intensity Calculator](https://farmdocdaily.illinois.edu/2026/10/the-45z-biofuel-tax-credit-part-4-inside-the-updated-usda-feedstock-carbon-intensity-calculator.html) · farmdoc daily

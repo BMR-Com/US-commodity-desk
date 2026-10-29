@@ -344,6 +344,7 @@ NOTES = ROOT / "data" / "grains" / "esr_notes.json"   # dated policy/market note
 def demand_text(cfg, tot, labels, cur_y, wk, L, S, last_date, D, fu, w=None):
     """Cotton: this season vs the last two at the same week, importer demand, rival exporters, dated policy notes."""
     parts, score = [], 0
+    wu_ = cfg.get("world_unit", "MMT"); thr = 0.1 if wu_ == "m bales" else 0.2
     rows = []
     for y in (cur_y - 1, cur_y - 2):
         g = tot[(tot.marketYear == y) & (tot.wk <= wk)].sort_values("wk")
@@ -352,30 +353,31 @@ def demand_text(cfg, tot, labels, cur_y, wk, L, S, last_date, D, fu, w=None):
             rows.append((labels[y][1], float(g.commit.iloc[-1]), float(g.accumulatedExports.iloc[-1]), fin_u))
     if rows:
         above_c = all(L.commit > r[1] for r in rows); above_s = all(L.accumulatedExports > r[2] for r in rows)
-        parts.append("Same week of the last two seasons: " + "; ".join(f"{m} commitments {q(c / D)}, shipped {q(sh / D)}" + (f", final exports {fu(f)} {cfg['w_unit']}" if f else "") for m, c, sh, f in rows)
-                     + f" — this season {q(L.commit / D)} committed and {q(L.accumulatedExports / D)} shipped"
+        parts.append("Same week of the last two seasons: " + "; ".join(f"{m} commitments {q(c / D)}, shipped {q(sh / D)}" + (f" (final exports {fu(f)} {cfg['w_unit']})" if f else "") for m, c, sh, f in rows)
+                     + f" — this season {q(L.commit / D)} committed and {q(L.accumulatedExports / D)} shipped ({cfg['disp_unit']}, export-sales basis)"
                      + (", ahead of both on sales and shipments." if above_c and above_s else ", ahead of both on sales." if above_c else ", ahead of both on shipments." if above_s else "."))
         if above_c and above_s:
             score += 1
             parts.append("Running ahead of both on sales and shipments makes a finish below last season unlikely unless buying stalls.")
     if S and S.get("importers"):
-        imp = [x for x in S["importers"] if x.get("imp") is not None and x.get("imp_ly") is not None and x["r"] != "China"]
-        up = sorted([x for x in imp if x["imp"] - x["imp_ly"] >= 0.1], key=lambda x: x["imp_ly"] - x["imp"])
-        dn = [x for x in imp if x["imp"] - x["imp_ly"] <= -0.1]
+        imp = [x for x in S["importers"] if x.get("imp") is not None and x.get("imp_ly") is not None and not (cfg["key"] == "cotton" and x["r"] == "China")]
+        up = sorted([x for x in imp if x["imp"] - x["imp_ly"] >= thr], key=lambda x: x["imp_ly"] - x["imp"])
+        dn = [x for x in imp if x["imp"] - x["imp_ly"] <= -thr]
         dsum = sum(x["imp"] - x["imp_ly"] for x in imp)
         wu, wl = S.get("world_use"), S.get("world_use_ly")
         if wu and wl:
-            parts.append(f"World mill use {wu:,.1f} m bales vs {wl:,.1f} last season ({wu - wl:+.1f}).")
+            parts.append(f"World {'mill use' if cfg['key'] == 'cotton' else 'consumption'} {wu:,.1f} {wu_} vs {wl:,.1f} last season ({wu - wl:+.1f}).")
         if up:
-            parts.append("Import forecasts up for spinning countries that grow little or no cotton: " + ", ".join(f"{x['r']} {x['imp']:.1f} ({x['imp'] - x['imp_ly']:+.1f})" for x in up) + ".")
+            parts.append(("Import forecasts up for spinning countries that grow little or no cotton: " if cfg["key"] == "cotton" else "Import forecasts up: ") + ", ".join(f"{x['r']} {x['imp']:.1f} ({x['imp'] - x['imp_ly']:+.1f})" for x in up) + ".")
         if dn:
             parts.append("Down: " + ", ".join(f"{x['r']} {x['imp']:.1f} ({x['imp'] - x['imp_ly']:+.1f})" for x in dn) + ".")
-        if dsum - sum(x["imp"] - x["imp_ly"] for x in dn) > 0.5:
+        if dsum - sum(x["imp"] - x["imp_ly"] for x in dn) > 5 * thr:
             score += 1
     if S and S.get("exporters"):
         ch = [(x["r"], (x["exp"] or 0) - (x["exp_ly"] or 0)) for x in S["exporters"] if x.get("active")]
         tot_ch = sum(v for _, v in ch)
-        parts.append("Rival exporters' forecasts vs last season: " + ", ".join(f"{r} {v:+.1f}" for r, v in ch if abs(v) >= 0.1) + f" (net {tot_ch:+.1f} m bales).")
+        if ch:
+            parts.append("Rival exporters' forecasts vs last season: " + ", ".join(f"{r} {v:+.1f}" for r, v in ch if abs(v) >= thr) + f" (net {tot_ch:+.1f} {wu_}).")
     try:
         for n_ in json.loads(NOTES.read_text()):
             if n_.get("key") == cfg["key"] and pd.Timestamp(n_["until"]) >= last_date:
@@ -606,7 +608,7 @@ def build(cfg):
                  + (" The %-of-USDA comparison understates the pace when USDA's target is larger than in past seasons; the second method does not depend on the target." if pace < pace_n and ly_commit and L.commit > ly_commit else ""))
     T.append({"h": "Pace vs USDA", "t": head})
     dem_sig = 0
-    if cfg.get("blend"):
+    if True:
         dem_t, dem_sig = demand_text(cfg, tot, labels, cur_y, wk, L, S, last_date, D, fu, w)
         if dem_t:
             T.append({"h": "Demand & competition", "t": dem_t})
@@ -615,7 +617,7 @@ def build(cfg):
         return ("comfortably achievable" if ok >= max(n - 1, 1) and n else "achievable" if ok >= (n + 1) // 2 else "a stretch" if ok >= 1
                 else "a stretch (last done more than 5 seasons ago)" if ok10 > 0 else "not achieved in any recent season")
     verdict = ease(F_['sales_ok5'], F_['n5'], F_['sales_ok10'])
-    if cfg.get("blend") and net4 >= need_sales and (F_.get('rem_sales_wk_ly') or 0) >= need_sales:
+    if net4 >= need_sales and (F_.get('rem_sales_wk_ly') or 0) >= need_sales:
         verdict = "achievable at the current pace and last season's rest-of-season pace (both above what is needed)"
     t = (f"To reach USDA's {fu(target)} {cfg['w_unit']}, the US needs {q(F_['sales_need'] / D)} {cfg['disp_unit']} more net sales "
          f"(including the usual {q(F_['carry'] / D)} carried into next season) — {q(need_sales / D)}/week for {weeks_left} weeks. "
@@ -906,7 +908,7 @@ def build(cfg):
         dxc = sum(((x["exp"] or 0) if x["active"] else 0) - ((x["exp_ly"] or 0) if x["active_ly"] else 0) for x in S["exporters"])
         dxc /= cfg.get("to_world", 1.0)          # world tables are in MMT
         sig.append(("competitor exports", 1 if dxc < -0.03 * target else -1 if dxc > 0.03 * target else 0))
-    if cfg.get("blend") and dem_sig:
+    if dem_sig:
         sig.append(("sales and shipments vs recent seasons, importer demand", dem_sig))
     neg = [a for a, v in sig if v < 0]; pos = [a for a, v in sig if v > 0]; net = sum(v for _, v in sig)
     bl = ("Export outlook vs USDA: **" + ("below" if net < 0 else "above" if net > 0 else "balanced around") + f" USDA's {fu(target)} {cfg['w_unit']}**. ")

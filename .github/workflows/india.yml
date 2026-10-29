@@ -1,0 +1,37 @@
+name: india
+# India cotton: CAI / COCPC balance sheets, state area and production, trade, USDA PSD, cotton-district rainfall, crop model.
+on:
+  push: {branches: [india-cotton]}   # REVIEW ONLY: remove before merge
+  schedule:
+    - cron: '43 11 * * *'   # daily, after India's business day
+  workflow_dispatch: {}
+permissions: {contents: write}
+concurrency: {group: india, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy
+      - name: India data (CAI, COCPC, trade, PSD, rainfall)
+        continue-on-error: true
+        timeout-minutes: 30
+        run: python pipelines/india_cotton.py 2>&1 | tee data/india/raw/run.log   # REVIEW ONLY log
+      - name: Shankar-6 and other CAI spot rates, history backfill
+        continue-on-error: true
+        timeout-minutes: 22
+        env: {CAI_START: '2016-10-01', CAI_MAX: '1500', CAI_SECS: '1200'}
+        run: python pipelines/india_cai.py
+      - name: India crop model and page data
+        run: '[ -f models/india_cotton.py ] && python -W ignore models/india_cotton.py || true'
+      - name: commit
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/india
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: India cotton $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin ${{ github.ref_name }} && git push -q origin HEAD:${{ github.ref_name }} && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

@@ -1,0 +1,15 @@
+name: tmp-ams-cotton-probe
+on: {push: {branches: [tmp/ams-cotton-probe]}}
+permissions: {contents: write}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y -q poppler-utils >/dev/null && pip install -q requests
+      - env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}
+        run: python tmp/ams_cotton_probe.py
+      - run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          rm -f tmp/out/*.pdf; git add tmp/out; git commit -q -m "tmp: ams cotton probe output" && git push -q origin HEAD:tmp/ams-cotton-probe

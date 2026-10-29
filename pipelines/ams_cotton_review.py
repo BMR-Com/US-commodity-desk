@@ -341,17 +341,21 @@ def backfill(pages=1):
     H = {"User-Agent": "Mozilla/5.0 (research; bmr-com)"}
     done = {p.stem for p in OUT.glob("20*.json")}
     for pg in range(pages):
-        try:
-            h = requests.get(ARCHIVE.format(pg), headers=H, timeout=120).text
-        except Exception as e:
-            print("archive page failed", pg, repr(e)[:120]); continue
+        h = None
+        for attempt in range(4):
+            try:
+                h = requests.get(ARCHIVE.format(pg), headers=H, timeout=(30, 300)).text; break
+            except Exception as e:
+                print("archive page retry", pg, attempt, repr(e)[:100]); __import__("time").sleep(20)
+        if h is None:
+            continue
         print("archive page", pg, "links", len(re.findall(r'href="([^"]+\.pdf)"', h)))
         for link in re.findall(r'href="([^"]+\.pdf)"', h):
             m = re.search(r"/(\d{4}-\d{2}-\d{2})/", link)
             if not m or m.group(1) in done:
                 continue
             try:
-                raw = requests.get("https://mymarketnews.ams.usda.gov/" + link.lstrip("/"), headers=H, timeout=120).content
+                raw = requests.get("https://mymarketnews.ams.usda.gov/" + link.lstrip("/"), headers=H, timeout=(30, 180)).content
                 d = parse(raw)
                 if not d.get("date") or not d.get("regions"):
                     print("skip (layout)", m.group(1)); continue

@@ -332,7 +332,7 @@ def brief(d, prev=None):
     return {"headline": headline(d, prev), "crop": crop, "mill": mill}
 
 
-ARCHIVE = "https://mymarketnews.ams.usda.gov/filerepo/reports?field_slug_id_value=&name=cnwwcmr&page={}"
+ARCHIVE = "https://mymarketnews.ams.usda.gov/filerepo/reports?field_slug_id_value=3024&page={}"
 
 
 def backfill(pages=1):

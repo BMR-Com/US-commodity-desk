@@ -13,7 +13,7 @@ const AmsReview = (() => {
   async function mount(el) {
     if (!document.getElementById('arCss')) document.head.insertAdjacentHTML('beforeend', css);
     el.innerHTML = '<div class="card"><p class="note">Loading the AMS market review…</p></div>';
-    const [D, FC] = await Promise.all([getJSON('data/cotton_review/latest.json').catch(() => null), getJSON('data/cotton_review/forward_contracting.json').catch(() => null)]);
+    const [D, FC, MP, CL, SC] = await Promise.all(['latest', 'forward_contracting', 'monthly_prices', 'classing_daily', 'schedule'].map(f => getJSON(`data/cotton_review/${f}.json`).catch(() => null)));
     if (!D) { el.innerHTML = '<div class="card"><p class="note">The AMS Weekly Cotton Market Review has not been collected yet.</p></div>'; return; }
     const P = D.prices || {}, F = (D.futures || []).at(-1) || {}, B = D.brief || {};
     const basis = P.spot_7mkt_avg != null && P.dec_settle != null ? Math.round((P.spot_7mkt_avg - P.dec_settle) * 100) : null;
@@ -54,10 +54,56 @@ const AmsReview = (() => {
         ${fcR.rows.map(r => { const p5 = r.prior.slice(0, 5).filter(v => v != null && v <= 100); const a5 = p5.length ? p5.reduce((x, y) => x + y, 0) / p5.length : null;
           return `<tr style="${r.region ? 'font-weight:700' : ''}"><td class="l">${r.loc}</td><td>${r.pct == null ? '–' : r.pct + '%'}</td><td>${r.prior[0] == null ? '–' : r.prior[0] + '%'}</td><td>${r.prior[1] == null ? '–' : r.prior[1] + '%'}</td><td>${a5 == null ? '–' : a5.toFixed(0) + '%'}</td><td>${a5 == null || r.pct == null ? '–' : sg(r.pct - a5, 0)}</td><td>${r.acres ? Math.round(r.acres / 1000).toLocaleString() : '–'}</td></tr>`; }).join('')}</table></div>
         <p class="note">More forward contracting means more of the crop is priced and hedged early, so less grower selling is left for later in the season. 5-season average leaves out values above 100% (data errors in the source).</p></div>` : ''}
+      ${classing(CL)}
+      ${monthly(MP)}
+      ${schedule(SC)}
       ${ser.length > 1 ? `<div class="card" style="margin-top:12px"><h2>Week by week</h2><div class="tbl"><table><tr><th class="l">Report</th><th>Spot 7-mkt</th><th>Dec</th><th>Basis (pts)</th><th>A Index</th><th>AWP</th><th class="l">Export demand</th><th class="l">Export inquiries from</th></tr>
         ${ser.slice().reverse().slice(0, 26).map(s => `<tr><td class="l">${s.date}</td><td>${n(s.spot)}</td><td>${n(s.dec)}</td><td>${s.spot != null && s.dec != null ? Math.round((s.spot - s.dec) * 100) : '–'}</td><td>${n(s.a_index)}</td><td>${n(s.awp)}</td><td class="l">${s.export_demand || '–'}</td><td class="l">${(s.countries || []).join(', ') || '–'}</td></tr>`).join('')}</table></div></div>` : ''}
       <p class="note">Source: USDA AMS Cotton and Tobacco Market News, Weekly Cotton Market Review (published Fridays) and Forward Contracting Report (monthly). Crop and demand lines are taken from the regional reporters' notes; harvest percentages are NASS figures as quoted in the review.</p>
     </div>`;
+  }
+  // daily classing (MARS 1652 by state): bales per day and the latest week's quality
+  function classing(CL) {
+    if (!CL || !CL.days) return '';
+    const days = Object.keys(CL.days).sort().slice(-6);
+    const states = [...new Set(days.flatMap(d => Object.keys((CL.days[d] || {}).state || {})))]
+      .filter(st => days.some(d => ((CL.days[d].state || {})[st] || {}).bales)).sort((a, b) => sum(b) - sum(a));
+    function sum(st) { return days.reduce((t, d) => t + ((((CL.days[d] || {}).state || {})[st] || {}).bales || 0), 0); }
+    const wk = ((CL.periods || {}).state || {}).Weekly || {};
+    const q = st => wk[st] || {};
+    if (!states.length) return '';
+    const f0 = v => v == null ? '–' : Math.round(v).toLocaleString();
+    return `<div class="card" style="margin-top:12px"><h2>Daily classing by state <span class="note">USDA AMS Daily Cotton Quality Summary, Upland, report of ${CL.as_of}</span></h2>
+      <div class="tbl"><table><tr><th class="l">State</th>${days.map(d => `<th>${d.slice(5)}</th>`).join('')}<th>Last ${days.length} days</th>
+        <th>Week: color</th><th>staple</th><th>mike</th><th>strength</th><th>loan (pts)</th><th>tenderable</th></tr>
+      ${states.map(st => `<tr><td class="l">${st}</td>${days.map(d => `<td>${f0((((CL.days[d] || {}).state || {})[st] || {}).bales)}</td>`).join('')}<td><b>${f0(sum(st))}</b></td>
+        <td>${q(st).color || '–'}</td><td>${n(q(st).staple, 1)}</td><td>${n(q(st).mike, 1)}</td><td>${n(q(st).strength, 1)}</td><td>${n(q(st).loan_pts, 0)}</td><td>${q(st).tenderable_pct == null ? '–' : n(q(st).tenderable_pct, 0) + '%'}</td></tr>`).join('')}</table></div>
+      <p class="note">Bales classed each day show where the harvest is moving; quality columns are the latest week. Tenderable = share deliverable on ICE futures.</p></div>`;
+  }
+  // monthly price statistics (MARS 3895)
+  function monthly(MP) {
+    if (!MP || !MP.months) return '';
+    const ms = Object.keys(MP.months).sort().slice(-6), last = MP.months[MP.latest] || {};
+    const us = m => ((MP.months[m] || {}).markets || {})['Total US Upland'] || {};
+    const mk = Object.entries(last.markets || {}).filter(([k]) => k !== 'Total US Upland' && k !== 'American Pima');
+    const L = (MP.ccc_loans || {}).rows || [];
+    return `<div class="card" style="margin-top:12px"><h2>Monthly price statistics <span class="note">USDA AMS, latest ${MP.latest}</span></h2>
+      ${last.narrative ? `<p>${last.narrative}</p>` : ''}
+      <div class="ar-two"><div><h3>US spot 41-4-34 by month</h3><div class="tbl"><table><tr><th class="l">Month</th><th>Average ¢/lb</th><th>High</th><th>Low</th><th>31-3-36</th><th>Bales traded</th><th>Basis (pts)</th></tr>
+        ${ms.slice().reverse().map(m => `<tr><td class="l">${m}</td><td>${n(us(m).avg_41)}</td><td>${n(us(m).hi_41)}</td><td>${n(us(m).lo_41)}</td><td>${n(us(m).avg_31)}</td><td>${us(m).bales_month == null ? '–' : Math.round(us(m).bales_month).toLocaleString()}</td><td>${(MP.months[m] || {}).basis_pts == null ? '–' : sg(MP.months[m].basis_pts, 0)}</td></tr>`).join('')}</table></div></div>
+      <div><h3>${MP.latest} by market</h3><div class="tbl"><table><tr><th class="l">Market</th><th>41-4-34</th><th>31-3-36</th><th>Bales (month)</th><th>Bales (season)</th><th>Loan value</th></tr>
+        ${mk.map(([k, v]) => `<tr><td class="l">${k}</td><td>${n(v.avg_41)}</td><td>${n(v.avg_31)}</td><td>${v.bales_month == null ? '–' : Math.round(v.bales_month).toLocaleString()}</td><td>${v.bales_my == null ? '–' : Math.round(v.bales_my).toLocaleString()}</td><td>${n(v.ccc_loan_value)}</td></tr>`).join('')}</table></div></div></div>
+      ${L.length ? `<h3>CCC warehouse loans by maturity <span class="note">as of ${MP.ccc_loans.as_of}</span></h3><div class="tbl"><table><tr><th class="l">Crop</th><th>Disbursed</th><th>Matures</th><th>Loans made</th><th>Repaid</th><th>Outstanding</th></tr>
+        ${L.filter(r => r.outstanding).map(r => `<tr><td class="l">${r.crop}</td><td>${r.disbursed}</td><td>${r.matures}</td><td>${Math.round(r.made || 0).toLocaleString()}</td><td>${Math.round(r.repaid || 0).toLocaleString()}</td><td><b>${Math.round(r.outstanding).toLocaleString()}</b></td></tr>`).join('')}</table></div>
+        <p class="note">Bales still in the loan close to maturity must be redeemed or forfeited — supply that comes back to the market.</p>` : ''}</div>`;
+  }
+  // release schedule (cnaasrd)
+  function schedule(SC) {
+    if (!SC || !SC.releases) return '';
+    const today = new Date().toISOString().slice(0, 10), next = SC.releases.filter(r => r.date >= today).slice(0, 10);
+    if (!next.length) return '';
+    return `<div class="card" style="margin-top:12px"><h2>Next cotton report releases <span class="note">USDA schedule ${SC.year}</span></h2>
+      <div class="tbl"><table><tr><th class="l">Date</th><th class="l">Report</th><th>Source</th></tr>${next.map(r => `<tr><td class="l">${r.date}</td><td class="l">${r.report}</td><td>${r.source}</td></tr>`).join('')}</table></div></div>`;
   }
   return { mount };
 })();

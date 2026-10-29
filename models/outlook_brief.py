@@ -178,6 +178,31 @@ def ct_options():
     return t, (-1 if "bear" in (o.get("lean") or "") else 1 if "bull" in (o.get("lean") or "") else 0)
 
 
+def ams_lines():
+    """Cotton field and mill reports from the USDA AMS Weekly Cotton Market Review and Forward Contracting Report."""
+    d, fc = J("cotton_review/latest.json"), J("cotton_review/forward_contracting.json")
+    out = []
+    if d and d.get("brief"):
+        hl = d["brief"].get("headline") or []
+        watch = next((x for x in hl if x.startswith("Watch:")), None)
+        harv = next((x for x in hl if x.startswith("Harvest")), None)
+        t = " ".join(x for x in (watch, harv) if x)
+        if t:
+            out.append({"h": f"Field reports (AMS, {d['date']})", "t": t})
+        dem = next((x for x in hl if x.startswith("Demand:")), None)
+        dom = next((x for x in (d.get("domestic_mill") or []) if x.startswith("Domestic mill")), None)
+        if dem or dom:
+            out.append({"h": "Mill demand (AMS)", "t": " ".join(x for x in (dem, dom) if x)})
+    if fc and fc.get("latest"):
+        r = fc["reports"][fc["latest"]]; us = next((x for x in r["rows"] if x["loc"] == "United States"), None); tx = next((x for x in r["rows"] if x["loc"] == "Texas"), None)
+        if us and us.get("pct") is not None:
+            p5 = [v for v in us["prior"][:5] if v is not None and v <= 100]
+            out.append({"h": "Grower forward contracting (AMS)", "t": f"{us['pct']:.0f}% of US acres contracted as of {r['as_of']} vs {us['prior'][0]:.0f}% a year ago"
+                        + (f" and a {sum(p5) / len(p5):.0f}% five-season average" if p5 else "") + (f"; Texas {tx['pct']:.0f}%" if tx and tx.get("pct") is not None else "")
+                        + ". More of the crop is priced early, leaving less grower selling for later."})
+    return out
+
+
 def bottom(name, parts):
     fund = sum(parts.get(k, 0) for k in ("crop", "exports", "balance"))
     tech, cot, opt = parts.get("tech", 0), parts.get("cot", 0), parts.get("options", 0)
@@ -207,6 +232,10 @@ def build():
         for lab, (txt, sc) in (("Crop", crop_line(key, B, cond, cp)), ("Exports", export_line(key, E, B)), ("Balance sheet", balance_line(key, B))):
             if txt:
                 items.append({"h": lab, "t": txt.strip()}); parts[{"Crop": "crop", "Exports": "exports", "Balance sheet": "balance"}[lab]] = sc
+        if key == "cotton":
+            ins = ams_lines()
+            pos = next((i for i, x in enumerate(items) if x["h"] == "Exports"), len(items))
+            items[pos:pos] = ins
         if not items and SM.get(sym):                   # livestock and dairy: the desk's fundamental read
             f = (SM[sym].get("paras") or {}).get("fundamental", "")
             if f:

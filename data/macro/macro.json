@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-29 01:43 UTC",
+ "generated": "2026-10-29 11:51 UTC",
  "view": "mixed",
- "score": 0,
+ "score": -1,
  "components": {
   "rates": 1,
   "dollar": 0,
@@ -9,10 +9,10 @@
   "mxn": -1,
   "risk": 0,
   "energy": 1,
-  "china": 0,
+  "china": -1,
   "breadth": 0
  },
- "summary": "Macro backdrop for ags: mixed (score +0 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk 0; energy +; china 0; breadth 0. Strongest ag/soft over the month: Class III milk +19.3%; weakest: Oats -17.5%. Key releases ahead: US Federal Funds Rate (10-28 2:00 PM ET); US FOMC Statement (10-28 2:00 PM ET); US FOMC Press Conference (10-28 2:30 PM ET); US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +19.1%; weakest: Oats -17.9%. Key releases ahead: US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -22,61 +22,31 @@
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 102.13 (+0.7% in a month, +3.9% YTD). USD/BRL 5.346 (+2.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.663 (-0.7%); USD/MXN 18.65 (+3.8%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 102.15 (+0.8% in a month, +3.9% YTD). USD/BRL 5.349 (+2.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.651 (-0.9%); USD/MXN 18.74 (+4.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
   },
   {
    "title": "Risk appetite",
    "score": 0,
-   "text": "S&P 500 +0.8% in a month (+13.1% YTD); VIX 16.9. Neutral risk backdrop. "
+   "text": "S&P 500 +0.8% in a month (+13.1% YTD); VIX 17.1. Neutral risk backdrop. "
   },
   {
    "title": "Energy",
    "score": 1,
-   "text": "WTI 101.74 $/bbl (+16.6% in a month), Brent 110.52, ULSD 4.631 $/gal (+6.9%), natural gas 3.03 (-9.3%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. "
+   "text": "WTI 101.47 $/bbl (+16.3% in a month), Brent 110.18, ULSD 4.560 $/gal (+5.3%), natural gas 3.04 (-8.8%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. "
   },
   {
    "title": "China & industrial demand",
-   "score": 0,
-   "text": "Copper +1.0% in a month, Shanghai Composite -3.7%, Hang Seng -6.3%, yuan +0.7% vs USD. Mixed China signals. "
+   "score": -1,
+   "text": "Copper -0.2% in a month, Shanghai Composite -4.7%, Hang Seng -6.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": 0,
-   "text": "13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +4.5% in a month; gold -2.5%. "
+   "text": "13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +4.5% in a month; gold -3.4%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",
  "events_ahead": [
-  {
-   "date": "2026-10-28",
-   "time": "2:00 PM ET",
-   "country": "US",
-   "title": "Federal Funds Rate",
-   "impact": "High",
-   "forecast": "4.00%",
-   "previous": "4.00%",
-   "why": "Fed policy path: rates, dollar and fund flows into commodities"
-  },
-  {
-   "date": "2026-10-28",
-   "time": "2:00 PM ET",
-   "country": "US",
-   "title": "FOMC Statement",
-   "impact": "High",
-   "forecast": "",
-   "previous": "",
-   "why": "Fed policy path: rates, dollar and fund flows into commodities"
-  },
-  {
-   "date": "2026-10-28",
-   "time": "2:30 PM ET",
-   "country": "US",
-   "title": "FOMC Press Conference",
-   "impact": "High",
-   "forecast": "",
-   "previous": "",
-   "why": "Fed policy path: rates, dollar and fund flows into commodities"
-  },
   {
    "date": "2026-10-29",
    "time": "8:30 AM ET",

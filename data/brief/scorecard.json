@@ -1,11 +1,11 @@
 {
- "generated": "2026-10-28 17:25 UTC",
+ "generated": "2026-10-29 11:53 UTC",
  "first_call": "2026-10-21",
- "last_call": "2026-10-28",
- "calls_logged": 96,
+ "last_call": "2026-10-29",
+ "calls_logged": 108,
  "calls_scored": {
-  "1d": 82,
-  "5d": 19,
+  "1d": 94,
+  "5d": 32,
   "20d": 0
  },
  "min_eff": 10,
@@ -13,28 +13,28 @@
  "view": {
   "all": {
    "1d": {
-    "n": 63,
-    "n_eff": 8.0,
+    "n": 72,
+    "n_eff": 9.0,
     "too_few": true,
-    "hit": 61.9,
-    "base": 49.7,
-    "edge": 12.2,
-    "avg_pct": 0.28,
-    "avg_atr": 0.12,
-    "t": 0.84,
-    "rank_ic": 0.256
+    "hit": 61.1,
+    "base": 49.8,
+    "edge": 11.3,
+    "avg_pct": 0.34,
+    "avg_atr": 0.13,
+    "t": 0.88,
+    "rank_ic": 0.182
    },
    "5d": {
-    "n": 14,
-    "n_eff": 0.4,
+    "n": 24,
+    "n_eff": 0.6,
     "too_few": true,
-    "hit": 71.4,
-    "base": 51.5,
-    "edge": 19.9,
-    "avg_pct": 1.74,
-    "avg_atr": 0.66,
-    "t": 0.65,
-    "rank_ic": 0.228
+    "hit": 70.8,
+    "base": 51.6,
+    "edge": 19.2,
+    "avg_pct": 1.94,
+    "avg_atr": 0.74,
+    "t": 0.59,
+    "rank_ic": 0.165
    },
    "20d": {
     "n": 0,
@@ -46,27 +46,27 @@
    "ZW": {
     "name": "Chicago wheat",
     "1d": {
-     "n": 8,
-     "n_eff": 8.0,
+     "n": 9,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 75.0,
+     "hit": 88.9,
      "base": 51.8,
-     "edge": 23.2,
-     "avg_pct": 0.77,
-     "avg_atr": 0.3,
-     "t": 3.09,
+     "edge": 37.1,
+     "avg_pct": 0.94,
+     "avg_atr": 0.37,
+     "t": 3.76,
      "rank_ic": null
     },
     "5d": {
-     "n": 2,
-     "n_eff": 0.4,
+     "n": 3,
+     "n_eff": 0.6,
      "too_few": true,
      "hit": 100.0,
      "base": 52.0,
      "edge": 48.0,
-     "avg_pct": 2.84,
-     "avg_atr": 1.05,
-     "t": 5.43,
+     "avg_pct": 3.93,
+     "avg_atr": 1.46,
+     "t": 5.97,
      "rank_ic": null
     },
     "20d": {
@@ -78,21 +78,28 @@
    "DC": {
     "name": "Class III milk",
     "1d": {
-     "n": 4,
-     "n_eff": 4.0,
+     "n": 5,
+     "n_eff": 5.0,
      "too_few": true,
      "hit": 0.0,
      "base": 42.2,
      "edge": -42.2,
-     "avg_pct": -0.83,
-     "avg_atr": -0.33,
-     "t": -2.58,
-     "rank_ic": 0.0
+     "avg_pct": -0.87,
+     "avg_atr": -0.35,
+     "t": -3.43,
+     "rank_ic": -0.282
     },
     "5d": {
-     "n": 0,
-     "n_eff": 0.0,
-     "too_few": true
+     "n": 1,
+     "n_eff": 0.2,
+     "too_few": true,
+     "hit": 0.0,
+     "base": 49.9,
+     "edge": -49.9,
+     "avg_pct": -3.64,
+     "avg_atr": -1.46,
+     "t": null,
+     "rank_ic": 0.0
     },
     "20d": {
      "n": 0,
@@ -115,15 +122,15 @@
      "rank_ic": -0.354
     },
     "5d": {
-     "n": 1,
-     "n_eff": 0.2,
+     "n": 2,
+     "n_eff": 0.4,
      "too_few": true,
      "hit": 0.0,
      "base": 48.9,
      "edge": -48.9,
-     "avg_pct": -3.3,
-     "avg_atr": -3.06,
-     "t": null,
+     "avg_pct": -2.56,
+     "avg_atr": -2.33,
+     "t": -2.45,
      "rank_ic": null
     },
     "20d": {
@@ -135,27 +142,27 @@
    "ZC": {
     "name": "Corn",
     "1d": {
-     "n": 8,
-     "n_eff": 8.0,
+     "n": 9,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 62.5,
+     "hit": 55.6,
      "base": 49.8,
-     "edge": 12.7,
-     "avg_pct": 0.11,
-     "avg_atr": 0.06,
-     "t": 0.37,
+     "edge": 5.7,
+     "avg_pct": 0.08,
+     "avg_atr": 0.04,
+     "t": 0.28,
      "rank_ic": null
     },
     "5d": {
-     "n": 2,
-     "n_eff": 0.4,
+     "n": 3,
+     "n_eff": 0.6,
      "too_few": true,
      "hit": 100.0,
      "base": 50.2,
      "edge": 49.8,
-     "avg_pct": 2.36,
-     "avg_atr": 1.07,
-     "t": 2.34,
+     "avg_pct": 2.01,
+     "avg_atr": 0.92,
+     "t": 3.39,
      "rank_ic": null
     },
     "20d": {
@@ -167,28 +174,28 @@
    "CT": {
     "name": "Cotton",
     "1d": {
-     "n": 7,
-     "n_eff": 7.0,
+     "n": 8,
+     "n_eff": 8.0,
      "too_few": true,
      "hit": 100.0,
      "base": 49.0,
      "edge": 51.0,
-     "avg_pct": 0.83,
-     "avg_atr": 0.42,
-     "t": 4.38,
-     "rank_ic": 0.866
+     "avg_pct": 0.77,
+     "avg_atr": 0.39,
+     "t": 4.43,
+     "rank_ic": 0.677
     },
     "5d": {
-     "n": 1,
-     "n_eff": 0.2,
+     "n": 2,
+     "n_eff": 0.4,
      "too_few": true,
      "hit": 100.0,
      "base": 51.3,
      "edge": 48.7,
-     "avg_pct": 3.65,
-     "avg_atr": 1.8,
-     "t": null,
-     "rank_ic": null
+     "avg_pct": 3.45,
+     "avg_atr": 1.73,
+     "t": 45.05,
+     "rank_ic": 0.866
     },
     "20d": {
      "n": 0,
@@ -199,27 +206,27 @@
    "GF": {
     "name": "Feeder cattle",
     "1d": {
-     "n": 5,
-     "n_eff": 5.0,
+     "n": 6,
+     "n_eff": 6.0,
      "too_few": true,
-     "hit": 80.0,
+     "hit": 66.7,
      "base": 56.2,
-     "edge": 23.8,
-     "avg_pct": 0.22,
-     "avg_atr": 0.16,
-     "t": 1.01,
+     "edge": 10.5,
+     "avg_pct": 0.02,
+     "avg_atr": 0.01,
+     "t": 0.09,
      "rank_ic": null
     },
     "5d": {
-     "n": 1,
-     "n_eff": 0.2,
+     "n": 2,
+     "n_eff": 0.4,
      "too_few": true,
-     "hit": 100.0,
+     "hit": 50.0,
      "base": 58.9,
-     "edge": 41.1,
-     "avg_pct": 1.08,
-     "avg_atr": 0.76,
-     "t": null,
+     "edge": -8.9,
+     "avg_pct": 0.24,
+     "avg_atr": 0.17,
+     "t": 0.2,
      "rank_ic": null
     },
     "20d": {
@@ -231,28 +238,28 @@
    "KE": {
     "name": "KC HRW wheat",
     "1d": {
-     "n": 8,
-     "n_eff": 8.0,
+     "n": 9,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 87.5,
+     "hit": 88.9,
      "base": 52.8,
-     "edge": 34.7,
-     "avg_pct": 0.58,
-     "avg_atr": 0.23,
-     "t": 3.99,
-     "rank_ic": 0.655
+     "edge": 36.1,
+     "avg_pct": 0.69,
+     "avg_atr": 0.28,
+     "t": 4.18,
+     "rank_ic": 0.087
     },
     "5d": {
-     "n": 2,
-     "n_eff": 0.4,
+     "n": 3,
+     "n_eff": 0.6,
      "too_few": true,
      "hit": 100.0,
      "base": 53.4,
      "edge": 46.6,
-     "avg_pct": 3.32,
-     "avg_atr": 1.26,
-     "t": 6.2,
-     "rank_ic": null
+     "avg_pct": 3.77,
+     "avg_atr": 1.44,
+     "t": 9.99,
+     "rank_ic": 0.866
     },
     "20d": {
      "n": 0,
@@ -263,27 +270,27 @@
    "HE": {
     "name": "Lean hogs",
     "1d": {
-     "n": 5,
-     "n_eff": 5.0,
+     "n": 6,
+     "n_eff": 6.0,
      "too_few": true,
-     "hit": 80.0,
+     "hit": 83.3,
      "base": 44.2,
-     "edge": 35.8,
-     "avg_pct": 1.56,
-     "avg_atr": 0.8,
-     "t": 2.11,
+     "edge": 39.1,
+     "avg_pct": 2.22,
+     "avg_atr": 1.08,
+     "t": 2.48,
      "rank_ic": null
     },
     "5d": {
-     "n": 1,
-     "n_eff": 0.2,
+     "n": 2,
+     "n_eff": 0.4,
      "too_few": true,
      "hit": 100.0,
      "base": 44.4,
      "edge": 55.6,
-     "avg_pct": 7.63,
-     "avg_atr": 3.83,
-     "t": null,
+     "avg_pct": 9.24,
+     "avg_atr": 4.56,
+     "t": 4.07,
      "rank_ic": null
     },
     "20d": {
@@ -295,27 +302,27 @@
    "LE": {
     "name": "Live cattle",
     "1d": {
-     "n": 5,
-     "n_eff": 5.0,
+     "n": 6,
+     "n_eff": 6.0,
      "too_few": true,
-     "hit": 40.0,
+     "hit": 33.3,
      "base": 56.5,
-     "edge": -16.5,
-     "avg_pct": 0.06,
-     "avg_atr": 0.05,
-     "t": 0.62,
-     "rank_ic": -0.725
+     "edge": -23.2,
+     "avg_pct": -0.21,
+     "avg_atr": -0.19,
+     "t": -0.75,
+     "rank_ic": -0.399
     },
     "5d": {
-     "n": 1,
-     "n_eff": 0.2,
+     "n": 2,
+     "n_eff": 0.4,
      "too_few": true,
-     "hit": 100.0,
+     "hit": 50.0,
      "base": 59.6,
-     "edge": 40.4,
-     "avg_pct": 0.29,
-     "avg_atr": 0.24,
-     "t": null,
+     "edge": -9.6,
+     "avg_pct": -0.68,
+     "avg_atr": -0.55,
+     "t": -0.49,
      "rank_ic": null
     },
     "20d": {
@@ -345,27 +352,27 @@
    "ZL": {
     "name": "Soybean oil",
     "1d": {
-     "n": 8,
-     "n_eff": 8.0,
+     "n": 9,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 25.0,
+     "hit": 22.2,
      "base": 49.5,
-     "edge": -24.5,
-     "avg_pct": -0.33,
-     "avg_atr": -0.16,
-     "t": -2.25,
-     "rank_ic": null
+     "edge": -27.2,
+     "avg_pct": -0.2,
+     "avg_atr": -0.1,
+     "t": -0.93,
+     "rank_ic": -0.137
     },
     "5d": {
-     "n": 2,
-     "n_eff": 0.4,
+     "n": 3,
+     "n_eff": 0.6,
      "too_few": true,
-     "hit": 0.0,
+     "hit": 66.7,
      "base": 48.9,
-     "edge": -48.9,
-     "avg_pct": -0.58,
-     "avg_atr": -0.27,
-     "t": -0.96,
+     "edge": 17.8,
+     "avg_pct": 0.89,
+     "avg_atr": 0.44,
+     "t": 0.49,
      "rank_ic": null
     },
     "20d": {
@@ -386,7 +393,7 @@
      "avg_pct": 0.38,
      "avg_atr": 0.26,
      "t": null,
-     "rank_ic": 0.412
+     "rank_ic": 0.411
     },
     "5d": {
      "n": 1,
@@ -398,7 +405,7 @@
      "avg_pct": -0.91,
      "avg_atr": -0.61,
      "t": null,
-     "rank_ic": null
+     "rank_ic": 0.866
     },
     "20d": {
      "n": 0,
@@ -410,27 +417,27 @@
   "by_view": {
    "strongly bearish": {
     "1d": {
-     "n": 12,
-     "n_eff": 8.0,
+     "n": 14,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 75.0,
-     "base": 50.8,
-     "edge": 24.2,
-     "avg_pct": 0.36,
-     "avg_atr": 0.15,
-     "t": 1.27,
+     "hit": 71.4,
+     "base": 50.9,
+     "edge": 20.5,
+     "avg_pct": 0.31,
+     "avg_atr": 0.13,
+     "t": 1.24,
      "rank_ic": null
     },
     "5d": {
-     "n": 3,
-     "n_eff": 0.4,
+     "n": 4,
+     "n_eff": 0.6,
      "too_few": true,
      "hit": 100.0,
-     "base": 51.3,
-     "edge": 48.7,
+     "base": 51.0,
+     "edge": 49.0,
      "avg_pct": 2.55,
      "avg_atr": 1.09,
-     "t": 3.23,
+     "t": 2.15,
      "rank_ic": null
     },
     "20d": {
@@ -441,27 +448,27 @@
    },
    "bearish": {
     "1d": {
-     "n": 22,
-     "n_eff": 8.0,
+     "n": 26,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 81.8,
-     "base": 49.6,
-     "edge": 32.2,
-     "avg_pct": 0.92,
-     "avg_atr": 0.43,
-     "t": 2.7,
+     "hit": 84.6,
+     "base": 49.4,
+     "edge": 35.2,
+     "avg_pct": 1.13,
+     "avg_atr": 0.51,
+     "t": 2.6,
      "rank_ic": null
     },
     "5d": {
-     "n": 4,
-     "n_eff": 0.4,
+     "n": 7,
+     "n_eff": 0.6,
      "too_few": true,
      "hit": 100.0,
-     "base": 50.5,
-     "edge": 49.5,
-     "avg_pct": 4.25,
-     "avg_atr": 1.83,
-     "t": 1.84,
+     "base": 50.2,
+     "edge": 49.8,
+     "avg_pct": 5.34,
+     "avg_atr": 2.32,
+     "t": 1.88,
      "rank_ic": null
     },
     "20d": {
@@ -472,27 +479,27 @@
    },
    "mildly bearish": {
     "1d": {
-     "n": 14,
+     "n": 15,
      "n_eff": 8.0,
      "too_few": true,
-     "hit": 28.6,
-     "base": 47.3,
-     "edge": -18.8,
-     "avg_pct": -0.37,
-     "avg_atr": -0.16,
-     "t": -1.77,
+     "hit": 26.7,
+     "base": 47.0,
+     "edge": -20.3,
+     "avg_pct": -0.33,
+     "avg_atr": -0.14,
+     "t": -1.3,
      "rank_ic": null
     },
     "5d": {
-     "n": 3,
-     "n_eff": 0.4,
+     "n": 6,
+     "n_eff": 0.6,
      "too_few": true,
-     "hit": 33.3,
-     "base": 49.7,
-     "edge": -16.3,
-     "avg_pct": 0.83,
-     "avg_atr": 0.42,
-     "t": 0.34,
+     "hit": 66.7,
+     "base": 49.9,
+     "edge": 16.8,
+     "avg_pct": 0.99,
+     "avg_atr": 0.55,
+     "t": 0.35,
      "rank_ic": null
     },
     "20d": {
@@ -503,27 +510,27 @@
    },
    "mildly bullish": {
     "1d": {
-     "n": 14,
-     "n_eff": 7.0,
+     "n": 16,
+     "n_eff": 8.0,
      "too_few": true,
-     "hit": 57.1,
-     "base": 50.9,
-     "edge": 6.3,
-     "avg_pct": -0.1,
-     "avg_atr": -0.1,
-     "t": -0.33,
+     "hit": 50.0,
+     "base": 51.6,
+     "edge": -1.6,
+     "avg_pct": -0.24,
+     "avg_atr": -0.22,
+     "t": -0.81,
      "rank_ic": null
     },
     "5d": {
-     "n": 4,
-     "n_eff": 0.2,
+     "n": 7,
+     "n_eff": 0.4,
      "too_few": true,
-     "hit": 50.0,
-     "base": 54.1,
-     "edge": -4.1,
-     "avg_pct": -0.71,
-     "avg_atr": -0.67,
-     "t": -0.37,
+     "hit": 28.6,
+     "base": 54.9,
+     "edge": -26.3,
+     "avg_pct": -0.99,
+     "avg_atr": -0.86,
+     "t": -0.68,
      "rank_ic": null
     },
     "20d": {
@@ -561,28 +568,28 @@
  "rating": {
   "all": {
    "1d": {
-    "n": 76,
-    "n_eff": 8.0,
+    "n": 88,
+    "n_eff": 9.0,
     "too_few": true,
-    "hit": 64.5,
-    "base": 49.9,
-    "edge": 14.6,
-    "avg_pct": 0.35,
-    "avg_atr": 0.15,
-    "t": 1.01,
-    "rank_ic": 0.164
+    "hit": 67.0,
+    "base": 49.8,
+    "edge": 17.2,
+    "avg_pct": 0.41,
+    "avg_atr": 0.17,
+    "t": 1.08,
+    "rank_ic": 0.146
    },
    "5d": {
-    "n": 16,
-    "n_eff": 0.4,
+    "n": 29,
+    "n_eff": 0.6,
     "too_few": true,
-    "hit": 81.2,
-    "base": 51.7,
-    "edge": 29.5,
-    "avg_pct": 1.84,
-    "avg_atr": 0.72,
-    "t": 0.74,
-    "rank_ic": 0.16
+    "hit": 82.8,
+    "base": 51.4,
+    "edge": 31.4,
+    "avg_pct": 2.46,
+    "avg_atr": 1.01,
+    "t": 0.85,
+    "rank_ic": 0.337
    },
    "20d": {
     "n": 0,
@@ -593,27 +600,27 @@
   "by_rating": {
    "strong sell": {
     "1d": {
-     "n": 13,
-     "n_eff": 7.0,
+     "n": 15,
+     "n_eff": 8.0,
      "too_few": true,
-     "hit": 46.2,
-     "base": 50.3,
-     "edge": -4.1,
-     "avg_pct": 0.34,
-     "avg_atr": 0.16,
-     "t": 0.68,
+     "hit": 46.7,
+     "base": 49.8,
+     "edge": -3.2,
+     "avg_pct": 0.61,
+     "avg_atr": 0.28,
+     "t": 0.94,
      "rank_ic": null
     },
     "5d": {
-     "n": 4,
-     "n_eff": 0.4,
+     "n": 6,
+     "n_eff": 0.6,
      "too_few": true,
      "hit": 100.0,
-     "base": 52.3,
-     "edge": 47.7,
-     "avg_pct": 2.87,
-     "avg_atr": 1.11,
-     "t": 3.27,
+     "base": 51.1,
+     "edge": 48.9,
+     "avg_pct": 4.5,
+     "avg_atr": 1.92,
+     "t": 1.4,
      "rank_ic": null
     },
     "20d": {
@@ -624,27 +631,27 @@
    },
    "sell": {
     "1d": {
-     "n": 44,
-     "n_eff": 8.0,
+     "n": 50,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 70.5,
-     "base": 50.5,
-     "edge": 20.0,
-     "avg_pct": 0.49,
-     "avg_atr": 0.23,
-     "t": 1.85,
+     "hit": 76.0,
+     "base": 50.6,
+     "edge": 25.4,
+     "avg_pct": 0.55,
+     "avg_atr": 0.26,
+     "t": 2.16,
      "rank_ic": null
     },
     "5d": {
-     "n": 8,
-     "n_eff": 0.4,
+     "n": 14,
+     "n_eff": 0.6,
      "too_few": true,
-     "hit": 75.0,
-     "base": 50.8,
-     "edge": 24.2,
-     "avg_pct": 2.48,
-     "avg_atr": 1.15,
-     "t": 0.92,
+     "hit": 92.9,
+     "base": 51.1,
+     "edge": 41.8,
+     "avg_pct": 2.95,
+     "avg_atr": 1.39,
+     "t": 1.47,
      "rank_ic": null
     },
     "20d": {
@@ -655,27 +662,27 @@
    },
    "buy": {
     "1d": {
-     "n": 12,
-     "n_eff": 7.0,
+     "n": 14,
+     "n_eff": 9.0,
      "too_few": true,
-     "hit": 66.7,
-     "base": 45.0,
-     "edge": 21.7,
-     "avg_pct": -0.07,
-     "avg_atr": -0.13,
-     "t": -0.12,
+     "hit": 64.3,
+     "base": 45.4,
+     "edge": 18.9,
+     "avg_pct": -0.16,
+     "avg_atr": -0.2,
+     "t": -0.34,
      "rank_ic": null
     },
     "5d": {
-     "n": 2,
-     "n_eff": 0.2,
+     "n": 5,
+     "n_eff": 0.6,
      "too_few": true,
-     "hit": 50.0,
-     "base": 46.6,
-     "edge": 3.4,
-     "avg_pct": -1.62,
-     "avg_atr": -1.52,
-     "t": -0.68,
+     "hit": 60.0,
+     "base": 46.1,
+     "edge": 13.9,
+     "avg_pct": 0.76,
+     "avg_atr": -0.18,
+     "t": 0.21,
      "rank_ic": null
     },
     "20d": {
@@ -686,27 +693,27 @@
    },
    "strong buy": {
     "1d": {
-     "n": 7,
-     "n_eff": 4.0,
+     "n": 9,
+     "n_eff": 5.0,
      "too_few": true,
-     "hit": 57.1,
-     "base": 53.9,
-     "edge": 3.2,
-     "avg_pct": 0.2,
-     "avg_atr": 0.12,
-     "t": 0.88,
+     "hit": 55.6,
+     "base": 52.6,
+     "edge": 3.0,
+     "avg_pct": 0.16,
+     "avg_atr": 0.06,
+     "t": 0.57,
      "rank_ic": null
     },
     "5d": {
-     "n": 2,
-     "n_eff": 0.2,
+     "n": 4,
+     "n_eff": 0.4,
      "too_few": true,
-     "hit": 100.0,
+     "hit": 50.0,
      "base": 59.2,
-     "edge": 40.8,
-     "avg_pct": 0.68,
-     "avg_atr": 0.5,
-     "t": 1.24,
+     "edge": -9.2,
+     "avg_pct": -0.22,
+     "avg_atr": -0.19,
+     "t": -0.19,
      "rank_ic": null
     },
     "20d": {
@@ -719,16 +726,16 @@
  },
  "triggers": {
   "1d": {
-   "n": 10,
-   "n_eff": 5.0,
+   "n": 11,
+   "n_eff": 6.0,
    "too_few": true,
-   "hit": 40.0,
-   "base": 43.8,
-   "edge": -3.8,
-   "avg_pct": -0.4,
-   "avg_atr": -0.24,
-   "t": -0.71,
-   "rank_ic": -0.111
+   "hit": 45.5,
+   "base": 44.3,
+   "edge": 1.2,
+   "avg_pct": -0.36,
+   "avg_atr": -0.22,
+   "t": -0.73,
+   "rank_ic": -0.12
   },
   "5d": {
    "n": 2,
@@ -740,7 +747,7 @@
    "avg_pct": -1.62,
    "avg_atr": -1.52,
    "t": -0.68,
-   "rank_ic": -0.094
+   "rank_ic": -0.042
   },
   "20d": {
    "n": 0,
@@ -750,32 +757,32 @@
  },
  "levels": {
   "support": {
-   "n": 18,
-   "n_eff": 0.4,
+   "n": 30,
+   "n_eff": 0.6,
    "too_few": true,
-   "held_5d": 33.3,
-   "avg_dist_atr": 1.2
+   "held_5d": 30.0,
+   "avg_dist_atr": 1.17
   },
   "resistance": {
-   "n": 18,
-   "n_eff": 0.4,
+   "n": 30,
+   "n_eff": 0.6,
    "too_few": true,
-   "held_5d": 77.8,
-   "avg_dist_atr": 0.89
+   "held_5d": 80.0,
+   "avg_dist_atr": 0.95
   }
  },
  "macro": {
-  "n_days": 2,
-  "n_eff": 0.4,
+  "n_days": 3,
+  "n_eff": 0.6,
   "too_few": true,
-  "corr_5d": null,
+  "corr_5d": 0.913,
   "avg_move_atr_when": {
    "positive": null,
    "zero": null,
-   "negative": -1.06
+   "negative": -1.16
   }
  },
  "by_market_rows": [],
  "weak": [],
- "line": "Track record: 96 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything."
+ "line": "Track record: 108 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything."
 }

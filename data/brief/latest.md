@@ -1,6 +1,6 @@
-# Morning brief · Thu Oct 29, 2026 10:41 AM ET
+# Morning brief · Thu Oct 29, 2026 10:48 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-29 14:41 UTC). CME open interest from 20261028. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-29 14:48 UTC). CME open interest from 20261028. Research only, not investment advice.
 
 ## Key points
 
@@ -34,13 +34,13 @@ Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, 
 
 | Market | Last | 1 d | 1 wk | 1 m |
 |---|---|---|---|---|
-| Natural gas | 3.03 | +12.3% | +8.6% | +0.6% |
-| WTI crude | 102.1 | +2.2% | +5.1% | +14.2% |
-| ULSD | 4.645 | -2.7% | -2.5% | -5.2% |
-| RBOB | 3.109 | -0.9% | -0.4% | -5.2% |
-| Brent | 110.8 | -2.7% | +1.8% | +8.0% |
+| Natural gas | 2.932 | +4.1% | +4.9% | -3.1% |
+| WTI crude | 100.8 | -1.9% | +1.4% | +11.5% |
+| ULSD | 4.545 | -5.6% | -7.8% | -8.3% |
+| RBOB | 3.058 | -3.6% | -3.7% | -11.0% |
+| Brent | 110.2 | -4.5% | -2.7% | +6.4% |
 
-Gas storage 3,644 Bcf (week to 2026-10-16), +77 Bcf vs a 5-year average +76 for the week; -1 Bcf (-0.0%) vs the 5-year average, -154 vs last year. Crude stocks 410.6 mb (-1.9 mb on the week, -3.8% vs 5-yr avg); gasoline +3.9 mb, distillate -1.5 mb; refinery utilization 92.8%. 3-2-1 crack $50.00/bbl (ULSD $93.02, gasoline $28.49). Options: NG IV 70% vs RV 56%; CL IV 51% vs RV 38%; HO IV 63% vs RV 43%; RB IV 50% vs RV 28%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).
+Gas storage 3,644 Bcf (week to 2026-10-16), +77 Bcf vs a 5-year average +76 for the week; -1 Bcf (-0.0%) vs the 5-year average, -154 vs last year. Crude stocks 410.6 mb (-1.9 mb on the week, -3.8% vs 5-yr avg); gasoline +3.9 mb, distillate -1.5 mb; refinery utilization 92.8%. 3-2-1 crack $48.44/bbl (ULSD $90.07, gasoline $27.63). Options: NG IV 70% vs RV 55%; CL IV 51% vs RV 38%; HO IV 63% vs RV 42%; RB IV 50% vs RV 27%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).
 
 ## US economy
 

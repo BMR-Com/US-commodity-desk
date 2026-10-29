@@ -57,7 +57,7 @@ COMMS = [
     # cotton (upland + Pima, running bales): the desk's own copy, so the cotton tab does not depend on the separate export-sales repo
     {"key": "cotton", "name": "Cotton", "sym": "CT", "dirs": [("cotton_upland", "Upland"), ("cotton_pima", "Pima")], "wasde": "Cotton.json", "start": 8,
      "to_world": 1.0, "w_unit": "m bales", "w_fmt": 2, "px": "ICE cotton", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1e3, "disp_unit": "'000 bales",
-     "sscale": 1.0, "world_unit": "m bales", "brazil": "cotton"},
+     "sscale": 1.0, "world_unit": "m bales", "brazil": "cotton", "blend": True},
 ]
 NOUN = {"corn": "corn", "soybeans": "soybeans", "meal": "soybean meal", "oil": "soybean oil", "wheat": "wheat", "kc": "HRW wheat", "cotton": "cotton"}
 for c_ in COMMS:
@@ -338,6 +338,53 @@ def q(v):
     return f"{v:,.0f}" if abs(v) >= 100 else f"{v:,.1f}"
 
 
+NOTES = ROOT / "data" / "grains" / "esr_notes.json"   # dated policy/market notes: [{"key","until","t"}], dropped after "until"
+
+
+def demand_text(cfg, tot, labels, cur_y, wk, L, S, last_date, D, fu, w=None):
+    """Cotton: this season vs the last two at the same week, importer demand, rival exporters, dated policy notes."""
+    parts, score = [], 0
+    rows = []
+    for y in (cur_y - 1, cur_y - 2):
+        g = tot[(tot.marketYear == y) & (tot.wk <= wk)].sort_values("wk")
+        if len(g):
+            fin_u = w_latest(w, "United States", "Exports", labels[y][1])[0] if w is not None else None
+            rows.append((labels[y][1], float(g.commit.iloc[-1]), float(g.accumulatedExports.iloc[-1]), fin_u))
+    if rows:
+        above_c = all(L.commit > r[1] for r in rows); above_s = all(L.accumulatedExports > r[2] for r in rows)
+        parts.append("Same week of the last two seasons: " + "; ".join(f"{m} commitments {q(c / D)}, shipped {q(sh / D)}" + (f", final exports {fu(f)} {cfg['w_unit']}" if f else "") for m, c, sh, f in rows)
+                     + f" — this season {q(L.commit / D)} committed and {q(L.accumulatedExports / D)} shipped"
+                     + (", ahead of both on sales and shipments." if above_c and above_s else ", ahead of both on sales." if above_c else ", ahead of both on shipments." if above_s else "."))
+        if above_c and above_s:
+            score += 1
+            parts.append("Running ahead of both on sales and shipments makes a finish below last season unlikely unless buying stalls.")
+    if S and S.get("importers"):
+        imp = [x for x in S["importers"] if x.get("imp") is not None and x.get("imp_ly") is not None and x["r"] != "China"]
+        up = sorted([x for x in imp if x["imp"] - x["imp_ly"] >= 0.1], key=lambda x: x["imp_ly"] - x["imp"])
+        dn = [x for x in imp if x["imp"] - x["imp_ly"] <= -0.1]
+        dsum = sum(x["imp"] - x["imp_ly"] for x in imp)
+        wu, wl = S.get("world_use"), S.get("world_use_ly")
+        if wu and wl:
+            parts.append(f"World mill use {wu:,.1f} m bales vs {wl:,.1f} last season ({wu - wl:+.1f}).")
+        if up:
+            parts.append("Import forecasts up for spinning countries that grow little or no cotton: " + ", ".join(f"{x['r']} {x['imp']:.1f} ({x['imp'] - x['imp_ly']:+.1f})" for x in up) + ".")
+        if dn:
+            parts.append("Down: " + ", ".join(f"{x['r']} {x['imp']:.1f} ({x['imp'] - x['imp_ly']:+.1f})" for x in dn) + ".")
+        if dsum - sum(x["imp"] - x["imp_ly"] for x in dn) > 0.5:
+            score += 1
+    if S and S.get("exporters"):
+        ch = [(x["r"], (x["exp"] or 0) - (x["exp_ly"] or 0)) for x in S["exporters"] if x.get("active")]
+        tot_ch = sum(v for _, v in ch)
+        parts.append("Rival exporters' forecasts vs last season: " + ", ".join(f"{r} {v:+.1f}" for r, v in ch if abs(v) >= 0.1) + f" (net {tot_ch:+.1f} m bales).")
+    try:
+        for n_ in json.loads(NOTES.read_text()):
+            if n_.get("key") == cfg["key"] and pd.Timestamp(n_["until"]) >= last_date:
+                parts.append(n_["t"])
+    except Exception:
+        pass
+    return (" ".join(parts) if parts else None), (1 if score >= 2 else 0)
+
+
 def build(cfg):
     e = esr(cfg["dirs"])
     if e is None or e.empty:
@@ -415,6 +462,20 @@ def build(cfg):
             "ly": L.commit + float(R["add"].iloc[-1]) if len(R) else None}
     vals = [v for v in (proj["share"], proj["add"], proj["ly"]) if v is not None]
     proj["central"] = float(np.median(vals)) if vals else None
+    if cfg.get("blend"):
+        # Cotton: buying has moved later in the season (no Chinese front-loading, mills booking nearer shipment), so the
+        # share-of-final method runs low. Central = median of four sales-flow views: 5-season median additions,
+        # recency-weighted additions (last 3 seasons, 1:2:3), last season's additions, and additions explained by the
+        # current net-sales rate and commitment level (fit on the last 10 seasons). Share-of-final is shown, not used.
+        R3 = R.tail(3)
+        proj["add3w"] = L.commit + float(np.average(R3["add"], weights=list(range(1, len(R3) + 1)))) if len(R3) else None
+        RF = R.merge(H[["y", "net4"]], on="y").tail(10)
+        if len(RF) >= 6:
+            X = np.c_[np.ones(len(RF)), RF.net4, RF.commit_wk]; b_ = np.linalg.lstsq(X, RF["add"], rcond=None)[0]
+            proj["flow"] = L.commit + float(b_ @ [1.0, net4, L.commit])
+        vals = [v for v in (proj["add"], proj.get("add3w"), proj["ly"], proj.get("flow")) if v is not None]
+        proj["central"] = float(np.median(vals)) if vals else None
+        proj["blend_lo"], proj["blend_hi"] = (float(min(vals)), float(max(vals))) if vals else (None, None)
     projw = {k: (v / ratio if v is not None else None) for k, v in proj.items()}           # USDA (census) units
     if projw["central"]:
         implied = projw["central"]
@@ -530,21 +591,36 @@ def build(cfg):
     if projw.get("central"):
         gap = projw["central"] / target - 1
         pp = lambda k: fu(projw[k]) if projw.get(k) else "n/a"
-        head += (f"Three ways to project the season from here (USDA units): if this week's {pace*100:.0f}% is the usual share of the final, about {pp('share')}; "
+        if cfg.get("blend"):
+            head += (f"Projection (USDA units): **{fu(projw['central'])} {cfg['w_unit']}** ({gap:+.0%} vs USDA), the middle of four sales-flow views — "
+                     f"what the rest of the season added in the last 5 seasons ({pp('add')}), the same weighted toward the last 3 ({pp('add3w')}), "
+                     f"last season's finish ({pp('ly')}) and what the current net-sales rate implies ({pp('flow')}); range {pp('blend_lo')}–{pp('blend_hi')}. "
+                     f"Simply scaling by the usual share sold by now gives {pp('share')}, but that method has run low in each of the last three seasons because "
+                     f"buyers now book later in the season than when China front-loaded purchases, so it is shown for reference only. ")
+        else:
+          head += (f"Three ways to project the season from here (USDA units): if this week's {pace*100:.0f}% is the usual share of the final, about {pp('share')}; "
                  f"if the rest of the season adds what it added in the last 5 seasons, about **{pp('add')}** (range {pp('add_lo')}–{pp('add_hi')}); "
                  f"if it repeats last season's finish, {pp('ly')}. Middle estimate **{fu(projw['central'])} {cfg['w_unit']}** ({gap:+.0%} vs USDA)"
                  + ((" — early-season sales are a weak guide to the final number for this crop, so treat this as a direction, not a forecast." if cfg["key"] in ("corn", "sorghum") and abs(gap) > 0.04 else "")
                     or (" — below USDA; a cut is possible unless sales pick up." if gap < -0.04 else " — above USDA; room for a raise." if gap > 0.04 else " — in line with USDA."))
                  + (" The %-of-USDA comparison understates the pace when USDA's target is larger than in past seasons; the second method does not depend on the target." if pace < pace_n and ly_commit and L.commit > ly_commit else ""))
     T.append({"h": "Pace vs USDA", "t": head})
+    dem_sig = 0
+    if cfg.get("blend"):
+        dem_t, dem_sig = demand_text(cfg, tot, labels, cur_y, wk, L, S, last_date, D, fu, w)
+        if dem_t:
+            T.append({"h": "Demand & competition", "t": dem_t})
     F_ = feas
     def ease(ok, n, ok10=0):
         return ("comfortably achievable" if ok >= max(n - 1, 1) and n else "achievable" if ok >= (n + 1) // 2 else "a stretch" if ok >= 1
                 else "a stretch (last done more than 5 seasons ago)" if ok10 > 0 else "not achieved in any recent season")
+    verdict = ease(F_['sales_ok5'], F_['n5'], F_['sales_ok10'])
+    if cfg.get("blend") and net4 >= need_sales and (F_.get('rem_sales_wk_ly') or 0) >= need_sales:
+        verdict = "achievable at the current pace and last season's rest-of-season pace (both above what is needed)"
     t = (f"To reach USDA's {fu(target)} {cfg['w_unit']}, the US needs {q(F_['sales_need'] / D)} {cfg['disp_unit']} more net sales "
          f"(including the usual {q(F_['carry'] / D)} carried into next season) — {q(need_sales / D)}/week for {weeks_left} weeks. "
          f"Over the same weeks the last 5 seasons sold {q(F_['rem_sales_wk5'] / D)}/week on average (range {q(F_['rem_sales_wk_lo'] / D)}–{q(F_['rem_sales_wk_hi'] / D)}; last season {q(F_['rem_sales_wk_ly'] / D)}); "
-         f"that total was reached in {F_['sales_ok5']} of the last {F_['n5']} seasons and {F_['sales_ok10']} of {F_['n10']} — **sales look {ease(F_['sales_ok5'], F_['n5'], F_['sales_ok10'])}**. "
+         f"that total was reached in {F_['sales_ok5']} of the last {F_['n5']} seasons and {F_['sales_ok10']} of {F_['n10']} — **sales look {verdict}**. "
          f"Recent pace: {q(net4 / D)}/week over the last 4 weeks (5-yr avg for these weeks {q(net4_5y / D)}). "
          f"Shipments need {q(need_ship / D)}/week vs {q(F_['rem_ship_wk5'] / D)}/week shipped over the rest of the season on average (best of 5: {q(F_['rem_ship_wk_hi'] / D)}); "
          f"reached in {F_['ship_ok5']} of {F_['n5']} seasons — shipping capacity looks {ease(F_['ship_ok5'], F_['n5'], F_['ship_ok10'])}. "
@@ -830,6 +906,8 @@ def build(cfg):
         dxc = sum(((x["exp"] or 0) if x["active"] else 0) - ((x["exp_ly"] or 0) if x["active_ly"] else 0) for x in S["exporters"])
         dxc /= cfg.get("to_world", 1.0)          # world tables are in MMT
         sig.append(("competitor exports", 1 if dxc < -0.03 * target else -1 if dxc > 0.03 * target else 0))
+    if cfg.get("blend") and dem_sig:
+        sig.append(("sales and shipments vs recent seasons, importer demand", dem_sig))
     neg = [a for a, v in sig if v < 0]; pos = [a for a, v in sig if v > 0]; net = sum(v for _, v in sig)
     bl = ("Export outlook vs USDA: **" + ("below" if net < 0 else "above" if net > 0 else "balanced around") + f" USDA's {fu(target)} {cfg['w_unit']}**. ")
     if neg:

@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-29 13:49 UTC",
- "generated_et": "Thu Oct 29, 2026 09:49 AM ET",
+ "generated": "2026-10-29 14:41 UTC",
+ "generated_et": "Thu Oct 29, 2026 10:41 AM ET",
  "date": "2026-10-29",
- "prices_from": "2026-10-29 13:49 UTC",
+ "prices_from": "2026-10-29 14:41 UTC",
  "cme_oi_date": "20261028",
  "headlines": [
   "Biggest moves vs prior settle: Lean hogs -3.425 (-5.5%); Live cattle -3.525 (-1.5%); Soybean oil -0.83 (-1.3%).",
@@ -1049,37 +1049,37 @@
  "macro": {
   "view": "mixed",
   "score": -1,
-  "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +18.5%; weakest: Oats -17.9%. Key releases ahead: US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).",
+  "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +17.9%; weakest: Oats -18.3%. Key releases ahead: US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).",
   "sections": [
    {
     "title": "Rates",
     "score": 1,
-    "text": "US 10-year 5.05% (-19 bp in a month), 2-year 4.67% (-25 bp); 2s10s curve +38 bp (+6 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.00% sets the cost of carrying inventory."
+    "text": "US 10-year 5.05% (-19 bp in a month), 2-year 4.67% (-25 bp); 2s10s curve +38 bp (+6 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 3.99% sets the cost of carrying inventory."
    },
    {
     "title": "Dollar & farm currencies",
     "score": -1,
-    "text": "Dollar index 102.28 (+0.9% in a month, +4.1% YTD). USD/BRL 5.349 (+2.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.651 (-0.9%); USD/MXN 18.75 (+4.3%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 102.24 (+0.9% in a month, +4.0% YTD). USD/BRL 5.374 (+2.9% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.651 (-0.9%); USD/MXN 18.81 (+4.7%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
     "score": 0,
-    "text": "S&P 500 +0.8% in a month (+13.1% YTD); VIX 17.0. Neutral risk backdrop. "
+    "text": "S&P 500 +0.7% in a month (+12.8% YTD); VIX 17.0. Neutral risk backdrop. "
    },
    {
     "title": "Energy",
     "score": 1,
-    "text": "WTI 101.46 $/bbl (+16.3% in a month), Brent 110.50, ULSD 4.536 $/gal (+4.7%), natural gas 2.95 (-11.7%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+    "text": "WTI 100.44 $/bbl (+15.1% in a month), Brent 109.68, ULSD 4.527 $/gal (+4.5%), natural gas 2.94 (-12.0%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -0.2% in a month, Shanghai Composite -4.7%, Hang Seng -6.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -0.8% in a month, Shanghai Composite -4.7%, Hang Seng -6.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": 0,
-    "text": "13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +4.5% in a month; gold -3.5%. "
+    "text": "12 of 33 commodities trade above their 50-day average (36%); S&P GSCI +3.1% in a month; gold -3.5%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1087,107 +1087,107 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7754.5,
-   "d1": -0.3693829698390827,
-   "m1": 0.2909984480082839,
+   "last": 7738.25,
+   "d1": -0.5781646484437686,
+   "m1": 0.08083290222451467,
    "kind": "price",
-   "time": "2026-10-29 12:58 UTC"
+   "time": "2026-10-29 13:58 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 7743.98,
-   "d1": 0.27684849757063645,
-   "m1": 0.7846498108786903,
+   "last": 7721.27,
+   "d1": -0.29325980343475333,
+   "m1": 0.6574267912931253,
    "kind": "price",
-   "time": "2026-10-28 21:18 UTC"
+   "time": "2026-10-29 14:08 UTC"
   },
   {
    "name": "VIX",
-   "last": 17.01,
-   "d1": 0.5913669632776175,
-   "m1": 6.047375493187546,
+   "last": 17.0,
+   "d1": 0.5322303571851483,
+   "m1": 5.985031357095116,
    "kind": "price",
-   "time": "2026-10-29 12:53 UTC"
+   "time": "2026-10-29 13:53 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 5.011,
-   "d1": -3.400007629394519,
-   "m1": -24.400011444091785,
+   "last": 4.97,
+   "d1": -7.500007629394556,
+   "m1": -28.50001144409182,
    "kind": "yield",
-   "time": "2026-10-29 12:53 UTC"
+   "time": "2026-10-29 13:53 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 102.285,
-   "d1": 0.09296169519930064,
-   "m1": 0.9026311814407162,
+   "last": 102.242,
+   "d1": 0.050883214944219546,
+   "m1": 0.8602123209939139,
    "kind": "price",
-   "time": "2026-10-29 12:58 UTC"
+   "time": "2026-10-29 13:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.1135,
-   "d1": 0.047974451374188654,
-   "m1": -2.0899470005444454,
+   "last": 1.114,
+   "d1": 0.09289945112784803,
+   "m1": -2.0459820014427477,
    "kind": "price",
-   "time": "2026-10-29 13:07 UTC"
+   "time": "2026-10-29 14:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.3487,
-   "d1": -0.029901785962560545,
-   "m1": 2.408625252037866,
+   "last": 5.3743,
+   "d1": 0.44857607113903963,
+   "m1": 2.898774410983429,
    "kind": "price",
-   "time": "2026-10-29 13:08 UTC"
+   "time": "2026-10-29 14:08 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6509,
-   "d1": -0.25645201987155586,
-   "m1": -0.8852058625751336,
+   "last": 6.6508,
+   "d1": -0.2579517198817771,
+   "m1": -0.8866961089198044,
    "kind": "price",
-   "time": "2026-10-29 13:04 UTC"
+   "time": "2026-10-29 14:08 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 101.46,
-   "d1": -1.2842953833180681,
-   "m1": 16.286532951289388,
+   "last": 100.44,
+   "d1": -2.2767063700026346,
+   "m1": 15.117478510028647,
    "kind": "price",
-   "time": "2026-10-29 12:57 UTC"
+   "time": "2026-10-29 13:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 2.946,
-   "d1": -2.8364136876795287,
-   "m1": -11.743560580709932,
+   "last": 2.939,
+   "d1": -3.067284395142611,
+   "m1": -11.953266988019863,
    "kind": "price",
-   "time": "2026-10-29 12:57 UTC"
+   "time": "2026-10-29 13:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 4032.4,
-   "d1": -0.47388925840328167,
-   "m1": -3.5241808844973077,
+   "last": 4033.1,
+   "d1": -0.4566121337333362,
+   "m1": -3.5074332718148304,
    "kind": "price",
-   "time": "2026-10-29 12:57 UTC"
+   "time": "2026-10-29 13:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.59,
-   "d1": -1.2216173795577934,
-   "m1": -0.20443536912150284,
+   "last": 6.552,
+   "d1": -1.7912044113600478,
+   "m1": -0.7798877903617774,
    "kind": "price",
-   "time": "2026-10-29 12:57 UTC"
+   "time": "2026-10-29 13:57 UTC"
   },
   {
    "name": "S&P GSCI",
-   "last": 755.341,
-   "d1": 0.00012883529227902812,
-   "m1": 4.48906260897024,
+   "last": 745.637,
+   "d1": -1.2845905831130322,
+   "m1": 3.146673060994609,
    "kind": "price",
-   "time": "2026-10-29 13:08 UTC"
+   "time": "2026-10-29 14:08 UTC"
   }
  ],
  "econ": [

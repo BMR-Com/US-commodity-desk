@@ -46,7 +46,7 @@ def md(s):          # mm/dd/yyyy -> yyyy-mm-dd
     try:
         return datetime.strptime(s, "%m/%d/%Y").strftime("%Y-%m-%d")
     except Exception:
-        return s
+        return s or ""
 
 
 def monthly():

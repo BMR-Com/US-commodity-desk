@@ -50,6 +50,19 @@ ALT = {"Ending Stocks": ["Ending Stocks, Total"], "Avg. Farm Price": ["Avg. farm
        "Food, Seed & Industrial": ["Food, seed & industrial"], "Ethanol for Fuel": ["Ethanol for fuel", "Ethanol & by-products"]}
 
 
+VARS = {   # shown on the public page (variables only; rules live in the private research notes)
+    "cotton": ["BMR-Com crop model (crop ratings, drought, ginnings, classing by office, FSA acreage)", "USDA crop estimate", "Texas abandonment",
+               "weekly export sales (commitments, shipments, net sales)", "USDA export forecast", "price response of exports to crop size",
+               "US share of world trade", "rival exporters' stocks (Brazil, Australia, Africa, Central Asia)", "pipeline minimum stocks"],
+    "corn": ["desk crop-condition yield model", "USDA yield and harvested area", "weekly export sales", "USDA export forecast", "price response of exports to crop size",
+             "US share of world trade", "rival exporters' stocks", "pipeline minimum stocks"],
+    "soybeans": ["desk crop-condition yield model", "USDA yield and harvested area", "weekly export sales", "USDA export forecast", "price response of exports to crop size",
+                 "US share of world trade", "rival exporters' stocks", "pipeline minimum stocks"],
+    "wheat": ["USDA production (harvest complete)", "weekly export sales", "USDA export forecast", "US share of world trade", "rival exporters' stocks"],
+    "kc": ["USDA production (harvest complete)", "weekly export sales (HRW)", "USDA export forecast"],
+}
+
+
 def latest(w, attr, my):
     for a in [attr] + ALT.get(attr, []):
         v, rd = G.w_latest(w, "United States", a, my)
@@ -100,6 +113,62 @@ def export_miss(cfg, wk):
         return None
 
 
+def price_response(w, cur, start_month=10):
+    """Share of a US crop change that ends up in exports once price adjusts: slope of (final - October) exports on
+    (final - October) production across the last 15 completed seasons of USDA estimates; held to 0.2-0.9."""
+    import numpy as np
+    us = w[w.reg == "United States"]; rows = []
+    for my in sorted(m for m in us.my.unique() if m < cur):
+        when = pd.Timestamp(int(my[:4]), start_month, 28)
+        def at(attr, upto=None):
+            x = us[(us.attr == attr) & (us.my == my)].sort_values("rd")
+            if upto is not None:
+                x = x[x.rd <= upto]
+            return float(x.val.iloc[-1]) if len(x) else None
+        po, pf, eo, ef = at("Production", when), at("Production"), at("Exports", when), at("Exports")
+        if None not in (po, pf, eo, ef):
+            rows.append((pf - po, ef - eo))
+    rows = rows[-16:-1] if len(rows) > 15 else rows[:-1]       # skip the season still being revised
+    if len(rows) < 8:
+        return None
+    x, y = zip(*rows)
+    return float(min(0.9, max(0.2, np.polyfit(x, y, 1)[0])))
+
+
+def trade_cap(key, cur, b, cfg):
+    """Ceiling on US exports from world trade: the highest US share of world exports in the last 5 completed seasons times
+    USDA's world trade this season, less competitors' ending stocks above their own 5-season average (that inventory is
+    sold before the US gains share). Competitors = the active rival exporters in the export brief (Brazil, Argentina, ...)."""
+    if not cfg or key == "kc":
+        return None                            # no class-level world table for HRW
+    k = cfg.get("to_world", 1.0)             # US units -> world-table units (MMT, or m bales for cotton)
+    ww = G.wasde(cfg.get("world") or cfg["wasde"], key)
+    last = lambda reg, attr: ww[(ww.reg == reg) & (ww.attr.isin([attr, attr + ", Total"]))].sort_values("rd").groupby("my").val.last()
+    wx = last("World", "Exports"); usx = last("United States", "Exports")
+    if wx.empty or cur not in wx.index:
+        return None
+    share = (usx * k / wx).dropna()
+    past = share[share.index < cur].tail(5)
+    if past.empty:
+        return None
+    smax, smy = float(past.max()), past.idxmax()
+    comps = [x["r"] for x in ((b or {}).get("supply") or {}).get("exporters", []) if x.get("active")]
+    comp_rows, excess = [], 0.0
+    for r in comps:
+        es = last(r, "Ending Stocks")
+        if cur in es.index:
+            prev = es[es.index < cur].tail(5)
+            if len(prev):
+                ex_ = float(es[cur]) - float(prev.mean())
+                comp_rows.append({"r": r, "end": float(es[cur]), "avg5": float(prev.mean()), "excess": ex_})
+                excess += ex_
+    s_usda = float(usx[cur] * k / wx[cur]) if cur in usx.index else smax
+    displaced = max(excess, 0.0) * s_usda            # extra rival stocks take business from the US roughly in line with its share
+    cap_world = smax * float(wx[cur]) - displaced
+    return {"share_max": smax, "share_max_my": smy, "share_usda": float(usx[cur] * k / wx[cur]) if cur in usx.index else None,
+            "world_trade": float(wx[cur]), "comp": comp_rows, "comp_excess": excess, "displaced": displaced, "cap": cap_world / k, "world_unit": cfg.get("world_unit", "MMT")}
+
+
 def export_views(b):
     """central and the spread across the projection's own views (not the full historical min-max)."""
     pr = b.get("proj") or {}
@@ -140,25 +209,52 @@ def build():
         product = key in ("meal", "oil")      # crush output: an export miss changes the crush, not stocks
         # ---- production scenarios ----
         prod = {"base": u["Production"], "bear": u["Production"], "bull": u["Production"]}; psrc = "USDA (harvest complete)" if key in ("wheat", "kc") else "USDA (made from the soybean crush)"
-        yld = {}
+        yld = {}; cot_ay = {}
         if key == "cotton":
             cp = crop_cotton()
             if cp and cp.get("us_all"):
-                a = cp["us_all"]; prod = {"base": a["central"], "bear": a["hi68"], "bull": a["lo68"]}
-                psrc = f"BMR-Com crop model, {cp['asof']} (inputs to {max(cp['inputs_through'].values())}); bearish/bullish = 68% range"
+                a = cp["us_all"]; up = u["Production"]
+                prod = {"base": (a["central"] + up) / 2, "bear": max(up, a["hi68"]), "bull": min(up, a["lo68"])}
+                # harvested area from Texas abandonment (where the crop model's difference comes from); yield = production / area
+                ab_u = (cp.get("usda") or {}).get("tx_abandonment"); ab = (cp.get("texas") or {}).get("abandonment") or {}
+                txp = ((cp.get("conditional") or {}).get("tx_planted_acres"))
+                if ab_u is not None and ab.get("central") is not None and txp and u.get("Harvested area (m ac)"):
+                    sd = lambda side: (ab[side] - ab["central"]) / 1.96
+                    abd = {"base": (ab_u + ab["central"]) / 2,
+                           "bear": ab_u if prod["bear"] == up else ab["central"] + sd("lo95"),
+                           "bull": ab["central"] + sd("hi95") if prod["bull"] != up else ab_u}
+                    area = {k_: u["Harvested area (m ac)"] - txp * (v - ab_u) for k_, v in abd.items()}
+                    cot_ay = {k_: {"Harvested area (m ac)": area[k_], "Yield (lb/ac)": prod[k_] * 480 / area[k_], "tx_ab": abd[k_]} for k_ in area}
+                psrc = (f"base = midway between the BMR-Com crop model ({a['central']:.2f}, {cp['asof']}) and USDA ({up:.2f}); "
+                        f"bearish = the larger of USDA and the model's upper band ({a['hi68']:.2f}); bullish = the model's lower band ({a['lo68']:.2f})")
         elif key in ("corn", "soybeans"):
             m = (cond.get(key) or {}).get("model") or {}
             ha = u.get("Harvested area (m ac)")
             if m.get("estimate") and ha:
                 e_ = (m.get("test") or {}).get("mae_model") or 0
-                yld = {"base": m["estimate"], "bear": m["estimate"] + e_, "bull": m["estimate"] - e_}
+                uy = u.get("Yield (bu/ac)") or m["estimate"]
+                yld = {"base": (m["estimate"] + uy) / 2, "bear": max(uy, m["estimate"] + e_), "bull": min(uy, m["estimate"] - e_)}
                 prod = {k: v * ha for k, v in yld.items()}
-                psrc = f"desk crop-condition yield model {m['estimate']:.1f} bu/ac (week {m['week']}) × USDA harvested area; bearish/bullish = ± its average miss ({e_:.1f} bu/ac)"
+                psrc = (f"yield × USDA harvested area. Base = midway between the desk crop-condition model ({m['estimate']:.1f} bu/ac, week {m['week']}) and USDA ({uy:.1f}); "
+                        f"bearish = the higher of USDA and the model plus its average miss ({e_:.1f}); bullish = the lower of USDA and the model minus it")
         # ---- export scenarios ----
         b = esr.get(key)
         ex_c, ex_lo, ex_hi = export_views(b) if b else (None, None, None)
-        ex = {"base": ex_c or u["Exports"], "bear": ex_lo or u["Exports"], "bull": ex_hi or u["Exports"]}
-        esrc = (f"export-sales projection, week {b['wk']} (to {b['week']}); bearish/bullish = low/high of its projection views" if ex_c else "USDA")
+        ue = u["Exports"]
+        base_ex = ((ex_c or ue) + ue) / 2
+        theta = price_response(w, cur) if prod["bear"] != prod["base"] or prod["bull"] != prod["base"] else None
+        if theta is not None:
+            # crop-driven scenarios: a bigger crop lowers price and lifts exports; a smaller one rations them
+            ex = {"base": base_ex, "bear": base_ex + theta * (prod["bear"] - prod["base"]),
+                  "bull": max(ex_hi or ue, ue) + theta * (prod["bull"] - prod["base"])}
+            esrc = ((f"base = midway between the export-sales projection ({ex_c:,.{dec}f}, week {b['wk']}, to {b['week']}) and USDA ({ue:,.{dec}f}). " if ex_c else "base = USDA. ")
+                    + f"Exports respond to the crop through price: historically about {100 * theta:.0f}% of a change in the US crop has ended up in exports. "
+                    + "Bearish keeps base demand (global demand is strong) and adds that share of the bigger crop; bullish starts from the strongest export view and loses that share of the smaller crop")
+        else:
+            ex = {"base": base_ex, "bear": min(ex_lo or ue, ue), "bull": max(ex_hi or ue, ue)}
+            esrc = (f"crop is fixed, so the scenarios turn on demand: base = midway between the export-sales projection ({ex_c:,.{dec}f}, week {b['wk']}) and USDA ({ue:,.{dec}f}); "
+                    f"bearish = the lowest of its views and USDA; bullish = the highest" if ex_c else "USDA")
+        tc = trade_cap(key, cur, b, cfgs.get(key)) if not product else None
         floor = float(hist_end[hist_end.index < cur].min()) if len(hist_end[hist_end.index < cur]) else None
         floor_my = hist_end[hist_end.index < cur].idxmin() if floor is not None else None
         capped = {}
@@ -166,17 +262,23 @@ def build():
         for s in ("base", "bear", "bull"):
             c = dict(u)
             c["Production"] = prod[s]; c["Exports"] = ex[s]
+            if tc and tc.get("cap") is not None and c["Exports"] > tc["cap"]:
+                capped.setdefault(s, {})["trade"] = {"projected": c["Exports"], "allowed": tc["cap"]}
+                c["Exports"] = tc["cap"]
             if s in yld:
                 c["Yield (bu/ac)"] = yld[s]
-            if key == "cotton" and u.get("Harvested area (m ac)") and prod[s] != u["Production"]:
-                c["Yield (lb/ac)"] = None; c["Harvested area (m ac)"] = None      # crop model projects bales, not area x yield
+            if key == "cotton":
+                if s in cot_ay:
+                    c["Harvested area (m ac)"] = cot_ay[s]["Harvested area (m ac)"]; c["Yield (lb/ac)"] = cot_ay[s]["Yield (lb/ac)"]
+                elif prod[s] != u["Production"]:
+                    c["Harvested area (m ac)"] = None; c["Yield (lb/ac)"] = None
             c["Total supply"] = sum(c.get(k) or 0 for k in ("Beginning stocks", "Production", "Imports"))
             use_keys = ("Domestic use", "Exports") if key != "soybeans" else ("Crush", "Seed & residual", "Exports")
             c["Total use"] = sum(c.get(k) or 0 for k in use_keys)
             c["Ending stocks"] = c["Total supply"] - c["Total use"] - (c.get("Unaccounted") or 0)
             if floor is not None and c["Ending stocks"] < floor and not product:
                 cut = floor - c["Ending stocks"]
-                capped[s] = {"projected": c["Exports"], "allowed": c["Exports"] - cut}
+                capped.setdefault(s, {})["supply"] = {"projected": c["Exports"], "allowed": c["Exports"] - cut}
                 c["Exports"] -= cut; c["Total use"] -= cut; c["Ending stocks"] = floor
             c["Farm price"] = None
             if product:
@@ -197,7 +299,8 @@ def build():
                                "summary": {s: {"prod": prod[s], "exports": scen[s]["Exports"], "exports_proj": ex[s], "end": scen[s]["Ending stocks"], "su": su(scen[s])} for s in scen},
                                "usda_end": es_u, "usda_su": su(u),
                                "exp_week": b["wk"] if b else None, "exp_miss": export_miss(cfgs[key], b["wk"]) if b and key in cfgs else None,
-                               "floor": floor, "floor_my": floor_my, "capped": capped, "product": product,
+                               "vars": VARS.get(key, []), "floor": floor, "floor_my": floor_my, "capped": capped, "product": product, "trade": tc, "theta": theta if not product else None,
+                               "tx_ab": {k_: v["tx_ab"] for k_, v in cot_ay.items()} if cot_ay else None,
                                "exp_usda": u.get("Exports"), "prod_usda": u.get("Production")}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, separators=(",", ":"), default=lambda x: None))

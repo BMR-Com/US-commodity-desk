@@ -36,10 +36,14 @@ const BalanceSheet = (() => {
       sum = `<p class="bs-sum">Desk base case: ${m.cur} ending stocks <b class="${b.end < us ? 'up' : 'dn'}">${fmt(b.end, d)}</b> ${u} vs USDA's ${fmt(us, d)} (${diff(b.end)}; ${dir} than USDA), stocks/use ${fmt(b.su, 1)}% vs ${fmt(m.usda_su, 1)}%. `
         + `Bearish ${fmt(S.bear.end, d)} · bullish ${fmt(S.bull.end, d)}. `
         + `Production ${fmt(b.prod, d)} vs USDA ${fmt(m.prod_usda, d)}; exports ${fmt(b.exports, d)} vs USDA ${fmt(m.exp_usda, d)}.</p>`;
-      const cap = m.capped || {};
-      if (Object.keys(cap).length) {
-        sum += `<p class="note">${Object.entries(cap).map(([s, c]) => `${({ base: 'Base', bear: 'Bearish', bull: 'Bullish' })[s]}: export sales point to ${fmt(c.projected, d)}, but supply only allows about ${fmt(c.allowed, d)} before stocks hit ${fmt(m.floor, d)}, the tightest USDA has carried since 2007/08 (${m.floor_my}). The gap has to be rationed by price.`).join(' ')}</p>`;
-      }
+      const cap = m.capped || {}, SN = { base: 'Base', bear: 'Bearish', bull: 'Bullish' }, t = m.trade;
+      const cn = Object.entries(cap).map(([s, c]) => {
+        const p = [];
+        if (c.trade) p.push(`export sales point to ${fmt(c.trade.projected, d)}, but the US share of world trade limits it to about ${fmt(c.trade.allowed, d)}`);
+        if (c.supply) p.push(`${c.trade ? 'and ' : 'export sales point to ' + fmt(c.supply.projected, d) + ', but '}supply only allows about ${fmt(c.supply.allowed, d)} before stocks reach pipeline minimum (${fmt(m.floor, d)}) — the rest would have to be rationed by price`);
+        return `<b>${SN[s]}:</b> ${p.join(' ')}.`;
+      });
+      if (cn.length) sum += `<p class="note">${cn.join(' ')}</p>`;
     }
     const H = `<tr><th>${u}</th>${yrs.map(y => `<th class="${y === cur ? 'cur' : ''}">${y}${y === cur ? `<br><span class="note">USDA ${m.report.split(' ')[0].slice(0, 3)}</span>` : ''}</th>`).join('')}
       <th class="sc">Base</th><th class="sc bear">Bearish</th><th class="sc bull">Bullish</th></tr>`;
@@ -50,7 +54,7 @@ const BalanceSheet = (() => {
     }).join('');
     const notes = prodOnly
       ? `<p class="note">USDA's last three seasons and its ${cur} forecast. No desk scenarios here: meal and oil come out of the soybean crush, so an export miss changes how much is crushed rather than piling up as stocks. See the soybean balance sheet for the crush.</p>`
-      : `<p class="note"><b>Production:</b> ${m.prod_src}. <b>Exports:</b> ${m.exp_src}${m.exp_miss != null ? `; at this point of the season the export projection has missed USDA's final by about ${fmt(m.exp_miss, 0)}% on average${m.exp_miss >= 10 ? ', so treat the export side as an early read' : ''}` : ''}. Beginning stocks, imports and domestic use stay at USDA's ${m.report} numbers. Bearish = bigger crop and weaker exports; bullish = smaller crop and stronger exports.</p>`;
+      : `<p class="note"><b>Variables used:</b> ${m.vars.join('; ')}. Beginning stocks, imports and domestic use are USDA's ${m.report} numbers.${m.exp_miss != null && m.exp_miss >= 10 ? ` Export sales are only ${m.exp_week} weeks into the season, so the export side is an early read.` : ''} Bearish = larger crop, bullish = smaller crop with strong demand; exports stay within available supply and the US share of world trade. Production and exports as of ${D.generated}.</p>`;
     el.innerHTML = `<div class="card bs"><h2>US balance sheet — ${m.name} <span class="note">USDA ${yrs[0]}–${cur} and desk scenarios · built ${D.generated}</span></h2>
       ${sum}<div class="tbl"><table>${H}${R}</table></div>${notes}</div>`;
   }

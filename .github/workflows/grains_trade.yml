@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['pipelines/grains_trade.py', 'models/grains_esr_brief.py', 'models/grains_wasde_brief.py', '.github/workflows/grains_trade.yml']
+    paths: ['pipelines/grains_trade.py', 'models/grains_esr_brief.py', 'models/balance_sheets.py', 'models/grains_wasde_brief.py', '.github/workflows/grains_trade.yml']
   schedule:
     - cron: '30 21 * * 1'     # Monday after Crop Progress (4 pm ET) and inspections
     - cron: '31 12 * * 4'     # Thursday weekly export sales, 8:30 ET in daylight time (12:30 UTC): waits for the release
@@ -42,6 +42,7 @@ jobs:
           python -W ignore models/grains_sales.py || true
           python -W ignore models/grains_flash.py || true
           python -W ignore models/grains_esr_brief.py
+          python -W ignore models/balance_sheets.py || true
           python -W ignore models/grains_wasde_brief.py
           python -W ignore models/trader_sheet.py || true
           python -W ignore models/summary.py || true
@@ -49,7 +50,7 @@ jobs:
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/grains data/summary data/brief
+          git add data/grains data/summary data/brief data/derived/balance_sheets.json
           git diff --cached --quiet && exit 0
           git commit -q -m "data: grains trade $(date -u +%F)"
           for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

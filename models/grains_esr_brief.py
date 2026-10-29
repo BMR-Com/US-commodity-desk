@@ -934,7 +934,7 @@ def build(cfg):
             "report": f"{rd:%B %Y}", "world_unit": cfg.get("world_unit", "MMT"), "ratio": None, "coverage": ratio / (cfg["to_world"] * 1e6), "key": cfg["key"], "sym": cfg["sym"],
             "px_label": cfg["px"], "px_unit": cfg["px_unit"], "px_fmt": cfg["px_fmt"], "start_month": MONTHS[cfg["start"] - 1], "classes_label": "All classes" if cfg.get("classes") else None, "target": target, "target_prev": prev_t, "target_esr": round(t_esr / D, 3),
             "commit": round(L.commit / D, 3), "shipped": round(L.accumulatedExports / D, 3), "outstanding": round(L.outstandingSales / D, 3),
-            "pace": pace, "pace_norm": pace_n, "ship_pct": ship, "ship_norm": ship_n, "implied": implied, "ly_commit": round(ly_commit / D, 3) if ly_commit else None,
+            "pace": pace, "pace_norm": pace_n, "ship_pct": ship, "ship_norm": ship_n, "implied": implied, "proj": {k: round(float(v), 4) for k, v in projw.items() if v is not None}, "ly_commit": round(ly_commit / D, 3) if ly_commit else None,
             "net": round(L.currentMYNetSales / D, 3), "net4": round(net4 / D, 3), "net4_5y": round(net4_5y / D, 3), "ship_wk": round(L.weeklyExports / D, 3), "ship4": round(ship4 / D, 3),
             "need_ship": round(need_ship / D, 3), "need_sales": round(max(need_sales, 0) / D, 3), "weeks_left": weeks_left, "tilt": tilt,
             "score": score, "score_by": score_by, "sales_left": sales_left / D, "ship_left": ship_left / D, "carry": CARRY / D,

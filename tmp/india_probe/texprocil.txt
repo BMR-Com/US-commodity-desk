@@ -1,0 +1,1896 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head><meta charset="iso-8859-1">
+
+
+  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Welcome to Texprocil - The Cotton Textiles Export Promotion Council (TEXPROCIL)</title>
+<meta name="description" content="The Cotton Textiles Export Promotion Council (TEXPROCIL)" /> 
+<meta name="keywords" content="The Cotton Textiles Export Promotion Council (TEXPROCIL)" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link href="https://texprocil.org/css/jquery.picMarque.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+<link href="https://texprocil.org/css/bootstrap-select.min.css" rel="stylesheet">
+<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://texprocil.org/javascript/html5shiv.js"></script>
+  <script src="https://texprocil.org/javascript/respond.min.js"></script>
+<![endif]-->
+
+<link href="https://texprocil.org/css/accordian.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="https://texprocil.org/css/stylesheet2.css"  />
+<link rel="stylesheet" type="text/css" href="https://texprocil.org/css/banner.css"  />
+<link rel="stylesheet" type="text/css" href="https://texprocil.org/css/gallery.css"  />
+<link rel='stylesheet' type='text/css' href='https://texprocil.org/css/tablesorter/tablesorter-style.css' >
+<link rel='stylesheet' type='text/css' href='https://texprocil.org/autosuggest/jquery-autocomplete.css'>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://texprocil.org/javascript/bootstrap.js"></script>
+<script src="https://texprocil.org/javascript/jquery.picMarque.js"></script>
+
+<script type="text/javascript" src="https://texprocil.org/javascript/slides.min.jquery.js"></script>
+<script type="text/javascript" src="https://texprocil.org/javascript/jquery.roundabout.min.js"></script>
+<script type="text/javascript" src="https://texprocil.org/javascript/common.js"></script>
+<script type="text/javascript" src="https://texprocil.org/javascript/scriptbreaker-multiple-accordion-1.js"></script>
+
+<script type="text/javascript" src="https://texprocil.org/autosuggest/jquery-autocomplete.js"></script>
+
+<!-- Google tag (gtag.js) --> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8BFNC2L75Z"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-8BFNC2L75Z'); </script>
+
+
+<script> 
+$(document).ready(function(){
+  $(".topnav").accordion({
+		accordion:true,
+		speed: 500,
+		closedSign: '[+]',
+		openedSign: '[-]'
+	});	
+  $(".r-menu").click(function(){
+    $(".r-panel").slideToggle("slow");
+  });
+  $(".dropdown").click(function(){
+    $(".r-panel2").slideToggle("slow");
+  });
+   
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+var picData = [{ image:'https://texprocil.org/images/gallery/thumb/',title:'',link:'http://',class:'img-responsive'},{ image:'https://texprocil.org/images/gallery/thumb/',title:'',link:'http://',class:'img-responsive'},{ image:'https://texprocil.org/images/gallery/thumb/gallery-1549621569.jpg',title:'',link:'https://www.icegate.gov.in/eSANCHIT.html   ',class:'img-responsive'},{ image:'https://texprocil.org/images/gallery/thumb/gallery-1530511082.jpg',title:'',link:'https://www.dgciskol.gov.in/',class:'img-responsive'},{ image:'https://texprocil.org/images/gallery/thumb/gallery-1496901336.png',title:'',link:'https://www.makeinindia.com/home',class:'img-responsive'},{ image:'https://texprocil.org/images/gallery/thumb/gallery-1620909366.jpg',title:'',link:'http://',class:'img-responsive'},{ image:'https://texprocil.org/images/gallery/thumb/gallery-1496901424.png',title:'',link:'https://www.wto.org/',class:'img-responsive'},{ image:'https://texprocil.org/images/gallery/thumb/gallery-1496901369.png',title:'',link:'https://commerce.gov.in/',class:'img-responsive'}]
+$("#marquePic").picMarque({
+speed: 20,//scroll speed
+errorimg: 'https://texprocil.org/images/no-photo.jpg',//error image path
+data: picData
+})
+});
+</script>
+<style>
+    ul.mainNav1 > li > a{color:#333;}
+    
+    .navPart{background:#95c13a;}
+      ul.mainNav1 li:last-child a {    border-right: 1px solid #333;}
+      @media (max-width: 600px) {
+          #navbar{    z-index: 9999;
+    background: rgb(255, 255, 255);
+    position: absolute;}
+    #navbar .navbar-nav{    display: block !important;margin: 0;    width: 300px;}
+    ul.mainNav1 li a{color:#333;}
+      }
+</style>
+</head>
+<body>
+      <div class="container" style="position: relative;"> 
+ <div class="col-md-12 text-center">  <!--<img src="https://texprocil.org/images/page-header-img.jpeg"  style="    margin: auto;
+   background: #001f56;
+    width: 100%;">-->
+    <img src="https://texprocil.org/images/texprocil-header-72.png"  style="    margin: auto;
+   background: #001f56;
+    width: 100%;">
+    </div>
+   <div style="position:absolute;right:30px;top:0;padding:10px;" class="hidden-xs">
+							<!--<li><a href="https://texprocil.org/faq.htm" title="faq" class="faq">FAQ</a></li>-->
+						
+                          <a href="https://x.com/TexprocilIndia" target="_blank"><img src="https://texprocil.org/images/twitter.png" style="width:25px;margin-right:8px;"></a>
+                          <a href="https://www.facebook.com/TEXPROCILIndia" target="_blank"><img src="https://texprocil.org/images/facebook.png" style="width:25px;margin-right:8px;"></a>
+                          <a href="http://www.linkedin.com/in/texprocil-1954"target="_blank"><img src="https://texprocil.org/images/linkedin.png" style="width:25px;margin-right:8px;"></a>
+                          <a href="https://www.instagram.com/texprocil_1954/"target="_blank"><img src="https://texprocil.org/images/instagram.png" style="width:25px;margin-right:8px;"></a>
+                          <a href="https://www.youtube.com/@texprocil1954"target="_blank"><img src="https://texprocil.org/images/youtube.png" style="width:25px;margin-right:8px;"></a>
+					</div>
+   </div>
+<!--============================ js links end here ====================================-->
+<div id="wrapper">
+  <div class="overlay"></div>
+  
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+<li><a href="https://texprocil.org/Home.htm" title="Home" >Home</a></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="About Texprocil">About Texprocil<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/Aboutus.htm" title="About us" ><span>About us</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/Chairman.htm" title="Chairman" ><span>Chairman</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/ViceChairman.htm" title="Vice Chairman" ><span>Vice Chairman</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/ExecutiveDirector.htm" title="Executive Director" ><span>Executive Director</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/CommitteeOfAdministration.htm" title="Committee Of Administration" ><span>Committee Of Administration</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Textile Intelligence Center">Textile Intelligence Center<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/Circulars.htm" title="Circulars" ><span>Circulars</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/ENewsletters.htm" title="E-Newsletters" ><span>E-Newsletters</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/IBTEXNewsClippings.htm" title="IBTEX News Clippings" ><span>IBTEX News Clippings</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/Statistics.htm" title="Statistics" ><span>Statistics</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/InformationCorner.htm" title="Information Corner" ><span>Information Corner</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Products">Products<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/CottonFibre.htm" title="Cotton Fibre" ><span>Cotton Fibre</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/CottonYarn.htm" title="Cotton Yarn" ><span>Cotton Yarn</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/CottonFabrics.htm" title="Cotton Fabrics" ><span>Cotton Fabrics</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/CottonHomeTextiles.htm" title="Cotton Home Textiles" ><span>Cotton Home Textiles</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Membership">Membership<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/Guidelines.htm" title="Guidelines" ><span>Guidelines</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/BenefitstoMembers.htm" title="Benefits to Members" ><span>Benefits to Members</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/PreviousMDABenefits.htm" title="Previous MDA Benefits" ><span>Previous MDA Benefits</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/NewRegistration.htm" title="New Registration" ><span>New Registration</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/RenewalAmendmentofeRCMC.htm" title="Renewal / Amendment of e-RCMC" ><span>Renewal / Amendment of e-RCMC</span></a></li>
+
+<li class=""class="last-child" ><a href="http://membership.texprocil.org/" title="Member Login" ><span>Member Login</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Trade Policy">Trade Policy<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/ExportPromotionScheme.htm" title="Export Promotion Scheme" ><span>Export Promotion Scheme</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/ExportTurnoverandGSTPaidCertificates.htm" title="Export Turnover and GST Paid Certificates" ><span>Export Turnover and GST Paid Certificates</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Publications">Publications<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class=""class="last-child" ><a href="https://texprocil.org/MembershipDirectory.htm" title="Membership Directory" ><span>Membership Directory</span></a></li>
+
+</ul></li>
+
+<li><a href="http://membership.texprocil.org/" title="Login" >Login</a></li>
+
+<li><a href="https://texprocil.org/AdvertisewithUs.htm" title="Advertise with Us" >Advertise with Us</a></li>
+
+<li><a href="https://texprocil.org/Webinars.htm" title="Webinars" >Webinars</a></li>
+
+                
+             
+        	
+        
+        </ul>
+      </li>    
+    </ul>
+  </nav>
+
+</div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=987206124642292&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!--
+<div class="row row1">
+<div class="container">
+		<div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom:13px; padding-left:0; padding-right:0">
+    
+    		<div class="col-md-9 col-sm-5 col-xs-10">
+		
+                <div class="col-md-6 col-sm-12 col-xs-12 logo" >
+                    <a href="https://texprocil.org/">
+                        <img src="https://texprocil.org/images/TEXPROCIL-LOGO-GOI.jpg" class="img-responsive hidden-xs" alt="The Cotton Textiles Export Promotion Council (TEXPROCIL)" style="   width: 275px;    float: left;">
+    <img src="https://texprocil.org/images/KCB-Logo.jpg" class="img-responsive hidden-xs" alt="The Cotton Textiles Export Promotion Council (TEXPROCIL)" style="    width: 100px;    float: left;">
+  
+                          <img src="https://texprocil.org/images/TEXPROCIL-LOGO-GOI.jpg" class="img-responsive hidden-sm hidden-md hidden-lg" alt="The Cotton Textiles Export Promotion Council (TEXPROCIL)" style="   width: 180px;    float: left;">
+    <img src="https://texprocil.org/images/KCB-Logo.jpg" class="img-responsive hidden-sm hidden-md hidden-lg" alt="The Cotton Textiles Export Promotion Council (TEXPROCIL)" style="    width: 70px;    float: left;">
+    </a>
+                  </div>
+                
+               
+				<div class="col-md-6 text-right hidden-xs">
+				    <img src="https://texprocil.org/images/70-Years.jpeg" width="30%" height="100%" style="    margin-top: 25px;">
+				 
+				</div>
+					<div class="col-xs-12 text-left hidden-sm hidden-md hidden-lg">
+				    <img src="https://texprocil.org/images/70-Years.jpeg" width="30%" height="100%" style="       margin: 10px;">
+				  
+				</div>
+				
+                <div id="page-content-wrapper" class="visible-xs visible-sm">
+     <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
+   
+  </div>
+			</div>
+			<div class="header col-md-3 col-sm-7 col-xs-12">
+				<div class="col-md-12 right" style="margin:0px !important; padding:0px !important;">
+					<div style="margin:0px !important; padding:0px !important;" class="col-md-9 col-sm-9">
+						<ul class="topLink" style="font-size: 12px;    padding: 5px;">
+						
+							<li><a href="https://texprocil.org/quicklinks.htm" title="Quick Links">Quick Links</a>
+                          </li>							
+							<li><a href="https://texprocil.org/ContactUs.htm" title="Contact">Contact</a></li>							
+						</ul>
+
+					</div>
+	 
+					<div class="col-md-3 col-sm-3" style="padding: 0;">
+				
+						<ul class="social" style="padding: 0;">
+							<li><a href="https://twitter.com/TexprocilIndia" title="Twitter"><img src="https://texprocil.org/images/twitter.jpg" alt="Twitter" /></a></li>
+							<li><a href="https://www.facebook.com/TEXPROCILIndia" title="Facebook"><img src="https://texprocil.org/images/facebook.jpg" alt="Facebook" /></a></li>
+                          
+						
+						</ul>
+			  
+					</div>
+					 
+					</div>
+					
+	
+  
+					
+					
+				  </div>
+				  
+			</div>
+        </div>
+		
+		
+     </div>-->
+     <div class="clear"></div>
+
+
+
+<!--row2 start desktop menu--->
+<div class="row " style="border-top:2px solid #224974;">
+<div class="container">
+<div class="col-md-12 ">
+	 <!-- navigation part start here  -->
+    <div class="mainWidth navPart">
+    	<!-- search part start here -->
+        <!--<div class="col-md-3">
+    	<div class="searchBar">
+        	<form action="search.php" method="post" class="form-inline" role="form">
+			<input name="searchbox" id="searchbox" type="text" class="searchInput" value="Search keyword" onblur="if(this.value == '') {this.value = 'Search keyword';}" onfocus="if(this.value == 'Search keyword') {this.value = '';}" />
+      		<input type="image" src="https://texprocil.org/images/search-btn.jpg" width="19" height="19" alt="Search" />
+			</form>
+      	</div>
+        </div>-->
+        <!-- search part end here -->
+         <!-- nav part start here -->
+        <div class="col-md-12">
+        <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar" style="    background: #333;"></span>
+        <span class="icon-bar" style="    background: #333;"></span>
+        <span class="icon-bar" style="    background: #333;"></span>                        
+      </button>
+     
+    </div>
+        <div id="navbar" class="navbar-collapse collapse" style="padding:0">
+         <ul class="nav navbar-nav mainNav1" style="    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    float: none;">       
+        	<li><a href="https://texprocil.org/Home.htm" title="Home" >Home</a></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="About Texprocil">About Texprocil<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/Aboutus.htm" title="About us" ><span>About us</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/Chairman.htm" title="Chairman" ><span>Chairman</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/ViceChairman.htm" title="Vice Chairman" ><span>Vice Chairman</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/ExecutiveDirector.htm" title="Executive Director" ><span>Executive Director</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/CommitteeOfAdministration.htm" title="Committee Of Administration" ><span>Committee Of Administration</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Textile Intelligence Center">Textile Intelligence Center<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/Circulars.htm" title="Circulars" ><span>Circulars</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/ENewsletters.htm" title="E-Newsletters" ><span>E-Newsletters</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/IBTEXNewsClippings.htm" title="IBTEX News Clippings" ><span>IBTEX News Clippings</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/Statistics.htm" title="Statistics" ><span>Statistics</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/InformationCorner.htm" title="Information Corner" ><span>Information Corner</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Products">Products<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/CottonFibre.htm" title="Cotton Fibre" ><span>Cotton Fibre</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/CottonYarn.htm" title="Cotton Yarn" ><span>Cotton Yarn</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/CottonFabrics.htm" title="Cotton Fabrics" ><span>Cotton Fabrics</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/CottonHomeTextiles.htm" title="Cotton Home Textiles" ><span>Cotton Home Textiles</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Membership">Membership<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/Guidelines.htm" title="Guidelines" ><span>Guidelines</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/BenefitstoMembers.htm" title="Benefits to Members" ><span>Benefits to Members</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/PreviousMDABenefits.htm" title="Previous MDA Benefits" ><span>Previous MDA Benefits</span></a></li>
+
+<li class="" ><a href="https://texprocil.org/NewRegistration.htm" title="New Registration" ><span>New Registration</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/RenewalAmendmentofeRCMC.htm" title="Renewal / Amendment of e-RCMC" ><span>Renewal / Amendment of e-RCMC</span></a></li>
+
+<li class=""class="last-child" ><a href="http://membership.texprocil.org/" title="Member Login" ><span>Member Login</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Trade Policy">Trade Policy<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class="" ><a href="https://texprocil.org/ExportPromotionScheme.htm" title="Export Promotion Scheme" ><span>Export Promotion Scheme</span></a></li>
+
+<li class=""class="last-child" ><a href="https://texprocil.org/ExportTurnoverandGSTPaidCertificates.htm" title="Export Turnover and GST Paid Certificates" ><span>Export Turnover and GST Paid Certificates</span></a></li>
+
+</ul></li>
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" title="Publications">Publications<span class="caret"></span></a><ul class="submenu dropdown-menu"><li class=""class="last-child" ><a href="https://texprocil.org/MembershipDirectory.htm" title="Membership Directory" ><span>Membership Directory</span></a></li>
+
+</ul></li>
+
+<li><a href="http://membership.texprocil.org/" title="Login" >Login</a></li>
+
+<li><a href="https://texprocil.org/AdvertisewithUs.htm" title="Advertise with Us" >Advertise with Us</a></li>
+
+<li><a href="https://texprocil.org/Webinars.htm" title="Webinars" >Webinars</a></li>
+
+          			              	   
+        </ul>
+        <!--
+        <ul class="nav navbar-nav mainNav1">       
+        	<li><a href="https://texprocil.org/" title="Home" class="home">Home</a></li>
+			<li class="dropdown"><a href="about.php" title="About" class="dropdown-toggle" data-toggle="dropdown" role="button">About Texprocil <span class="caret"></span></a> 
+            	<ul class="submenu dropdown-menu"><li class=""><a href="about.php" title="About Texprocil"><span>About Texprocil</span></a></li>
+                <li class=""><a href="chairman-message.php" title="Chairman"><span>Chairman</span></a></li>
+                <li class=""><a href="vice-chairman.php" title="Vice Chairman"><span>Vice Chairman</span></a></li>
+                <li class=""><a href="executive-director.php" title="Executive Director "><span>Executive Director </span></a></li>
+                <li class=""><a href="coa.php" title="Committee Of Administration"><span>Committee Of Administration</span></a></li>
+                <li class=""><a href="sub-committees.php" title="Sub Committees"><span>Sub Committees</span></a></li></ul>
+             </li>
+            <li class="dropdown"><a href="/#" title="Textile Intelligence Center" class="dropdown-toggle" data-toggle="dropdown" role="button"> <span>Textile Intelligence Center</span> <span class="caret"></span></a>
+            <ul class="submenu dropdown-menu">
+                	 <li><a href="circulars.php" title="Circulars">Circulars</a></li>
+                     <li class="menuitem-active"><a href="e-newsletters.php" title="E-Newsletters"><span>E-Newsletters</span></a></li><li class=""><a href="ibtex-news-clippings.php" title="IBTEX News Clippings"><span>IBTEX News Clippings</span></a></li><li class=""><a href="statistics.php" title="Statistics"><span>Statistics</span></a></li><li class=""><a href="trade-data.php" title="Trade Data"><span>Trade Data</span></a></li><li class=""><a href="reports-presentations.php" title="Trade Fairs / Exhibitions"><span>Trade Fairs / Exhibitions</span></a></li>
+             </ul>
+            </li>
+           
+            <li class="dropdown"><a href="/##" title="Products" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Products</span> <span class="caret"></span></a>
+            	<ul class="submenu dropdown-menu">
+                	<li class=""><a href="cotton-fibre.php" title="Cotton Fibre"><span>Cotton Fibre</span></a></li>
+                    <li class=""><a href="cotton-yarn.php" title="Cotton Yarn "><span>Cotton Yarn </span></a></li>
+                    <li class=""><a href="cotton-fabrics.php" title="Cotton Fabrics"><span>Cotton Fabrics</span></a></li>
+                    <li class=""><a href="cotton-home-textiles.php" title="Cotton Home Textiles"><span>Cotton Home Textiles</span></a></li>
+                    <li class=""><a href="technical-textiles.php" title="Technical Textiles"><span>Technical Textiles</span></a></li>
+                  </ul>
+            </li>
+            <li class="dropdown"><a href="membership-members-area.php" title="Membership" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Membership</span>  <span class="caret"></span></a>
+            	<ul class="submenu dropdown-menu"><li class=""><a href="guidelines.php" title="Guildlines"><span>Guildlines</span></a></li><li class=""><a href="benefits-to-members.php" title="Benefits to Members"><span>Benefits to Members</span></a></li><li class=""><a href="mda-benefits.php" title="Previous MDA Benefits"><span>Previous MDA Benefits</span></a></li><li class=""><a href="membership-form.php" title="Membership Form "><span>Membership Form </span></a></li></ul>
+            </li>
+            <li class="menuitem-expandable dropdown"><a href="trade-policy.php" title="Trade Policy" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Trade Policy</span> <span class="caret"></span></a>
+                <ul class="submenu dropdown-menu">
+                    <li class=""><a href="dgft.php" title="DGFT"><span>DGFT</span></a></li>
+                    <li class=""><a href="cbec.php" title="CBEC"><span>CBEC</span></a></li>
+                    <li class=""><a href="export-promotion-scheme.php" title="Export Promotion Scheme"><span>Export Promotion Scheme</span></a></li>
+                </ul>
+            </li>
+            <li class="menuitem-expandable dropdown"><a href="publications.php" title="Publications" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Publications</span> <span class="caret"></span></a>
+            <ul class="submenu dropdown-menu"><li class=""><a href="list-of-exporters.php" title="Membership Directory"><span>Membership Directory</span></a></li><li class=""><a href="list-of-buyers.php" title="List of Buyers"><span>List of Buyers</span></a></li><li class=""><a href="home-textile-magazine.php" title="Home Textile Magazine"><span>Home Textile Magazine</span></a></li><li class=""><a href="press_release.php" title="Press Releases"><span>Press Releases</span></a></li></ul></li>
+            
+            
+            <li class="highlight menuitem-expandable dropdown"><a href="/marketplace" title="Marketplace" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Marketplace</span> <span class="caret"></span></a>
+            <ul class="submenu dropdown-menu"><li class=""><a href="https://in.eregnow.com/membership/register/texprocil-listing" title="Enroll Now "><span>Enroll Now </span></a></li><li class=""><a href="https://in.eregnow.com/membership/register/login/texprocil-listing" title="Edit your Listing"><span>Edit your Listing</span></a></li><li class=""><a href="view-your-listing-marketplace.php" title="View your Listing "><span>View your Listing </span></a></li><li class=""><a href="buyer_enquiries.php" title="Buyer Enquiries"><span>Buyer Enquiries</span></a></li></ul></li>
+            <li class=""><a href="login.php" title="Login"><span>Login</span></a></li>
+            <li class=""><a href="advertise-us.php" title="Advertise with Us"><span>Advertise with Us</span></a></li>           			            	   
+        </ul>         		
+         -->      		  		
+          
+             
+       </div>
+        <!-- nav part end here -->
+    </div>
+    </div></div>
+    <!-- navigation end start here  -->
+        </div>
+      </div>  
+<!--</div>
+</div>
+</div>-->
+<div class="clear"></div>
+
+
+<script>
+$(document).ready(function () {
+  var trigger = $('.hamburger'),
+      overlay = $('.overlay'),
+     isClosed = false;
+
+    trigger.click(function () {
+      hamburger_cross();      
+    });
+
+    function hamburger_cross() {
+
+      if (isClosed == true) {          
+        overlay.hide();
+        trigger.removeClass('is-open');
+        trigger.addClass('is-closed');
+        isClosed = false;
+      } else {   
+        overlay.show();
+        trigger.removeClass('is-closed');
+        trigger.addClass('is-open');
+        isClosed = true;
+      }
+  }
+  
+  $('[data-toggle="offcanvas"]').click(function () {
+        $('#wrapper').toggleClass('toggled');
+  });  
+});
+</script>
+ <style>
+p.ex1 {
+  width: 280px;
+  height: 350px;
+  overflow: scroll;
+}
+</style>
+<!--
+<div class="col-md-12">
+    <div class="container padding0">
+     <div class="col-md-12 padding0" style="margin: 10px 0;">  <a href="https://www.bharat-tex.com/" target="_blank"> <img src="https://texprocil.org/images/top-banner3.jpeg" width="100%"></a></div>
+    </div>
+</div>
+
+    <marquee behavior="scroll" align="middle" direction="left" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()" style="background:#001f56;">
+        <h5><img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt="">
+		<a target="_blank" style="color:#fff;" href="https://register.bharat-tex.com/register?utm_source=Email_platform&utm_medium=email&utm_campaign=BT_Register_now_By_email">
+	Click here to register as a buyer at Bharat Tex 2025 being held at Bharat Mandapam from 14-17 February 2025</a>
+
+		<img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""></h5>
+        </marquee>-->
+<div class="clearfix"></div>
+<div class="row row3" style="background:#f0f0f0; padding-top: 8px;"> 
+    <div class="container">
+        <div class="col-md-12 col-xs-12">
+            <div class="col-md-3 col-xs-12  col-sm-4 p0">
+        <!-- <h3 class="textHead">Products</h3>-->
+            <div class="col-md-12 p0"> 
+<!--   <iframe width="100%" src="https://www.youtube.com/embed/DWrMMkYzXbw?si=SU9HhwKURMbbavB4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->	
+	<iframe width="100%" src="https://www.youtube.com/embed/2dRH_qI2qbM?si=n4RshV71Cd5Z0M_Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!--<iframe width="100%" src="https://www.youtube.com/embed/d2LZKPokf8I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>		-->
+		<!--<p style="margin-top:10px;color:#f16807;font-weight:bold"><img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""> "Honb'le MINISTER of TEXTILES Smt. SMRITI ZUBIN IRANI calls for "Commerce with Compassion" <img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""> </p>-->
+			<!--<p style="margin-top:10px;"><a href="https://ind-texpo.com/" style="color:#f16807;font-weight:bold" target="_blank"><img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""> "Message from Ms. Smriti Zubin Irani, Hon’ble Minister of Textiles and Women & Child Development, on the Virtual Ind-Texpo" <img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""></a> </p>-->
+            	<!--<div id="prodCarousel" class="carousel slide" data-ride="carousel"> ( new link https://youtu.be/Pnb7lFxBY-4,https://www.youtube.com/watch?v=Pnb7lFxBY-4 || old link https://www.youtube.com/embed/mE8BfERgYWc )
+                          
+                    <div class="carousel-inner" role="listbox">
+
+                    <div class="item active">
+       <a href="#">
+       <img src="https://texprocil.org/images/Swachh_Bharat_Abhiyan!.jpg" class="img-responsive" alt="Products" title="Products" />
+       </a>
+      </div>
+                     <div class="item">
+       <a href="https://texprocil.org/award/Award%20Winner%20for%20Generation%20of%20Highest%20Employment%202017-18.pdf">
+       <img src="https://texprocil.org/images/product_22.png" class="img-responsive" alt="Products" title="Products" />
+       </a>
+      </div>
+      <div class="item active">
+       <a href="https://texprocil.org/CottonFibre.htm">
+       <img src="https://texprocil.org/images/product-img1.jpg" class="img-responsive" alt="Products" title="Products" />
+       </a>
+      </div>
+       <div class="item ">
+       <a href="https://texprocil.org/CottonYarn.htm">
+       <img src="https://texprocil.org/images/product-img2.jpg" class="img-responsive" alt="Products" title="Products" /></a>
+      </div>
+       <div class="item">
+       <a href="https://texprocil.org/CottonFabrics.htm">
+       <img src="https://texprocil.org/images/product-img3.jpg" class="img-responsive" alt="Products" title="Products" /></a>
+      </div>
+       <div class="item">
+       <a href="https://texprocil.org/CottonHomeTextiles.htm">
+       <img src="https://texprocil.org/images/product-img4.jpg" class="img-responsive" alt="Products" title="Products" /></a>
+      </div>
+                      
+                    </div>
+
+                    <a class="left carousel-control" href="#prodCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#prodCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>  -->            
+			</div> 
+                   
+           <!--<a href="https://www.ind-texpo.com/" target="_blank"><h3 class="textHead blinking-text" style="color:#173173">IND-TEXPO 17-19 Mar’2020</h3></a>-->
+          <!-- <span style="color:#a64780"><strong> An Exclusive B2B Exhibition of Textiles</strong></span>
+            <iframe width="250"  src="https://www.youtube.com/embed/3ZVQsZQyCkg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <div class="col-md-12 col-xs-12 upcoming-event p0" style=" overflow:hidden" > 
+                    
+             
+                            <h3 class="textHead">HIGHLIGHT'S</h3>  
+				   <div class="col-md-12 p0" style=" font-size:17px;">
+				
+				   </div>
+                 <p><a href="https://texprocil.org/PDF/Texprocil-72nd-Annual-Report.pdf" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				  72nd Annual Report 2025-26
+				  </span> <img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""></a></p>
+				  
+				  
+                     <p><a href="https://texprocil.org/ICEGATE.htm" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				  ICEGATE – Essential Resource for Exporters  
+				  </span> <img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""></a></p>
+				  
+				  <p><a href="https://texprocil.org/FTANotifications.htm" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				  
+				    Compendium of India’s Free Trade Agreements
+				  </span> <img src="https://texprocil.org/images/new-patch.gif" style="height:14px;" alt=""></a></p> 
+				  
+				  
+				  <p><a href="https://texprocil.org/WhatsAppChannel.htm" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				  JOIN TEXPROCIL’s Official WhatsApp Channel! 
+				  </span> <img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""></a></p>
+				  
+				    
+				  
+				  <p><a href="https://texprocil.org/InformationCorner.htm">Read More</a></p>
+				  <!--
+				  <p><a href="events.php" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				  
+				    Proposed Events for the year 2026-27 
+				  </span> <img src="https://texprocil.org/images/new-patch.gif" style="height:14px;" alt=""></a></p>  
+                   <p style="font-size: 13px;"><a href="https://texprocil.org/PDF/NCTC-Code-of-Conduct-for-Prevention-of-Child-Labor-and-Forced-Labor.pdf" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				   Code of Conduct on Child & Forced Labour
+				  </span> </a></p> 
+       
+                   	  <p><a href="TEXPROCILCUGCCProgram.htm" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				    TEXPROCIL-CU GCC Program
+				  </span> </a></p>
+				  
+                   
+				       
+				       <p style="font-size: 13px;"><a href="ExportPromotionScheme.htm" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				  
+				   Electronic Certificates of Origin (eCoO)
+				  </span> </a></p> 
+				  
+				 
+				 
+			
+				   <p><a href="https://texprocil.org/recaptcha_texprocil.php?fname=1757671288-annual-report-24-25.pdf" target="_blank">
+				   <span class="blinking-img" style="color:#fd5c01">
+				  71st Annual Report 2024-25
+				  </span> </a></p>
+				 -->
+				  
+				 
+				 <div class="col-md-12 p0" style=" font-size:17px;">
+				  
+				   </div>
+               
+                  <!--   <p><a href="https://texprocil.org/images/circulars/TEXPROCIL_GCC.pdf" target="_blank"><img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""> 
+				   <span class="blinking-img" style="color:#fd5c01">
+				    <!--Upcoming Events 2021-22 -->
+				    <!--Calendar of Events for the year 2021-22 under MAI financial support-->
+				  <!-- TEXPROCIL ties up with India’s leading certification agency, Control Union to deliver Certificate of Conformity for Indian Cotton across the value chain
+				  </span> <img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""></a></p>  -->  
+           </div>
+           
+         
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-8 myCarousel">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                         <div class="item active">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1789810453.jpg" alt="Inauguration of TEXPROCIL India Pavilion at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" title="Inauguration of TEXPROCIL India Pavilion at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" class="img-responsive">
+										 <div class="content">
+										 <p >Inauguration of TEXPROCIL India Pavilion at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1789810478.jpg" alt="TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" title="TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1789810497.jpg" alt="TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" title="TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1789810514.jpg" alt="TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" title="TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Yarn Expo & Intertextile Shanghai Apparel Fabrics, China | 25–27 August 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1789809401.jpg" alt="TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026" title="TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1789809491.jpg" alt="TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026" title="TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1789809506.jpg" alt="TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026" title="TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Intex South Asia 2026, Colombo | 5–7 August 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1781254337.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Nirmala Sitharaman, Hon’ble Minister of Finance and Corporate Affairs, at the TEXPROCIL Awards Function held in Mumbai on 25th May 2026." title="Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Nirmala Sitharaman, Hon’ble Minister of Finance and Corporate Affairs, at the TEXPROCIL Awards Function held in Mumbai on 25th May 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Nirmala Sitharaman, Hon’ble Minister of Finance and Corporate Affairs, at the TEXPROCIL Awards Function held in Mumbai on 25th May 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1781254394.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1781254421.jpeg" alt="Finance Minister Smt. Nirmala Sitharaman launches TEXPROCIL’s Advanced Certificate Programme in International Trade at the TEXPROCIL Export Awards held in Mumbai on 25th May 2026." title="Finance Minister Smt. Nirmala Sitharaman launches TEXPROCIL’s Advanced Certificate Programme in International Trade at the TEXPROCIL Export Awards held in Mumbai on 25th May 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Finance Minister Smt. Nirmala Sitharaman launches TEXPROCIL’s Advanced Certificate Programme in International Trade at the TEXPROCIL Export Awards held in Mumbai on 25th May 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1781254474.jpeg" alt="TEXPROCIL Awards Function held in Mumbai on 25th May 2026" title="TEXPROCIL Awards Function held in Mumbai on 25th May 2026" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL Awards Function held in Mumbai on 25th May 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1781254507.jpg" alt="TEXPROCIL Awards Function held in Mumbai on 25th May 2026." title="TEXPROCIL Awards Function held in Mumbai on 25th May 2026." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL Awards Function held in Mumbai on 25th May 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1781254579.jpeg" alt="TEXPROCIL Awards Function held in Mumbai on 25th May 2026." title="TEXPROCIL Awards Function held in Mumbai on 25th May 2026." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL Awards Function held in Mumbai on 25th May 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1781255052.jpeg" alt="TEXPROCIL Awards Function held in Mumbai on 25th May 2026." title="TEXPROCIL Awards Function held in Mumbai on 25th May 2026." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL Awards Function held in Mumbai on 25th May 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778935632.jpeg" alt="Shri Ravi Sam met Hon’ble Finance Minister Smt. Nirmala Sitharaman in New Delhi on 12 May 2026" title="Shri Ravi Sam met Hon’ble Finance Minister Smt. Nirmala Sitharaman in New Delhi on 12 May 2026" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam met Hon’ble Finance Minister Smt. Nirmala Sitharaman in New Delhi on 12 May 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778935690.jpeg" alt="Shri Ravi Sam and Dr. Siddhartha Rajagopal met Hon’ble Finance Minister Smt. Nirmala Sitharaman in New Delhi on 12 May 2026 to invite her as Chief Guest for the TEXPROCIL Export Awards and discuss key textile sector issues, including cotton import duty." title="Shri Ravi Sam and Dr. Siddhartha Rajagopal met Hon’ble Finance Minister Smt. Nirmala Sitharaman in New Delhi on 12 May 2026 to invite her as Chief Guest for the TEXPROCIL Export Awards and discuss key textile sector issues, including cotton import duty." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam and Dr. Siddhartha Rajagopal met Hon’ble Finance Minister Smt. Nirmala Sitharaman in New Delhi on 12 May 2026 to invite her as Chief Guest for the TEXPROCIL Export Awards and discuss key textile sector issues, including cotton import duty.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778934428.jpeg" alt="Shri Vijay Agarwal, Chairman, Shri Ravi Sam, Vice Chairman and Dr. Siddhartha Rajagopal, Executive Director TEXPROCIL met Shri Piyush Goyal, Hon’ble Union Minister of Commerce & Industry, in New Delhi on 6 May 2026" title="Shri Vijay Agarwal, Chairman, Shri Ravi Sam, Vice Chairman and Dr. Siddhartha Rajagopal, Executive Director TEXPROCIL met Shri Piyush Goyal, Hon’ble Union Minister of Commerce & Industry, in New Delhi on 6 May 2026" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, Shri Ravi Sam, Vice Chairman and Dr. Siddhartha Rajagopal, Executive Director TEXPROCIL met Shri Piyush Goyal, Hon’ble Union Minister of Commerce & Industry, in New Delhi on 6 May 2026</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778934547.jpeg" alt="TEXPROCIL office bearers met Shri Piyush Goyal ji, Hon’ble Union Minister of Commerce & Industry in New Delhi on 6 May 2026 to discuss key issues affecting the cotton textile sector amid ongoing geopolitical tensions." title="TEXPROCIL office bearers met Shri Piyush Goyal ji, Hon’ble Union Minister of Commerce & Industry in New Delhi on 6 May 2026 to discuss key issues affecting the cotton textile sector amid ongoing geopolitical tensions." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL office bearers met Shri Piyush Goyal ji, Hon’ble Union Minister of Commerce & Industry in New Delhi on 6 May 2026 to discuss key issues affecting the cotton textile sector amid ongoing geopolitical tensions.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778934848.jpeg" alt="Shri Vijay Agarwal, Shri Ravi Sam and Dr. Siddhartha Rajagopal met Smt. Neelam Shami Rao, Secretary, Ministry of Textiles in New Delhi on 6 May 2026 to discuss removal of import duty on cotton." title="Shri Vijay Agarwal, Shri Ravi Sam and Dr. Siddhartha Rajagopal met Smt. Neelam Shami Rao, Secretary, Ministry of Textiles in New Delhi on 6 May 2026 to discuss removal of import duty on cotton." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Shri Ravi Sam and Dr. Siddhartha Rajagopal met Smt. Neelam Shami Rao, Secretary, Ministry of Textiles in New Delhi on 6 May 2026 to discuss removal of import duty on cotton.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778935018.jpeg" alt="Shri Vijay Agarwal and Dr. Siddhartha Rajagopal met Shri Lav Agarwal, DGFT, in New Delhi on 6 May 2026 and presented TEXPROCIL’s commemorative book marking 70 years of its journey." title="Shri Vijay Agarwal and Dr. Siddhartha Rajagopal met Shri Lav Agarwal, DGFT, in New Delhi on 6 May 2026 and presented TEXPROCIL’s commemorative book marking 70 years of its journey." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal and Dr. Siddhartha Rajagopal met Shri Lav Agarwal, DGFT, in New Delhi on 6 May 2026 and presented TEXPROCIL’s commemorative book marking 70 years of its journey.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778933192.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL; Dr. Siddhartha Rajagopal, ED and Shri Abhiv Sharma from the Consulate General of India, Shanghai, at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026." title="Shri Vijay Agarwal, Chairman, TEXPROCIL; Dr. Siddhartha Rajagopal, ED and Shri Abhiv Sharma from the Consulate General of India, Shanghai, at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL; Dr. Siddhartha Rajagopal, ED and Shri Abhiv Sharma from the Consulate General of India, Shanghai, at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778933356.jpeg" alt="Shri Vijay Agarwal and Dr. Siddhartha Rajagopal presenting a memento to Shri Abhiv Sharma at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026." title="Shri Vijay Agarwal and Dr. Siddhartha Rajagopal presenting a memento to Shri Abhiv Sharma at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal and Dr. Siddhartha Rajagopal presenting a memento to Shri Abhiv Sharma at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778933419.jpeg" alt="TEXPROCIL promoting Bharat Tex 2026 with Shri Abhiv Sharma at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026." title="TEXPROCIL promoting Bharat Tex 2026 with Shri Abhiv Sharma at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL promoting Bharat Tex 2026 with Shri Abhiv Sharma at Yarn Expo & ITSAF, Shanghai, held from 11–13 March 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778932516.jpeg" alt="TEXPROCIL participated in VIATT 2026, Vietnam (26–28 February 2026)" title="TEXPROCIL participated in VIATT 2026, Vietnam (26–28 February 2026)" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL participated in VIATT 2026, Vietnam (26–28 February 2026)</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778932547.jpeg" alt="TEXPROCIL at VIATT 2026, Vietnam (26–28 February 2026)" title="TEXPROCIL at VIATT 2026, Vietnam (26–28 February 2026)" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at VIATT 2026, Vietnam (26–28 February 2026)</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778932564.jpeg" alt="TEXPROCIL at VIATT 2026, Vietnam (26–28 February 2026)" title="TEXPROCIL at VIATT 2026, Vietnam (26–28 February 2026)" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at VIATT 2026, Vietnam (26–28 February 2026)</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778929790.jpg" alt="The Embassy of India, Bucharest, in collaboration with TEXPROCIL, successfully organized a Virtual Hybrid B2B Meet on Cotton Textiles on 27th February 2026 in Bucharest, Romania." title="The Embassy of India, Bucharest, in collaboration with TEXPROCIL, successfully organized a Virtual Hybrid B2B Meet on Cotton Textiles on 27th February 2026 in Bucharest, Romania." class="img-responsive">
+										 <div class="content">
+										 <p >The Embassy of India, Bucharest, in collaboration with TEXPROCIL, successfully organized a Virtual Hybrid B2B Meet on Cotton Textiles on 27th February 2026 in Bucharest, Romania.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778929823.jpeg" alt="India Romania Virtual B2B Meeting on 27th February 2026 in Bucharest, Romania" title="India Romania Virtual B2B Meeting on 27th February 2026 in Bucharest, Romania" class="img-responsive">
+										 <div class="content">
+										 <p >India Romania Virtual B2B Meeting on 27th February 2026 in Bucharest, Romania</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778929869.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1778929893.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771590285.jpeg" alt="Shri Ravi Sam, Vice Chairman (TEXPROCIL), felicitated Shri Piyush Goyal, Hon’ble Minister of Commerce and Industry, at a meeting with Export Promotion Councils and Trade Associations in New Delhi on 11 February 2026." title="Shri Ravi Sam, Vice Chairman (TEXPROCIL), felicitated Shri Piyush Goyal, Hon’ble Minister of Commerce and Industry, at a meeting with Export Promotion Councils and Trade Associations in New Delhi on 11 February 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam, Vice Chairman (TEXPROCIL), felicitated Shri Piyush Goyal, Hon’ble Minister of Commerce and Industry, at a meeting with Export Promotion Councils and Trade Associations in New Delhi on 11 February 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771482159.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Updeep Singh, Welspun World and COA Member, and Dr. Siddhartha Rajagopal, met Neelam Shami Rao, Secretary, Ministry of Textiles, and Ms. Shubhra, Principal Consultant in New Delhi on 11 Feb 2026." title="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Updeep Singh, Welspun World and COA Member, and Dr. Siddhartha Rajagopal, met Neelam Shami Rao, Secretary, Ministry of Textiles, and Ms. Shubhra, Principal Consultant in New Delhi on 11 Feb 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Updeep Singh, Welspun World and COA Member, and Dr. Siddhartha Rajagopal, met Neelam Shami Rao, Secretary, Ministry of Textiles, and Ms. Shubhra, Principal Consultant in New Delhi on 11 Feb 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771061833.jpeg" alt="Shri Murali Balkrishna, JD, TEXPROCIL, presented the Council’s 70th Year Commemorative Book to H.E. Shri Vanlalhuma, Ambassador of India to Colombia during Colombiatex held from 27–29 January 2026." title="Shri Murali Balkrishna, JD, TEXPROCIL, presented the Council’s 70th Year Commemorative Book to H.E. Shri Vanlalhuma, Ambassador of India to Colombia during Colombiatex held from 27–29 January 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Murali Balkrishna, JD, TEXPROCIL, presented the Council’s 70th Year Commemorative Book to H.E. Shri Vanlalhuma, Ambassador of India to Colombia during Colombiatex held from 27–29 January 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771061910.jpeg" alt="Shri Ashish Bagrodia and Shri Rahul Shah, COA Members, TEXPROCIL, welcomed H.E. Shri Vanlalhuma, Ambassador of India to Colombia, during Colombiatex held from 27-29 January 2026." title="Shri Ashish Bagrodia and Shri Rahul Shah, COA Members, TEXPROCIL, welcomed H.E. Shri Vanlalhuma, Ambassador of India to Colombia, during Colombiatex held from 27-29 January 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ashish Bagrodia and Shri Rahul Shah, COA Members, TEXPROCIL, welcomed H.E. Shri Vanlalhuma, Ambassador of India to Colombia, during Colombiatex held from 27-29 January 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771061982.jpeg" alt="Shri Rahul Shah, COA Member, TEXPROCIL, presented a memento on behalf of the Council to H.E. Shri Vanlalhuma, Ambassador of India to Colombia, during Colombiatex held from 27–29 January 2026." title="Shri Rahul Shah, COA Member, TEXPROCIL, presented a memento on behalf of the Council to H.E. Shri Vanlalhuma, Ambassador of India to Colombia, during Colombiatex held from 27–29 January 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Rahul Shah, COA Member, TEXPROCIL, presented a memento on behalf of the Council to H.E. Shri Vanlalhuma, Ambassador of India to Colombia, during Colombiatex held from 27–29 January 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771062072.jpeg" alt="TEXPROCIL at Colombiatex, 27–29 January 2026 promoting products made from Kasturi Cotton to Colombian buyers." title="TEXPROCIL at Colombiatex, 27–29 January 2026 promoting products made from Kasturi Cotton to Colombian buyers." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Colombiatex, 27–29 January 2026 promoting products made from Kasturi Cotton to Colombian buyers.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771061566.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Dr. Siddhartha Rajagopal, Executive Director, met and greeted the newly appointed Textile Commissioner, Smt. Vrunda Manohar Desai, at her office in Mumbai on 20 January 2026." title="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Dr. Siddhartha Rajagopal, Executive Director, met and greeted the newly appointed Textile Commissioner, Smt. Vrunda Manohar Desai, at her office in Mumbai on 20 January 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Dr. Siddhartha Rajagopal, Executive Director, met and greeted the newly appointed Textile Commissioner, Smt. Vrunda Manohar Desai, at her office in Mumbai on 20 January 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771050902.jpeg" alt="TEXPROCIL organised the Kasturi Cotton Bharat Pavilion, which was inaugurated at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026." title="TEXPROCIL organised the Kasturi Cotton Bharat Pavilion, which was inaugurated at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL organised the Kasturi Cotton Bharat Pavilion, which was inaugurated at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771052132.jpeg" alt="TEXPROCIL at Heimtextil 2026, January 13-16, 2026." title="TEXPROCIL at Heimtextil 2026, January 13-16, 2026." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Heimtextil 2026, January 13-16, 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771061049.jpeg" alt="TEXPROCIL at Heimtextil 2026, January 13-16, 2026." title="TEXPROCIL at Heimtextil 2026, January 13-16, 2026." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Heimtextil 2026, January 13-16, 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771061263.jpeg" alt="Promotion of Bharat Tex 2026 at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026." title="Promotion of Bharat Tex 2026 at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Promotion of Bharat Tex 2026 at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1771061479.jpeg" alt="Promotion of Bharat Tex 2026 at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026." title="Promotion of Bharat Tex 2026 at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026." class="img-responsive">
+										 <div class="content">
+										 <p >Promotion of Bharat Tex 2026 at the Heimtextil 2026 Fair, held in Frankfurt, Germany, from 13–16 January 2026.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1766215567.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED met Shri Piyush Goyal on 16th December 2025 at New Delhi to review India's textile exports across key segments. " title="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED met Shri Piyush Goyal on 16th December 2025 at New Delhi to review India's textile exports across key segments. " class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED met Shri Piyush Goyal on 16th December 2025 at New Delhi to review India's textile exports across key segments. </p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1766215666.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED, met Smt. Nirmala Sitharaman, Honâ€™ble Finance Minister, on 16 December 2025 at Parliament House, New Delhi. " title="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED, met Smt. Nirmala Sitharaman, Honâ€™ble Finance Minister, on 16 December 2025 at Parliament House, New Delhi. " class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED, met Smt. Nirmala Sitharaman, Honâ€™ble Finance Minister, on 16 December 2025 at Parliament House, New Delhi. </p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1766215125.jpeg" alt="The India Pavilion set up by TEXPROCIL at the Egypt Fabric and Yarn Show (4â€“7 December 2025, Cairo) was inaugurated by Ms. C. Sushma, Deputy Chief of Mission, Embassy of India, Cairo." title="The India Pavilion set up by TEXPROCIL at the Egypt Fabric and Yarn Show (4â€“7 December 2025, Cairo) was inaugurated by Ms. C. Sushma, Deputy Chief of Mission, Embassy of India, Cairo." class="img-responsive">
+										 <div class="content">
+										 <p >The India Pavilion set up by TEXPROCIL at the Egypt Fabric and Yarn Show (4â€“7 December 2025, Cairo) was inaugurated by Ms. C. Sushma, Deputy Chief of Mission, Embassy of India, Cairo.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1766215308.jpeg" alt="Mr Anil Anand of Nahar Spinning Mills presented the Council's 70 years commemorative book to Ms C Sushma, Deputy Chief of Mission, Embassy of India, Cairo at the Egypt Fabric and Yarn Show being held in Cairo from 4-7 Dec 2025" title="Mr Anil Anand of Nahar Spinning Mills presented the Council's 70 years commemorative book to Ms C Sushma, Deputy Chief of Mission, Embassy of India, Cairo at the Egypt Fabric and Yarn Show being held in Cairo from 4-7 Dec 2025" class="img-responsive">
+										 <div class="content">
+										 <p >Mr Anil Anand of Nahar Spinning Mills presented the Council's 70 years commemorative book to Ms C Sushma, Deputy Chief of Mission, Embassy of India, Cairo at the Egypt Fabric and Yarn Show being held in Cairo from 4-7 Dec 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1766215360.jpeg" alt="Mr. Naresh Rathi of BM House presented the Kasturi hamper to Ms C Sushma, Deputy Chief of Mission, Embassy of India, Cairo at the Egypt Fabric and Yarn Show being held in Cairo from 4-7 December 2025." title="Mr. Naresh Rathi of BM House presented the Kasturi hamper to Ms C Sushma, Deputy Chief of Mission, Embassy of India, Cairo at the Egypt Fabric and Yarn Show being held in Cairo from 4-7 December 2025." class="img-responsive">
+										 <div class="content">
+										 <p >Mr. Naresh Rathi of BM House presented the Kasturi hamper to Ms C Sushma, Deputy Chief of Mission, Embassy of India, Cairo at the Egypt Fabric and Yarn Show being held in Cairo from 4-7 December 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1766215412.jpeg" alt="TEXPROCIL at the Egypt Fabric and Yarn Show (4â€“7 December 2025, Cairo)" title="TEXPROCIL at the Egypt Fabric and Yarn Show (4â€“7 December 2025, Cairo)" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at the Egypt Fabric and Yarn Show (4â€“7 December 2025, Cairo)</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1765016095.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED, met Shri Bipin Menon, Trade Advisor, MoT and Additional DGFT, in New Delhi today (1st December, 2025)." title="Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED, met Shri Bipin Menon, Trade Advisor, MoT and Additional DGFT, in New Delhi today (1st December, 2025)." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, along with Shri Ravi Sam, Vice Chairman, and Dr. Siddhartha Rajagopal, ED, met Shri Bipin Menon, Trade Advisor, MoT and Additional DGFT, in New Delhi today (1st December, 2025).</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1765015015.jpeg" alt="TEXPROCIL at Global Sourcing Expo 2025 Melbourne being held from 18-20 November 2025." title="TEXPROCIL at Global Sourcing Expo 2025 Melbourne being held from 18-20 November 2025." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Global Sourcing Expo 2025 Melbourne being held from 18-20 November 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1765015402.jpeg" alt="Mr. Harsh Chirania, First Secretary, High Commission of India in Canberra, and Ms. Swayamprava Pani, Addl Development Commissioner, MoT, interacting in India Pavilion @Global Sourcing Expo 2025 in Melbourne (18â€“20 November 2025)." title="Mr. Harsh Chirania, First Secretary, High Commission of India in Canberra, and Ms. Swayamprava Pani, Addl Development Commissioner, MoT, interacting in India Pavilion @Global Sourcing Expo 2025 in Melbourne (18â€“20 November 2025)." class="img-responsive">
+										 <div class="content">
+										 <p >Mr. Harsh Chirania, First Secretary, High Commission of India in Canberra, and Ms. Swayamprava Pani, Addl Development Commissioner, MoT, interacting in India Pavilion @Global Sourcing Expo 2025 in Melbourne (18â€“20 November 2025).</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1765015534.jpeg" alt="TEXPROCIL at Global Sourcing Expo 2025 Melbourne being held from 18-20 November 2025." title="TEXPROCIL at Global Sourcing Expo 2025 Melbourne being held from 18-20 November 2025." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Global Sourcing Expo 2025 Melbourne being held from 18-20 November 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764842878.jpeg" alt="Consul General Hansraj Singh Verma inaugurated the India Pavilion at Brazil Yarn & Fabric Sourcing Show (LATAMTEX) in SÃ£o Paulo being held from 17-19 November 2025 and interacted with the Indian companies led by Shri Rajesh Satam, JD, TEXPROCIL" title="Consul General Hansraj Singh Verma inaugurated the India Pavilion at Brazil Yarn & Fabric Sourcing Show (LATAMTEX) in SÃ£o Paulo being held from 17-19 November 2025 and interacted with the Indian companies led by Shri Rajesh Satam, JD, TEXPROCIL" class="img-responsive">
+										 <div class="content">
+										 <p >Consul General Hansraj Singh Verma inaugurated the India Pavilion at Brazil Yarn & Fabric Sourcing Show (LATAMTEX) in SÃ£o Paulo being held from 17-19 November 2025 and interacted with the Indian companies led by Shri Rajesh Satam, JD, TEXPROCIL</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764843003.jpeg" alt="Shri Rajesh Satam, JD, TEXPROCIL presenting the Council's 70th year Special Souvenir to H.E. Shri Hansraj Singh Verma at Brazil Yarn & Fabric Sourcing Show (LATAMTEX) in SÃ£o Paulo being held from 17-19 November 2025" title="Shri Rajesh Satam, JD, TEXPROCIL presenting the Council's 70th year Special Souvenir to H.E. Shri Hansraj Singh Verma at Brazil Yarn & Fabric Sourcing Show (LATAMTEX) in SÃ£o Paulo being held from 17-19 November 2025" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Rajesh Satam, JD, TEXPROCIL presenting the Council's 70th year Special Souvenir to H.E. Shri Hansraj Singh Verma at Brazil Yarn & Fabric Sourcing Show (LATAMTEX) in SÃ£o Paulo being held from 17-19 November 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764843100.jpg" alt="TEXPROCIL at Brazil Yarn & Fabric Sourcing Show in SÃ£o Paulo being held from 17-19 November 2025" title="TEXPROCIL at Brazil Yarn & Fabric Sourcing Show in SÃ£o Paulo being held from 17-19 November 2025" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Brazil Yarn & Fabric Sourcing Show in SÃ£o Paulo being held from 17-19 November 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764765779.jpeg" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Neelam Shami Rao, Secretary (Textiles) at the Council's Head Office in Mumbai on 13th November 2025" title="Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Neelam Shami Rao, Secretary (Textiles) at the Council's Head Office in Mumbai on 13th November 2025" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Neelam Shami Rao, Secretary (Textiles) at the Council's Head Office in Mumbai on 13th November 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764766047.png" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Neelam Shami Rao, Secretary (Textiles) along with Dr. M. Beena, Textile Commissioner at the Council's Head Office in Mumbai on 13th November 2025" title="Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Neelam Shami Rao, Secretary (Textiles) along with Dr. M. Beena, Textile Commissioner at the Council's Head Office in Mumbai on 13th November 2025" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL, welcomed Smt. Neelam Shami Rao, Secretary (Textiles) along with Dr. M. Beena, Textile Commissioner at the Council's Head Office in Mumbai on 13th November 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764841965.jpeg" alt="Secretary (Textiles) Visits TEXPROCIL Head Office in Mumbai on 13 November 2025" title="Secretary (Textiles) Visits TEXPROCIL Head Office in Mumbai on 13 November 2025" class="img-responsive">
+										 <div class="content">
+										 <p >Secretary (Textiles) Visits TEXPROCIL Head Office in Mumbai on 13 November 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764842099.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764763881.jpeg" alt="Shri Ravi Sam, Vice Chairman, TEXPROCIL, congratulated Shri C.P. Radhakrishnan in New Delhi today (8th October) on his election as Honâ€™ble Vice President of India" title="Shri Ravi Sam, Vice Chairman, TEXPROCIL, congratulated Shri C.P. Radhakrishnan in New Delhi today (8th October) on his election as Honâ€™ble Vice President of India" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam, Vice Chairman, TEXPROCIL, congratulated Shri C.P. Radhakrishnan in New Delhi today (8th October) on his election as Honâ€™ble Vice President of India</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764764731.jpeg" alt="Shri Ravi Sam, Vice Chairman, TEXPROCIL, held a one-on-one interactive meeting with Smt. Nirmala Sitharaman, Honâ€™ble FM, in Coimbatore on 11th November 2025" title="Shri Ravi Sam, Vice Chairman, TEXPROCIL, held a one-on-one interactive meeting with Smt. Nirmala Sitharaman, Honâ€™ble FM, in Coimbatore on 11th November 2025" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam, Vice Chairman, TEXPROCIL, held a one-on-one interactive meeting with Smt. Nirmala Sitharaman, Honâ€™ble FM, in Coimbatore on 11th November 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764677006.png" alt="Dr. Siddhartha Rajagopal, ED, TEXPROCIL briefing the session at the World Cotton Day event organized by CITI, CCI, and TEXPROCIL, with support from the MoT, on 7th October 2025 in New Delhi." title="Dr. Siddhartha Rajagopal, ED, TEXPROCIL briefing the session at the World Cotton Day event organized by CITI, CCI, and TEXPROCIL, with support from the MoT, on 7th October 2025 in New Delhi." class="img-responsive">
+										 <div class="content">
+										 <p >Dr. Siddhartha Rajagopal, ED, TEXPROCIL briefing the session at the World Cotton Day event organized by CITI, CCI, and TEXPROCIL, with support from the MoT, on 7th October 2025 in New Delhi.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764677118.png" alt="Shri Ravi Sam, Vice Chairman, TEXPROCIL, shared his views at the World Cotton Day organized by CITI, CCI, and TEXPROCIL, with MoT support, on 7 October 2025 in Delhi." title="Shri Ravi Sam, Vice Chairman, TEXPROCIL, shared his views at the World Cotton Day organized by CITI, CCI, and TEXPROCIL, with MoT support, on 7 October 2025 in Delhi." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam, Vice Chairman, TEXPROCIL, shared his views at the World Cotton Day organized by CITI, CCI, and TEXPROCIL, with MoT support, on 7 October 2025 in Delhi.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764763397.jpeg" alt="World Cotton Day Celebrations, New Delhi, 7th Oct 2025" title="World Cotton Day Celebrations, New Delhi, 7th Oct 2025" class="img-responsive">
+										 <div class="content">
+										 <p >World Cotton Day Celebrations, New Delhi, 7th Oct 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764668761.png" alt="TEXPROCIL presented its 70 Years Commemorative Coffee Table Book to Shri Naveen Kumar, Counsellor, Embassy of India, at the PremiÃ¨re Vision Show in Paris being held from 16-18 September 2025." title="TEXPROCIL presented its 70 Years Commemorative Coffee Table Book to Shri Naveen Kumar, Counsellor, Embassy of India, at the PremiÃ¨re Vision Show in Paris being held from 16-18 September 2025." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL presented its 70 Years Commemorative Coffee Table Book to Shri Naveen Kumar, Counsellor, Embassy of India, at the PremiÃ¨re Vision Show in Paris being held from 16-18 September 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764668934.jpeg" alt="TEXPROCILâ€™s participation at the Texworld Evolution, Paris, France from 16-18 Sept, 2025" title="TEXPROCILâ€™s participation at the Texworld Evolution, Paris, France from 16-18 Sept, 2025" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCILâ€™s participation at the Texworld Evolution, Paris, France from 16-18 Sept, 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764666848.png" alt="An Indian delegation led by Ms. Neelam Shami Rao, Secretary, Ministry of Textiles, along with Mr. Mark Lemming, Global Head, M&S, participated in a roadshow in London from 22â€“25 September to promote Indian textiles and apparel." title="An Indian delegation led by Ms. Neelam Shami Rao, Secretary, Ministry of Textiles, along with Mr. Mark Lemming, Global Head, M&S, participated in a roadshow in London from 22â€“25 September to promote Indian textiles and apparel." class="img-responsive">
+										 <div class="content">
+										 <p >An Indian delegation led by Ms. Neelam Shami Rao, Secretary, Ministry of Textiles, along with Mr. Mark Lemming, Global Head, M&S, participated in a roadshow in London from 22â€“25 September to promote Indian textiles and apparel.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764667074.png" alt="Shri Vijay Agarwal, Chairman, TEXPROCIL felicitating H.E. Vikram Doraiswami, High Commissioner of India to the UK and presenting the Kasturi Cotton hamper in the presence of Secretary, Ministry of Textiles" title="Shri Vijay Agarwal, Chairman, TEXPROCIL felicitating H.E. Vikram Doraiswami, High Commissioner of India to the UK and presenting the Kasturi Cotton hamper in the presence of Secretary, Ministry of Textiles" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman, TEXPROCIL felicitating H.E. Vikram Doraiswami, High Commissioner of India to the UK and presenting the Kasturi Cotton hamper in the presence of Secretary, Ministry of Textiles</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764667284.png" alt="Mr. Rory Hugill (extreme right) being presented with a Kasturi Cotton hamper by Shri Vijay Agarwal, Chairman TEXPROCIL and Smt. Neelam Shami Rao, Secretary, Ministry of Textiles." title="Mr. Rory Hugill (extreme right) being presented with a Kasturi Cotton hamper by Shri Vijay Agarwal, Chairman TEXPROCIL and Smt. Neelam Shami Rao, Secretary, Ministry of Textiles." class="img-responsive">
+										 <div class="content">
+										 <p >Mr. Rory Hugill (extreme right) being presented with a Kasturi Cotton hamper by Shri Vijay Agarwal, Chairman TEXPROCIL and Smt. Neelam Shami Rao, Secretary, Ministry of Textiles.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764667512.png" alt="Costco UK, represented by Ms. Hersha Kara and Ms. Jane Miller, participated in a roadshow in London from 22â€“25 September to promote Indian textiles and apparel." title="Costco UK, represented by Ms. Hersha Kara and Ms. Jane Miller, participated in a roadshow in London from 22â€“25 September to promote Indian textiles and apparel." class="img-responsive">
+										 <div class="content">
+										 <p >Costco UK, represented by Ms. Hersha Kara and Ms. Jane Miller, participated in a roadshow in London from 22â€“25 September to promote Indian textiles and apparel.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764668316.png" alt="Indian Textile Delegation Visits London: Focus on CETA, Sustainability and GI Products from 22â€“25 September to promote Indian textiles and apparel." title="Indian Textile Delegation Visits London: Focus on CETA, Sustainability and GI Products from 22â€“25 September to promote Indian textiles and apparel." class="img-responsive">
+										 <div class="content">
+										 <p >Indian Textile Delegation Visits London: Focus on CETA, Sustainability and GI Products from 22â€“25 September to promote Indian textiles and apparel.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1764668348.jpeg" alt="Indian Textile Delegation Visits London: Focus on CETA, Sustainability and GI Products from 22â€“25 September to promote Indian textiles and apparel." title="Indian Textile Delegation Visits London: Focus on CETA, Sustainability and GI Products from 22â€“25 September to promote Indian textiles and apparel." class="img-responsive">
+										 <div class="content">
+										 <p >Indian Textile Delegation Visits London: Focus on CETA, Sustainability and GI Products from 22â€“25 September to promote Indian textiles and apparel.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1763795888.jpg" alt="TEXPROCIL celebrated its 71st Foundation Day (4th October 2025) with great fervour" title="TEXPROCIL celebrated its 71st Foundation Day (4th October 2025) with great fervour" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL celebrated its 71st Foundation Day (4th October 2025) with great fervour</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1763795910.jpeg" alt="TEXPROCIL celebrated its 71st Foundation Day (4th October 2025) with great fervour" title="TEXPROCIL celebrated its 71st Foundation Day (4th October 2025) with great fervour" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL celebrated its 71st Foundation Day (4th October 2025) with great fervour</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757063644.jpeg" alt="Shri Pratik Mathur, Consul General of India in Shanghai, inaugurated the "India Pavilion" at Yarnexpo & Intertextile Apparel Fabrics Show (2â€“4 Sept 2025) along with TEXPROCIL representatives and COA Members." title="Shri Pratik Mathur, Consul General of India in Shanghai, inaugurated the "India Pavilion" at Yarnexpo & Intertextile Apparel Fabrics Show (2â€“4 Sept 2025) along with TEXPROCIL representatives and COA Members." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Pratik Mathur, Consul General of India in Shanghai, inaugurated the "India Pavilion" at Yarnexpo & Intertextile Apparel Fabrics Show (2â€“4 Sept 2025) along with TEXPROCIL representatives and COA Members.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757064244.jpeg" alt="Shri Pratik Mathur, CG of India in Shanghai, was presented a Kasturi Cotton T-shirt during at the TEXPROCIL booth at Yarnexpo & Intertextile Shanghai (2â€“4 Sept 2025), highlighting Indiaâ€™s premium sustainable cotton brand." title="Shri Pratik Mathur, CG of India in Shanghai, was presented a Kasturi Cotton T-shirt during at the TEXPROCIL booth at Yarnexpo & Intertextile Shanghai (2â€“4 Sept 2025), highlighting Indiaâ€™s premium sustainable cotton brand." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Pratik Mathur, CG of India in Shanghai, was presented a Kasturi Cotton T-shirt during at the TEXPROCIL booth at Yarnexpo & Intertextile Shanghai (2â€“4 Sept 2025), highlighting Indiaâ€™s premium sustainable cotton brand.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757063042.jpeg" alt="Shri Ravi Sam, Vice Chairman, TEXPROCIL, attended a Textile Industry interaction with Honâ€™ble Finance Minister Smt. Nirmala Sitharaman on 2 Sept 2025." title="Shri Ravi Sam, Vice Chairman, TEXPROCIL, attended a Textile Industry interaction with Honâ€™ble Finance Minister Smt. Nirmala Sitharaman on 2 Sept 2025." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam, Vice Chairman, TEXPROCIL, attended a Textile Industry interaction with Honâ€™ble Finance Minister Smt. Nirmala Sitharaman on 2 Sept 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757063068.jpeg" alt="Shri Ravi Sam, Vice Chairman, TEXPROCIL, attended a Textile Industry interaction with Honâ€™ble Finance Minister Smt. Nirmala Sitharaman on 2 Sept 2025." title="Shri Ravi Sam, Vice Chairman, TEXPROCIL, attended a Textile Industry interaction with Honâ€™ble Finance Minister Smt. Nirmala Sitharaman on 2 Sept 2025." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Ravi Sam, Vice Chairman, TEXPROCIL, attended a Textile Industry interaction with Honâ€™ble Finance Minister Smt. Nirmala Sitharaman on 2 Sept 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757060121.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757059759.jpeg" alt="A TEXPROCIL delegation from Gujarat, led by Chairman Shri Vijay Agarwal, met Ms. Mamta Verma, IAS, Principal Secretary, and Shri Swaroop P, IAS, Industries Commissioner, in Gandhinagar on 21 Aug 2025" title="A TEXPROCIL delegation from Gujarat, led by Chairman Shri Vijay Agarwal, met Ms. Mamta Verma, IAS, Principal Secretary, and Shri Swaroop P, IAS, Industries Commissioner, in Gandhinagar on 21 Aug 2025" class="img-responsive">
+										 <div class="content">
+										 <p >A TEXPROCIL delegation from Gujarat, led by Chairman Shri Vijay Agarwal, met Ms. Mamta Verma, IAS, Principal Secretary, and Shri Swaroop P, IAS, Industries Commissioner, in Gandhinagar on 21 Aug 2025</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757059192.jpeg" alt="Mr Ravi Sam, Vice Chairman, TEXPROCIL, Mr. Dinesh Nolkha, VC CITI, Mr. Venkat Ramaraj, MD, Ramco had a meeting with Honâ€™ble Finance Minister, Smt. Nirmala Sitharaman on 20 Aug 2025 to discuss key Policy Support" title="Mr Ravi Sam, Vice Chairman, TEXPROCIL, Mr. Dinesh Nolkha, VC CITI, Mr. Venkat Ramaraj, MD, Ramco had a meeting with Honâ€™ble Finance Minister, Smt. Nirmala Sitharaman on 20 Aug 2025 to discuss key Policy Support" class="img-responsive">
+										 <div class="content">
+										 <p >Mr Ravi Sam, Vice Chairman, TEXPROCIL, Mr. Dinesh Nolkha, VC CITI, Mr. Venkat Ramaraj, MD, Ramco had a meeting with Honâ€™ble Finance Minister, Smt. Nirmala Sitharaman on 20 Aug 2025 to discuss key Policy Support</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757056632.jpeg" alt="Honâ€™ble Sri Lankan Minister of Industry & Development, Mr. Sunil Handunnetti, M.P., visited the TEXPROCIL booth at Intex South Asia, Colombo (6â€“8 Aug 2025)" title="Honâ€™ble Sri Lankan Minister of Industry & Development, Mr. Sunil Handunnetti, M.P., visited the TEXPROCIL booth at Intex South Asia, Colombo (6â€“8 Aug 2025)" class="img-responsive">
+										 <div class="content">
+										 <p >Honâ€™ble Sri Lankan Minister of Industry & Development, Mr. Sunil Handunnetti, M.P., visited the TEXPROCIL booth at Intex South Asia, Colombo (6â€“8 Aug 2025)</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757056726.jpeg" alt="Shri Rajesh Satam, Jt. Director, TEXPROCIL, presented a memento to Honâ€™ble Sri Lankan Minister of Industry & Development, Mr. Sunil Handunnetti, M.P., at the TEXPROCIL booth at Intex South Asia, Colombo (6â€“8 Aug 2025)" title="Shri Rajesh Satam, Jt. Director, TEXPROCIL, presented a memento to Honâ€™ble Sri Lankan Minister of Industry & Development, Mr. Sunil Handunnetti, M.P., at the TEXPROCIL booth at Intex South Asia, Colombo (6â€“8 Aug 2025)" class="img-responsive">
+										 <div class="content">
+										 <p >Shri Rajesh Satam, Jt. Director, TEXPROCIL, presented a memento to Honâ€™ble Sri Lankan Minister of Industry & Development, Mr. Sunil Handunnetti, M.P., at the TEXPROCIL booth at Intex South Asia, Colombo (6â€“8 Aug 2025)</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757056964.jpeg" alt="â€˜Kasturi Cotton Bharatâ€™ was promoted at Intex South Asia, being held from 6â€“8 August 2025 in Colombo, Sri Lanka" title="â€˜Kasturi Cotton Bharatâ€™ was promoted at Intex South Asia, being held from 6â€“8 August 2025 in Colombo, Sri Lanka" class="img-responsive">
+										 <div class="content">
+										 <p >â€˜Kasturi Cotton Bharatâ€™ was promoted at Intex South Asia, being held from 6â€“8 August 2025 in Colombo, Sri Lanka</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1757057062.jpeg" alt="TEXPROCIL at Intex South Asia, being held from 6â€“8 August 2025 in Colombo, Sri Lanka" title="TEXPROCIL at Intex South Asia, being held from 6â€“8 August 2025 in Colombo, Sri Lanka" class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL at Intex South Asia, being held from 6â€“8 August 2025 in Colombo, Sri Lanka</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1753523042.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1753522737.jpeg" alt="Mr. Ravi Sam, Vice Chairman, TEXPROCIL and Mr. T. Rajkumar Past Chairman, CITI met the Honâ€™ble Union Minister of Agriculture, Shri Shivraj Singh Chouhan, on 11th July 2025 in Coimbatore and submitted a memorandum seeking the removal of the 11% import du" title="Mr. Ravi Sam, Vice Chairman, TEXPROCIL and Mr. T. Rajkumar Past Chairman, CITI met the Honâ€™ble Union Minister of Agriculture, Shri Shivraj Singh Chouhan, on 11th July 2025 in Coimbatore and submitted a memorandum seeking the removal of the 11% import du" class="img-responsive">
+										 <div class="content">
+										 <p >Mr. Ravi Sam, Vice Chairman, TEXPROCIL and Mr. T. Rajkumar Past Chairman, CITI met the Honâ€™ble Union Minister of Agriculture, Shri Shivraj Singh Chouhan, on 11th July 2025 in Coimbatore and submitted a memorandum seeking the removal of the 11% import du</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751092776.jpg" alt="Shri Vijay Agarwal, Chairman TEXPROCIL met Honâ€™ble CIM, Shri Piyush Goyal on 27 June, 2025." title="Shri Vijay Agarwal, Chairman TEXPROCIL met Honâ€™ble CIM, Shri Piyush Goyal on 27 June, 2025." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman TEXPROCIL met Honâ€™ble CIM, Shri Piyush Goyal on 27 June, 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751091168.jpg" alt="TEXPROCIL @Intex South Asia, Bangladesh being held from 25th to 27th June 2025." title="TEXPROCIL @Intex South Asia, Bangladesh being held from 25th to 27th June 2025." class="img-responsive">
+										 <div class="content">
+										 <p >TEXPROCIL @Intex South Asia, Bangladesh being held from 25th to 27th June 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751091843.jpeg" alt="Opening of the India Pavilion under the Texprocil banner @Intex South Asia, Bangladesh being held from 25-27 June, 2025." title="Opening of the India Pavilion under the Texprocil banner @Intex South Asia, Bangladesh being held from 25-27 June, 2025." class="img-responsive">
+										 <div class="content">
+										 <p >Opening of the India Pavilion under the Texprocil banner @Intex South Asia, Bangladesh being held from 25-27 June, 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751089201.jpeg" alt="A high level Textile Delegation led by Ms Shubhra, Trade Advisor, Ministry of Textiles met India's Ambassador to Japan Mr Sibi George on 9th June 2025 at Tokyo. " title="A high level Textile Delegation led by Ms Shubhra, Trade Advisor, Ministry of Textiles met India's Ambassador to Japan Mr Sibi George on 9th June 2025 at Tokyo. " class="img-responsive">
+										 <div class="content">
+										 <p >A high level Textile Delegation led by Ms Shubhra, Trade Advisor, Ministry of Textiles met India's Ambassador to Japan Mr Sibi George on 9th June 2025 at Tokyo. </p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751089360.jpeg" alt="A high level Textile Delegation led by Ms Shubhra, Trade Advisor, Ministry of Textiles at the office of Marubeni in Tokyo. " title="A high level Textile Delegation led by Ms Shubhra, Trade Advisor, Ministry of Textiles at the office of Marubeni in Tokyo. " class="img-responsive">
+										 <div class="content">
+										 <p >A high level Textile Delegation led by Ms Shubhra, Trade Advisor, Ministry of Textiles at the office of Marubeni in Tokyo. </p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751089694.jpeg" alt="Meeting of the 3rd India Japan Joint Working group was held on 10th June 2025 at the METI Headquarters." title="Meeting of the 3rd India Japan Joint Working group was held on 10th June 2025 at the METI Headquarters." class="img-responsive">
+										 <div class="content">
+										 <p >Meeting of the 3rd India Japan Joint Working group was held on 10th June 2025 at the METI Headquarters.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751089935.jpeg" alt="The Embassy of India, Tokyo hosted a Textiles Roundtable meeting on 10th June 2025." title="The Embassy of India, Tokyo hosted a Textiles Roundtable meeting on 10th June 2025." class="img-responsive">
+										 <div class="content">
+										 <p >The Embassy of India, Tokyo hosted a Textiles Roundtable meeting on 10th June 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751090148.jpeg" alt="Visit to India Pavilion at the World Expo Osaka on 12th June 2025." title="Visit to India Pavilion at the World Expo Osaka on 12th June 2025." class="img-responsive">
+										 <div class="content">
+										 <p >Visit to India Pavilion at the World Expo Osaka on 12th June 2025.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751088947.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1751089074.jpeg" alt="" title="" class="img-responsive">
+										 <div class="content">
+										 <p ></p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1749283055.png" alt="The India Pavilion at the Index Dubai Show (May 27-29, 2025) was inaugurated by H.E. Satish Kumar Sivan, Consul General of India in Dubai. Also seen (to his right), Mr. Vikram Krishna, Managing Director of Sharadha Terry." title="The India Pavilion at the Index Dubai Show (May 27-29, 2025) was inaugurated by H.E. Satish Kumar Sivan, Consul General of India in Dubai. Also seen (to his right), Mr. Vikram Krishna, Managing Director of Sharadha Terry." class="img-responsive">
+										 <div class="content">
+										 <p >The India Pavilion at the Index Dubai Show (May 27-29, 2025) was inaugurated by H.E. Satish Kumar Sivan, Consul General of India in Dubai. Also seen (to his right), Mr. Vikram Krishna, Managing Director of Sharadha Terry.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1749283536.jpeg" alt="H.E. Satish Kumar Sivan, Consul General of India in Dubai, scanned the QR code of a Kasturi Cotton T-shirt at the Index Dubai Show (May 27-29, 2025)." title="H.E. Satish Kumar Sivan, Consul General of India in Dubai, scanned the QR code of a Kasturi Cotton T-shirt at the Index Dubai Show (May 27-29, 2025)." class="img-responsive">
+										 <div class="content">
+										 <p >H.E. Satish Kumar Sivan, Consul General of India in Dubai, scanned the QR code of a Kasturi Cotton T-shirt at the Index Dubai Show (May 27-29, 2025).</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div> <div class="item ">
+       									 <img src="https://texprocil.org/images/gallery/gallery-1749280677.png" alt="Shri Vijay Agarwal, Chairman Texprocil and Shri Ravi Sam, Vice Chairman greeted Shri Piyush Goyal, Honâ€™ble CIM at Delhi, on (27th May, 2025) and thanked him for signing the Indo - UK FTA." title="Shri Vijay Agarwal, Chairman Texprocil and Shri Ravi Sam, Vice Chairman greeted Shri Piyush Goyal, Honâ€™ble CIM at Delhi, on (27th May, 2025) and thanked him for signing the Indo - UK FTA." class="img-responsive">
+										 <div class="content">
+										 <p >Shri Vijay Agarwal, Chairman Texprocil and Shri Ravi Sam, Vice Chairman greeted Shri Piyush Goyal, Honâ€™ble CIM at Delhi, on (27th May, 2025) and thanked him for signing the Indo - UK FTA.</p>
+										 <p class="bannerText"></p>
+										 </div>
+      								</div>                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-12 col-sm-12 p0 chairmanmsg" >
+        	 <div class="col-md-12 col-xs-12 bg-green text-center head-title" >
+             	Chairman's Desk
+        	</div>
+            <div class="col-md-12 col-xs-12 bg-lightgreen">
+            <div class="col-md-12 col-xs-12 chairman-before" style="background:#fff; padding: 20px 0;">
+            <div class="col-md-12 col-xs-12" style="padding:4px">   
+                <img src="https://texprocil.org/images/Ravi_Sam_Chairman.jpg" alt="" width="85px" height="auto" style="padding:2px 5px; float:left;">
+          	<!--<img src="https://texprocil.org/images/Photo_Sunil_Patwari_19_10_2022.jpg" width="85px" height="85px" class="img-responsive" style="padding:2px 5px; float:left;" />-->
+                <!-- new Image - Photo_Sunil_Patwari_19_10_2022.jpg old image -- chairman-new.jpg -->
+             	<p> Dear Members,<br />
+It is a privilege to address you for the first time as Chairman of TEXPROCIL, following my election for a period of two years, at the meeting of the newly constituted Committee of Administration held in Mumbai on September 23, 2026. As I assume this responsibility, I am mindful of the rich legacy of distinguished leadership that has guided the Council since its inception in 1954 ...					</p>
+                
+                <a href="https://texprocil.org/ChairmanDesk.htm">Read More</a>
+            </div>
+            </div>
+        	</div>
+            </div>
+        </div>            
+        </div>
+        </div>
+        <div class="clearfix"></div>
+     <div class="row">
+     <div class="container">
+        
+        <div class="col-md-12">
+      <!--  <div class="fModuleContent col-md-12"><div>-->
+        
+        <!--<p style="margin-bottom: 5px;"></p>-->
+       <!-- <marquee behavior="scroll" align="middle" direction="left" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+        <h5><img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt="">
+		<a href="" target="_blank" style="color:#fff;" data-toggle="modal" data-target="#mymarqueeModal">
+		JUNTE-SE A NÓS.
+Participe dos nossos.
+No mês de março de 2021.
+Conheça aos maiores produtores de tecidos de algodão do mundo!.
+Data: Dia 11 de março // 11h horario de Brasília.
+10 Empresas Produtoras de Tecidos da Índia esperam por você para oferecer os seus produtos de alta qualidade a preços nunca vistos no Brasil.
+Clique aqui para se cadastrar</a><a href="https://cutt.ly/clvdCOb" target="_blank">  https://cutt.ly/clvdCOb</a>
+		<img src="https://texprocil.org/images/new-patch.gif" style="height:15px;" alt=""></h5>
+        </marquee>-->
+</div></div>
+</div>
+
+<div class="clear"></div>
+        <!--advertise here-->
+        <div class="col-md-12 advertise-sec" style="margin:0">
+			<div class="col-md-4">			
+						</div>
+			<div class="col-md-4">			
+						</div>
+			<div class="col-md-4">			
+						</div>        
+        </div>					
+    </div>
+
+</div>
+
+</div>
+        <!--<div style="background: #001f56; padding: 10px;" class="col-md-12">
+            <marquee behavior="scroll" align="middle" direction="left" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+                <a target="_blank" style="font-size:16px; color:#fff;" href="https://texprocil.org/ACPIT_2nd_Batch.htm">🚀 Nominate Your Employees for TEXPROCIL’s Advanced Certificate Programme in International Trade (ACPIT)!</a>
+			</marquee>
+        </div>-->
+        
+        
+            <div class="clearfix"></div>
+<div class="row row4">
+
+    <div class="container">
+
+        <div class="col-md-12 col-xs-12 mt-4">
+        <!-- <a href="https://www.m-icicibank.com/etrg/index.aspx?eventid=779414&utm_source=display&utm_medium=webbanner&utm_campaign=icicibank-int-etrg&utm_content=&utm_term=&utm_lms=display-webbanner-icicibank-int-etrg-performance-webbanner-performance-banner1-s1-apply+now-na" target="_blank"><img src="images/icici-2.gif"></a>-->
+            <marquee behavior="scroll" align="middle" direction="left" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+                <!--<a target="_blank"; style="font-size:16px; color:#F00;" href="https://plexconcil.co.in/eventdetails/78.htm">Product/Tool Design & Rapid Prototyping Service Centre set up by the Council</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        						<a target="_blank"; style="font-size:16px; color:#1a66ff;" href="https://plexconcil.co.in/eventdetails/79.htm">Participate in CAPINDIA 2016 - Mumbai - 20-22 March 2016</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        						<a target="_blank"; style="font-size:16px; color:#269900;" href="https://plexconcil.co.in/eventdetails/85.htm">Council's Common Area: Total Cost : Rs. 90,000/= including 5 nights hotel stay-Source Direct At ASD, Las Vegas, USA</a>
+								-->
+                            </marquee>
+               
+            
+        </div>
+        <div class="col-md-12" style="background:url(https://kasturicotton.texprocil.org/images/overlaybanner.png);padding: 10px;
+    margin-bottom: 10px;">
+    <div style="    position: absolute;    right: 0;    left: 0;    top: 0;    bottom: 0;    background: rgb(3 50 98 / 75%);">
+        
+    </div>
+    <div class="col-md-12" style="color:#fff;">
+        <div class="col-md-4 text-center"><h1 style="margin-top:10px;font-size: 2.5em;" class="blinking-img">KASTURI COTTON</h1>
+        <img src="https://texprocil.org/images/kasturi-cotton-logo.jpg" width="120px"></div>
+        <div class="col-md-8 text-left">
+            <p style="font-size: 22px;    line-height: 1.5;">Kasturi Cotton  is first of its kind joint initiative by the Ministry of Textiles, Government of India in association with the  Textile Trade Bodies and Industry with the objective of branding and promoting 'Kasturi Cotton' brand in order to create premium value for cotton grown in India.</p>
+            <!--<p>‘Kasturi Cotton India’ (KCI) is an initiative of the Government of India, Textile Trade Bodies and Industry with the objective of creating premium value for cotton grown in India as per benchmarked specifications.</p>-->
+        <a href="https://www.kasturicotton.com/" target="_blank" class="btn" style="    background: #fff;
+    padding: 5px 10px;    font-size: 12px;    color: #000;">Read More</a>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<div class="clearfix"></div>
+
+<div style="    background: #95c13a;
+    padding: 10px;" class="col-md-12">
+<marquee behavior="scroll" align="middle" direction="left" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+                <a target="_blank" style="font-size:16px; color:#333;" href="https://texprocil.org/WhatsAppChannel.htm">
+                    <img src="https://texprocil.org/images/whatsapp-img.png" width="25px"> JOIN TEXPROCIL’s Official WhatsApp Channel!  <img src="https://texprocil.org/images/whatsapp-img.png" width="25px"></a>
+								
+             
+            </marquee>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row row4">
+
+    <div class="container">
+        <div class="col-md-12 col-xs-12 p0">
+       	<!--	<div class="col-md-3 col-sm-3 col-xs-12 p0">
+       		    	<!--<a href="https://www.bharat-tex.com/"  target="_blank"><img src="https://texprocil.org/images/Texprocil-add-1.jpg" class=""></a>-->
+		
+			<!--
+			add image
+			<a href="https://texprocil.org/AdvertisewithUs.htm"  target="_blank"><img src="https://texprocil.org/images/Advertisewithus-square.jpg" class="blinking-img"></a>-->
+			
+			
+			
+			<!--<a href="http://intexsouthasia.com/"  target="_blank"> <img src="https://texprocil.org/images/Texprocil-intex-new.jpg" class="img-responsive blinking-img"   alt="Products" title="Products" /></a>  -->
+			
+			<!--<a href="https://sell.amazon.in/grow-your-business/amazon-global-selling/registration-guide.html?ld=AFINAGS_texprocil" target="_blank"><img src="images/AGS_JUN21_WebBanner_Textile.gif"></a>-->
+                        <!--  <p style="text-align: center;">
+             <!-- AdGlare Banner Zone: Sidebar ( Platinum) - Texprocil --
+             <script async="" src="//eregnow.engine.adglare.org/?639084003"></script>
+             <!--<strong><a href="https://www.textilesindia2017.com/Home/ExhibitorRegistration/1" target="_blank">BOOK YOUR STAND WITH US</a>..</strong><br>
+Email us at <a href="mailto:info@texprocil.org?subject=I%20want%20to%20Visit%20%2F%20Participate%20at%20%22Textile%20India%202017%22"><strong>info@texprocil.org</strong></a></p>--
+             	<a href="https://www.in.messefrankfurt.com/mumbai/en/visitors/welcome/textiles-and-textile-technologies.html" target="_blank"><img alt="" src="images/Corporate250.jpg" class="img-responsive center-block" style="height:250px;"></a><br /><br>
+<a href="https://intertextile-shanghai-hometextiles-autumn.hk.messefrankfurt.com/shanghai/en/visitors/welcome.html" target="_blank"><img alt="" src="images/itsh18.jpg" class="img-responsive center-block" style="height:60px; width:220px"></a>-->
+        	 <!--	<div id="products-slider2" class="carousel bs-slider slide  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="15000" >
+				 <div class="carousel-inner" role="listbox">
+				
+				  <!--  <div class="item">
+<a href="https://www.m-icicibank.com/etrg/index.aspx?eventid=779414&utm_source=display&utm_medium=webbanner&utm_campaign=icicibank-int-etrg&utm_content=&utm_term=&utm_lms=display-webbanner-icicibank-int-etrg-performance-webbanner-performance-banner1-s1-apply+now-na" target="_blank"><img src="images/ICICI_1683_Import Export Banking Banner_Size_250 x 250.jpg" class="img-responsive" style="width:100%; height:250px;"></a>
+                </div> --> 
+                
+            <!-- <div class="item active">
+
+                    
+                <a href="https://www.icicibank.com/instabiz/index.html?utm_source=InstaBIZ&utm_medium=Banners&utm_campaign=Texprocil"  target="_blank"> <img src="https://texprocil.org/images/ICICI_1822_Home-page-adaptation_250x250.jpg" class="img-responsive"   alt="Products" title="Products" /></a>    
+                </div>-->
+                 <!--<div class="item">            
+             <!--    <a href="http://portal.intexfair.com/buyer_reg_portal.php"  target="_blank"> <img src="https://texprocil.org/images/Texprocil 250 X 250_new.png" class="img-responsive"   alt="Products" title="Products" /></a> --> 
+             <!--<a href="http://www.intexfair.com/enquiry-form.html"  target="_blank"> <img src="https://texprocil.org/images/Texprocil 250 X 250_2020_png.png" class="img-responsive"   alt="Products" title="Products" /></a>  -->
+			  <!-- <a href="http://intexsouthasia.com/"  target="_blank"> <img src="https://texprocil.org/images/Texprocil-intex-new.jpg" class="img-responsive"   alt="Products" title="Products" /></a>  
+                                      
+                </div>-
+           
+				
+				 </div>
+				    
+                   <!--<a class="left carousel-control" href="#products-slider2" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#products-slider2" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>--
+				 </div>-->
+				
+				<!--<p class="ex1"> <a href="https://texworld-usa.us.messefrankfurt.com/new-york/en.html" target="_blank"><img src="images/Texprocil_Banner_Ad_Summer_2019_250x250px-new.gif"  class="img-responsive" style="width:250px; height:250px;" /></a>
+				<a href="https://www.icicibank.com/business-banking/tradeservice/onlinetrade.page?eventId=779414&productcode=CUR&utm_campaign=779414&utm_source=googlebrand&utm_medium=cpc&utm_content=icicibank-a2-tradeonline-brand" target="_blank"><img src="images/ICICI_1683_Import Export Banking Banner_Size_250 x 250.jpg" class="img-responsive" style="width:250px; height:250px;"></a>
+				<!--<a href="https://intertextile-shanghai-hometextiles-autumn.hk.messefrankfurt.com/shanghai/en.html" target="_blank"><img alt="" src="images/itsh19_banner_220x60.gif" class="img-responsive center-block" style="height:60px; width:210px"></a> --></p>
+				
+				<!--</div>-->
+
+            <div class="col-md-12 col-xs-12 col-sm-12 p0">
+            <div class="col-md-10 col-xs-9  text-uppercase  p0" style="margin-bottom: 5px;">
+                <h1 class="heading-text" style="margin:1px;">Welcome to The Cotton Textiles Export Promotion Council  </h1>
+                </div>
+                 <div class="col-md-2 col-xs-3">
+                 <div style="margin-top:5px; float:right;" ><a href="https://texprocil.org/Aboutus.htm" class="more"><strong>MORE >></strong></a> </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 bb"></div>
+            
+            <div class="col-md-12 col-xs-12 about-home">
+            	 
+The Cotton Textiles Export Promotion Council is the first Council set up after Independence by the Government of India in 1954 is an autonomous, nonprofit body dedicated to promotion of exports. The Cotton Textiles Export Promotion Council, popularly known as TEXPROCIL has been the international face of cotton textiles from India facilitating exports worldwide.&nbsp; Texprocil has a membership of around 2,000 companies spread across major textile clusters in India.&nbsp; Its members are well established manufacturers and exporters of cotton textile products like Cotton, Yarns, Fabrics and Home Textiles, showcasing a dazzling array of products across the value chain. The Council connects international buyers with appropriate suppliers and facilitates interaction that enables them to source their specific needs.&nbsp; It also provides information on India's competitive advantages, its export environment and updated position in the global market place. Texprocil provides regular updates on international product trends, trade related issues, advances in technology and the latest developments in the industry, as well as existing and emerging markets.&nbsp; It also undertakes regular market research, organises participation in international trade fairs, holds its own Buyer Seller Meets and facilitates international trade missions in  ...                    <br />
+
+                    <a href="https://texprocil.org/Aboutus.htm" class="more"><strong>MORE >></strong></a> <br>
+                     
+            </div>
+                
+                </div>
+                
+                
+              <!-- <div class="col-md-12 col-xs-12 col-sm-9 text-center" style="border:1px solid #ccc;box-shadow: 0 0 20px #ccc;padding:20px;">
+               <div class="col-md-3">
+			   <a href="https://home-textiles-sourcing.us.messefrankfurt.com/new-york/en.html" target="_blank"><img src="images/add-1.jpg" class="blinking-img"></a>
+			   </div>
+			   <div class="col-md-3">
+			     <a href="https://texworld-usa.us.messefrankfurt.com/new-york/en.html" target="_blank"><img src="images/add-2.jpg" class="blinking-img"></a>
+			   </div>
+			   <div class="col-md-3">
+			     <a href="https://apparel-sourcing-usa.us.messefrankfurt.com/new-york/en.html" target="_blank"><img src="images/add-3.jpg" class="blinking-img"></a>
+			   </div>-->
+			   <!-- 04-02-2023
+			   <div class="col-md-6">
+			  <a href="https://www.bmhouse.in/" target="blank"> <img src="images/RSBLOGO-r.jpg" width="60%" class="blinking-img" style="border: 1px solid grey;margin-right: 71px;"></a>
+			   </div>
+			   -->
+			   
+			   
+
+
+			    <!-- <div class="col-md-12">
+			   <img src="images/Child-Labour-wide.jpg" width="75%" class="blinking-img">
+			   </div>-->
+			   <!--<div class="col-md-4 col-md-offset-4">
+			   <a href="https://texprocil.org/AdvertisewithUs.htm" target="_blank"><img src="images/Advertisewithus.jpg" width="100%" class="blinking-img"></a>
+			   </div>
+               </div>   -->        
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="clear"></div>
+
+<div style=" margin-top:25px;" class="row row5">
+
+    <div class="container">
+
+        <div class="col-md-12">
+
+            <div class="col-md-3 col-sm-3">
+
+                <div class="col-md-12 ">
+                                    </div>
+
+                <div class="col-md-12 ">
+                                    </div>
+
+            </div>
+
+            <div class="col-md-6">
+               
+            </div>
+
+            <div class="col-md-3 ">
+            	            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- content part1 end here -->
+
+<!-- content part1 start here -->
+<!--<div class="row">
+	<div class="col-sm-4">
+		<h3 class="textHead">News Clippings<a href="https://texprocil.org/IBTEXNewsClippings.htm" class="more">More >></a></h3>
+   	<ul class="list-unstyled newsletters">
+      		<li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1793166912-IBTEX28102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.103</span></a> </li><li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1793080544-IBTEX27102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.102</span></a> </li><li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1792650780-IBTEX22102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.101</span></a> </li><li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1792389388-IBTEX19102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.100</span></a> </li>  	    
+		</ul>
+	</div>
+	<div class="col-sm-4">
+		<h3 class="textHead">Statistics<a href="https://texprocil.org/Statistics.htm" class="more">More >></a></h3>
+		<ul class=" newsletters">
+			<li><a href="https://texprocil.org/recaptcha_texprocil.php?fname=1792132877-Texprocil_Quick_Estimate_Analysis_April-September_2026.pdf" target="_blank"><span style="color:#224974">Quick Estimates T&C for September 2026<img src="" style="height:30px;" 
+style="width:20px;"alt=""></span></a></li><li><a href="https://texprocil.org/recaptcha_texprocil.php?fname=1786698096-Export_Statistics_Apr-Mar2025-26.pdf" target="_blank"><span style="color:#224974">India's Cotton Textiles Export 2025-26<img src="" style="height:30px;" 
+style="width:20px;"alt=""></span></a></li>  	                     
+       </ul>			
+	</div>
+	<div class="col-sm-4">
+		<h3 class="textHead" >Seminars and Workshops </h3>	<img src="https://texprocil.org/images/new.gif" style="height:30px;transform:translate(230px,-45px);" alt="">
+  		<ul class="list-unstyled newsletters" style="margin-top: -25px;">
+			<li><a href="https://texprocil.org/circular/COTTON_USA_-_What%E2%80%99s_New_in_Cotton.pdf" target="_blank"><span style="color:#224974">COTTON USA - What’s New in Cotton?</span></a></li>
+			
+			<li><a href="https://texprocil.org/circular/First_Club_of_Hospitality_Professionals_in_RUSSIA_-_Choosing_the_Right_Hotel_Linen.pdf" target="_blank"><span style="color:#224974">First Club of Hospitality Professionals in RUSSIA - Choosing the Right Hotel Linen</span></a></li>
+			
+			<li><a href="https://texprocil.org/circular/Messe_Frankfurt_Russia_%E2%80%93_Doing_Business_in_Russia.pdf" target="_blank"><span style="color:#224974">Messe Frankfurt Russia – Doing Business in Russia</span></a></li>
+			
+			<li><a href="https://texprocil.org/circular/Growth_Avenues_for_Indian_Textile_Industry.pdf" target="_blank"><span style="color:#224974">GHERZI - Growth Avenues for Indian Textile Industry</span></a></li>
+		</ul>		
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-4">
+		<h3 class="textHead bb" style="padding-top:0px;margin-top: 33px;">Export Awards Winners 2017-18</h3>
+		<ul class="list-unstyled newsletters">
+			<li><a href="https://texprocil.org/award/List of Award Winners 2017-18.pdf" target="_blank">
+		   <span style="color:#224974">List of Award Winners 2017-18</span></a></li>
+		   <li><a href="https://texprocil.org/award/Award Winner for Generation of Highest Employment 2017-18.pdf" target="_blank">
+		   <span style="color:#224974">Award Winner for Generation of Highest Employment 2017-18</span></a></li>
+		   <li><a href="https://texprocil.org/award/TEXPROCIL 2017-2018-BS-LowRes.pdf" target="_blank">
+		   <span style="color:#224974">Special Newspaper Supplement released by TEXPROCIL on the Award function day 3rd Nov 2018</span></a></li>
+		</ul>	
+	</div>
+	<div class="col-sm-4">
+		<h3 class="textHead" style="padding-top:0px;margin-top: 16px;">Power Point Presentation</h3>
+      <ul class="list-unstyled newsletters">
+			   		<li><a href="https://texprocil.org/ppt/COA_PPT_on_trends_in_textile_trade_21.12.2019-New_-Final.pdf" target="_blank"><span style="color:#224974">Overview of Current Trade In Textiles & Clothing - 21st December 2019</span></a></li><li><a href="https://texprocil.org/ppt/COA_PPT_on_trends_in_textile_trade_10.06.2019.pdf" target="_blank"><span style="color:#224974">Overview of Current Trade In Textiles & Clothing - 10th June 2019</span></a></li>      </ul>
+	</div>
+	<div class="col-sm-4">
+		<h3 class="textHead" >Membership Login Here...</h3>	
+  		<div style="margin-left: 80px;">
+  			<a href="https://membership.texprocil.org/" target="_blank"><img src="https://texprocil.org/images/membershiplogin.gif" style="height:200px;width:200px;" alt=""></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-4">
+		<h3 class="textHead bb" style="padding-top:0px;">64<sup>th</sup> ANNUAL REPORT 2017-18 </h3>
+      <ul class="list-unstyled newsletters">
+				             
+    		<li><a href="https://texprocil.org/agm/Texprocil_Annual_Report_2022-23.pdf" target="_blank"><span style="color:#224974">ANNUAL REPORT 2022-23</span></a></li>      </ul>
+	</div>
+	<div class="col-sm-4">
+		<h3 class="textHead" style="padding-top:0px;margin-top: 37px;">eSANCHIT Web Portal</h3>
+		<ul class="list-unstyled newsletters">
+			<li> <a href="https://texprocil.org/eSANCHIT_WEB_PORTAL.pdf" target="_blank"><span style="color:#224974"> eSANCHIT Web Portal<img src="https://texprocil.org/images/new.gif" style="height:30px;" style="width:20px;"alt=""></a></span></li>
+	   </ul>
+	</div>
+	<div class="col-sm-4">
+	
+	</div>
+</div>-->
+<div class="row row6">
+	<div class="container">
+		<div class="col-md-12 col-xs-12">
+			<div class="col-md-4 col-sm-4 col-xs-12">
+            <h3 class="textHead">News Clippings <img src="https://texprocil.org/images/new.gif" style="height:30px;" style="width:20px;"alt=""><a href="https://texprocil.org/IBTEXNewsClippings.htm" class="more">More >></a></h3>
+            	<ul class="list-unstyled newsletters">
+            		<li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1793166912-IBTEX28102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.103</span></a> </li><li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1793080544-IBTEX27102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.102</span></a> </li><li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1792650780-IBTEX22102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.101</span></a> </li><li><a href="https://texprocil.org/recaptcha_texprocil.htm?fname=1792389388-IBTEX19102026.pdf" target="_blank"><span style="color:#224974">IBTEX No.100</span></a> </li>  	    
+			   	</ul>
+			  	<div class="col-md-12 col-xs-12 "style="padding:0" > 
+          		<h3 class="textHead" >Membership Login Here...</h3>	
+           		<div style="margin-left: 80px;">
+           			<a href="https://membership.texprocil.org/" target="_blank"><img src="https://texprocil.org/images/MEMBERSHIP.gif" style="height:100px;width:100px;" alt=""></a>
+					</div>
+		 	 	</div>
+			 </div>
+			<div class="col-md-4 col-sm-4 col-xs-12">
+				<h3 class="textHead">Statistics <img src="https://texprocil.org/images/new.gif" style="height:30px;" style="width:20px;"alt=""> <a href="https://texprocil.org/Statistics.htm" class="more">More >></a></h3>
+				<ul class=" newsletters">
+					<li><a href="https://texprocil.org/recaptcha_texprocil.php?fname=1792132877-Texprocil_Quick_Estimate_Analysis_April-September_2026.pdf" target="_blank"><span style="color:#224974">Quick Estimates T&C for September 2026<img src="" style="height:30px;" 
+style="width:20px;"alt=""></span></a></li><li><a href="https://texprocil.org/recaptcha_texprocil.php?fname=1786698096-Export_Statistics_Apr-Mar2025-26.pdf" target="_blank"><span style="color:#224974">India's Cotton Textiles Export 2025-26<img src="" style="height:30px;" 
+style="width:20px;"alt=""></span></a></li>  	                     
+            </ul>
+          <!--  <div class="col-md-12 col-xs-12 p0">         
+            	<h3 class="textHead" style="padding-top:0px;margin-top: 16px;">Power Point Presentation</h3>
+               <ul class="list-unstyled newsletters">
+						            		<li><a href="https://texprocil.org/ppt/COA_PPT_on_trends_in_textile_trade_21.12.2019-New_-Final.pdf" target="_blank"><span style="color:#224974">Overview of Current Trade In Textiles & Clothing - 21st December 2019</span></a></li><li><a href="https://texprocil.org/ppt/COA_PPT_on_trends_in_textile_trade_10.06.2019.pdf" target="_blank"><span style="color:#224974">Overview of Current Trade In Textiles & Clothing - 10th June 2019</span></a></li>               </ul>
+            </div>-->
+	        	<div class="col-md-12 col-xs-12 p0">         
+	         	<h3 class="textHead" style="padding-top:0px;margin-top: 37px;">eSANCHIT Web Portal</h3>
+					<ul class="list-unstyled newsletters">
+						<li> <a href="https://texprocil.org/eSANCHIT_WEB_PORTAL.pdf" target="_blank"><span style="color:#224974"> eSANCHIT Web Portal</a></span></li>
+	            </ul>
+	         </div>
+	         <div class="col-md-12 col-xs-12 p0">
+  <h3 class="textHead bb" style="padding-top:0px;">72<sup>ND</sup> ANNUAL REPORT 2025-26 <img src="https://texprocil.org/images/new.gif" style="height:30px;" style="width:20px;"alt=""> </h3>
+               <ul class="list-unstyled newsletters">
+                   <li><!--old link = https://online.fliphtml5.com/ivofo/osxq/; new link = https://online.fliphtml5.com/ivofo/ccsc/-->
+			         <!--<a href="https://online.fliphtml5.com/ivofo/ccsc/" target="_blank">-->
+			             <!--<a href="https://texprocil.org/PDF/Texprocil Annual Report 2022-23.pdf" target="_blank"> -->
+			             <a href="https://texprocil.org/PDF/Texprocil-72nd-Annual-Report.pdf" target="_blank"> 
+			         <span style="color:#224974">ANNUAL REPORT 2025-26 </span></a></li> 
+			         <!--<li>
+			         <!--<a href="https://texprocil.org/award/Scrutiniser_Report_Texprocil_AGM_2021.pdf" target="_blank"> old pdf link :- Scrutiny_Report_at_the_68th_AGM_held_on_30-09-2022.pdf -->
+			         <!--<a href="https://texprocil.org/award/REVISED_SCRUTINY_REPORT_AGM_2022.pdf" target="_blank">    
+			         <span style="color:#224974">Scrutiny Report on Resolutions passed at the AGM</span></a></li> -->
+						<!-- 	             
+             		<li><a href="https://texprocil.org/agm/Texprocil_Annual_Report_2022-23.pdf" target="_blank"><span style="color:#224974">ANNUAL REPORT 2022-23</span></a></li>-->
+               </ul>
+         </div>
+         </div>
+       	<div class="col-md-4 col-sm-4 col-xs-12">   
+       	<!-- <div class="col-md-12 col-xs-12 "> 
+          		
+           			<a href="http://www.intexfair.com/srilanka/buyer_reg.html"  target="_blank"> <img src="https://texprocil.org/images/Texprocil 250-X-250.gif" class="img-responsive"   alt="Products" title="Products" /></a>  
+					
+		 	 	</div>  -->           
+		<!--	<div class="col-md-12 col-xs-12">
+        		<h3 class="textHead" >Seminars and Workshops </h3>	<br>
+        		<ul class="list-unstyled newsletters" style="margin-top: -25px;">
+					<li><a href="https://texprocil.org/circular/COTTON_USA.pdf" target="_blank"><span style="color:#224974">COTTON USA - What’s New in Cotton?</span></a></li>
+					
+					<li><a href="https://texprocil.org/circular/First_Club_of_Hospitality_Professionals_in_RUSSIA_-_Choosing_the_Right_Hotel_Linen.pdf" target="_blank"><span style="color:#224974">First Club of Hospitality Professionals in RUSSIA - Choosing the Right Hotel Linen</span></a></li>
+					
+					<li><a href="https://texprocil.org/circular/Messe_Frankfurt_Russia_%E2%80%93_Doing_Business_in_Russia.pdf" target="_blank"><span style="color:#224974">Messe Frankfurt Russia – Doing Business in Russia</span></a></li>
+					
+					<li><a href="https://texprocil.org/circular/Growth_Avenues_for_Indian_Textile_Industry.pdf" target="_blank"><span style="color:#224974">GHERZI - Growth Avenues for Indian Textile Industry</span></a></li>
+				</ul>
+          </div>-->
+          		<div class="col-md-12 col-xs-12 p0">         
+                <!-- <img src="https://texprocil.org/images/new.gif" style="height:30px;" alt=""> -->
+            	<h3 class="textHead bb" style="padding-top:0px;margin-top: 33px;">TEXPROCIL Export Awards <img src="https://texprocil.org/images/new.gif" style="height:30px;width:34px;"alt=""></h3>
+               <ul class="list-unstyled newsletters">
+                    <li><a href="https://online.fliphtml5.com/ivofo/zbyi/" target="_blank">
+                        <span style="color:#224974">Awards Brochure 2023-24</span></a></li>
+                        <li><a href="https://online.fliphtml5.com/ivofo/qbvb/" target="_blank">
+                        <span style="color:#224974">Export Award Supplement 2023-24</span></a></li>
+                        <li><a href="https://texprocil.org/images/circulars/1763720490-Award_Winners_2023-2024_for_Website.pdf" target="_blank">
+                        <span style="color:#224974"> List of Award Winners 2023-24</span></a></li>
+                        <li><a href="https://shorturl.at/YJiLB" target="_blank">
+                        <span style="color:#224974">Award Winner Photos</span></a></li>
+                        <li><a href="https://www.youtube.com/live/DjdWEBjqtfQ?si=oOuMnR7jWWEPpJml" target="_blank">
+                        <span style="color:#224974">Award Video</span></a></li>
+                        <!--
+                        
+			         <li><a href="https://texprocil.org/award/List-of-Award-Winners-2021-2022.pdf" target="_blank">  
+			         <span style="color:#224974">List of Award Winners 2021-22</span></a></li>
+			         
+			         <li><a href="https://texprocil.org/award/List-of-Award-Winners-2022-2023.pdf" target="_blank">  
+			         <span style="color:#224974">List of Award Winners 2022-23</span></a> </li>
+			         
+			         <li><a href="https://texprocil.org/award/Export_Award_Supplement_2021-22_and_2022-23.PDF" target="_blank">  
+			         <span style="color:#224974">Export Award Supplement 2021-22 & 2022-23</span></a></li>
+			         
+			         <li><a href="https://online.fliphtml5.com/ivofo/uhve/#p=1" target="_blank">  
+			         <span style="color:#224974">Awards Brochure 2021-22 & 2022-23</span></a> </li>-->
+			         
+			       
+			      </ul>
+             
+               
+            </div> 
+          <div class="col-md-12 col-xs-12 p0">         
+                <!-- <img src="https://texprocil.org/images/new.gif" style="height:30px;" alt=""> -->
+            	<h3 class="textHead bb" style="padding-top:0px;margin-top: 33px;">TEXPROCIL Vastra Ratna Awards <img src="https://texprocil.org/images/new.gif" style="height:30px;width:34px;"alt=""></h3>
+               <ul class="list-unstyled newsletters">
+           
+			         <li><a href="https://youtu.be/DWrMMkYzXbw" target="_blank">  
+			         <span style="color:#224974">TEXPROCIL 70 Years Film</span></a></li>
+			         
+			         <li><a href="https://shorturl.at/IgiY8" target="_blank">  
+			         <span style="color:#224974">Export Award Supplement</span></a> </li>
+			         
+			         <li><a href="https://online.fliphtml5.com/ivofo/ywmb/#p=1" target="_blank">  
+			         <span style="color:#224974">TEXPROCIL 70 Years Souvenir</span></a></li>
+			         <li><a href="https://online.fliphtml5.com/ivofo/jits/#p=1" target="_blank">  
+			         <span style="color:#224974">TEXPROCIL: Through The Decades</span></a></li>
+			         
+			          <li><a href="VastraRatnaAwardsPhotos.php"  target="_blank">  
+			         <span style="color:#224974">Award Winner Photos</span></a></li>
+			         
+			       
+			      </ul>
+             
+               
+            </div>   
+            
+		 	 
+       	</div>
+    	</div>
+	</div>
+</div>
+
+<div class="row row7">
+
+    <div class="container">
+
+        <div class="col-md-12 col-xs-12">
+
+            
+            
+            <div class="col-md-3 col-xs-12 col-sm-4">
+
+                <h3 class="textHead">Upcoming Events<a href="https://texprocil.org/events.php" class="more">More >></a></h3>
+				<div class="col-md-12 p0" style="height:150px; font-size:12px; overflow-y:scroll">
+                          
+              
+				</div>
+            </div>
+
+            <div class="col-md-3 col-xs-12 col-sm-4">
+
+                <h3 class="textHead">Photo Gallery<a href="https://texprocil.org/photogallery.php" class="more">More>></a></h3>
+                
+                <div id="photo-gallery-slider" class="carousel bs-slider slide  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
+
+            <!-- Wrapper For Slides -->
+            <div class="carousel-inner" role="listbox">
+				                		<!-- Third Slide -->
+					 		<div class="item active">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1522389190.jpg" alt="" title="" class="img-responsive" />
+                   
+                		</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1529565022.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1530510562.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1532501020.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1533881472.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1534149163.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1534581991.jpeg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1535622795.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1538392750.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1541399368.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1550739543.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1550817768.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1552891588.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1552891722.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1552892893.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1559024876.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1560751619.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1560752531.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1560753054.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1561096918.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1563354462.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1565165906.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1565266165.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1567230859.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1569221155.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1570785013.jpg" alt="" title="" class="img-responsive" />
+                   	</div>
+                <!-- End of Slide -->
+				                <!-- Second Slide -->
+                		<div class="item">
+                    	<!-- Slide Background -->
+                  		<img src="https://texprocil.org/images/gallery/thumb/gallery-1570785661.jpg" alt="" title="" class="img-responsive" />
+                   	</

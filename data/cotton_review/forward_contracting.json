@@ -1,0 +1,386 @@
+{
+ "reports": {
+  "2026-09-30": {
+   "as_of": "2026-09-30",
+   "crop_year": 2026,
+   "published": "10/02/2026 09:29:10",
+   "rows": [
+    {
+     "loc": "United States",
+     "region": true,
+     "pct": 25.0,
+     "prior": [
+      17.0,
+      11.0,
+      16.0,
+      24.0,
+      10.0,
+      5.0,
+      3.0,
+      12.0,
+      10.0
+     ],
+     "acres": 8027700
+    },
+    {
+     "loc": "Southeastern",
+     "region": true,
+     "pct": 15.0,
+     "prior": [
+      5.0,
+      4.0,
+      10.0,
+      13.0,
+      20.0,
+      3.0,
+      5.0,
+      23.0,
+      14.0
+     ],
+     "acres": 2085000
+    },
+    {
+     "loc": "Alabama",
+     "region": false,
+     "pct": 18.0,
+     "prior": [
+      13.0,
+      4.0,
+      6.0,
+      10.0,
+      7.0,
+      null,
+      2.0,
+      9.0,
+      6.0
+     ],
+     "acres": 370000
+    },
+    {
+     "loc": "Florida",
+     "region": false,
+     "pct": 9.0,
+     "prior": [
+      3.0,
+      null,
+      3.0,
+      13.0,
+      7.0,
+      null,
+      null,
+      7.0,
+      4.0
+     ],
+     "acres": 74000
+    },
+    {
+     "loc": "Georgia",
+     "region": false,
+     "pct": 15.0,
+     "prior": [
+      null,
+      null,
+      10.0,
+      14.0,
+      23.0,
+      null,
+      6.0,
+      28.0,
+      20.0
+     ],
+     "acres": 1030000
+    },
+    {
+     "loc": "North Carolina",
+     "region": false,
+     "pct": 16.0,
+     "prior": [
+      9.0,
+      5.0,
+      13.0,
+      16.0,
+      23.0,
+      7.0,
+      8.0,
+      20.0,
+      10.0
+     ],
+     "acres": 340000
+    },
+    {
+     "loc": "South Carolina",
+     "region": false,
+     "pct": 8.0,
+     "prior": [
+      9.0,
+      3.0,
+      12.0,
+      4.0,
+      30.0,
+      19.0,
+      6.0,
+      28.0,
+      8.0
+     ],
+     "acres": 197000
+    },
+    {
+     "loc": "Virginia",
+     "region": false,
+     "pct": 21.0,
+     "prior": [
+      1.0,
+      1.0,
+      11.0,
+      27.0,
+      33.0,
+      7.0,
+      6.0,
+      38.0,
+      19.0
+     ],
+     "acres": 74000
+    },
+    {
+     "loc": "South Central",
+     "region": true,
+     "pct": 18.0,
+     "prior": [
+      7.0,
+      27.0,
+      16.0,
+      28.0,
+      11.0,
+      1.0,
+      8.0,
+      18.0,
+      15.0
+     ],
+     "acres": 1515000
+    },
+    {
+     "loc": "Arkansas",
+     "region": false,
+     "pct": 20.0,
+     "prior": [
+      12.0,
+      6.0,
+      14.0,
+      37.0,
+      20.0,
+      1.0,
+      19.0,
+      42.0,
+      30.0
+     ],
+     "acres": 555000
+    },
+    {
+     "loc": "Louisiana",
+     "region": false,
+     "pct": 15.0,
+     "prior": [
+      2.0,
+      15.0,
+      2.0,
+      55.0,
+      19.0,
+      null,
+      20.0,
+      16.0,
+      34.0
+     ],
+     "acres": 110000
+    },
+    {
+     "loc": "Mississippi",
+     "region": false,
+     "pct": 7.0,
+     "prior": [
+      6.0,
+      1.0,
+      2.0,
+      11.0,
+      12.0,
+      2.0,
+      2.0,
+      12.0,
+      9.0
+     ],
+     "acres": 355000
+    },
+    {
+     "loc": "Missouri",
+     "region": false,
+     "pct": 32.0,
+     "prior": [
+      2.0,
+      9.0,
+      16.0,
+      27.0,
+      null,
+      null,
+      null,
+      5.0,
+      4.0
+     ],
+     "acres": 305000
+    },
+    {
+     "loc": "Tennessee",
+     "region": false,
+     "pct": 14.0,
+     "prior": [
+      4.0,
+      168.0,
+      48.0,
+      25.0,
+      5.0,
+      3.0,
+      1.0,
+      9.0,
+      7.0
+     ],
+     "acres": 190000
+    },
+    {
+     "loc": "Southwestern",
+     "region": true,
+     "pct": 33.0,
+     "prior": [
+      27.0,
+      5.0,
+      19.0,
+      31.0,
+      6.0,
+      7.0,
+      null,
+      4.0,
+      7.0
+     ],
+     "acres": 4297000
+    },
+    {
+     "loc": "Kansas",
+     "region": false,
+     "pct": 3.0,
+     "prior": [
+      2.0,
+      1.0,
+      null,
+      null,
+      null,
+      null,
+      null,
+      3.0,
+      null
+     ],
+     "acres": 77000
+    },
+    {
+     "loc": "Oklahoma",
+     "region": false,
+     "pct": 3.0,
+     "prior": [
+      3.0,
+      null,
+      1.0,
+      null,
+      null,
+      1.0,
+      1.0,
+      null,
+      1.0
+     ],
+     "acres": 320000
+    },
+    {
+     "loc": "Texas",
+     "region": false,
+     "pct": 36.0,
+     "prior": [
+      29.0,
+      6.0,
+      21.0,
+      37.0,
+      6.0,
+      8.0,
+      null,
+      5.0,
+      8.0
+     ],
+     "acres": 3900000
+    },
+    {
+     "loc": "Western",
+     "region": true,
+     "pct": 2.0,
+     "prior": [
+      2.0,
+      null,
+      7.0,
+      15.0,
+      25.0,
+      null,
+      null,
+      4.0,
+      4.0
+     ],
+     "acres": 130700
+    },
+    {
+     "loc": "Arizona",
+     "region": false,
+     "pct": 2.0,
+     "prior": [
+      1.0,
+      null,
+      10.0,
+      24.0,
+      36.0,
+      null,
+      null,
+      8.0,
+      8.0
+     ],
+     "acres": 79000
+    },
+    {
+     "loc": "California",
+     "region": false,
+     "pct": null,
+     "prior": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "acres": 16700
+    },
+    {
+     "loc": "New Mexico",
+     "region": false,
+     "pct": 4.0,
+     "prior": [
+      4.0,
+      null,
+      null,
+      7.0,
+      1.0,
+      null,
+      null,
+      null,
+      null
+     ],
+     "acres": 35000
+    }
+   ]
+  }
+ },
+ "latest": "2026-09-30"
+}

@@ -1,0 +1,44 @@
+name: cotton-review
+# USDA AMS Weekly Cotton Market Review (Fridays) and the monthly Cotton Forward Contracting Report.
+on:
+  schedule:
+    - cron: '17 16,19,22 * * 5'   # Friday, three tries (UTC)
+    - cron: '23 14 * * 6'         # Saturday catch-up
+    - cron: '41 14 * * 1'         # Monday catch-up (holiday weeks)
+    - cron: '29 15 * * 2-4'       # Tue-Thu: daily classing, monthly price statistics
+  workflow_dispatch:
+    inputs:
+      backfill_pages:
+        description: 'Archive pages to backfill (50 weekly issues each); 0 = latest only'
+        required: false
+        default: '0'
+permissions: {contents: write}
+concurrency: {group: cotton-review, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pdfplumber pandas numpy
+      - name: weekly market review
+        run: |
+          BF="${{ github.event.inputs.backfill_pages || '0' }}"
+          if [ "$BF" != "0" ]; then python pipelines/ams_cotton_review.py --backfill $BF || true; fi
+          python pipelines/ams_cotton_review.py || true
+      - name: forward contracting, monthly prices, daily classing, release schedule
+        env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}
+        run: |
+          python pipelines/ams_cotton_fc.py || true
+          python pipelines/ams_cotton_extra.py || true
+      - name: refresh the cotton outlook brief
+        run: python -W ignore models/outlook_brief.py || true
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/cotton_review data/derived/outlook_brief.json
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: AMS cotton market review $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin ${{ github.ref_name }} && git push -q origin HEAD:${{ github.ref_name }} && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

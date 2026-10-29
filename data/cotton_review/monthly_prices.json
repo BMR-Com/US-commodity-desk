@@ -1,0 +1,1396 @@
+{
+ "months": {
+  "2026-09": {
+   "narrative": "Spot cotton quotations were 245 points lower than the previous month. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 77.52 cents per pound in September 2026. This compares with 79.97 from the previous month. The average basis for the base quality at the end of September was 510 points off the ICE December 2026 No. 2 futures contract. Spot transactions reported in the designated markets for September totaled 25,202 running bales.",
+   "published": "10/06/2026 16:29:19",
+   "basis_pts": -510.0,
+   "basis_vs": "December 2026",
+   "bales": 25202.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 25202.0,
+     "bales_my": 34749.0,
+     "avg_41": 77.52,
+     "avg_31": 83.55,
+     "hi_41": 84.83,
+     "lo_41": 73.41,
+     "ccc_loan_value": 55.34
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": null
+    },
+    "Desert Southwest": {
+     "bales_month": 101.0,
+     "bales_my": 546.0,
+     "avg_41": 75.46,
+     "avg_31": 81.46,
+     "hi_41": 83.26,
+     "lo_41": 70.77,
+     "ccc_loan_value": 56.26
+    },
+    "East Texas - South Texas": {
+     "bales_month": 19506.0,
+     "bales_my": 19992.0,
+     "avg_41": 76.21,
+     "avg_31": 81.57,
+     "hi_41": 84.01,
+     "lo_41": 71.52,
+     "ccc_loan_value": 56.21
+    },
+    "North Delta": {
+     "bales_month": 2325.0,
+     "bales_my": 2843.0,
+     "avg_41": 79.56,
+     "avg_31": 84.31,
+     "hi_41": 86.26,
+     "lo_41": 76.27,
+     "ccc_loan_value": 54.87
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 75.71,
+     "avg_31": 88.11,
+     "hi_41": 83.51,
+     "lo_41": 71.02,
+     "ccc_loan_value": null
+    },
+    "South Delta": {
+     "bales_month": 359.0,
+     "bales_my": 359.0,
+     "avg_41": 79.56,
+     "avg_31": 83.81,
+     "hi_41": 86.26,
+     "lo_41": 76.27,
+     "ccc_loan_value": 54.61
+    },
+    "Southeast": {
+     "bales_month": 19.0,
+     "bales_my": 190.0,
+     "avg_41": 80.4,
+     "avg_31": 86.15,
+     "hi_41": 87.01,
+     "lo_41": 77.02,
+     "ccc_loan_value": 54.77
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 2892.0,
+     "bales_my": 10819.0,
+     "avg_41": 75.71,
+     "avg_31": 79.46,
+     "hi_41": 83.51,
+     "lo_41": 71.02,
+     "ccc_loan_value": null
+    }
+   }
+  },
+  "2026-08": {
+   "narrative": "Spot cotton quotations were 667 points higher than the previous month. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 79.97 cents per pound in August 2026. This compares with 73.30 from the previous month. The average basis for the base quality at the end of August was 517 points off the ICE October 2026 No. 2 futures contract. Spot transactions reported in the designated markets for August totaled 9,547 running bales.",
+   "published": "09/02/2026 15:11:40",
+   "basis_pts": -517.0,
+   "basis_vs": "October 2026",
+   "bales": 9547.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 9547.0,
+     "bales_my": 9547.0,
+     "avg_41": 79.97,
+     "avg_31": 86.2,
+     "hi_41": 86.52,
+     "lo_41": 75.92,
+     "ccc_loan_value": 56.72
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": null
+    },
+    "Desert Southwest": {
+     "bales_month": 445.0,
+     "bales_my": 445.0,
+     "avg_41": 78.43,
+     "avg_31": 84.43,
+     "hi_41": 84.95,
+     "lo_41": 74.38,
+     "ccc_loan_value": null
+    },
+    "East Texas - South Texas": {
+     "bales_month": 486.0,
+     "bales_my": 486.0,
+     "avg_41": 78.94,
+     "avg_31": 85.64,
+     "hi_41": 85.7,
+     "lo_41": 74.88,
+     "ccc_loan_value": 56.72
+    },
+    "North Delta": {
+     "bales_month": 518.0,
+     "bales_my": 518.0,
+     "avg_41": 81.43,
+     "avg_31": 86.18,
+     "hi_41": 87.95,
+     "lo_41": 77.38,
+     "ccc_loan_value": null
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 78.68,
+     "avg_31": 91.08,
+     "hi_41": 85.2,
+     "lo_41": 74.63,
+     "ccc_loan_value": null
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 81.43,
+     "avg_31": 85.68,
+     "hi_41": 87.95,
+     "lo_41": 77.38,
+     "ccc_loan_value": null
+    },
+    "Southeast": {
+     "bales_month": 171.0,
+     "bales_my": 171.0,
+     "avg_41": 82.18,
+     "avg_31": 87.93,
+     "hi_41": 88.7,
+     "lo_41": 78.13,
+     "ccc_loan_value": null
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 7927.0,
+     "bales_my": 7927.0,
+     "avg_41": 78.68,
+     "avg_31": 82.43,
+     "hi_41": 85.2,
+     "lo_41": 74.63,
+     "ccc_loan_value": null
+    }
+   }
+  },
+  "2026-07": {
+   "narrative": "Spot cotton quotations were 333 points higher than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 73.30 cents per pound in July 2026. This compares with 69.97 from the previous month. The average basis for the base quality at the end of July was 521 points off the ICE October 2026 No. 2 futures contract. Spot transactions reported in the designated markets for July totaled 9,787 running bales.",
+   "published": "08/03/2026 10:02:45",
+   "basis_pts": -521.0,
+   "basis_vs": "October 2026",
+   "bales": 9787.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 9787.0,
+     "bales_my": 1526977.0,
+     "avg_41": 73.3,
+     "avg_31": 79.54,
+     "hi_41": 75.3,
+     "lo_41": 69.73,
+     "ccc_loan_value": 54.34
+    },
+    "American Pima": {
+     "bales_month": 888.0,
+     "bales_my": 10263.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 92.9
+    },
+    "Desert Southwest": {
+     "bales_month": 0.0,
+     "bales_my": 10767.0,
+     "avg_41": 71.95,
+     "avg_31": 77.95,
+     "hi_41": 73.81,
+     "lo_41": 68.59,
+     "ccc_loan_value": 54.18
+    },
+    "East Texas - South Texas": {
+     "bales_month": 0.0,
+     "bales_my": 88909.0,
+     "avg_41": 72.0,
+     "avg_31": 78.75,
+     "hi_41": 74.25,
+     "lo_41": 68.09,
+     "ccc_loan_value": 55.3
+    },
+    "North Delta": {
+     "bales_month": 1305.0,
+     "bales_my": 14836.0,
+     "avg_41": 74.82,
+     "avg_31": 79.57,
+     "hi_41": 76.75,
+     "lo_41": 71.34,
+     "ccc_loan_value": 53.13
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 72.2,
+     "avg_31": 84.6,
+     "hi_41": 74.06,
+     "lo_41": 68.84,
+     "ccc_loan_value": 55.79
+    },
+    "South Delta": {
+     "bales_month": 130.0,
+     "bales_my": 198.0,
+     "avg_41": 74.82,
+     "avg_31": 79.07,
+     "hi_41": 76.75,
+     "lo_41": 71.34,
+     "ccc_loan_value": 53.44
+    },
+    "Southeast": {
+     "bales_month": 864.0,
+     "bales_my": 160714.0,
+     "avg_41": 75.57,
+     "avg_31": 81.32,
+     "hi_41": 77.5,
+     "lo_41": 72.09,
+     "ccc_loan_value": 54.12
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 7488.0,
+     "bales_my": 1251553.0,
+     "avg_41": 71.75,
+     "avg_31": 75.5,
+     "hi_41": 74.0,
+     "lo_41": 67.84,
+     "ccc_loan_value": 54.41
+    }
+   }
+  },
+  "2026-06": {
+   "narrative": "Spot cotton quotations were 718 points lower than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 69.97 cents per pound in June 2026. This compares with 77.15 from the previous month. The average basis for the base quality at the end of June was 560 points off the ICE October 2026 No. 2 futures contract. Spot transactions reported in the designated markets for June totaled 21,694 running bales.",
+   "published": "07/02/2026 17:38:06",
+   "basis_pts": -560.0,
+   "basis_vs": "October 2026",
+   "bales": 21694.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 21694.0,
+     "bales_my": 1517190.0,
+     "avg_41": 69.97,
+     "avg_31": 76.21,
+     "hi_41": 73.63,
+     "lo_41": 66.14,
+     "ccc_loan_value": 54.34
+    },
+    "American Pima": {
+     "bales_month": 2738.0,
+     "bales_my": 9375.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 92.9
+    },
+    "Desert Southwest": {
+     "bales_month": 0.0,
+     "bales_my": 10767.0,
+     "avg_41": 68.73,
+     "avg_31": 74.73,
+     "hi_41": 72.49,
+     "lo_41": 64.85,
+     "ccc_loan_value": 54.18
+    },
+    "East Texas - South Texas": {
+     "bales_month": 0.0,
+     "bales_my": 88909.0,
+     "avg_41": 68.23,
+     "avg_31": 74.98,
+     "hi_41": 71.99,
+     "lo_41": 64.35,
+     "ccc_loan_value": 55.3
+    },
+    "North Delta": {
+     "bales_month": 0.0,
+     "bales_my": 13531.0,
+     "avg_41": 71.74,
+     "avg_31": 76.49,
+     "hi_41": 75.24,
+     "lo_41": 68.1,
+     "ccc_loan_value": 53.13
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 68.98,
+     "avg_31": 81.38,
+     "hi_41": 72.74,
+     "lo_41": 65.1,
+     "ccc_loan_value": 55.79
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 68.0,
+     "avg_41": 71.74,
+     "avg_31": 75.99,
+     "hi_41": 75.24,
+     "lo_41": 68.1,
+     "ccc_loan_value": 53.44
+    },
+    "Southeast": {
+     "bales_month": 596.0,
+     "bales_my": 159850.0,
+     "avg_41": 72.35,
+     "avg_31": 78.1,
+     "hi_41": 75.99,
+     "lo_41": 68.6,
+     "ccc_loan_value": 54.12
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 21098.0,
+     "bales_my": 1244065.0,
+     "avg_41": 67.99,
+     "avg_31": 71.78,
+     "hi_41": 71.74,
+     "lo_41": 63.85,
+     "ccc_loan_value": 54.41
+    }
+   }
+  },
+  "2026-05": {
+   "narrative": "Spot cotton quotations were 488 points higher than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 77.15 cents per pound in May 2026. This compares with 72.27 from the previous month. The average basis for the base quality at the end of May was 485 points off the ICE July 2026 No. 2 futures contract. Spot transactions reported in the designated markets for April totaled 40,665 running bales.",
+   "published": "06/02/2026 13:02:11",
+   "basis_pts": -485.0,
+   "basis_vs": "July 2026",
+   "bales": 40665.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 40665.0,
+     "bales_my": 1495496.0,
+     "avg_41": 77.15,
+     "avg_31": 83.42,
+     "hi_41": 82.98,
+     "lo_41": 71.29,
+     "ccc_loan_value": 54.34
+    },
+    "American Pima": {
+     "bales_month": 942.0,
+     "bales_my": 6637.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 92.9
+    },
+    "Desert Southwest": {
+     "bales_month": 5.0,
+     "bales_my": 10767.0,
+     "avg_41": 75.68,
+     "avg_31": 81.68,
+     "hi_41": 81.52,
+     "lo_41": 69.9,
+     "ccc_loan_value": 54.18
+    },
+    "East Texas - South Texas": {
+     "bales_month": 262.0,
+     "bales_my": 88909.0,
+     "avg_41": 75.18,
+     "avg_31": 81.93,
+     "hi_41": 81.02,
+     "lo_41": 69.4,
+     "ccc_loan_value": 55.3
+    },
+    "North Delta": {
+     "bales_month": 0.0,
+     "bales_my": 13531.0,
+     "avg_41": 78.93,
+     "avg_31": 83.68,
+     "hi_41": 84.77,
+     "lo_41": 73.15,
+     "ccc_loan_value": 53.13
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 75.93,
+     "avg_31": 88.33,
+     "hi_41": 81.77,
+     "lo_41": 70.15,
+     "ccc_loan_value": 55.79
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 68.0,
+     "avg_41": 78.93,
+     "avg_31": 83.18,
+     "hi_41": 84.77,
+     "lo_41": 73.15,
+     "ccc_loan_value": 53.44
+    },
+    "Southeast": {
+     "bales_month": 1604.0,
+     "bales_my": 159254.0,
+     "avg_41": 79.49,
+     "avg_31": 85.24,
+     "hi_41": 85.27,
+     "lo_41": 73.65,
+     "ccc_loan_value": 54.12
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 38794.0,
+     "bales_my": 1222967.0,
+     "avg_41": 75.88,
+     "avg_31": 79.88,
+     "hi_41": 81.77,
+     "lo_41": 69.65,
+     "ccc_loan_value": 54.41
+    }
+   }
+  },
+  "2026-04": {
+   "narrative": "Spot cotton quotations were 871 points higher than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 72.27 cents per pound in April 2026. This compares with 63.56 from the previous month. The average basis for the base quality at the end of April was 471 points off the ICE July 2026 No. 2 futures contract. Spot transactions reported in the designated markets for April totaled 92,973 running bales. *Corrections were made to the Average Column in Table 13 for the Average Prices Received by Farmers for Upland Cotton; no other changes were made.*",
+   "published": "05/08/2026 10:02:14",
+   "basis_pts": -471.0,
+   "basis_vs": "July 2026",
+   "bales": 92973.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 92973.0,
+     "bales_my": 1454831.0,
+     "avg_41": 72.27,
+     "avg_31": 78.54,
+     "hi_41": 77.49,
+     "lo_41": 67.44,
+     "ccc_loan_value": 54.34
+    },
+    "American Pima": {
+     "bales_month": 675.0,
+     "bales_my": 5695.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 92.9
+    },
+    "Desert Southwest": {
+     "bales_month": 5.0,
+     "bales_my": 10762.0,
+     "avg_41": 70.79,
+     "avg_31": 76.79,
+     "hi_41": 75.95,
+     "lo_41": 66.01,
+     "ccc_loan_value": 54.18
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 68.0,
+     "avg_41": 73.78,
+     "avg_31": 78.03,
+     "hi_41": 79.2,
+     "lo_41": 68.76,
+     "ccc_loan_value": 53.44
+    },
+    "East Texas - South Texas": {
+     "bales_month": 2533.0,
+     "bales_my": 88647.0,
+     "avg_41": 70.29,
+     "avg_31": 77.04,
+     "hi_41": 75.45,
+     "lo_41": 65.51,
+     "ccc_loan_value": 55.3
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 71.04,
+     "avg_31": 83.44,
+     "hi_41": 76.2,
+     "lo_41": 66.26,
+     "ccc_loan_value": 55.79
+    },
+    "North Delta": {
+     "bales_month": 0.0,
+     "bales_my": 13531.0,
+     "avg_41": 73.78,
+     "avg_31": 78.53,
+     "hi_41": 79.2,
+     "lo_41": 68.76,
+     "ccc_loan_value": 53.13
+    },
+    "Southeast": {
+     "bales_month": 22400.0,
+     "bales_my": 157650.0,
+     "avg_41": 74.91,
+     "avg_31": 80.66,
+     "hi_41": 80.2,
+     "lo_41": 70.01,
+     "ccc_loan_value": 54.12
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 68035.0,
+     "bales_my": 1184173.0,
+     "avg_41": 71.3,
+     "avg_31": 75.3,
+     "hi_41": 76.2,
+     "lo_41": 66.76,
+     "ccc_loan_value": 54.41
+    }
+   }
+  },
+  "2026-03": {
+   "narrative": "Spot cotton quotations were 323 points higher than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 63.56 cents per pound in March 2026. This compares with 60.33 from the previous month. The average basis for the base quality at the end of March was 332 points off the ICE May 2026 No. 2 futures contract. Spot transactions reported in the designated markets for March totaled 130,876 running bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 16:13:46",
+   "basis_pts": -332.0,
+   "basis_vs": "May 2026",
+   "bales": 130876.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 130876.0,
+     "bales_my": 1361858.0,
+     "avg_41": 63.56,
+     "avg_31": 69.86,
+     "hi_41": 66.87,
+     "lo_41": 60.83,
+     "ccc_loan_value": 54.34
+    },
+    "American Pima": {
+     "bales_month": 500.0,
+     "bales_my": 5020.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 92.9
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 62.52,
+     "avg_31": 74.92,
+     "hi_41": 65.69,
+     "lo_41": 59.79,
+     "ccc_loan_value": 55.79
+    },
+    "Southeast": {
+     "bales_month": 6354.0,
+     "bales_my": 135250.0,
+     "avg_41": 65.93,
+     "avg_31": 71.68,
+     "hi_41": 69.44,
+     "lo_41": 63.04,
+     "ccc_loan_value": 54.12
+    },
+    "Desert Southwest": {
+     "bales_month": 2634.0,
+     "bales_my": 10757.0,
+     "avg_41": 62.27,
+     "avg_31": 68.27,
+     "hi_41": 65.44,
+     "lo_41": 59.54,
+     "ccc_loan_value": 54.18
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 68.0,
+     "avg_41": 64.81,
+     "avg_31": 69.06,
+     "hi_41": 68.19,
+     "lo_41": 62.04,
+     "ccc_loan_value": 53.44
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 117315.0,
+     "bales_my": 1116138.0,
+     "avg_41": 62.91,
+     "avg_31": 67.1,
+     "hi_41": 66.19,
+     "lo_41": 60.29,
+     "ccc_loan_value": 54.39
+    },
+    "East Texas - South Texas": {
+     "bales_month": 2221.0,
+     "bales_my": 86114.0,
+     "avg_41": 61.68,
+     "avg_31": 68.43,
+     "hi_41": 64.94,
+     "lo_41": 59.04,
+     "ccc_loan_value": 55.31
+    },
+    "North Delta": {
+     "bales_month": 2352.0,
+     "bales_my": 13531.0,
+     "avg_41": 64.81,
+     "avg_31": 69.56,
+     "hi_41": 68.19,
+     "lo_41": 62.04,
+     "ccc_loan_value": 53.13
+    }
+   }
+  },
+  "2026-02": {
+   "narrative": "Spot cotton quotations were 28 points lower than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 60.33 cents per pound in February 2026. This compares with 60.61 from the previous month. The average basis for the base quality at the end of February was 325 points off the ICE May 2026 No. 2 futures contract. Spot transactions reported in the designated markets for January totaled 1,230,982 running bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 16:07:42",
+   "basis_pts": -325.0,
+   "basis_vs": "May 2026",
+   "bales": 1230982.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 276231.0,
+     "bales_my": 1230982.0,
+     "avg_41": 60.33,
+     "avg_31": 66.64,
+     "hi_41": 63.06,
+     "lo_41": 57.7,
+     "ccc_loan_value": 54.34
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 4520.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 92.91
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 68.0,
+     "avg_41": 61.48,
+     "avg_31": 65.73,
+     "hi_41": 64.17,
+     "lo_41": 59.06,
+     "ccc_loan_value": 53.44
+    },
+    "East Texas - South Texas": {
+     "bales_month": 8374.0,
+     "bales_my": 83893.0,
+     "avg_41": 58.46,
+     "avg_31": 65.21,
+     "hi_41": 61.17,
+     "lo_41": 55.56,
+     "ccc_loan_value": 55.31
+    },
+    "Desert Southwest": {
+     "bales_month": 6587.0,
+     "bales_my": 8123.0,
+     "avg_41": 59.15,
+     "avg_31": 65.15,
+     "hi_41": 62.17,
+     "lo_41": 56.31,
+     "ccc_loan_value": 54.2
+    },
+    "North Delta": {
+     "bales_month": 4405.0,
+     "bales_my": 11179.0,
+     "avg_41": 61.48,
+     "avg_31": 66.23,
+     "hi_41": 64.17,
+     "lo_41": 59.06,
+     "ccc_loan_value": 53.13
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 59.4,
+     "avg_31": 71.8,
+     "hi_41": 62.42,
+     "lo_41": 56.56,
+     "ccc_loan_value": 55.79
+    },
+    "Southeast": {
+     "bales_month": 15406.0,
+     "bales_my": 128896.0,
+     "avg_41": 62.39,
+     "avg_31": 68.14,
+     "hi_41": 65.17,
+     "lo_41": 59.81,
+     "ccc_loan_value": 54.12
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 241459.0,
+     "bales_my": 998823.0,
+     "avg_41": 59.94,
+     "avg_31": 64.19,
+     "hi_41": 62.17,
+     "lo_41": 57.56,
+     "ccc_loan_value": 54.39
+    }
+   }
+  },
+  "2026-01": {
+   "narrative": "Spot cotton quotations were 22 points higher than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 60.61 cents per pound in January 2026. This compares with 60.39 from the previous month. The average basis for the base quality at the end of January was 353 points off the ICE March 2026 No. 2 futures contract. Spot transactions reported in the designated markets for January totaled 412,928 running bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 15:59:24",
+   "basis_pts": -353.0,
+   "basis_vs": "March 2026",
+   "bales": 412928.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 412928.0,
+     "bales_my": 954751.0,
+     "avg_41": 60.61,
+     "avg_31": 66.94,
+     "hi_41": 61.37,
+     "lo_41": 59.36,
+     "ccc_loan_value": 54.19
+    },
+    "American Pima": {
+     "bales_month": 2604.0,
+     "bales_my": 4520.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 94.46
+    },
+    "South Delta": {
+     "bales_month": 4.0,
+     "bales_my": 68.0,
+     "avg_41": 62.01,
+     "avg_31": 66.26,
+     "hi_41": 62.81,
+     "lo_41": 60.72,
+     "ccc_loan_value": 53.46
+    },
+    "Desert Southwest": {
+     "bales_month": 0.0,
+     "bales_my": 1536.0,
+     "avg_41": 59.51,
+     "avg_31": 65.51,
+     "hi_41": 60.31,
+     "lo_41": 58.22,
+     "ccc_loan_value": 56.74
+    },
+    "East Texas - South Texas": {
+     "bales_month": 8180.0,
+     "bales_my": 75519.0,
+     "avg_41": 58.51,
+     "avg_31": 65.26,
+     "hi_41": 59.31,
+     "lo_41": 57.22,
+     "ccc_loan_value": 53.53
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 59.76,
+     "avg_31": 72.16,
+     "hi_41": 60.56,
+     "lo_41": 58.47,
+     "ccc_loan_value": 56.36
+    },
+    "North Delta": {
+     "bales_month": 848.0,
+     "bales_my": 6774.0,
+     "avg_41": 62.01,
+     "avg_31": 66.76,
+     "hi_41": 62.81,
+     "lo_41": 60.72,
+     "ccc_loan_value": 54.01
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 367453.0,
+     "bales_my": 757364.0,
+     "avg_41": 59.91,
+     "avg_31": 64.34,
+     "hi_41": 60.49,
+     "lo_41": 58.97,
+     "ccc_loan_value": 52.21
+    },
+    "Southeast": {
+     "bales_month": 36443.0,
+     "bales_my": 113490.0,
+     "avg_41": 62.56,
+     "avg_31": 68.31,
+     "hi_41": 63.31,
+     "lo_41": 61.22,
+     "ccc_loan_value": 53.04
+    }
+   }
+  },
+  "2025-12": {
+   "narrative": "Spot cotton quotations were 30 points lower than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 60.39 cents per pound in December 2025. This compares with 60.69 from the previous month. The average basis for the base quality at the end of December was 371 points off the ICE March 2026 No. 2 futures contract. Spot transactions reported in the designated markets for December totaled 377,845 running bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 15:51:53",
+   "basis_pts": -371.0,
+   "basis_vs": "March 2026",
+   "bales": 377845.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 377845.0,
+     "bales_my": 541823.0,
+     "avg_41": 60.39,
+     "avg_31": 66.82,
+     "hi_41": 61.2,
+     "lo_41": 59.46,
+     "ccc_loan_value": 54.43
+    },
+    "American Pima": {
+     "bales_month": 1916.0,
+     "bales_my": 1916.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 92.8
+    },
+    "North Delta": {
+     "bales_month": 1461.0,
+     "bales_my": 5926.0,
+     "avg_41": 61.84,
+     "avg_31": 66.59,
+     "hi_41": 62.63,
+     "lo_41": 60.85,
+     "ccc_loan_value": 53.13
+    },
+    "East Texas - South Texas": {
+     "bales_month": 12981.0,
+     "bales_my": 67339.0,
+     "avg_41": 58.45,
+     "avg_31": 65.34,
+     "hi_41": 59.38,
+     "lo_41": 57.6,
+     "ccc_loan_value": 55.32
+    },
+    "Southeast": {
+     "bales_month": 54885.0,
+     "bales_my": 77047.0,
+     "avg_41": 62.34,
+     "avg_31": 68.09,
+     "hi_41": 63.13,
+     "lo_41": 61.35,
+     "ccc_loan_value": 54.2
+    },
+    "South Delta": {
+     "bales_month": 35.0,
+     "bales_my": 64.0,
+     "avg_41": 61.84,
+     "avg_31": 66.09,
+     "hi_41": 62.63,
+     "lo_41": 60.85,
+     "ccc_loan_value": 53.44
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 307042.0,
+     "bales_my": 389911.0,
+     "avg_41": 59.22,
+     "avg_31": 64.18,
+     "hi_41": 60.13,
+     "lo_41": 58.1,
+     "ccc_loan_value": 54.88
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 59.65,
+     "avg_31": 72.05,
+     "hi_41": 60.38,
+     "lo_41": 58.85,
+     "ccc_loan_value": 55.0
+    },
+    "Desert Southwest": {
+     "bales_month": 1441.0,
+     "bales_my": 1536.0,
+     "avg_41": 59.4,
+     "avg_31": 65.4,
+     "hi_41": 60.13,
+     "lo_41": 58.6,
+     "ccc_loan_value": 55.03
+    }
+   }
+  },
+  "2025-11": {
+   "narrative": "****Current NASS Farm Prices are not available. (Pg. 23) **** Spot cotton quotations were 9 points higher than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 60.69 cents per pound in November 2025. This compares with 60.60 from the previous month. The average basis for the base quality at the end of November was 342 points off the ICE March 2026 No. 2 futures contract. Spot transactions reported in the designated markets for November totaled 87,912 running bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 15:45:22",
+   "basis_pts": -342.0,
+   "basis_vs": "March 2026",
+   "bales": 87912.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 87912.0,
+     "bales_my": 163978.0,
+     "avg_41": 60.69,
+     "avg_31": 67.18,
+     "hi_41": 61.86,
+     "lo_41": 59.19,
+     "ccc_loan_value": 54.63
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 93.11
+    },
+    "East Texas - South Texas": {
+     "bales_month": 14284.0,
+     "bales_my": 54358.0,
+     "avg_41": 59.1,
+     "avg_31": 66.1,
+     "hi_41": 60.18,
+     "lo_41": 57.65,
+     "ccc_loan_value": 55.33
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 59.73,
+     "avg_31": 72.13,
+     "hi_41": 60.93,
+     "lo_41": 58.15,
+     "ccc_loan_value": 55.22
+    },
+    "Southeast": {
+     "bales_month": 13209.0,
+     "bales_my": 22162.0,
+     "avg_41": 62.48,
+     "avg_31": 68.23,
+     "hi_41": 63.68,
+     "lo_41": 60.9,
+     "ccc_loan_value": 54.23
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 29.0,
+     "avg_41": 61.98,
+     "avg_31": 66.23,
+     "hi_41": 63.18,
+     "lo_41": 60.4,
+     "ccc_loan_value": 53.43
+    },
+    "North Delta": {
+     "bales_month": 775.0,
+     "bales_my": 4465.0,
+     "avg_41": 61.98,
+     "avg_31": 66.73,
+     "hi_41": 63.18,
+     "lo_41": 60.4,
+     "ccc_loan_value": 53.19
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 59549.0,
+     "bales_my": 82869.0,
+     "avg_41": 60.1,
+     "avg_31": 65.35,
+     "hi_41": 61.18,
+     "lo_41": 58.9,
+     "ccc_loan_value": 55.3
+    },
+    "Desert Southwest": {
+     "bales_month": 95.0,
+     "bales_my": 95.0,
+     "avg_41": 59.48,
+     "avg_31": 65.48,
+     "hi_41": 60.68,
+     "lo_41": 57.9,
+     "ccc_loan_value": 55.69
+    }
+   }
+  },
+  "2025-10": {
+   "narrative": "****Due to the Government Shutdown, Warehouse Cotton Loan Quantities (Pg. 1) and Farm Prices (Pg. 23) are not available**** Spot cotton quotations were 174 points lower than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 60.60 cents per pound in October 2025. This compares with 62.34 from the previous month. The average basis for the base quality at the end of October was 382 points off the ICE December 2025 No. 2 futures contract. Spot transactions reported in the designated markets for October totaled 40,438 running bales. bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 15:32:43",
+   "basis_pts": -382.0,
+   "basis_vs": "December 2025",
+   "bales": 40438.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 40438.0,
+     "bales_my": 76066.0,
+     "avg_41": 60.6,
+     "avg_31": 67.09,
+     "hi_41": 62.22,
+     "lo_41": 59.51,
+     "ccc_loan_value": 54.88
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 94.58
+    },
+    "East Texas - South Texas": {
+     "bales_month": 22596.0,
+     "bales_my": 40074.0,
+     "avg_41": 58.45,
+     "avg_31": 65.45,
+     "hi_41": 60.51,
+     "lo_41": 57.26,
+     "ccc_loan_value": 55.42
+    },
+    "Southeast": {
+     "bales_month": 4894.0,
+     "bales_my": 8953.0,
+     "avg_41": 62.82,
+     "avg_31": 68.57,
+     "hi_41": 64.09,
+     "lo_41": 61.76,
+     "ccc_loan_value": 54.15
+    },
+    "Desert Southwest": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 59.55,
+     "avg_31": 65.55,
+     "hi_41": 61.01,
+     "lo_41": 58.51,
+     "ccc_loan_value": 56.16
+    },
+    "North Delta": {
+     "bales_month": 0.0,
+     "bales_my": 3690.0,
+     "avg_41": 62.09,
+     "avg_31": 66.84,
+     "hi_41": 63.59,
+     "lo_41": 61.01,
+     "ccc_loan_value": 52.96
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 59.8,
+     "avg_31": 72.2,
+     "hi_41": 61.26,
+     "lo_41": 58.76,
+     "ccc_loan_value": 56.74
+    },
+    "South Delta": {
+     "bales_month": 0.0,
+     "bales_my": 29.0,
+     "avg_41": 62.09,
+     "avg_31": 66.34,
+     "hi_41": 63.59,
+     "lo_41": 61.01,
+     "ccc_loan_value": 53.33
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 12948.0,
+     "bales_my": 23320.0,
+     "avg_41": 59.43,
+     "avg_31": 64.68,
+     "hi_41": 61.51,
+     "lo_41": 58.26,
+     "ccc_loan_value": 55.37
+    }
+   }
+  },
+  "2025-09": {
+   "narrative": "Spot cotton quotations were 69 points lower than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 62.34 cents per pound in September 2025. This compares with 63.03 from the previous month. The average basis for the base quality at the end of September was 378 points off the ICE December 2025 No. 2 futures contract. Spot transactions reported in the designated markets for September totaled 21,513 running bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 15:27:45",
+   "basis_pts": -378.0,
+   "basis_vs": "December 2025",
+   "bales": 21513.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 21513.0,
+     "bales_my": 35628.0,
+     "avg_41": 62.34,
+     "avg_31": 68.86,
+     "hi_41": 63.6,
+     "lo_41": 61.46,
+     "ccc_loan_value": 54.15
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": null
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 61.57,
+     "avg_31": 73.97,
+     "hi_41": 62.89,
+     "lo_41": 60.75,
+     "ccc_loan_value": null
+    },
+    "Desert Southwest": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 61.06,
+     "avg_31": 67.06,
+     "hi_41": 62.25,
+     "lo_41": 60.14,
+     "ccc_loan_value": null
+    },
+    "Southeast": {
+     "bales_month": 0.0,
+     "bales_my": 4059.0,
+     "avg_41": 64.43,
+     "avg_31": 70.18,
+     "hi_41": 65.75,
+     "lo_41": 63.39,
+     "ccc_loan_value": 54.6
+    },
+    "East Texas - South Texas": {
+     "bales_month": 16057.0,
+     "bales_my": 17478.0,
+     "avg_41": 60.35,
+     "avg_31": 67.57,
+     "hi_41": 61.64,
+     "lo_41": 59.5,
+     "ccc_loan_value": 55.66
+    },
+    "North Delta": {
+     "bales_month": 1023.0,
+     "bales_my": 3690.0,
+     "avg_41": 64.06,
+     "avg_31": 68.81,
+     "hi_41": 65.25,
+     "lo_41": 63.14,
+     "ccc_loan_value": 51.75
+    },
+    "South Delta": {
+     "bales_month": 7.0,
+     "bales_my": 29.0,
+     "avg_41": 64.06,
+     "avg_31": 68.31,
+     "hi_41": 65.25,
+     "lo_41": 63.14,
+     "ccc_loan_value": 54.57
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 4426.0,
+     "bales_my": 10372.0,
+     "avg_41": 60.87,
+     "avg_31": 66.12,
+     "hi_41": 62.14,
+     "lo_41": 60.14,
+     "ccc_loan_value": null
+    }
+   }
+  },
+  "2025-08": {
+   "narrative": "Spot cotton quotations were 100 points lower than the previous month, according to the USDA, Agricultural Marketing Service's Cotton and Tobacco Program. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 63.03 cents per pound in August 2025. This compares with 64.03 from the previous month. The average basis for the base quality at the end of August was 278 points off the ICE October 2025 No. 2 futures contract. Spot transactions reported in the designated markets for August totaled 14,115 running bales. *For the correction- only the weighted monthly averages in Table 14 were updated; no other changes were made.*",
+   "published": "05/06/2026 14:54:10",
+   "basis_pts": -278.0,
+   "basis_vs": "October 2025",
+   "bales": 14115.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 14115.0,
+     "bales_my": 14115.0,
+     "avg_41": 63.03,
+     "avg_31": 69.53,
+     "hi_41": 64.32,
+     "lo_41": 61.67,
+     "ccc_loan_value": 56.22
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": null
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 62.28,
+     "avg_31": 74.68,
+     "hi_41": 63.57,
+     "lo_41": 60.92,
+     "ccc_loan_value": null
+    },
+    "East Texas - South Texas": {
+     "bales_month": 1421.0,
+     "bales_my": 1421.0,
+     "avg_41": 61.78,
+     "avg_31": 69.03,
+     "hi_41": 63.07,
+     "lo_41": 60.42,
+     "ccc_loan_value": 56.22
+    },
+    "North Delta": {
+     "bales_month": 2667.0,
+     "bales_my": 2667.0,
+     "avg_41": 64.53,
+     "avg_31": 69.28,
+     "hi_41": 65.82,
+     "lo_41": 63.17,
+     "ccc_loan_value": null
+    },
+    "South Delta": {
+     "bales_month": 22.0,
+     "bales_my": 22.0,
+     "avg_41": 64.53,
+     "avg_31": 68.78,
+     "hi_41": 65.82,
+     "lo_41": 63.17,
+     "ccc_loan_value": null
+    },
+    "Desert Southwest": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 61.53,
+     "avg_31": 67.53,
+     "hi_41": 62.82,
+     "lo_41": 60.17,
+     "ccc_loan_value": null
+    },
+    "Southeast": {
+     "bales_month": 4059.0,
+     "bales_my": 4059.0,
+     "avg_41": 64.78,
+     "avg_31": 70.44,
+     "hi_41": 66.07,
+     "lo_41": 63.42,
+     "ccc_loan_value": null
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 5946.0,
+     "bales_my": 5946.0,
+     "avg_41": 61.75,
+     "avg_31": 67.0,
+     "hi_41": 63.07,
+     "lo_41": 60.42,
+     "ccc_loan_value": null
+    }
+   }
+  }
+ },
+ "ccc_loans": {
+  "as_of": "2026-09",
+  "rows": [
+   {
+    "crop": "2025",
+    "disbursed": "2026-01",
+    "matures": "2026-10",
+    "made": 1139799.0,
+    "repaid": 1060792.0,
+    "forfeit": null,
+    "outstanding": 79007.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2026-02",
+    "matures": "2026-11",
+    "made": 340052.0,
+    "repaid": 285117.0,
+    "forfeit": null,
+    "outstanding": 54935.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2026-03",
+    "matures": "2026-12",
+    "made": 74574.0,
+    "repaid": 70303.0,
+    "forfeit": null,
+    "outstanding": 4271.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2026-04",
+    "matures": "2027-01",
+    "made": 39421.0,
+    "repaid": 37795.0,
+    "forfeit": null,
+    "outstanding": 1626.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2026-05",
+    "matures": "2027-02",
+    "made": 19415.0,
+    "repaid": 17328.0,
+    "forfeit": null,
+    "outstanding": 2087.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2025-08",
+    "matures": "2026-05",
+    "made": 43321.0,
+    "repaid": 43321.0,
+    "forfeit": null,
+    "outstanding": 0.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2025-09",
+    "matures": "2026-06",
+    "made": 248516.0,
+    "repaid": 248516.0,
+    "forfeit": null,
+    "outstanding": 0.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2025-10",
+    "matures": "2026-07",
+    "made": 107.0,
+    "repaid": 107.0,
+    "forfeit": null,
+    "outstanding": 0.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2025-11",
+    "matures": "2026-08",
+    "made": 3787189.0,
+    "repaid": 3787178.0,
+    "forfeit": 11.0,
+    "outstanding": 0.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "2025-12",
+    "matures": "2026-09",
+    "made": 2481803.0,
+    "repaid": 2480847.0,
+    "forfeit": null,
+    "outstanding": 956.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "Crop Ye",
+    "matures": "",
+    "made": 8174197.0,
+    "repaid": 8031304.0,
+    "forfeit": 11.0,
+    "outstanding": 142882.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "2026-08",
+    "matures": "2027-05",
+    "made": 14843.0,
+    "repaid": 2314.0,
+    "forfeit": null,
+    "outstanding": 12529.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "2026-09",
+    "matures": "2027-06",
+    "made": 148739.0,
+    "repaid": 12843.0,
+    "forfeit": null,
+    "outstanding": 135896.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "Crop Ye",
+    "matures": "",
+    "made": 163582.0,
+    "repaid": 15157.0,
+    "forfeit": null,
+    "outstanding": 148425.0
+   }
+  ]
+ },
+ "latest": "2026-09"
+}

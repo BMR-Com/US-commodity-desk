@@ -10,4 +10,4 @@ jobs:
       - run: pip install -q requests && python tmp/india_probe.py
       - run: |
           git config user.name bmr-data-bot; git config user.email bot@users.noreply.github.com
-          git add tmp/india_probe && git commit -qm "probe output" && git push -q origin HEAD:tmp/india-probe
+          git add tmp/india_probe3 && git commit -qm "probe output" && git push -q origin HEAD:tmp/india-probe

@@ -51,13 +51,13 @@ ALT = {"Ending Stocks": ["Ending Stocks, Total"], "Avg. Farm Price": ["Avg. farm
 
 
 VARS = {   # shown on the public page (variables only; rules live in the private research notes)
-    "cotton": ["BMR-Com crop model (crop ratings, drought, ginnings, classing by office, FSA acreage)", "USDA crop estimate", "Texas abandonment",
+    "cotton": ["BMR-Com crop model (crop ratings, drought, ginnings, classing by office, FSA acreage)", "USDA crop estimate", "Texas abandonment (and its largest post-October rise on record)",
                "weekly export sales (commitments, shipments, net sales)", "USDA export forecast", "price response of exports to crop size",
-               "US share of world trade", "rival exporters' stocks (Brazil, Australia, Africa, Central Asia)", "pipeline minimum stocks"],
+               "US share of world trade", "rival exporters' stocks (Brazil, Australia, Africa, Central Asia)", "pipeline minimum stocks", "USDA October-to-final crop revision history"],
     "corn": ["desk crop-condition yield model", "USDA yield and harvested area", "weekly export sales", "USDA export forecast", "price response of exports to crop size",
-             "US share of world trade", "rival exporters' stocks", "pipeline minimum stocks"],
+             "US share of world trade", "rival exporters' stocks", "pipeline minimum stocks", "USDA October-to-final crop revision history"],
     "soybeans": ["desk crop-condition yield model", "USDA yield and harvested area", "weekly export sales", "USDA export forecast", "price response of exports to crop size",
-                 "US share of world trade", "rival exporters' stocks", "pipeline minimum stocks"],
+                 "US share of world trade", "rival exporters' stocks", "pipeline minimum stocks", "USDA October-to-final crop revision history"],
     "wheat": ["USDA production (harvest complete)", "weekly export sales", "USDA export forecast", "US share of world trade", "rival exporters' stocks"],
     "kc": ["USDA production (harvest complete)", "weekly export sales (HRW)", "USDA export forecast"],
 }
@@ -111,6 +111,36 @@ def export_miss(cfg, wk):
         return round(100 * float(np.mean(errs)), 1) if errs else None
     except Exception:
         return None
+
+
+def revision_bounds(w, cur, rd_cur, area_attr=None, planted_attr=None):
+    """How far USDA's US crop has moved from the same-month estimate to the final, across completed seasons:
+    min/max % change in production and the largest rise in abandonment (points of planted area)."""
+    import re
+    us = w[w.reg == "United States"]; m_ = rd_cur.month; rows = []
+    for my in sorted(m for m in us.my.unique() if re.fullmatch(r"\d{4}/\d{2}", m) and m < cur):
+        when = pd.Timestamp(int(my[:4]), m_, 28)
+        def at(attr, upto=None):
+            x = us[(us.attr == attr) & (us.my == my)].sort_values("rd")
+            if upto is not None:
+                x = x[x.rd <= upto]
+            return float(x.val.iloc[-1]) if len(x) else None
+        po, pf = at("Production", when), at("Production")
+        if po and pf:
+            r = {"my": my, "dP": pf / po - 1}
+            if area_attr:
+                ho, hf, plo, plf = at(area_attr, when), at(area_attr), at(planted_attr, when), at(planted_attr)
+                if ho and hf and plo and plf:
+                    r["dAb"] = (1 - hf / plf) - (1 - ho / plo)
+            rows.append(r)
+    R = pd.DataFrame(rows).iloc[:-1] if len(rows) > 1 else pd.DataFrame(rows)     # last completed season may still be revised
+    if R.empty:
+        return None
+    lo = R.loc[R.dP.idxmin()]; hi = R.loc[R.dP.idxmax()]
+    out = {"n": int(len(R)), "first": R.my.iloc[0], "dP_min": float(lo.dP), "dP_min_my": lo.my, "dP_max": float(hi.dP), "dP_max_my": hi.my, "month": f"{rd_cur:%B}"}
+    if "dAb" in R and R.dAb.notna().any():
+        a = R.loc[R.dAb.idxmax()]; out.update({"dAb_max": float(a.dAb), "dAb_max_my": a.my})
+    return out
 
 
 def price_response(w, cur, start_month=10):
@@ -209,7 +239,7 @@ def build():
         product = key in ("meal", "oil")      # crush output: an export miss changes the crush, not stocks
         # ---- production scenarios ----
         prod = {"base": u["Production"], "bear": u["Production"], "bull": u["Production"]}; psrc = "USDA (harvest complete)" if key in ("wheat", "kc") else "USDA (made from the soybean crush)"
-        yld = {}; cot_ay = {}
+        yld = {}; cot_ay = {}; bounds = None
         if key == "cotton":
             cp = crop_cotton()
             if cp and cp.get("us_all"):
@@ -224,7 +254,17 @@ def build():
                            "bear": ab_u if prod["bear"] == up else ab["central"] + sd("lo95"),
                            "bull": ab["central"] + sd("hi95") if prod["bull"] != up else ab_u}
                     area = {k_: u["Harvested area (m ac)"] - txp * (v - ab_u) for k_, v in abd.items()}
-                    cot_ay = {k_: {"Harvested area (m ac)": area[k_], "Yield (lb/ac)": prod[k_] * 480 / area[k_], "tx_ab": abd[k_]} for k_ in area}
+                    rb = revision_bounds(w, cur, rd_cur, "Harvested", "Planted")
+                    if rb:
+                        up_ = u["Production"]; pl = u.get("Planted area (m ac)")
+                        for k_ in prod:
+                            prod[k_] = min(max(prod[k_], up_ * (1 + rb["dP_min"])), up_ * (1 + rb["dP_max"]))
+                        if rb.get("dAb_max") is not None and pl:
+                            amin = u["Harvested area (m ac)"] - rb["dAb_max"] * pl          # largest post-report abandonment rise on record
+                            area = {k_: max(v, amin) for k_, v in area.items()}
+                        bounds = rb
+                    cot_ay = {k_: {"Harvested area (m ac)": area[k_], "Yield (lb/ac)": prod[k_] * 480 / area[k_],
+                                   "tx_ab": ab_u + (u["Harvested area (m ac)"] - area[k_]) / txp} for k_ in area}
                 psrc = (f"base = midway between the BMR-Com crop model ({a['central']:.2f}, {cp['asof']}) and USDA ({up:.2f}); "
                         f"bearish = the larger of USDA and the model's upper band ({a['hi68']:.2f}); bullish = the model's lower band ({a['lo68']:.2f})")
         elif key in ("corn", "soybeans"):
@@ -235,6 +275,12 @@ def build():
                 uy = u.get("Yield (bu/ac)") or m["estimate"]
                 yld = {"base": (m["estimate"] + uy) / 2, "bear": max(uy, m["estimate"] + e_), "bull": min(uy, m["estimate"] - e_)}
                 prod = {k: v * ha for k, v in yld.items()}
+                rb = revision_bounds(w, cur, rd_cur)
+                if rb:
+                    up_ = u["Production"]
+                    prod = {k: min(max(v, up_ * (1 + rb["dP_min"])), up_ * (1 + rb["dP_max"])) for k, v in prod.items()}
+                    yld = {k: v / ha for k, v in prod.items()}
+                    bounds = rb
                 psrc = (f"yield × USDA harvested area. Base = midway between the desk crop-condition model ({m['estimate']:.1f} bu/ac, week {m['week']}) and USDA ({uy:.1f}); "
                         f"bearish = the higher of USDA and the model plus its average miss ({e_:.1f}); bullish = the lower of USDA and the model minus it")
         # ---- export scenarios ----
@@ -300,7 +346,7 @@ def build():
                                "usda_end": es_u, "usda_su": su(u),
                                "exp_week": b["wk"] if b else None, "exp_miss": export_miss(cfgs[key], b["wk"]) if b and key in cfgs else None,
                                "vars": VARS.get(key, []), "floor": floor, "floor_my": floor_my, "capped": capped, "product": product, "trade": tc, "theta": theta if not product else None,
-                               "tx_ab": {k_: v["tx_ab"] for k_, v in cot_ay.items()} if cot_ay else None,
+                               "tx_ab": {k_: v["tx_ab"] for k_, v in cot_ay.items()} if cot_ay else None, "bounds": bounds,
                                "exp_usda": u.get("Exports"), "prod_usda": u.get("Production")}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, separators=(",", ":"), default=lambda x: None))

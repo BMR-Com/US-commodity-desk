@@ -204,8 +204,8 @@ def hogs_fund():
     parts, votes = [], []
     if h:
         c = h["curve"]
-        parts.append(f"The CME Lean Hog Index is ${c['index']:.2f} ({c['index_date']}); the curve trades "
-                     + ", ".join(f"{m.title()} {sg(v, 2)}" for m, v in zip(c["month"][:3], c["vs_index"][:3])) + " vs the index.")
+        parts.append(f"The CME Lean Hog Index is ${c['index']:.2f} ({c['index_date']})"
+                     + ("; the curve trades " + ", ".join(f"{m.title()} {sg(v, 2)}" for m, v in zip(c["month"][:3], c["vs_index"][:3])) + " vs the index." if c.get("month") else "."))
         mg = [x for x in h["cutout"]["margin"] if x is not None]
         if mg:
             parts.append(f"Packer margin proxy (cutout minus index) is {sg(mg[-1], 2)} $/cwt.")
@@ -226,7 +226,7 @@ def cattle_fund(sym):
     if c:
         cur = c["curve_le"] if sym == "LE" else c["curve_gf"]
         if cur:
-            parts.append(f"{cur['cash_label']}: ${cur['cash']:.2f}; futures " + ", ".join(f"{m.title()} {sg(v, 2)}" for m, v in zip(cur["month"][:3], cur["vs_cash"][:3])) + " vs cash.")
+            parts.append(f"{cur['cash_label']}: ${cur['cash']:.2f}" + ("; futures " + ", ".join(f"{m.title()} {sg(v, 2)}" for m, v in zip(cur["month"][:3], cur["vs_cash"][:3])) + " vs cash." if cur.get("month") else "."))
         cof = c["cof"]
         yo = lambda k: list(cof[k]["yoy"].items())[-1]
         parts.append(f"Cattle on feed {sg(yo('on_feed')[1], 1, '%')} y/y, placements {sg(yo('placements')[1], 1, '%')}, marketings {sg(yo('marketings')[1], 1, '%')} ({yo('on_feed')[0]}).")

@@ -27,7 +27,7 @@ jobs:
           timeout 900 python pipelines/weather.py || true
           python pipelines/south_america.py || true
           python models/south_america.py || true
-          python -W ignore models/summary.py || true
+          python -W ignore models/summary.py && python -W ignore models/outlook_brief.py || true
         env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
       - name: commit
         run: |

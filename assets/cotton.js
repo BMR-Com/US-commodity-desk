@@ -98,12 +98,12 @@ const Cotton = (() => {
     CotDesk.mount($('#ctCot'), ['CT']);
   }
   async function outlook() {
-    body().innerHTML = `<div id="ctBal" style="margin-bottom:12px"></div><div id="ctTech"></div>
+    body().innerHTML = `<div id="ctOb" style="margin-bottom:12px"></div><div id="ctBal" style="margin-bottom:12px"></div><div id="ctTech"></div>
       <div class="grid g2" style="margin-top:12px"><div class="card"><h2>WASDE outlook factors</h2><div id="ctFac"><p class="note">Loading…</p></div></div>
       <div class="card"><h2>Next events</h2><div id="ctCal"></div></div></div>
       <div id="ctSzUp" style="margin-top:12px"></div>
       <div class="card" style="margin-top:12px"><h2>Cotton headlines</h2><div id="ctNews"></div></div>`;
-    BalanceSheet.mount($('#ctBal'), 'cotton');
+    OutlookBrief.mount($('#ctOb'), 'cotton'); BalanceSheet.mount($('#ctBal'), 'cotton');
     Tech.mount($('#ctTech'), ['CT']);
     MktStudy.upcoming($('#ctSzUp'), ['CT'], () => $('#ctTabs button[data-t="ct-seas"]').click());
     Intel.calendar($('#ctCal'), { markets: ['CT'], days: 30, minImp: 2 });

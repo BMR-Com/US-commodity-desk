@@ -42,9 +42,9 @@ jobs:
         continue-on-error: true
       - run: python models/flows.py
         continue-on-error: true
-      - run: python models/dairy_backtest.py && python models/cot_backtest.py && python -W ignore models/dairy_convergence.py && python -W ignore models/dairy_spot.py && python -W ignore models/cot_desk.py && python -W ignore models/summary.py
+      - run: python models/dairy_backtest.py && python models/cot_backtest.py && python -W ignore models/dairy_convergence.py && python -W ignore models/dairy_spot.py && python -W ignore models/cot_desk.py && python -W ignore models/summary.py && python -W ignore models/outlook_brief.py
         continue-on-error: true
-      - run: python -W ignore models/grains_esr_brief.py && python -W ignore models/grains_wasde_brief.py && python -W ignore models/balance_sheets.py && python -W ignore models/summary.py
+      - run: python -W ignore models/grains_esr_brief.py && python -W ignore models/grains_wasde_brief.py && python -W ignore models/balance_sheets.py && python -W ignore models/summary.py && python -W ignore models/outlook_brief.py
         continue-on-error: true
       - run: python -W ignore models/grains_rv.py && python -W ignore models/report_reaction.py && python -W ignore models/trader_sheet.py
         continue-on-error: true

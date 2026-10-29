@@ -475,10 +475,10 @@ const Grains = (() => {
     const x = F?.cot?.[c.sym]?.summary; if (x) L.push(`<b>Positioning (secondary):</b> managed money ${x.mm_net >= 0 ? 'net long' : 'net short'} ${fmt(Math.abs(x.mm_net), 0)} (${fmt(x.mm_net_percentile_3y, 0)} pctl of 3y).`);
     const cv = F?.curves?.[c.sym]; if (cv) { const k = Object.keys(cv).sort().at(-1), a = cv[k].settle; if (a.length > 1) L.push(`<b>Curve:</b> front spread ${(a[1] - a[0]).toFixed(2)} ${a[1] > a[0] ? '(carry)' : '(inverse)'}; front ${fmt(a[0], 2)} ${c.unit}.`); }
     const t = TESTS?.[c.wasde];
-    el('#gBody').innerHTML = `<div id="gBal" style="margin-bottom:12px"></div><div id="gTech" style="margin-bottom:12px"></div><div class="grid g2"><div class="card"><h2>${c.name} desk readout</h2><ul class="read">${L.map(l => `<li>${l}</li>`).join('')}</ul>
+    el('#gBody').innerHTML = `<div id="gOb" style="margin-bottom:12px"></div><div id="gBal" style="margin-bottom:12px"></div><div id="gTech" style="margin-bottom:12px"></div><div class="grid g2"><div class="card"><h2>${c.name} desk readout</h2><ul class="read">${L.map(l => `<li>${l}</li>`).join('')}</ul>
       <p class="note">Built from tabs 2 and 3 each time the data update; what the numbers say, not a trade recommendation.</p></div>
       <div class="card"><h2>What the models have been tested to do</h2><div id="gTests">${t ? t.html : '<p class="note">Backtests run once the crop condition, export and contract histories finish downloading.</p>'}</div></div></div><div id="gSzUp" style="margin-top:12px"></div>`;
-    BalanceSheet.mount(el('#gBal'), com);
+    OutlookBrief.mount(el('#gOb'), com); BalanceSheet.mount(el('#gBal'), com);
     Tech.mount(el('#gTech'), [c.sym]);
     MktStudy.upcoming(el('#gSzUp'), [c.sym], () => el('#gTabs button[data-t="g-seas"]').click());
   }

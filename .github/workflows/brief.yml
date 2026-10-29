@@ -35,7 +35,7 @@ jobs:
       - name: trader sheet, summary, brief
         run: |
           python -W ignore models/trader_sheet.py || true
-          python -W ignore models/summary.py || true
+          python -W ignore models/summary.py && python -W ignore models/outlook_brief.py || true
           python models/energy_summary.py || true
           python -W ignore models/morning_brief.py
           python -W ignore models/brief_track.py || echo "::warning::brief track record failed"

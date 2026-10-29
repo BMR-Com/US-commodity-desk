@@ -109,7 +109,7 @@ const Hogs = (() => {
     const t = CV?.tests, e = EX?.tests;
     const row = (n, x) => x ? `<tr><td>${n}</td><td>${fmt(x.mae_model ?? x.mae_model, 2)}</td><td>${fmt(x.mae_futures_post ?? x.mae_futures, 2)}</td><td>${fmt(x.gap_vs_convergence_corr, 2)}</td></tr>` : '';
     const b = BIAS?.HE;
-    body(`<div id="hogsPlaybook" data-playbook="data/livestock/derived/playbook_hogs.json" style="margin-bottom:12px"></div><div id="hTech" style="margin-bottom:12px"></div><div class="grid g2"><div class="card"><h2>Lean hogs desk readout</h2><ul class="read">${Lr.map(x => `<li>${x}</li>`).join('')}</ul><p class="note">What the numbers say, not a trade recommendation.</p></div>
+    body(`<div id="hOb" style="margin-bottom:12px"></div><div id="hogsPlaybook" data-playbook="data/livestock/derived/playbook_hogs.json" style="margin-bottom:12px"></div><div id="hTech" style="margin-bottom:12px"></div><div class="grid g2"><div class="card"><h2>Lean hogs desk readout</h2><ul class="read">${Lr.map(x => `<li>${x}</li>`).join('')}</ul><p class="note">What the numbers say, not a trade recommendation.</p></div>
       <div class="card"><h2>What the models have been tested to do</h2>
         <h3>Convergence: forecasting the final Lean Hog Index ($/cwt mean abs error)</h3>
         <div class="tbl"><table><tr><th>Model (origin)</th><th>Model</th><th>Futures</th><th>Gap→convergence corr</th></tr>
@@ -118,7 +118,7 @@ const Hogs = (() => {
         <p class="note">Futures beat every fundamental model at every horizon, and the best-fit blend weight on the models is zero: the market prices USDA hog data as it is published. The supply pipeline still forecasts slaughter better than trend (S&amp;D tab), and the index rebuild gives the cash number a day before CME posts it.</p>
         ${b && b.h20 ? `<h3>Futures vs their own final settlement</h3><p>From 20 business days out ${sgn(b.h20.mean_pct, 2, '%')} (${Math.round(100 * b.h20.up_share)}% up), from 60 ${sgn(b.h60.mean_pct, 2, '%')}: no reliable bias.</p>` : ''}
       </div></div>`);
-    Playbook.mount($('#hogsPlaybook')); Tech.mount($('#hTech'), ['HE']);
+    OutlookBrief.mount($('#hOb'), 'hogs'); Playbook.mount($('#hogsPlaybook')); Tech.mount($('#hTech'), ['HE']);
     $('#hBody').insertAdjacentHTML('beforeend', '<div id="hSzUp" style="margin-top:12px"></div>');
     MktStudy.upcoming($('#hSzUp'), ['HE'], () => $('#hTabs button[data-t="h-seas"]').click());
   }

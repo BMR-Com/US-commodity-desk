@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install -q requests pandas numpy
-      - run: python models/grains_wasde.py && python -W ignore models/grains_wasde_brief.py && python -W ignore models/summary.py
+      - run: python models/grains_wasde.py && python -W ignore models/grains_wasde_brief.py && python -W ignore models/summary.py && python -W ignore models/outlook_brief.py
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

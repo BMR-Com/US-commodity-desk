@@ -22,7 +22,7 @@ const Summary = (() => {
         <div class="card"><h2>Latest headlines</h2><div id="svNews"></div></div></div>
       <div class="card" style="margin-top:12px"><h2>Weather watch: US, Brazil, Argentina</h2><div id="svWx"></div></div>
       ${groups.map(([g, gl]) => `<h2 class="sv-h">${gl}</h2>` + M.filter(m => m.group === g).map(m => `<div class="card sv-card" id="sv-${m.key}">
-        <div class="sv-head"><h2>${m.name} <span class="note">${m.contract || ''} ${f(m.price, m.dp)} ${m.unit || ''}</span></h2>${badge(m.view, m.conviction)}<a href="#" data-go="${m.key}" class="sv-link">open desk →</a></div>
+        <div class="sv-head"><h2>${m.name} <span class="note">${m.contract || ''} ${f(m.price, m.dp)} ${m.unit || ''}</span></h2>${badge(m.view, m.conviction)}<a href="#" data-go="${m.key}" class="sv-link">open desk →</a></div><div class="sv-ob" data-sym="${m.sym}"></div>
         <div class="grid g2"><div><h3>Fundamentals ${bar(m.scores.fundamental)}</h3><p>${m.paras.fundamental}</p><h3>Technicals &amp; seasonality ${bar(m.scores.technical)}</h3><p>${m.paras.technical}</p></div>
         <div><h3>Flows &amp; positioning ${bar(m.scores.flows)}</h3><p>${m.paras.flows}</p><h3>Outlook</h3><p><b>${m.paras.outlook}</b></p></div></div>
         ${m.ideas.length ? `<h3>Trade ideas by method</h3><div class="tbl"><table><tr><th>Method</th><th>Side</th><th>Instrument</th><th>Entry</th><th>Stop</th><th>Target</th><th>R:R</th><th>Horizon</th><th class="l">Why</th><th class="l">How it has tested</th></tr>
@@ -32,6 +32,7 @@ const Summary = (() => {
       <details id="svTrackWrap" style="margin-top:16px"><summary class="note" style="cursor:pointer">Brief track record (how past calls scored)</summary><div class="card" id="svTrack" style="margin-top:8px"><p class="note">Loading…</p></div></details></main>`;
     el.querySelectorAll('[data-go]').forEach(a => a.onclick = e => { e.preventDefault(); go(M.find(m => m.key === a.dataset.go)); });
     brief(document.getElementById('svBrief'));
+    el.querySelectorAll('.sv-ob').forEach(x => OutlookBrief.inline(x, x.dataset.sym));
     const tw = document.getElementById('svTrackWrap');  // load only when opened
     tw.addEventListener('toggle', () => { if (tw.open && !tw.dataset.done) { tw.dataset.done = 1; track(document.getElementById('svTrack')); } });
     RVView.sheet(document.getElementById('svSheet'));

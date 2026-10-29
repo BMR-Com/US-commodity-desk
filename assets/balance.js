@@ -60,3 +60,26 @@ const BalanceSheet = (() => {
   }
   return { mount };
 })();
+
+// Outlook in brief (data/derived/outlook_brief.json; models/outlook_brief.py): crop, exports, ending stocks, COT, technicals, options, bottom line.
+// OutlookBrief.mount(el, key) on a market's Outlook tab; OutlookBrief.inline(el, sym) on the Summary tab.
+const OutlookBrief = (() => {
+  const css = `<style id="obCss">.ob ul{margin:4px 0 0;padding-left:18px}.ob li{margin:4px 0;line-height:1.45}.ob li.bl{list-style:none;margin-left:-18px;margin-top:8px;padding:8px 10px;background:rgba(42,120,214,.06);border-radius:6px}</style>`;
+  const li = it => `<li class="${it.h === 'Bottom line' ? 'bl' : ''}"><b>${it.h}:</b> ${it.t}</li>`;
+  async function data() { return getJSON('data/derived/outlook_brief.json').catch(() => null); }
+  async function mount(el, key) {
+    if (!el) return;
+    if (!document.getElementById('obCss')) document.head.insertAdjacentHTML('beforeend', css);
+    const D = await data(); const m = D && D.markets && D.markets[key];
+    if (!m) { el.innerHTML = ''; return; }
+    el.innerHTML = `<div class="card ob"><h2>Outlook in brief — ${m.name} <span class="note">built ${D.generated}</span></h2><ul>${m.items.map(li).join('')}</ul>
+      <p class="note">Built automatically from the crop model, export sales, the balance sheet below, CFTC positioning, price technicals and options data. Research, not investment advice.</p></div>`;
+  }
+  async function inline(el, sym) {
+    if (!el) return;
+    if (!document.getElementById('obCss')) document.head.insertAdjacentHTML('beforeend', css);
+    const D = await data(); const m = D && Object.values(D.markets || {}).find(x => x.sym === sym);
+    el.innerHTML = m ? `<div class="ob"><h3>Outlook in brief</h3><ul>${m.items.map(li).join('')}</ul></div>` : '';
+  }
+  return { mount, inline };
+})();

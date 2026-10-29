@@ -1,1 +1,4 @@
-archive page failed 0 ReadTimeout(ReadTimeoutError("HTTPSConnectionPool(host='mymarketnews.ams.usda.gov', port=443): Read timed out. (read tim
+archive page retry 0 0 ReadTimeout(ReadTimeoutError("HTTPSConnectionPool(host='mymarketnews.ams.usda.gov', port=443): Read 
+archive page retry 0 1 ReadTimeout(ReadTimeoutError("HTTPSConnectionPool(host='mymarketnews.ams.usda.gov', port=443): Read 
+archive page retry 0 2 ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connectio
+archive page retry 0 3 ReadTimeout(ReadTimeoutError("HTTPSConnectionPool(host='mymarketnews.ams.usda.gov', port=443): Read 

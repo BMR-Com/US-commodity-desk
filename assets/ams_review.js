@@ -9,7 +9,7 @@ const AmsReview = (() => {
   </style>`;
   const n = (v, d = 2) => v == null ? '–' : (+v).toFixed(d);
   const sg = (v, d = 2) => v == null ? '–' : `<span class="${v > 0 ? 'up' : v < 0 ? 'dn' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(d)}</span>`;
-  const lvlCol = l => !l ? '' : /active|heavy|good|strong/.test(l) ? 'color:var(--up);border-color:var(--up)' : /inactive|slow|light|weak/.test(l) ? 'color:var(--dn);border-color:var(--dn)' : '';
+  const lvlCol = l => !l ? '' : /inactive|slow|light|weak/.test(l) ? 'color:var(--dn);border-color:var(--dn)' : /active|heavy|good|strong/.test(l) ? 'color:var(--up);border-color:var(--up)' : '';
   async function mount(el) {
     if (!document.getElementById('arCss')) document.head.insertAdjacentHTML('beforeend', css);
     el.innerHTML = '<div class="card"><p class="note">Loading the AMS market review…</p></div>';

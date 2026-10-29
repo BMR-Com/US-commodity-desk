@@ -341,7 +341,11 @@ def backfill(pages=1):
     H = {"User-Agent": "Mozilla/5.0 (research; bmr-com)"}
     done = {p.stem for p in OUT.glob("20*.json")}
     for pg in range(pages):
-        h = requests.get(ARCHIVE.format(pg), headers=H, timeout=120).text
+        try:
+            h = requests.get(ARCHIVE.format(pg), headers=H, timeout=120).text
+        except Exception as e:
+            print("archive page failed", pg, repr(e)[:120]); continue
+        print("archive page", pg, "links", len(re.findall(r'href="([^"]+\.pdf)"', h)))
         for link in re.findall(r'href="([^"]+\.pdf)"', h):
             m = re.search(r"/(\d{4}-\d{2}-\d{2})/", link)
             if not m or m.group(1) in done:
@@ -357,9 +361,12 @@ def backfill(pages=1):
     # briefs need the previous issue, so build them in date order
     files = sorted(OUT.glob("20*.json"))
     for i, f in enumerate(files):
-        d = json.loads(f.read_text())
-        d["brief"] = brief(d, json.loads(files[i - 1].read_text()) if i else None)
-        f.write_text(json.dumps(d, indent=1))
+        try:
+            d = json.loads(f.read_text())
+            d["brief"] = brief(d, json.loads(files[i - 1].read_text()) if i else None)
+            f.write_text(json.dumps(d, indent=1))
+        except Exception as e:
+            print("brief failed", f.stem, repr(e)[:120])
     write_latest()
 
 

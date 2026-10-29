@@ -35,7 +35,7 @@ jobs:
         env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}
         run: |
           python pipelines/ams_cotton_fc.py || true
-          python pipelines/ams_cotton_extra.py || true
+          python pipelines/ams_cotton_extra.py 2>&1 | tee data/cotton_review/extra.log || true   # REVIEW ONLY log
       - name: refresh the cotton outlook brief
         run: python -W ignore models/outlook_brief.py || true
       - name: commit

@@ -27,6 +27,14 @@ def mars(slug, q=None, all_sections=True):
     return {s.get("reportSection") or "Report": s.get("results") or [] for s in (j if isinstance(j, list) else [j])}
 
 
+def g(r, *ks):       # case-insensitive field lookup (MARS mixes report_begin_date / report_Begin_Date)
+    low = {k.lower(): v for k, v in r.items()}
+    for k in ks:
+        if k.lower() in low and low[k.lower()] not in (None, ""):
+            return low[k.lower()]
+    return None
+
+
 def num(v):
     try:
         return float(str(v).replace(",", ""))
@@ -46,26 +54,29 @@ def monthly():
     hist = json.loads(f.read_text()) if f.exists() else {"months": {}}
     start = (date.today().replace(day=1) - timedelta(days=500)).strftime("%m/%d/%Y")
     S = mars(3895, f"report_begin_date={start}:{date.today():%m/%d/%Y}")
+    print("monthly sections", {k: len(v) for k, v in S.items()})
+    if not any(S.values()):
+        S = mars(3895)                                   # latest report only
     for h in S.get("Report Header", []):
-        m = md(h["report_begin_date"])[:7]
-        txt = re.sub(r"<[^>]+>", " ", h.get("report_narrative") or "").strip()
+        m = md(g(h, "report_begin_date"))[:7]
+        txt = re.sub(r"<[^>]+>", " ", g(h, "report_narrative", "narrative") or "").strip()
         bas = re.search(r"basis for the base quality at the end of [A-Za-z]+ was ([\d,]+) points (off|on) the ICE ([A-Za-z]+ \d{4})", txt)
         bal = re.search(r"totaled ([\d,]+) running bales", txt)
-        hist["months"].setdefault(m, {}).update({"narrative": re.sub(r"\s+", " ", txt), "published": h.get("published_Date"),
+        hist["months"].setdefault(m, {}).update({"narrative": re.sub(r"\s+", " ", txt), "published": g(h, "published_date"),
                                                  "basis_pts": (-1 if bas.group(2) == "off" else 1) * num(bas.group(1)) if bas else None,
                                                  "basis_vs": bas.group(3) if bas else None, "bales": num(bal.group(1)) if bal else None})
     for r in S.get("Monthly Summary", []):
-        m = md(r["report_Begin_Date"])[:7]
+        m = md(g(r, "report_begin_date"))[:7]
         mk = hist["months"].setdefault(m, {}).setdefault("markets", {})
-        mk[r["market"]] = {"bales_month": num(r.get("bales_Reported_Current_Month")), "bales_my": num(r.get("bales_Reported_Market_Year")),
-                           "avg_41": num(r.get("monthly_Average_41_4_34")), "avg_31": num(r.get("monthly_Average_31_3_36")),
-                           "hi_41": num(r.get("monthly_High_41_4_34")), "lo_41": num(r.get("monthly_Low_41_4_34")), "ccc_loan_value": num(r.get("cCC_Loan_Average_Value"))}
+        mk[g(r, "market")] = {"bales_month": num(g(r, "bales_Reported_Current_Month")), "bales_my": num(g(r, "bales_Reported_Market_Year")),
+                           "avg_41": num(g(r, "monthly_Average_41_4_34")), "avg_31": num(g(r, "monthly_Average_31_3_36")),
+                           "hi_41": num(g(r, "monthly_High_41_4_34")), "lo_41": num(g(r, "monthly_Low_41_4_34")), "ccc_loan_value": num(g(r, "cCC_Loan_Average_Value"))}
     loans = S.get("CCC Loan Activity", [])
     if loans:
-        last = max(md(r["report_Begin_Date"]) for r in loans)
-        hist["ccc_loans"] = {"as_of": last[:7], "rows": [{"crop": r.get("crop_Year"), "disbursed": md(r.get("month_Disbursed"))[:7], "matures": md(r.get("month_Matures"))[:7],
-                                                         "made": num(r.get("total_Loans_Made")), "repaid": num(r.get("total_Repaid")), "forfeit": num(r.get("forfeitures")),
-                                                         "outstanding": num(r.get("outstanding"))} for r in loans if md(r["report_Begin_Date"]) == last]}
+        last = max(md(g(r, "report_begin_date")) for r in loans)
+        hist["ccc_loans"] = {"as_of": last[:7], "rows": [{"crop": g(r, "crop_Year"), "disbursed": md(g(r, "month_Disbursed"))[:7], "matures": md(g(r, "month_Matures"))[:7],
+                                                         "made": num(g(r, "total_Loans_Made")), "repaid": num(g(r, "total_Repaid")), "forfeit": num(g(r, "forfeitures")),
+                                                         "outstanding": num(g(r, "outstanding"))} for r in loans if md(g(r, "report_begin_date")) == last]}
     hist["latest"] = max(hist["months"]) if hist["months"] else None
     f.write_text(json.dumps(hist, indent=1))
     print("monthly prices through", hist["latest"])
@@ -126,7 +137,7 @@ def main():
         try:
             globals()[j]()
         except Exception as e:
-            print(j, "failed:", repr(e)[:200])
+            import traceback; print(j, "failed:", repr(e)[:300]); traceback.print_exc()
 
 
 if __name__ == "__main__":

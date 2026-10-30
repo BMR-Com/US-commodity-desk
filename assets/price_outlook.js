@@ -13,23 +13,24 @@ const PriceOutlook = (() => {
     el.innerHTML = `<div class="card"><h2>Price and spread outlook to May expiry <span class="note">as of ${D.asof} · built ${D.built}</span></h2>
       <p>May settled <b>${f(P.K, 2)}</b> (Mar ${f(P.H, 2)}, Jul ${f(P.N, 2)}, Dec ${f(P.Z_old, 2)}, new-crop Dec ${f(P.Z_new, 2)}). Spreads: Dec/Mar ${s(SP.ZH)}, Mar/May ${s(SP.HK)}, May/Jul ${s(SP.KN)}, Jul/Dec ${s(SP.NZ)}.</p>
       <div class="grid g2">
-        <div><h3>Scenarios (balance sheet → history)</h3><div class="tbl"><table><tr><th class="l">Case</th><th>US stocks/use</th><th>vs USDA</th><th>May at expiry</th><th>Range (±1 sd)</th><th>Jul/Dec in June</th></tr>
-          ${['bull', 'base', 'bear', 'usda'].map(k => `<tr${k === 'base' ? ' style="font-weight:600"' : ''}><td class="l">${lab[k]}</td><td>${f(S[k].su)}%</td><td>${s(S[k].dsu, 1)}</td><td>${f(S[k].may)} <span class="note">(${s(S[k].may_pct, 1)}%)</span></td><td>${f(S[k].may_lo)}–${f(S[k].may_hi)}</td><td>${s(S[k].jul_dec, 1)}</td></tr>`).join('')}</table></div>
-          <p class="note">Taking merchant hedging into account as well, the base case is ${f(S.base.may_hedge)} (${s(S.base.may_hedge_pct, 1)}%).</p></div>
-        <div><h3>Simulation (${fmt(M.n, 0)} balance-sheet outcomes, ${fmt(M.paths, 0)} price paths)</h3><div class="tbl"><table><tr><th class="l">10th / median / 90th percentile</th><th>Value</th></tr>
-          <tr><td class="l">May at expiry (${D.expiry})</td><td><b>${pr(M.may_expiry)}</b></td></tr>
-          <tr><td class="l">Highest May trades before expiry</td><td>${pr(M.may_high)}</td></tr>
-          <tr><td class="l">Lowest May trades before expiry</td><td>${pr(M.may_low)}</td></tr>
+        <div><h3>Simulation to mid-March (${fmt(M.n, 0)} balance-sheet outcomes, ${fmt(M.paths, 0)} price paths) — conservative</h3>
+          <p class="note">Uses the fit without world-shortage seasons and stops at the lowest March US stocks/use in it (${f(M.su_floor)}%, 2023/24); ${M.p_su_below_floor}% of simulated outcomes are tighter than that and are held there, so the upper end is understated.</p><div class="tbl"><table><tr><th class="l">10th / median / 90th percentile</th><th>Value</th></tr>
+          <tr><td class="l">May, February–March average</td><td><b>${pr(M.may_feb_mar)}</b> <span class="note">(above today ${M.p_may_above_now}%)</span></td></tr>
+          <tr><td class="l">Highest May trades by mid-March</td><td>${pr(M.may_high)}</td></tr>
+          <tr><td class="l">Lowest May trades by mid-March</td><td>${pr(M.may_low)}</td></tr>
           <tr><td class="l">Chance May trades at or above</td><td>${Object.entries(M.p_above).map(([k, v]) => `${k}: ${v}%`).join(' · ')}</td></tr>
           <tr><td class="l">Chance May trades at or below</td><td>${Object.entries(M.p_below).map(([k, v]) => `${k}: ${v}%`).join(' · ')}</td></tr>
-          <tr><td class="l">Mar/May near expiry</td><td>${pr(M.mar_may)} <span class="note">(inverse ${M.p_hk_inverse}%)</span></td></tr>
-          <tr><td class="l">May/Jul near expiry</td><td>${pr(M.may_jul)} <span class="note">(inverse ${M.p_kn_inverse}%)</span></td></tr>
-          <tr><td class="l">Jul/Dec in June</td><td>${pr(M.jul_dec)}</td></tr></table></div></div>
+          <tr><td class="l">May/Jul, February–March</td><td>${pr(M.may_jul)} <span class="note">(inverse ${M.p_kn_inverse}%)</span></td></tr>
+          <tr><td class="l">Jul/Dec, February–March</td><td>${pr(M.jul_dec)} <span class="note">(above today ${M.p_nz_above_now}%)</span></td></tr>
+          <tr><td class="l">Mar/May near its expiry</td><td>${pr(M.mar_may)} <span class="note">(history; inverse ${M.p_hk_inverse}%)</span></td></tr></table></div></div>
       </div>
-      ${D.fair ? `<div style="margin-top:8px"><h3>Fair value from the level of US stocks/use</h3>
-        <div class="tbl"><table><tr><th class="l">Case</th><th>US stocks/use</th><th>Fair May (Nov–Apr average), 2007/08 on excl. 2010/11</th><th>2013/14 on</th><th>All seasons</th></tr>
-        ${['usda', 'bear', 'base', 'bull'].map(k => `<tr${k === 'base' ? ' style="font-weight:600"' : ''}><td class="l">${lab[k]}</td><td>${f(D.fair.scen[k].su)}%</td><td>${f(D.fair.scen[k].ex_2010)}</td><td>${f(D.fair.scen[k].since_2013)}</td><td>${f(D.fair.scen[k].all)}</td></tr>`).join('')}</table></div>
-        <p>May at ${f(P.K, 2)} already implies US stocks/use of <b>${f(D.fair.implied_su.ex_2010)}–${f(D.fair.implied_su.all)}%</b> against USDA's ${f(D.usda_su)}%: the market is pricing close to the desk base case, not USDA's. What it is not pricing is the tight tail: the bullish case (${f(D.fair.scen.bull.su)}%) is below the lowest US stocks/use since 2007/08 (${f(D.fair.min_su_hist)}% in ${D.fair.min_su_my}, when May averaged ${f(D.fair.px_at_min)} with a world shortage). Simulated fair value: ${pr(D.fair.sim)}.</p></div>` : ''}
+      ${D.fair ? `<div style="margin-top:8px"><h3>Fair value in February–March, when USDA's numbers settle</h3>
+        <div class="tbl"><table><tr><th class="l">If USDA's March US stocks/use is</th><th>Fair May</th><th>Fair May/Jul</th><th>Fair Jul/Dec</th></tr>
+        ${['usda', 'bear', 'base', 'bull'].map(k => { const F = D.fair.scen[k]; return `<tr${k === 'base' ? ' style="font-weight:600"' : ''}><td class="l">${f(F.su)}% (${lab[k]}${k === 'bull' ? ', beyond history' : ''})</td><td>${f(F.px.ex_short, 0)}–${f(F.px.ex_2010, 0)}</td><td>${s(F.kn.ex_short)} to ${s(F.kn.ex_2010)}</td><td>${s(F.nz.ex_short, 1)} to ${s(F.nz.ex_2010, 1)}</td></tr>`; }).join('')}
+        <tr><td class="l">Today</td><td>${f(P.K, 2)}</td><td>${s(SP.KN)}</td><td>${s(SP.NZ)}</td></tr>
+        <tr><td class="l">USDA March stocks/use implied by today's price</td><td>${f(D.fair.implied_su.px.ex_short, 0)}–${f(D.fair.implied_su.px.ex_2010, 0)}%</td><td>${f(D.fair.implied_su.kn.ex_short, 0)}–${f(D.fair.implied_su.kn.ex_2010, 0)}%</td><td>${f(D.fair.implied_su.nz.ex_short, 0)}–${f(D.fair.implied_su.nz.ex_2010, 0)}%</td></tr>
+        <tr><td class="l">Fit (R², excl. world-shortage seasons → excl. 2010/11 → all)</td><td>${f(D.fair.fit.px.ex_short.r2, 2)} → ${f(D.fair.fit.px.ex_2010.r2, 2)} → ${f(D.fair.fit.px.all.r2, 2)}</td><td>${f(D.fair.fit.kn.ex_short.r2, 2)} → ${f(D.fair.fit.kn.ex_2010.r2, 2)} → ${f(D.fair.fit.kn.all.r2, 2)}</td><td>${f(D.fair.fit.nz.ex_short.r2, 2)} → ${f(D.fair.fit.nz.ex_2010.r2, 2)} → ${f(D.fair.fit.nz.all.r2, 2)}</td></tr></table></div>
+        <p>Ranges: fitted without the two world-shortage seasons (2010/11, 2021/22) and without 2010/11 only. Today's prices imply USDA's March US stocks/use near ${f(D.fair.implied_su.px.ex_2010, 0)}% for May and ${f(D.fair.implied_su.nz.ex_2010, 0)}% for Jul/Dec, between USDA's ${f(D.usda_su)}% now and the desk base ${f(D.fair.scen.base.su)}%. If USDA moves to the desk base by March, May, May/Jul and Jul/Dec are all cheap; the bullish case is below any March number since 2007/08 (lowest ${f(D.fair.min_su_hist)}%, ${D.fair.min_su_my}), so treat its values as direction, not level. Simulated fair May (10th / median / 90th): ${pr(D.fair.sim.px)}.</p></div>` : ''}
       <div class="grid g2" style="margin-top:8px">
         <div><h3>Merchant hedging vs hedgeable supply</h3><p>Producer/merchant shorts ${f(Hd.pm_short_m, 1)} m bales (${Hd.date}) = <b>${f(Hd.pct)}% of world exports</b>, rank ${Hd.rank} at this point of the season since 2010/11 (median ${f(Hd.median_pct)}%). Open interest ${f(Hd.oi_m, 1)} m bales; managed money net ${s(Hd.mm_net_m, 1)} m.
           In seasons when merchants were this heavily hedged (38%+), May rose ${s(Hd.high_mean, 1)}% on average to expiry; in lightly hedged ones (below 30%) ${s(Hd.low_mean, 1)}%.

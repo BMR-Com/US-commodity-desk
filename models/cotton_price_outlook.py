@@ -19,7 +19,7 @@ EX = ["Exports", "Exports, Total", "Exports, total"]
 SHORTAGE = ["2010/11", "2021/22"]        # world-shortage seasons: different regime, fitted apart
 BALES_PER_LOT = 50000 / 480 / 1e6
 VARS = ["USDA US balance sheet (October estimate vs final, 2010/11 on)", "desk US balance-sheet scenarios and their simulation",
-        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract", "May price level vs final US stocks/use (2007/08 on)", "cotton on-call (CFTC)"]
+        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract", "February-March May, May/Jul and Jul/Dec vs USDA March US stocks/use (2007/08 on)", "cotton on-call (CFTC)"]
 
 
 def load():
@@ -137,27 +137,57 @@ def main():
           "p_below": {lvl: round(100 * float((pmin <= lvl).mean()), 0) for lvl in (80, 78, 75)},
           "mar_may": pct(hk), "may_jul": pct(kn), "jul_dec": pct(nz), "p_hk_inverse": round(100 * float((hk > 0).mean()), 0), "p_kn_inverse": round(100 * float((kn > 0).mean()), 0)}
 
-    # fair value from the LEVEL of US stocks/use: May futures averaged November to expiry vs the final US stocks/use (log-log)
+    # fair value: the market prices USDA's numbers once crop and exports are clear (Feb-Mar), so fit Feb-Mar averages
+    # of May, May/Jul and Jul/Dec to USDA's March US stocks/use (the desk scenario stands in for where USDA's March number lands)
     fvrows = []
     for y in range(2007, oy - 1):
         my, n_ = f"{y}/{(y + 1) % 100:02d}", y + 1
-        su_ = 100 * lv(w, "United States", "Ending Stocks", my) / (lv(w, "United States", "Domestic Use", my) + lv(w, "United States", EX, my))
-        seg = d[(d.contract == f"CTK{n_}") & (d.date >= f"{y}-11-01") & (d.date <= f"{n_}-04-24")]
-        if len(seg) and su_ == su_:
-            fvrows.append((my, su_, float(seg.close.mean())))
-    FV = pd.DataFrame(fvrows, columns=["my", "su", "px"]).set_index("my")
-    def llfit(df):
-        X = np.column_stack([np.ones(len(df)), np.log(df.su)]); yv = np.log(df.px.values); b = np.linalg.lstsq(X, yv, rcond=None)[0]; e = yv - X @ b
+        rd = pd.Timestamp(f"{n_}-03-15")
+        den = lv(w, "United States", "Domestic Use", my, rd) + lv(w, "United States", EX, my, rd)
+        su_m = 100 * lv(w, "United States", "Ending Stocks", my, rd) / den if den == den and den else np.nan
+        win = lambda k: d[(d.contract == k) & (d.date >= f"{n_}-02-01") & (d.date <= f"{n_}-03-31")].set_index("date").close
+        K_, N_, Z_ = win(f"CTK{n_}"), win(f"CTN{n_}"), win(f"CTZ{n_}")
+        if len(K_) and su_m == su_m:
+            fvrows.append((my, su_m, float(K_.mean()), float((K_ - N_).dropna().mean()), float((N_ - Z_).dropna().mean())))
+    FV = pd.DataFrame(fvrows, columns=["my", "su", "px", "kn", "nz"]).set_index("my")
+    def fitf(df, ycol, kind):
+        x = np.log(df.su) if kind == "log" else 1 / df.su
+        yv = np.log(df[ycol].values) if kind == "log" else df[ycol].values
+        X = np.column_stack([np.ones(len(df)), x]); b = np.linalg.lstsq(X, yv, rcond=None)[0]; e = yv - X @ b
         return {"b": [round(float(v), 4) for v in b], "sd": round(float(np.sqrt(e @ e / (len(yv) - 2))), 3), "n": len(yv),
-                "r2": round(float(1 - (e @ e) / ((yv - yv.mean()) @ (yv - yv.mean()))), 2)}
-    fvf = {"ex_2010": llfit(FV.drop(index=["2010/11"], errors="ignore")), "since_2013": llfit(FV[FV.index >= "2013/14"]), "all": llfit(FV)}
-    fval = lambda su_, f_: float(np.exp(f_["b"][0] + f_["b"][1] * np.log(su_)))
-    fair = {k: {"su": round(v, 1), **{m_: round(fval(v, f_), 1) for m_, f_ in fvf.items()}}
+                "r2": round(float(1 - (e @ e) / ((yv - yv.mean()) @ (yv - yv.mean()))), 2), "kind": kind}
+    samples = {"ex_2010": FV.drop(index=["2010/11"], errors="ignore"), "ex_short": FV.drop(index=SHORTAGE, errors="ignore"), "since_2013": FV[FV.index >= "2013/14"], "all": FV}
+    fvf = {y_: {m_: fitf(df, y_, "log" if y_ == "px" else "inv") for m_, df in samples.items()} for y_ in ("px", "kn", "nz")}
+    def val(f_, su_):
+        return float(np.exp(f_["b"][0] + f_["b"][1] * np.log(su_))) if f_["kind"] == "log" else float(f_["b"][0] + f_["b"][1] / su_)
+    def inv(f_, v):
+        return float(np.exp((np.log(v) - f_["b"][0]) / f_["b"][1])) if f_["kind"] == "log" else float(f_["b"][1] / (v - f_["b"][0]))
+    fair = {k: {"su": round(v, 1), **{y_: {m_: round(val(f_, v), 2) for m_, f_ in fvf[y_].items()} for y_ in fvf}}
             for k, v in (("usda", usda_su), ("bear", S["bear"]["su"]), ("base", S["base"]["su"]), ("bull", S["bull"]["su"]))}
-    implied = {m_: round(float(np.exp((np.log(K0) - f_["b"][0]) / f_["b"][1])), 1) for m_, f_ in fvf.items()}
-    fv_sim = np.exp(fvf["ex_2010"]["b"][0] + fvf["ex_2010"]["b"][1] * np.log(np.maximum(su, 5)))
-    fairness = {"fit": fvf, "scen": fair, "implied_su": implied, "sim": pct(fv_sim), "min_su_hist": round(float(FV.su.min()), 1), "min_su_my": FV.su.idxmin(),
-                "px_at_min": round(float(FV.loc[FV.su.idxmin(), "px"]), 1), "table": [{"my": i, "su": round(v.su, 1), "px": round(v.px, 1)} for i, v in FV.iterrows()]}
+    implied = {"px": {m_: round(inv(f_, K0), 1) for m_, f_ in fvf["px"].items()},
+               "kn": {m_: round(inv(f_, sp["KN"]), 1) for m_, f_ in fvf["kn"].items() if sp["KN"] > f_["b"][0]},
+               "nz": {m_: round(inv(f_, sp["NZ"]), 1) for m_, f_ in fvf["nz"].items() if sp["NZ"] > f_["b"][0]}}
+    sus = np.maximum(su, 5)
+    fsim = {y_: pct(np.array([val(fvf[y_]["ex_2010"], v) for v in sus[:5000]])) for y_ in fvf}
+    fairness = {"fit": {y_: {m_: {k_: f_[k_] for k_ in ("r2", "sd", "n")} for m_, f_ in fvf[y_].items()} for y_ in fvf}, "scen": fair, "implied_su": implied, "sim": fsim,
+                "window": "February-March average; USDA March US stocks/use", "min_su_hist": round(float(FV.su.min()), 1), "min_su_my": FV.su.idxmin(),
+                "table": [{"my": i, "su": round(v.su, 1), "px": round(v.px, 1), "kn": round(v.kn, 2), "nz": round(v.nz, 2)} for i, v in FV.iterrows()]}
+    (ROOT / "data" / "derived" / "ct_fair_eval.json").write_text(json.dumps(fvf, indent=1))
+    # simulation on the fair-value model: USDA's March stocks/use drawn from the desk balance-sheet simulation
+    fp, fk, fz = fvf["px"]["ex_short"], fvf["kn"]["ex_short"], fvf["nz"]["ex_short"]     # conservative: excludes both world-shortage seasons
+    su_floor = float(samples["ex_short"].su.min())                                          # no extrapolation below what that fit has seen
+    sus = np.maximum(su, su_floor)
+    tgt_day = pd.Timestamp(f"{oy}-03-15")
+    term2 = np.exp(fp["b"][0] + fp["b"][1] * np.log(sus) + rng.normal(0, fp["sd"], n))
+    days2 = max(int(np.busday_count(today.date(), tgt_day.date())), 5)
+    st = rng.normal(0, vol / np.sqrt(252), (2000, days2)).cumsum(axis=1); tt2 = np.arange(1, days2 + 1) / days2
+    paths2 = K0 * np.exp(np.log(term2[:2000, None] / K0) * tt2 + (st - tt2 * st[:, -1:]))
+    knd = fk["b"][0] + fk["b"][1] / sus + rng.normal(0, fk["sd"], n); nzd = fz["b"][0] + fz["b"][1] / sus + rng.normal(0, fz["sd"], n)
+    mc.update({"target": tgt_day.strftime("%Y-%m-%d"), "may_feb_mar": pct(term2), "may_high": pct(paths2.max(axis=1)), "may_low": pct(paths2.min(axis=1)),
+               "p_above": {lvl: round(100 * float((paths2.max(axis=1) >= lvl).mean()), 0) for lvl in (90, 100, 110, 120)},
+               "p_below": {lvl: round(100 * float((paths2.min(axis=1) <= lvl).mean()), 0) for lvl in (80, 78, 75)},
+               "may_jul": pct(knd), "jul_dec": pct(nzd), "p_kn_inverse": round(100 * float((knd > 0).mean()), 0),
+               "p_nz_above_now": round(100 * float((nzd > sp["NZ"]).mean()), 0), "su_floor": round(su_floor, 1), "p_su_below_floor": round(100 * float((su < su_floor).mean()), 0), "p_may_above_now": round(100 * float((term2 > K0).mean()), 0), "days": days2})
     # merchants' NET short vs world exports, and the on-call book
     net_now = 100 * (r.prod_merc_positions_short - r.prod_merc_positions_long) * BALES_PER_LOT / wex
     nets = {}

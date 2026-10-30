@@ -45,7 +45,8 @@ const IndiaCotton = (() => {
       <div class="card" style="margin-top:12px"><h2>Monthly rain by region (mm)</h2><div class="ctrls" id="inRainSel"></div><div class="chart"><canvas id="cInRainM"></canvas></div><p class="note" id="inRainNote"></p></div>
       <div class="card" style="margin-top:12px"><h2>Balance sheets side by side</h2><div class="ctrls" id="inUnitSel"></div><div class="tbl" id="inBal"></div>
         <p class="note">COCPC: the government's Committee on Cotton Production and Consumption (official). CAI: the trade's crop committee, monthly. USDA: August–July year in 480-lb bales; COCPC and CAI use the October–September season.
-        The sources differ a lot in level, so the revisions matter more than the gaps between them.</p><p class="note" id="inDeskNote"></p></div>
+        The sources differ a lot in level, so the revisions matter more than the gaps between them.</p><p class="note" id="inDeskNote"></p>
+        <h3 style="margin-top:12px">Imports and the 11% duty (USDA year, m 480-lb bales)</h3><div class="tbl" id="inImpSc"></div><p class="note" id="inImpScNote"></p></div>
       ${D.notes?.cci ? cciCard(D.notes.cci) : ''}
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>CAI estimate revisions, this season and last</h2><div class="chart"><canvas id="cInRev"></canvas></div><p class="note" id="inRevNote"></p></div>
@@ -53,7 +54,7 @@ const IndiaCotton = (() => {
       </div>
       <div class="card" style="margin-top:12px"><h2>Shankar-6 vs ICE (¢/lb, weekly)</h2><div class="chart"><canvas id="cInPx"></canvas></div><p class="note" id="inPxNote"></p></div>
       ${(D.notes?.policy || []).length ? `<div class="card" style="margin-top:12px"><h2>Policy</h2>${D.notes.policy.map(p => `<p>${md(p.t)}</p>`).join('')}</div>` : ''}`;
-    proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); deskNote(); revChart(); tradeSel(); pxChart();
+    proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); deskNote(); impScen(); revChart(); tradeSel(); pxChart();
   }
 
   function cciCard(c) {
@@ -139,9 +140,17 @@ const IndiaCotton = (() => {
     document.getElementById('inDeskNote').innerHTML = `<b>Desk ${DB.season} (shaded):</b> built on each sheet. Opening stock = that sheet's ${DB.prev} closing corrected for actual customs trade: HS 5201 imports ${f(pi.actual, 1)} lakh bales through ${pi.through}
       (${f(pi.projected, 0)} for the season at the recent pace of ${f(pi.pace_month, 1)} a month) vs ${f(c.prev_imports_sheet, 0)} in COCPC and ${f(a?.prev_imports_sheet, 0)} in CAI; exports ${f(pe?.actual, 1)} (${f(pe?.projected, 0)}) vs ${f(c.prev_exports_sheet, 0)} and ${f(a?.prev_exports_sheet, 0)}.
       COCPC's past import and export lines match these customs figures. Crop = desk projection; imports and exports at the customs pace; consumption at each sheet's ${DB.prev} level.
-      <br><b>Desk, on USDA:</b> USDA's ${DB.prev} as published (August–July), then the desk crop and customs trade for ${DB.season}${DB.cases.usda ? ` (${DB.cases.usda.imports_months} month${DB.cases.usda.imports_months === 1 ? '' : 's'} of the new year reported, the rest at the recent pace); use at USDA's ${DB.season} figure. USDA's own ${DB.prev} imports (${f(DB.cases.usda.prev_usda_imports)} m) match customs (${f(DB.cases.usda.prev_customs_imports_m480)} m).` : ''}
-      ${DB.cases.usda_duty ? ` If the 11% duty returns in January and imports fall back to 2024-25's monthly pace, imports are ${f(DB.cases.usda_duty.imports_m480)} m and ending stocks ${f(DB.cases.usda_duty.closing_m480)} m.` : ''}
+      <br><b>Desk, on USDA:</b> USDA's ${DB.prev} as published (August–July), then the desk crop and customs trade for ${DB.season}${DB.cases.usda ? ` (imports: the expected-duty case in the table below); use at USDA's ${DB.season} figure. USDA's own ${DB.prev} imports (${f(DB.cases.usda.prev_usda_imports)} m) match customs (${f(DB.cases.usda.prev_customs_imports_m480)} m).` : ''}
       To hold ${DB.prev}'s stocks/use (${f(c.prev_stocks_use, 0)}% on COCPC) India would need about ${f(c.imports_to_hold_m480)} m 480-lb bales of imports (${f(c.imports_to_hold_stocks_use, 0)} lakh).`;
+  }
+
+  function impScen() {
+    const I = D.desk_balance?.import_scenarios, u = D.desk_balance?.cases?.usda; if (!I || !u) return;
+    const S = I.scenarios, mons = I.months.map(m => MON[+m.slice(5) - 1]);
+    document.getElementById('inImpSc').innerHTML = `<table><tr><th class="l">Case</th>${mons.map(m => `<th>${m}</th>`).join('')}<th>Imports</th><th>Ending stocks</th><th>Stocks/use</th></tr>
+      ${Object.values(S).map(v => `<tr><td class="l">${v.label}</td>${v.path.map((x, i) => `<td${I.reported.includes(I.months[i]) ? ' style="font-weight:600"' : ''}>${f(x)}</td>`).join('')}<td><b>${f(v.m480, 1)}</b></td><td><b>${f(v.closing_m480, 1)}</b></td><td>${fmt(v.stocks_use, 0)}%</td></tr>`).join('')}
+      <tr><td class="l">USDA</td>${mons.map(() => '<td></td>').join('')}<td>${f(u.usda_imports, 1)}</td><td>${f(u.usda_closing, 1)}</td><td></td></tr></table>`;
+    document.getElementById('inImpScNote').textContent = `Bold months are reported customs (HS 5201). Duty-free months at the last three duty-free months' pace (${f(I.free_pace)} m a month), duty months at the last five duty months' pace (${f(I.duty_pace)} m); before a duty return importers pull shipments forward (December 2025 was twice the months before) and the first duty month still carries part of it. All cases keep USDA's ${D.desk_balance.prev} ending stocks (${f(u.m480.opening)} m), the desk crop (${f(u.m480.crop)} m), USDA's use (${f(u.m480.consumption)} m) and exports at the customs pace (${f(u.m480.exports)} m). In the 2025 duty-free window imports ran faster (0.6 m a month in September–November), which would put the all-season case near 7 m.`;
   }
 
   function revChart() {

@@ -286,6 +286,54 @@ def season_trade(T, key, start=10):
     return out
 
 
+DUTY_FREE = [("2000-01-01", "2021-02-01"), ("2022-04-14", "2022-10-31"), ("2025-08-19", "2025-12-31"), ("2026-06-01", "2026-10-31")]   # 11% duty otherwise (notified)
+
+
+def is_free(ym, extra_until=None):
+    d = f"{ym}-15"
+    if any(a <= d <= b for a, b in DUTY_FREE):
+        return True
+    return bool(extra_until) and DUTY_FREE[-1][1] < d <= extra_until
+
+
+def import_scenarios(T, season, notes):
+    """USDA-year (Aug-Jul) raw cotton imports, m 480-lb bales, from monthly customs behaviour around the duty:
+    duty-free pace = last three duty-free months reported; duty pace = last five duty months; before each duty return importers
+    pull shipments forward (Dec 2025 = 2.0x the three months before), and the first duty month still carries ~30% of that rush."""
+    mon = {}
+    for mm, v in (T.get("raw_import") or {}).items():
+        t = (v.get("by_hs") or {}).get("5201") or 0
+        if t > 0:
+            mon[mm] = t / 17000 * LAKH170_TO_M480
+    ks = sorted(mon)
+    free_m = [mon[k] for k in ks if is_free(k)][-3:]
+    duty_m = [mon[k] for k in ks if not is_free(k)][-5:]
+    fp, dp = float(np.mean(free_m)), float(np.mean(duty_m))
+    y0 = int(season[:4])
+    months = [f"{y0 + (1 if mo < 8 else 0)}-{mo:02d}" for mo in (8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7)]
+    def path(until, rush):
+        tot, out = 0.0, []
+        last_free = max([m for m in months if is_free(m, until)], default=None)
+        for i, m in enumerate(months):
+            if m in mon:
+                v = mon[m]
+            elif is_free(m, until):
+                v = fp * (2.0 if rush and m == last_free else 1.0)
+            else:
+                prev = months[i - 1] if i else None
+                v = dp + (0.3 * fp * 2.0 if rush and prev == last_free and prev not in mon else 0.0)
+            out.append(round(v, 2)); tot += v
+        return round(tot, 2), out
+    ext = (notes or {}).get("duty_expected_until", "2026-12-31")
+    sc = {"notified": {"label": f"Duty back after {DUTY_FREE[-1][1]} (as notified), no rush"},
+          "expected": {"label": f"Duty-free to {ext} (expected), year-end rush, then duty"},
+          "all_year": {"label": "Duty-free all season (short crop keeps the waiver going)"}}
+    sc["notified"]["m480"], sc["notified"]["path"] = path(None, False)
+    sc["expected"]["m480"], sc["expected"]["path"] = path(ext, True)
+    sc["all_year"]["m480"], sc["all_year"]["path"] = path(f"{y0 + 1}-07-31", False)
+    return {"months": months, "free_pace": round(fp, 2), "duty_pace": round(dp, 2), "reported": [m for m in months if m in mon], "scenarios": sc}
+
+
 def desk_balance(page):
     """Desk balance sheet for the new season (lakh 170-kg bales), built twice: on the official COCPC sheet and on CAI's.
     Last season's closing stock is corrected for actual customs imports and exports; the new season takes the desk crop,
@@ -317,30 +365,17 @@ def desk_balance(page):
     U = B["usda"]; uprev = U.get(prev, {}).get("m480"); ucur = U.get(new, {}).get("m480")
     if uprev and ucur:
         ui, ue = season_trade(T, "raw_import", 8), season_trade(T, "raw_export", 8)
-        im = (ui[new]["projected"] if new in ui else ui.get(prev, {}).get("projected")) or 0
+        IS = import_scenarios(T, new, page.get("notes"))
+        out["import_scenarios"] = IS
+        im = IS["scenarios"]["expected"]["m480"] / LAKH170_TO_M480
         ex = (ue[new]["projected"] if new in ue else ue.get(prev, {}).get("projected")) or 0
         lk = lambda v: v / LAKH170_TO_M480
         m = {"opening": uprev["closing"], "crop": P["m480"], "imports": m480(im), "consumption": ucur["consumption"], "exports": m480(ex)}
         m["supply"] = round(m["opening"] + m["crop"] + m["imports"], 2)
         m["closing"] = round(m["supply"] - m["consumption"] - m["exports"], 2)
-        # duty case: duty-free pace through December, then each remaining month at the same month of the last full season with the 11% duty (2024-25)
-        mon = {}
-        for mm, v in (T.get("raw_import") or {}).items():
-            t = (v.get("by_hs") or {}).get("5201") or 0
-            if t > 0:
-                mon[mm] = t / 17000
-        y0 = int(new[:4]); pace = ui[new]["pace_month"] if new in ui else ui.get(prev, {}).get("pace_month", 0)
-        duty_im = 0.0
-        for k in range(12):
-            mo = (8 + k - 1) % 12 + 1; yy = y0 + (1 if mo < 8 else 0); key = f"{yy}-{mo:02d}"
-            if key in mon:
-                duty_im += mon[key]
-            elif (yy, mo) <= (y0, 12):
-                duty_im += pace
-            else:
-                duty_im += mon.get(f"{yy - 2}-{mo:02d}", pace)
-        dclose = round(m["closing"] - m480(im) + m480(duty_im), 2)
-        out["cases"]["usda_duty"] = {"imports_m480": m480(duty_im), "closing_m480": dclose}
+        for k, v in IS["scenarios"].items():
+            v["closing_m480"] = round(m["opening"] + m["crop"] + v["m480"] - m["consumption"] - m["exports"], 2)
+            v["stocks_use"] = round(100 * v["closing_m480"] / (m["consumption"] + m["exports"]), 1)
         out["cases"]["usda"] = {"m480": m, "lakh": {k: round(lk(v), 1) for k, v in m.items()}, "stocks_use": round(100 * m["closing"] / (m["consumption"] + m["exports"]), 1),
                                 "usda_closing": ucur["closing"], "usda_imports": ucur["imports"], "usda_exports": ucur["exports"],
                                 "imports_months": ui.get(new, {}).get("months", 0), "prev_customs_imports_m480": m480(ui.get(prev, {}).get("actual")),
@@ -389,11 +424,12 @@ def brief(page, F):
                     f"({c['imports_to_hold_stocks_use']:.0f} lakh), against USDA's {page['balance']['usda'].get(DB['season'], {}).get('m480', {}).get('imports', 0):.1f} m."})
     u = DB.get("cases", {}).get("usda")
     if u:
-        out.append({"h": "On USDA's numbers", "t": f"Keeping USDA's {DB['prev']} as published (ending stocks {u['m480']['opening']:.1f} m) and replacing its {DB['season']} crop and trade with the desk crop "
-                    f"({u['m480']['crop']:.1f} m vs {page['projection']['usda_m480']:.1f}) and the customs pace (imports {u['m480']['imports']:.1f} m vs USDA {u['usda_imports']:.1f}; exports {u['m480']['exports']:.1f} vs {u['usda_exports']:.1f}), "
-                    f"ending stocks come to **{u['m480']['closing']:.1f} m** vs USDA's {u['usda_closing']:.1f} m. "
-                    + (f"If the 11% duty returns in January and imports drop back to 2024-25's monthly pace from then, imports are {DB['cases']['usda_duty']['imports_m480']:.1f} m and ending stocks {DB['cases']['usda_duty']['closing_m480']:.1f} m. " if DB['cases'].get('usda_duty') else "")
-                    + "Either way the smaller crop is largely made up by imports; USDA's 3.3 m import figure looks too low for a 21 m crop."})
+        S = DB["import_scenarios"]["scenarios"]
+        out.append({"h": "Imports and the duty", "t": f"Customs data show imports run at about {DB['import_scenarios']['free_pace']:.2f} m bales a month duty-free and {DB['import_scenarios']['duty_pace']:.2f} m with the 11% duty, "
+                    f"with a rush before each deadline (December 2025 was double the months before, then imports fell to 0.08 m in February). Keeping USDA's {DB['prev']} and its {DB['season']} use ({u['m480']['consumption']:.1f} m), "
+                    f"with the desk crop ({u['m480']['crop']:.1f} m): if the duty returns in November as notified, imports are **{S['notified']['m480']:.1f} m** (about USDA's {u['usda_imports']:.1f} m, so that is the floor) and ending stocks {S['notified']['closing_m480']:.1f} m; "
+                    f"duty-free to December as expected, **{S['expected']['m480']:.1f} m** and {S['expected']['closing_m480']:.1f} m; duty-free all season, **{S['all_year']['m480']:.1f} m** and {S['all_year']['closing_m480']:.1f} m (USDA {u['usda_closing']:.1f} m). "
+                    f"So imports rise a lot only if the waiver runs well past December; each extra duty-free month adds roughly {DB['import_scenarios']['free_pace'] - DB['import_scenarios']['duty_pace']:.2f} m."})
     cci = (page.get("notes") or {}).get("cci")
     if cci:
         left = cci["procured"] - cci["sold"]

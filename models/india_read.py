@@ -48,8 +48,10 @@ def india_for_us():
     if fo:
         t += (f"Counting the Brazilian, African and Australian cotton India takes from other buyers, US exports gain about {fo['base']:.1f} m bales in the desk base and {fo['bear']:.1f} m in the bearish (big-crop, lower-price) case")
         if sm:
-            t += (f"; base exports {sm['base']['exports']:.1f} m and bearish {sm['bear']['exports']:.1f} m vs USDA {B['rows'][[r['label'] for r in B['rows']].index('Exports')]['usda'][B['cur']]:.1f}, "
-                  f"and every case runs into the {B.get('floor', 0):.2f} m stock floor ({B.get('floor_my')}), so price has to ration exports. ")
+            sim = B.get("sim") or {}
+            t += (f"; in the desk's simulated balance sheet (crop and exports drawn together, India's duty path included) base exports are {sm['base']['exports']:.1f} m vs USDA {B['rows'][[r['label'] for r in B['rows']].index('Exports')]['usda'][B['cur']]:.1f}, "
+                  f"ending stocks {sm['base']['end']:.1f} m (bullish {sm['bull']['end']:.1f}, bearish {sm['bear']['end']:.1f}; USDA {B['usda_end']:.2f})"
+                  + (f", and {sim['p_below_usda']:.0f}% of runs end below USDA. " if sim else ". "))
         else:
             t += ". "
     sp = spreads()

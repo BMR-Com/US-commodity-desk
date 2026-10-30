@@ -11,6 +11,7 @@ Output:      data/derived/balance_sheets.json
 """
 import json, sys, warnings
 from pathlib import Path
+import numpy as np
 import pandas as pd
 
 warnings.filterwarnings("ignore")
@@ -53,7 +54,7 @@ ALT = {"Ending Stocks": ["Ending Stocks, Total"], "Avg. Farm Price": ["Avg. farm
 VARS = {   # shown on the public page (variables only; rules live in the private research notes)
     "cotton": ["BMR-Com crop model (crop ratings, drought, ginnings, classing by office, FSA acreage)", "USDA crop estimate", "Texas abandonment (and its largest post-October rise on record)", "India import demand by duty status and origin (Cotton > India)",
                "weekly export sales (commitments, shipments, net sales)", "USDA export forecast", "price response of exports to crop size",
-               "US share of world trade", "rival exporters' stocks (Brazil, Australia, Africa, Central Asia)", "pipeline minimum stocks", "USDA October-to-final crop revision history"],
+               "US share of world trade", "rival exporters' stocks (Brazil, Australia, Africa, Central Asia)", "pipeline minimum stocks", "USDA October-to-final crop revision history", "export-sales projection error at this week of the season"],
     "corn": ["desk crop-condition yield model", "USDA yield and harvested area", "weekly export sales", "USDA export forecast", "price response of exports to crop size",
              "US share of world trade", "rival exporters' stocks", "pipeline minimum stocks", "USDA October-to-final crop revision history"],
     "soybeans": ["desk crop-condition yield model", "USDA yield and harvested area", "weekly export sales", "USDA export forecast", "price response of exports to crop size",
@@ -228,6 +229,46 @@ def foreign_demand(key, ex, u):
         return None
 
 
+PIPELINE = {"cotton": 1.5}     # m bales: working stocks the trade needs; US ending stocks have been below 2 m before
+
+
+def simulate(u, prod, base_ex, theta, foreign, exp_miss_pct, bounds, tc, pipe, key, n=20000, seed=7):
+    """Monte Carlo of the crop and the export programme.
+    Crop ~ normal around the base case with sd = half the bullish-bearish crop band, clipped to USDA's historical post-October revisions.
+    Exports = base view + price response (theta x crop surprise) + foreign demand (cotton: India's duty path drawn 25/50/25 for duty back
+    in November / waiver to December / waiver all season) + noise with sd = the export-sales projection's typical miss at this week.
+    Exports are capped by the trade ceiling and rationed so stocks stay above the pipeline minimum.
+    Base / bullish / bearish = median / 10th / 90th percentile of ending stocks; each case reports the average crop and exports of the
+    draws around that percentile, so the columns stay internally consistent."""
+    rng = np.random.default_rng(seed)
+    mu, sd = prod["base"], max((prod["bear"] - prod["bull"]) / 2, 0.01 * prod["base"])
+    crop = rng.normal(mu, sd, n)
+    if bounds:
+        up = u["Production"]
+        crop = np.clip(crop, up * (1 + bounds["dP_min"]), up * (1 + bounds["dP_max"]))
+    em = (exp_miss_pct or 6.0) / 100
+    ex = base_ex + theta * (crop - mu) + rng.normal(0, em * base_ex, n)
+    if foreign:
+        k = rng.choice(3, n, p=[0.25, 0.5, 0.25])
+        ex += np.select([k == 0, k == 1, k == 2], [0.0, foreign["base"], foreign["bear"]])
+    if tc and tc.get("cap") is not None:
+        ex = np.minimum(ex, tc["cap"])
+    other_use = sum(u.get(k_) or 0 for k_ in (("Domestic use",) if key != "soybeans" else ("Crush", "Seed & residual")))
+    supply = (u.get("Beginning stocks") or 0) + crop + (u.get("Imports") or 0)
+    end = supply - other_use - ex - (u.get("Unaccounted") or 0)
+    rationed = np.zeros(n, bool)
+    if pipe is not None:
+        rationed = end < pipe
+        ex = np.where(rationed, ex - (pipe - end), ex); end = np.maximum(end, pipe)
+    out = {"n": n, "rationed_pct": round(100 * rationed.mean(), 1), "end_pct": {p: round(float(np.percentile(end, p)), 3) for p in (5, 10, 25, 50, 75, 90, 95)},
+           "p_below_usda": round(100 * float((end < u["Ending stocks"]).mean()), 1), "usda_end": u["Ending stocks"]}
+    for s, p in (("bull", 10), ("base", 50), ("bear", 90)):
+        lo, hi = np.percentile(end, max(p - 3, 0)), np.percentile(end, min(p + 3, 100))
+        m = (end >= lo) & (end <= hi)
+        out[s] = {"prod": float(crop[m].mean()), "exports": float(ex[m].mean()), "end": float(end[m].mean())}
+    return out
+
+
 def export_views(b):
     """central and the spread across the projection's own views (not the full historical min-max)."""
     pr = b.get("proj") or {}
@@ -333,11 +374,29 @@ def build():
         if foreign:
             ex["base"] += foreign["base"]; ex["bear"] += foreign["bear"]
             esrc += (f". India: base adds {foreign['base']:.2f} m bales (its duty waiver to {foreign['waiver_to']}: {foreign['direct_base']:.2f} direct, plus {foreign['displaced_base']:.2f} of demand it pushes to the US by buying Brazilian, African and Australian cotton); "
-                     f"bearish adds {foreign['bear']:.2f} m (waiver all season, when lower prices win more sales); bullish adds none (supply binds). "
+                     f"waiver all season adds {foreign['bear']:.2f} m (lower prices win more sales); the simulation draws the duty path (25% back in November, 50% to December, 25% all season). "
                      f"China's yarn imports already show in Vietnam and Pakistan sales, so they are not added again")
         tc = trade_cap(key, cur, b, cfgs.get(key)) if not product else None
         floor = float(hist_end[hist_end.index < cur].min()) if len(hist_end[hist_end.index < cur]) else None
         floor_my = hist_end[hist_end.index < cur].idxmin() if floor is not None else None
+        sim = None
+        if theta is not None and not product:
+            pipe = PIPELINE.get(key, 0.6 * floor if floor else None)
+            em = export_miss(cfgs[key], b["wk"]) if b and key in cfgs else None
+            sim = simulate(u, prod, base_ex, theta, foreign, em, bounds, tc, pipe, key)
+            if sim:
+                for s in ("base", "bear", "bull"):
+                    if key == "cotton" and cot_ay:
+                        # harvested area moves with the crop along the abandonment line of the original cases
+                        xs = np.array([prod[k_] for k_ in cot_ay]); ys = np.array([cot_ay[k_]["Harvested area (m ac)"] for k_ in cot_ay])
+                        sl, ic = np.polyfit(xs, ys, 1) if len(set(np.round(xs, 3))) > 1 else (0.0, float(ys.mean()))
+                        ar = ic + sl * sim[s]["prod"]
+                        cot_ay[s] = {"Harvested area (m ac)": ar, "Yield (lb/ac)": sim[s]["prod"] * 480 / ar, "tx_ab": None}
+                    if yld and u.get("Harvested area (m ac)"):
+                        yld[s] = sim[s]["prod"] / u["Harvested area (m ac)"]
+                    prod[s] = sim[s]["prod"]; ex[s] = sim[s]["exports"]
+                floor, floor_my = pipe, "pipeline minimum"
+                psrc += f". Scenarios now come from {sim['n']:,} simulated crops and export programmes: base = median ending stocks, bullish = 10th percentile, bearish = 90th"
         capped = {}
         scen = {}
         for s in ("base", "bear", "bull"):
@@ -380,7 +439,7 @@ def build():
                                "summary": {s: {"prod": prod[s], "exports": scen[s]["Exports"], "exports_proj": ex[s], "end": scen[s]["Ending stocks"], "su": su(scen[s])} for s in scen},
                                "usda_end": es_u, "usda_su": su(u),
                                "exp_week": b["wk"] if b else None, "exp_miss": export_miss(cfgs[key], b["wk"]) if b and key in cfgs else None,
-                               "vars": VARS.get(key, []), "floor": floor, "floor_my": floor_my, "foreign": foreign if theta is not None else None, "capped": capped, "product": product, "trade": tc, "theta": theta if not product else None,
+                               "vars": VARS.get(key, []), "floor": floor, "floor_my": floor_my, "foreign": foreign if theta is not None else None, "sim": sim, "capped": capped, "product": product, "trade": tc, "theta": theta if not product else None,
                                "tx_ab": {k_: v["tx_ab"] for k_, v in cot_ay.items()} if cot_ay else None, "bounds": bounds,
                                "exp_usda": u.get("Exports"), "prod_usda": u.get("Production")}
     OUT.parent.mkdir(parents=True, exist_ok=True)

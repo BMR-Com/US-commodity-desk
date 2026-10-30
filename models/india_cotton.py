@@ -21,8 +21,8 @@ REGION = {"Punjab": "North", "Haryana": "North", "Rajasthan": "North", "Gujarat"
 ORDER = ["North", "Gujarat", "Maharashtra", "Madhya Pradesh", "Telangana + AP", "Karnataka", "South other"]
 IRRIGATED = {"North"}
 VARS = ["State and zone cotton area (Cotton Advisory Board / COCPC via CAI) and this season's sown area (Ministry of Agriculture)",
-        "Each region's normal yield: the average of its previous three seasons",
-        "June-July rainfall and the August-September rainfall shortfall at the main cotton districts, against the 1991-2020 normal (NASA POWER)"]
+        "Recent regional yields",
+        "June-September rainfall at the main cotton districts against the 1991-2020 normal (NASA POWER)"]
 
 
 def jl(name, default=None):

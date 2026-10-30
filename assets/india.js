@@ -31,8 +31,7 @@ const IndiaCotton = (() => {
       </div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>Desk crop projection by region (${P.season})</h2><div class="tbl" id="inProj"></div>
-          <p class="note">Production = sown area × yield. Yield starts from each region's average of the last three seasons and moves with this season's rainfall at its main cotton districts. Variables used: ${P.variables.join('; ')}.
-          * North (Punjab, Haryana, Rajasthan) is mostly irrigated, so rain is not used there. Normal yield = average of the last three seasons. Range: the model's typical miss in past seasons.</p></div>
+          <p class="note">Variables used: ${P.variables.join('; ')}. * North (Punjab, Haryana, Rajasthan) is mostly irrigated. Range: the model's typical miss in past seasons.</p></div>
         <div class="card"><h2>India production by season (m 480-lb bales)</h2><div class="chart"><canvas id="cInProd"></canvas></div>
           <p class="note">Cotton Advisory Board / COCPC production converted to US bales; the last bar is the desk projection with its range, beside USDA.</p></div>
       </div>
@@ -57,7 +56,7 @@ const IndiaCotton = (() => {
         <div class="grid g2" style="margin-top:8px"><div class="tbl" id="inOrgWin"></div><div class="tbl" id="inOrgSplit"></div></div>
         <div class="grid g2" style="margin-top:8px"><div class="tbl" id="inOrgCost"></div><div class="tbl" id="inOrgSup"></div></div>
         <p class="note">Origins: India-reported imports of raw cotton (HS 5201) from UN Comtrade, by month. Africa = all African origins except Egypt (shown apart: extra-long staple). Least-developed African countries ship duty-free under India's DFTP scheme; Australia ships duty-free within the 51,000 t ECTA quota.
-        Origin split of the desk scenarios: each month's imports shared out by that calendar month's origin mix since 2022 under the same duty status, weighted by each origin's exportable supply for the new season against last season (USDA; the US on the desk crop). Landed cost = ICE nearby + basis (desk trade levels), before freight.</p></div>` : ''}
+        Variables used for the 2026/27 split: India's origin mix by calendar month and duty status since 2022, each origin's exportable supply (USDA; the US on the desk crop), and the import scenarios above. Landed cost = ICE nearby + basis (desk trade levels), before freight.</p></div>` : ''}
       <div class="card" style="margin-top:12px"><h2>Shankar-6 vs ICE (¢/lb, weekly)</h2><div class="chart"><canvas id="cInPx"></canvas></div><p class="note" id="inPxNote"></p></div>
       ${(D.notes?.policy || []).length ? `<div class="card" style="margin-top:12px"><h2>Policy</h2>${D.notes.policy.map(p => `<p>${md(p.t)}</p>`).join('')}</div>` : ''}`;
     proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); deskNote(); impScen(); origins(); revChart(); tradeSel(); pxChart();
@@ -143,7 +142,7 @@ const IndiaCotton = (() => {
   function deskNote() {
     const DB = D.desk_balance; if (!DB?.cases?.cocpc) return;
     const c = DB.cases.cocpc, a = DB.cases.cai, pi = DB.imports_customs[DB.prev], pe = DB.exports_customs[DB.prev];
-    document.getElementById('inDeskNote').innerHTML = `<b>Desk ${DB.season} (shaded):</b> built on each sheet. Opening stock = that sheet's ${DB.prev} closing corrected for actual customs trade: HS 5201 imports ${f(pi.actual, 1)} lakh bales through ${pi.through}
+    document.getElementById('inDeskNote').innerHTML = `<b>Desk ${DB.season} (shaded):</b> built on each sheet; opening stock is that sheet's ${DB.prev} closing corrected for actual customs trade: HS 5201 imports ${f(pi.actual, 1)} lakh bales through ${pi.through}
       (${f(pi.projected, 0)} for the season at the recent pace of ${f(pi.pace_month, 1)} a month) vs ${f(c.prev_imports_sheet, 0)} in COCPC and ${f(a?.prev_imports_sheet, 0)} in CAI; exports ${f(pe?.actual, 1)} (${f(pe?.projected, 0)}) vs ${f(c.prev_exports_sheet, 0)} and ${f(a?.prev_exports_sheet, 0)}.
       COCPC's past import and export lines match these customs figures. Crop = desk projection; imports and exports at the customs pace; consumption at each sheet's ${DB.prev} level.
       <br><b>Desk, on USDA:</b> USDA's ${DB.prev} as published (August–July), then the desk crop and customs trade for ${DB.season}${DB.cases.usda ? ` (imports: the expected-duty case in the table below); use at USDA's ${DB.season} figure. USDA's own ${DB.prev} imports (${f(DB.cases.usda.prev_usda_imports)} m) match customs (${f(DB.cases.usda.prev_customs_imports_m480)} m).` : ''}
@@ -156,7 +155,7 @@ const IndiaCotton = (() => {
     document.getElementById('inImpSc').innerHTML = `<table><tr><th class="l">Case</th>${mons.map(m => `<th>${m}</th>`).join('')}<th>Imports</th><th>Ending stocks</th><th>Stocks/use</th></tr>
       ${Object.values(S).map(v => `<tr><td class="l">${v.label}</td>${v.path.map((x, i) => `<td${I.reported.includes(I.months[i]) ? ' style="font-weight:600"' : ''}>${f(x)}</td>`).join('')}<td><b>${f(v.m480, 1)}</b></td><td><b>${f(v.closing_m480, 1)}</b></td><td>${fmt(v.stocks_use, 0)}%</td></tr>`).join('')}
       <tr><td class="l">USDA</td>${mons.map(() => '<td></td>').join('')}<td>${f(u.usda_imports, 1)}</td><td>${f(u.usda_closing, 1)}</td><td></td></tr></table>`;
-    document.getElementById('inImpScNote').textContent = `Bold months are reported customs (HS 5201). Duty-free months at the last three duty-free months' pace (${f(I.free_pace)} m a month), duty months at the last five duty months' pace (${f(I.duty_pace)} m); before a duty return importers pull shipments forward (December 2025 was twice the months before) and the first duty month still carries part of it. All cases keep USDA's ${D.desk_balance.prev} ending stocks (${f(u.m480.opening)} m), the desk crop (${f(u.m480.crop)} m), USDA's use (${f(u.m480.consumption)} m) and exports at the customs pace (${f(u.m480.exports)} m). In the 2025 duty-free window imports ran faster (0.6 m a month in September–November), which would put the all-season case near 7 m.`;
+    document.getElementById('inImpScNote').textContent = `Bold months are reported customs (HS 5201). Variables used: monthly customs imports in duty-free and duty months, the duty dates, USDA's ${D.desk_balance.prev} ending stocks and ${D.desk_balance.season} use, the desk crop and customs exports.`;
   }
 
   function origins() {

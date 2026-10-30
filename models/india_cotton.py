@@ -423,6 +423,19 @@ def origin_section(page):
                 tot[o] += v * w[o] / W
         split[k] = {o: round(tot[o], 2) for o in ORIGINS}
     extra = {o: round(split["expected"][o] - split["notified"][o], 2) for o in ORIGINS} if "expected" in split else {}
+    # US export sales to India (FAS, upland, running bales): commitments so far this US marketing year
+    us_commit = None
+    try:
+        import glob, pandas as pd
+        fs = sorted(glob.glob(str(ROOT / "data" / "grains" / "raw" / "export_sales" / "cotton_upland" / "MY*.csv")))
+        e = pd.read_csv(fs[-1]); e = e[e.countryCode == 5330]
+        if len(e):
+            w = e.weekEndingDate.max(); r = e[e.weekEndingDate == w]
+            us_commit = {"week": str(w)[:10], "my": fs[-1][-8:-4], "commit_m": round(float(r.currentMYTotalCommitment.sum()) / 1e6, 2),
+                         "shipped_m": round(float(r.accumulatedExports.sum()) / 1e6, 2), "outstanding_m": round(float(r.outstandingSales.sum()) / 1e6, 2)}
+            us_commit["to_book"] = {k: round(split[k]["USA"] - us_commit["commit_m"], 2) for k in split}
+    except Exception as ex_:
+        print("us commitments", repr(ex_)[:100])
     extra_all = {o: round(split["all_year"][o] - split["notified"][o], 2) for o in ORIGINS} if "all_year" in split else {}
     last12 = [m for m in months][-12:]
     t12 = {o: sum(G[m][o] for m in last12) for o in ORIGINS}; T12 = sum(t12.values())
@@ -434,7 +447,7 @@ def origin_section(page):
             cost[o] = {"basis": f"{lo}-{hi}", "free": round(mid, 1), "duty": round(mid * (1.11 if o in ("USA", "Brazil") else 1.0), 1), "treatment": duty}
         cost["Australia"]["above_quota"] = round((ice + 16) * 1.11, 1)
     monthly = {m: {o: round(G[m][o] / 1000, 1) for o in ORIGINS} for m in months if m >= "2021-08"}
-    return {"windows": win, "supply": sup, "split": split, "extra_expected": extra, "extra_all_year": extra_all, "cost": cost, "ice": ice,
+    return {"us_commit": us_commit, "windows": win, "supply": sup, "split": split, "extra_expected": extra, "extra_all_year": extra_all, "cost": cost, "ice": ice,
             "last12": {"from": last12[0], "to": last12[-1], "kt": round(T12 / 1000, 1), "share": {o: round(100 * t12[o] / T12, 1) for o in ORIGINS}},
             "monthly_kt": monthly, "free_months": [m for m in months if is_free(m)], "latest": months[-1]}
 
@@ -545,7 +558,9 @@ def brief(page, F):
                     + (f"in the Apr–Oct 2022 window {w22['share']['USA']:.0f}% (US shipping season, Brazil out of cotton). " if w22 else "")
                     + f"With each origin's 2026/27 exportable supply (Australia {O['supply'].get('Australia', {}).get('index', 1) * 100 - 100:+.0f}%, the US {O['supply'].get('USA', {}).get('index', 1) * 100 - 100:+.0f}% on the desk crop), "
                     f"US cotton to India is about {sp['notified']['USA']:.1f} m bales if the duty returns in November, **{sp['expected']['USA']:.1f} m** with the waiver to December (+{O['extra_expected']['USA']:.2f} m; Brazil +{O['extra_expected']['Brazil']:.2f}, Africa +{O['extra_expected']['Africa']:.2f}) "
-                    f"and {sp['all_year']['USA']:.1f} m if it runs all season (+{O['extra_all_year']['USA']:.2f} m, most of it March–July)."})
+                    f"and {sp['all_year']['USA']:.1f} m if it runs all season (+{O['extra_all_year']['USA']:.2f} m, most of it March–July)."
+                    + (f" US commitments to India are {O['us_commit']['commit_m']:.2f} m (week of {O['us_commit']['week']}), so new US sales still to come are about {O['us_commit']['to_book']['notified']:.1f} m, "
+                       f"**{O['us_commit']['to_book']['expected']:.1f} m** and **{O['us_commit']['to_book']['all_year']:.1f} m** in the three cases." if O.get("us_commit") else "")})
     cci = (page.get("notes") or {}).get("cci")
     if cci:
         left = cci["procured"] - cci["sold"]

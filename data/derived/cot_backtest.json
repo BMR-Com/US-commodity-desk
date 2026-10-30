@@ -194,16 +194,16 @@
  "CB": {
   "w4": {
    "all": {
-    "n": 788,
+    "n": 789,
     "mean_pct": -0.16,
     "up_share": 0.47,
     "t_approx": -0.53
    },
    "extreme_short": {
-    "n": 257,
+    "n": 258,
     "mean_pct": -0.2,
-    "up_share": 0.44,
-    "t_approx": -0.44
+    "up_share": 0.43,
+    "t_approx": -0.45
    },
    "extreme_long": {
     "n": 92,
@@ -214,16 +214,16 @@
   },
   "w8": {
    "all": {
-    "n": 783,
-    "mean_pct": -0.23,
+    "n": 784,
+    "mean_pct": -0.24,
     "up_share": 0.49,
-    "t_approx": -0.35
+    "t_approx": -0.36
    },
    "extreme_short": {
-    "n": 253,
-    "mean_pct": -0.34,
-    "up_share": 0.45,
-    "t_approx": -0.38
+    "n": 254,
+    "mean_pct": -0.36,
+    "up_share": 0.44,
+    "t_approx": -0.41
    },
    "extreme_long": {
     "n": 92,
@@ -234,16 +234,16 @@
   },
   "w13": {
    "all": {
-    "n": 778,
-    "mean_pct": -0.26,
+    "n": 779,
+    "mean_pct": -0.28,
     "up_share": 0.49,
-    "t_approx": -0.24
+    "t_approx": -0.26
    },
    "extreme_short": {
-    "n": 249,
-    "mean_pct": -0.48,
+    "n": 250,
+    "mean_pct": -0.54,
     "up_share": 0.47,
-    "t_approx": -0.33
+    "t_approx": -0.37
    },
    "extreme_long": {
     "n": 92,
@@ -253,7 +253,7 @@
    }
   },
   "first_week": "2011-06-21",
-  "current_pctl_3y": 3.0
+  "current_pctl_3y": 2.0
  },
  "GNF": {
   "w4": {
@@ -371,16 +371,16 @@
  "HE": {
   "w4": {
    "all": {
-    "n": 955,
-    "mean_pct": 0.15,
+    "n": 956,
+    "mean_pct": 0.14,
     "up_share": 0.51,
-    "t_approx": 0.26
+    "t_approx": 0.24
    },
    "extreme_short": {
-    "n": 114,
-    "mean_pct": -0.71,
+    "n": 115,
+    "mean_pct": -0.84,
     "up_share": 0.41,
-    "t_approx": -0.37
+    "t_approx": -0.44
    },
    "extreme_long": {
     "n": 169,
@@ -391,16 +391,16 @@
   },
   "w8": {
    "all": {
-    "n": 950,
-    "mean_pct": 0.3,
+    "n": 951,
+    "mean_pct": 0.28,
     "up_share": 0.49,
-    "t_approx": 0.26
+    "t_approx": 0.25
    },
    "extreme_short": {
-    "n": 110,
-    "mean_pct": -1.25,
+    "n": 111,
+    "mean_pct": -1.42,
     "up_share": 0.45,
-    "t_approx": -0.3
+    "t_approx": -0.34
    },
    "extreme_long": {
     "n": 169,
@@ -411,16 +411,16 @@
   },
   "w13": {
    "all": {
-    "n": 945,
-    "mean_pct": 0.44,
+    "n": 946,
+    "mean_pct": 0.42,
     "up_share": 0.48,
-    "t_approx": 0.24
+    "t_approx": 0.23
    },
    "extreme_short": {
-    "n": 105,
-    "mean_pct": -1.38,
-    "up_share": 0.47,
-    "t_approx": -0.22
+    "n": 106,
+    "mean_pct": -1.58,
+    "up_share": 0.46,
+    "t_approx": -0.25
    },
    "extreme_long": {
     "n": 169,
@@ -435,10 +435,10 @@
  "LE": {
   "w4": {
    "all": {
-    "n": 955,
+    "n": 956,
     "mean_pct": 0.15,
     "up_share": 0.55,
-    "t_approx": 0.54
+    "t_approx": 0.55
    },
    "extreme_short": {
     "n": 97,
@@ -455,10 +455,10 @@
   },
   "w8": {
    "all": {
-    "n": 950,
-    "mean_pct": 0.29,
+    "n": 951,
+    "mean_pct": 0.3,
     "up_share": 0.56,
-    "t_approx": 0.55
+    "t_approx": 0.56
    },
    "extreme_short": {
     "n": 97,
@@ -475,7 +475,7 @@
   },
   "w13": {
    "all": {
-    "n": 945,
+    "n": 946,
     "mean_pct": 0.48,
     "up_share": 0.57,
     "t_approx": 0.58
@@ -494,15 +494,15 @@
    }
   },
   "first_week": "2008-06-03",
-  "current_pctl_3y": 17.0
+  "current_pctl_3y": 19.0
  },
  "GF": {
   "w4": {
    "all": {
-    "n": 955,
-    "mean_pct": 0.19,
+    "n": 956,
+    "mean_pct": 0.2,
     "up_share": 0.55,
-    "t_approx": 0.69
+    "t_approx": 0.71
    },
    "extreme_short": {
     "n": 120,
@@ -519,10 +519,10 @@
   },
   "w8": {
    "all": {
-    "n": 950,
-    "mean_pct": 0.37,
+    "n": 951,
+    "mean_pct": 0.38,
     "up_share": 0.52,
-    "t_approx": 0.66
+    "t_approx": 0.68
    },
    "extreme_short": {
     "n": 119,
@@ -539,10 +539,10 @@
   },
   "w13": {
    "all": {
-    "n": 945,
+    "n": 946,
     "mean_pct": 0.56,
     "up_share": 0.53,
-    "t_approx": 0.63
+    "t_approx": 0.64
    },
    "extreme_short": {
     "n": 120,
@@ -558,6 +558,6 @@
    }
   },
   "first_week": "2008-06-03",
-  "current_pctl_3y": 27.0
+  "current_pctl_3y": 33.0
  }
 }

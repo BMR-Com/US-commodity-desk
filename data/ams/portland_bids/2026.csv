@@ -4624,6 +4624,33 @@ report_date,commodity,class,grade,protein,trade_loc,delivery_point,quote_type,sa
 07/01/2026,Wheat,Soft White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.4,6.4,6.4,No,2026-11-01,,Rail/Barge,Delivered
 07/01/2026,Wheat,Soft White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.35,6.4,6.3929,Yes,,,Rail/Barge,Delivered
 07/01/2026,White Oats,Heavy,US #2,,Pacific Ports,Export Elevators,Price,Bid,,,,300.0,300.0,300.0,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,11.0%,Pacific Ports,Export Elevators,Basis,Bid,20.0,40.0,December (Z),6.6425,6.8425,6.7525,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,11.5%,Pacific Ports,Export Elevators,Basis,Bid,35.0,50.0,December (Z),6.7925,6.9425,6.8675,No,2026-11-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,11.5%,Pacific Ports,Export Elevators,Basis,Bid,35.0,50.0,December (Z),6.7925,6.9425,6.8833,No,2026-12-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,11.5%,Pacific Ports,Export Elevators,Basis,Bid,25.0,45.0,March (H),6.7875,6.9875,6.9075,No,2027-01-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,11.5%,Pacific Ports,Export Elevators,Basis,Bid,25.0,45.0,March (H),6.7875,6.9875,6.8875,No,2027-02-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,11.5%,Pacific Ports,Export Elevators,Basis,Bid,35.0,50.0,December (Z),6.7925,6.9425,6.8675,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,12.0%,Pacific Ports,Export Elevators,Basis,Bid,40.0,60.0,December (Z),6.8425,7.0425,6.9325,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,13.0%,Pacific Ports,Export Elevators,Basis,Bid,65.0,80.0,December (Z),7.0925,7.2425,7.1675,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,Hard Red Winter,US #1,Ordinary,Pacific Ports,Export Elevators,Basis,Bid,-10.0,10.0,December (Z),6.3425,6.5425,6.4525,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,13.0%,Pacific Ports,Export Elevators,Basis,Bid,17.0,42.0,December (Z),6.4075,6.6575,6.5075,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,14.0%,Pacific Ports,Export Elevators,Basis,Bid,40.0,70.0,December (Z),6.6375,6.9375,6.7775,No,2026-11-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,14.0%,Pacific Ports,Export Elevators,Basis,Bid,45.0,70.0,December (Z),6.6875,6.9375,6.8125,No,2026-12-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,14.0%,Pacific Ports,Export Elevators,Basis,Bid,30.0,55.0,March (H),6.7175,6.9675,6.855,No,2027-01-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,14.0%,Pacific Ports,Export Elevators,Basis,Bid,30.0,55.0,March (H),6.7175,6.9675,6.8175,No,2027-02-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,14.0%,Pacific Ports,Export Elevators,Basis,Bid,40.0,70.0,December (Z),6.6375,6.9375,6.7775,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,15.0%,Pacific Ports,Export Elevators,Basis,Bid,52.0,82.0,December (Z),6.7575,7.0575,6.8742,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,NS/DNS,US #1,16.0%,Pacific Ports,Export Elevators,Basis,Bid,64.0,94.0,December (Z),6.8775,7.1775,6.9942,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,Club White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.2,6.7,6.5125,Yes,,,Rail/Barge,Delivered
+10/30/2026,Wheat,Soft White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.2,6.2,6.2,No,2026-11-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Soft White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.25,6.25,6.25,No,2026-12-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Soft White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.3,6.35,6.3083,No,2027-01-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Soft White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.35,6.4,6.36,No,2027-02-01,,Rail/Barge,Delivered
+10/30/2026,Wheat,Soft White,US #1,10.5%,Pacific Ports,Export Elevators,Price,Bid,,,,6.2,6.2,6.2,Yes,,,Rail/Barge,Delivered
+10/30/2026,Barley,Feed,US #2,,PNW,Mills and Processors,Price,Bid,,,,252.0,252.0,252.0,Yes,,,Rail,Delivered
+10/30/2026,Barley,Feed,US #2,,PNW,Mills and Processors,Price,Bid,,,,248.0,248.0,248.0,Yes,,,Truck,Delivered
+10/30/2026,Corn,Yellow,US #2,,PNW,Mills and Processors,Basis,Bid,135.0,185.0,December (Z),5.8275,6.3275,6.0775,Yes,,,Truck,Delivered
+10/30/2026,White Oats,Heavy,US #2,,Pacific Ports,Export Elevators,Price,Bid,,,,260.0,260.0,260.0,Yes,,,Rail/Barge,Delivered
 10/29/2026,Wheat,Hard Red Winter,US #1,11.0%,Pacific Ports,Export Elevators,Basis,Bid,20.0,40.0,December (Z),6.6525,6.8525,6.7625,Yes,,,Rail/Barge,Delivered
 10/29/2026,Wheat,Hard Red Winter,US #1,11.5%,Pacific Ports,Export Elevators,Basis,Bid,35.0,50.0,December (Z),6.8025,6.9525,6.9025,No,2026-11-01,,Rail/Barge,Delivered
 10/29/2026,Wheat,Hard Red Winter,US #1,11.5%,Pacific Ports,Export Elevators,Basis,Bid,35.0,50.0,December (Z),6.8025,6.9525,6.9183,No,2026-12-01,,Rail/Barge,Delivered

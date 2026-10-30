@@ -325,8 +325,8 @@ def import_scenarios(T, season, notes):
             out.append(round(v, 2)); tot += v
         return round(tot, 2), out
     ext = (notes or {}).get("duty_expected_until", "2026-12-31")
-    sc = {"notified": {"label": f"Duty back after {DUTY_FREE[-1][1]} (as notified), no rush"},
-          "expected": {"label": f"Duty-free to {ext} (expected), year-end rush, then duty"},
+    sc = {"notified": {"label": f"Duty back after {DUTY_FREE[-1][1]} (original notification), no rush"},
+          "expected": {"label": f"Duty-free to {ext} ({(notes or {}).get('duty_status', 'expected')}), year-end rush, then duty"},
           "all_year": {"label": "Duty-free all season (short crop keeps the waiver going)"}}
     sc["notified"]["m480"], sc["notified"]["path"] = path(None, False)
     sc["expected"]["m480"], sc["expected"]["path"] = path(ext, True)

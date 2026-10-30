@@ -5,7 +5,7 @@
  "policy": [
   {
    "until": "2027-01-15",
-   "t": "Import duty: India waived its 11% cotton import duty from June 1 to October 31, 2026; an extension to December 31 is expected (industry and government sources, Oct 26-27) but not yet notified."
+   "t": "Import duty: India waived its 11% cotton import duty from June 1, 2026; the waiver has been extended to December 31, 2026 (confirmed Oct 30). The duty returns on January 1 unless extended again."
   }
  ],
  "cci": {
@@ -30,5 +30,6 @@
    }
   ]
  },
- "duty_expected_until": "2026-12-31"
+ "duty_expected_until": "2026-12-31",
+ "duty_status": "confirmed"
 }

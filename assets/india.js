@@ -45,14 +45,14 @@ const IndiaCotton = (() => {
       <div class="card" style="margin-top:12px"><h2>Monthly rain by region (mm)</h2><div class="ctrls" id="inRainSel"></div><div class="chart"><canvas id="cInRainM"></canvas></div><p class="note" id="inRainNote"></p></div>
       <div class="card" style="margin-top:12px"><h2>Balance sheets side by side</h2><div class="ctrls" id="inUnitSel"></div><div class="tbl" id="inBal"></div>
         <p class="note">COCPC: the government's Committee on Cotton Production and Consumption (official). CAI: the trade's crop committee, monthly. USDA: August–July year in 480-lb bales; COCPC and CAI use the October–September season.
-        The sources differ a lot in level, so the revisions matter more than the gaps between them.</p></div>
+        The sources differ a lot in level, so the revisions matter more than the gaps between them.</p><p class="note" id="inDeskNote"></p></div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>CAI estimate revisions, this season and last</h2><div class="chart"><canvas id="cInRev"></canvas></div><p class="note" id="inRevNote"></p></div>
         <div class="card"><h2>Monthly trade by season (thousand t)</h2><div class="ctrls" id="inTrSel"></div><div class="chart"><canvas id="cInTr"></canvas></div><p class="note" id="inTrNote"></p></div>
       </div>
       <div class="card" style="margin-top:12px"><h2>Shankar-6 vs ICE (¢/lb, weekly)</h2><div class="chart"><canvas id="cInPx"></canvas></div><p class="note" id="inPxNote"></p></div>
       ${(D.notes?.policy || []).length ? `<div class="card" style="margin-top:12px"><h2>Policy</h2>${D.notes.policy.map(p => `<p>${md(p.t)}</p>`).join('')}</div>` : ''}`;
-    proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); revChart(); tradeSel(); pxChart();
+    proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); deskNote(); revChart(); tradeSel(); pxChart();
   }
 
   const ordinal = n => n + (['th', 'st', 'nd', 'rd'][(n % 100 > 10 && n % 100 < 14) ? 0 : (n % 10 < 4 ? n % 10 : 0)] || 'th');
@@ -113,13 +113,22 @@ const IndiaCotton = (() => {
     const B = D.balance, seasons = [...new Set([...Object.keys(B.cocpc), ...Object.keys(B.cai), ...Object.keys(B.usda)])].sort().slice(-3);
     const cols = [];
     seasons.forEach(s => ['cocpc', 'cai', 'usda'].forEach(src => { if (B[src][s]) cols.push([src, s]); }));
-    if (seasons.includes(D.projection.season) || true) cols.push(['desk', D.projection.season]);
-    const val = (src, s, k) => { if (src === 'desk') return k === 'crop' ? (unit === 'm480' ? D.projection.m480 : D.projection.lakh) : null; const v = B[src][s]; if (src === 'usda') return unit === 'm480' ? v.m480[k] : v.m480[k] / D.conv.lakh170_to_m480; return v[unit]?.[k]; };
+    const DB = D.desk_balance || {}; ['cocpc', 'cai'].forEach(src => { if (DB.cases?.[src]) cols.push(['desk_' + src, DB.season]); });
+    const val = (src, s, k) => { if (src.startsWith('desk_')) return DB.cases[src.slice(5)][unit][k]; const v = B[src][s]; if (src === 'usda') return unit === 'm480' ? v.m480[k] : v.m480[k] / D.conv.lakh170_to_m480; return v[unit]?.[k]; };
     const rows = [['opening', 'Opening stock'], ['crop', 'Crop'], ['imports', 'Imports'], ['supply', 'Total supply'], ['consumption', 'Consumption'], ['exports', 'Exports'], ['closing', 'Closing stock']];
-    const nm = { cocpc: 'COCPC', cai: 'CAI', usda: 'USDA', desk: 'Desk crop' }, d = unit === 'm480' ? 2 : 1;
-    document.getElementById('inBal').innerHTML = `<table><tr><th class="l"></th>${cols.map(([src, s]) => `<th>${s}<br><span class="note">${nm[src]}${src === 'cai' && B.cai[s].as_of ? ' ' + B.cai[s].as_of : ''}</span></th>`).join('')}</tr>
+    const nm = { cocpc: 'COCPC', cai: 'CAI', usda: 'USDA', desk_cocpc: 'Desk, COCPC base', desk_cai: 'Desk, CAI base' }, d = unit === 'm480' ? 2 : 1;
+    document.getElementById('inBal').innerHTML = `<table><tr><th class="l"></th>${cols.map(([src, s]) => `<th${src.startsWith('desk_') ? ' style="background:#fbeeee"' : ''}>${s}<br><span class="note">${nm[src]}${src === 'cai' && B.cai[s].as_of ? ' ' + B.cai[s].as_of : ''}</span></th>`).join('')}</tr>
       ${rows.map(([k, l]) => `<tr><td class="l">${l}</td>${cols.map(([src, s]) => `<td>${f(val(src, s, k), d)}</td>`).join('')}</tr>`).join('')}
-      <tr><td class="l">Stocks / use</td>${cols.map(([src, s]) => { if (src === 'desk') return '<td></td>'; const c = val(src, s, 'closing'), u = (val(src, s, 'consumption') || 0) + (val(src, s, 'exports') || 0); return `<td>${u ? fmt(100 * c / u, 0) + '%' : '–'}</td>`; }).join('')}</tr></table>`;
+      <tr><td class="l">Stocks / use</td>${cols.map(([src, s]) => { const c = val(src, s, 'closing'), u = (val(src, s, 'consumption') || 0) + (val(src, s, 'exports') || 0); return `<td>${u ? fmt(100 * c / u, 0) + '%' : '–'}</td>`; }).join('')}</tr></table>`;
+  }
+
+  function deskNote() {
+    const DB = D.desk_balance; if (!DB?.cases?.cocpc) return;
+    const c = DB.cases.cocpc, a = DB.cases.cai, pi = DB.imports_customs[DB.prev], pe = DB.exports_customs[DB.prev];
+    document.getElementById('inDeskNote').innerHTML = `<b>Desk ${DB.season} (shaded):</b> built on each sheet. Opening stock = that sheet's ${DB.prev} closing corrected for actual customs trade: HS 5201 imports ${f(pi.actual, 1)} lakh bales through ${pi.through}
+      (${f(pi.projected, 0)} for the season at the recent pace of ${f(pi.pace_month, 1)} a month) vs ${f(c.prev_imports_sheet, 0)} in COCPC and ${f(a?.prev_imports_sheet, 0)} in CAI; exports ${f(pe?.actual, 1)} (${f(pe?.projected, 0)}) vs ${f(c.prev_exports_sheet, 0)} and ${f(a?.prev_exports_sheet, 0)}.
+      COCPC's past import and export lines match these customs figures. Crop = desk projection; imports and exports at the customs pace; consumption at each sheet's ${DB.prev} level.
+      To hold ${DB.prev}'s stocks/use (${f(c.prev_stocks_use, 0)}% on COCPC) India would need about ${f(c.imports_to_hold_m480)} m 480-lb bales of imports (${f(c.imports_to_hold_stocks_use, 0)} lakh).`;
   }
 
   function revChart() {

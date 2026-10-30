@@ -267,6 +267,53 @@ def trade_section(tr):
     return out
 
 
+def season_trade(T, key):
+    """Raw cotton (HS 5201) by season in lakh 170-kg bales from customs tonnes (COCPC uses the same customs series).
+    Missing months of the latest season are filled at the average of its last three reported months."""
+    by = {}
+    for m, v in (T.get(key) or {}).items():
+        t = (v.get("by_hs") or {}).get("5201") or 0
+        if t > 0:
+            by.setdefault(v["season"][:4] + "-" + v["season"][-2:], {})[m] = t / 17000
+    out = {}
+    for sn, mm in sorted(by.items()):
+        n = len(mm); last3 = [mm[k] for k in sorted(mm)[-3:]]
+        fill = (12 - n) * float(np.mean(last3)) if n < 12 else 0.0
+        out[sn] = {"actual": round(sum(mm.values()), 1), "months": n, "through": max(mm), "projected": round(sum(mm.values()) + fill, 1),
+                   "pace_month": round(float(np.mean(last3)), 2)}
+    return out
+
+
+def desk_balance(page):
+    """Desk balance sheet for the new season (lakh 170-kg bales), built twice: on the official COCPC sheet and on CAI's.
+    Last season's closing stock is corrected for actual customs imports and exports; the new season takes the desk crop,
+    imports and exports at the current customs pace, and consumption held at last season's level of each sheet."""
+    B, T, P = page["balance"], page["trade"], page["projection"]
+    imp, exp = season_trade(T, "raw_import"), season_trade(T, "raw_export")
+    new = P["season"]; prev = f"{int(new[:4]) - 1}-{new[2:4]}"
+    out = {"season": new, "prev": prev, "imports_customs": imp, "exports_customs": exp, "cases": {}}
+    for src in ("cocpc", "cai"):
+        b = (B[src].get(prev) or {}).get("lakh")
+        if not b or prev not in imp:
+            continue
+        di = imp[prev]["projected"] - (b["imports"] or 0)
+        de = exp.get(prev, {}).get("projected", b["exports"] or 0) - (b["exports"] or 0)
+        open_adj = b["closing"] + di - de
+        # new season trade: its own months so far plus the recent pace, or last season's total until data arrive
+        im_new = imp[new]["projected"] if new in imp else imp[prev]["projected"]
+        ex_new = exp[new]["projected"] if new in exp else exp.get(prev, {}).get("projected", b["exports"])
+        cons = b["consumption"]
+        close = open_adj + P["lakh"] + im_new - cons - ex_new
+        su_prev = open_adj / (cons + exp.get(prev, {}).get("projected", b["exports"]))
+        need = su_prev * (cons + ex_new) - (open_adj + P["lakh"] - cons - ex_new)
+        lakh = {"opening": round(open_adj, 1), "crop": P["lakh"], "imports": round(im_new, 1), "supply": round(open_adj + P["lakh"] + im_new, 1),
+                "consumption": round(cons, 1), "exports": round(ex_new, 1), "closing": round(close, 1)}
+        out["cases"][src] = {"lakh": lakh, "m480": {k: m480(v) for k, v in lakh.items()}, "stocks_use": round(100 * close / (cons + ex_new), 1),
+                             "prev_closing_sheet": b["closing"], "prev_closing_adj": round(open_adj, 1), "prev_imports_sheet": b["imports"], "prev_exports_sheet": b["exports"],
+                             "imports_to_hold_stocks_use": round(need, 1), "imports_to_hold_m480": m480(need), "prev_stocks_use": round(100 * su_prev, 1)}
+    return out
+
+
 def brief(page, F):
     P, R, X, B, T = page["projection"], page["rain"], page["prices"].get("latest", {}), page["balance"], page["trade"]
     regs = sorted(P["regions"], key=lambda r: r["prod_m480"] - r["last_prod_lakh"] * LAKH170_TO_M480)
@@ -297,6 +344,15 @@ def brief(page, F):
         M = page["prices"].get("msp") or {}
         out.append({"h": "Price", "t": f"Shankar-6 ₹{X['rs_candy']:,}/candy = {X['clb']:.1f}¢/lb ({X['date']}), {X['premium_ice']:+.1f}¢ over ICE nearby and {X['chg_1y_pct']:+.0f}% on a year ago"
                     + (f"; the MSP floor works out to about {M['lint_clb']:.0f}¢/lb lint, so CCI support sits just under the market" if M else "") + ". Indian cotton is dear against the world."})
+    DB = page.get("desk_balance", {})
+    c = DB.get("cases", {}).get("cocpc")
+    if c:
+        pi = DB["imports_customs"][DB["prev"]]
+        out.append({"h": "Balance sheet", "t": f"Customs data show {DB['prev']} imports of {pi['actual']:.1f} lakh bales through {pi['through']} (about {pi['projected']:.0f} for the season at the recent pace) "
+                    f"vs {c['prev_imports_sheet']:.0f} in the official COCPC sheet, so last season's closing stock is nearer {c['prev_closing_adj']:.0f} lakh than {c['prev_closing_sheet']:.0f}. "
+                    f"With the desk crop, imports and exports at the customs pace and use held at last season's level, {DB['season']} ends with **{c['m480']['closing']:.1f} m 480-lb bales** "
+                    f"({c['lakh']['closing']:.0f} lakh; stocks/use {c['stocks_use']:.0f}% vs {c['prev_stocks_use']:.0f}%). Holding last season's stocks/use would take about {c['imports_to_hold_m480']:.1f} m bales of imports "
+                    f"({c['imports_to_hold_stocks_use']:.0f} lakh), against USDA's {page['balance']['usda'].get(DB['season'], {}).get('m480', {}).get('imports', 0):.1f} m."})
     out.append({"h": "For US cotton", "t": "A smaller Indian crop, duty-free imports (waiver expected through December) and Indian prices well above ICE all point to more Indian import demand in 2026-27 than USDA's number, with US and Brazilian cotton the main suppliers."})
     return out
 
@@ -357,6 +413,7 @@ def main():
         "rain": rain_page(R, F, normals, H, ky),
         "balance": bal, "trade": trade_section(jl("trade")), "prices": spot(), "notes": notes,
     }
+    page["desk_balance"] = desk_balance(page)
     page["brief"] = brief(page, F)
     (D / "india.json").write_text(json.dumps(page, separators=(",", ":"), default=float))
     (D / "model_eval.json").write_text(json.dumps({"coef": [round(float(v), 4) for v in b], "names": ["const", "jj", "as_shortfall", "irrigated"], "base_n": BASE_N, "fit_from": FIT_FROM,

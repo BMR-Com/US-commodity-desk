@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-29 22:41 UTC",
+ "generated": "2026-10-30 12:50 UTC",
  "view": "mixed",
  "score": -1,
  "components": {
@@ -12,60 +12,39 @@
   "china": -1,
   "breadth": 0
  },
- "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +17.0%; weakest: Oats -18.8%. Key releases ahead: US Advance GDP q/q (10-29 8:30 AM ET); US Core PCE Price Index m/m (10-29 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk 0; energy +; china \u2212; breadth 0. Strongest ag/soft over the month: Class III milk +15.5%; weakest: Oats -18.0%. ",
  "sections": [
   {
    "title": "Rates",
    "score": 1,
-   "text": "US 10-year 4.98% (-28 bp in a month), 2-year 4.61% (-28 bp); 2s10s curve +37 bp (+0 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.00% sets the cost of carrying inventory."
+   "text": "US 10-year 4.98% (-28 bp in a month), 2-year 4.61% (-28 bp); 2s10s curve +37 bp (+0 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 3.98% sets the cost of carrying inventory."
   },
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 101.85 (+0.5% in a month, +3.6% YTD). USD/BRL 5.385 (+3.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.661 (-0.7%); USD/MXN 18.87 (+5.0%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 101.74 (+0.3% in a month, +3.5% YTD). USD/BRL 5.439 (+4.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.652 (-0.8%); USD/MXN 18.90 (+4.8%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
   },
   {
    "title": "Risk appetite",
    "score": 0,
-   "text": "S&P 500 +0.6% in a month (+12.8% YTD); VIX 17.2. Neutral risk backdrop. "
+   "text": "S&P 500 +0.6% in a month (+12.8% YTD); VIX 18.6. Neutral risk backdrop. "
   },
   {
    "title": "Energy",
    "score": 1,
-   "text": "WTI 102.88 $/bbl (+17.9% in a month), Brent 111.50, ULSD 4.587 $/gal (+5.9%), natural gas 2.90 (-13.1%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+   "text": "WTI 103.96 $/bbl (+17.6% in a month), Brent 113.12, ULSD 4.684 $/gal (+3.9%), natural gas 2.87 (-14.8%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -0.3% in a month, Shanghai Composite -4.7%, Hang Seng -6.4%, yuan +0.7% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -1.4% in a month, Shanghai Composite -6.3%, Hang Seng -5.4%, yuan +0.8% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": 0,
-   "text": "13 of 33 commodities trade above their 50-day average (39%); S&P GSCI +3.7% in a month; gold -3.6%. "
+   "text": "12 of 33 commodities trade above their 50-day average (36%); S&P GSCI +2.6% in a month; gold -5.1%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",
- "events_ahead": [
-  {
-   "date": "2026-10-29",
-   "time": "8:30 AM ET",
-   "country": "US",
-   "title": "Advance GDP q/q",
-   "impact": "High",
-   "forecast": "3.2%",
-   "previous": "1.5%",
-   "why": "Growth and demand"
-  },
-  {
-   "date": "2026-10-29",
-   "time": "8:30 AM ET",
-   "country": "US",
-   "title": "Core PCE Price Index m/m",
-   "impact": "High",
-   "forecast": "0.3%",
-   "previous": "0.2%",
-   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
-  }
- ]
+ "events_ahead": []
 }

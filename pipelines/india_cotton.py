@@ -7,6 +7,7 @@ Sources
                       trade raw cotton exports and imports by HS 5201/5202/5203 and cotton yarn, monthly
   USDA FAS PSD        psd   India cotton supply and demand (480-lb bales)
   NASA POWER          rain  monthly rainfall at cotton districts since 1991 and daily for the current season
+  Yahoo               fx    USD/INR and ICE cotton nearby
 Writes data/india/raw/*.json. History is cached: a stored season is not fetched again except the last two.
 Usage: python pipelines/india_cotton.py [cab] [bs] [cai] [trade] [psd] [rain]   (no args = all)
 """
@@ -223,6 +224,16 @@ def rain(_s=None):
     print("rain districts with history", n, "of", len(DISTRICTS), "daily through", max((max(r["daily"]) for r in d["districts"].values() if r["daily"]), default=None))
 
 
+def fx(_s=None):
+    """USD/INR and ICE cotton nearby (Yahoo), daily since 2016, for Shankar-6 in cents/lb and its premium to ICE."""
+    import yfinance as yf
+    df = yf.download(["INR=X", "CT=F"], start="2016-01-01", progress=False, auto_adjust=False)["Close"]
+    df = df.dropna(how="all")
+    RAW.mkdir(parents=True, exist_ok=True)
+    df.round(4).to_csv(RAW / "fx_ct.csv", index_label="date")
+    print("fx/ICE rows", len(df), "through", df.index[-1].date())
+
+
 def num(v):
     try:
         return float(str(v).replace(",", ""))
@@ -231,7 +242,7 @@ def num(v):
 
 
 def main():
-    jobs = sys.argv[1:] or ["cab", "bs", "cai", "trade", "psd", "rain"]
+    jobs = sys.argv[1:] or ["cab", "bs", "cai", "trade", "psd", "rain", "fx"]
     s = session() if set(jobs) & {"cab", "bs", "cai", "trade"} else None
     for j in jobs:
         try:

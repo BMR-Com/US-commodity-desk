@@ -8,6 +8,7 @@ Sources
   USDA FAS PSD        psd   India cotton supply and demand (480-lb bales)
   NASA POWER          rain  monthly rainfall at cotton districts since 1991 and daily for the current season
   Yahoo               fx    USD/INR and ICE cotton nearby
+  UN Comtrade         origins India's monthly raw cotton imports by origin
 Writes data/india/raw/*.json. History is cached: a stored season is not fetched again except the last two.
 Usage: python pipelines/india_cotton.py [cab] [bs] [cai] [trade] [psd] [rain]   (no args = all)
 """
@@ -234,6 +235,51 @@ def fx(_s=None):
     print("fx/ICE rows", len(df), "through", df.index[-1].date())
 
 
+def origins(_s=None):
+    """UN Comtrade (public preview): India's monthly raw cotton imports (HS 5201) by origin, tonnes and USD, Oct 2019 on.
+    Stored months are kept; the last six months are re-read (late revisions). Rate-limited, so one call every ~3.5 s."""
+    d = jload("origins", {"months": {}, "names": {}})
+    if not d.get("names"):
+        try:
+            ref = requests.get("https://comtradeapi.un.org/files/v1/app/reference/partnerAreas.json", timeout=60).json()["results"]
+            d["names"] = {str(x["PartnerCode"]): x["PartnerDesc"] for x in ref}
+        except Exception as e:
+            print("origins names failed", repr(e)[:120])
+    y, m = 2019, 10
+    n = 0
+    while (y, m) <= (TODAY.year, TODAY.month):
+        k = f"{y}{m:02d}"
+        recent = (TODAY.year - y) * 12 + TODAY.month - m <= 6
+        if k not in d["months"] or recent:
+            for attempt in range(4):
+                try:
+                    r = requests.get("https://comtradeapi.un.org/public/v1/preview/C/M/HS", params={"reporterCode": 699, "cmdCode": "5201", "flowCode": "M", "period": k},
+                                     timeout=(20, 90))
+                    if r.status_code == 429:
+                        time.sleep(6 * (attempt + 1)); continue
+                    r.raise_for_status()
+                    rows = {}
+                    for x in r.json().get("data") or []:
+                        if x.get("partnerCode") in (0, None) or x.get("partner2Code", 0) != 0 or x.get("motCode", 0) != 0 or x.get("customsCode", "C00") != "C00":
+                            continue
+                        g = rows.setdefault(str(x["partnerCode"]), [0.0, 0.0])
+                        g[0] += (x.get("netWgt") or x.get("qty") or 0) / 1000; g[1] += x.get("primaryValue") or 0
+                    if rows:
+                        d["months"][k] = {pc: [round(t, 1), round(v)] for pc, (t, v) in rows.items()}
+                    n += 1
+                    break
+                except Exception as e:
+                    if attempt == 3:
+                        print("origins", k, "failed", repr(e)[:100])
+                    time.sleep(4)
+            time.sleep(3.5)
+        m += 1
+        if m == 13:
+            y, m = y + 1, 1
+    jsave("origins", d)
+    print("origins: called", n, "months stored", len(d["months"]), "latest", max(d["months"]) if d["months"] else None)
+
+
 def num(v):
     try:
         return float(str(v).replace(",", ""))
@@ -242,7 +288,7 @@ def num(v):
 
 
 def main():
-    jobs = sys.argv[1:] or ["cab", "bs", "cai", "trade", "psd", "rain", "fx"]
+    jobs = sys.argv[1:] or ["cab", "bs", "cai", "trade", "psd", "rain", "fx", "origins"]
     s = session() if set(jobs) & {"cab", "bs", "cai", "trade"} else None
     for j in jobs:
         try:

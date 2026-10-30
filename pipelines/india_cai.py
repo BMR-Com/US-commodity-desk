@@ -12,7 +12,7 @@ URL = "https://www.caionline.in/details/cai/spot-rates/by/date"
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
      "Referer": "https://www.caionline.in/details/cai/spot-rates", "X-Requested-With": "XMLHttpRequest"}
 COLS = ["date", "growth", "grade_standard", "staple", "micronaire", "strength_gpt", "season", "per_candy", "per_quintal"]
-START = date(2025, 10, 1)
+START = date.fromisoformat(__import__("os").getenv("CAI_START", "2025-10-01"))
 
 
 def day(d):
@@ -55,7 +55,7 @@ def save(old, new):
     return list(keep.values())
 
 
-MAX_DATES = 80          # per run, so a first backfill finishes over a few runs and every run saves what it got
+MAX_DATES = int(__import__("os").getenv("CAI_MAX", "80"))         # per run, so a first backfill finishes over a few runs and every run saves what it got
 
 
 if __name__ == "__main__":
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     want = [d for d in want if d.weekday() != 6 and (d > today - timedelta(days=7) or d.isoformat() not in have)]
     new, n, t0 = [], 0, time.time()
     for d in want:
-        if n >= MAX_DATES or time.time() - t0 > 420:
+        if n >= MAX_DATES or time.time() - t0 > int(__import__("os").getenv("CAI_SECS", "420")):
             break
         try:
             new += day(d)

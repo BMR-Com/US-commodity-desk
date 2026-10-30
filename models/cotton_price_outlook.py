@@ -174,20 +174,28 @@ def main():
                 "table": [{"my": i, "su": round(v.su, 1), "px": round(v.px, 1), "kn": round(v.kn, 2), "nz": round(v.nz, 2)} for i, v in FV.iterrows()]}
     (ROOT / "data" / "derived" / "ct_fair_eval.json").write_text(json.dumps(fvf, indent=1))
     # simulation on the fair-value model: USDA's March stocks/use drawn from the desk balance-sheet simulation
-    fp, fk, fz = fvf["px"]["ex_short"], fvf["kn"]["ex_short"], fvf["nz"]["ex_short"]     # conservative: excludes both world-shortage seasons
-    su_floor = float(samples["ex_short"].su.min())                                          # no extrapolation below what that fit has seen
-    sus = np.maximum(su, su_floor)
+    # every combination: the balance-sheet draw (crop x exports x India's duty path, already in su) x which history the market follows
+    # (fit drawn equally from the four samples) x that fit's residual; no cap on stocks/use (the balance sheet's pipeline minimum is the only limit)
+    su_floor = float(samples["ex_short"].su.min())
+    sus = np.maximum(su, 1.0)
+    fk_ = list(fvf["px"]); pick = rng.integers(0, len(fk_), n)
+    def draw(kind):
+        b0 = np.array([fvf[kind][fk_[i]]["b"][0] for i in pick]); b1 = np.array([fvf[kind][fk_[i]]["b"][1] for i in pick]); sd_ = np.array([fvf[kind][fk_[i]]["sd"] for i in pick])
+        e = rng.normal(0, 1, n) * sd_
+        return np.exp(b0 + b1 * np.log(sus) + e) if kind == "px" else b0 + b1 / sus + e
     tgt_day = pd.Timestamp(f"{oy}-03-15")
-    term2 = np.exp(fp["b"][0] + fp["b"][1] * np.log(sus) + rng.normal(0, fp["sd"], n))
+    term2 = draw("px")
     days2 = max(int(np.busday_count(today.date(), tgt_day.date())), 5)
     st = rng.normal(0, vol / np.sqrt(252), (2000, days2)).cumsum(axis=1); tt2 = np.arange(1, days2 + 1) / days2
     paths2 = K0 * np.exp(np.log(term2[:2000, None] / K0) * tt2 + (st - tt2 * st[:, -1:]))
-    knd = fk["b"][0] + fk["b"][1] / sus + rng.normal(0, fk["sd"], n); nzd = fz["b"][0] + fz["b"][1] / sus + rng.normal(0, fz["sd"], n)
+    knd = draw("kn"); nzd = draw("nz")
     mc.update({"target": tgt_day.strftime("%Y-%m-%d"), "may_feb_mar": pct(term2), "may_high": pct(paths2.max(axis=1)), "may_low": pct(paths2.min(axis=1)),
-               "p_above": {lvl: round(100 * float((paths2.max(axis=1) >= lvl).mean()), 0) for lvl in (90, 100, 110, 120)},
+               "p_above": {lvl: round(100 * float((paths2.max(axis=1) >= lvl).mean()), 0) for lvl in (90, 100, 110, 120, 140)},
                "p_below": {lvl: round(100 * float((paths2.min(axis=1) <= lvl).mean()), 0) for lvl in (80, 78, 75)},
                "may_jul": pct(knd), "jul_dec": pct(nzd), "p_kn_inverse": round(100 * float((knd > 0).mean()), 0),
-               "p_nz_above_now": round(100 * float((nzd > sp["NZ"]).mean()), 0), "su_floor": round(su_floor, 1), "p_su_below_floor": round(100 * float((su < su_floor).mean()), 0), "p_may_above_now": round(100 * float((term2 > K0).mean()), 0), "days": days2})
+               "p_nz_above_now": round(100 * float((nzd > sp["NZ"]).mean()), 0), "su_floor": round(su_floor, 1), "p_su_below_floor": round(100 * float((su < su_floor).mean()), 0), "fits": fk_,
+               "su_pct": pct(su), "p_su_below_10": round(100 * float((su < 10).mean()), 0),
+               "by_fit": {fk_[i]: round(float(np.median(term2[pick == i])), 1) for i in range(len(fk_))}, "p_may_above_now": round(100 * float((term2 > K0).mean()), 0), "days": days2})
     # merchants' NET short vs world exports, and the on-call book
     net_now = 100 * (r.prod_merc_positions_short - r.prod_merc_positions_long) * BALES_PER_LOT / wex
     nets = {}

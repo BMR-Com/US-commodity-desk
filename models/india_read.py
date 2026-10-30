@@ -56,5 +56,5 @@ def india_for_us():
             t += ". "
     sp = spreads()
     if sp.get("hk") is not None:
-        t += (f"At today's prices more of this demand gets booked, so the tightness should show in flat price first; in past seasons tight US stocks alone did not invert Mar/May ({sp['hk']:+.2f}) or May/Jul ({sp['kn']:+.2f}) — that took a world shortage (2010/11, 2021/22) — and Jul/Dec ({sp['nz']:+.2f}) already prices the tight case. ")
+        t += (f"At today's prices more of this demand gets booked. History says the market prices this through what USDA reports by February–March: if USDA's March US stocks/use reaches the desk base, May, May/Jul ({sp['kn']:+.2f}) and Jul/Dec ({sp['nz']:+.2f}) are all cheap (see Price and spreads); Mar/May ({sp['hk']:+.2f}) has stayed a carry outside world-shortage years. ")
     return t.strip(), 1

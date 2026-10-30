@@ -13,8 +13,8 @@ const PriceOutlook = (() => {
     el.innerHTML = `<div class="card"><h2>Price and spread outlook to May expiry <span class="note">as of ${D.asof} · built ${D.built}</span></h2>
       <p>May settled <b>${f(P.K, 2)}</b> (Mar ${f(P.H, 2)}, Jul ${f(P.N, 2)}, Dec ${f(P.Z_old, 2)}, new-crop Dec ${f(P.Z_new, 2)}). Spreads: Dec/Mar ${s(SP.ZH)}, Mar/May ${s(SP.HK)}, May/Jul ${s(SP.KN)}, Jul/Dec ${s(SP.NZ)}.</p>
       <div class="grid g2">
-        <div><h3>Simulation to mid-March (${fmt(M.n, 0)} balance-sheet outcomes, ${fmt(M.paths, 0)} price paths) — conservative</h3>
-          <p class="note">Uses the fit without world-shortage seasons and stops at the lowest March US stocks/use in it (${f(M.su_floor)}%, 2023/24); ${M.p_su_below_floor}% of simulated outcomes are tighter than that and are held there, so the upper end is understated.</p><div class="tbl"><table><tr><th class="l">10th / median / 90th percentile</th><th>Value</th></tr>
+        <div><h3>Simulation to mid-March (${fmt(M.n, 0)} balance-sheet outcomes, ${fmt(M.paths, 0)} price paths)</h3>
+          <p class="note">Every combination: crop × exports × India's duty path (the balance-sheet simulation) × which history the market follows (four fits drawn equally) × that fit's typical miss; stocks/use is not capped. Simulated USDA March stocks/use: ${pr(M.su_pct)}%. Median May by fit: ${Object.entries(M.by_fit).map(([k, v]) => `${{ex_short: 'excl. shortage years', ex_2010: 'excl. 2010/11', since_2013: 'since 2013/14', all: 'all seasons'}[k]} ${f(v, 0)}`).join(', ')}.</p><div class="tbl"><table><tr><th class="l">10th / median / 90th percentile</th><th>Value</th></tr>
           <tr><td class="l">May, February–March average</td><td><b>${pr(M.may_feb_mar)}</b> <span class="note">(above today ${M.p_may_above_now}%)</span></td></tr>
           <tr><td class="l">Highest May trades by mid-March</td><td>${pr(M.may_high)}</td></tr>
           <tr><td class="l">Lowest May trades by mid-March</td><td>${pr(M.may_low)}</td></tr>

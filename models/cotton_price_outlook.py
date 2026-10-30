@@ -19,7 +19,7 @@ EX = ["Exports", "Exports, Total", "Exports, total"]
 SHORTAGE = ["2010/11", "2021/22"]        # world-shortage seasons: different regime, fitted apart
 BALES_PER_LOT = 50000 / 480 / 1e6
 VARS = ["USDA US balance sheet (October estimate vs final, 2010/11 on)", "desk US balance-sheet scenarios and their simulation",
-        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract", "February-March May, May/Jul and Jul/Dec vs USDA March US stocks/use (2007/08 on)", "cotton on-call (CFTC)"]
+        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract", "February-March May, May/Jul and Jul/Dec vs USDA March US stocks/use (2007/08 on)", "cotton on-call (CFTC)", "ICE May option settlements (smile, open interest)", "May implied volatility history (2000 on)"]
 
 
 def load():
@@ -226,11 +226,103 @@ def main():
         L = oc["latest"]
         oncall = {k: L.get(k) for k in ("oncall_date", "S_old", "P_old", "N_old", "S_old_seas_pct", "P_old_seas_pct", "ls_old", "ls_old_pct", "pmu_net_old", "front", "S_front", "S_2nd", "Sold_pct_trade")}
 
+    # Mar/May fair value: January-February average vs USDA's January US stocks/use
+    hkrows = []
+    for y in range(2007, oy - 1):
+        my, n_ = f"{y}/{(y + 1) % 100:02d}", y + 1
+        rd = pd.Timestamp(f"{n_}-01-20")
+        den = lv(w, "United States", "Domestic Use", my, rd) + lv(w, "United States", EX, my, rd)
+        su_j = 100 * lv(w, "United States", "Ending Stocks", my, rd) / den if den == den and den else np.nan
+        H_ = d[(d.contract == f"CTH{n_}") & (d.date >= f"{n_}-01-01") & (d.date <= f"{n_}-02-28")].set_index("date").close
+        K_ = d[(d.contract == f"CTK{n_}") & (d.date >= f"{n_}-01-01") & (d.date <= f"{n_}-02-28")].set_index("date").close
+        hk_ = (H_ - K_).dropna()
+        if len(hk_) and su_j == su_j:
+            hkrows.append((my, su_j, float(hk_.mean())))
+    HKF = pd.DataFrame(hkrows, columns=["my", "su", "hk"]).set_index("my")
+    hkfit = {m_: fitf(df_, "hk", "inv") for m_, df_ in {"ex_2010": HKF.drop(index=["2010/11"], errors="ignore"), "ex_short": HKF.drop(index=SHORTAGE, errors="ignore"),
+                                                         "since_2013": HKF[HKF.index >= "2013/14"], "all": HKF}.items()}
+    for k_ in fair:
+        fair[k_]["hk"] = {m_: round(val(f_, fair[k_]["su"]), 2) for m_, f_ in hkfit.items()}
+    fairness["fit"]["hk"] = {m_: {k_: f_[k_] for k_ in ("r2", "sd", "n")} for m_, f_ in hkfit.items()}
+    fairness["implied_su"]["hk"] = {m_: round(inv(f_, sp["HK"]), 1) for m_, f_ in hkfit.items() if sp["HK"] > f_["b"][0]}
+    fairness["hk_table"] = [{"my": i, "su_jan": round(v.su, 1), "hk": round(v.hk, 2)} for i, v in HKF.iterrows()]
+
+    # options: May smile -> market-implied distribution at option expiry, vs the desk simulation; desk fair value of May options
+    opt = None
+    try:
+        from scipy.stats import norm
+        src = [ROOT.parent / "bmr-com" / "softs--options-" / "data" / "csv" / "CT_MASTER.csv", "https://raw.githubusercontent.com/BMR-Com/softs--options-/main/data/csv/CT_MASTER.csv"]
+        om = None
+        for s_ in src:
+            try:
+                om = pd.read_csv(s_); break
+            except Exception:
+                continue
+        exp_code = f"MAY{oy % 100}"
+        om = om[om.expiry == exp_code]
+        odt = om.date.max(); ox = om[om.date == odt]
+        Fo, To = float(ox.futures_price.iloc[0]), float(ox.time_to_expiry_yrs.iloc[0])
+        otm = ox[((ox.call_put == "C") & (ox.strike >= Fo)) | ((ox.call_put == "P") & (ox.strike < Fo))]
+        otm = otm[otm.implied_vol_pct > 0].sort_values("strike")
+        cc = np.polyfit(np.log(otm.strike / Fo), otm.implied_vol_pct / 100, 2)
+        vfun = lambda Kq: np.clip(np.polyval(cc, np.log(Kq / Fo)), 0.08, 1.5)
+        def bcall(Kq):
+            sg = vfun(Kq) * np.sqrt(To); d1 = (np.log(Fo / Kq) + 0.5 * sg * sg) / sg
+            return Fo * norm.cdf(d1) - Kq * norm.cdf(d1 - sg)
+        grid = np.linspace(30, 260, 4601); cdf = np.clip(np.maximum.accumulate(1 + np.gradient(bcall(grid), grid[1] - grid[0])), 0, 1)
+        bins = [(0, 70), (70, 80), (80, 90), (90, 100), (100, 110), (110, 120), (120, 140), (140, 999)]
+        # desk distribution at option expiry: the Feb-Mar simulation diffused to expiry at historical vol
+        extra = max(To - (tgt_day - today).days / 365, 0.02)
+        desk_T = term2 * np.exp(rng.normal(-0.5 * vol * vol * extra, vol * np.sqrt(extra), len(term2)))
+        fpc = fvf["px"]["ex_short"]                       # conservative: no shortage seasons, stocks/use held at the lowest March number they include
+        cons = np.exp(fpc["b"][0] + fpc["b"][1] * np.log(np.maximum(su, su_floor)) + rng.normal(0, fpc["sd"], n)) * np.exp(rng.normal(-0.5 * vol * vol * extra, vol * np.sqrt(extra), n))
+        rnp = {f"{a}-{b}": round(100 * float(np.interp(b, grid, cdf) - np.interp(a, grid, cdf)), 1) for a, b in bins}
+        dkp = {f"{a}-{b}": round(100 * float(((desk_T >= a) & (desk_T < b)).mean()), 1) for a, b in bins}
+        dkc = {f"{a}-{b}": round(100 * float(((cons >= a) & (cons < b)).mean()), 1) for a, b in bins}
+        def delta_k(dl, cp):
+            Ks = np.linspace(40, 220, 1801); sg = vfun(Ks) * np.sqrt(To); d1 = (np.log(Fo / Ks) + 0.5 * sg * sg) / sg
+            de = norm.cdf(d1) if cp == "C" else norm.cdf(d1) - 1
+            return float(Ks[np.argmin(abs(de - dl))])
+        k25c, k25p = delta_k(0.25, "C"), delta_k(-0.25, "P")
+        rows_o = []
+        for _, rr in ox[ox.strike.isin([70, 75, 78, 80, 85, 90, 95, 100, 105, 110, 115, 120, 130, 150])].iterrows():
+            fairv = float(np.mean(np.maximum(desk_T - rr.strike, 0) if rr.call_put == "C" else np.maximum(rr.strike - desk_T, 0)))
+            fairc = float(np.mean(np.maximum(cons - rr.strike, 0) if rr.call_put == "C" else np.maximum(rr.strike - cons, 0)))
+            if (rr.call_put == "C" and rr.strike >= Fo - 5) or (rr.call_put == "P" and rr.strike <= Fo + 5):
+                rows_o.append({"k": rr.strike, "cp": rr.call_put, "mkt": round(float(rr.settle_price), 2), "iv": round(float(rr.implied_vol_pct), 1), "desk": round(fairv, 2), "desk_cons": round(fairc, 2),
+                               "oi": int(rr.open_interest), "ratio": round(fairv / rr.settle_price, 2) if rr.settle_price > 0 else None})
+        # history of May implied vol at this time of year (Bloomberg generic CTMAY1)
+        ivh = None
+        for s_ in [ROOT.parent / "bmr-com" / "cotton-price" / "data" / "cotton_raw.csv", "https://raw.githubusercontent.com/BMR-Com/cotton-price/main/data/cotton_raw.csv"]:
+            try:
+                cr = pd.read_csv(s_, na_values=["#N/A N/A"]); break
+            except Exception:
+                cr = None
+        if cr is not None:
+            cr["Dates"] = pd.to_datetime(cr.Dates, format="%m/%d/%y"); col = "CTMAY1 Comdty HIST_CALL_IMP_VOL"
+            v_ = []
+            for yy in range(2000, oy - 1):
+                z = cr[(cr.Dates >= f"{yy}-10-20") & (cr.Dates <= f"{yy}-10-31")][col].dropna()
+                if len(z):
+                    v_.append((yy, float(z.mean())))
+            vals = [b for _, b in v_]
+            atm_now = float(vfun(Fo)) * 100
+            ivh = {"years": len(vals), "median": round(float(np.median(vals)), 1), "pct": round(100 * float(np.mean(np.array(vals) < atm_now)), 0),
+                   "hist": {str(a): round(b, 1) for a, b in v_}}
+        opt = {"date": odt, "F": Fo, "T": round(To, 3), "expiry": exp_code, "atm": round(100 * float(vfun(Fo)), 1), "rr25": round(100 * float(vfun(k25c) - vfun(k25p)), 2),
+               "k25c": round(k25c, 1), "k25p": round(k25p, 1), "iv25c": round(100 * float(vfun(k25c)), 1), "iv25p": round(100 * float(vfun(k25p)), 1),
+               "rn": rnp, "desk": dkp, "desk_cons": dkc, "p_above_100_cons": round(100 * float((cons >= 100).mean()), 1), "p_below_80_cons": round(100 * float((cons < 80).mean()), 1), "p_above_100_rn": round(100 - 100 * float(np.interp(100, grid, cdf)), 1), "p_above_100_desk": round(100 * float((desk_T >= 100).mean()), 1),
+               "p_below_80_rn": round(100 * float(np.interp(80, grid, cdf)), 1), "p_below_80_desk": round(100 * float((desk_T < 80).mean()), 1),
+               "options": sorted(rows_o, key=lambda r: (r["cp"], r["k"])), "iv_hist": ivh,
+               "top_oi": [{"k": float(r.strike), "cp": r.call_put, "oi": int(r.open_interest)} for _, r in ox.sort_values("open_interest", ascending=False).head(6).iterrows()]}
+    except Exception as e:
+        print("options skipped:", repr(e)[:160])
+
     # analog seasons: USDA too loose in October
     analog = [{"my": i, "su_oct": round(v.su_oct, 1), "su_fin": round(v.su_fin, 1), "may_chg": round(v.Kchg, 1), "pm_short_pct": round(v.pm_short_pct, 0),
                "jul_dec_june": round(v.NZe, 1)} for i, v in H.iterrows() if v.dsu <= -10 or i in SHORTAGE]
     out = {"built": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "asof": today.strftime("%Y-%m-%d"), "prices": px, "spreads": sp, "usda_su": round(usda_su, 1),
-           "scenarios": scenarios, "mc": mc, "hedge": hedge, "fair": fairness, "oncall": oncall, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
+           "scenarios": scenarios, "mc": mc, "hedge": hedge, "fair": fairness, "oncall": oncall, "options": opt, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
            "typical": {"hk_feb": round(float(np.median(ex.HKe)), 2), "kn_apr": round(float(np.median(ex.KNe)), 2),
                        "shortage": {s: {"hk": round(float(H.loc[s, "HKe"]), 1), "kn": round(float(H.loc[s, "KNe"]), 1), "nz": round(float(H.loc[s, "NZe"]), 1)} for s in SHORTAGE if s in H.index}}}
     (ROOT / "data" / "derived" / "ct_price_outlook.json").write_text(json.dumps(out, indent=1, default=float))

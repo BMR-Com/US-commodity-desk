@@ -52,9 +52,15 @@ const IndiaCotton = (() => {
         <div class="card"><h2>CAI estimate revisions, this season and last</h2><div class="chart"><canvas id="cInRev"></canvas></div><p class="note" id="inRevNote"></p></div>
         <div class="card"><h2>Monthly trade by season (thousand t)</h2><div class="ctrls" id="inTrSel"></div><div class="chart"><canvas id="cInTr"></canvas></div><p class="note" id="inTrNote"></p></div>
       </div>
+      ${D.origins?.split ? `<div class="card" style="margin-top:12px"><h2>Where India's imports come from</h2>
+        <div class="chart" style="height:300px"><canvas id="cInOrg"></canvas></div><p class="note" id="inOrgNote"></p>
+        <div class="grid g2" style="margin-top:8px"><div class="tbl" id="inOrgWin"></div><div class="tbl" id="inOrgSplit"></div></div>
+        <div class="grid g2" style="margin-top:8px"><div class="tbl" id="inOrgCost"></div><div class="tbl" id="inOrgSup"></div></div>
+        <p class="note">Origins: India-reported imports of raw cotton (HS 5201) from UN Comtrade, by month. Africa = all African origins except Egypt (shown apart: extra-long staple). Least-developed African countries ship duty-free under India's DFTP scheme; Australia ships duty-free within the 51,000 t ECTA quota.
+        Origin split of the desk scenarios: each month's imports shared out by that calendar month's origin mix since 2022 under the same duty status, weighted by each origin's exportable supply for the new season against last season (USDA; the US on the desk crop). Landed cost = ICE nearby + basis (desk trade levels), before freight.</p></div>` : ''}
       <div class="card" style="margin-top:12px"><h2>Shankar-6 vs ICE (¢/lb, weekly)</h2><div class="chart"><canvas id="cInPx"></canvas></div><p class="note" id="inPxNote"></p></div>
       ${(D.notes?.policy || []).length ? `<div class="card" style="margin-top:12px"><h2>Policy</h2>${D.notes.policy.map(p => `<p>${md(p.t)}</p>`).join('')}</div>` : ''}`;
-    proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); deskNote(); impScen(); revChart(); tradeSel(); pxChart();
+    proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); deskNote(); impScen(); origins(); revChart(); tradeSel(); pxChart();
   }
 
   function cciCard(c) {
@@ -151,6 +157,21 @@ const IndiaCotton = (() => {
       ${Object.values(S).map(v => `<tr><td class="l">${v.label}</td>${v.path.map((x, i) => `<td${I.reported.includes(I.months[i]) ? ' style="font-weight:600"' : ''}>${f(x)}</td>`).join('')}<td><b>${f(v.m480, 1)}</b></td><td><b>${f(v.closing_m480, 1)}</b></td><td>${fmt(v.stocks_use, 0)}%</td></tr>`).join('')}
       <tr><td class="l">USDA</td>${mons.map(() => '<td></td>').join('')}<td>${f(u.usda_imports, 1)}</td><td>${f(u.usda_closing, 1)}</td><td></td></tr></table>`;
     document.getElementById('inImpScNote').textContent = `Bold months are reported customs (HS 5201). Duty-free months at the last three duty-free months' pace (${f(I.free_pace)} m a month), duty months at the last five duty months' pace (${f(I.duty_pace)} m); before a duty return importers pull shipments forward (December 2025 was twice the months before) and the first duty month still carries part of it. All cases keep USDA's ${D.desk_balance.prev} ending stocks (${f(u.m480.opening)} m), the desk crop (${f(u.m480.crop)} m), USDA's use (${f(u.m480.consumption)} m) and exports at the customs pace (${f(u.m480.exports)} m). In the 2025 duty-free window imports ran faster (0.6 m a month in September–November), which would put the all-season case near 7 m.`;
+  }
+
+  function origins() {
+    const O = D.origins; if (!O?.split) return;
+    const OR = ['USA', 'Brazil', 'Australia', 'Africa', 'Egypt', 'Other'], COL = { USA: '#1f4e79', Brazil: '#2e8b57', Australia: '#d9a35b', Africa: '#8b5a2b', Egypt: '#9b59b6', Other: '#bbb' };
+    const ms = Object.keys(O.monthly_kt).sort(), free = new Set(O.free_months);
+    chart('cInOrg', { type: 'bar', data: { labels: ms.map(m => (free.has(m) ? '★ ' : '') + MON[+m.slice(5) - 1] + ' ' + m.slice(2, 4)), datasets: OR.map(o => ({ label: o, data: ms.map(m => O.monthly_kt[m][o]), backgroundColor: COL[o], stack: 's' })) },
+      options: { plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: true, ticks: { maxTicksLimit: 30, font: { size: 9 } } }, y: { stacked: true, title: { display: true, text: 'thousand t' } } } } });
+    document.getElementById('inOrgNote').textContent = `★ = duty-free month. Last 12 months (${O.last12.from} to ${O.last12.to}): ${f(O.last12.kt, 0)} kt — ${OR.map(o => `${o} ${fmt(O.last12.share[o], 0)}%`).join(', ')}.`;
+    document.getElementById('inOrgWin').innerHTML = `<table><tr><th class="l">Duty-free window</th><th>kt</th>${OR.slice(0, 4).map(o => `<th>${o}</th>`).join('')}</tr>${O.windows.map(w => `<tr><td class="l">${w.window}${w.through < w.window ? '' : ''}</td><td>${f(w.kt, 0)}</td>${OR.slice(0, 4).map(o => `<td>${fmt(w.share[o], 0)}%</td>`).join('')}</tr>`).join('')}</table>`;
+    const SP = O.split, lab = { notified: 'Duty back Nov', expected: 'Waiver to Dec', all_year: 'Waiver all season' };
+    document.getElementById('inOrgSplit').innerHTML = `<table><tr><th class="l">2026/27 imports by origin, m bales</th>${OR.slice(0, 4).map(o => `<th>${o}</th>`).join('')}<th>Total</th></tr>${Object.keys(SP).map(k => `<tr><td class="l">${lab[k]}</td>${OR.slice(0, 4).map(o => `<td>${f(SP[k][o])}</td>`).join('')}<td>${f(OR.reduce((a, o) => a + SP[k][o], 0))}</td></tr>`).join('')}
+      <tr><td class="l">Extra vs duty back Nov: to Dec</td>${OR.slice(0, 4).map(o => `<td>+${f(O.extra_expected[o])}</td>`).join('')}<td></td></tr><tr><td class="l">Extra: all season</td>${OR.slice(0, 4).map(o => `<td>+${f(O.extra_all_year[o])}</td>`).join('')}<td></td></tr></table>`;
+    document.getElementById('inOrgCost').innerHTML = `<table><tr><th class="l">Landed guide, ¢/lb (ICE ${f(O.ice, 1)})</th><th>Basis</th><th>Duty-free</th><th>With duty</th></tr>${Object.entries(O.cost).map(([o, c]) => `<tr><td class="l" title="${c.treatment}">${o}</td><td>+${c.basis}</td><td>${f(c.free, 1)}</td><td>${f(c.duty, 1)}${c.above_quota ? ` <span class="note">(${f(c.above_quota, 1)} above quota)</span>` : ''}</td></tr>`).join('')}</table>`;
+    document.getElementById('inOrgSup').innerHTML = `<table><tr><th class="l">Exportable supply, m bales</th><th>Last season</th><th>This season</th><th>Change</th></tr>${Object.entries(O.supply).map(([o, v]) => `<tr><td class="l">${o}</td><td>${f(v.prev, 1)}</td><td>${f(v.new, 1)}</td><td>${pc(100 * (v.index - 1))}</td></tr>`).join('')}</table>`;
   }
 
   function revChart() {

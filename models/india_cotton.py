@@ -334,6 +334,111 @@ def import_scenarios(T, season, notes):
     return {"months": months, "free_pace": round(fp, 2), "duty_pace": round(dp, 2), "reported": [m for m in months if m in mon], "scenarios": sc}
 
 
+AFRICA_PC = {"204", "854", "466", "384", "120", "148", "768", "834", "729", "716", "894", "508", "454", "566", "686", "324", "288", "800", "404", "231",
+             "710", "140", "450", "24", "108", "646", "270", "430", "478", "562", "426", "748", "72", "516", "12", "504", "788", "434", "706", "262", "232"}
+AFRICA_PSD = {"Benin", "Burkina Faso", "Cameroon", "Central African Republic", "Chad", "Cote d'Ivoire", "Ethiopia", "Ghana", "Guinea", "Kenya", "Madagascar",
+              "Malawi", "Mali", "Mozambique", "Nigeria", "Senegal", "South Africa", "Sudan", "Tanzania", "Togo", "Uganda", "Zambia", "Zimbabwe"}
+ORIGINS = ["USA", "Brazil", "Australia", "Africa", "Egypt", "Other"]
+# landed-cost guide: basis over ICE NY (desk trade levels, cents/lb) and India's duty treatment
+BASIS = {"USA": (9, 11, "11% duty (none in waiver months; ELS over 32 mm exempt since Feb 2024)"), "Brazil": (6, 8, "11% duty (none in waiver months)"),
+         "Australia": (15, 17, "duty-free within the 51,000 t a year India-Australia ECTA quota (about 3 lakh bales), 11% above it"),
+         "Africa": (11, 14, "duty-free for least-developed countries (Mali, Burkina Faso, Benin, Chad, Togo, Tanzania, Sudan...) under India's DFTP; 11% for others (Cote d'Ivoire, Cameroon)")}
+
+
+def ogroup(pc):
+    return {"842": "USA", "76": "Brazil", "36": "Australia", "818": "Egypt"}.get(pc, "Africa" if pc in AFRICA_PC else "Other")
+
+
+def origin_section(page):
+    """India's raw cotton imports by origin (UN Comtrade, India-reported), split by duty status and calendar month, each origin's
+    exportable supply (USDA PSD: opening stocks + crop - own use), and the origin split of the desk import scenarios."""
+    d = jl("origins")
+    if not d or not d.get("months"):
+        return {}
+    G = {}
+    for k, v in d["months"].items():
+        ym = f"{k[:4]}-{k[4:]}"
+        g = G.setdefault(ym, {o: 0.0 for o in ORIGINS})
+        for pc, (t, usd) in v.items():
+            g[ogroup(pc)] += t
+    months = sorted(G)
+    windows = [("2022-04", "2022-10", "Apr-Oct 2022"), ("2025-09", "2025-12", "Sep-Dec 2025"), ("2026-06", "2026-10", "Jun-Oct 2026")]
+    win = []
+    for a, b, lab in windows:
+        ms = [m for m in months if a <= m <= b]
+        if not ms:
+            continue
+        tot = {o: sum(G[m][o] for m in ms) for o in ORIGINS}; T = sum(tot.values())
+        win.append({"window": lab, "months": len(ms), "through": ms[-1], "kt": round(T / 1000, 1), "share": {o: round(100 * tot[o] / T, 1) for o in ORIGINS}})
+    # calendar-month shares since 2022 (the importing era), by duty status
+    cal = {}
+    for m in months:
+        if m < "2022-01":
+            continue
+        key = ("free" if is_free(m) else "duty", int(m[5:]))
+        c = cal.setdefault(key, {o: 0.0 for o in ORIGINS})
+        for o in ORIGINS:
+            c[o] += G[m][o]
+    def share(status, mo):
+        c = cal.get((status, mo)) or cal.get(("duty" if status == "free" else "free", mo))
+        if not c:     # nearest month with data under that status
+            near = sorted((abs(k[1] - mo), k) for k in cal if k[0] == status)
+            c = cal[near[0][1]] if near else {o: 1 for o in ORIGINS}
+        T = sum(c.values()) or 1
+        return {o: c[o] / T for o in ORIGINS}
+    # supply: exportable = opening + crop - own use (USDA), new season vs the last completed one; US uses the desk balance-sheet base crop if present
+    psd = json.loads((ROOT / "data" / "geo" / "raw" / "psd.json").read_text())["data"]["cotton"]["rows"] if (ROOT / "data" / "geo" / "raw" / "psd.json").exists() else []
+    ex = {}
+    for c, n, y, a, v in psd:
+        g = {"United States": "USA", "Brazil": "Brazil", "Australia": "Australia", "Egypt": "Egypt"}.get(n, "Africa" if n in AFRICA_PSD else None)
+        if g and a in ("Beginning Stocks", "Production", "Domestic Use"):
+            ex.setdefault(g, {}).setdefault(y, 0.0)
+            ex[g][y] += (-v if a == "Domestic Use" else v) / 1000
+    y1 = int(page["projection"]["season"][:4]); y0 = y1 - 1
+    bsf = ROOT / "data" / "derived" / "balance_sheets.json"
+    us_adj = 0.0
+    if bsf.exists():
+        try:
+            bs = json.loads(bsf.read_text())["markets"]["cotton"]
+            row = next(r for r in bs["rows"] if r["label"] == "Production")
+            us_adj = row["base"] - row["usda"][bs["cur"]]
+        except Exception:
+            us_adj = 0.0
+    sup = {}
+    for o in ("USA", "Brazil", "Australia", "Africa"):
+        if o in ex and y1 in ex[o] and y0 in ex[o]:
+            new = ex[o][y1] + (us_adj if o == "USA" else 0.0)
+            sup[o] = {"prev": round(ex[o][y0], 1), "new": round(new, 1), "index": round(new / ex[o][y0], 2)}
+    idx = {o: sup.get(o, {}).get("index", 1.0) for o in ORIGINS}
+    # split each scenario's monthly path by origin
+    IS = (page.get("desk_balance") or {}).get("import_scenarios") or {}
+    split = {}
+    for k, sc in (IS.get("scenarios") or {}).items():
+        until = {"notified": None, "expected": (page.get("notes") or {}).get("duty_expected_until", "2026-12-31"), "all_year": f"{y1 + 1}-07-31"}[k]
+        tot = {o: 0.0 for o in ORIGINS}
+        for m, v in zip(IS["months"], sc["path"]):
+            sh = share("free" if is_free(m, until) else "duty", int(m[5:]))
+            w = {o: sh[o] * idx[o] for o in ORIGINS}; W = sum(w.values())
+            for o in ORIGINS:
+                tot[o] += v * w[o] / W
+        split[k] = {o: round(tot[o], 2) for o in ORIGINS}
+    extra = {o: round(split["expected"][o] - split["notified"][o], 2) for o in ORIGINS} if "expected" in split else {}
+    extra_all = {o: round(split["all_year"][o] - split["notified"][o], 2) for o in ORIGINS} if "all_year" in split else {}
+    last12 = [m for m in months][-12:]
+    t12 = {o: sum(G[m][o] for m in last12) for o in ORIGINS}; T12 = sum(t12.values())
+    ice = (page.get("prices") or {}).get("latest", {}).get("ice")
+    cost = {}
+    if ice:
+        for o, (lo, hi, duty) in BASIS.items():
+            mid = ice + (lo + hi) / 2
+            cost[o] = {"basis": f"{lo}-{hi}", "free": round(mid, 1), "duty": round(mid * (1.11 if o in ("USA", "Brazil") else 1.0), 1), "treatment": duty}
+        cost["Australia"]["above_quota"] = round((ice + 16) * 1.11, 1)
+    monthly = {m: {o: round(G[m][o] / 1000, 1) for o in ORIGINS} for m in months if m >= "2021-08"}
+    return {"windows": win, "supply": sup, "split": split, "extra_expected": extra, "extra_all_year": extra_all, "cost": cost, "ice": ice,
+            "last12": {"from": last12[0], "to": last12[-1], "kt": round(T12 / 1000, 1), "share": {o: round(100 * t12[o] / T12, 1) for o in ORIGINS}},
+            "monthly_kt": monthly, "free_months": [m for m in months if is_free(m)], "latest": months[-1]}
+
+
 def desk_balance(page):
     """Desk balance sheet for the new season (lakh 170-kg bales), built twice: on the official COCPC sheet and on CAI's.
     Last season's closing stock is corrected for actual customs imports and exports; the new season takes the desk crop,
@@ -430,6 +535,17 @@ def brief(page, F):
                     f"with the desk crop ({u['m480']['crop']:.1f} m): if the duty returns in November as notified, imports are **{S['notified']['m480']:.1f} m** (about USDA's {u['usda_imports']:.1f} m, so that is the floor) and ending stocks {S['notified']['closing_m480']:.1f} m; "
                     f"duty-free to December as expected, **{S['expected']['m480']:.1f} m** and {S['expected']['closing_m480']:.1f} m; duty-free all season, **{S['all_year']['m480']:.1f} m** and {S['all_year']['closing_m480']:.1f} m (USDA {u['usda_closing']:.1f} m). "
                     f"So imports rise a lot only if the waiver runs well past December; each extra duty-free month adds roughly {DB['import_scenarios']['free_pace'] - DB['import_scenarios']['duty_pace']:.2f} m."})
+    O = page.get("origins") or {}
+    if O.get("split"):
+        sp, w = O["split"], {x["window"]: x for x in O["windows"]}
+        w25, w22 = w.get("Sep-Dec 2025"), w.get("Apr-Oct 2022")
+        out.append({"h": "Who supplies India", "t": f"Over the last 12 months of origin data ({O['last12']['from']} to {O['last12']['to']}) India's imports came {O['last12']['share']['Brazil']:.0f}% from Brazil, {O['last12']['share']['Africa']:.0f}% Africa, "
+                    f"{O['last12']['share']['Australia']:.0f}% Australia and {O['last12']['share']['USA']:.0f}% from the US. Timing decides the US share: "
+                    + (f"in the Sep–Dec 2025 duty-free window the US got only {w25['share']['USA']:.0f}% (Brazil, Australia and Africa have new crop then), " if w25 else "")
+                    + (f"in the Apr–Oct 2022 window {w22['share']['USA']:.0f}% (US shipping season, Brazil out of cotton). " if w22 else "")
+                    + f"With each origin's 2026/27 exportable supply (Australia {O['supply'].get('Australia', {}).get('index', 1) * 100 - 100:+.0f}%, the US {O['supply'].get('USA', {}).get('index', 1) * 100 - 100:+.0f}% on the desk crop), "
+                    f"US cotton to India is about {sp['notified']['USA']:.1f} m bales if the duty returns in November, **{sp['expected']['USA']:.1f} m** with the waiver to December (+{O['extra_expected']['USA']:.2f} m; Brazil +{O['extra_expected']['Brazil']:.2f}, Africa +{O['extra_expected']['Africa']:.2f}) "
+                    f"and {sp['all_year']['USA']:.1f} m if it runs all season (+{O['extra_all_year']['USA']:.2f} m, most of it March–July)."})
     cci = (page.get("notes") or {}).get("cci")
     if cci:
         left = cci["procured"] - cci["sold"]
@@ -497,6 +613,7 @@ def main():
         "balance": bal, "trade": trade_section(jl("trade")), "prices": spot(), "notes": notes,
     }
     page["desk_balance"] = desk_balance(page)
+    page["origins"] = origin_section(page)
     page["brief"] = brief(page, F)
     (D / "india.json").write_text(json.dumps(page, separators=(",", ":"), default=float))
     (D / "model_eval.json").write_text(json.dumps({"coef": [round(float(v), 4) for v in b], "names": ["const", "jj", "as_shortfall", "irrigated"], "base_n": BASE_N, "fit_from": FIT_FROM,

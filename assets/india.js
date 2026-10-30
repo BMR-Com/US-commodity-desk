@@ -27,12 +27,12 @@ const IndiaCotton = (() => {
         ${kpi(`Desk crop ${P.season}`, `${f(P.m480)} m bales`, `range ${f(P.lo_m480)}–${f(P.hi_m480)} · ${f(P.lakh, 0)} lakh Indian bales · USDA ${f(P.usda_m480)} · last season ${f(P.last_season.m480)}`)}
         ${kpi('Monsoon in cotton areas', ix[ky] != null ? pc(ix[ky]) : '–', `June–September rain vs ${R.normal} normal, weighted by cotton area${rank ? ` · ${ordinal(rank)} driest of ${yrs.length} years` : ''}`)}
         ${kpi('Shankar-6', X.rs_candy ? `₹${fmt(X.rs_candy, 0)}` : '–', X.rs_candy ? `per candy · ${f(X.clb, 1)}¢/lb · ${X.premium_ice != null ? `${X.premium_ice > 0 ? '+' : ''}${f(X.premium_ice, 1)}¢ vs ICE` : ''} · ${pc(X.chg_1y_pct)} y/y · ${X.date}` : '')}
-        ${kpi('Sown area', `${f(P.area_lakh_ha, 1)} lakh ha`, `${pc(P.area_change_pct)} vs last season · ${P.area_note || ''}`)}
+        ${kpi('Cotton area', `${f(P.area_lakh_ha, 1)} lakh ha`, `${P.area_change_pct > 0 ? '+' : ''}${f(P.area_change_pct, 1)}% vs last season, the Ministry's sowing change applied to the Cotton Advisory Board area · ${P.area_note || ''}`)}
       </div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>Desk crop projection by region (${P.season})</h2><div class="tbl" id="inProj"></div>
-          <p class="note">Production = sown area × yield. Yield starts from each region's average of the last five seasons and moves with this season's rainfall at its main cotton districts. Variables used: ${P.variables.join('; ')}.
-          North (Punjab, Haryana, Rajasthan) is mostly irrigated, so rain is not used there. Range: the model's typical miss in past seasons.</p></div>
+          <p class="note">Production = sown area × yield. Yield starts from each region's average of the last three seasons and moves with this season's rainfall at its main cotton districts. Variables used: ${P.variables.join('; ')}.
+          * North (Punjab, Haryana, Rajasthan) is mostly irrigated, so rain is not used there. Normal yield = average of the last three seasons. Range: the model's typical miss in past seasons.</p></div>
         <div class="card"><h2>India production by season (m 480-lb bales)</h2><div class="chart"><canvas id="cInProd"></canvas></div>
           <p class="note">Cotton Advisory Board / COCPC production converted to US bales; the last bar is the desk projection with its range, beside USDA.</p></div>
       </div>
@@ -40,7 +40,7 @@ const IndiaCotton = (() => {
         <div class="card"><h2>Monsoon rain in the cotton districts (${R.kharif_year})</h2><div class="tbl" id="inRain"></div>
           <p class="note">Rain at 2–7 main cotton districts per region (NASA POWER) against the ${R.normal} average. Red: 20% or more below normal. Rank: where this June–September sits among ${yrs.length} years since ${yrs[0]}, 1 = driest.</p></div>
         <div class="card"><h2>Cotton-area monsoon index by year (% vs normal)</h2><div class="chart"><canvas id="cInIdx"></canvas></div>
-          <p class="note">June–September rain across the cotton regions weighted by their area. Dots: national yield vs its five-season average (right axis).</p></div>
+          <p class="note">June–September rain across the cotton regions weighted by their area. Dots: national yield vs its three-season average (right axis).</p></div>
       </div>
       <div class="card" style="margin-top:12px"><h2>Monthly rain by region (mm)</h2><div class="ctrls" id="inRainSel"></div><div class="chart"><canvas id="cInRainM"></canvas></div><p class="note" id="inRainNote"></p></div>
       <div class="card" style="margin-top:12px"><h2>Balance sheets side by side</h2><div class="ctrls" id="inUnitSel"></div><div class="tbl" id="inBal"></div>
@@ -48,7 +48,7 @@ const IndiaCotton = (() => {
         The sources differ a lot in level, so the revisions matter more than the gaps between them.</p></div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>CAI estimate revisions, this season and last</h2><div class="chart"><canvas id="cInRev"></canvas></div><p class="note" id="inRevNote"></p></div>
-        <div class="card"><h2>Monthly trade by season</h2><div class="ctrls" id="inTrSel"></div><div class="chart"><canvas id="cInTr"></canvas></div><p class="note" id="inTrNote"></p></div>
+        <div class="card"><h2>Monthly trade by season (thousand t)</h2><div class="ctrls" id="inTrSel"></div><div class="chart"><canvas id="cInTr"></canvas></div><p class="note" id="inTrNote"></p></div>
       </div>
       <div class="card" style="margin-top:12px"><h2>Shankar-6 vs ICE (¢/lb, weekly)</h2><div class="chart"><canvas id="cInPx"></canvas></div><p class="note" id="inPxNote"></p></div>
       ${(D.notes?.policy || []).length ? `<div class="card" style="margin-top:12px"><h2>Policy</h2>${D.notes.policy.map(p => `<p>${md(p.t)}</p>`).join('')}</div>` : ''}`;
@@ -59,12 +59,12 @@ const IndiaCotton = (() => {
 
   function proj() {
     const P = D.projection, rows = P.regions;
-    const t = rows.map(r => `<tr><td class="l">${r.region}${r.irrigated ? ' <span class="note">(irrigated)</span>' : ''}</td><td>${f(r.area, 1)}</td><td>${r.irrigated ? '–' : `<span class="${rainCls(r.rain_jjas_pct)}">${pc(r.rain_jjas_pct)}</span>`}</td>
-      <td>${fmt(r.base_yield, 0)}</td><td>${fmt(r.yield, 0)} <span class="note">(${pc(r.yield_vs_normal_pct)})</span></td><td>${f(r.prod_m480)}</td><td>${f(r.last_prod_lakh * D.conv.lakh170_to_m480)}</td></tr>`).join('');
+    const t = rows.map(r => `<tr><td class="l">${r.region}${r.irrigated ? '*' : ''}</td><td>${f(r.area, 1)}</td><td>${r.irrigated ? '–' : `<span class="${rainCls(r.rain_as_pct)}">${pc(r.rain_as_pct)}</span>`}</td>
+      <td>${fmt(r.yield, 0)} <span class="note">${pc(r.yield_vs_normal_pct)}</span></td><td><b>${f(r.prod_m480)}</b></td><td>${f(r.last_prod_lakh * D.conv.lakh170_to_m480)}</td></tr>`).join('');
     const tot = rows.reduce((s, r) => s + r.prod_m480, 0), last = rows.reduce((s, r) => s + r.last_prod_lakh, 0) * D.conv.lakh170_to_m480;
-    document.getElementById('inProj').innerHTML = `<table><tr><th class="l">Region</th><th>Area, lakh ha</th><th>Jun–Sep rain</th><th>Normal yield, kg/ha</th><th>Projected yield</th><th>Crop, m bales</th><th>Last season</th></tr>${t}
-      <tr><td class="l">Other states (last season)</td><td></td><td></td><td></td><td></td><td>${f(P.unmodelled_lakh * D.conv.lakh170_to_m480)}</td><td>${f(P.unmodelled_lakh * D.conv.lakh170_to_m480)}</td></tr>
-      <tr><td class="l"><b>India</b></td><td><b>${f(P.area_lakh_ha, 1)}</b></td><td></td><td></td><td></td><td><b>${f(P.m480)}</b></td><td><b>${f(P.last_season.m480)}</b></td></tr></table>`;
+    document.getElementById('inProj').innerHTML = `<table><tr><th class="l">Region</th><th>Area<br>lakh ha</th><th>Aug–Sep<br>rain</th><th>Yield kg/ha<br>vs normal</th><th>Crop<br>m bales</th><th>Last<br>season</th></tr>${t}
+      ${P.unmodelled_lakh > 0.05 ? `<tr><td class="l">Other states</td><td></td><td></td><td></td><td>${f(P.unmodelled_lakh * D.conv.lakh170_to_m480)}</td><td>${f(P.unmodelled_lakh * D.conv.lakh170_to_m480)}</td></tr>` : ''}
+      <tr><td class="l"><b>India</b></td><td><b>${f(P.area_lakh_ha, 1)}</b></td><td></td><td></td><td><b>${f(P.m480)}</b></td><td><b>${f(P.last_season.m480)}</b></td></tr></table>`;
   }
 
   function prodChart() {
@@ -86,10 +86,10 @@ const IndiaCotton = (() => {
 
   function idxChart() {
     const ix = D.rain.cotton_area_index, ys = Object.keys(ix).sort(), H = D.history;
-    const dev = ys.map(y => { const s = +y + 1, p = [1, 2, 3, 4, 5].map(k => H[s - k]?.yield).filter(v => v); return H[s]?.yield && p.length >= 4 ? Math.round(100 * (H[s].yield / (p.reduce((a, b) => a + b, 0) / p.length) - 1)) : null; });
+    const dev = ys.map(y => { const s = +y + 1, p = [1, 2, 3].map(k => H[s - k]?.yield).filter(v => v); return H[s]?.yield && p.length >= 3 ? Math.round(100 * (H[s].yield / (p.reduce((a, b) => a + b, 0) / p.length) - 1)) : null; });
     chart('cInIdx', { type: 'bar', data: { labels: ys, datasets: [
       { label: 'Monsoon rain vs normal (%)', data: ys.map(y => ix[y]), backgroundColor: ys.map(y => y === String(D.rain.kharif_year) ? '#c0504d' : ix[y] < 0 ? '#d9a35b' : '#6f9fcf') },
-      { label: 'Yield vs 5-season average (%)', type: 'line', data: dev, borderColor: '#333', pointRadius: 3, showLine: false, yAxisID: 'y2' }] },
+      { label: 'Yield vs 3-season average (%)', type: 'line', data: dev, borderColor: '#333', pointRadius: 3, showLine: false, yAxisID: 'y2' }] },
       options: { plugins: { legend: { position: 'bottom' } }, scales: { y2: { position: 'right', grid: { display: false } } } } });
   }
 
@@ -113,23 +113,24 @@ const IndiaCotton = (() => {
     const B = D.balance, seasons = [...new Set([...Object.keys(B.cocpc), ...Object.keys(B.cai), ...Object.keys(B.usda)])].sort().slice(-3);
     const cols = [];
     seasons.forEach(s => ['cocpc', 'cai', 'usda'].forEach(src => { if (B[src][s]) cols.push([src, s]); }));
-    const val = (src, s, k) => { const v = B[src][s]; if (src === 'usda') return unit === 'm480' ? v.m480[k] : v.m480[k] / D.conv.lakh170_to_m480; return v[unit]?.[k]; };
+    if (seasons.includes(D.projection.season) || true) cols.push(['desk', D.projection.season]);
+    const val = (src, s, k) => { if (src === 'desk') return k === 'crop' ? (unit === 'm480' ? D.projection.m480 : D.projection.lakh) : null; const v = B[src][s]; if (src === 'usda') return unit === 'm480' ? v.m480[k] : v.m480[k] / D.conv.lakh170_to_m480; return v[unit]?.[k]; };
     const rows = [['opening', 'Opening stock'], ['crop', 'Crop'], ['imports', 'Imports'], ['supply', 'Total supply'], ['consumption', 'Consumption'], ['exports', 'Exports'], ['closing', 'Closing stock']];
-    const nm = { cocpc: 'COCPC', cai: 'CAI', usda: 'USDA' }, d = unit === 'm480' ? 2 : 1;
+    const nm = { cocpc: 'COCPC', cai: 'CAI', usda: 'USDA', desk: 'Desk crop' }, d = unit === 'm480' ? 2 : 1;
     document.getElementById('inBal').innerHTML = `<table><tr><th class="l"></th>${cols.map(([src, s]) => `<th>${s}<br><span class="note">${nm[src]}${src === 'cai' && B.cai[s].as_of ? ' ' + B.cai[s].as_of : ''}</span></th>`).join('')}</tr>
       ${rows.map(([k, l]) => `<tr><td class="l">${l}</td>${cols.map(([src, s]) => `<td>${f(val(src, s, k), d)}</td>`).join('')}</tr>`).join('')}
-      <tr><td class="l">Stocks / use</td>${cols.map(([src, s]) => { const c = val(src, s, 'closing'), u = (val(src, s, 'consumption') || 0) + (val(src, s, 'exports') || 0); return `<td>${u ? fmt(100 * c / u, 0) + '%' : '–'}</td>`; }).join('')}</tr></table>`;
+      <tr><td class="l">Stocks / use</td>${cols.map(([src, s]) => { if (src === 'desk') return '<td></td>'; const c = val(src, s, 'closing'), u = (val(src, s, 'consumption') || 0) + (val(src, s, 'exports') || 0); return `<td>${u ? fmt(100 * c / u, 0) + '%' : '–'}</td>`; }).join('')}</tr></table>`;
   }
 
   function revChart() {
     const C = D.balance.cai, ss = Object.keys(C).sort().slice(-2);
     const ds = [];
-    ss.forEach((s, i) => { const r = C[s].revisions || []; ds.push({ label: `${s} crop`, data: r.map(x => ({ x: x.month, y: x.crop })), borderColor: i ? '#c0504d' : '#999', pointRadius: 2 });
-      ds.push({ label: `${s} closing stock`, data: r.map(x => ({ x: x.month, y: x.closing })), borderColor: i ? '#c0504d' : '#999', borderDash: [5, 4], pointRadius: 2 }); });
-    const labels = [...new Set(ds.flatMap(d => d.data.map(p => p.x)))].sort();
-    chart('cInRev', { type: 'line', data: { labels, datasets: ds }, options: { parsing: { xAxisKey: 'x', yAxisKey: 'y' }, plugins: { legend: { position: 'bottom' } } } });
+    const at = (r, k) => { const a = Array(12).fill(null); r.forEach(x => { a[(+x.month.slice(5) + 2) % 12] = x[k]; }); return a; };
+    ss.forEach((s, i) => { const r = C[s].revisions || []; ds.push({ label: `${s} crop`, data: at(r, 'crop'), borderColor: i ? '#c0504d' : '#999', pointRadius: 2, spanGaps: true });
+      ds.push({ label: `${s} closing stock`, data: at(r, 'closing'), borderColor: i ? '#c0504d' : '#999', borderDash: [5, 4], pointRadius: 2, spanGaps: true }); });
+    chart('cInRev', { type: 'line', data: { labels: MONS, datasets: ds }, options: { plugins: { legend: { position: 'bottom' } } } });
     const cur = C[ss[ss.length - 1]];
-    document.getElementById('inRevNote').textContent = cur ? `CAI crop committee, lakh 170-kg bales. Latest: ${cur.as_of}, crop ${f(cur.lakh.crop, 1)}, closing stock ${f(cur.lakh.closing, 1)} lakh bales (${f(cur.m480.crop)} and ${f(cur.m480.closing)} m 480-lb bales).` : '';
+    document.getElementById('inRevNote').textContent = cur ? `CAI crop committee, lakh 170-kg bales, by month of the October–September season. Latest: ${cur.as_of}, crop ${f(cur.lakh.crop, 1)}, closing stock ${f(cur.lakh.closing, 1)} lakh bales (${f(cur.m480.crop)} and ${f(cur.m480.closing)} m 480-lb bales).` : '';
   }
 
   function tradeSel() {
@@ -139,12 +140,12 @@ const IndiaCotton = (() => {
     document.getElementById('inTrSel').innerHTML = K.map(([k, l]) => `<button class="btn ${k === trKey ? 'on' : ''}" data-k="${k}">${l}</button>`).join('');
     document.querySelectorAll('#inTrSel button').forEach(b => b.onclick = () => { trKey = b.dataset.k; tradeSel(); });
     const rows = T[trKey], byS = {};
-    Object.entries(rows).forEach(([ym, v]) => { const s = v.season || seasonOf(ym), m = +ym.slice(5), i = (m + 2) % 12; const x = v.u0 || {}; const val = Object.values(x).reduce((a, b) => a + (b || 0), 0); (byS[s] ||= Array(12).fill(null))[i] = val || null; });
+    Object.entries(rows).forEach(([ym, v]) => { const s = v.season || seasonOf(ym), i = (+ym.slice(5) + 2) % 12; (byS[s] ||= Array(12).fill(null))[i] = v.t ? v.t / 1000 : null; });
     const ss = Object.keys(byS).sort().slice(-4), cols = ['#ccc', '#aaa', '#777', '#c0504d'].slice(-ss.length);
     chart('cInTr', { type: 'bar', data: { labels: MONS, datasets: ss.map((s, i) => ({ label: s, data: byS[s], backgroundColor: cols[i] })) }, options: { plugins: { legend: { position: 'bottom' } } } });
     const cur = ss[ss.length - 1], prev = ss[ss.length - 2], n = byS[cur].filter(v => v).length;
     const ytd = s => byS[s]?.slice(0, n).reduce((a, b) => a + (b || 0), 0);
-    document.getElementById('inTrNote').textContent = `CAI monthly trade data, all HS lines summed (${T.unit_note || 'tonnes'}). ${cur} so far (${n} months): ${fmt(ytd(cur), 0)} vs ${fmt(ytd(prev), 0)} in the same months of ${prev} (${pc(100 * (ytd(cur) / ytd(prev) - 1))}).`;
+    document.getElementById('inTrNote').textContent = `Thousand tonnes, from CAI's monthly trade tables (raw cotton: HS 5201–5203; yarn: HS 5205). ${cur} so far (${n} months): ${fmt(ytd(cur), 0)} kt vs ${fmt(ytd(prev), 0)} kt in the same months of ${prev} (${pc(100 * (ytd(cur) / ytd(prev) - 1))})` + (trKey.startsWith('raw') ? `, about ${f(ytd(cur) * 1e6 / 217.7243 / 1e6)} m 480-lb bales.` : '.');
   }
 
   function pxChart() {

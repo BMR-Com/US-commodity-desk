@@ -21,9 +21,8 @@ REGION = {"Punjab": "North", "Haryana": "North", "Rajasthan": "North", "Gujarat"
 ORDER = ["North", "Gujarat", "Maharashtra", "Madhya Pradesh", "Telangana + AP", "Karnataka", "South other"]
 IRRIGATED = {"North"}
 VARS = ["State and zone cotton area (Cotton Advisory Board / COCPC via CAI) and this season's sown area (Ministry of Agriculture)",
-        "Each region's normal yield: the average of its previous five seasons",
-        "June-July and August-September rainfall at the main cotton districts against the 1991-2020 normal (NASA POWER)",
-        "Excess-rain penalty (very wet seasons cut yield and quality)"]
+        "Each region's normal yield: the average of its previous three seasons",
+        "June-July rainfall and the August-September rainfall shortfall at the main cotton districts, against the 1991-2020 normal (NASA POWER)"]
 
 
 def jl(name, default=None):
@@ -108,21 +107,30 @@ def design(H, F, years):
         for reg in ORDER:
             if reg not in H.get(y, {}).get("regions", {}) or reg not in F or (y - 1) not in F[reg]:
                 continue
-            prev = [H[p]["regions"][reg]["yield"] for p in range(y - 5, y) if p in H and reg in H[p]["regions"] and H[p]["regions"][reg].get("yield")]
-            if len(prev) < 4:
+            prev = [H[p]["regions"][reg]["yield"] for p in range(y - BASE_N, y) if p in H and reg in H[p]["regions"] and H[p]["regions"][reg].get("yield")]
+            if len(prev) < BASE_N:
                 continue
             base = float(np.mean(prev))
             f = F[reg][y - 1]
             if any(math.isnan(f[w]) for w in ("jj", "as")):
                 continue
             rf = 0.0 if reg in IRRIGATED else 1.0
-            X.append([rf * f["jj"], rf * f["as"], rf * max(f["jjas"], 0) ** 2, rf * min(f["jjas"], 0) ** 2, 1 - rf])
+            X.append(feat(f, rf))
             yv.append(math.log(H[y]["regions"][reg]["yield"] / base))
             meta.append((y, reg, base, H[y]["regions"][reg]["area"]))
     return np.array(X), np.array(yv), meta
 
 
-def fit(X, y, w=None, lam=0.5):
+BASE_N = 3              # normal yield = average of the previous three seasons (tracks the post-2016 slide better than five)
+FIT_FROM, TEST_FROM = 2008, 2011   # after Bt cotton reached most of the area
+
+
+def feat(f, rf):
+    """June-July rain vs normal, August-September shortfall (only a deficit counts), irrigated flag."""
+    return [rf * f["jj"], rf * min(f["as"], 0), 1 - rf]
+
+
+def fit(X, y, w=None, lam=0.3):
     w = np.ones(len(y)) if w is None else w
     Xa = np.column_stack([np.ones(len(y)), X])
     W = np.diag(w)
@@ -138,7 +146,7 @@ def backtest(H, F, years):
     """Leave-one-season-out: national production error for the model vs the five-season-average yield (no weather)."""
     X, y, meta = design(H, F, years)
     res = []
-    for s in sorted({m[0] for m in meta}):
+    for s in sorted({m[0] for m in meta if m[0] >= TEST_FROM}):
         tr = np.array([m[0] != s for m in meta]); te = ~tr
         if te.sum() < 3:
             continue
@@ -164,12 +172,13 @@ def balance_sheets(cocpc, cai, psd):
     def from_cai(r):
         return dict(zip(rows, [r.get("opening_stock"), r.get("crop"), r.get("import"), r.get("total_supply"), r.get("total_consumption"), r.get("export"), r.get("closing_stock")]))
     out = {"cocpc": {}, "cai": {}, "usda": {}}
+    short = lambda s: s if len(s) == 7 else f"{s[:4]}-{s[-2:]}"          # 2025-2026 -> 2025-26
     for s, r in (cocpc or {}).items():
-        out["cocpc"][s] = {"lakh": from_cocpc(r), "remark": r.get("remark")}
+        out["cocpc"][short(s)] = {"lakh": from_cocpc(r), "remark": r.get("remark")}
     by_season = {}
     for k, r in sorted((cai or {}).items()):
         if r.get("crop"):
-            by_season.setdefault(r["season"], []).append((k, r))
+            by_season.setdefault(short(r["season"]), []).append((k, r))
     for s, lst in by_season.items():
         k, r = lst[-1]
         out["cai"][s] = {"lakh": from_cai(r), "as_of": k, "revisions": [{"month": kk, "crop": rr.get("crop"), "closing": rr.get("closing_stock"),
@@ -233,13 +242,62 @@ def spot():
 
 
 def trade_section(tr):
+    """Monthly tonnes (all HS lines summed); a zero month is a month not yet reported."""
     if not tr:
         return {}
-    out = {}
+    out = {"unit": "tonnes"}
     for k in ("raw_export", "raw_import", "yarn_export"):
-        rows = tr.get(k) or {}
-        out[k] = {m: {"season": v["season"], **{u: v.get(u) for u in ("u0", "u1", "u2")}} for m, v in sorted(rows.items())}
-    out["unit_labels"] = tr.get("unit_labels")
+        rows = {}
+        for m, v in sorted((tr.get(k) or {}).items()):
+            t = sum(x or 0 for x in (v.get("u0") or {}).values())
+            rows[m] = {"season": v["season"], "t": round(t) if t > 0 else None, "by_hs": v.get("u0")}
+        out[k] = rows
+        byS = {}
+        for m, v in rows.items():
+            if v["t"]:
+                byS.setdefault(v["season"], {})[m] = v["t"]
+        ss = sorted(byS)
+        if len(ss) >= 2:
+            cur, prev = ss[-1], ss[-2]
+            n = len(byS[cur]); months = sorted(int(m[5:]) for m in byS[cur])
+            ytd = sum(byS[cur].values()); same = sum(t for m, t in byS[prev].items() if int(m[5:]) in months)
+            out[k + "_ytd"] = {"season": cur, "months": n, "last": max(byS[cur]), "t": ytd, "prev_same": same, "prev_season": prev,
+                               "prev_total": sum(byS[prev].values()), "chg_pct": round(100 * (ytd / same - 1), 1) if same else None,
+                               "m480": round(ytd * 1000 / 217.7243 / 1e6, 2) if k.startswith("raw") else None}
+    return out
+
+
+def brief(page, F):
+    P, R, X, B, T = page["projection"], page["rain"], page["prices"].get("latest", {}), page["balance"], page["trade"]
+    regs = sorted(P["regions"], key=lambda r: r["prod_m480"] - r["last_prod_lakh"] * LAKH170_TO_M480)
+    worst = [r for r in regs if not r["irrigated"] and r["yield_vs_normal_pct"] <= -5][:4]
+    out = []
+    chg = 100 * (P["m480"] / P["last_season"]["m480"] - 1)
+    out.append({"h": "Crop", "t": f"Desk projection **{P['m480']:.1f} m 480-lb bales** ({P['lakh']:.0f} lakh Indian bales) for {P['season']}, range {P['lo_m480']:.1f}–{P['hi_m480']:.1f}, "
+                f"vs USDA {P['usda_m480']:.1f} and {P['last_season']['m480']:.1f} last season ({chg:+.0f}%). Area is about flat ({P['area_change_pct']:+.1f}%), so the cut is yield: "
+                + ", ".join(f"{r['region']} {r['yield_vs_normal_pct']:+.0f}% (Aug–Sep rain {r['rain_as_pct']:+.0f}%)" for r in worst) + "."})
+    ix = R.get("cotton_area_index", {}); ky = str(R.get("kharif_year"))
+    if ky in ix:
+        order = sorted(ix, key=lambda y: ix[y]); rk = order.index(ky) + 1
+        drier = sorted(order[:rk - 1])
+        mh = R["regions"].get("Maharashtra", {})
+        out.append({"h": "Monsoon", "t": f"June–September rain across the cotton areas was {ix[ky]:+d}% vs the {R['normal']} normal, the {rk}{'th' if rk > 3 else ['st','nd','rd'][rk-1]} driest of {len(ix)} years"
+                    + (f" (drier only in {', '.join(drier)})" if drier else "") + f". Maharashtra, a third of India's cotton area, had {mh.get('jjas_pct', 0):+d}%, "
+                    + (f"the driest since at least {min(map(int, mh['history']))}" if mh.get("rank_driest") == 1 else f"rank {mh.get('rank_driest')} of {mh.get('years')}") +
+                    f", with August–September {mh.get('as_pct', 0):+d}% when bolls fill. October has been dry as well, which helps picking but not yield."})
+    cc, ca = B["cocpc"].get(max(B["cocpc"])) if B["cocpc"] else None, B["cai"].get(max(B["cai"])) if B["cai"] else None
+    if cc and ca:
+        out.append({"h": "Stocks", "t": f"For {max(B['cai'])} the official COCPC sheet ends with {cc['m480']['closing']:.1f} m bales of stock and the trade's CAI sheet ({ca['as_of']}) with "
+                    f"{ca['m480']['closing']:.1f} m; they differ mainly on the crop ({cc['m480']['crop']:.1f} vs {ca['m480']['crop']:.1f} m). A crop near the desk number would pull 2026-27 stocks down from either level."})
+    im, ex = T.get("raw_import_ytd"), T.get("raw_export_ytd")
+    if im:
+        out.append({"h": "Trade", "t": f"Raw cotton imports {im['season']} through {im['last']}: {im['t']/1e6:.2f} mt ({im['m480']:.1f} m bales), {im['chg_pct']:+.0f}% on the same months of {im['prev_season']}"
+                    + (f"; exports {ex['t']/1e3:.0f} kt ({ex['chg_pct']:+.0f}%)" if ex else "") + ". India has turned into a steady importer."})
+    if X:
+        M = page["prices"].get("msp") or {}
+        out.append({"h": "Price", "t": f"Shankar-6 ₹{X['rs_candy']:,}/candy = {X['clb']:.1f}¢/lb ({X['date']}), {X['premium_ice']:+.1f}¢ over ICE nearby and {X['chg_1y_pct']:+.0f}% on a year ago"
+                    + (f"; the MSP floor works out to about {M['lint_clb']:.0f}¢/lb lint, so CCI support sits just under the market" if M else "") + ". Indian cotton is dear against the world."})
+    out.append({"h": "For US cotton", "t": "A smaller Indian crop, duty-free imports (waiver expected through December) and Indian prices well above ICE all point to more Indian import demand in 2026-27 than USDA's number, with US and Brazilian cotton the main suppliers."})
     return out
 
 
@@ -249,8 +307,8 @@ def main():
     H = region_history(cab)
     R = rain_tables(rain)
     F, normals = rain_features(R)
-    yrs = sorted(y for y in H if y >= 2006)
-    res, stats = backtest(H, F, [y for y in yrs if y <= max(yrs)])
+    yrs = sorted(y for y in H if y >= FIT_FROM)
+    res, stats = backtest(H, F, yrs)
     X, yv, meta = design(H, F, yrs)
     b = fit(X, yv, np.array([m[3] for m in meta]))
     resid = yv - predict(b, X)
@@ -267,11 +325,11 @@ def main():
     for reg in ORDER:
         if reg not in H[last]["regions"] or reg not in F or ky not in F[reg]:
             continue
-        prev = [H[p]["regions"][reg]["yield"] for p in range(sy - 5, sy) if p in H and reg in H[p]["regions"]]
+        prev = [H[p]["regions"][reg]["yield"] for p in range(sy - BASE_N, sy) if p in H and reg in H[p]["regions"]]
         base = float(np.mean(prev))
         f = F[reg][ky]
         rf = 0.0 if reg in IRRIGATED else 1.0
-        x = np.array([[rf * f["jj"], rf * f["as"], rf * max(f["jjas"], 0) ** 2, rf * min(f["jjas"], 0) ** 2, 1 - rf]])
+        x = np.array([feat(f, rf)])
         lr = float(predict(b, x)[0])
         area = H[last]["regions"][reg]["area"] * scale
         prod = area * base * math.exp(lr) / 170
@@ -299,8 +357,9 @@ def main():
         "rain": rain_page(R, F, normals, H, ky),
         "balance": bal, "trade": trade_section(jl("trade")), "prices": spot(), "notes": notes,
     }
+    page["brief"] = brief(page, F)
     (D / "india.json").write_text(json.dumps(page, separators=(",", ":"), default=float))
-    (D / "model_eval.json").write_text(json.dumps({"coef": [round(float(v), 4) for v in b], "names": ["const", "jj", "as", "wet2", "dry2", "irrigated"],
+    (D / "model_eval.json").write_text(json.dumps({"coef": [round(float(v), 4) for v in b], "names": ["const", "jj", "as_shortfall", "irrigated"], "base_n": BASE_N, "fit_from": FIT_FROM,
                                                    "resid_sd": round(sd, 4), "backtest": stats, "seasons": res}, indent=1))
     print("projection", page["projection"]["season"], round(tot_all, 1), "lakh =", m480(tot_all), "m 480-lb; backtest", stats)
 

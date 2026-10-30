@@ -69,72 +69,72 @@
 "route": "natural-gas/prod/sum",
 "id": "N9070US2",
 "how": "id found",
-"rows": 355,
-"last": "2026-07"
+"rows": 356,
+"last": "2026-08"
 },
 "consTot": {
 "label": "Gas \u2014 total consumption",
 "route": "natural-gas/cons/sum",
 "id": "N9140US2",
 "how": "id found",
-"rows": 307,
-"last": "2026-07"
+"rows": 308,
+"last": "2026-08"
 },
 "consRes": {
 "label": "Gas \u2014 residential",
 "route": "natural-gas/cons/sum",
 "id": "N3010US2",
 "how": "id found",
-"rows": 643,
-"last": "2026-07"
+"rows": 644,
+"last": "2026-08"
 },
 "consCom": {
 "label": "Gas \u2014 commercial",
 "route": "natural-gas/cons/sum",
 "id": "N3020US2",
 "how": "id found",
-"rows": 643,
-"last": "2026-07"
+"rows": 644,
+"last": "2026-08"
 },
 "consInd": {
 "label": "Gas \u2014 industrial",
 "route": "natural-gas/cons/sum",
 "id": "N3035US2",
 "how": "id found",
-"rows": 307,
-"last": "2026-07"
+"rows": 308,
+"last": "2026-08"
 },
 "consPow": {
 "label": "Gas \u2014 electric power",
 "route": "natural-gas/cons/sum",
 "id": "N3045US2",
 "how": "id found",
-"rows": 307,
-"last": "2026-07"
+"rows": 308,
+"last": "2026-08"
 },
 "expLng": {
 "label": "Gas \u2014 LNG exports",
 "route": "natural-gas/move/expc",
 "id": "N9133US2",
 "how": "id found",
-"rows": 355,
-"last": "2026-07"
+"rows": 356,
+"last": "2026-08"
 },
 "expTot": {
 "label": "Gas \u2014 total exports",
 "route": "natural-gas/move/expc",
 "id": "N9130US2",
 "how": "id found",
-"rows": 643,
-"last": "2026-07"
+"rows": 644,
+"last": "2026-08"
 },
 "impTot": {
 "label": "Gas \u2014 total imports",
 "route": "natural-gas/move/impc",
 "id": "N9100US2",
 "how": "id found",
-"rows": 643,
-"last": "2026-07"
+"rows": 644,
+"last": "2026-08"
 },
 "hhSpot": {
 "label": "Henry Hub spot",
@@ -465,5 +465,5 @@
 "last": "2026-10-23"
 }
 },
-"generated": "2026-10-30 02:09 UTC"
+"generated": "2026-10-30 22:42 UTC"
 }

@@ -318,11 +318,44 @@ def main():
     except Exception as e:
         print("options skipped:", repr(e)[:160])
 
+    # downside: who sells on the way down? Mills' net unfixed on-call book at end-October vs May's worst drawdown to mid-March
+    downside = None
+    try:
+        ocsrc = [ROOT.parent / "bmr-com" / "cotton-on-call" / "data" / "cotton_oncall.csv", "https://raw.githubusercontent.com/BMR-Com/cotton-on-call/main/data/cotton_oncall.csv"]
+        ocd = None
+        for s_ in ocsrc:
+            try:
+                ocd = pd.read_csv(s_); break
+            except Exception:
+                continue
+        ocd["d"] = pd.to_datetime(ocd["Report Date"])
+        rows_d = []
+        for y in range(2010, oy - 1):
+            t0 = pd.Timestamp(f"{y}-{mmdd}"); n_ = y + 1
+            o = ocd[(ocd.d <= t0) & (ocd.d > t0 - pd.Timedelta(days=10)) & (ocd["Old/New"] == "old")]
+            o = o[o.d == o.d.max()]
+            if not len(o):
+                continue
+            kk = d[(d.contract == f"CTK{n_}") & (d.date >= t0) & (d.date <= f"{n_}-03-15")].sort_values("date")
+            if len(kk):
+                rows_d.append({"my": f"{y}/{(y + 1) % 100:02d}", "net": int(o["Unfixed Call Sales"].sum() - o["Unfixed Call Purchases"].sum()),
+                               "dd": round(100 * (float(kk.close.min()) / float(kk.close.iloc[0]) - 1), 1)})
+        net_now = int(oncall["N_old"]) if oncall else None
+        hi = [r for r in rows_d if r["net"] >= 40000]; lo = [r for r in rows_d if r["net"] < 40000]
+        downside = {"net_now": net_now, "rows": rows_d, "hi_mean": round(float(np.mean([r["dd"] for r in hi])), 1) if hi else None,
+                    "hi_worst": min(r["dd"] for r in hi) if hi else None, "lo_mean": round(float(np.mean([r["dd"] for r in lo])), 1) if lo else None,
+                    "hi_years": [r["my"] for r in hi], "loan_rate": 55.0, "loan_note": "2026-crop upland loan rate 55.00 c/lb (One Big Beautiful Bill Act; 52.00 for 2025)",
+                    "mm_net_lots": int(r.m_money_positions_long_all - r.m_money_positions_short_all)}
+        if downside["hi_mean"] is not None:
+            downside["typical_low"] = round(K0 * (1 + downside["hi_mean"] / 100), 1); downside["worst_low"] = round(K0 * (1 + downside["hi_worst"] / 100), 1)
+    except Exception as e:
+        print("downside skipped:", repr(e)[:120])
+
     # analog seasons: USDA too loose in October
     analog = [{"my": i, "su_oct": round(v.su_oct, 1), "su_fin": round(v.su_fin, 1), "may_chg": round(v.Kchg, 1), "pm_short_pct": round(v.pm_short_pct, 0),
                "jul_dec_june": round(v.NZe, 1)} for i, v in H.iterrows() if v.dsu <= -10 or i in SHORTAGE]
     out = {"built": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "asof": today.strftime("%Y-%m-%d"), "prices": px, "spreads": sp, "usda_su": round(usda_su, 1),
-           "scenarios": scenarios, "mc": mc, "hedge": hedge, "fair": fairness, "oncall": oncall, "options": opt, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
+           "scenarios": scenarios, "mc": mc, "hedge": hedge, "fair": fairness, "oncall": oncall, "options": opt, "downside": downside, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
            "typical": {"hk_feb": round(float(np.median(ex.HKe)), 2), "kn_apr": round(float(np.median(ex.KNe)), 2),
                        "shortage": {s: {"hk": round(float(H.loc[s, "HKe"]), 1), "kn": round(float(H.loc[s, "KNe"]), 1), "nz": round(float(H.loc[s, "NZe"]), 1)} for s in SHORTAGE if s in H.index}}}
     (ROOT / "data" / "derived" / "ct_price_outlook.json").write_text(json.dumps(out, indent=1, default=float))

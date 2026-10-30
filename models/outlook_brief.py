@@ -244,7 +244,8 @@ def build():
                                  {"h": "Price and spreads", "t": f"On the desk base case history points May (now {po['prices']['K']:.2f}) to about {Sb['may']:.0f} by expiry; the simulation gives "
                                   f"{M['may_expiry']['10']:.0f}–{M['may_expiry']['90']:.0f} (10th–90th percentile), a {M['p_above']['90']:.0f}% chance May trades 90 or higher and {M['p_below']['78']:.0f}% that it trades 78 or lower along the way. "
                                   f"Merchants' shorts are {Hd['pct']:.0f}% of world exports, the most at this time of year since 2010/11; in heavily hedged seasons May rose {Hd['high_mean']:.0f}% on average. "
-                                  f"Spreads: Mar/May {po['spreads']['HK']:+.2f} should stay a carry (median {M['mar_may']['50']:+.1f} near expiry), May/Jul {po['spreads']['KN']:+.2f} has a {M['p_kn_inverse']:.0f}% chance of inverting, "
+                                  + (f"On the level of US stocks/use, May already implies {po['fair']['implied_su']['ex_2010']:.0f}–{po['fair']['implied_su']['all']:.0f}% (USDA {po['usda_su']:.1f}%): close to the desk base, whose fair value is {po['fair']['scen']['base']['ex_2010']:.0f}–{po['fair']['scen']['base']['all']:.0f}; the bullish tail ({po['fair']['scen']['bull']['su']:.0f}%) is worth {po['fair']['scen']['bull']['ex_2010']:.0f}–{po['fair']['scen']['bull']['all']:.0f} and is not priced. " if po.get("fair") else "")
+                                  + f"Spreads: Mar/May {po['spreads']['HK']:+.2f} should stay a carry (median {M['mar_may']['50']:+.1f} near expiry), May/Jul {po['spreads']['KN']:+.2f} has a {M['p_kn_inverse']:.0f}% chance of inverting, "
                                   f"and Jul/Dec {po['spreads']['NZ']:+.2f} is already above what US stocks alone justify (median {M['jul_dec']['50']:+.1f} by June) unless world supply turns short."})
             except Exception as e:
                 print("price line skipped:", repr(e)[:120])

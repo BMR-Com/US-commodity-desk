@@ -19,7 +19,7 @@ EX = ["Exports", "Exports, Total", "Exports, total"]
 SHORTAGE = ["2010/11", "2021/22"]        # world-shortage seasons: different regime, fitted apart
 BALES_PER_LOT = 50000 / 480 / 1e6
 VARS = ["USDA US balance sheet (October estimate vs final, 2010/11 on)", "desk US balance-sheet scenarios and their simulation",
-        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract"]
+        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract", "May price level vs final US stocks/use (2007/08 on)", "cotton on-call (CFTC)"]
 
 
 def load():
@@ -137,11 +137,62 @@ def main():
           "p_below": {lvl: round(100 * float((pmin <= lvl).mean()), 0) for lvl in (80, 78, 75)},
           "mar_may": pct(hk), "may_jul": pct(kn), "jul_dec": pct(nz), "p_hk_inverse": round(100 * float((hk > 0).mean()), 0), "p_kn_inverse": round(100 * float((kn > 0).mean()), 0)}
 
+    # fair value from the LEVEL of US stocks/use: May futures averaged November to expiry vs the final US stocks/use (log-log)
+    fvrows = []
+    for y in range(2007, oy - 1):
+        my, n_ = f"{y}/{(y + 1) % 100:02d}", y + 1
+        su_ = 100 * lv(w, "United States", "Ending Stocks", my) / (lv(w, "United States", "Domestic Use", my) + lv(w, "United States", EX, my))
+        seg = d[(d.contract == f"CTK{n_}") & (d.date >= f"{y}-11-01") & (d.date <= f"{n_}-04-24")]
+        if len(seg) and su_ == su_:
+            fvrows.append((my, su_, float(seg.close.mean())))
+    FV = pd.DataFrame(fvrows, columns=["my", "su", "px"]).set_index("my")
+    def llfit(df):
+        X = np.column_stack([np.ones(len(df)), np.log(df.su)]); yv = np.log(df.px.values); b = np.linalg.lstsq(X, yv, rcond=None)[0]; e = yv - X @ b
+        return {"b": [round(float(v), 4) for v in b], "sd": round(float(np.sqrt(e @ e / (len(yv) - 2))), 3), "n": len(yv),
+                "r2": round(float(1 - (e @ e) / ((yv - yv.mean()) @ (yv - yv.mean()))), 2)}
+    fvf = {"ex_2010": llfit(FV.drop(index=["2010/11"], errors="ignore")), "since_2013": llfit(FV[FV.index >= "2013/14"]), "all": llfit(FV)}
+    fval = lambda su_, f_: float(np.exp(f_["b"][0] + f_["b"][1] * np.log(su_)))
+    fair = {k: {"su": round(v, 1), **{m_: round(fval(v, f_), 1) for m_, f_ in fvf.items()}}
+            for k, v in (("usda", usda_su), ("bear", S["bear"]["su"]), ("base", S["base"]["su"]), ("bull", S["bull"]["su"]))}
+    implied = {m_: round(float(np.exp((np.log(K0) - f_["b"][0]) / f_["b"][1])), 1) for m_, f_ in fvf.items()}
+    fv_sim = np.exp(fvf["ex_2010"]["b"][0] + fvf["ex_2010"]["b"][1] * np.log(np.maximum(su, 5)))
+    fairness = {"fit": fvf, "scen": fair, "implied_su": implied, "sim": pct(fv_sim), "min_su_hist": round(float(FV.su.min()), 1), "min_su_my": FV.su.idxmin(),
+                "px_at_min": round(float(FV.loc[FV.su.idxmin(), "px"]), 1), "table": [{"my": i, "su": round(v.su, 1), "px": round(v.px, 1)} for i, v in FV.iterrows()]}
+    # merchants' NET short vs world exports, and the on-call book
+    net_now = 100 * (r.prod_merc_positions_short - r.prod_merc_positions_long) * BALES_PER_LOT / wex
+    nets = {}
+    for y in range(2010, oy - 1):
+        my, t0 = f"{y}/{(y + 1) % 100:02d}", pd.Timestamp(f"{y}-{mmdd}")
+        rr = c[c.d <= t0].iloc[-1]; we = lv(w, "World", EX, my, t0)
+        if we:
+            nets[my] = round(100 * (rr.prod_merc_positions_short - rr.prod_merc_positions_long) * BALES_PER_LOT / we, 1)
+    hedge["net_pct"] = round(net_now, 1)
+    hedge["net_rank"] = f"{sum(v < net_now for v in nets.values()) + 1} of {len(nets) + 1}"
+    hedge["net_hist"] = nets
+    bull_eps = [m_ for m_ in nets if m_ in H.index and H.loc[m_, "Kchg"] >= 12]
+    hedge["net_bull_avg"] = round(float(np.mean([nets[m_] for m_ in bull_eps])), 1) if bull_eps else None
+    hedge["bull_eps"] = [{"my": m_, "net_pct": nets[m_], "may_chg": round(float(H.loc[m_, "Kchg"]), 1)} for m_ in bull_eps]
+    oc = None
+    for src in ("https://bmr-com.github.io/cotton-on-call/data/intel/brief.json", str(ROOT.parent / "bmr-com" / "cotton-on-call" / "data" / "intel" / "brief.json")):
+        try:
+            if src.startswith("http"):
+                import requests
+                oc = requests.get(src, timeout=30).json()
+            else:
+                oc = json.loads(Path(src).read_text())
+            break
+        except Exception:
+            continue
+    oncall = None
+    if oc and oc.get("latest"):
+        L = oc["latest"]
+        oncall = {k: L.get(k) for k in ("oncall_date", "S_old", "P_old", "N_old", "S_old_seas_pct", "P_old_seas_pct", "ls_old", "ls_old_pct", "pmu_net_old", "front", "S_front", "S_2nd", "Sold_pct_trade")}
+
     # analog seasons: USDA too loose in October
     analog = [{"my": i, "su_oct": round(v.su_oct, 1), "su_fin": round(v.su_fin, 1), "may_chg": round(v.Kchg, 1), "pm_short_pct": round(v.pm_short_pct, 0),
                "jul_dec_june": round(v.NZe, 1)} for i, v in H.iterrows() if v.dsu <= -10 or i in SHORTAGE]
     out = {"built": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "asof": today.strftime("%Y-%m-%d"), "prices": px, "spreads": sp, "usda_su": round(usda_su, 1),
-           "scenarios": scenarios, "mc": mc, "hedge": hedge, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
+           "scenarios": scenarios, "mc": mc, "hedge": hedge, "fair": fairness, "oncall": oncall, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
            "typical": {"hk_feb": round(float(np.median(ex.HKe)), 2), "kn_apr": round(float(np.median(ex.KNe)), 2),
                        "shortage": {s: {"hk": round(float(H.loc[s, "HKe"]), 1), "kn": round(float(H.loc[s, "KNe"]), 1), "nz": round(float(H.loc[s, "NZe"]), 1)} for s in SHORTAGE if s in H.index}}}
     (ROOT / "data" / "derived" / "ct_price_outlook.json").write_text(json.dumps(out, indent=1, default=float))

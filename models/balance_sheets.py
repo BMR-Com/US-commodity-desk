@@ -260,7 +260,9 @@ def simulate(u, prod, base_ex, theta, foreign, exp_miss_pct, bounds, tc, pipe, k
     if pipe is not None:
         rationed = end < pipe
         ex = np.where(rationed, ex - (pipe - end), ex); end = np.maximum(end, pipe)
-    out = {"n": n, "rationed_pct": round(100 * rationed.mean(), 1), "end_pct": {p: round(float(np.percentile(end, p)), 3) for p in (5, 10, 25, 50, 75, 90, 95)},
+    use = other_use + ex
+    su = 100 * end / use
+    out = {"n": n, "su_q": [round(float(x), 2) for x in np.percentile(su, np.arange(1, 100))], "rationed_pct": round(100 * rationed.mean(), 1), "end_pct": {p: round(float(np.percentile(end, p)), 3) for p in (5, 10, 25, 50, 75, 90, 95)},
            "p_below_usda": round(100 * float((end < u["Ending stocks"]).mean()), 1), "usda_end": u["Ending stocks"]}
     for s, p in (("bull", 10), ("base", 50), ("bear", 90)):
         lo, hi = np.percentile(end, max(p - 3, 0)), np.percentile(end, min(p + 3, 100))

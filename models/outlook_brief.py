@@ -237,6 +237,18 @@ def build():
             pos = next((i for i, x in enumerate(items) if x["h"] == "Exports"), len(items))
             items[pos:pos] = ins
             try:
+                po = J("derived/ct_price_outlook.json")
+                if po:
+                    M, Sb, Hd = po["mc"], po["scenarios"]["base"], po["hedge"]
+                    items.insert(next((i for i, x in enumerate(items) if x["h"] == "Balance sheet"), len(items) - 1) + 1,
+                                 {"h": "Price and spreads", "t": f"On the desk base case history points May (now {po['prices']['K']:.2f}) to about {Sb['may']:.0f} by expiry; the simulation gives "
+                                  f"{M['may_expiry']['10']:.0f}–{M['may_expiry']['90']:.0f} (10th–90th percentile), a {M['p_above']['90']:.0f}% chance May trades 90 or higher and {M['p_below']['78']:.0f}% that it trades 78 or lower along the way. "
+                                  f"Merchants' shorts are {Hd['pct']:.0f}% of world exports, the most at this time of year since 2010/11; in heavily hedged seasons May rose {Hd['high_mean']:.0f}% on average. "
+                                  f"Spreads: Mar/May {po['spreads']['HK']:+.2f} should stay a carry (median {M['mar_may']['50']:+.1f} near expiry), May/Jul {po['spreads']['KN']:+.2f} has a {M['p_kn_inverse']:.0f}% chance of inverting, "
+                                  f"and Jul/Dec {po['spreads']['NZ']:+.2f} is already above what US stocks alone justify (median {M['jul_dec']['50']:+.1f} by June) unless world supply turns short."})
+            except Exception as e:
+                print("price line skipped:", repr(e)[:120])
+            try:
                 from india_read import india_for_us
                 it, isc = india_for_us()
                 if it:

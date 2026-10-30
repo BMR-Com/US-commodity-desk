@@ -1,0 +1,257 @@
+{
+ "built": "2026-10-30 02:05 UTC",
+ "asof": "2026-10-29",
+ "prices": {
+  "H": 82.25,
+  "K": 83.89,
+  "N": 84.36,
+  "Z_old": 78.5,
+  "Z_new": 77.72
+ },
+ "spreads": {
+  "HK": -1.64,
+  "KN": -0.47,
+  "NZ": 6.64,
+  "ZH": -3.75
+ },
+ "usda_su": 27.5,
+ "scenarios": {
+  "bull": {
+   "su": 10.1,
+   "dsu": -17.4,
+   "may_pct": 12.5,
+   "may": 94.4,
+   "may_hedge_pct": 16.9,
+   "may_hedge": 98.1,
+   "may_lo": 85.2,
+   "may_hi": 103.6,
+   "jul_dec": 4.1
+  },
+  "base": {
+   "su": 16.1,
+   "dsu": -11.4,
+   "may_pct": 8.6,
+   "may": 91.1,
+   "may_hedge_pct": 13.8,
+   "may_hedge": 95.5,
+   "may_lo": 81.9,
+   "may_hi": 100.3,
+   "jul_dec": 2.8
+  },
+  "bear": {
+   "su": 29.1,
+   "dsu": 1.5,
+   "may_pct": 0.4,
+   "may": 84.2,
+   "may_hedge_pct": 7.0,
+   "may_hedge": 89.8,
+   "may_lo": 75.0,
+   "may_hi": 93.4,
+   "jul_dec": 0.1
+  },
+  "usda": {
+   "su": 27.5,
+   "dsu": 0.0,
+   "may_pct": 1.4,
+   "may": 85.0,
+   "may_hedge_pct": 7.8,
+   "may_hedge": 90.5,
+   "may_lo": 75.8,
+   "may_hi": 94.2,
+   "jul_dec": 0.4
+  }
+ },
+ "mc": {
+  "n": 20000,
+  "paths": 2000,
+  "days": 127,
+  "vol_pct": 19.8,
+  "may_expiry": {
+   "10": 77.4,
+   "25": 83.5,
+   "50": 90.4,
+   "75": 97.2,
+   "90": 103.1
+  },
+  "may_high": {
+   "10": 86.7,
+   "25": 90.6,
+   "50": 95.7,
+   "75": 102.2,
+   "90": 107.5
+  },
+  "may_low": {
+   "10": 72.2,
+   "25": 76.2,
+   "50": 79.5,
+   "75": 82.2,
+   "90": 83.6
+  },
+  "p_above": {
+   "90": 77.0,
+   "95": 53.0,
+   "100": 33.0,
+   "110": 6.0
+  },
+  "p_below": {
+   "80": 54.0,
+   "78": 38.0,
+   "75": 20.0
+  },
+  "mar_may": {
+   "10": -3.4,
+   "25": -2.7,
+   "50": -2.2,
+   "75": -1.3,
+   "90": -0.9
+  },
+  "may_jul": {
+   "10": -2.3,
+   "25": -1.8,
+   "50": -0.6,
+   "75": -0.0,
+   "90": 0.4
+  },
+  "jul_dec": {
+   "10": -1.7,
+   "25": 0.3,
+   "50": 2.5,
+   "75": 4.7,
+   "90": 6.6
+  },
+  "p_hk_inverse": 0.0,
+  "p_kn_inverse": 22.0
+ },
+ "hedge": {
+  "date": "2026-10-20",
+  "pm_short_m": 23.97,
+  "pm_long_m": 9.28,
+  "mm_net_m": 6.31,
+  "oi_m": 41.8,
+  "world_exports": 44.71,
+  "pct": 53.6,
+  "median_pct": 31.1,
+  "rank": "17 of 17",
+  "high_years": [
+   {
+    "my": "2010/11",
+    "pct": 40.0,
+    "may_chg": 59.4
+   },
+   {
+    "my": "2015/16",
+    "pct": 38.0,
+    "may_chg": 0.4
+   },
+   {
+    "my": "2016/17",
+    "pct": 51.0,
+    "may_chg": 12.0
+   },
+   {
+    "my": "2017/18",
+    "pct": 43.0,
+    "may_chg": 18.9
+   },
+   {
+    "my": "2018/19",
+    "pct": 42.0,
+    "may_chg": -5.0
+   },
+   {
+    "my": "2020/21",
+    "pct": 41.0,
+    "may_chg": 22.4
+   },
+   {
+    "my": "2021/22",
+    "pct": 44.0,
+    "may_chg": 27.2
+   }
+  ],
+  "high_mean": 19.3,
+  "low_mean": -1.7
+ },
+ "analog": [
+  {
+   "my": "2010/11",
+   "su_oct": 14.1,
+   "su_fin": 14.2,
+   "may_chg": 59.4,
+   "pm_short_pct": 40.0,
+   "jul_dec_june": 16.4
+  },
+  {
+   "my": "2012/13",
+   "su_oct": 37.3,
+   "su_fin": 23.0,
+   "may_chg": 9.0,
+   "pm_short_pct": 30.0,
+   "jul_dec_june": 0.8
+  },
+  {
+   "my": "2014/15",
+   "su_oct": 35.5,
+   "su_fin": 24.6,
+   "may_chg": 4.0,
+   "pm_short_pct": 22.0,
+   "jul_dec_june": -0.9
+  },
+  {
+   "my": "2016/17",
+   "su_oct": 27.7,
+   "su_fin": 15.1,
+   "may_chg": 12.0,
+   "pm_short_pct": 51.0,
+   "jul_dec_june": 3.2
+  },
+  {
+   "my": "2017/18",
+   "su_oct": 32.5,
+   "su_fin": 21.5,
+   "may_chg": 18.9,
+   "pm_short_pct": 43.0,
+   "jul_dec_june": 2.3
+  },
+  {
+   "my": "2020/21",
+   "su_oct": 42.1,
+   "su_fin": 16.8,
+   "may_chg": 22.4,
+   "pm_short_pct": 41.0,
+   "jul_dec_june": -0.8
+  },
+  {
+   "my": "2021/22",
+   "su_oct": 17.8,
+   "su_fin": 23.8,
+   "may_chg": 27.2,
+   "pm_short_pct": 44.0,
+   "jul_dec_june": 22.7
+  }
+ ],
+ "vars": [
+  "USDA US balance sheet (October estimate vs final, 2010/11 on)",
+  "desk US balance-sheet scenarios and their simulation",
+  "ICE cotton futures by contract",
+  "CFTC producer/merchant positions against USDA world exports",
+  "historical volatility of the May contract"
+ ],
+ "expiry": "2027-04-24",
+ "typical": {
+  "hk_feb": -1.36,
+  "kn_apr": -0.91,
+  "shortage": {
+   "2010/11": {
+    "hk": 2.1,
+    "kn": 16.1,
+    "nz": 16.4
+   },
+   "2021/22": {
+    "hk": 1.8,
+    "kn": 1.5,
+    "nz": 22.7
+   }
+  }
+ }
+}

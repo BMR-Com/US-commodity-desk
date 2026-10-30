@@ -56,6 +56,5 @@ def india_for_us():
             t += ". "
     sp = spreads()
     if sp.get("hk") is not None:
-        t += (f"At today's prices more sales are likely, which pressures old-crop spreads: Mar/May {sp['hk']:+.2f}, May/Jul {sp['kn']:+.2f} (carry that should narrow toward inversion as US stocks tighten) "
-              f"and Jul/Dec {sp['nz']:+.2f} (old crop already over new; in 2021/22, the last season of tight US stocks and strong demand, it widened to +16–23¢).")
+        t += (f"At today's prices more of this demand gets booked, so the tightness should show in flat price first; in past seasons tight US stocks alone did not invert Mar/May ({sp['hk']:+.2f}) or May/Jul ({sp['kn']:+.2f}) — that took a world shortage (2010/11, 2021/22) — and Jul/Dec ({sp['nz']:+.2f}) already prices the tight case. ")
     return t.strip(), 1

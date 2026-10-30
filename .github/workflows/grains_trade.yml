@@ -43,6 +43,7 @@ jobs:
           python -W ignore models/grains_flash.py || true
           python -W ignore models/grains_esr_brief.py
           python -W ignore models/balance_sheets.py || true
+          python -W ignore models/cotton_price_outlook.py || true
           python -W ignore models/grains_wasde_brief.py
           python -W ignore models/trader_sheet.py || true
           python -W ignore models/summary.py && python -W ignore models/outlook_brief.py || true
@@ -50,7 +51,7 @@ jobs:
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/grains data/summary data/brief data/derived/balance_sheets.json data/derived/outlook_brief.json
+          git add data/grains data/summary data/brief data/derived/balance_sheets.json data/derived/outlook_brief.json data/derived/ct_price_outlook.json data/derived/ct_price_outlook_eval.json
           git diff --cached --quiet && exit 0
           git commit -q -m "data: grains trade $(date -u +%F)"
           for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

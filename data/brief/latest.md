@@ -1,6 +1,6 @@
-# Morning brief · Fri Oct 30, 2026 01:13 PM ET
+# Morning brief · Fri Oct 30, 2026 02:59 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-30 17:13 UTC). CME open interest from 20261029. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-10-30 18:59 UTC). CME open interest from 20261029. Research only, not investment advice.
 
 ## Key points
 
@@ -44,16 +44,16 @@ Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core
 
 ## Macro outlook and what it means for ags
 
-Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl −; mxn −; risk 0; energy +; china −; breadth −. Strongest ag/soft over the month: Class III milk +13.6%; weakest: Oats -17.8%. 
+Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl −; mxn −; risk 0; energy +; china −; breadth −. Strongest ag/soft over the month: Class III milk +14.1%; weakest: Oats -17.9%. 
 
 - **Rates**: US 10-year 4.98% (-28 bp in a month), 2-year 4.61% (-28 bp); 2s10s curve +37 bp (+0 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 3.98% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 101.94 (+0.5% in a month, +3.7% YTD). USD/BRL 5.437 (+4.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.644 (-0.9%); USD/MXN 18.79 (+4.1%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
-- **Risk appetite**: S&P 500 -1.0% in a month (+10.7% YTD); VIX 20.8. Neutral risk backdrop. 
-- **Energy**: WTI 104.89 $/bbl (+18.6% in a month), Brent 114.19, ULSD 4.700 $/gal (+4.3%), natural gas 2.89 (-14.1%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
-- **China & industrial demand**: Copper -2.1% in a month, Shanghai Composite -6.3%, Hang Seng -5.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. 
-- **Commodity breadth**: 11 of 33 commodities trade above their 50-day average (33%); S&P GSCI +3.6% in a month; gold -6.7%. 
+- **Dollar & farm currencies**: Dollar index 101.98 (+0.5% in a month, +3.8% YTD). USD/BRL 5.443 (+4.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.644 (-0.9%); USD/MXN 18.79 (+4.1%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
+- **Risk appetite**: S&P 500 -1.2% in a month (+10.4% YTD); VIX 21.7. Neutral risk backdrop. 
+- **Energy**: WTI 104.83 $/bbl (+18.6% in a month), Brent 113.69, ULSD 4.677 $/gal (+3.8%), natural gas 2.90 (-14.1%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
+- **China & industrial demand**: Copper -2.5% in a month, Shanghai Composite -6.3%, Hang Seng -5.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Commodity breadth**: 11 of 33 commodities trade above their 50-day average (33%); S&P GSCI +3.5% in a month; gold -7.0%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,611.750 (-1.84% d/d); S&P 500 7,577.740 (-1.85% d/d); VIX 20.840 (+21.16% d/d); US 10-year 4.939 (-5 bp d/d); US dollar index 101.940 (-0.10% d/d); EUR/USD 1.116 (+0.07% d/d); USD/BRL 5.437 (+1.71% d/d); USD/CNY 6.644 (-0.33% d/d); WTI crude 104.890 (+2.83% d/d); Natural gas 2.894 (-1.96% d/d); Gold 3,904.100 (-3.16% d/d); Copper 6.481 (-1.84% d/d); S&P GSCI 756.908 (+0.98% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,592.750 (-2.08% d/d); S&P 500 7,559.930 (-2.08% d/d); VIX 21.700 (+26.16% d/d); US 10-year 4.935 (-5 bp d/d); US dollar index 101.984 (-0.05% d/d); EUR/USD 1.116 (+0.03% d/d); USD/BRL 5.443 (+1.81% d/d); USD/CNY 6.644 (-0.33% d/d); WTI crude 104.830 (+2.77% d/d); Natural gas 2.896 (-1.90% d/d); Gold 3,893.100 (-3.43% d/d); Copper 6.457 (-2.20% d/d); S&P GSCI 755.834 (+0.83% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -114,14 +114,14 @@ Flags: RSI 25: oversold.
 Research signals: trend long 1.4x for 40% vol (12m excess +2%); carry -8.7%/yr (63rd percentile for the month); IV-RV +5.8. Choppy: 3-month variance ratio 0.68 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Fat right tail: options price a 14% rally 2.4x as likely as a lognormal at ATM vol.
 - [Why winter wheat deserves a second look in Iowa](https://news.google.com/rss/articles/CBMiigFBVV95cUxPLUVRcmMtdHNPaUZCZTVBc0pRY1l0ZG41RWxkaEV0YVE2cGdXNDduTlI3LUE4QWNXNHhaNllIWDgyaGVhbFFad1VTU2xzQUFjekk0SHFCTEdtN1J3QVdTdXJVZ3dsM3hPWUZKeGJTWF8zR3l2QjlXR2poYlY0eUZsbEY5VHlsTTRwa2c?oc=5) · Farm Progress
 - [Wheat Rallies on China Interest Pulling Corn Along and Bottoming the Market?](https://news.google.com/rss/articles/CBMinwFBVV95cUxQNHk5d3FjWlZPV2o1NTJKYUptalROOEpQSmdRZjlJTUxUWk92TGdIWE9qb2dFSHQ0Q3JqbV9WT3lEZ1gwNmt1SWU1ckhHMHBGZHZQV0I4ZEpwRjhmSG5ETkFha2xDY0RmaEd3cnFoczA1N2tUX1dfZ2loVVBaeWhIVWFJX0REeC1sMHpDSzJVd2JrWmdmYnp3cm40RDVnbjQ?oc=5) · AgWeb
-- [Wheat sees a modest bounce with soybeans, corn mixed](https://news.google.com/rss/articles/CBMijwFBVV95cUxPbGhTTF9rMHM3ejFqTks2eDRKVlhKLXE3WU43M0pGRkUxYWI0Y1pha0pKMDA1UnNRdUJ4YnMtWnp2NEpZSDJEYVZuY2JQSEhYcHJreDNRaWNGdG8wU0ZIU3dRYzdUXzFtZEFaaTd3Y2pNSjhHb0pPSkhxZ09STl9CREIyY0hJLWhBNzJiTThrcw?oc=5) · Brownfield Ag News
+- [Wheat Rallies on China Interest Pulls Corn Along: Can it Bottom the Market?](https://news.google.com/rss/articles/CBMinwFBVV95cUxQNHk5d3FjWlZPV2o1NTJKYUptalROOEpQSmdRZjlJTUxUWk92TGdIWE9qb2dFSHQ0Q3JqbV9WT3lEZ1gwNmt1SWU1ckhHMHBGZHZQV0I4ZEpwRjhmSG5ETkFha2xDY0RmaEd3cnFoczA1N2tUX1dfZ2loVVBaeWhIVWFJX0REeC1sMHpDSzJVd2JrWmdmYnp3cm40RDVnbjQ?oc=5) · AgWeb
 
 **KC HRW wheat** (Dec 26, strongly bearish). Dec 26 trades at 647.50 ¢/bu (-2.6% on the week, -12.2% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 21 (oversold) and ADX 40 (trending). Nearest support 641.25, resistance 649.00; 52-week range 564.00–858.25. Levels to watch: a close above 692.32 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 641.25–649.00 band is the immediate range. Next catalysts: Crop Progress Nov 2; USDA weekly export sales Nov 5; Crop Progress Nov 9.
 Flags: RSI 21: oversold; Export commitments -17% vs normal pace; Realized vol low (18%, 7th pct): cheap to own optionality into catalysts; Weather watch: SW Kansas (HRW).
 Research signals: trend long 1.5x for 40% vol (12m excess +11%); carry -6.0%/yr (60th percentile for the month); IV-RV +7.8. Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Fat right tail: options price a 14% rally 2.4x as likely as a lognormal at ATM vol.
 - [Why winter wheat deserves a second look in Iowa](https://news.google.com/rss/articles/CBMiigFBVV95cUxPLUVRcmMtdHNPaUZCZTVBc0pRY1l0ZG41RWxkaEV0YVE2cGdXNDduTlI3LUE4QWNXNHhaNllIWDgyaGVhbFFad1VTU2xzQUFjekk0SHFCTEdtN1J3QVdTdXJVZ3dsM3hPWUZKeGJTWF8zR3l2QjlXR2poYlY0eUZsbEY5VHlsTTRwa2c?oc=5) · Farm Progress
 - [Wheat Rallies on China Interest Pulling Corn Along and Bottoming the Market?](https://news.google.com/rss/articles/CBMinwFBVV95cUxQNHk5d3FjWlZPV2o1NTJKYUptalROOEpQSmdRZjlJTUxUWk92TGdIWE9qb2dFSHQ0Q3JqbV9WT3lEZ1gwNmt1SWU1ckhHMHBGZHZQV0I4ZEpwRjhmSG5ETkFha2xDY0RmaEd3cnFoczA1N2tUX1dfZ2loVVBaeWhIVWFJX0REeC1sMHpDSzJVd2JrWmdmYnp3cm40RDVnbjQ?oc=5) · AgWeb
-- [Wheat sees a modest bounce with soybeans, corn mixed](https://news.google.com/rss/articles/CBMijwFBVV95cUxPbGhTTF9rMHM3ejFqTks2eDRKVlhKLXE3WU43M0pGRkUxYWI0Y1pha0pKMDA1UnNRdUJ4YnMtWnp2NEpZSDJEYVZuY2JQSEhYcHJreDNRaWNGdG8wU0ZIU3dRYzdUXzFtZEFaaTd3Y2pNSjhHb0pPSkhxZ09STl9CREIyY0hJLWhBNzJiTThrcw?oc=5) · Brownfield Ag News
+- [Wheat Rallies on China Interest Pulls Corn Along: Can it Bottom the Market?](https://news.google.com/rss/articles/CBMinwFBVV95cUxQNHk5d3FjWlZPV2o1NTJKYUptalROOEpQSmdRZjlJTUxUWk92TGdIWE9qb2dFSHQ0Q3JqbV9WT3lEZ1gwNmt1SWU1ckhHMHBGZHZQV0I4ZEpwRjhmSG5ETkFha2xDY0RmaEd3cnFoczA1N2tUX1dfZ2loVVBaeWhIVWFJX0REeC1sMHpDSzJVd2JrWmdmYnp3cm40RDVnbjQ?oc=5) · AgWeb
 
 ### Cotton
 

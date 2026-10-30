@@ -267,14 +267,16 @@ def trade_section(tr):
     return out
 
 
-def season_trade(T, key):
+def season_trade(T, key, start=10):
     """Raw cotton (HS 5201) by season in lakh 170-kg bales from customs tonnes (COCPC uses the same customs series).
     Missing months of the latest season are filled at the average of its last three reported months."""
     by = {}
     for m, v in (T.get(key) or {}).items():
         t = (v.get("by_hs") or {}).get("5201") or 0
         if t > 0:
-            by.setdefault(v["season"][:4] + "-" + v["season"][-2:], {})[m] = t / 17000
+            y, mo = int(m[:4]), int(m[5:])
+            sy = y if mo >= start else y - 1
+            by.setdefault(f"{sy}-{(sy + 1) % 100:02d}", {})[m] = t / 17000
     out = {}
     for sn, mm in sorted(by.items()):
         n = len(mm); last3 = [mm[k] for k in sorted(mm)[-3:]]
@@ -311,6 +313,38 @@ def desk_balance(page):
         out["cases"][src] = {"lakh": lakh, "m480": {k: m480(v) for k, v in lakh.items()}, "stocks_use": round(100 * close / (cons + ex_new), 1),
                              "prev_closing_sheet": b["closing"], "prev_closing_adj": round(open_adj, 1), "prev_imports_sheet": b["imports"], "prev_exports_sheet": b["exports"],
                              "imports_to_hold_stocks_use": round(need, 1), "imports_to_hold_m480": m480(need), "prev_stocks_use": round(100 * su_prev, 1)}
+    # USDA year (August-July): USDA's last season as published, the new season from the desk crop and customs trade
+    U = B["usda"]; uprev = U.get(prev, {}).get("m480"); ucur = U.get(new, {}).get("m480")
+    if uprev and ucur:
+        ui, ue = season_trade(T, "raw_import", 8), season_trade(T, "raw_export", 8)
+        im = (ui[new]["projected"] if new in ui else ui.get(prev, {}).get("projected")) or 0
+        ex = (ue[new]["projected"] if new in ue else ue.get(prev, {}).get("projected")) or 0
+        lk = lambda v: v / LAKH170_TO_M480
+        m = {"opening": uprev["closing"], "crop": P["m480"], "imports": m480(im), "consumption": ucur["consumption"], "exports": m480(ex)}
+        m["supply"] = round(m["opening"] + m["crop"] + m["imports"], 2)
+        m["closing"] = round(m["supply"] - m["consumption"] - m["exports"], 2)
+        # duty case: duty-free pace through December, then each remaining month at the same month of the last full season with the 11% duty (2024-25)
+        mon = {}
+        for mm, v in (T.get("raw_import") or {}).items():
+            t = (v.get("by_hs") or {}).get("5201") or 0
+            if t > 0:
+                mon[mm] = t / 17000
+        y0 = int(new[:4]); pace = ui[new]["pace_month"] if new in ui else ui.get(prev, {}).get("pace_month", 0)
+        duty_im = 0.0
+        for k in range(12):
+            mo = (8 + k - 1) % 12 + 1; yy = y0 + (1 if mo < 8 else 0); key = f"{yy}-{mo:02d}"
+            if key in mon:
+                duty_im += mon[key]
+            elif (yy, mo) <= (y0, 12):
+                duty_im += pace
+            else:
+                duty_im += mon.get(f"{yy - 2}-{mo:02d}", pace)
+        dclose = round(m["closing"] - m480(im) + m480(duty_im), 2)
+        out["cases"]["usda_duty"] = {"imports_m480": m480(duty_im), "closing_m480": dclose}
+        out["cases"]["usda"] = {"m480": m, "lakh": {k: round(lk(v), 1) for k, v in m.items()}, "stocks_use": round(100 * m["closing"] / (m["consumption"] + m["exports"]), 1),
+                                "usda_closing": ucur["closing"], "usda_imports": ucur["imports"], "usda_exports": ucur["exports"],
+                                "imports_months": ui.get(new, {}).get("months", 0), "prev_customs_imports_m480": m480(ui.get(prev, {}).get("actual")),
+                                "prev_usda_imports": uprev["imports"]}
     return out
 
 
@@ -353,6 +387,19 @@ def brief(page, F):
                     f"With the desk crop, imports and exports at the customs pace and use held at last season's level, {DB['season']} ends with **{c['m480']['closing']:.1f} m 480-lb bales** "
                     f"({c['lakh']['closing']:.0f} lakh; stocks/use {c['stocks_use']:.0f}% vs {c['prev_stocks_use']:.0f}%). Holding last season's stocks/use would take about {c['imports_to_hold_m480']:.1f} m bales of imports "
                     f"({c['imports_to_hold_stocks_use']:.0f} lakh), against USDA's {page['balance']['usda'].get(DB['season'], {}).get('m480', {}).get('imports', 0):.1f} m."})
+    u = DB.get("cases", {}).get("usda")
+    if u:
+        out.append({"h": "On USDA's numbers", "t": f"Keeping USDA's {DB['prev']} as published (ending stocks {u['m480']['opening']:.1f} m) and replacing its {DB['season']} crop and trade with the desk crop "
+                    f"({u['m480']['crop']:.1f} m vs {page['projection']['usda_m480']:.1f}) and the customs pace (imports {u['m480']['imports']:.1f} m vs USDA {u['usda_imports']:.1f}; exports {u['m480']['exports']:.1f} vs {u['usda_exports']:.1f}), "
+                    f"ending stocks come to **{u['m480']['closing']:.1f} m** vs USDA's {u['usda_closing']:.1f} m. "
+                    + (f"If the 11% duty returns in January and imports drop back to 2024-25's monthly pace from then, imports are {DB['cases']['usda_duty']['imports_m480']:.1f} m and ending stocks {DB['cases']['usda_duty']['closing_m480']:.1f} m. " if DB['cases'].get('usda_duty') else "")
+                    + "Either way the smaller crop is largely made up by imports; USDA's 3.3 m import figure looks too low for a 21 m crop."})
+    cci = (page.get("notes") or {}).get("cci")
+    if cci:
+        left = cci["procured"] - cci["sold"]
+        out.append({"h": "Government stocks (CCI)", "t": f"The Cotton Corporation of India bought {cci['procured']:.0f} lakh bales of the {cci['season']} crop at MSP and had sold {cci['sold']:.0f} lakh by {cci['as_of']}, "
+                    f"leaving about {left:.0f} lakh ({m480(left):.1f} m bales); at its recent pace of about {cci['weekly']:.1f} lakh a week the reserve is close to empty, so carry-in stocks sit with mills and traders, not the government. "
+                    f"New-crop buying at the {page['prices'].get('msp', {}).get('kapas_medium', 0):,} rupee MSP started in October; with Shankar-6 above the MSP-implied lint cost, CCI should buy less than last season unless prices fall."})
     out.append({"h": "For US cotton", "t": "A smaller Indian crop, duty-free imports (waiver expected through December) and Indian prices well above ICE all point to more Indian import demand in 2026-27 than USDA's number, with US and Brazilian cotton the main suppliers."})
     return out
 

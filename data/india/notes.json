@@ -1,2 +1,33 @@
-{"area_lakh_ha": 109.17, "area_last_lakh_ha": 109.86, "area_note": "Kharif cotton sown area 109.17 lakh ha vs 109.86 a year earlier (Ministry of Agriculture, as of Sep 4, 2026)",
- "policy": [{"until": "2027-01-15", "t": "Import duty: India waived its 11% cotton import duty from June 1 to October 31, 2026; an extension to December 31 is expected (industry and government sources, Oct 26-27) but not yet notified."}]}
+{
+ "area_lakh_ha": 109.17,
+ "area_last_lakh_ha": 109.86,
+ "area_note": "Kharif cotton sown area 109.17 lakh ha vs 109.86 a year earlier (Ministry of Agriculture, as of Sep 4, 2026)",
+ "policy": [
+  {
+   "until": "2027-01-15",
+   "t": "Import duty: India waived its 11% cotton import duty from June 1 to October 31, 2026; an extension to December 31 is expected (industry and government sources, Oct 26-27) but not yet notified."
+  }
+ ],
+ "cci": {
+  "season": "2025-26",
+  "procured": 104.01,
+  "sold": 92.21,
+  "as_of": "2026-08-14",
+  "weekly": 1.85,
+  "source": "CAI daily news (Aug 14, 2026) for sales; agronom.info / CCI for procurement (104.01 lakh bales)",
+  "history": [
+   {
+    "season": "2024-25",
+    "procured": 100.0,
+    "sold": 96.3,
+    "as_of": "2026-01-02"
+   },
+   {
+    "season": "2023-24",
+    "procured": 32.84,
+    "sold": null,
+    "as_of": null
+   }
+  ]
+ }
+}

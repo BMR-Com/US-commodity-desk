@@ -46,6 +46,7 @@ const IndiaCotton = (() => {
       <div class="card" style="margin-top:12px"><h2>Balance sheets side by side</h2><div class="ctrls" id="inUnitSel"></div><div class="tbl" id="inBal"></div>
         <p class="note">COCPC: the government's Committee on Cotton Production and Consumption (official). CAI: the trade's crop committee, monthly. USDA: August–July year in 480-lb bales; COCPC and CAI use the October–September season.
         The sources differ a lot in level, so the revisions matter more than the gaps between them.</p><p class="note" id="inDeskNote"></p></div>
+      ${D.notes?.cci ? cciCard(D.notes.cci) : ''}
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>CAI estimate revisions, this season and last</h2><div class="chart"><canvas id="cInRev"></canvas></div><p class="note" id="inRevNote"></p></div>
         <div class="card"><h2>Monthly trade by season (thousand t)</h2><div class="ctrls" id="inTrSel"></div><div class="chart"><canvas id="cInTr"></canvas></div><p class="note" id="inTrNote"></p></div>
@@ -53,6 +54,16 @@ const IndiaCotton = (() => {
       <div class="card" style="margin-top:12px"><h2>Shankar-6 vs ICE (¢/lb, weekly)</h2><div class="chart"><canvas id="cInPx"></canvas></div><p class="note" id="inPxNote"></p></div>
       ${(D.notes?.policy || []).length ? `<div class="card" style="margin-top:12px"><h2>Policy</h2>${D.notes.policy.map(p => `<p>${md(p.t)}</p>`).join('')}</div>` : ''}`;
     proj(); prodChart(); rainTable(); idxChart(); rainSel(); balance(); deskNote(); revChart(); tradeSel(); pxChart();
+  }
+
+  function cciCard(c) {
+    const left = c.procured - c.sold, k = D.conv.lakh170_to_m480;
+    return `<div class="card" style="margin-top:12px"><h2>Government stocks: Cotton Corporation of India (CCI)</h2>
+      <div class="tbl"><table><tr><th class="l">Crop</th><th>Bought at MSP</th><th>Sold</th><th>Left</th><th>As of</th></tr>
+      <tr><td class="l">${c.season}</td><td>${f(c.procured, 1)} lakh (${f(c.procured * k)} m)</td><td>${f(c.sold, 1)} lakh</td><td><b>${f(left, 1)} lakh (${f(left * k)} m)</b></td><td>${c.as_of}</td></tr>
+      ${(c.history || []).filter(h => h.sold != null).map(h => `<tr><td class="l">${h.season}</td><td>${f(h.procured, 1)} lakh</td><td>${f(h.sold, 1)} lakh</td><td>${f(h.procured - h.sold, 1)} lakh</td><td>${h.as_of}</td></tr>`).join('')}</table></div>
+      <p class="note">CCI buys kapas at the minimum support price when market prices fall below it and sells the lint by weekly e-auction. Recent sales pace about ${f(c.weekly, 1)} lakh bales a week, so the 2025-26 reserve is close to sold out.
+      Its stock is part of the national closing stock in every balance sheet above, not extra. Source: ${c.source}.</p></div>`;
   }
 
   const ordinal = n => n + (['th', 'st', 'nd', 'rd'][(n % 100 > 10 && n % 100 < 14) ? 0 : (n % 10 < 4 ? n % 10 : 0)] || 'th');
@@ -113,10 +124,10 @@ const IndiaCotton = (() => {
     const B = D.balance, seasons = [...new Set([...Object.keys(B.cocpc), ...Object.keys(B.cai), ...Object.keys(B.usda)])].sort().slice(-3);
     const cols = [];
     seasons.forEach(s => ['cocpc', 'cai', 'usda'].forEach(src => { if (B[src][s]) cols.push([src, s]); }));
-    const DB = D.desk_balance || {}; ['cocpc', 'cai'].forEach(src => { if (DB.cases?.[src]) cols.push(['desk_' + src, DB.season]); });
+    const DB = D.desk_balance || {}; ['usda', 'cocpc', 'cai'].forEach(src => { if (DB.cases?.[src]) cols.push(['desk_' + src, DB.season]); });
     const val = (src, s, k) => { if (src.startsWith('desk_')) return DB.cases[src.slice(5)][unit][k]; const v = B[src][s]; if (src === 'usda') return unit === 'm480' ? v.m480[k] : v.m480[k] / D.conv.lakh170_to_m480; return v[unit]?.[k]; };
     const rows = [['opening', 'Opening stock'], ['crop', 'Crop'], ['imports', 'Imports'], ['supply', 'Total supply'], ['consumption', 'Consumption'], ['exports', 'Exports'], ['closing', 'Closing stock']];
-    const nm = { cocpc: 'COCPC', cai: 'CAI', usda: 'USDA', desk_cocpc: 'Desk, COCPC base', desk_cai: 'Desk, CAI base' }, d = unit === 'm480' ? 2 : 1;
+    const nm = { cocpc: 'COCPC', cai: 'CAI', usda: 'USDA', desk_usda: 'Desk, on USDA', desk_cocpc: 'Desk, COCPC base', desk_cai: 'Desk, CAI base' }, d = unit === 'm480' ? 2 : 1;
     document.getElementById('inBal').innerHTML = `<table><tr><th class="l"></th>${cols.map(([src, s]) => `<th${src.startsWith('desk_') ? ' style="background:#fbeeee"' : ''}>${s}<br><span class="note">${nm[src]}${src === 'cai' && B.cai[s].as_of ? ' ' + B.cai[s].as_of : ''}</span></th>`).join('')}</tr>
       ${rows.map(([k, l]) => `<tr><td class="l">${l}</td>${cols.map(([src, s]) => `<td>${f(val(src, s, k), d)}</td>`).join('')}</tr>`).join('')}
       <tr><td class="l">Stocks / use</td>${cols.map(([src, s]) => { const c = val(src, s, 'closing'), u = (val(src, s, 'consumption') || 0) + (val(src, s, 'exports') || 0); return `<td>${u ? fmt(100 * c / u, 0) + '%' : '–'}</td>`; }).join('')}</tr></table>`;
@@ -128,6 +139,8 @@ const IndiaCotton = (() => {
     document.getElementById('inDeskNote').innerHTML = `<b>Desk ${DB.season} (shaded):</b> built on each sheet. Opening stock = that sheet's ${DB.prev} closing corrected for actual customs trade: HS 5201 imports ${f(pi.actual, 1)} lakh bales through ${pi.through}
       (${f(pi.projected, 0)} for the season at the recent pace of ${f(pi.pace_month, 1)} a month) vs ${f(c.prev_imports_sheet, 0)} in COCPC and ${f(a?.prev_imports_sheet, 0)} in CAI; exports ${f(pe?.actual, 1)} (${f(pe?.projected, 0)}) vs ${f(c.prev_exports_sheet, 0)} and ${f(a?.prev_exports_sheet, 0)}.
       COCPC's past import and export lines match these customs figures. Crop = desk projection; imports and exports at the customs pace; consumption at each sheet's ${DB.prev} level.
+      <br><b>Desk, on USDA:</b> USDA's ${DB.prev} as published (August–July), then the desk crop and customs trade for ${DB.season}${DB.cases.usda ? ` (${DB.cases.usda.imports_months} month${DB.cases.usda.imports_months === 1 ? '' : 's'} of the new year reported, the rest at the recent pace); use at USDA's ${DB.season} figure. USDA's own ${DB.prev} imports (${f(DB.cases.usda.prev_usda_imports)} m) match customs (${f(DB.cases.usda.prev_customs_imports_m480)} m).` : ''}
+      ${DB.cases.usda_duty ? ` If the 11% duty returns in January and imports fall back to 2024-25's monthly pace, imports are ${f(DB.cases.usda_duty.imports_m480)} m and ending stocks ${f(DB.cases.usda_duty.closing_m480)} m.` : ''}
       To hold ${DB.prev}'s stocks/use (${f(c.prev_stocks_use, 0)}% on COCPC) India would need about ${f(c.imports_to_hold_m480)} m 480-lb bales of imports (${f(c.imports_to_hold_stocks_use, 0)} lakh).`;
   }
 

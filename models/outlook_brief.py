@@ -236,6 +236,15 @@ def build():
             ins = ams_lines()
             pos = next((i for i, x in enumerate(items) if x["h"] == "Exports"), len(items))
             items[pos:pos] = ins
+            try:
+                from india_read import india_for_us
+                it, isc = india_for_us()
+                if it:
+                    pos = next((i for i, x in enumerate(items) if x["h"] == "Exports"), len(items) - 1) + 1
+                    items.insert(pos, {"h": "India", "t": it})
+                    parts["exports"] = max(parts.get("exports", 0), isc)
+            except Exception as e:
+                print("india line skipped:", repr(e)[:120])
         if not items and SM.get(sym):                   # livestock and dairy: the desk's fundamental read
             f = (SM[sym].get("paras") or {}).get("fundamental", "")
             if f:

@@ -51,7 +51,7 @@ ALT = {"Ending Stocks": ["Ending Stocks, Total"], "Avg. Farm Price": ["Avg. farm
 
 
 VARS = {   # shown on the public page (variables only; rules live in the private research notes)
-    "cotton": ["BMR-Com crop model (crop ratings, drought, ginnings, classing by office, FSA acreage)", "USDA crop estimate", "Texas abandonment (and its largest post-October rise on record)",
+    "cotton": ["BMR-Com crop model (crop ratings, drought, ginnings, classing by office, FSA acreage)", "USDA crop estimate", "Texas abandonment (and its largest post-October rise on record)", "India import demand by duty status and origin (Cotton > India)",
                "weekly export sales (commitments, shipments, net sales)", "USDA export forecast", "price response of exports to crop size",
                "US share of world trade", "rival exporters' stocks (Brazil, Australia, Africa, Central Asia)", "pipeline minimum stocks", "USDA October-to-final crop revision history"],
     "corn": ["desk crop-condition yield model", "USDA yield and harvested area", "weekly export sales", "USDA export forecast", "price response of exports to crop size",
@@ -199,6 +199,35 @@ def trade_cap(key, cur, b, cfg):
             "world_trade": float(wx[cur]), "comp": comp_rows, "comp_excess": excess, "displaced": displaced, "cap": cap_world / k, "world_unit": cfg.get("world_unit", "MMT")}
 
 
+def foreign_demand(key, ex, u):
+    """Cotton only: extra US export demand from India (data/india/india.json), m 480-lb bales.
+    Direct = extra US cotton India takes vs the duty-returns-in-November case; displaced = India's extra buying from Brazil, Africa and
+    Australia times the US share of world exports (USDA), the part of that cotton's usual buyers that turns to the US."""
+    if key != "cotton":
+        return None
+    f = ROOT / "data" / "india" / "india.json"
+    if not f.exists():
+        return None
+    try:
+        O = json.loads(f.read_text()).get("origins") or {}
+        ee, ea = O["extra_expected"], O["extra_all_year"]
+        share = (u["Exports"] / 44.71) if u.get("Exports") else 0.275
+        try:
+            W = json.loads((ROOT / "data" / "geo" / "raw" / "psd.json").read_text())["data"]["cotton"]["rows"]
+            yr = max(r[2] for r in W if r[1] == "World" and r[3] == "Exports")
+            share = u["Exports"] * 1000 / next(r[4] for r in W if r[1] == "World" and r[3] == "Exports" and r[2] == yr)
+        except Exception:
+            pass
+        comp = ("Brazil", "Africa", "Australia")
+        d_b, d_r = sum(ee.get(c, 0) for c in comp) * share, sum(ea.get(c, 0) for c in comp) * share
+        notes = json.loads((ROOT / "data" / "india" / "notes.json").read_text()) if (ROOT / "data" / "india" / "notes.json").exists() else {}
+        return {"base": round(ee.get("USA", 0) + d_b, 2), "bear": round(ea.get("USA", 0) + d_r, 2), "direct_base": ee.get("USA", 0), "direct_bear": ea.get("USA", 0),
+                "displaced_base": round(d_b, 2), "displaced_bear": round(d_r, 2), "us_share": round(share, 3), "waiver_to": notes.get("duty_expected_until", "2026-12-31")}
+    except Exception as e:
+        print("foreign demand skipped:", repr(e)[:120])
+        return None
+
+
 def export_views(b):
     """central and the spread across the projection's own views (not the full historical min-max)."""
     pr = b.get("proj") or {}
@@ -300,6 +329,12 @@ def build():
             ex = {"base": base_ex, "bear": min(ex_lo or ue, ue), "bull": max(ex_hi or ue, ue)}
             esrc = (f"crop is fixed, so the scenarios turn on demand: base = midway between the export-sales projection ({ex_c:,.{dec}f}, week {b['wk']}) and USDA ({ue:,.{dec}f}); "
                     f"bearish = the lowest of its views and USDA; bullish = the highest" if ex_c else "USDA")
+        foreign = foreign_demand(key, ex, u) if theta is not None else None
+        if foreign:
+            ex["base"] += foreign["base"]; ex["bear"] += foreign["bear"]
+            esrc += (f". India: base adds {foreign['base']:.2f} m bales (its duty waiver to {foreign['waiver_to']}: {foreign['direct_base']:.2f} direct, plus {foreign['displaced_base']:.2f} of demand it pushes to the US by buying Brazilian, African and Australian cotton); "
+                     f"bearish adds {foreign['bear']:.2f} m (waiver all season, when lower prices win more sales); bullish adds none (supply binds). "
+                     f"China's yarn imports already show in Vietnam and Pakistan sales, so they are not added again")
         tc = trade_cap(key, cur, b, cfgs.get(key)) if not product else None
         floor = float(hist_end[hist_end.index < cur].min()) if len(hist_end[hist_end.index < cur]) else None
         floor_my = hist_end[hist_end.index < cur].idxmin() if floor is not None else None
@@ -345,7 +380,7 @@ def build():
                                "summary": {s: {"prod": prod[s], "exports": scen[s]["Exports"], "exports_proj": ex[s], "end": scen[s]["Ending stocks"], "su": su(scen[s])} for s in scen},
                                "usda_end": es_u, "usda_su": su(u),
                                "exp_week": b["wk"] if b else None, "exp_miss": export_miss(cfgs[key], b["wk"]) if b and key in cfgs else None,
-                               "vars": VARS.get(key, []), "floor": floor, "floor_my": floor_my, "capped": capped, "product": product, "trade": tc, "theta": theta if not product else None,
+                               "vars": VARS.get(key, []), "floor": floor, "floor_my": floor_my, "foreign": foreign if theta is not None else None, "capped": capped, "product": product, "trade": tc, "theta": theta if not product else None,
                                "tx_ab": {k_: v["tx_ab"] for k_, v in cot_ay.items()} if cot_ay else None, "bounds": bounds,
                                "exp_usda": u.get("Exports"), "prod_usda": u.get("Production")}
     OUT.parent.mkdir(parents=True, exist_ok=True)

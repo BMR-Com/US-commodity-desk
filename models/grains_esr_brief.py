@@ -7,7 +7,7 @@ forecast, pace vs past seasons at the same week, what is needed per week to reac
 each importer's commitments vs its USDA import forecast and usual US share, the shipment calendar, competing
 exporters' supply, price in the reporting week, and a 5/10/20-season profile. Wheat is also split by class.
 """
-import io, json, os
+import io, json, os, sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -384,6 +384,15 @@ def demand_text(cfg, tot, labels, cur_y, wk, L, S, last_date, D, fu, w=None):
                 parts.append(n_["t"])
     except Exception:
         pass
+    if cfg["key"] == "cotton":
+        try:
+            sys.path.insert(0, str(ROOT / "models"))
+            from india_read import india_for_us
+            it, isc = india_for_us()
+            if it:
+                parts.append("India: " + it); score += isc
+        except Exception as e:
+            print("india note skipped:", repr(e)[:120])
     return (" ".join(parts) if parts else None), (1 if score >= 2 else 0)
 
 

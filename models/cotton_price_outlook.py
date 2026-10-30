@@ -19,7 +19,7 @@ EX = ["Exports", "Exports, Total", "Exports, total"]
 SHORTAGE = ["2010/11", "2021/22"]        # world-shortage seasons: different regime, fitted apart
 BALES_PER_LOT = 50000 / 480 / 1e6
 VARS = ["USDA US balance sheet (October estimate vs final, 2010/11 on)", "desk US balance-sheet scenarios and their simulation",
-        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract", "February-March May, May/Jul and Jul/Dec vs USDA March US stocks/use (2007/08 on)", "cotton on-call (CFTC)", "ICE May option settlements (smile, open interest)", "May implied volatility history (2000 on)"]
+        "ICE cotton futures by contract", "CFTC producer/merchant positions against USDA world exports", "historical volatility of the May contract", "February-March May, May/Jul and Jul/Dec vs USDA March US stocks/use (2007/08 on)", "cotton on-call (CFTC)", "ICE May option settlements (smile, open interest)", "May implied volatility history (2000 on)", "open interest by contract (2000 on)"]
 
 
 def load():
@@ -351,11 +351,52 @@ def main():
     except Exception as e:
         print("downside skipped:", repr(e)[:120])
 
+    # open interest by contract: how far it has already moved into May and Jul vs the same date in past seasons
+    oi_fwd = None
+    try:
+        cr2 = None
+        for s_ in [ROOT.parent / "bmr-com" / "cotton-price" / "data" / "cotton_raw.csv", "https://raw.githubusercontent.com/BMR-Com/cotton-price/main/data/cotton_raw.csv"]:
+            try:
+                cr2 = pd.read_csv(s_, na_values=["#N/A N/A"]); break
+            except Exception:
+                continue
+        fu = None
+        for s_ in [ROOT.parent / "bmr-com" / "softs--options-" / "data" / "csv" / "CT_FUTURES.csv", "https://raw.githubusercontent.com/BMR-Com/softs--options-/main/data/csv/CT_FUTURES.csv"]:
+            try:
+                fu = pd.read_csv(s_); break
+            except Exception:
+                continue
+        fd = fu.date.max(); fz = fu[fu.date == fd].set_index("contract").open_interest
+        yy = oy % 100
+        now_ = {"Dec": float(fz.get(f"DEC{yy - 1:02d}", np.nan)), "Mar": float(fz.get(f"MAR{yy:02d}", np.nan)), "May": float(fz.get(f"MAY{yy:02d}", np.nan)),
+                "Jul": float(fz.get(f"JUL{yy:02d}", np.nan)), "Dec2": float(fz.get(f"DEC{yy:02d}", np.nan))}
+        cr2["d"] = pd.to_datetime(cr2.Dates, format="%m/%d/%y"); md_ = pd.Timestamp(fd)
+        col = lambda m: f"CT{m} Comdty OPEN_INT"
+        hist = []
+        for y in range(2000, oy - 1):
+            z = cr2[(cr2.d >= pd.Timestamp(y, md_.month, md_.day) - pd.Timedelta(days=4)) & (cr2.d <= pd.Timestamp(y, md_.month, md_.day))].dropna(subset=[col("DEC1")])
+            if len(z):
+                r_ = z.iloc[-1]
+                v_ = {"Dec": r_[col("DEC1")], "Mar": r_[col("MAR1")], "May": r_[col("MAY1")], "Jul": r_[col("JUL1")], "Dec2": r_[col("DEC2")]}
+                if all(x == x for x in v_.values()):
+                    hist.append((y, v_))
+        def metr(v_):
+            tot = sum(v_.values())
+            return {"may": v_["May"], "jul": v_["Jul"], "mayjul": v_["May"] + v_["Jul"], "tot": tot, "mayjul_share": 100 * (v_["May"] + v_["Jul"]) / tot,
+                    "def_share": 100 * (v_["Mar"] + v_["May"] + v_["Jul"]) / tot, "mayjul_vs_dec": (v_["May"] + v_["Jul"]) / v_["Dec"], "dec2": v_["Dec2"]}
+        mn = metr(now_); mh = {y: metr(v_) for y, v_ in hist}
+        oi_fwd = {"date": fd, "now": {k: round(float(v), 2) for k, v in mn.items()}, "by_contract": {k: int(v) for k, v in now_.items()},
+                  "stats": {k: {"median": round(float(np.median([m[k] for m in mh.values()])), 2), "max": round(float(max(m[k] for m in mh.values())), 2),
+                                "max_year": str(max(mh, key=lambda y: mh[y][k])), "rank": f"{sum(m[k] < mn[k] for m in mh.values()) + 1} of {len(mh) + 1}"} for k in mn},
+                  "years": len(mh)}
+    except Exception as e:
+        print("oi skipped:", repr(e)[:120])
+
     # analog seasons: USDA too loose in October
     analog = [{"my": i, "su_oct": round(v.su_oct, 1), "su_fin": round(v.su_fin, 1), "may_chg": round(v.Kchg, 1), "pm_short_pct": round(v.pm_short_pct, 0),
                "jul_dec_june": round(v.NZe, 1)} for i, v in H.iterrows() if v.dsu <= -10 or i in SHORTAGE]
     out = {"built": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "asof": today.strftime("%Y-%m-%d"), "prices": px, "spreads": sp, "usda_su": round(usda_su, 1),
-           "scenarios": scenarios, "mc": mc, "hedge": hedge, "fair": fairness, "oncall": oncall, "options": opt, "downside": downside, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
+           "scenarios": scenarios, "mc": mc, "hedge": hedge, "fair": fairness, "oncall": oncall, "options": opt, "downside": downside, "oi_fwd": oi_fwd, "analog": analog, "vars": VARS, "expiry": exp_day.strftime("%Y-%m-%d"),
            "typical": {"hk_feb": round(float(np.median(ex.HKe)), 2), "kn_apr": round(float(np.median(ex.KNe)), 2),
                        "shortage": {s: {"hk": round(float(H.loc[s, "HKe"]), 1), "kn": round(float(H.loc[s, "KNe"]), 1), "nz": round(float(H.loc[s, "NZe"]), 1)} for s in SHORTAGE if s in H.index}}}
     (ROOT / "data" / "derived" / "ct_price_outlook.json").write_text(json.dumps(out, indent=1, default=float))

@@ -1,7 +1,6 @@
 name: india
 # India cotton: CAI / COCPC balance sheets, state area and production, trade, USDA PSD, cotton-district rainfall, crop model.
 on:
-  push: {branches: [india-cotton]}   # REVIEW ONLY: remove before merge
   schedule:
     - cron: '43 11 * * *'   # daily, after India's business day
   workflow_dispatch: {}
@@ -19,7 +18,7 @@ jobs:
       - name: India data (CAI, COCPC, trade, PSD, rainfall)
         continue-on-error: true
         timeout-minutes: 30
-        run: mkdir -p data/india/raw && python pipelines/india_cotton.py 2>&1 | tee data/india/raw/run.log   # REVIEW ONLY log
+        run: python pipelines/india_cotton.py
       - name: Shankar-6 and other CAI spot rates, history backfill
         continue-on-error: true
         timeout-minutes: 22

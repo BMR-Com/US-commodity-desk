@@ -1,59 +1,6 @@
 {
-"generated": "2026-10-30 22:21 UTC",
+"generated": "2026-10-31 01:01 UTC",
 "events": [
-{
-"date": "2026-10-23",
-"time": "2:00 PM CT",
-"event": "NASS Cattle on Feed",
-"cat": "USDA",
-"markets": [
-"LE",
-"GF"
-],
-"importance": 3,
-"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=10&day=23&report_id=13001",
-"estimated": false
-},
-{
-"date": "2026-10-23",
-"time": "2:00 PM CT",
-"event": "NASS Cold Storage",
-"cat": "USDA",
-"markets": [
-"HE",
-"LE",
-"CB",
-"CSC"
-],
-"importance": 2,
-"link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=10&day=23&report_id=17002",
-"estimated": false
-},
-{
-"date": "2026-10-23",
-"time": "12:00 PM CT",
-"event": "Baker Hughes rig count",
-"cat": "Energy",
-"markets": [
-"CL",
-"NG"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
-{
-"date": "2026-10-23",
-"time": "2:30 PM CT",
-"event": "CFTC Commitments of Traders",
-"cat": "CFTC",
-"markets": [
-"ALL"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-10-26",
 "time": "3:00 PM CT",
@@ -3172,6 +3119,55 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-01-29",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-29",
+"time": "2:30 PM CT",
+"event": "CFTC Commitments of Traders",
+"cat": "CFTC",
+"markets": [
+"ALL"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-01-29",
+"time": "",
+"event": "ULSD (heating oil) Feb 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"HO"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-01-29",
+"time": "",
+"event": "RBOB gasoline Feb 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 }
 ]
 }

@@ -1,17 +1,47 @@
 {
- "generated": "2026-11-02 01:36 UTC",
- "generated_et": "Sun Nov 01, 2026 08:36 PM ET",
- "date": "2026-11-01",
- "prices_from": "2026-11-02 01:36 UTC",
+ "generated": "2026-11-02 16:20 UTC",
+ "generated_et": "Mon Nov 02, 2026 11:20 AM ET",
+ "date": "2026-11-02",
+ "prices_from": "2026-11-02 16:20 UTC",
  "cme_oi_date": "20261029",
  "headlines": [
   "Biggest moves vs prior settle: Feeder cattle -8.700 (-2.5%); Live cattle -5.350 (-2.4%); Lean hogs -0.950 (-1.6%).",
+  "Today: NASS Crop Progress 4:00 PM ET; USDA export inspections 11:00 AM ET; NASS Fats & Oils 3:00 PM ET.",
   "Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.",
   "Through a trend-follower trigger: Soybean oil above 65.92.",
   "Macro backdrop for ags: mixed (-1)."
  ],
- "events_today": [],
- "events_ahead": [
+ "events_today": [
+  {
+   "date": "2026-11-02",
+   "time": "10:00 AM CT",
+   "event": "USDA export inspections",
+   "cat": "USDA",
+   "markets": [
+    "ZC",
+    "ZS",
+    "ZW",
+    "KE"
+   ],
+   "importance": 1,
+   "link": null,
+   "estimated": false,
+   "time_et": "11:00 AM ET"
+  },
+  {
+   "date": "2026-11-02",
+   "time": "2:00 PM CT",
+   "event": "NASS Fats & Oils",
+   "cat": "USDA",
+   "markets": [
+    "ZL",
+    "ZM"
+   ],
+   "importance": 1,
+   "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=02&report_id=17214",
+   "estimated": false,
+   "time_et": "3:00 PM ET"
+  },
   {
    "date": "2026-11-02",
    "time": "3:00 PM CT",
@@ -28,7 +58,9 @@
    "link": "https://www.nass.usda.gov/Publications/Calendar/calendar-landing.php?source=n&year=26&month=11&day=02&report_id=17011",
    "estimated": false,
    "time_et": "4:00 PM ET"
-  },
+  }
+ ],
+ "events_ahead": [
   {
    "date": "2026-11-04",
    "time": "9:30 AM CT",
@@ -140,6 +172,20 @@
    "link": null,
    "estimated": false,
    "time_et": "3:30 PM ET"
+  },
+  {
+   "date": "2026-11-06",
+   "time": "12:00 PM CT",
+   "event": "Baker Hughes rig count",
+   "cat": "Energy",
+   "markets": [
+    "CL",
+    "NG"
+   ],
+   "importance": 2,
+   "link": null,
+   "estimated": false,
+   "time_et": "1:00 PM ET"
   }
  ],
  "flash": [],
@@ -190,7 +236,7 @@
     },
     {
      "tilt": "neutral",
-     "text": "Weather watch: Marcos Ju\u00e1rez, C\u00f3rdoba; Pergamino, N Buenos Aires"
+     "text": "Weather watch: Pergamino, N Buenos Aires; Marcos Ju\u00e1rez, C\u00f3rdoba"
     }
    ],
    "event": "NASS Crop Production",
@@ -203,22 +249,22 @@
    },
    "news": [
     {
-     "title": "Building on a strong 2026 corn crop to set the course for 2027",
-     "source": "AgWeb",
-     "time": "2026-11-01T12:00Z",
-     "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNemc1NEkxbm15eFpzZHFDNzNFVkJYZ0RqczlZWDJ2bGF1dFdBR3RvQU9MWmV0NkhHSFNfbVFHY1VjX0xQeFE3LWV3SGpHb0tNYjVxTEpicFhoOEJuTTN4aUVndlBLaEFYWmF5ckRvYmhhX3IwWVRlVXRhN093VFlhc2N0ZWdLUQ?oc=5"
+     "title": "When Will High Corn and Soybean Prices Start Driving Buyers Away? 3 Signs to Watch",
+     "source": "Successful Farming",
+     "time": "2026-11-02T12:00Z",
+     "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOWVlvRW0xNHlrN0IwMER1NTloQmdaOWl0dGw3RzNLRXhJeGp3ZHVNSlQ2SExZdWxGZ2pkQmRURjFQQm5XMXgwaFZVM2E5X2dpejVCQjlOV0ZBYTI0VmxWUnkzS1JwQmZaLTBWWVhCOG1ZU2ZhRlJpaDVkU1lYV09iV0tGQ2lzbUhFclR4MVZNUFNBX3lKUDJYdHM3RGZXT1FfU3I3YVEzc2gySFR3QjZTRHE5YlVoWlVucjFGemJPbVZtY1JrUmln?oc=5"
     },
     {
-     "title": "Harvest memories: Antique combines and corn pickers",
-     "source": "Farm Progress",
-     "time": "2026-11-01T10:16Z",
-     "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNRXdzN01ReGVzc2RWU0F1cy1wUXU3TnBLRVNCU2dfdDQ0NjE1MjBkR0o3bXVMUFFzYkpOOU9ZUFU0OXhRcDVJV1Azb285aEJxQm1qTm50ZnlNZUNBbUZhX3JBdG41VkgtZ1pDTG13TXNZRG9WWFAzUHdpUHo1Mm1Pd2s5ZmF3NEJGYjhWMmlSa01ZZGo5S25pQzN5RVViUQ?oc=5"
-    },
-    {
-     "title": "63% of U.S. corn, soybeans rated good to excellent",
+     "title": "Corn export inspections stay ahead of last marketing year",
      "source": "Brownfield Ag News",
-     "time": "2026-11-01T03:45Z",
-     "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPZkJzcmN2S09yMVVZdUV3R0ZrY1Z6dG1UWnFmZUVLeEQyaDRhNS1MQmhxNU03UE9EcXNTZUk4eXV6N2otYU1MZEFOYy16aFNWcW9RUF9DV1Ytb3F0bXhJcW93VFpDUHM2cXhRLWlKeFZrUFEwYlJ0Tmc1WmdaYlRjYVY5Zk8yLUtZNlE?oc=5"
+     "time": "2026-11-02T08:19Z",
+     "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOdjhWVkRzQTBKMFdVYS1ZZDBPd3VrU2N3Rk1GeTNUOUR1ZFpJSUpuUnNnSHJRZ1Jobi1waGd2ZzV4Q3lpby04MEdzWDR4dW15bS1KR29jN1hoSU5DWDhJcHFHY3pIUElBNDhrejZ5NnY2WHpjbjNLdmJSeGFqVHpSVEd6dS1qU25QRFRCYXdLYVFIWVJZYjh3?oc=5"
+    },
+    {
+     "title": "Reevaluate phosphorus needs for high-yield corn",
+     "source": "Farm Progress",
+     "time": "2026-11-02T08:02Z",
+     "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNdzhHWEI3RDdQdkcwT1VmWVdQRjFwZTcwYnVKbEV5c2Q0NVM5R05Sd2JDRFEwMzJsNGFFRDNOWmlnV3N5LWRZWlE5R2FKdFFaUDEzSzFrUThSSG9ISEtib21UeXRVSUJHTnZpMmFUQ2VTRGQ0UlZVVU8taVh4eWEwNkYyNUJlNXUzMEozTnJ0eWF3QQ?oc=5"
     }
    ]
   },
@@ -272,7 +318,7 @@
     },
     {
      "tilt": "neutral",
-     "text": "Weather watch: Marcos Ju\u00e1rez, C\u00f3rdoba; Pergamino, N Buenos Aires"
+     "text": "Weather watch: Pergamino, N Buenos Aires; LEM, western Bahia"
     }
    ],
    "event": "NASS Crop Production",
@@ -285,22 +331,22 @@
    },
    "news": [
     {
-     "title": "How farmers are pushing soybean yield boundaries.",
-     "source": "Farm Progress",
-     "time": "2026-11-01T12:02Z",
-     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNLV9VNTBnRHNrS28wdmVDSVRXeERzSXNOYWJIWUdwT0pQc3hmSXlkR0FNQ19uTEdCT1RrSGRaanBpZmdkYUxWSUJkb2FQcHBQZEdDN3FWODBiME1sWkh0Ym10aTFyaWVTMG9jMGZ3QjF1ZmRBYXFrN3JYNUx2M1BJbHFuTUxvLUh1Q3FhT2QxeUFMN0Ztb0Jxag?oc=5"
+     "title": "Seed, Fertilizer, and Pesticide Costs: Comparing U.S. and Brazilian Soybean Farms",
+     "source": "farmdoc daily",
+     "time": "2026-11-02T14:11Z",
+     "link": "https://farmdocdaily.illinois.edu/2026/11/seed-fertilizer-and-pesticide-costs-comparing-u-s-and-brazilian-soybean-farms.html"
     },
     {
-     "title": "63% of U.S. corn, soybeans rated good to excellent",
+     "title": "ASA president: China, other key markets continuing to buy US soybeans",
      "source": "Brownfield Ag News",
-     "time": "2026-11-01T03:45Z",
-     "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPZkJzcmN2S09yMVVZdUV3R0ZrY1Z6dG1UWnFmZUVLeEQyaDRhNS1MQmhxNU03UE9EcXNTZUk4eXV6N2otYU1MZEFOYy16aFNWcW9RUF9DV1Ytb3F0bXhJcW93VFpDUHM2cXhRLWlKeFZrUFEwYlJ0Tmc1WmdaYlRjYVY5Zk8yLUtZNlE?oc=5"
+     "time": "2026-11-02T12:55Z",
+     "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNcDZwbEJrUjBLd2JHdHRpTGUyT3NycnptdzhzeTFTMnZfUC1DNUJPMjRld1c4Q2toLXY2bXlwS3Q1NVFWZmJCZUNxd1VxLUtXUXhSLUM2blFoSFYwcElZaUlVbTRsSzYzNlZQby1pLVEzY21jUFRKR2dzcFlsSW5tc2pxdnVPSi1WbkU0RXpOdzV0YW5SU0l3YjlyMlBYNXBCc0RlYg?oc=5"
     },
     {
-     "title": "DF Seeds expands across Lake Michigan to grow premium soybean markets",
-     "source": "Brownfield Ag News",
-     "time": "2026-11-01T03:29Z",
-     "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQQVg5cXc1Z2swQk8tTmtPNkxRSzBNTmhDT2tfT25abGwwWnpBTFFJUmcwd2k4M2w0MHFLSW82VmJKdUUzTFFDMkFPd2ZLOWRfZ2NhRUxKRm9ab3ZpRVVTdF9ubFVRNGtIcU1tRzIwUjlJYnlDbEFLejNkY3lzSnpCYXF1OFdjR3pRSkxjM1p2WUJBc0VHMnNTMnFCSjh1QUV2bXhKZVNiNA?oc=5"
+     "title": "When Will High Corn and Soybean Prices Start Driving Buyers Away? 3 Signs to Watch",
+     "source": "Successful Farming",
+     "time": "2026-11-02T12:00Z",
+     "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOWVlvRW0xNHlrN0IwMER1NTloQmdaOWl0dGw3RzNLRXhJeGp3ZHVNSlQ2SExZdWxGZ2pkQmRURjFQQm5XMXgwaFZVM2E5X2dpejVCQjlOV0ZBYTI0VmxWUnkzS1JwQmZaLTBWWVhCOG1ZU2ZhRlJpaDVkU1lYV09iV0tGQ2lzbUhFclR4MVZNUFNBX3lKUDJYdHM3RGZXT1FfU3I3YVEzc2gySFR3QjZTRHE5YlVoWlVucjFGemJPbVZtY1JrUmln?oc=5"
     }
    ]
   },
@@ -354,7 +400,7 @@
     },
     {
      "tilt": "neutral",
-     "text": "Weather watch: Marcos Ju\u00e1rez, C\u00f3rdoba; Pergamino, N Buenos Aires"
+     "text": "Weather watch: Pergamino, N Buenos Aires; Marcos Ju\u00e1rez, C\u00f3rdoba"
     }
    ],
    "event": "USDA WASDE",
@@ -365,7 +411,20 @@
     "vol": 235978,
     "report": "FINAL"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Soybean meal demand strong as China buying remains unclear",
+     "source": "Brownfield Ag News",
+     "time": "2026-11-01T17:21Z",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOSTFsRlhvdDczeVVWOVNnU3BiT1ptVmZCM3dMa0FUeThCcVo4RGFVUng4SVFWWTF5UUhuOE14clM5cmxOUkNPa1hoX1o4T3RTMWN1aFJ0Z243MHQ2blJFaWVSNU03c1F0OVNIMHBiQ2xuQkhnenZKQWFzX19NT1FZVXZ2RXh2UlNnbHVHeHVCanF2dnVUcEZrTQ?oc=5"
+    },
+    {
+     "title": "ADA Mideast program helping schools navigate the updated USDA meal guidelines",
+     "source": "Brownfield Ag News",
+     "time": "2026-11-01T09:41Z",
+     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0liajdYcTZGWUhrZVl5TFFuVGxNMDVHbEJqc29hZllfVmowMUNIZlhtMHJNTndmWkF0WkJHZ0YzeThmZWJVMnRJZmRlNnhRczNRVUN3MG1VdkRPbFBQV0xIcnJRMTJyanM1UjVhNllST3lCMnB6N3Zlb3JvdVFfTWVXMXR6N3lVcERDemV6eFdqdUVnZ2hoYmpDYnRIeHp6ZWtEZTQwVUJidGEtbmpUVGJ3?oc=5"
+    }
+   ]
   },
   {
    "sym": "ZL",
@@ -405,7 +464,7 @@
    "flags": [
     {
      "tilt": "neutral",
-     "text": "Weather watch: Marcos Ju\u00e1rez, C\u00f3rdoba; Pergamino, N Buenos Aires"
+     "text": "Weather watch: Pergamino, N Buenos Aires; Marcos Ju\u00e1rez, C\u00f3rdoba"
     }
    ],
    "event": "USDA WASDE",
@@ -461,6 +520,10 @@
     {
      "tilt": "neutral",
      "text": "Realized vol low (19%, 14th pct): cheap to own optionality into catalysts"
+    },
+    {
+     "tilt": "neutral",
+     "text": "Weather watch: Bah\u00eda Blanca, S Buenos Aires"
     }
    ],
    "event": "NASS Crop Production",
@@ -471,14 +534,7 @@
     "vol": 265657,
     "report": "FINAL"
    },
-   "news": [
-    {
-     "title": "Wheat market gains ground as Black Sea exports face disruptions",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-31T18:33Z",
-     "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPTWVUTzR1WWl1enV3N09pakVkd1pfZWNsWDYzdG5IajFXdDlQZlRLbGJEeXMtdkVXYmExOGZMa3NjVm5JOTJHdVJKZHRVa0MzUGE0ZEFhLUROLW1zeUczX2d4My0xd3RQdER3aE1jUktWTVlPalJndkFlOElFQTlWWUJTY2lfOUFiSmg4M3RIM2NEUE5sSVVmMUo1bmVhaUU?oc=5"
-    }
-   ]
+   "news": []
   },
   {
    "sym": "KE",
@@ -527,6 +583,10 @@
     {
      "tilt": "neutral",
      "text": "Realized vol low (18%, 7th pct): cheap to own optionality into catalysts"
+    },
+    {
+     "tilt": "neutral",
+     "text": "Weather watch: Bah\u00eda Blanca, S Buenos Aires"
     }
    ],
    "event": "NASS Crop Production",
@@ -537,14 +597,7 @@
     "vol": 89749,
     "report": "FINAL"
    },
-   "news": [
-    {
-     "title": "Wheat market gains ground as Black Sea exports face disruptions",
-     "source": "Brownfield Ag News",
-     "time": "2026-10-31T18:33Z",
-     "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPTWVUTzR1WWl1enV3N09pakVkd1pfZWNsWDYzdG5IajFXdDlQZlRLbGJEeXMtdkVXYmExOGZMa3NjVm5JOTJHdVJKZHRVa0MzUGE0ZEFhLUROLW1zeUczX2d4My0xd3RQdER3aE1jUktWTVlPalJndkFlOElFQTlWWUJTY2lfOUFiSmg4M3RIM2NEUE5sSVVmMUo1bmVhaUU?oc=5"
-    }
-   ]
+   "news": []
   },
   {
    "sym": "CT",
@@ -656,7 +709,14 @@
     "vol": 134174,
     "report": "FINAL"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Pork producers applaud long-awaited EPA data decision",
+     "source": "National Hog Farmer",
+     "time": "2026-11-02T13:23Z",
+     "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSEt3dG5aR0poUWs2YWdtYy1GSUdsUWFQZ1FDRnFTNnI5OVRxcmJtWXNYcTJ3VHJVdzFtUkpQTWtwWC14a2ZhQV9ZaFdpQjdyeUhMWS16Uy1RaGJQMi1HV2NyNmIxZkxuc0ZlcC1yaUE5LTdKS2laSlNVcU8ydFRKSFFTRlpndmZzSEl3S2VxVnFMZkE4aW5JWndvWFFSUElQbFQ5WlJDYw?oc=5"
+    }
+   ]
   },
   {
    "sym": "LE",
@@ -704,6 +764,12 @@
    },
    "news": [
     {
+     "title": "Why strong prices aren\u2019t helping every part of beef industry",
+     "source": "Farm Progress",
+     "time": "2026-11-02T08:02Z",
+     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPQm5jd2NRYWU1TWM1UUoyd3BaU3VVVF94ZUdocmJVN19FYllZMmdoZS1wVnBRY3M5ZzBRRGk0UVZfUFU5Q19SRzdUdThnTjRjVnhFTHdVcVBiSU9COF9oRFY1NU9EN0dJOXNHNTdQQ0YwbDhzYkxlOWFwdTBzRW5xZHNZQk44LWNQTEJLcUxHbXhCT1Y0Ulp5WGxweVY4dXRN?oc=5"
+    },
+    {
      "title": "Everyday Observations That Improve Cattle Care",
      "source": "Drovers Magazine",
      "time": "2026-11-01T14:02Z",
@@ -714,12 +780,6 @@
      "source": "Dairy Herd",
      "time": "2026-11-01T13:25Z",
      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBmc29zclJwOE50RjdXZEhjZFFja05iZG9XOElfZnZjaW9saDM5amNWcEtOdDVPLVhkYjJHelpRS0FLYmV3Wjk0OGZqblZRa3VTVlVINW5YVGJqS3F2VFRNU0hzR3hmMVptNkFvVUpRTE5NZHZ1T0htajZxNHRGUQ?oc=5"
-    },
-    {
-     "title": "Sen. Grassley lauds USDA response to New World screwworm",
-     "source": "Brownfield Ag News",
-     "time": "2026-11-01T03:19Z",
-     "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOdXd2YXBTd0VNcGl5Z0wyZEh2U2Q1aURTZVBpUzRReks0eVRoUWhXMWhiUW5lbE1KdnhfQjNCQklMbkpCaTF1TGN3ZUMtWEE1TUg4VjAzcTcyZTNhdFU2ckRySHdDVE5YOVR0MFBZYXFDV1FfR3dBYjBtdjQyZWJSQ1Y2Wk1vT2lUbktrQmpERHEyalcy?oc=5"
     }
    ]
   },
@@ -769,6 +829,12 @@
    },
    "news": [
     {
+     "title": "Why strong prices aren\u2019t helping every part of beef industry",
+     "source": "Farm Progress",
+     "time": "2026-11-02T08:02Z",
+     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPQm5jd2NRYWU1TWM1UUoyd3BaU3VVVF94ZUdocmJVN19FYllZMmdoZS1wVnBRY3M5ZzBRRGk0UVZfUFU5Q19SRzdUdThnTjRjVnhFTHdVcVBiSU9COF9oRFY1NU9EN0dJOXNHNTdQQ0YwbDhzYkxlOWFwdTBzRW5xZHNZQk44LWNQTEJLcUxHbXhCT1Y0Ulp5WGxweVY4dXRN?oc=5"
+    },
+    {
      "title": "Everyday Observations That Improve Cattle Care",
      "source": "Drovers Magazine",
      "time": "2026-11-01T14:02Z",
@@ -779,12 +845,6 @@
      "source": "Dairy Herd",
      "time": "2026-11-01T13:25Z",
      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBmc29zclJwOE50RjdXZEhjZFFja05iZG9XOElfZnZjaW9saDM5amNWcEtOdDVPLVhkYjJHelpRS0FLYmV3Wjk0OGZqblZRa3VTVlVINW5YVGJqS3F2VFRNU0hzR3hmMVptNkFvVUpRTE5NZHZ1T0htajZxNHRGUQ?oc=5"
-    },
-    {
-     "title": "Sen. Grassley lauds USDA response to New World screwworm",
-     "source": "Brownfield Ag News",
-     "time": "2026-11-01T03:19Z",
-     "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOdXd2YXBTd0VNcGl5Z0wyZEh2U2Q1aURTZVBpUzRReks0eVRoUWhXMWhiUW5lbE1KdnhfQjNCQklMbkpCaTF1TGN3ZUMtWEE1TUg4VjAzcTcyZTNhdFU2ckRySHdDVE5YOVR0MFBZYXFDV1FfR3dBYjBtdjQyZWJSQ1Y2Wk1vT2lUbktrQmpERHEyalcy?oc=5"
     }
    ]
   },
@@ -841,7 +901,7 @@
     {
      "title": "The Cheesecake Factory Is Doing Just Fine Without the Political Discourse",
      "source": "WSJ",
-     "time": "2026-11-01T12:59Z",
+     "time": "2026-11-02T09:59Z",
      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQeGcxNFNseEZISlc0ZWxPdkwtYUk2cENpc3FxeVZwRVNvczBnTG9aTW1GcFlMdF9wcGp1YXJXMm9ndF9DM2FOZEhLcXJqYmlCNkRUVlNieXQ4akhzNkRGU2xiUGdzYUtiQmJsU1BTT05yMUp3aXotRklNVFRqT00zb0RMLTA3eU9QMGNMSVFlSGMyZS1rVlAxMkRpaTZzT3ZuaXBvMmd0UVg1VlJHZ3pZcktR?oc=5"
     },
     {
@@ -905,7 +965,7 @@
     {
      "title": "The Cheesecake Factory Is Doing Just Fine Without the Political Discourse",
      "source": "WSJ",
-     "time": "2026-11-01T12:59Z",
+     "time": "2026-11-02T09:59Z",
      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQeGcxNFNseEZISlc0ZWxPdkwtYUk2cENpc3FxeVZwRVNvczBnTG9aTW1GcFlMdF9wcGp1YXJXMm9ndF9DM2FOZEhLcXJqYmlCNkRUVlNieXQ4akhzNkRGU2xiUGdzYUtiQmJsU1BTT05yMUp3aXotRklNVFRqT00zb0RMLTA3eU9QMGNMSVFlSGMyZS1rVlAxMkRpaTZzT3ZuaXBvMmd0UVg1VlJHZ3pZcktR?oc=5"
     },
     {
@@ -993,37 +1053,37 @@
  "macro": {
   "view": "mixed",
   "score": -1,
-  "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk 0; energy +; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +15.0%; weakest: Orange juice -23.9%. Key releases ahead: US Congressional Elections (11-03 10:16 AM ET); US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
+  "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk 0; energy +; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +15.8%; weakest: Lean hogs -16.3%. Key releases ahead: US Congressional Elections (11-03 10:16 AM ET); US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
   "sections": [
    {
     "title": "Rates",
     "score": 1,
-    "text": "US 10-year 4.94% (-35 bp in a month), 2-year 4.56% (-32 bp); 2s10s curve +38 bp (-3 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 3.97% sets the cost of carrying inventory."
+    "text": "US 10-year 4.94% (-35 bp in a month), 2-year 4.56% (-32 bp); 2s10s curve +38 bp (-3 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.00% sets the cost of carrying inventory."
    },
    {
     "title": "Dollar & farm currencies",
     "score": -1,
-    "text": "Dollar index 101.91 (-0.0% in a month, +3.7% YTD). USD/BRL 5.382 (+3.0% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.655 (-0.7%); USD/MXN 18.77 (+2.5%)."
+    "text": "Dollar index 101.72 (-0.2% in a month, +3.5% YTD). USD/BRL 5.437 (+4.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.637 (-1.0%); USD/MXN 18.56 (+1.3%)."
    },
    {
     "title": "Risk appetite",
     "score": 0,
-    "text": "S&P 500 -0.9% in a month (+10.7% YTD); VIX 19.4. Neutral risk backdrop. "
+    "text": "S&P 500 -1.1% in a month (+11.6% YTD); VIX 18.4. Neutral risk backdrop. "
    },
    {
     "title": "Energy",
     "score": 1,
-    "text": "WTI 101.87 $/bbl (+13.9% in a month), Brent 111.28, ULSD 4.606 $/gal (+5.7%), natural gas 2.92 (-12.7%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+    "text": "WTI 97.37 $/bbl (+8.9% in a month), Brent 106.09, ULSD 4.478 $/gal (+2.8%), natural gas 2.92 (-12.8%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -0.6% in a month, Shanghai Composite -6.3%, Hang Seng -5.4%, yuan +0.7% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper +0.3% in a month, Shanghai Composite -5.3%, Hang Seng -2.4%, yuan +1.0% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": -1,
-    "text": "11 of 33 commodities trade above their 50-day average (33%); S&P GSCI +2.1% in a month; gold -5.9%. "
+    "text": "10 of 33 commodities trade above their 50-day average (30%); S&P GSCI -0.1% in a month; gold -4.6%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1031,107 +1091,107 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7641.5,
-   "d1": 0.36117677961649,
-   "m1": -1.7454755858433257,
+   "last": 7662.5,
+   "d1": 0.6369845022327292,
+   "m1": -1.4754572631714313,
    "kind": "price",
-   "time": "2026-11-02 01:24 UTC"
+   "time": "2026-11-02 15:58 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 7580.07,
-   "d1": -1.8175265010426989,
-   "m1": -0.9340608387021776,
+   "last": 7638.04,
+   "d1": 0.7647709998136465,
+   "m1": -1.0965076098573001,
    "kind": "price",
-   "time": "2026-10-30 20:47 UTC"
+   "time": "2026-11-02 16:08 UTC"
   },
   {
    "name": "VIX",
-   "last": 19.42,
-   "d1": 12.906971735977724,
-   "m1": 18.849448094554067,
+   "last": 18.45,
+   "d1": -4.994851042652815,
+   "m1": 20.509467631104815,
    "kind": "price",
-   "time": "2026-10-30 20:15 UTC"
+   "time": "2026-11-02 15:53 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 4.929,
-   "d1": -5.999984359741184,
-   "m1": -36.400022125244114,
+   "last": 4.912,
+   "d1": -1.6999900817871172,
+   "m1": -36.499995040893566,
    "kind": "yield",
-   "time": "2026-10-30 18:59 UTC"
+   "time": "2026-11-02 15:53 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 101.913,
-   "d1": 0.032393745064540624,
-   "m1": -0.016678411777582003,
+   "last": 101.725,
+   "d1": -0.15213708048344987,
+   "m1": -0.20111871339352216,
    "kind": "price",
-   "time": "2026-11-02 01:24 UTC"
+   "time": "2026-11-02 15:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.1171,
-   "d1": -0.10556653221143186,
-   "m1": -0.7009806141018871,
+   "last": 1.1196,
+   "d1": 0.11799096816407229,
+   "m1": -0.47875561323826865,
    "kind": "price",
-   "time": "2026-11-02 01:34 UTC"
+   "time": "2026-11-02 16:08 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.3817,
-   "d1": -0.05756866178848741,
-   "m1": 3.046375699766246,
+   "last": 5.4369,
+   "d1": 0.9675390569377829,
+   "m1": 4.103320519921039,
    "kind": "price",
-   "time": "2026-11-01 23:30 UTC"
+   "time": "2026-11-02 15:36 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6551,
-   "d1": -0.08857191310925883,
-   "m1": -0.7368214915753235,
+   "last": 6.6367,
+   "d1": -0.36480672202253706,
+   "m1": -1.011264022048941,
    "kind": "price",
-   "time": "2026-11-02 01:34 UTC"
+   "time": "2026-11-02 16:08 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 101.87,
-   "d1": -2.1609706946112084,
-   "m1": 13.91032053267729,
+   "last": 97.37,
+   "d1": -6.482906808032729,
+   "m1": 8.878452049345121,
    "kind": "price",
-   "time": "2026-11-02 01:23 UTC"
+   "time": "2026-11-02 15:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 2.917,
-   "d1": 0.6556245024204932,
-   "m1": -12.690813227842101,
+   "last": 2.915,
+   "d1": 0.5866113899745562,
+   "m1": -12.750675543078405,
    "kind": "price",
-   "time": "2026-11-02 01:23 UTC"
+   "time": "2026-11-02 15:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3915.4,
-   "d1": 0.4231988014447685,
-   "m1": -5.931812129665581,
+   "last": 3968.9,
+   "d1": 1.795380733272256,
+   "m1": -4.646465025649926,
    "kind": "price",
-   "time": "2026-11-02 01:23 UTC"
+   "time": "2026-11-02 15:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.511,
-   "d1": 0.4473947307653825,
-   "m1": -0.5802380152156839,
+   "last": 6.569,
+   "d1": 1.3421803081550943,
+   "m1": 0.3053934077788645,
    "kind": "price",
-   "time": "2026-11-02 01:23 UTC"
+   "time": "2026-11-02 15:57 UTC"
   },
   {
    "name": "S&P GSCI",
-   "last": 745.779,
-   "d1": -1.1440693325613926,
-   "m1": 2.115342728444336,
+   "last": 729.5801,
+   "d1": -3.2912970438388256,
+   "m1": -0.10268194820088894,
    "kind": "price",
-   "time": "2026-11-02 01:34 UTC"
+   "time": "2026-11-02 16:08 UTC"
   }
  ],
  "econ": [
@@ -1144,6 +1204,26 @@
    "forecast": "54.5",
    "previous": "54.5",
    "why": "Manufacturing/services cycle: industrial and energy demand"
+  },
+  {
+   "date": "2026-11-03",
+   "time": "10:00 AM ET",
+   "country": "US",
+   "title": "JOLTS Job Openings",
+   "impact": "Medium",
+   "forecast": "7.11M",
+   "previous": "7.08M",
+   "why": "Labor market sets the Fed path, dollar and demand"
+  },
+  {
+   "date": "2026-11-03",
+   "time": "10:16 AM ET",
+   "country": "US",
+   "title": "Congressional Elections",
+   "impact": "High",
+   "forecast": "",
+   "previous": "",
+   "why": ""
   }
  ],
  "us_econ": "Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.1%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.56% (+0.68 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.34%, real 10-year 2.60%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.",
@@ -1425,8 +1505,8 @@
   }
  },
  "track": {
-  "line": "Track record: 120 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
+  "line": "Track record: 132 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-10-30 17:13 UTC"
+  "generated": "2026-11-02 01:36 UTC"
  }
 }

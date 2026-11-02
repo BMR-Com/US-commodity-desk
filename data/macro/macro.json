@@ -1,18 +1,17 @@
 {
- "generated": "2026-10-31 01:30 UTC",
- "view": "headwind",
- "score": -2,
+ "generated": "2026-11-02 01:35 UTC",
+ "view": "mixed",
+ "score": -1,
  "components": {
   "rates": 1,
   "dollar": 0,
   "brl": -1,
-  "mxn": -1,
   "risk": 0,
   "energy": 1,
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk 0; energy +; china \u2212; breadth \u2212. Strongest ag/soft over the month: Class III milk +14.2%; weakest: Oats -17.9%. ",
+ "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk 0; energy +; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +15.0%; weakest: Orange juice -23.9%. Key releases ahead: US Congressional Elections (11-03 10:16 AM ET); US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -22,7 +21,7 @@
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 101.96 (+0.5% in a month, +3.7% YTD). USD/BRL 5.440 (+4.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.653 (-0.7%); USD/MXN 18.77 (+4.0%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 101.91 (-0.0% in a month, +3.7% YTD). USD/BRL 5.382 (+3.0% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.655 (-0.7%); USD/MXN 18.77 (+2.5%)."
   },
   {
    "title": "Risk appetite",
@@ -32,19 +31,60 @@
   {
    "title": "Energy",
    "score": 1,
-   "text": "WTI 102.95 $/bbl (+16.4% in a month), Brent 112.33, ULSD 4.655 $/gal (+3.3%), natural gas 2.88 (-14.5%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+   "text": "WTI 101.87 $/bbl (+13.9% in a month), Brent 111.28, ULSD 4.606 $/gal (+5.7%), natural gas 2.92 (-12.7%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -1.7% in a month, Shanghai Composite -6.3%, Hang Seng -5.4%, yuan +0.7% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -0.6% in a month, Shanghai Composite -6.3%, Hang Seng -5.4%, yuan +0.7% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "11 of 33 commodities trade above their 50-day average (33%); S&P GSCI +3.3% in a month; gold -7.2%. "
+   "text": "11 of 33 commodities trade above their 50-day average (33%); S&P GSCI +2.1% in a month; gold -5.9%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",
- "events_ahead": []
+ "events_ahead": [
+  {
+   "date": "2026-11-03",
+   "time": "10:16 AM ET",
+   "country": "US",
+   "title": "Congressional Elections",
+   "impact": "High",
+   "forecast": "",
+   "previous": "",
+   "why": ""
+  },
+  {
+   "date": "2026-11-06",
+   "time": "8:30 AM ET",
+   "country": "US",
+   "title": "Average Hourly Earnings m/m",
+   "impact": "High",
+   "forecast": "0.3%",
+   "previous": "0.1%",
+   "why": "Labor market sets the Fed path, dollar and demand"
+  },
+  {
+   "date": "2026-11-06",
+   "time": "8:30 AM ET",
+   "country": "US",
+   "title": "Non-Farm Employment Change",
+   "impact": "High",
+   "forecast": "63K",
+   "previous": "29K",
+   "why": "Labor market sets the Fed path, dollar and demand"
+  },
+  {
+   "date": "2026-11-06",
+   "time": "8:30 AM ET",
+   "country": "US",
+   "title": "Unemployment Rate",
+   "impact": "High",
+   "forecast": "4.2%",
+   "previous": "4.2%",
+   "why": "Labor market sets the Fed path, dollar and demand"
+  }
+ ]
 }

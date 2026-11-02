@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-02 00:44 UTC",
+"generated": "2026-11-02 01:36 UTC",
 "events": [
 {
 "date": "2026-10-26",
@@ -108,18 +108,6 @@
 {
 "date": "2026-10-29",
 "time": "",
-"event": "Feeder cattle Oct 26: last trading day (settles to CME Feeder Index)",
-"cat": "CME contract",
-"markets": [
-"GF"
-],
-"importance": 2,
-"link": null,
-"estimated": true
-},
-{
-"date": "2026-10-29",
-"time": "",
 "event": "Buenos Aires Grain Exchange crop progress (weekly)",
 "cat": "South America",
 "markets": [
@@ -167,42 +155,6 @@
 "importance": 1,
 "link": null,
 "estimated": false
-},
-{
-"date": "2026-10-30",
-"time": "",
-"event": "ULSD (heating oil) Nov 26: last trading day",
-"cat": "NYMEX contract",
-"markets": [
-"HO"
-],
-"importance": 1,
-"link": null,
-"estimated": true
-},
-{
-"date": "2026-10-30",
-"time": "",
-"event": "Live cattle Oct 26: last trading day",
-"cat": "CME contract",
-"markets": [
-"LE"
-],
-"importance": 1,
-"link": null,
-"estimated": true
-},
-{
-"date": "2026-10-30",
-"time": "",
-"event": "RBOB gasoline Nov 26: last trading day",
-"cat": "NYMEX contract",
-"markets": [
-"RB"
-],
-"importance": 1,
-"link": null,
-"estimated": true
 },
 {
 "date": "2026-11-02",

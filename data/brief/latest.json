@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-02 20:56 UTC",
- "generated_et": "Mon Nov 02, 2026 03:56 PM ET",
+ "generated": "2026-11-02 21:18 UTC",
+ "generated_et": "Mon Nov 02, 2026 04:18 PM ET",
  "date": "2026-11-02",
- "prices_from": "2026-11-02 20:56 UTC",
+ "prices_from": "2026-11-02 21:18 UTC",
  "cme_oi_date": "20261029",
  "headlines": [
   "Biggest moves vs prior settle: Soybean meal -5.2 (-1.6%); Soybeans -17.75 (-1.5%); Class III milk +0.25 (+1.4%).",
   "Today: NASS Crop Progress 4:00 PM ET; USDA export inspections 11:00 AM ET; NASS Fats & Oils 3:00 PM ET.",
-  "Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.",
+  "Strongest desk views: Corn strongly bearish.",
   "Through a trend-follower trigger: Soybean meal below 324.3; Live cattle below 219.975; Class III milk above 17.77.",
   "Macro backdrop for ags: mixed (-1)."
  ],
@@ -386,7 +386,7 @@
    "esr_pace": 0.31784,
    "esr_norm": 0.37467,
    "view": "bearish",
-   "conviction": "medium",
+   "conviction": "high",
    "technical": "Dec 26 trades at 319.4 $/st (-6.1% on the week, -8.1% on the month), in a mixed trend: the daily rating is strong sell and the weekly strong sell. RSI is 26 (oversold) and ADX 27 (trending). Nearest support 316.2, resistance 319.5; 52-week range 299.1\u2013376.9.",
    "levels": "Levels to watch: a close above 330.7 (250-day momentum flip) would bring trend-follower buying; below 324.3 (200-day average) adds selling; the 316.2\u2013319.5 band is the immediate range. Next catalysts: USDA weekly export sales Nov 5; USDA WASDE Nov 10; USDA weekly export sales Nov 12.",
    "flags": [
@@ -580,7 +580,7 @@
    "spread_read": "weak carry: commercials want grain now",
    "esr_pace": 0.53815,
    "esr_norm": 0.64995,
-   "view": "strongly bearish",
+   "view": "bearish",
    "conviction": "high",
    "technical": "Dec 26 trades at 646.00 \u00a2/bu (-2.0% on the week, -12.1% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 21 (oversold) and ADX 42 (trending). Nearest support 641.25, resistance 649.00; 52-week range 564.00\u2013858.25.",
    "levels": "Levels to watch: a close above 692.32 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 641.25\u2013649.00 band is the immediate range. Next catalysts: Crop Progress Nov 2; USDA weekly export sales Nov 5; Crop Progress Nov 9.",
@@ -901,8 +901,8 @@
    "spread_read": null,
    "esr_pace": null,
    "esr_norm": null,
-   "view": "bearish",
-   "conviction": "medium",
+   "view": "mildly bearish",
+   "conviction": "low",
    "technical": "Nov 26 trades at 17.95 $/cwt (+0.1% on the week, +15.4% on the month), in a mixed trend: the daily rating is strong buy and the weekly strong buy. RSI is 62 and ADX 36 (trending). Nearest support 17.89, resistance 18.00; 52-week range 15.12\u201318.95.",
    "levels": "Levels to watch: a close above 17.77 (200-day average) would bring trend-follower buying; below 17.20 (100-day average) adds selling; the 17.89\u201318.00 band is the immediate range. Next catalysts: USDA class & component milk prices (DC/GDK settle) Nov 4; Dairy Products Nov 5; USDA WASDE Nov 10.",
    "flags": [
@@ -1097,22 +1097,22 @@
    {
     "title": "Dollar & farm currencies",
     "score": -1,
-    "text": "Dollar index 101.74 (-0.2% in a month, +3.5% YTD). USD/BRL 5.437 (+4.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.647 (-0.9%); USD/MXN 18.57 (+1.4%)."
+    "text": "Dollar index 101.75 (-0.2% in a month, +3.5% YTD). USD/BRL 5.437 (+4.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.647 (-0.9%); USD/MXN 18.58 (+1.4%)."
    },
    {
     "title": "Risk appetite",
     "score": 0,
-    "text": "S&P 500 -2.3% in a month (+10.2% YTD); VIX 21.6. Neutral risk backdrop. "
+    "text": "S&P 500 -2.3% in a month (+10.2% YTD); VIX 21.5. Neutral risk backdrop. "
    },
    {
     "title": "Energy",
     "score": 1,
-    "text": "WTI 96.05 $/bbl (+7.4% in a month), Brent 104.11, ULSD 4.410 $/gal (+1.2%), natural gas 2.87 (-14.2%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+    "text": "WTI 95.75 $/bbl (+7.1% in a month), Brent 103.83, ULSD 4.405 $/gal (+1.1%), natural gas 2.87 (-14.2%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -0.1% in a month, Shanghai Composite -5.3%, Hang Seng -2.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -0.2% in a month, Shanghai Composite -5.3%, Hang Seng -2.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
@@ -1125,27 +1125,27 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7583.75,
-   "d1": -0.39729445757814563,
-   "m1": -2.4880259731910326,
+   "last": 7573.25,
+   "d1": -0.5351983188862652,
+   "m1": -2.6230351345269853,
    "kind": "price",
-   "time": "2026-11-02 20:45 UTC"
+   "time": "2026-11-02 20:58 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 7547.11,
-   "d1": -0.434822171603777,
-   "m1": -2.273942470506851,
+   "last": 7541.4,
+   "d1": -0.5101512930025809,
+   "m1": -2.3478801484383305,
    "kind": "price",
-   "time": "2026-11-02 20:55 UTC"
+   "time": "2026-11-02 21:08 UTC"
   },
   {
    "name": "VIX",
-   "last": 21.64,
-   "d1": 11.431513465419684,
-   "m1": 41.345521926130544,
+   "last": 21.46,
+   "d1": 10.504633963396781,
+   "m1": 40.169819802900264,
    "kind": "price",
-   "time": "2026-11-02 20:40 UTC"
+   "time": "2026-11-02 20:53 UTC"
   },
   {
    "name": "US 10-year",
@@ -1157,19 +1157,19 @@
   },
   {
    "name": "US dollar index",
-   "last": 101.739,
-   "d1": -0.13839542326178345,
-   "m1": -0.18738379731573218,
+   "last": 101.747,
+   "d1": -0.130543047706555,
+   "m1": -0.1795352738427236,
    "kind": "price",
-   "time": "2026-11-02 20:45 UTC"
+   "time": "2026-11-02 20:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.1198,
-   "d1": 0.1358755681940993,
-   "m1": -0.46097761316918895,
+   "last": 1.1194,
+   "d1": 0.10010636813402307,
+   "m1": -0.49653361330735946,
    "kind": "price",
-   "time": "2026-11-02 20:54 UTC"
+   "time": "2026-11-02 21:08 UTC"
   },
   {
    "name": "USD/BRL",
@@ -1189,35 +1189,35 @@
   },
   {
    "name": "WTI crude",
-   "last": 96.05,
-   "d1": -7.750674734636376,
-   "m1": 7.402437294234332,
+   "last": 95.75,
+   "d1": -8.03880380886447,
+   "m1": 7.0669793953455295,
    "kind": "price",
-   "time": "2026-11-02 20:44 UTC"
+   "time": "2026-11-02 20:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 2.867,
-   "d1": -1.069703308728287,
-   "m1": -14.187371108749836,
+   "last": 2.865,
+   "d1": -1.138716421174224,
+   "m1": -14.247233423986138,
    "kind": "price",
-   "time": "2026-11-02 20:44 UTC"
+   "time": "2026-11-02 20:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3953.4,
-   "d1": 1.3978326969483978,
-   "m1": -5.018855308121751,
+   "last": 3954.9,
+   "d1": 1.4363050875603856,
+   "m1": -4.982817538850282,
    "kind": "price",
-   "time": "2026-11-02 20:44 UTC"
+   "time": "2026-11-02 20:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.54,
-   "d1": 0.8947875194602384,
-   "m1": -0.13742230371841524,
+   "last": 6.538,
+   "d1": 0.863932844377846,
+   "m1": -0.16796131830443262,
    "kind": "price",
-   "time": "2026-11-02 20:44 UTC"
+   "time": "2026-11-02 20:57 UTC"
   },
   {
    "name": "S&P GSCI",
@@ -1260,7 +1260,7 @@
    "why": ""
   }
  ],
- "us_econ": "Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.1%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.56% (+0.68 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.34%, real 10-year 2.60%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.",
+ "us_econ": "Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.1%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.59% (+0.71 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.29%, real 10-year 2.62%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.",
  "energy": {
   "read": "Gas storage 3,724 Bcf (week to 2026-10-23), +80 Bcf vs a 5-year average +80 for the week; -1 Bcf (-0.0%) vs the 5-year average, -148 vs last year. Crude stocks 410.6 mb (-1.9 mb on the week, -3.8% vs 5-yr avg); gasoline +3.9 mb, distillate -1.5 mb; refinery utilization 92.8%. 3-2-1 crack $49.42/bbl (ULSD $92.56, gasoline $27.85). Options: NG IV 68% vs RV 51%; CL IV 57% vs RV 48%; HO IV 63% vs RV 48%; RB IV 50% vs RV 28%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).",
   "prices": {
@@ -1541,6 +1541,6 @@
  "track": {
   "line": "Track record: 144 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-11-02 20:34 UTC"
+  "generated": "2026-11-02 20:56 UTC"
  }
 }

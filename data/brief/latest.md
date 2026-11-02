@@ -1,12 +1,12 @@
-# Morning brief · Mon Nov 02, 2026 03:56 PM ET
+# Morning brief · Mon Nov 02, 2026 04:18 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-02 20:56 UTC). CME open interest from 20261029. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-02 21:18 UTC). CME open interest from 20261029. Research only, not investment advice.
 
 ## Key points
 
 - Biggest moves vs prior settle: Soybean meal -5.2 (-1.6%); Soybeans -17.75 (-1.5%); Class III milk +0.25 (+1.4%).
 - Today: NASS Crop Progress 4:00 PM ET; USDA export inspections 11:00 AM ET; NASS Fats & Oils 3:00 PM ET.
-- Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.
+- Strongest desk views: Corn strongly bearish.
 - Through a trend-follower trigger: Soybean meal below 324.3; Live cattle below 219.975; Class III milk above 17.77.
 - Macro backdrop for ags: mixed (-1).
 
@@ -44,20 +44,20 @@ Gas storage 3,724 Bcf (week to 2026-10-23), +80 Bcf vs a 5-year average +80 for 
 
 ## US economy
 
-Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.1%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.56% (+0.68 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.34%, real 10-year 2.60%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.
+Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.1%. Jobs: payrolls +29k in 2026-09 (3-month average +51k), unemployment 4.2% (+0.1), wages 3.0% y/y. Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.59% (+0.71 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.29%, real 10-year 2.62%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.
 
 ## Macro outlook and what it means for ags
 
 Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl −; risk 0; energy +; china −; breadth −. Strongest ag/soft over the month: Cheese +16.3%; weakest: Lean hogs -16.8%. Key releases ahead: US Congressional Elections (11-03 10:16 AM ET); US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).
 
 - **Rates**: US 10-year 4.91% (-37 bp in a month), 2-year 4.59% (-24 bp); 2s10s curve +32 bp (-13 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 3.98% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 101.74 (-0.2% in a month, +3.5% YTD). USD/BRL 5.437 (+4.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.647 (-0.9%); USD/MXN 18.57 (+1.4%).
-- **Risk appetite**: S&P 500 -2.3% in a month (+10.2% YTD); VIX 21.6. Neutral risk backdrop. 
-- **Energy**: WTI 96.05 $/bbl (+7.4% in a month), Brent 104.11, ULSD 4.410 $/gal (+1.2%), natural gas 2.87 (-14.2%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
-- **China & industrial demand**: Copper -0.1% in a month, Shanghai Composite -5.3%, Hang Seng -2.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Dollar & farm currencies**: Dollar index 101.75 (-0.2% in a month, +3.5% YTD). USD/BRL 5.437 (+4.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.647 (-0.9%); USD/MXN 18.58 (+1.4%).
+- **Risk appetite**: S&P 500 -2.3% in a month (+10.2% YTD); VIX 21.5. Neutral risk backdrop. 
+- **Energy**: WTI 95.75 $/bbl (+7.1% in a month), Brent 103.83, ULSD 4.405 $/gal (+1.1%), natural gas 2.87 (-14.2%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. 
+- **China & industrial demand**: Copper -0.2% in a month, Shanghai Composite -5.3%, Hang Seng -2.4%, yuan +0.9% vs USD. Soft China/industrial signals point to weaker import demand. 
 - **Commodity breadth**: 9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -0.7% in a month; gold -5.0%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,583.750 (-0.40% d/d); S&P 500 7,547.110 (-0.43% d/d); VIX 21.640 (+11.43% d/d); US 10-year 4.894 (-3 bp d/d); US dollar index 101.739 (-0.14% d/d); EUR/USD 1.120 (+0.14% d/d); USD/BRL 5.437 (+0.96% d/d); USD/CNY 6.647 (-0.20% d/d); WTI crude 96.050 (-7.75% d/d); Natural gas 2.867 (-1.07% d/d); Gold 3,953.400 (+1.40% d/d); Copper 6.540 (+0.89% d/d); S&P GSCI 725.114 (-3.88% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,573.250 (-0.54% d/d); S&P 500 7,541.400 (-0.51% d/d); VIX 21.460 (+10.50% d/d); US 10-year 4.894 (-3 bp d/d); US dollar index 101.747 (-0.13% d/d); EUR/USD 1.119 (+0.10% d/d); USD/BRL 5.437 (+0.96% d/d); USD/CNY 6.647 (-0.20% d/d); WTI crude 95.750 (-8.04% d/d); Natural gas 2.865 (-1.14% d/d); Gold 3,954.900 (+1.44% d/d); Copper 6.538 (+0.86% d/d); S&P GSCI 725.114 (-3.88% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -70,12 +70,12 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Soybean meal | Dec 26 | 319.4 | -5.2 (-1.6%) | -6.1% | -8.1% | Strong sell | 26 | 316.2 | 319.5 | 169,859 (-34,834) | -8,675 | bearish |
 | Soybean oil | Dec 26 | 65.01 | -0.89 (-1.4%) | -3.0% | -5.3% | Strong sell | 35 | 64.63 | 65.53 | 56,271 (-13,587) | +9,223 | neutral |
 | Chicago wheat | Dec 26 | 606.00 | +2.50 (+0.4%) | -1.6% | -11.3% | Sell | 26 | 598.50 | 610.00 | -74,859 (-23,725) | +3,267 | bearish |
-| KC HRW wheat | Dec 26 | 646.00 | +1.75 (+0.3%) | -2.0% | -12.1% | Sell | 21 | 641.25 | 649.00 | -1,865 (-8,260) | +3,141 | strongly bearish |
+| KC HRW wheat | Dec 26 | 646.00 | +1.75 (+0.3%) | -2.0% | -12.1% | Sell | 21 | 641.25 | 649.00 | -1,865 (-8,260) | +3,141 | bearish |
 | Cotton | Dec 26 | 77.58 | -0.25 (-0.3%) | -1.9% | -1.6% | Strong sell | 35 | 77.05 | 80.47 | 56,190 (-10,276) | – | bearish |
 | Lean hogs | Dec 26 | 58.375 | -0.500 (-0.8%) | -9.7% | -16.8% | Sell | 24 | – | 71.200 | -47,109 (-5,976) | +3,142 | bearish |
 | Live cattle | Dec 26 | 219.425 | -1.525 (-0.7%) | -5.1% | -0.9% | Strong sell | 36 | 218.725 | 219.725 | 56,017 (+4,874) | +557 | bearish |
 | Feeder cattle | Nov 26 | 338.175 | +0.400 (+0.1%) | -3.0% | +2.1% | Sell | 48 | 334.425 | 348.575 | 13,353 (+2,909) | +1,222 | neutral |
-| Class III milk | Nov 26 | 17.95 | +0.25 (+1.4%) | +0.1% | +15.4% | Strong buy | 62 | 17.89 | 18.00 | -4,935 (+1,430) | +293 | bearish |
+| Class III milk | Nov 26 | 17.95 | +0.25 (+1.4%) | +0.1% | +15.4% | Strong buy | 62 | 17.89 | 18.00 | -4,935 (+1,430) | +293 | mildly bearish |
 | Class IV milk | Nov 26 | 20.94 | +0.16 (+0.8%) | +1.4% | +1.4% | Buy | 58 | 19.60 | 21.46 | 1,751 (-146) | +676 | mildly bullish |
 
 Board crush 2.168 $/bu (10-yr pct 86), oil share 50.4%. Soybean / corn price ratio 2.730. Chicago wheat − corn 155.75 ¢/bu. KC HRW − Chicago SRW 40.75 ¢/bu. Soybean oil / meal value 1.015.
@@ -114,7 +114,7 @@ Research signals: trend long 1.4x for 40% vol (12m excess +2%); carry -8.9%/yr (
 - [U.S. Corn Inspections for Export Rise, Wheat Falls](https://news.google.com/rss/articles/CBMirAFBVV95cUxOZWE4UjdfZG9JSHlaLVl2MTZZRy1DRGdxYXRsRHo2bEZhckswSzRTYjU3N0JFWkVtTmZod2xqWjlPQjgySW9ZODA4NUFpS1Nmd2tkTXdycVpxYWgybTZmV1pBWndpRG40Y20xV0tWREJkdkM2Rm5tVG02R21TbUtZbFFtVks3TmxRckVldlZuNjh3RlhDZkFNTmRkY21seXZwMEYzYW1SWUtYMHIt?oc=5) · MarketWatch
 - [Smaller U.S. wheat crop continues to drive market swings](https://news.google.com/rss/articles/CBMilAFBVV95cUxNOUJFdnZGRGJVVHg4YVFyZFFXNzBRQ3VsMFNlNFlMU2pTSlBzaFBhZ05ZZ1Vpclc2b3JDR0ZZZ2ZZalpidjlkdXQ1TTh5SVF0MFptRnR3TGNzb25sQU9EaTk3ckJ3VV9NNzFSbXMxd0hTb2dXd2lPVUd4QzdsWWFrTURQb3R0SlVsaGVGaEtZX2dLdnIy?oc=5) · Brownfield Ag News
 
-**KC HRW wheat** (Dec 26, strongly bearish). Dec 26 trades at 646.00 ¢/bu (-2.0% on the week, -12.1% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 21 (oversold) and ADX 42 (trending). Nearest support 641.25, resistance 649.00; 52-week range 564.00–858.25. Levels to watch: a close above 692.32 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 641.25–649.00 band is the immediate range. Next catalysts: Crop Progress Nov 2; USDA weekly export sales Nov 5; Crop Progress Nov 9.
+**KC HRW wheat** (Dec 26, bearish). Dec 26 trades at 646.00 ¢/bu (-2.0% on the week, -12.1% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 21 (oversold) and ADX 42 (trending). Nearest support 641.25, resistance 649.00; 52-week range 564.00–858.25. Levels to watch: a close above 692.32 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 641.25–649.00 band is the immediate range. Next catalysts: Crop Progress Nov 2; USDA weekly export sales Nov 5; Crop Progress Nov 9.
 Flags: RSI 21: oversold; Export commitments -17% vs normal pace; Realized vol low (18%, 7th pct): cheap to own optionality into catalysts.
 Research signals: trend long 1.5x for 40% vol (12m excess +11%); carry -5.9%/yr (62nd percentile for the month); IV-RV +7.8. Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Fat right tail: options price a 14% rally 2.4x as likely as a lognormal at ATM vol.
 - [U.S. Corn Inspections for Export Rise, Wheat Falls](https://news.google.com/rss/articles/CBMirAFBVV95cUxOZWE4UjdfZG9JSHlaLVl2MTZZRy1DRGdxYXRsRHo2bEZhckswSzRTYjU3N0JFWkVtTmZod2xqWjlPQjgySW9ZODA4NUFpS1Nmd2tkTXdycVpxYWgybTZmV1pBWndpRG40Y20xV0tWREJkdkM2Rm5tVG02R21TbUtZbFFtVks3TmxRckVldlZuNjh3RlhDZkFNTmRkY21seXZwMEYzYW1SWUtYMHIt?oc=5) · MarketWatch
@@ -148,7 +148,7 @@ Research signals: trend long 2.3x for 40% vol (12m excess +7%); carry +10.6%/yr 
 
 ### Dairy
 
-**Class III milk** (Nov 26, bearish). Nov 26 trades at 17.95 $/cwt (+0.1% on the week, +15.4% on the month), in a mixed trend: the daily rating is strong buy and the weekly strong buy. RSI is 62 and ADX 36 (trending). Nearest support 17.89, resistance 18.00; 52-week range 15.12–18.95. Levels to watch: a close above 17.77 (200-day average) would bring trend-follower buying; below 17.20 (100-day average) adds selling; the 17.89–18.00 band is the immediate range. Next catalysts: USDA class & component milk prices (DC/GDK settle) Nov 4; Dairy Products Nov 5; USDA WASDE Nov 10.
+**Class III milk** (Nov 26, mildly bearish). Nov 26 trades at 17.95 $/cwt (+0.1% on the week, +15.4% on the month), in a mixed trend: the daily rating is strong buy and the weekly strong buy. RSI is 62 and ADX 36 (trending). Nearest support 17.89, resistance 18.00; 52-week range 15.12–18.95. Levels to watch: a close above 17.77 (200-day average) would bring trend-follower buying; below 17.20 (100-day average) adds selling; the 17.89–18.00 band is the immediate range. Next catalysts: USDA class & component milk prices (DC/GDK settle) Nov 4; Dairy Products Nov 5; USDA WASDE Nov 10.
 Flags: Funds near a 10-yr short extreme (7th pct).
 Research signals: trend short 1.7x for 40% vol (12m excess -28%); carry +65.0%/yr (82nd percentile for the month); IV-RV -13.1. Crowded: managed money at the 13th 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR). Fat left tail: options price a 7% drop 2.2x as likely as a lognormal at ATM vol. Fat right tail: options price a 7% rally 2.2x as likely as a lognormal at ATM vol.
 - [Butter declines while cheese blocks, nonfat dry milk gain Monday at CME](https://news.google.com/rss/articles/CBMiqAFBVV95cUxNbFhBNWprZ3MzR04yQ1c2TFV6Ymc1aDgzSmZiRmJNME1TVVY2Q2JtX3FYTjBSYkpPNUNVWUpSamVIQ3lWYTNNaXNhUzZlWjNMZE9TeU1VWDFFeGJaZHBqV2tyT2pJUUlkTGg1SUcxVE4wbC0xX0NOdVJvSHVIVkpsWXY0NTBTOXZId1FhdzN5b2E2ZkVCMmlvLUdjbElCbFVVNVV5UGdxVHQ?oc=5) · Brownfield Ag News

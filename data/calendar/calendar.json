@@ -1,21 +1,6 @@
 {
-"generated": "2026-11-02 23:21 UTC",
+"generated": "2026-11-03 02:01 UTC",
 "events": [
-{
-"date": "2026-10-26",
-"time": "10:00 AM CT",
-"event": "USDA export inspections",
-"cat": "USDA",
-"markets": [
-"ZC",
-"ZS",
-"ZW",
-"KE"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-10-27",
 "time": "3:30 PM CT",
@@ -3086,6 +3071,33 @@
 "cat": "NYMEX contract",
 "markets": [
 "RB"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-01",
+"time": "10:00 AM CT",
+"event": "USDA export inspections",
+"cat": "USDA",
+"markets": [
+"ZC",
+"ZS",
+"ZW",
+"KE"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-01",
+"time": "",
+"event": "Live cattle Feb 27: delivery month begins",
+"cat": "CME contract",
+"markets": [
+"LE"
 ],
 "importance": 1,
 "link": null,

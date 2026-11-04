@@ -1259,46 +1259,136 @@
      "ccc_loan_value": null
     }
    }
+  },
+  "2026-10": {
+   "narrative": "Spot cotton quotations were 258 points lower than the previous month. The average spot quotation in the seven designated markets for color 41, leaf 4, staple 34, mike 35-36 and 43-49, strength of 27.0-28.9 grams per tex, and uniformity of 81.0-81.9 units was 74.94 cents per pound in October 2026. This compares with 77.52 from the previous month. The average basis for the base quality at the end of October was 464 points off the ICE December 2026 No. 2 futures contract. Spot transactions reported in the designated markets for October totaled 57,223 running bales.",
+   "published": "11/03/2026 14:35:01",
+   "basis_pts": -464.0,
+   "basis_vs": "December 2026",
+   "bales": 57223.0,
+   "markets": {
+    "Total US Upland": {
+     "bales_month": 57223.0,
+     "bales_my": 91972.0,
+     "avg_41": 74.94,
+     "avg_31": 80.94,
+     "hi_41": 77.08,
+     "lo_41": 72.65,
+     "ccc_loan_value": 55.14
+    },
+    "American Pima": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": null,
+     "avg_31": null,
+     "hi_41": null,
+     "lo_41": null,
+     "ccc_loan_value": 100.69
+    },
+    "Desert Southwest": {
+     "bales_month": 0.0,
+     "bales_my": 546.0,
+     "avg_41": 72.09,
+     "avg_31": 78.09,
+     "hi_41": 74.08,
+     "lo_41": 70.01,
+     "ccc_loan_value": 56.5
+    },
+    "East Texas - South Texas": {
+     "bales_month": 40872.0,
+     "bales_my": 60864.0,
+     "avg_41": 73.52,
+     "avg_31": 78.77,
+     "hi_41": 75.83,
+     "lo_41": 70.76,
+     "ccc_loan_value": 55.85
+    },
+    "North Delta": {
+     "bales_month": 7090.0,
+     "bales_my": 9933.0,
+     "avg_41": 77.59,
+     "avg_31": 82.24,
+     "hi_41": 79.58,
+     "lo_41": 75.51,
+     "ccc_loan_value": 55.84
+    },
+    "San Joaquin Valley": {
+     "bales_month": 0.0,
+     "bales_my": 0.0,
+     "avg_41": 72.34,
+     "avg_31": 84.74,
+     "hi_41": 74.33,
+     "lo_41": 70.26,
+     "ccc_loan_value": 56.74
+    },
+    "South Delta": {
+     "bales_month": 254.0,
+     "bales_my": 613.0,
+     "avg_41": 77.59,
+     "avg_31": 81.84,
+     "hi_41": 79.58,
+     "lo_41": 75.51,
+     "ccc_loan_value": 55.28
+    },
+    "Southeast": {
+     "bales_month": 4884.0,
+     "bales_my": 5074.0,
+     "avg_41": 78.79,
+     "avg_31": 84.54,
+     "hi_41": 81.33,
+     "lo_41": 76.26,
+     "ccc_loan_value": 53.96
+    },
+    "West Texas - Kansas - Oklahoma": {
+     "bales_month": 4123.0,
+     "bales_my": 14942.0,
+     "avg_41": 72.64,
+     "avg_31": 76.39,
+     "hi_41": 74.83,
+     "lo_41": 70.26,
+     "ccc_loan_value": 51.78
+    }
+   }
   }
  },
  "ccc_loans": {
-  "as_of": "2026-09",
+  "as_of": "2026-10",
   "rows": [
    {
     "crop": "2025",
     "disbursed": "2026-01",
     "matures": "2026-10",
     "made": 1139799.0,
-    "repaid": 1060792.0,
+    "repaid": 1139353.0,
     "forfeit": null,
-    "outstanding": 79007.0
+    "outstanding": 446.0
    },
    {
     "crop": "2025",
     "disbursed": "2026-02",
     "matures": "2026-11",
     "made": 340052.0,
-    "repaid": 285117.0,
+    "repaid": 304160.0,
     "forfeit": null,
-    "outstanding": 54935.0
+    "outstanding": 35892.0
    },
    {
     "crop": "2025",
     "disbursed": "2026-03",
     "matures": "2026-12",
     "made": 74574.0,
-    "repaid": 70303.0,
+    "repaid": 71088.0,
     "forfeit": null,
-    "outstanding": 4271.0
+    "outstanding": 3486.0
    },
    {
     "crop": "2025",
     "disbursed": "2026-04",
     "matures": "2027-01",
     "made": 39421.0,
-    "repaid": 37795.0,
+    "repaid": 38455.0,
     "forfeit": null,
-    "outstanding": 1626.0
+    "outstanding": 966.0
    },
    {
     "crop": "2025",
@@ -1317,6 +1407,60 @@
     "repaid": 43321.0,
     "forfeit": null,
     "outstanding": 0.0
+   },
+   {
+    "crop": "2025",
+    "disbursed": "Crop Ye",
+    "matures": "",
+    "made": 8174197.0,
+    "repaid": 8131294.0,
+    "forfeit": 26.0,
+    "outstanding": 42877.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "2026-08",
+    "matures": "2027-05",
+    "made": 14843.0,
+    "repaid": 5377.0,
+    "forfeit": null,
+    "outstanding": 9466.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "2026-09",
+    "matures": "2027-06",
+    "made": 149696.0,
+    "repaid": 52935.0,
+    "forfeit": null,
+    "outstanding": 96761.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "2026-10",
+    "matures": "2027-07",
+    "made": 1221074.0,
+    "repaid": 58357.0,
+    "forfeit": null,
+    "outstanding": 1162717.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "2026-11",
+    "matures": "2027-08",
+    "made": 13400.0,
+    "repaid": 0.0,
+    "forfeit": null,
+    "outstanding": 13400.0
+   },
+   {
+    "crop": "2026",
+    "disbursed": "Crop Ye",
+    "matures": "",
+    "made": 1399013.0,
+    "repaid": 116669.0,
+    "forfeit": null,
+    "outstanding": 1282344.0
    },
    {
     "crop": "2025",
@@ -1350,47 +1494,11 @@
     "disbursed": "2025-12",
     "matures": "2026-09",
     "made": 2481803.0,
-    "repaid": 2480847.0,
-    "forfeit": null,
-    "outstanding": 956.0
-   },
-   {
-    "crop": "2025",
-    "disbursed": "Crop Ye",
-    "matures": "",
-    "made": 8174197.0,
-    "repaid": 8031304.0,
-    "forfeit": 11.0,
-    "outstanding": 142882.0
-   },
-   {
-    "crop": "2026",
-    "disbursed": "2026-08",
-    "matures": "2027-05",
-    "made": 14843.0,
-    "repaid": 2314.0,
-    "forfeit": null,
-    "outstanding": 12529.0
-   },
-   {
-    "crop": "2026",
-    "disbursed": "2026-09",
-    "matures": "2027-06",
-    "made": 148739.0,
-    "repaid": 12843.0,
-    "forfeit": null,
-    "outstanding": 135896.0
-   },
-   {
-    "crop": "2026",
-    "disbursed": "Crop Ye",
-    "matures": "",
-    "made": 163582.0,
-    "repaid": 15157.0,
-    "forfeit": null,
-    "outstanding": 148425.0
+    "repaid": 2481788.0,
+    "forfeit": 15.0,
+    "outstanding": 0.0
    }
   ]
  },
- "latest": "2026-09"
+ "latest": "2026-10"
 }

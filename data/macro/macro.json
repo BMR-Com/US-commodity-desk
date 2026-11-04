@@ -1,17 +1,17 @@
 {
- "generated": "2026-11-04 15:09 UTC",
- "view": "mixed",
- "score": -1,
+ "generated": "2026-11-04 16:09 UTC",
+ "view": "headwind",
+ "score": -2,
  "components": {
   "rates": 1,
   "dollar": 0,
   "brl": -1,
   "risk": 0,
-  "energy": 1,
+  "energy": 0,
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: mixed (score -1 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk 0; energy +; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +14.8%; weakest: Oats -18.8%. Key releases ahead: US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk 0; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +15.0%; weakest: Lean hogs -19.5%. Key releases ahead: US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -21,27 +21,27 @@
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 101.42 (-0.7% in a month, +3.2% YTD). USD/BRL 5.479 (+4.9% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.660 (-0.7%); USD/MXN 18.65 (+2.7%)."
+   "text": "Dollar index 101.49 (-0.7% in a month, +3.3% YTD). USD/BRL 5.491 (+5.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.662 (-0.6%); USD/MXN 18.62 (+2.6%)."
   },
   {
    "title": "Risk appetite",
    "score": 0,
-   "text": "S&P 500 -1.0% in a month (+12.5% YTD); VIX 17.2. Neutral risk backdrop. "
+   "text": "S&P 500 -1.3% in a month (+12.1% YTD); VIX 17.6. Neutral risk backdrop. "
   },
   {
    "title": "Energy",
-   "score": 1,
-   "text": "WTI 93.32 $/bbl (+5.8% in a month), Brent 100.75, ULSD 4.403 $/gal (+0.1%), natural gas 2.89 (-13.9%). Higher crude lifts biofuel margins (soybean oil, corn for ethanol) and synthetic-fibre costs (supports cotton), but raises diesel, drying and freight costs. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+   "score": 0,
+   "text": "WTI 92.03 $/bbl (+4.3% in a month), Brent 99.11, ULSD 4.327 $/gal (-1.7%), natural gas 2.92 (-13.0%). Crude little changed on the month. Natural gas drives nitrogen fertilizer costs for next year's corn. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -3.7% in a month, Shanghai Composite -4.1%, Hang Seng -0.5%, yuan +0.7% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -3.6% in a month, Shanghai Composite -4.1%, Hang Seng -0.5%, yuan +0.6% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -2.1% in a month; gold -2.7%. "
+   "text": "8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -3.3% in a month; gold -2.3%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",

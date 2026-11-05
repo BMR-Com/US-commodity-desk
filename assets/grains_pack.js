@@ -73,9 +73,10 @@ const GrainPack = (() => {
       <div class="card"><h2>World corn export availability (PSD, MMT)</h2><div class="tbl" id="gpWC"></div>${cv('gpWCy', 'short')}<p class="note">USDA PSD exports by each country's local marketing year (the report uses a common Sep/Aug year). Line: y/y change in world imports excluding the EU and China.</p></div>
       <div class="card"><h2>World wheat balance (PSD, MMT)</h2><div class="ctrls">${btns('ww', Object.keys(P.world.wheat.years).map(k => [k, k]), Object.keys(P.world.wheat.years).at(-1))}</div><div class="tbl" id="gpWW"></div></div>
       <div class="card"><h2>Brazil exports (Comex Stat, MMT)</h2><div class="grid g2"><div><h3>Corn by month, Sep/Aug season</h3>${cv('gpBRc')}</div><div><h3>Soybeans by month, calendar year</h3>${cv('gpBRs')}</div></div></div>
+      <div id="gpRUE" class="grid" style="gap:12px"></div>
       <div id="gpSoyCx" class="grid" style="gap:12px"></div>
       ${card('Not replicated (no public data in the desk yet)', `<ul class="read">${P.missing.map(m => `<li>${m}</li>`).join('')}</ul>`)}`;
-    stateMap(); history(); revisions(); sdTables(); exportsSec(); weekly(); cot(); curve(); mktSU(); spreads(); decdec(); basis(); world(); brazil(); soyComplex();
+    stateMap(); history(); revisions(); sdTables(); exportsSec(); weekly(); cot(); curve(); mktSU(); spreads(); decdec(); basis(); world(); brazil(); ruEu(); soyComplex();
   }
 
   function yieldTable(k) {
@@ -249,6 +250,50 @@ const GrainPack = (() => {
     const sep = ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
     mk('gpBRc', P.brazil.corn, sep); mk('gpBRs', P.brazil.soybeans, MON);
   }
+  // ── Russia, Ukraine and the EU: PSD exports and balances, EU customs (TAXUD) trade ──
+  const MYM = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  function ruEu() {
+    const el = $('#gpRUE'); if (!el) return;
+    const X = P.world.exporters, E = P.eu;
+    let h = `<div class="card"><h2>Russia, Ukraine and EU exports by season (USDA PSD, million t)</h2><div class="ctrls">${btns('rue', [['wheat', 'Wheat'], ['corn', 'Corn']], 'wheat')}</div>${cv('gpRUEx', 'tall')}
+      <p class="note">USDA PSD exports in each country's local marketing year (wheat Jul/Jun; Ukraine/Russia corn Oct/Sep; EU Jul/Jun). Last season = USDA's current projection. Monthly Russian and Ukrainian exports are not published as open data (Russia stopped publishing customs data in 2022); the report's monthly lines come from private line-up/shipping data.</p></div>`;
+    h += `<div class="card"><h2>World corn balance: key exporters and China (PSD, million t)</h2><div class="ctrls">${btns('wcb', Object.keys(P.world.corn_bal.years).map(k => [k, k]), Object.keys(P.world.corn_bal.years).at(-1))}</div><div class="tbl" id="gpWCB"></div></div>`;
+    if (E) {
+      const W = E.export_wheat, M = E.export_maize, IM = E.import_maize;
+      const lm = W ? MON[W.last_month - 1] : '';
+      h += `<div class="card"><h2>EU cereal trade (European Commission, customs surveillance)</h2>
+        <div class="grid g2"><div><h3>EU common wheat exports, July to ${lm} by month (Mt)</h3>${cv('gpEUw', 'tall')}</div>
+        <div><h3>Wheat exports by member state, Jul–${lm} (Mt)</h3>${cv('gpEUms', 'tall')}</div>
+        <div><h3>Wheat exports by member state, ${lm} only (Mt)</h3>${cv('gpEUmsM')}</div>
+        <div><h3>Top destinations of EU wheat, Jul–${lm}</h3><div class="tbl" id="gpEUdest"></div></div>
+        ${IM ? `<div><h3>EU maize imports by origin, Jul–${MON[IM.last_month - 1]} (Mt)</h3><div class="tbl" id="gpEUimp"></div></div>` : ''}
+        <div><h3>Season-to-date summary (Mt)</h3><div class="tbl" id="gpEUsum"></div></div></div>
+        <p class="note">DG TAXUD surveillance data via the agri-food data portal API (open), marketing year July/June, CN codes summed by product (grain plus flour/meal equivalents as the portal reports them). The latest month is usually incomplete. Baltics = Lithuania, Latvia, Estonia.</p></div>`;
+    } else h += card('EU cereal trade (European Commission)', '<p class="note">Backfill of the EU customs data is running (pipelines/eu_taxud.py); this section fills in when it lands.</p>');
+    el.innerHTML = h;
+    const drawX = com => { const S = X[com]; const ks = Object.keys(S.series).filter(k => com === 'wheat' ? ['Russia', 'EU', 'Ukraine', 'Canada', 'Australia', 'United States', 'Argentina'].includes(k) : ['United States', 'Brazil', 'Argentina', 'Ukraine', 'EU', 'Russia'].includes(k));
+      chart('gpRUEx', { type: 'bar', data: { labels: S.mys, datasets: ks.map((k, i) => ({ label: k, data: S.series[k], backgroundColor: PAL[i] })) } }); };
+    el.querySelectorAll('[data-grp="rue"] button').forEach(b => b.onclick = () => { el.querySelectorAll('[data-grp="rue"] button').forEach(x => x.classList.toggle('on', x === b)); drawX(b.dataset.v); });
+    drawX('wheat');
+    const drawB = my => { const Y = P.world.corn_bal.years[my], R = P.world.corn_bal.rows; const lab = { 'Area Harvested': 'Area harvested (m ha)', Yield: 'Yield (t/ha)', su: 'Stocks/use %' };
+      $('#gpWCB').innerHTML = `<table><tr><th></th>${Y.map(c => `<th>${c.name}</th>`).join('')}</tr>${R.map(a => `<tr style="${['Production', 'Total Supply', 'Ending Stocks', 'Exports'].includes(a) ? 'font-weight:600;background:#f6f8f5' : ''}"><td class="l">${lab[a] || a}</td>${Y.map(c => `<td>${c.v[a] == null ? '–' : a === 'su' ? fmt(c.v[a], 1) + '%' : fmt(c.v[a], a === 'Yield' ? 2 : 1)}</td>`).join('')}</tr>`).join('')}</table>`; };
+    el.querySelectorAll('[data-grp="wcb"] button').forEach(b => b.onclick = () => { el.querySelectorAll('[data-grp="wcb"] button').forEach(x => x.classList.toggle('on', x === b)); drawB(b.dataset.v); });
+    drawB(Object.keys(P.world.corn_bal.years).at(-1));
+    if (!E || !E.export_wheat) return;
+    const W = E.export_wheat, n = W.last_i + 1, mys = W.mys.slice(-6);
+    chart('gpEUw', { type: 'bar', data: { labels: mys, datasets: MYM.slice(0, n).map((m, i) => ({ label: m, data: mys.map(y => W.monthly[y][i]), backgroundColor: PAL[i % PAL.length], stack: 's' }))
+      .concat([{ type: 'line', label: 'Total', data: mys.map(y => W.ytd[y]), borderColor: '#000', borderWidth: 2, pointRadius: 3 }]) }, options: { scales: { x: { stacked: true }, y: { stacked: true } } } });
+    const ms = Object.keys(W.by_ms), yrs = Object.keys(W.by_ms[ms[0]].ytd);
+    const col = ['#2c6fbb', '#1e8449', '#d62020'];
+    chart('gpEUms', { type: 'bar', data: { labels: ms, datasets: yrs.map((y, i) => ({ label: y, data: ms.map(m => W.by_ms[m].ytd[y]), backgroundColor: col[i] })) } });
+    chart('gpEUmsM', { type: 'bar', data: { labels: ms, datasets: yrs.map((y, i) => ({ label: y, data: ms.map(m => W.by_ms[m].month[y]), backgroundColor: col[i] })) } });
+    const yl = W.mys.at(-1), yp = W.mys.at(-2);
+    $('#gpEUdest').innerHTML = `<table><tr><th>Destination</th><th>${yl}</th><th>${yp}</th><th>Change</th></tr>${W.by_partner.map(r => `<tr><td>${r.name}</td><td>${f2(r.cur)}</td><td>${f2(r.prev)}</td><td>${sgn(r.cur - r.prev, 2)}</td></tr>`).join('')}</table>`;
+    if (E.import_maize) $('#gpEUimp').innerHTML = `<table><tr><th>Origin</th><th>${E.import_maize.mys.at(-1)}</th><th>${E.import_maize.mys.at(-2)}</th><th>Change</th></tr>${E.import_maize.by_partner.map(r => `<tr><td>${r.name}</td><td>${f2(r.cur)}</td><td>${f2(r.prev)}</td><td>${sgn(r.cur - r.prev, 2)}</td></tr>`).join('')}</table>`;
+    const rows = [['Common wheat exports', E.export_wheat], ['Maize exports', E.export_maize], ['Barley exports', E.export_barley], ['Maize imports', E.import_maize], ['Common wheat imports', E.import_wheat]].filter(r => r[1]);
+    $('#gpEUsum').innerHTML = `<table><tr><th></th>${mys.map(y => `<th>${y}</th>`).join('')}<th>vs LY</th></tr>${rows.map(([nm, S]) => `<tr><td>${nm} (Jul–${MON[S.last_month - 1]})</td>${mys.map(y => `<td>${f2(S.ytd[y])}</td>`).join('')}<td>${S.ytd[yl] != null && S.ytd[yp] ? sgn(100 * (S.ytd[yl] / S.ytd[yp] - 1), 0, '%') : '–'}</td></tr>`).join('')}</table>`;
+  }
+
   // ── Brazil, Argentina and US soybean complex: balances and monthly usage ──
   const MOS = { 1: MON, 4: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'], 9: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'] };
   const SAL = { 'Beginning Stocks': 'Beginning stocks', 'Area Harvested': 'Area harvested (m ha)', Yield: 'Yield (t/ha)', 'Total Supply': 'Total supply', Crush: 'Crush (soybeans)', 'Other domestic': 'Seed, feed & residual',

@@ -445,6 +445,85 @@ def world_corn():
                 note="USDA PSD local marketing years (not a common Sep/Aug year)")
 
 
+def world_balance(com, ccs, n=3):
+    d = psd_frame(com)
+    attrs = ["Area Harvested", "Yield", "Beginning Stocks", "Production", "Imports", "Total Supply",
+             "Feed Dom. Consumption", "Domestic Consumption", "Exports", "Ending Stocks"]
+    out = {}
+    for my in sorted(d.my.unique())[-n:]:
+        s = d[d.my == my]
+        cols = []
+        for cc, nm in ccs:
+            t = s if cc == "WD" else s[s.cc == cc]
+            if t.empty:
+                continue
+            v = t[t.attr.isin(attrs)].groupby("attr").v.sum()
+            row = {a: r1(v.get(a) / (1 if a == "Yield" else 1000), 2) for a in attrs if a in v}
+            if cc == "WD" and v.get("Area Harvested"):
+                row["Yield"] = r1(v["Production"] / v["Area Harvested"], 2)
+            use = v.get("Domestic Consumption", 0) + v.get("Exports", 0)
+            row["su"] = r1(100 * v.get("Ending Stocks", 0) / use, 1) if use else None
+            cols.append(dict(cc=cc, name=nm, v=row))
+        out[f"{my}/{(my + 1) % 100:02d}"] = cols
+    return dict(rows=attrs + ["su"], years=out)
+
+
+def black_sea_eu():
+    """PSD exports by marketing year for Russia, Ukraine and the EU (wheat, corn, barley if present), last 10 seasons."""
+    out = {}
+    for com in ("wheat", "corn"):
+        d = psd_frame(com)
+        e = d[d.attr == "Exports"].pivot_table(index="my", columns="cc", values="v", aggfunc="sum")
+        mys = sorted(e.index)[-10:]
+        out[com] = dict(mys=[f"{m % 100:02d}/{(m + 1) % 100:02d}" for m in mys],
+                        series={nm: [r1(e.loc[m, cc] / 1000, 1) if cc in e and pd.notna(e.loc[m, cc]) else None for m in mys]
+                                for cc, nm in (("RS", "Russia"), ("UP", "Ukraine"), ("E4", "EU"), ("US", "United States"),
+                                               ("AR", "Argentina"), ("AS", "Australia"), ("CA", "Canada"), ("BR", "Brazil"))
+                                if cc in e})
+    return out
+
+
+EU_GROUPS = {"France": ["FR"], "Germany": ["DE"], "Romania": ["RO"], "Bulgaria": ["BG"], "Poland": ["PL"],
+             "Baltics": ["LT", "LV", "EE"], "Hungary": ["HU"], "Spain": ["ES"], "Italy": ["IT"], "Netherlands": ["NL"]}
+MY_MONTHS = [7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6]
+
+
+def eu_trade():
+    """EU cereal trade (Commission TAXUD surveillance) built by pipelines/eu_taxud.py."""
+    base = ROOT / "data" / "europe"
+    out = {}
+    for direction, prod in (("export", "wheat"), ("export", "maize"), ("export", "barley"), ("import", "maize"), ("import", "wheat")):
+        p = base / f"taxud_{direction}_{prod}.csv.gz"
+        if not p.exists():
+            continue
+        d = pd.read_csv(p)
+        if d.empty:
+            continue
+        d["i"] = d.month.map({m: i for i, m in enumerate(MY_MONTHS)})
+        mys = sorted(d.my.unique())
+        cur = mys[-1]
+        mon = d.groupby(["my", "i"]).t.sum().unstack("i").reindex(columns=range(12)) / 1e6
+        last_i = int(mon.loc[cur].dropna().index.max()) if mon.loc[cur].notna().any() else 0
+        sec = dict(mys=[m[2:4] + "/" + m[-2:] for m in mys], last_month=MY_MONTHS[last_i], last_i=last_i,
+                   monthly={m[2:4] + "/" + m[-2:]: [r1(v, 2) if pd.notna(v) else None for v in mon.loc[m]] for m in mys},
+                   ytd={m[2:4] + "/" + m[-2:]: r1(mon.loc[m].iloc[:last_i + 1].sum(), 2) for m in mys},
+                   total={m[2:4] + "/" + m[-2:]: r1(mon.loc[m].sum(), 2) for m in mys[:-1]})
+        if direction == "export":
+            g = {}
+            for nm, ccs in EU_GROUPS.items():
+                x = d[d.ms.isin(ccs)]
+                g[nm] = {"ytd": {m[2:4] + "/" + m[-2:]: r1(x[(x.my == m) & (x.i <= last_i)].t.sum() / 1e6, 2) for m in mys[-3:]},
+                         "month": {m[2:4] + "/" + m[-2:]: r1(x[(x.my == m) & (x.i == last_i)].t.sum() / 1e6, 2) for m in mys[-3:]}}
+            sec["by_ms"] = g
+        key = "partner_name"
+        top = d[(d.my == cur) & (d.i <= last_i)].groupby(key).t.sum().sort_values(ascending=False).head(12).index
+        prev = mys[-2] if len(mys) > 1 else cur
+        sec["by_partner"] = [dict(name=n, cur=r1(d[(d.my == cur) & (d.i <= last_i) & (d[key] == n)].t.sum() / 1e6, 2),
+                                  prev=r1(d[(d.my == prev) & (d.i <= last_i) & (d[key] == n)].t.sum() / 1e6, 2)) for n in top]
+        out[f"{direction}_{prod}"] = sec
+    return out or None
+
+
 def world_wheat():
     d = psd_frame("wheat")
     attrs = ["Area Harvested", "Yield", "Beginning Stocks", "Production", "Imports", "Total Supply",
@@ -819,7 +898,14 @@ def main():
                        "soybeans": spreads_section("ZS", [("X", 0, "X", 1), ("F", 1, "X", 1), ("H", 1, "X", 1), ("K", 1, "X", 1), ("N", 1, "X", 1), ("X", 1, "X", 2)], zs)}
     pack["decdec"] = {"corn": dec_dec("ZC", "Z", zc), "soybeans": dec_dec("ZS", "X", zs)}
     pack["cot"] = {"corn": cot_mmt("ZC", 39.368), "soybeans": cot_mmt("ZS", 36.744), "wheat": cot_mmt("ZW", 36.744)}
-    pack["world"] = {"corn": world_corn(), "wheat": world_wheat()}
+    pack["world"] = {"corn": world_corn(), "wheat": world_wheat(),
+                     "corn_bal": world_balance("corn", [("US", "United States"), ("BR", "Brazil"), ("AR", "Argentina"), ("UP", "Ukraine"),
+                                                         ("E4", "EU"), ("RS", "Russia"), ("CH", "China"), ("WD", "World")]),
+                     "exporters": black_sea_eu()}
+    try:
+        pack["eu"] = eu_trade()
+    except Exception as e:
+        print("eu_trade", e)
     pack["brazil"] = brazil_corn()
     pack["basis"] = {k: basis_band(k) for k in ("corn", "soybeans")}
     try:

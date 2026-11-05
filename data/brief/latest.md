@@ -1,12 +1,12 @@
-# Morning brief · Thu Nov 05, 2026 08:49 AM ET
+# Morning brief · Thu Nov 05, 2026 09:09 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-05 13:49 UTC). CME open interest from 20261104. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-05 14:09 UTC). CME open interest from 20261104. Research only, not investment advice.
 
 ## Key points
 
 - Biggest moves vs prior settle: Lean hogs -1.050 (-1.8%); Soybean oil -0.62 (-1.0%); KC HRW wheat +4.75 (+0.8%).
 - Today: EIA Weekly Natural Gas Storage Report 10:30 AM ET; USDA weekly export sales 8:30 AM ET; CFTC cotton on-call report 3:30 PM ET; Buenos Aires Grain Exchange crop progress (weekly).
-- 3 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported sales of 167,000 MT of soybeans for delivery to Spain during MY 2026/2027.
+- 2 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported sales of 167,000 MT of soybeans for delivery to Spain during MY 2026/2027.
 - Strongest desk views: Corn strongly bearish.
 - Macro backdrop for ags: headwind (-2).
 
@@ -81,7 +81,6 @@ Board crush 1.927 $/bu (10-yr pct 81), oil share 49.6%. Soybean / corn price rat
 
 - 2026-11-04: Private exporters reported sales of 167,000 MT of soybeans for delivery to Spain during MY 2026/2027.
 - 2026-11-03: Private exporters reported the following sales activities for MY 2026/2027: 315,000 MT of corn for delivery to Mexico, 136,000 MT of corn for delivery to South Korea, and 134,000 MT of soybeans for delivery to unknown destinations.
-- 2026-11-02: Private exporters reported the following sales activities: 136,000 MT of soybeans for delivery to China during MY 2026/2027 and 1,729,740 MT of corn for delivery to Mexico - 1,135,380 MT for delivery during MY 2026/2027 and 594,360 MT for delivery during MY 2027/2028.
 
 ## Technical outlook by market
 

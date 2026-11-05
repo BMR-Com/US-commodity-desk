@@ -492,13 +492,18 @@ def eu_trade():
     """EU cereal trade (Commission TAXUD surveillance) built by pipelines/eu_taxud.py."""
     base = ROOT / "data" / "europe"
     out = {}
-    for direction, prod in (("export", "wheat"), ("export", "maize"), ("import", "maize")):
+    series = [("export", "wheat", 7), ("export", "maize", 7), ("import", "maize", 7),
+              ("import", "soybeans", 7), ("import", "soymeal", 7), ("import", "rapeseed", 7), ("import", "palmoil", 7),
+              ("import", "sunoil", 7), ("import", "soyoil", 7), ("import", "rapeoil", 7), ("export", "rapeoil", 7),
+              ("export", "soyoil", 7), ("import", "rawcane", 10), ("import", "whitesugar", 10), ("export", "whitesugar", 10)]
+    for direction, prod, m0 in series:
         p = base / f"taxud_{direction}_{prod}.csv.gz"
         if not p.exists():
             continue
         d = pd.read_csv(p)
         if d.empty:
             continue
+        MY_MONTHS = [(m0 - 1 + k) % 12 + 1 for k in range(12)]
         d["i"] = d.month.map({m: i for i, m in enumerate(MY_MONTHS)})
         if "week" in d:
             d.loc[(d.week >= 50) & (d.i == 0), "i"] = 11    # a 53rd week that spills into the next July
@@ -509,9 +514,9 @@ def eu_trade():
         asof = None
         if "week" in d and len(d[d.my == cur]):
             from datetime import timedelta as _td
-            y0 = int(cur[:4]); j1 = date(y0, 7, 1)
+            y0 = int(cur[:4]); j1 = date(y0, m0, 1)
             asof = str(j1 - _td(days=j1.weekday()) + _td(weeks=int(d[d.my == cur].week.max()) - 1, days=6))
-        sec = dict(mys=[m[2:4] + "/" + m[-2:] for m in mys], last_month=MY_MONTHS[last_i], last_i=last_i, asof=asof,
+        sec = dict(mys=[m[2:4] + "/" + m[-2:] for m in mys], last_month=MY_MONTHS[last_i], last_i=last_i, asof=asof, start=m0,
                    monthly={m[2:4] + "/" + m[-2:]: [r1(v, 2) if pd.notna(v) else None for v in mon.loc[m]] for m in mys},
                    ytd={m[2:4] + "/" + m[-2:]: r1(mon.loc[m].iloc[:last_i + 1].sum(), 2) for m in mys},
                    total={m[2:4] + "/" + m[-2:]: r1(mon.loc[m].sum(), 2) for m in mys[:-1]})
@@ -522,6 +527,10 @@ def eu_trade():
                 g[nm] = {"ytd": {m[2:4] + "/" + m[-2:]: r1(x[(x.my == m) & (x.i <= last_i)].t.sum() / 1e6, 2) for m in mys[-3:]},
                          "month": {m[2:4] + "/" + m[-2:]: r1(x[(x.my == m) & (x.i == last_i)].t.sum() / 1e6, 2) for m in mys[-3:]}}
             sec["by_ms"] = g
+        x = d[(d.i <= last_i)]
+        tm = x[x.my == cur].groupby("ms").t.sum().sort_values(ascending=False).head(8).index
+        sec["by_ms_top"] = [dict(ms=m, cur=r1(x[(x.my == cur) & (x.ms == m)].t.sum() / 1e6, 2),
+                                 prev=r1(x[(x.my == (mys[-2] if len(mys) > 1 else cur)) & (x.ms == m)].t.sum() / 1e6, 2)) for m in tm]
         key = "partner_name"
         top = d[(d.my == cur) & (d.i <= last_i)].groupby(key).t.sum().sort_values(ascending=False).head(12).index
         prev = mys[-2] if len(mys) > 1 else cur

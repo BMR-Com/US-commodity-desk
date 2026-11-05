@@ -1,4 +1,4 @@
-name: europe (EU cereal trade, TAXUD)
+name: europe (EU grains, oilseeds and sugar trade, TAXUD)
 on:
   workflow_dispatch:
     inputs:
@@ -22,7 +22,7 @@ jobs:
           save() { git add data/europe data/grains/derived/pack.json; git diff --cached --quiet && return 0
             git commit -q -m "data: EU cereal trade $1 $(date -u +%F)"
             for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && return 0; git rebase --abort 2>/dev/null || true; sleep 8; done; echo "::warning::push failed"; }
-          P="${{ github.event.inputs.products }}"; [ -z "$P" ] && P="wheat maize"
+          P="${{ github.event.inputs.products }}"; [ -z "$P" ] && P="wheat maize oilseeds oils sugar"
           if [ "$P" = discover ]; then python -W ignore pipelines/eu_taxud.py discover; save discover; exit 0; fi
           for p in $P; do
             python -W ignore pipelines/eu_taxud.py $p || true

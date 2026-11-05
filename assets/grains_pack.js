@@ -269,7 +269,20 @@ const GrainPack = (() => {
         ${IM ? `<div><h3>EU maize imports by origin, Jul–${MON[IM.last_month - 1]} (Mt)</h3><div class="tbl" id="gpEUimp"></div></div>` : ''}
         <div><h3>Season-to-date summary (Mt)</h3><div class="tbl" id="gpEUsum"></div></div></div>
         <p class="note">DG TAXUD surveillance data via the agri-food data portal API (open), marketing year July/June, CN codes summed by product (grain plus flour/meal equivalents as the portal reports them). Weeks are grouped into months by their Thursday; data to week ending ${W ? W.asof : ''}, so the latest month is incomplete. Baltics = Lithuania, Latvia, Estonia.</p></div>`;
-    } else h += card('EU cereal trade (European Commission)', '<p class="note">Backfill of the EU customs data is running (pipelines/eu_taxud.py); this section fills in when it lands.</p>');
+    }
+    const EO = [['import_soybeans', 'Soybean imports'], ['import_soymeal', 'Soymeal imports'], ['import_rapeseed', 'Rapeseed imports'], ['import_palmoil', 'Palm oil imports'],
+      ['import_sunoil', 'Sunflower oil imports'], ['import_soyoil', 'Soy oil imports'], ['import_rapeoil', 'Rapeseed oil imports'], ['export_rapeoil', 'Rapeseed oil exports'], ['export_soyoil', 'Soy oil exports']].filter(([k]) => E && E[k]);
+    const ES = [['import_rawcane', 'Raw cane sugar imports'], ['import_whitesugar', 'White sugar imports'], ['export_whitesugar', 'White sugar exports']].filter(([k]) => E && E[k]);
+    const euBlock = (title, list, note) => {
+      const S0 = E[list[0][0]], ys = S0.mys.slice(-11), MO = S0.start === 10 ? ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'] : MYM;
+      return `<div class="card"><h2>${title}</h2><div class="ctrls"><select class="gpEUsel">${list.map(([k, n]) => `<option value="${k}">${n}</option>`).join('')}</select><span class="note">season-to-date through ${MON[S0.last_month - 1]} (data to week ending ${S0.asof || '–'})</span></div>
+        <div class="tbl"><table><tr><th>Million t, season to date</th>${ys.map(y => `<th>${y}</th>`).join('')}<th>vs LY</th></tr>${list.map(([k, n]) => { const S = E[k], a = S.ytd[ys.at(-1)], b = S.ytd[ys.at(-2)];
+          return `<tr><td>${n}</td>${ys.map(y => `<td>${f2(S.ytd[y])}</td>`).join('')}<td>${a != null && b ? sgn(100 * (a / b - 1), 0, '%') : '–'}</td></tr>`; }).join('')}</table></div>
+        <div class="grid g3" style="margin-top:8px"><div><h3>By month, last seasons</h3><canvas data-k="m" style="height:260px"></canvas></div><div><h3>By partner, season to date</h3><div class="tbl" data-k="p"></div></div><div><h3>By member state, season to date</h3><div class="tbl" data-k="s"></div></div></div>
+        <p class="note">${note}</p></div>`; };
+    if (EO.length) h += euBlock('EU oilseeds and vegetable oils trade (European Commission, customs surveillance)', EO, 'Oilseeds sector of the TAXUD surveillance data, July/June marketing year. Pick a product to see months, partners and member states.');
+    if (ES.length) h += euBlock('EU sugar trade (European Commission, customs surveillance)', ES, 'Sugar sector of the TAXUD surveillance data, October/September marketing year.');
+    if (!E || !E.export_wheat) h += card('EU cereal trade (European Commission)', '<p class="note">Backfill of the EU customs data is running (pipelines/eu_taxud.py); this section fills in when it lands.</p>');
     el.innerHTML = h;
     const drawX = com => { const S = X[com]; const ks = Object.keys(S.series).filter(k => com === 'wheat' ? ['Russia', 'EU', 'Ukraine', 'Canada', 'Australia', 'United States', 'Argentina'].includes(k) : ['United States', 'Brazil', 'Argentina', 'Ukraine', 'EU', 'Russia'].includes(k));
       chart('gpRUEx', { type: 'bar', data: { labels: S.mys, datasets: ks.map((k, i) => ({ label: k, data: S.series[k], backgroundColor: PAL[i] })) } }); };
@@ -279,6 +292,15 @@ const GrainPack = (() => {
       $('#gpWCB').innerHTML = `<table><tr><th></th>${Y.map(c => `<th>${c.name}</th>`).join('')}</tr>${R.map(a => `<tr style="${['Production', 'Total Supply', 'Ending Stocks', 'Exports'].includes(a) ? 'font-weight:600;background:#f6f8f5' : ''}"><td class="l">${lab[a] || a}</td>${Y.map(c => `<td>${c.v[a] == null ? '–' : a === 'su' ? fmt(c.v[a], 1) + '%' : fmt(c.v[a], a === 'Yield' ? 2 : 1)}</td>`).join('')}</tr>`).join('')}</table>`; };
     el.querySelectorAll('[data-grp="wcb"] button').forEach(b => b.onclick = () => { el.querySelectorAll('[data-grp="wcb"] button').forEach(x => x.classList.toggle('on', x === b)); drawB(b.dataset.v); });
     drawB(Object.keys(P.world.corn_bal.years).at(-1));
+    el.querySelectorAll('select.gpEUsel').forEach(sel => { const cardEl = sel.closest('.card'); let ch = null;
+      const draw = () => { const S = E[sel.value], ys = S.mys.slice(-4), MO = S.start === 10 ? ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'] : MYM;
+        if (ch) ch.destroy();
+        ch = new Chart(cardEl.querySelector('canvas[data-k="m"]'), { type: 'line', data: { labels: MO, datasets: ys.map((y, i) => ({ label: y, data: S.monthly[y], borderColor: i === ys.length - 1 ? '#d62020' : PAL[i + 1], borderWidth: i === ys.length - 1 ? 2.4 : 1.4, pointRadius: 2 })) },
+          options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { labels: { boxWidth: 10, font: { size: 10 } } } } } });
+        const tb = (rows, nm) => `<table><tr><th>${nm}</th><th>${S.mys.at(-1)}</th><th>${S.mys.at(-2)}</th><th>Δ</th></tr>${rows.map(r => `<tr><td>${r.name || r.ms}</td><td>${f2(r.cur)}</td><td>${f2(r.prev)}</td><td>${sgn(r.cur - r.prev, 2)}</td></tr>`).join('')}</table>`;
+        cardEl.querySelector('[data-k="p"]').innerHTML = tb(S.by_partner || [], 'Partner');
+        cardEl.querySelector('[data-k="s"]').innerHTML = tb(S.by_ms_top || [], 'Member state'); };
+      sel.onchange = draw; cardEl.querySelector('canvas[data-k="m"]').parentElement.style.height = '290px'; draw(); });
     if (!E || !E.export_wheat) return;
     const W = E.export_wheat, n = W.last_i + 1, mys = W.mys.slice(-11);
     chart('gpEUw', { type: 'bar', data: { labels: mys, datasets: MYM.slice(0, n).map((m, i) => ({ label: m, data: mys.map(y => W.monthly[y][i]), backgroundColor: PAL[i % PAL.length], stack: 's' }))

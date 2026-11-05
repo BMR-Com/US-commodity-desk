@@ -1,9 +1,10 @@
-"""EU cereal trade from the European Commission agri-food data portal (DG TAXUD customs surveillance, open API).
+"""EU grain, oilseed/vegetable-oil and sugar trade from the European Commission agri-food data portal (DG TAXUD customs surveillance, open API).
 
 https://api.tech.ec.europa.eu/agrifood/api/taxud/weeklyData/{export|import}
 For each marketing year (July/June) and week (grouped into calendar months by the week's Thursday), sums kg by member state and partner for:
-  exports: Common wheat, Maize, Barley;  imports: Maize, Common wheat
--> data/europe/taxud_<direction>_<product>.csv.gz (my, month, ms, partner, partner_name, t)
+  see JOBS: wheat and maize (Cereals), soybeans/soymeal/rapeseed and palm/soy/rapeseed/sunflower oil (Oilseeds),
+  raw cane and white sugar (Sugar, Oct/Sep year)
+-> data/europe/taxud_<direction>_<slug>.csv.gz (my, month, ms, partner, partner_name, t)
 Completed marketing years are fetched once; the current and previous ones are refreshed each run.
 The API wants one sector + one product per call and is slow (~5-20 s per call), so calls go nine weeks at a time.
 """
@@ -17,13 +18,23 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "europe"
 API = "https://api.tech.ec.europa.eu/agrifood/api/taxud/weeklyData/"
 H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk)", "Accept": "application/json"}
-JOBS = [("export", "Common wheat"), ("export", "Maize"), ("import", "Maize")]   # exchange-traded grains only (Ma, 2026-11-05)
+# (direction, sector, product, file slug, group, first month of the marketing year)
+# exchange-traded grains, oilseeds/vegetable oils and sugar only (Ma, 2026-11-05)
+JOBS = [("export", "Cereals", "Common wheat", "wheat", "wheat", 7), ("export", "Cereals", "Maize", "maize", "maize", 7),
+        ("import", "Cereals", "Maize", "maize", "maize", 7),
+        ("import", "Oilseeds", "Soya beans", "soybeans", "oilseeds", 7), ("import", "Oilseeds", "Soya meal", "soymeal", "oilseeds", 7),
+        ("import", "Oilseeds", "Palm oil", "palmoil", "oils", 7), ("import", "Oilseeds", "Rapeseed", "rapeseed", "oilseeds", 7),
+        ("import", "Oilseeds", "Sunflowerseed oil", "sunoil", "oils", 7), ("import", "Oilseeds", "Soya oil", "soyoil", "oils", 7),
+        ("import", "Oilseeds", "Rapeseed oil", "rapeoil", "oils", 7), ("export", "Oilseeds", "Rapeseed oil", "rapeoil", "oils", 7),
+        ("export", "Oilseeds", "Soya oil", "soyoil", "oils", 7),
+        ("import", "Sugar", "Raw cane sugar", "rawcane", "sugar", 10), ("import", "Sugar", "White sugar", "whitesugar", "sugar", 10),
+        ("export", "Sugar", "White sugar", "whitesugar", "sugar", 10)]
 FIRST = int(__import__("os").environ.get("TAXUD_FIRST", "2016"))
 
 
-def call(direction, product, my, weeks):
+def call(direction, sector, product, my, weeks):
     # one sector + one product per call; the API rejects month filters combined with marketing years
-    p = {"sectors": "Cereals", "products": product, "marketingYears": my, "weeks": ",".join(map(str, weeks))}
+    p = {"sectors": sector, "products": product, "marketingYears": my, "weeks": ",".join(map(str, weeks))}
     for i in range(4):
         try:
             r = requests.get(API + direction, params=p, headers=H, timeout=240)
@@ -38,19 +49,19 @@ def call(direction, product, my, weeks):
     return None
 
 
-def week_month(my, w):
-    """Marketing-year week w (week 1 = the Monday-to-Sunday week containing 1 July) -> calendar month of its Thursday."""
+def week_month(my, w, m0=7):
+    """Marketing-year week w (week 1 = the Monday-to-Sunday week containing the 1st of the first month) -> month of its Thursday."""
     y = int(my[:4])
-    jul1 = date(y, 7, 1)
+    jul1 = date(y, m0, 1)
     start = jul1 - timedelta(days=jul1.weekday()) + timedelta(weeks=w - 1)
     return (start + timedelta(days=3)).month
 
 
-def fetch(direction, product, my):
+def fetch(direction, sector, product, my, m0=7):
     from concurrent.futures import ThreadPoolExecutor
     chunks = [list(range(k + 1, min(k + 10, 54))) for k in range(0, 54, 9)]
     with ThreadPoolExecutor(3) as ex:     # the API takes 20-60 s per call; three at a time keeps it polite but quicker
-        res = list(ex.map(lambda wk: call(direction, product, my, wk), chunks))
+        res = list(ex.map(lambda wk: call(direction, sector, product, my, wk), chunks))
     if any(r is None for r in res):
         print(f"  {direction} {product} {my}: a chunk failed", flush=True)
         return None
@@ -58,7 +69,7 @@ def fetch(direction, product, my):
              (x.get("kgEquivalent") or x.get("kg") or 0) / 1000) for j in res for x in j]
     d = pd.DataFrame(rows, columns=["my", "week", "ms", "partner", "partner_name", "t"])
     d = d.groupby(["my", "week", "ms", "partner", "partner_name"], as_index=False).t.sum()
-    d["month"] = [week_month(m, w) for m, w in zip(d.my, d.week)]
+    d["month"] = [week_month(m, w, m0) for m, w in zip(d.my, d.week)]
     return d
 
 
@@ -92,13 +103,13 @@ def discover():
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     today = date.today()
-    cur = today.year if today.month >= 7 else today.year - 1
-    mys = [f"{y}/{y + 1}" for y in range(FIRST, cur + 1)]
-    only = sys.argv[1:]
-    for direction, product in JOBS:
-        if only and product.split()[-1].lower() not in [o.lower() for o in only]:
+    only = [o.lower() for o in sys.argv[1:]]
+    for direction, sector, product, slug, group, m0 in JOBS:
+        if only and slug not in only and group not in only:
             continue
-        p = OUT / f"taxud_{direction}_{product.split()[-1].lower()}.csv.gz"
+        cur = today.year if today.month >= m0 else today.year - 1
+        mys = [f"{y}/{y + 1}" for y in range(FIRST, cur + 1)]
+        p = OUT / f"taxud_{direction}_{slug}.csv.gz"
         old = pd.read_csv(p) if p.exists() else pd.DataFrame(columns=["my", "week", "ms", "partner", "partner_name", "t", "month"])
         have = set(old.my.unique())
         parts = [old]
@@ -106,11 +117,11 @@ def main():
             if my in have and my not in mys[-2:]:
                 continue
             t0 = time.time()
-            d = fetch(direction, product, my)
+            d = fetch(direction, sector, product, my, m0)
             if d is None:
                 continue
             parts = [x[x.my != my] for x in parts] + [d]
-            print(f"{direction} {product} {my}: {d.t.sum() / 1e6:.2f} Mt, {len(d)} rows, weeks to {d.week.max()}, {time.time() - t0:.0f}s", flush=True)
+            print(f"{direction} {product} {my}: {d.t.sum() / 1e6:.2f} Mt, {len(d)} rows, weeks to {d.week.max() if len(d) else 0}, {time.time() - t0:.0f}s", flush=True)
             pd.concat(parts).to_csv(p, index=False, compression="gzip")   # save as we go (long backfill)
 
 

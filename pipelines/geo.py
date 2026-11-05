@@ -29,7 +29,8 @@ COMMS = {
     "milk": ("Dairy, Milk, Fluid", None), "sorghum": ("Sorghum", "1007"),
 }
 ATTRS = ["Production", "Exports", "Imports", "Domestic Consumption", "Domestic Use", "Beginning Stocks", "Ending Stocks", "TY Exports", "TY Imports", "Area Harvested", "Yield",
-         "Total Supply", "Feed Dom. Consumption", "Crush", "Cow Milk Production", "Fluid Use Dom. Consum."]
+         "Total Supply", "Feed Dom. Consumption", "Crush", "Cow Milk Production", "Fluid Use Dom. Consum.",
+         "Food Use Dom. Cons.", "Industrial Dom. Cons.", "Feed Waste Dom. Cons.", "Extr. Rate, 999.9999", "Seed Dom. Consumption"]
 
 
 def get(url, tries=3, **kw):

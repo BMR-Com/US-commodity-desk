@@ -1,0 +1,30 @@
+name: oilseeds monthly (NASS fats & oils, MAGyP crush/stocks)
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '35 17 * * 1,3,5'   # NASS Fats & Oils lands ~1st business day; MAGyP mid-month
+permissions: {contents: write}
+concurrency: {group: oilseeds, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy openpyxl
+      - name: NASS fats & oils, MAGyP
+        continue-on-error: true
+        env: {NASS_API_KEY: '${{ secrets.NASS_API_KEY }}'}
+        run: python -W ignore pipelines/oilseeds_monthly.py nass magyp
+      - name: grain summary pack
+        continue-on-error: true
+        run: python -W ignore models/grains_pack.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/grains/raw/fats_oils data/south_america/ar_crush_monthly.csv data/south_america/ar_stocks_monthly.csv data/grains/derived/pack.json
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: oilseeds monthly $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

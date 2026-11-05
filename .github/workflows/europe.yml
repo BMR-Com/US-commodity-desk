@@ -1,0 +1,30 @@
+name: europe (EU cereal trade, TAXUD)
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '23 16 * * 3'    # weekly; the Commission updates TAXUD surveillance data early in the week
+permissions: {contents: write}
+concurrency: {group: europe, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy
+      - name: TAXUD exports/imports
+        continue-on-error: true
+        run: python -W ignore pipelines/eu_taxud.py
+      - name: grain summary pack
+        continue-on-error: true
+        run: python -W ignore models/grains_pack.py
+      - name: commit
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/europe data/grains/derived/pack.json
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: EU cereal trade $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

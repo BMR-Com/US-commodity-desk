@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-04T21:57+00:00",
+ "generated": "2026-11-05T01:26+00:00",
  "since": "2021-02-24",
  "tests": {
   "class3": {
@@ -9,7 +9,7 @@
     "mae_spot": 0.321,
     "mae_futures": 0.087,
     "gap_corr": -0.1,
-    "direction_hit": 0.42,
+    "direction_hit": 0.41,
     "big_gap_n": 130,
     "big_gap_hit": 0.45
    },
@@ -39,7 +39,7 @@
     "mae_spot": 0.043,
     "mae_futures": 0.012,
     "gap_corr": 0.46,
-    "direction_hit": 0.18,
+    "direction_hit": 0.17,
     "big_gap_n": 4,
     "big_gap_hit": 0.5
    }
@@ -79,9 +79,9 @@
     "n": 66,
     "mae_ndpsr": 0.04,
     "mae_spot": 0.04,
-    "mae_futures": 0.021,
-    "gap_corr": 0.45,
-    "direction_hit": 0.3,
+    "mae_futures": 0.019,
+    "gap_corr": 0.42,
+    "direction_hit": 0.29,
     "big_gap_n": 4,
     "big_gap_hit": 0.25
    }

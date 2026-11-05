@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-04T21:57+00:00",
+ "generated": "2026-11-05T01:26+00:00",
  "tests": {
   "2013-2026": {
    "class3": {
@@ -181,9 +181,9 @@
      "n": 410,
      "mae_persist": 0.312,
      "mae_seasonal": 0.312,
-     "mae_futures": 0.1,
+     "mae_futures": 0.099,
      "gap_vs_convergence_corr": 0.124,
-     "direction_hit": 0.51,
+     "direction_hit": 0.5,
      "when_gap_ge_1": {
       "n": 29,
       "hit": 0.72
@@ -268,8 +268,8 @@
      "mae_persist": 0.182,
      "mae_seasonal": 0.182,
      "mae_futures": 0.118,
-     "gap_vs_convergence_corr": 0.245,
-     "direction_hit": 0.61
+     "gap_vs_convergence_corr": 0.244,
+     "direction_hit": 0.6
     },
     "1": {
      "n": 405,

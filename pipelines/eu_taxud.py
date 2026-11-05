@@ -18,7 +18,7 @@ OUT = ROOT / "data" / "europe"
 API = "https://api.tech.ec.europa.eu/agrifood/api/taxud/weeklyData/"
 H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk)", "Accept": "application/json"}
 JOBS = [("export", "Common wheat"), ("export", "Maize"), ("import", "Maize")]   # exchange-traded grains only (Ma, 2026-11-05)
-FIRST = int(__import__("os").environ.get("TAXUD_FIRST", "2021"))
+FIRST = int(__import__("os").environ.get("TAXUD_FIRST", "2016"))
 
 
 def call(direction, product, my, weeks):

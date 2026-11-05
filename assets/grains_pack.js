@@ -280,7 +280,7 @@ const GrainPack = (() => {
     el.querySelectorAll('[data-grp="wcb"] button').forEach(b => b.onclick = () => { el.querySelectorAll('[data-grp="wcb"] button').forEach(x => x.classList.toggle('on', x === b)); drawB(b.dataset.v); });
     drawB(Object.keys(P.world.corn_bal.years).at(-1));
     if (!E || !E.export_wheat) return;
-    const W = E.export_wheat, n = W.last_i + 1, mys = W.mys.slice(-6);
+    const W = E.export_wheat, n = W.last_i + 1, mys = W.mys.slice(-11);
     chart('gpEUw', { type: 'bar', data: { labels: mys, datasets: MYM.slice(0, n).map((m, i) => ({ label: m, data: mys.map(y => W.monthly[y][i]), backgroundColor: PAL[i % PAL.length], stack: 's' }))
       .concat([{ type: 'line', label: 'Total', data: mys.map(y => W.ytd[y]), borderColor: '#000', borderWidth: 2, pointRadius: 3 }]) }, options: { scales: { x: { stacked: true }, y: { stacked: true } } } });
     const ms = Object.keys(W.by_ms), yrs = Object.keys(W.by_ms[ms[0]].ytd);

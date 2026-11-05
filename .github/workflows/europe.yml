@@ -1,6 +1,8 @@
 name: europe (EU cereal trade, TAXUD)
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      products: {description: 'products to run (default: wheat maize); "discover" lists sectors/products', required: false, default: ''}
   schedule:
     - cron: '23 16 * * 3'    # weekly; the Commission updates TAXUD surveillance data early in the week
 permissions: {contents: write}
@@ -20,7 +22,9 @@ jobs:
           save() { git add data/europe data/grains/derived/pack.json; git diff --cached --quiet && return 0
             git commit -q -m "data: EU cereal trade $1 $(date -u +%F)"
             for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && return 0; git rebase --abort 2>/dev/null || true; sleep 8; done; echo "::warning::push failed"; }
-          for p in wheat maize; do
+          P="${{ github.event.inputs.products }}"; [ -z "$P" ] && P="wheat maize"
+          if [ "$P" = discover ]; then python -W ignore pipelines/eu_taxud.py discover; save discover; exit 0; fi
+          for p in $P; do
             python -W ignore pipelines/eu_taxud.py $p || true
             python -W ignore models/grains_pack.py || true
             save $p

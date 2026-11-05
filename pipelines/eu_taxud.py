@@ -62,6 +62,33 @@ def fetch(direction, product, my):
     return d
 
 
+def discover():
+    """List what the TAXUD API knows: OpenAPI parameter docs and, per sector name, products with volumes in one week."""
+    import json
+    out = {}
+    try:
+        doc = requests.get("https://api.tech.ec.europa.eu/agrifood/v3/api-docs/taxud_weekly", headers=H, timeout=60).json()
+        for path, v in doc.get("paths", {}).items():
+            out[path] = [{k: prm.get(k) for k in ("name", "description", "schema")} for prm in list(v.values())[0].get("parameters", [])]
+    except Exception as e:
+        out["doc_error"] = str(e)
+    for sec in ["Oilseeds", "Oilseeds and protein crops", "Oils and fats", "Vegetable oils", "Olive oil", "Sugar", "Cereals"]:
+        for direction in ("import", "export"):
+            r = requests.get(API + direction, params={"sectors": sec, "marketingYears": "2025/2026", "weeks": "10"}, headers=H, timeout=240)
+            key = f"{direction}|{sec}"
+            if r.status_code != 200:
+                out[key] = f"HTTP {r.status_code} {r.text[:200]}"
+                continue
+            agg = {}
+            for x in r.json():
+                k = f"{x.get('sector')}|{x.get('product')}|{x.get('marketingYear')}"
+                agg[k] = round(agg.get(k, 0) + (x.get("kgEquivalent") or x.get("kg") or 0) / 1e6, 2)
+            out[key] = agg
+            print(key, agg, flush=True)
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "taxud_discover.json").write_text(json.dumps(out, indent=1))
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     today = date.today()
@@ -88,4 +115,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    discover() if sys.argv[1:2] == ["discover"] else main()

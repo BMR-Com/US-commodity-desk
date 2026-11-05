@@ -520,6 +520,45 @@ def sa_balance(cc, com, n=7):
     return dict(rows=SA_ROWS[com], cols=cols)
 
 
+CONAB_ROWS = {"soybeans": {"1.1": "Beginning Stocks", "1.2": "Production", "1.3": "Imports", "1.4": "Seed & other",
+                            "1.6": "Crush", "1.5": "Exports", "1.7": "Ending Stocks"},
+              "meal": {"2.1": "Beginning Stocks", "2.2": "Production", "2.3": "Imports", "2.5": "Domestic sales",
+                       "2.4": "Exports", "2.6": "Ending Stocks"},
+              "oil": {"3.1": "Beginning Stocks", "3.2": "Production", "3.3": "Imports", "3.5": "Domestic sales",
+                      "3.4": "Exports", "3.6": "Ending Stocks"}}
+
+
+def conab_balance():
+    """CONAB 'Suprimento - Soja' sheet (soybeans, meal, oil; '000 t) from the latest Boletim da Safra de Grãos."""
+    sa = ROOT / "data" / "south_america"
+    if not (sa / "conab_supply_raw.csv").exists() or not (sa / "conab_balanco_soja.csv").exists():
+        return None
+    raw = pd.read_csv(sa / "conab_supply_raw.csv")
+    raw = raw[raw.sheet == "Suprimento - Soja"]
+    safras = pd.read_csv(sa / "conab_balanco_soja.csv").safra.tolist()
+    meta = json.loads((sa / "conab_supply_meta.json").read_text()) if (sa / "conab_supply_meta.json").exists() else {}
+    out = {}
+    for com, mp in CONAB_ROWS.items():
+        cols = []
+        for j, sf in enumerate(safras, 1):
+            v = {}
+            for code, name in mp.items():
+                x = raw[raw.label.str.startswith(code + ".") & (raw.col == j)].value
+                if len(x):
+                    v[name] = r1(float(x.iloc[0]) / 1000, 2)
+            sup = sum(v.get(k) or 0 for k in ("Beginning Stocks", "Production", "Imports"))
+            use = sum(v.get(k) or 0 for k in ("Seed & other", "Crush", "Domestic sales", "Exports"))
+            v["Total Supply"], v["Total use"] = r1(sup, 2), r1(use, 2)
+            if use and v.get("Ending Stocks") is not None:
+                v["su"] = r1(100 * v["Ending Stocks"] / use, 1)
+            cols.append(dict(my=f"{sf} (cal. {int(sf[:4]) + 1})", v=v))
+        rows = list(mp.values())
+        rows = rows[:3] + ["Total Supply"] + rows[3:-1] + ["Total use", rows[-1], "su"]
+        out[com] = dict(rows=rows, cols=cols)
+    out["survey"] = f"{meta.get('levantamento', '?')}º levantamento {meta.get('safra', '')}, published {meta.get('data_publicacao', '')}"
+    return out
+
+
 def monthly_table(df, col, start, n=4, scale=1e3):
     """{season: [12 monthly values in start-month order]}, values in thousand t -> million t."""
     d = df[["year", "month", col]].dropna().copy()
@@ -539,6 +578,10 @@ def south_america_soy():
     out = {"brazil": {}, "argentina": {}}
     for cc, k in (("BR", "brazil"), ("AR", "argentina")):
         out[k]["balance"] = {c: sa_balance(cc, c) for c in ("soybeans", "meal", "oil")}
+    try:
+        out["brazil"]["conab"] = conab_balance()
+    except Exception as e:
+        print("conab balance", e)
     # Brazil monthly exports (Comex Stat), calendar year, million t
     bx = pd.read_csv(ROOT / "data" / "south_america" / "brazil_exports.csv")
     mon = {}
@@ -795,7 +838,7 @@ def main():
         "Black Sea / Azov port line-ups, war-strike counts, Polymarket odds (not grains-desk data)",
         "Russian/Ukrainian/EU monthly wheat exports and French FranceAgriMer balance (not collected yet)",
         "Argentine monthly meal exports (shown as implied disappearance) and truck deliveries to ports",
-        "Brazil monthly crush and stocks, ABIOVE/CONAB balances (not open data); US crush utilization (NOPA capacity is members-only)"]
+        "Brazil monthly crush and stocks and the ABIOVE balance (members-only); US crush utilization (NOPA capacity is members-only)"]
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "pack.json").write_text(json.dumps(pack, separators=(",", ":"), default=lambda o: None if o is None else str(o)))
     print("pack.json", round((OUT / "pack.json").stat().st_size / 1e3), "KB")

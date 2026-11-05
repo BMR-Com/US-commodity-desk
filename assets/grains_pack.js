@@ -252,7 +252,7 @@ const GrainPack = (() => {
   // ── Brazil, Argentina and US soybean complex: balances and monthly usage ──
   const MOS = { 1: MON, 4: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'], 9: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'] };
   const SAL = { 'Beginning Stocks': 'Beginning stocks', 'Area Harvested': 'Area harvested (m ha)', Yield: 'Yield (t/ha)', 'Total Supply': 'Total supply', Crush: 'Crush (soybeans)', 'Other domestic': 'Seed, feed & residual',
-    'Domestic Consumption': 'Total domestic', 'Industrial Dom. Cons.': 'Industrial (biodiesel)', 'Food Use Dom. Cons.': 'Food use', 'Ending Stocks': 'Ending stocks', su: 'Stocks/use %' };
+    'Domestic Consumption': 'Total domestic', 'Seed & other': 'Seed & other', 'Domestic sales': 'Domestic sales', 'Industrial Dom. Cons.': 'Industrial (biodiesel)', 'Food Use Dom. Cons.': 'Food use', 'Ending Stocks': 'Ending stocks', su: 'Stocks/use %' };
   const SAB = new Set(['Production', 'Total Supply', 'Total use', 'Ending Stocks']);
   function saTable(B, title) {
     const rows = B.rows.filter(a => B.cols.some(c => c.v[a] != null));
@@ -286,7 +286,9 @@ const GrainPack = (() => {
     if (S) {
       const B = S.brazil, A = S.argentina;
       h += card('Brazil soybean complex: balance sheets (USDA PSD, million t)', `<div class="grid">${saTable(B.balance.soybeans, 'Soybeans')}${saTable(B.balance.meal, 'Soybean meal')}${saTable(B.balance.oil, 'Soybean oil')}</div>`,
-        'USDA PSD, Brazil local marketing years (soybeans Feb/Jan: 2025/26 = the crop harvested early 2026). Last column = USDA\'s first projection for the next season. ABIOVE and CONAB balances are not open data (ABIOVE monthly crush is members-only).');
+        'USDA PSD, Brazil local marketing years (soybeans Feb/Jan: 2025/26 = the crop harvested early 2026). Last column = USDA\'s first projection for the next season. CONAB's own balance follows below; ABIOVE's balance and monthly crush are members-only.');
+      if (B.conab) h += card(`Brazil soybean complex: CONAB balance sheets (million t)`, `<div class="grid">${saTable(B.conab.soybeans, 'Soybeans')}${saTable(B.conab.meal, 'Soybean meal (farelo)')}${saTable(B.conab.oil, 'Soybean oil (óleo)')}</div>`,
+        `CONAB, Brazil's official supply agency: "Suprimento - Soja" sheet of the Boletim da Safra de Grãos (${B.conab.survey}), fetched with the open-source agrobr package. CONAB runs the balance on the calendar year after harvest (2025/26 ≈ calendar 2026). Last column is CONAB's first projection.`);
       h += card('Brazil soybean complex: monthly exports (million t)', usage([{ name: 'Soybeans', M: B.monthly.exports.soybeans }, { name: 'Soybean meal', M: B.monthly.exports.meal }, { name: 'Soybean oil', M: B.monthly.exports.oil }], 1, 'Exports by calendar year, with cumulative', 2), 'Comex Stat (Brazil Ministry of Development), NCM 1201 / 2304 / 1507. Brazil monthly crush and stocks are not published openly.');
       h += card('Argentina soybean complex: balance sheets (USDA PSD, million t)', `<div class="grid">${saTable(A.balance.soybeans, 'Soybeans')}${saTable(A.balance.meal, 'Soybean meal')}${saTable(A.balance.oil, 'Soybean oil')}</div>`,
         'USDA PSD, Argentina local marketing years (soybeans Apr/Mar).');

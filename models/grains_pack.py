@@ -500,11 +500,18 @@ def eu_trade():
         if d.empty:
             continue
         d["i"] = d.month.map({m: i for i, m in enumerate(MY_MONTHS)})
+        if "week" in d:
+            d.loc[(d.week >= 50) & (d.i == 0), "i"] = 11    # a 53rd week that spills into the next July
         mys = sorted(d.my.unique())
         cur = mys[-1]
         mon = d.groupby(["my", "i"]).t.sum().unstack("i").reindex(columns=range(12)) / 1e6
         last_i = int(mon.loc[cur].dropna().index.max()) if mon.loc[cur].notna().any() else 0
-        sec = dict(mys=[m[2:4] + "/" + m[-2:] for m in mys], last_month=MY_MONTHS[last_i], last_i=last_i,
+        asof = None
+        if "week" in d and len(d[d.my == cur]):
+            from datetime import timedelta as _td
+            y0 = int(cur[:4]); j1 = date(y0, 7, 1)
+            asof = str(j1 - _td(days=j1.weekday()) + _td(weeks=int(d[d.my == cur].week.max()) - 1, days=6))
+        sec = dict(mys=[m[2:4] + "/" + m[-2:] for m in mys], last_month=MY_MONTHS[last_i], last_i=last_i, asof=asof,
                    monthly={m[2:4] + "/" + m[-2:]: [r1(v, 2) if pd.notna(v) else None for v in mon.loc[m]] for m in mys},
                    ytd={m[2:4] + "/" + m[-2:]: r1(mon.loc[m].iloc[:last_i + 1].sum(), 2) for m in mys},
                    total={m[2:4] + "/" + m[-2:]: r1(mon.loc[m].sum(), 2) for m in mys[:-1]})

@@ -268,7 +268,7 @@ const GrainPack = (() => {
         <div><h3>Top destinations of EU wheat, Jul–${lm}</h3><div class="tbl" id="gpEUdest"></div></div>
         ${IM ? `<div><h3>EU maize imports by origin, Jul–${MON[IM.last_month - 1]} (Mt)</h3><div class="tbl" id="gpEUimp"></div></div>` : ''}
         <div><h3>Season-to-date summary (Mt)</h3><div class="tbl" id="gpEUsum"></div></div></div>
-        <p class="note">DG TAXUD surveillance data via the agri-food data portal API (open), marketing year July/June, CN codes summed by product (grain plus flour/meal equivalents as the portal reports them). The latest month is usually incomplete. Baltics = Lithuania, Latvia, Estonia.</p></div>`;
+        <p class="note">DG TAXUD surveillance data via the agri-food data portal API (open), marketing year July/June, CN codes summed by product (grain plus flour/meal equivalents as the portal reports them). Weeks are grouped into months by their Thursday; data to week ending ${W ? W.asof : ''}, so the latest month is incomplete. Baltics = Lithuania, Latvia, Estonia.</p></div>`;
     } else h += card('EU cereal trade (European Commission)', '<p class="note">Backfill of the EU customs data is running (pipelines/eu_taxud.py); this section fills in when it lands.</p>');
     el.innerHTML = h;
     const drawX = com => { const S = X[com]; const ks = Object.keys(S.series).filter(k => com === 'wheat' ? ['Russia', 'EU', 'Ukraine', 'Canada', 'Australia', 'United States', 'Argentina'].includes(k) : ['United States', 'Brazil', 'Argentina', 'Ukraine', 'EU', 'Russia'].includes(k));

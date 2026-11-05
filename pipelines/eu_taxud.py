@@ -1,14 +1,14 @@
 """EU cereal trade from the European Commission agri-food data portal (DG TAXUD customs surveillance, open API).
 
 https://api.tech.ec.europa.eu/agrifood/api/taxud/weeklyData/{export|import}
-For each marketing year (July/June) and calendar month, sums kg by member state and partner for:
+For each marketing year (July/June) and week (grouped into calendar months by the week's Thursday), sums kg by member state and partner for:
   exports: Common wheat, Maize, Barley;  imports: Maize, Common wheat
 -> data/europe/taxud_<direction>_<product>.csv.gz (my, month, ms, partner, partner_name, t)
 Completed marketing years are fetched once; the current and previous ones are refreshed each run.
-The API wants one sector + one product per call and is slow (~5-20 s per call), so calls go month by month.
+The API wants one sector + one product per call and is slow (~5-20 s per call), so calls go nine weeks at a time.
 """
 import gzip, io, sys, time
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 import pandas as pd
 import requests
@@ -21,32 +21,47 @@ JOBS = [("export", "Common wheat"), ("export", "Maize"), ("export", "Barley"), (
 FIRST = int(__import__("os").environ.get("TAXUD_FIRST", "2020"))
 
 
-def call(direction, product, my, month):
-    p = {"sectors": "Cereals", "products": product, "marketingYears": my, "months": month}
+def call(direction, product, my, weeks):
+    # one sector + one product per call; the API rejects month filters combined with marketing years
+    p = {"sectors": "Cereals", "products": product, "marketingYears": my, "weeks": ",".join(map(str, weeks))}
     for i in range(4):
         try:
-            r = requests.get(API + direction, params=p, headers=H, timeout=180)
+            r = requests.get(API + direction, params=p, headers=H, timeout=240)
             if r.status_code == 200:
                 return r.json()
-            print("  HTTP", r.status_code, r.text[:160])
+            if r.status_code == 404:        # "No results found" (weeks not reached yet)
+                return []
+            print("  HTTP", r.status_code, r.text[:160], flush=True)
         except Exception as e:
-            print("  retry", str(e)[:100])
+            print("  retry", str(e)[:100], flush=True)
         time.sleep(10 * (i + 1))
     return None
 
 
+def week_month(my, w):
+    """Marketing-year week w (week 1 = the Monday-to-Sunday week containing 1 July) -> calendar month of its Thursday."""
+    y = int(my[:4])
+    jul1 = date(y, 7, 1)
+    start = jul1 - timedelta(days=jul1.weekday()) + timedelta(weeks=w - 1)
+    return (start + timedelta(days=3)).month
+
+
 def fetch(direction, product, my):
     rows = []
-    for m in (7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6):
-        j = call(direction, product, my, m)
+    for k in range(0, 54, 9):
+        wk = list(range(k + 1, min(k + 10, 54)))
+        j = call(direction, product, my, wk)
         if j is None:
-            print(f"  {direction} {product} {my} month {m}: failed")
+            print(f"  {direction} {product} {my} weeks {wk[0]}-{wk[-1]}: failed", flush=True)
             return None
         for x in j:
-            rows.append((my, m, x.get("memberStateCode"), x.get("partnerCode"), x.get("partner"), (x.get("kgEquivalent") or x.get("kg") or 0) / 1000))
+            rows.append((my, int(x["week"]), x.get("memberStateCode"), x.get("partnerCode"), x.get("partner"),
+                         (x.get("kgEquivalent") or x.get("kg") or 0) / 1000))
         time.sleep(1)
-    d = pd.DataFrame(rows, columns=["my", "month", "ms", "partner", "partner_name", "t"])
-    return d.groupby(["my", "month", "ms", "partner", "partner_name"], as_index=False).t.sum()
+    d = pd.DataFrame(rows, columns=["my", "week", "ms", "partner", "partner_name", "t"])
+    d = d.groupby(["my", "week", "ms", "partner", "partner_name"], as_index=False).t.sum()
+    d["month"] = [week_month(m, w) for m, w in zip(d.my, d.week)]
+    return d
 
 
 def main():
@@ -59,7 +74,7 @@ def main():
         if only and product.split()[-1].lower() not in [o.lower() for o in only]:
             continue
         p = OUT / f"taxud_{direction}_{product.split()[-1].lower()}.csv.gz"
-        old = pd.read_csv(p) if p.exists() else pd.DataFrame(columns=["my", "month", "ms", "partner", "partner_name", "t"])
+        old = pd.read_csv(p) if p.exists() else pd.DataFrame(columns=["my", "week", "ms", "partner", "partner_name", "t", "month"])
         have = set(old.my.unique())
         parts = [old]
         for my in mys:
@@ -70,7 +85,7 @@ def main():
             if d is None:
                 continue
             parts = [x[x.my != my] for x in parts] + [d]
-            print(f"{direction} {product} {my}: {d.t.sum() / 1e6:.2f} Mt, {len(d)} rows, {time.time() - t0:.0f}s")
+            print(f"{direction} {product} {my}: {d.t.sum() / 1e6:.2f} Mt, {len(d)} rows, weeks to {d.week.max()}, {time.time() - t0:.0f}s", flush=True)
             pd.concat(parts).to_csv(p, index=False, compression="gzip")   # save as we go (long backfill)
 
 

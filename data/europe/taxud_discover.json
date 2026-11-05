@@ -1,0 +1,314 @@
+{
+ "/api/taxud/weeklyData/import": [
+  {
+   "name": "memberStateCodes",
+   "description": "The optional codes of the EU Member States.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "partnerCodes",
+   "description": "The optional partner country code(s).",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "sectors",
+   "description": "The optional sector(s) to search for data.<br>Use ***/api/taxud/weeklyData/sectors*** to get the complete list of sectors.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "products",
+   "description": "The optional product(s) to search for data.<br>Use ***/api/taxud/weeklyData/import/products*** to get the complete list of products.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "cn8ProductCodes",
+   "description": "The optional CN 8 length product code(s) to search for data.<br>Use ***/api/taxud/weeklyData/import/cn8ProductCodes*** to get the complete list of CN 8 product codes.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "taric10ProductCodes",
+   "description": "The optional TARIC 10 length product code(s) to search for data.<br>Use ***/api/taxud/weeklyData/import/taric10ProductCodes*** to get the complete list of TARIC 10 product codes.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "importCategories",
+   "description": "The optional import categor(ies) to search for data.<br>Use ***/api/taxud/weeklyData/importCategories*** to get the complete list of import categories.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "marketingYears",
+   "description": "The optional marketing year(s) must have the format yyyy or yyyy/yyyy.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "months",
+   "description": "The optional month(s) to search for data.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "integer"
+    }
+   }
+  },
+  {
+   "name": "weeks",
+   "description": "The optional week(s) of a year to search for weekly data. The first week of January is number 1.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "integer"
+    }
+   }
+  }
+ ],
+ "/api/taxud/weeklyData/import/products": [],
+ "/api/taxud/weeklyData/import/cn8ProductCodes": [],
+ "/api/taxud/weeklyData/import/taric10ProductCodes": [],
+ "/api/taxud/weeklyData/sectors": [],
+ "/api/taxud/weeklyData/importCategories": [],
+ "/api/taxud/weeklyData/export": [
+  {
+   "name": "memberStateCodes",
+   "description": "The optional codes of the EU Member States.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "partnerCodes",
+   "description": "The optional partner country code(s).",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "sectors",
+   "description": "The optional sector(s) to search for data.<br>Use ***/api/taxud/weeklyData/sectors*** to get the complete list of sectors.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "products",
+   "description": "The optional product(s) to search for data.<br>Use ***/api/taxud/weeklyData/export/products*** to get the complete list of products.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "cn8ProductCodes",
+   "description": "The optional CN 8 length product code(s) to search for data.<br>Use ***/api/taxud/weeklyData/export/cn8ProductCodes*** to get the complete list of CN 8 product codes.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "taric10ProductCodes",
+   "description": "The optional TARIC 10 length product code(s) to search for data.<br>Use ***/api/taxud/weeklyData/export/taric10ProductCodes*** to get the complete list of TARIC 10 product codes.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "marketingYears",
+   "description": "The optional marketing year(s) must have the format yyyy or yyyy/yyyy.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  },
+  {
+   "name": "months",
+   "description": "The optional month(s) to search for data.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "integer"
+    }
+   }
+  },
+  {
+   "name": "weeks",
+   "description": "The optional week(s) of a year to search for weekly data. The first week of January is number 1.",
+   "schema": {
+    "type": "array",
+    "items": {
+     "type": "integer"
+    }
+   }
+  }
+ ],
+ "/api/taxud/weeklyData/export/products": [],
+ "/api/taxud/weeklyData/export/cn8ProductCodes": [],
+ "/api/taxud/weeklyData/export/taric10ProductCodes": [],
+ "import|Oilseeds": {
+  "Oilseeds|Other dry pulses and protein crops|2025/2026": 12.81,
+  "Oilseeds|Flour, meal and powder of protein crops|2025/2026": 0.18,
+  "Oilseeds|Rapeseed|2025/2026": 46.41,
+  "Oilseeds|Sunflowerseed|2025/2026": 2.13,
+  "Oilseeds|Other oilseeds|2025/2026": 14.28,
+  "Oilseeds|Sunflowerseed oil|2025/2026": 19.95,
+  "Oilseeds|Other oilseed oils|2025/2026": 17.15,
+  "Oilseeds|Rapeseed oil|2025/2026": 5.06,
+  "Oilseeds|Other peas and beans|2025/2026": 0.69,
+  "Oilseeds|Field peas|2025/2026": 3.83,
+  "Oilseeds|Broad/field beans|2025/2026": 0.28,
+  "Oilseeds|Soya beans|2025/2026": 143.02,
+  "Oilseeds|Soya oil|2025/2026": 17.63,
+  "Oilseeds|Palm oil|2025/2026": 73.72,
+  "Oilseeds|Soya meal|2025/2026": 435.73,
+  "Oilseeds|Other leguminous vegetables|2025/2026": 0.05,
+  "Oilseeds|Sunflowerseed meal|2025/2026": 46.01,
+  "Oilseeds|Rapeseed meal|2025/2026": 6.5,
+  "Oilseeds|Field peas for sowing|2025/2026": 0.02,
+  "Oilseeds|Lupins|2025/2026": 4.48
+ },
+ "export|Oilseeds": {
+  "Oilseeds|Other dry pulses and protein crops|2025/2026": 0.9,
+  "Oilseeds|Broad/field beans|2025/2026": 5.01,
+  "Oilseeds|Other leguminous vegetables|2025/2026": 0.01,
+  "Oilseeds|Flour, meal and powder of protein crops|2025/2026": 0.09,
+  "Oilseeds|Soya beans|2025/2026": 0.73,
+  "Oilseeds|Other oilseeds|2025/2026": 4.58,
+  "Oilseeds|Rapeseed|2025/2026": 56.63,
+  "Oilseeds|Sunflowerseed|2025/2026": 12.68,
+  "Oilseeds|Lupins|2025/2026": 0.0,
+  "Oilseeds|Palm oil|2025/2026": 6.52,
+  "Oilseeds|Sunflowerseed oil|2025/2026": 5.05,
+  "Oilseeds|Other oilseed oils|2025/2026": 6.13,
+  "Oilseeds|Rapeseed oil|2025/2026": 14.88,
+  "Oilseeds|Other peas and beans|2025/2026": 2.71,
+  "Oilseeds|Soya meal|2025/2026": 10.78,
+  "Oilseeds|Sunflowerseed meal|2025/2026": 2.82,
+  "Oilseeds|Field peas|2025/2026": 0.22,
+  "Oilseeds|Soya oil|2025/2026": 5.27,
+  "Oilseeds|Rapeseed meal|2025/2026": 14.13,
+  "Oilseeds|Field peas for sowing|2025/2026": 0.17
+ },
+ "import|Oilseeds and protein crops": "HTTP 404 {\n  \"error\" : \"Not Found\",\n  \"status\" : \"404\",\n  \"message\" : \"No results found for the selected parameter(s).\",\n  \"technicalErrorMessage\" : \"No data available for these parameters\",\n  \"apiSubErrors\" :",
+ "export|Oilseeds and protein crops": "HTTP 404 {\n  \"error\" : \"Not Found\",\n  \"status\" : \"404\",\n  \"message\" : \"No results found for the selected parameter(s).\",\n  \"technicalErrorMessage\" : \"No data available for these parameters\",\n  \"apiSubErrors\" :",
+ "import|Oils and fats": "HTTP 404 {\n  \"error\" : \"Not Found\",\n  \"status\" : \"404\",\n  \"message\" : \"No results found for the selected parameter(s).\",\n  \"technicalErrorMessage\" : \"No data available for these parameters\",\n  \"apiSubErrors\" :",
+ "export|Oils and fats": "HTTP 404 {\n  \"error\" : \"Not Found\",\n  \"status\" : \"404\",\n  \"message\" : \"No results found for the selected parameter(s).\",\n  \"technicalErrorMessage\" : \"No data available for these parameters\",\n  \"apiSubErrors\" :",
+ "import|Vegetable oils": "HTTP 404 {\n  \"error\" : \"Not Found\",\n  \"status\" : \"404\",\n  \"message\" : \"No results found for the selected parameter(s).\",\n  \"technicalErrorMessage\" : \"No data available for these parameters\",\n  \"apiSubErrors\" :",
+ "export|Vegetable oils": "HTTP 404 {\n  \"error\" : \"Not Found\",\n  \"status\" : \"404\",\n  \"message\" : \"No results found for the selected parameter(s).\",\n  \"technicalErrorMessage\" : \"No data available for these parameters\",\n  \"apiSubErrors\" :",
+ "import|Olive oil": {
+  "Olive Oil|Extra virgin olive oil (EU cat. 1)|2025/2026": 0.64,
+  "Olive Oil|Other olive oil (EU cat. 4 and 5)|2025/2026": 0.02,
+  "Olive Oil|Virgin olive oil (EU cat. 2)|2025/2026": 0.04,
+  "Olive Oil|Virgin lampante olive oil (EU cat. 3)|2025/2026": 0.16,
+  "Olive Oil|Crude olive pomace oil (EU cat. 6)|2025/2026": 0.16,
+  "Olive Oil|Refined olive pomace oil (EU cat. 7 and 8)|2025/2026": 0.0
+ },
+ "export|Olive oil": {
+  "Olive Oil|Extra virgin olive oil (EU cat. 1)|2025/2026": 7.87,
+  "Olive Oil|Virgin lampante olive oil (EU cat. 3)|2025/2026": 0.02,
+  "Olive Oil|Other olive oil (EU cat. 4 and 5)|2025/2026": 2.47,
+  "Olive Oil|Refined olive pomace oil (EU cat. 7 and 8)|2025/2026": 1.58,
+  "Olive Oil|Virgin olive oil (EU cat. 2)|2025/2026": 0.42,
+  "Olive Oil|Crude olive pomace oil (EU cat. 6)|2025/2026": 0.01
+ },
+ "import|Sugar": {
+  "Sugar|Raw beet sugar|2025/2026": 0.04,
+  "Sugar|White sugar|2025/2026": 10.24,
+  "Sugar|Other sugar products|2025/2026": 7.14,
+  "Sugar|Isoglucose|2025/2026": 0.06,
+  "Sugar|Beet molasses|2025/2026": 7.74,
+  "Sugar|Raw cane sugar|2025/2026": 39.43,
+  "Sugar|Cane molasses|2025/2026": 3.7
+ },
+ "export|Sugar": {
+  "Sugar|Raw cane sugar|2025/2026": 0.04,
+  "Sugar|White sugar|2025/2026": 32.29,
+  "Sugar|Other sugar products|2025/2026": 21.84,
+  "Sugar|Cane molasses|2025/2026": 0.03,
+  "Sugar|Isoglucose|2025/2026": 1.73,
+  "Sugar|Raw beet sugar|2025/2026": 0.0,
+  "Sugar|Beet molasses|2025/2026": 23.08
+ },
+ "import|Cereals": {
+  "Cereals|Common wheat|2025/2026": 91.72,
+  "Cereals|Barley|2025/2026": 9.29,
+  "Cereals|Maize|2025/2026": 410.42,
+  "Cereals|Other cereals|2025/2026": 1.55,
+  "Cereals|Durum Wheat|2025/2026": 0.86,
+  "Cereals|Meslin|2025/2026": 0.02,
+  "Cereals|Rye|2025/2026": 0.12,
+  "Cereals|Oats|2025/2026": 0.26,
+  "Cereals|Triticale|2025/2026": 0.1,
+  "Cereals|Rice flour|2025/2026": 0.07,
+  "Cereals|Sorghum|2025/2026": 0.0
+ },
+ "export|Cereals": {
+  "Cereals|Durum Wheat|2025/2026": 58.56,
+  "Cereals|Common wheat|2025/2026": 658.23,
+  "Cereals|Rye|2025/2026": 1.07,
+  "Cereals|Barley|2025/2026": 235.34,
+  "Cereals|Oats|2025/2026": 1.1,
+  "Cereals|Maize|2025/2026": 24.92,
+  "Cereals|Sorghum|2025/2026": 0.0,
+  "Cereals|Other cereals|2025/2026": 0.24,
+  "Cereals|Rice flour|2025/2026": 0.48,
+  "Cereals|Meslin|2025/2026": 0.02,
+  "Cereals|Triticale|2025/2026": 0.05
+ }
+}

@@ -1,0 +1,18 @@
+name: europe discover (TAXUD sectors/products, one-off)
+on: {workflow_dispatch: {}}
+permissions: {contents: write}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas
+      - run: python -W ignore pipelines/eu_taxud.py discover || true
+      - run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/europe/taxud_discover.json; git diff --cached --quiet && exit 0
+          git commit -q -m "data: TAXUD discovery"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && break; git rebase --abort 2>/dev/null || true; sleep 8; done

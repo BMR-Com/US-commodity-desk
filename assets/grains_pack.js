@@ -290,7 +290,7 @@ const GrainPack = (() => {
     const yl = W.mys.at(-1), yp = W.mys.at(-2);
     $('#gpEUdest').innerHTML = `<table><tr><th>Destination</th><th>${yl}</th><th>${yp}</th><th>Change</th></tr>${W.by_partner.map(r => `<tr><td>${r.name}</td><td>${f2(r.cur)}</td><td>${f2(r.prev)}</td><td>${sgn(r.cur - r.prev, 2)}</td></tr>`).join('')}</table>`;
     if (E.import_maize) $('#gpEUimp').innerHTML = `<table><tr><th>Origin</th><th>${E.import_maize.mys.at(-1)}</th><th>${E.import_maize.mys.at(-2)}</th><th>Change</th></tr>${E.import_maize.by_partner.map(r => `<tr><td>${r.name}</td><td>${f2(r.cur)}</td><td>${f2(r.prev)}</td><td>${sgn(r.cur - r.prev, 2)}</td></tr>`).join('')}</table>`;
-    const rows = [['Common wheat exports', E.export_wheat], ['Maize exports', E.export_maize], ['Barley exports', E.export_barley], ['Maize imports', E.import_maize], ['Common wheat imports', E.import_wheat]].filter(r => r[1]);
+    const rows = [['Common wheat exports', E.export_wheat], ['Maize exports', E.export_maize], ['Maize imports', E.import_maize]].filter(r => r[1]);
     $('#gpEUsum').innerHTML = `<table><tr><th></th>${mys.map(y => `<th>${y}</th>`).join('')}<th>vs LY</th></tr>${rows.map(([nm, S]) => `<tr><td>${nm} (Jul–${MON[S.last_month - 1]})</td>${mys.map(y => `<td>${f2(S.ytd[y])}</td>`).join('')}<td>${S.ytd[yl] != null && S.ytd[yp] ? sgn(100 * (S.ytd[yl] / S.ytd[yp] - 1), 0, '%') : '–'}</td></tr>`).join('')}</table>`;
   }
 

@@ -17,8 +17,8 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "europe"
 API = "https://api.tech.ec.europa.eu/agrifood/api/taxud/weeklyData/"
 H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk)", "Accept": "application/json"}
-JOBS = [("export", "Common wheat"), ("export", "Maize"), ("export", "Barley"), ("import", "Maize"), ("import", "Common wheat")]
-FIRST = int(__import__("os").environ.get("TAXUD_FIRST", "2020"))
+JOBS = [("export", "Common wheat"), ("export", "Maize"), ("import", "Maize")]   # exchange-traded grains only (Ma, 2026-11-05)
+FIRST = int(__import__("os").environ.get("TAXUD_FIRST", "2021"))
 
 
 def call(direction, product, my, weeks):
@@ -47,17 +47,15 @@ def week_month(my, w):
 
 
 def fetch(direction, product, my):
-    rows = []
-    for k in range(0, 54, 9):
-        wk = list(range(k + 1, min(k + 10, 54)))
-        j = call(direction, product, my, wk)
-        if j is None:
-            print(f"  {direction} {product} {my} weeks {wk[0]}-{wk[-1]}: failed", flush=True)
-            return None
-        for x in j:
-            rows.append((my, int(x["week"]), x.get("memberStateCode"), x.get("partnerCode"), x.get("partner"),
-                         (x.get("kgEquivalent") or x.get("kg") or 0) / 1000))
-        time.sleep(1)
+    from concurrent.futures import ThreadPoolExecutor
+    chunks = [list(range(k + 1, min(k + 10, 54))) for k in range(0, 54, 9)]
+    with ThreadPoolExecutor(3) as ex:     # the API takes 20-60 s per call; three at a time keeps it polite but quicker
+        res = list(ex.map(lambda wk: call(direction, product, my, wk), chunks))
+    if any(r is None for r in res):
+        print(f"  {direction} {product} {my}: a chunk failed", flush=True)
+        return None
+    rows = [(my, int(x["week"]), x.get("memberStateCode"), x.get("partnerCode"), x.get("partner"),
+             (x.get("kgEquivalent") or x.get("kg") or 0) / 1000) for j in res for x in j]
     d = pd.DataFrame(rows, columns=["my", "week", "ms", "partner", "partner_name", "t"])
     d = d.groupby(["my", "week", "ms", "partner", "partner_name"], as_index=False).t.sum()
     d["month"] = [week_month(m, w) for m, w in zip(d.my, d.week)]

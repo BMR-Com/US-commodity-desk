@@ -492,7 +492,7 @@ def eu_trade():
     """EU cereal trade (Commission TAXUD surveillance) built by pipelines/eu_taxud.py."""
     base = ROOT / "data" / "europe"
     out = {}
-    for direction, prod in (("export", "wheat"), ("export", "maize"), ("export", "barley"), ("import", "maize"), ("import", "wheat")):
+    for direction, prod in (("export", "wheat"), ("export", "maize"), ("import", "maize")):
         p = base / f"taxud_{direction}_{prod}.csv.gz"
         if not p.exists():
             continue

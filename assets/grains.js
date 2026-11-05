@@ -77,7 +77,7 @@ const Grains = (() => {
   const el = s => document.querySelector('#grains ' + s);
   function shell() {
     $('#grains').innerHTML = `
-      <nav class="tabs" id="gCom" style="background:#f0f6f1">${Object.entries(GC).map(([k, v]) => `<button data-com="${k}" class="${k === com ? 'on' : ''}">${v.name}</button>`).join('')}<button data-com="sa" class="${com === 'sa' ? 'on' : ''}">Brazil &amp; Argentina</button></nav>
+      <nav class="tabs" id="gCom" style="background:#f0f6f1"><button data-com="sum" class="${com === 'sum' ? 'on' : ''}"><b>Grain summary</b></button>${Object.entries(GC).map(([k, v]) => `<button data-com="${k}" class="${k === com ? 'on' : ''}">${v.name}</button>`).join('')}<button data-com="sa" class="${com === 'sa' ? 'on' : ''}">Brazil &amp; Argentina</button></nav>
       <nav class="tabs" id="gTabs">
         <button data-t="g-primer" class="on">1 · Primer</button><button data-t="g-geo">Where it's grown, trade &amp; weather</button><button data-t="g-sd">2 · Supply &amp; demand</button>
         <button data-t="g-esr">3 · Export sales</button><button data-t="g-wasde">4 · WASDE</button>
@@ -92,16 +92,17 @@ const Grains = (() => {
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
-    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (['g-primer', 'g-geo', 'g-sd', 'g-esr', 'g-wasde', 'g-flows', 'g-rv', 'g-outlook', 'g-seas'].includes(h[2])) tab = h[2]; }
+    if (h[0] === 'g') { if (GC[h[1]] || h[1] === 'sa') com = h[1]; if (h[1] === 'summary') com = 'sum'; if (['g-primer', 'g-geo', 'g-sd', 'g-esr', 'g-wasde', 'g-flows', 'g-rv', 'g-outlook', 'g-seas'].includes(h[2])) tab = h[2]; }
     $$('#gCom button').forEach(x => x.classList.toggle('on', x.dataset.com === com)); $$('#gTabs button').forEach(x => x.classList.toggle('on', x.dataset.t === tab));
   }
   async function show() {
     if (!built) { shell(); await load(); built = true; }
     fromHash(); render();
   }
-  window.addEventListener('hashchange', () => { if (built && location.hash.startsWith('#g/') && location.hash !== `#g/${com}/${tab}`) { fromHash(); render(); } });
+  window.addEventListener('hashchange', () => { if (built && location.hash.startsWith('#g/') && location.hash !== (com === 'sum' ? '#g/summary' : `#g/${com}/${tab}`)) { fromHash(); render(); } });
   function render() {
-    el('#gTabs').style.display = com === 'sa' ? 'none' : '';
+    el('#gTabs').style.display = com === 'sa' || com === 'sum' ? 'none' : '';
+    if (com === 'sum') { history.replaceState(null, '', '#g/summary'); GrainPack.mount(el('#gBody')); return; }
     if (com === 'sa') { history.replaceState(null, '', '#g/sa'); saPage(); return; }
     history.replaceState(null, '', `#g/${com}/${tab}`);
     const c = GC[com];

@@ -39,7 +39,7 @@ jobs:
         continue-on-error: true
         timeout-minutes: 15   # a slow AMS API must never block the COT/price commit
         env: {AMS_API_KEY: '${{ secrets.AMS_API_KEY }}'}
-      - run: python models/grains_wasde.py && python -W ignore models/grains_exports.py && python -W ignore models/grains_sales.py && python -W ignore models/grains_flash.py && python -W ignore models/grains_basis.py && python models/grains_condition.py && python -W ignore models/grains_tests.py
+      - run: python models/grains_wasde.py && python -W ignore models/grains_exports.py && python -W ignore models/grains_sales.py && python -W ignore models/grains_flash.py && python -W ignore models/grains_basis.py && python models/grains_condition.py && python -W ignore models/grains_tests.py && (python -W ignore models/grains_pack.py || true)
         continue-on-error: true
       - run: python models/flows.py
         continue-on-error: true

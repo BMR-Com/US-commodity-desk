@@ -143,8 +143,18 @@ def conab():
         from agrobr.conab import client
     except Exception as e:
         print("conab: agrobr not installed", e); return
+    async def latest():
+        # agrobr's full catalog walk breaks on a later (empty) gov.br page; the newest surveys are on page 1
+        try:
+            return await client.fetch_safra_xlsx()
+        except Exception as e:
+            print("conab: catalog walk failed, using page 1 only:", str(e)[:120])
+        html = await client.fetch_boletim_page()
+        levs = await client.list_levantamentos(html=html)
+        t = dict(levs[0])
+        return await client.download_xlsx(t["url"], metadata=t), t
     try:
-        xlsx, meta = asyncio.run(client.fetch_safra_xlsx())
+        xlsx, meta = asyncio.run(latest())
     except Exception as e:
         print("conab: fetch failed", e); return
     print("conab:", meta.get("safra"), "levantamento", meta.get("levantamento"), meta.get("url", "")[:120])
@@ -162,9 +172,11 @@ def conab():
     pd.DataFrame(rows, columns=["sheet", "row", "label", "col", "value"]).to_csv(SA_OUT / "conab_supply_raw.csv", index=False)
     (SA_OUT / "conab_supply_meta.json").write_text(json.dumps({k: str(v) for k, v in meta.items()}, indent=1))
     print("conab supply sheets:", [s for s in xl.sheet_names if "suprimento" in s.lower() or "oferta" in s.lower()], len(rows), "cells")
+    from agrobr.conab.parsers.v1 import ConabParserV1
     for prod in ("soja", "milho"):
         try:
-            df = asyncio.run(ac.balanco(prod))
+            xlsx.seek(0)
+            df = pd.DataFrame(ConabParserV1().parse_suprimento(xlsx=xlsx, produto=prod))
             df.to_csv(SA_OUT / f"conab_balanco_{prod}.csv", index=False)
             print("conab balanco", prod, len(df))
         except Exception as e:

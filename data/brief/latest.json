@@ -1,14 +1,14 @@
 {
- "generated": "2026-11-05 20:41 UTC",
- "generated_et": "Thu Nov 05, 2026 03:41 PM ET",
+ "generated": "2026-11-05 20:49 UTC",
+ "generated_et": "Thu Nov 05, 2026 03:49 PM ET",
  "date": "2026-11-05",
- "prices_from": "2026-11-05 20:41 UTC",
+ "prices_from": "2026-11-05 20:49 UTC",
  "cme_oi_date": "20261104",
  "headlines": [
   "Biggest moves vs prior settle: Lean hogs -2.575 (-4.5%); Feeder cattle -6.950 (-2.1%); Soybean oil -1.31 (-2.1%).",
   "Today: EIA Weekly Natural Gas Storage Report 10:30 AM ET; USDA weekly export sales 8:30 AM ET; CFTC cotton on-call report 3:30 PM ET; Buenos Aires Grain Exchange crop progress (weekly).",
   "2 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported sales of 167,000 MT of soybeans for delivery to Spain during MY 2026/2027.",
-  "Strongest desk views: Corn strongly bearish.",
+  "Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.",
   "Macro backdrop for ags: headwind (-4)."
  ],
  "events_today": [
@@ -509,7 +509,7 @@
    "spread_read": "weak carry: commercials want grain now",
    "esr_pace": 0.56292,
    "esr_norm": 0.67081,
-   "view": "bearish",
+   "view": "strongly bearish",
    "conviction": "high",
    "technical": "Dec 26 trades at 635.25 \u00a2/bu (-1.5% on the week, -14.0% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 20 (oversold) and ADX 46 (trending). Nearest support 633.00, resistance 640.50; 52-week range 564.00\u2013858.25.",
    "levels": "Levels to watch: a close above 693.46 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 633.00\u2013640.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 5; USDA WASDE Nov 10; USDA weekly export sales Nov 12.",
@@ -849,7 +849,7 @@
    "cta_dn": 17.1788,
    "hi52": 18.95,
    "lo52": 15.12,
-   "atr": 0.4283,
+   "atr": 0.4261,
    "mm_net": -4935.0,
    "mm_chg": 1430.0,
    "mm_pct3": 14.4,
@@ -1499,21 +1499,21 @@
    ]
   },
   "CL": {
-   "line": "trend long 0.8x for 40% vol (12m excess +90%); carry +17.0%/yr (95th percentile for the month); IV-RV +4.1",
+   "line": "trend long 0.8x for 40% vol (12m excess +90%); carry +17.0%/yr (95th percentile for the month); IV-RV +4.2",
    "flags": [
     "Inverted IV curve (Dec 2026 -> Feb 2027 -6.1 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson).",
     "Fat right tail: options price a 24% rally 2.2x as likely as a lognormal at ATM vol."
    ]
   },
   "HO": {
-   "line": "trend long 0.8x for 40% vol (12m excess +153%); carry +21.9%/yr (91st percentile for the month); IV-RV +17.3",
+   "line": "trend long 0.8x for 40% vol (12m excess +153%); carry +21.9%/yr (91st percentile for the month); IV-RV +17.5",
    "flags": [
     "Inverted IV curve (Dec 2026 -> Feb 2027 -6.9 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson).",
     "Fat right tail: options price a 38% rally 2.1x as likely as a lognormal at ATM vol."
    ]
   },
   "RB": {
-   "line": "trend long 1.0x for 40% vol (12m excess +90%); carry +8.0%/yr (91st percentile for the month); IV-RV +8.4",
+   "line": "trend long 1.0x for 40% vol (12m excess +90%); carry +8.0%/yr (91st percentile for the month); IV-RV +8.5",
    "flags": [
     "Crowded: managed money at the 97th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR).",
     "Inverted IV curve (Dec 2026 -> Dec 2027 -9.8 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson)."

@@ -1,13 +1,13 @@
-# Morning brief · Thu Nov 05, 2026 03:41 PM ET
+# Morning brief · Thu Nov 05, 2026 03:49 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-05 20:41 UTC). CME open interest from 20261104. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-05 20:49 UTC). CME open interest from 20261104. Research only, not investment advice.
 
 ## Key points
 
 - Biggest moves vs prior settle: Lean hogs -2.575 (-4.5%); Feeder cattle -6.950 (-2.1%); Soybean oil -1.31 (-2.1%).
 - Today: EIA Weekly Natural Gas Storage Report 10:30 AM ET; USDA weekly export sales 8:30 AM ET; CFTC cotton on-call report 3:30 PM ET; Buenos Aires Grain Exchange crop progress (weekly).
 - 2 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported sales of 167,000 MT of soybeans for delivery to Spain during MY 2026/2027.
-- Strongest desk views: Corn strongly bearish.
+- Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.
 - Macro backdrop for ags: headwind (-4).
 
 ## Calendar
@@ -67,7 +67,7 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Soybean meal | Dec 26 | 317.4 | -1.2 (-0.4%) | -3.6% | -13.2% | Sell | 25 | 316.2 | 317.8 | 169,859 (-34,834) | -3,874 | bearish |
 | Soybean oil | Dec 26 | 62.22 | -1.31 (-2.1%) | -5.2% | -8.1% | Strong sell | 25 | 61.64 | 65.53 | 56,271 (-13,587) | +12,216 | mildly bearish |
 | Chicago wheat | Dec 26 | 599.25 | +0.75 (+0.1%) | -0.7% | -12.7% | Sell | 24 | 598.50 | 601.75 | -74,859 (-23,725) | +2,694 | bearish |
-| KC HRW wheat | Dec 26 | 635.25 | +2.50 (+0.4%) | -1.5% | -14.0% | Sell | 20 | 633.00 | 640.50 | -1,865 (-8,260) | -1,313 | bearish |
+| KC HRW wheat | Dec 26 | 635.25 | +2.50 (+0.4%) | -1.5% | -14.0% | Sell | 20 | 633.00 | 640.50 | -1,865 (-8,260) | -1,313 | strongly bearish |
 | Cotton | Dec 26 | 78.80 | +0.69 (+0.9%) | +0.4% | -1.5% | Sell | 44 | 77.73 | 80.47 | 56,190 (-10,276) | – | bearish |
 | Lean hogs | Dec 26 | 54.975 | -2.575 (-4.5%) | -8.1% | -20.4% | Strong sell | 20 | – | 71.200 | -47,109 (-5,976) | +373 | bearish |
 | Live cattle | Dec 26 | 214.475 | -3.525 (-1.6%) | -5.2% | -4.2% | Strong sell | 28 | 213.375 | 219.725 | 56,017 (+4,874) | -900 | bearish |
@@ -117,7 +117,7 @@ Research signals: trend short 1.5x for 40% vol (12m excess -2%); carry -5.4%/yr 
 - [U.S. Weekly Wheat Export Sales Land Above Estimates](https://news.google.com/rss/articles/CBMiqAFBVV95cUxNOFJUVVZsNVJLM0J6ak5rZXYxVXdSTzQ0VG0yT2ZwLTdtT2pBanRpSVJMdHEydkpibkJzUlpKejJ3QnItUFZLN0JqdUd6UFF5c2RuMmc4MHdwbzFwU3F4UFdGWHNaQld6SS12RVNLTWhqbHlSTnlzWEE5MkhrZTVFVUxZOFpBV1ZrUW82LXh0eEdDWjZBQmQxanBaanRlbjhjdU5WVXVaT0k?oc=5) · MarketWatch
 - [544955 | Peshwa Wheat Ltd. Profile](https://news.google.com/rss/articles/CBMimwFBVV95cUxOMHdiTVFFQTlFampPdTRhZnV0YVlfUjJwZjBNTWdILVZJcmk1RTJwV01PM3JUVHUyc2hGYlh3Nlc1NTF3X0I4NTJ4SUZ1QnR3YjlKdVFOcGd0Vzg2aXoxQmFtQ3dBUzJ4blh4bzMxclMxMFI0dHl4c2pIeDBNeVhTZmtNZGpHSTlWeEhwSTgzeVE4aEsyZHhBMlNPcw?oc=5) · MarketWatch
 
-**KC HRW wheat** (Dec 26, bearish). Dec 26 trades at 635.25 ¢/bu (-1.5% on the week, -14.0% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 20 (oversold) and ADX 46 (trending). Nearest support 633.00, resistance 640.50; 52-week range 564.00–858.25. Levels to watch: a close above 693.46 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 633.00–640.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 5; USDA WASDE Nov 10; USDA weekly export sales Nov 12.
+**KC HRW wheat** (Dec 26, strongly bearish). Dec 26 trades at 635.25 ¢/bu (-1.5% on the week, -14.0% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 20 (oversold) and ADX 46 (trending). Nearest support 633.00, resistance 640.50; 52-week range 564.00–858.25. Levels to watch: a close above 693.46 (200-day average) would bring trend-follower buying; below 626.00 (100-day breakout low) adds selling; the 633.00–640.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 5; USDA WASDE Nov 10; USDA weekly export sales Nov 12.
 Flags: RSI 20: oversold; Export commitments -16% vs normal pace; Realized vol low (14%, 0th pct): cheap to own optionality into catalysts.
 Research signals: trend long 1.5x for 40% vol (12m excess +6%); carry -4.0%/yr (70th percentile for the month); IV-RV +12.3. Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Inverted IV curve (Dec 2026 -> Mar 2027 -2.5 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson). Fat right tail: options price a 12% rally 2.3x as likely as a lognormal at ATM vol.
 - [Corn, Soybeans and Wheat Make New Lows for the Move | Tuesday, Nov. 3, 2026](https://news.google.com/rss/articles/CBMirgFBVV95cUxOVXRPMXA3MnktR2NmMVdhWEE1a2YyZ0tBRTMtSG9XNHpJTUlXRmttN3hLTzdvQzctRGpWX3pON1p0X3JuT0t2RHhtTXl6TWZsVWdDMzRfdV9kRW9FUWN2ZnAydEFiSklKWlpEOENKcG9HRGltQWF0ZXBMNVB3X3o3MngzREtuQ3dNMHRjLXJqN09kTFlnYmZHeTIxU1NZQ1ZCMVFxSk52SWJzc21xclE?oc=5) · Successful Farming

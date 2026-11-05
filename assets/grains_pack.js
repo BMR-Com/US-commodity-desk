@@ -73,8 +73,9 @@ const GrainPack = (() => {
       <div class="card"><h2>World corn export availability (PSD, MMT)</h2><div class="tbl" id="gpWC"></div>${cv('gpWCy', 'short')}<p class="note">USDA PSD exports by each country's local marketing year (the report uses a common Sep/Aug year). Line: y/y change in world imports excluding the EU and China.</p></div>
       <div class="card"><h2>World wheat balance (PSD, MMT)</h2><div class="ctrls">${btns('ww', Object.keys(P.world.wheat.years).map(k => [k, k]), Object.keys(P.world.wheat.years).at(-1))}</div><div class="tbl" id="gpWW"></div></div>
       <div class="card"><h2>Brazil exports (Comex Stat, MMT)</h2><div class="grid g2"><div><h3>Corn by month, Sep/Aug season</h3>${cv('gpBRc')}</div><div><h3>Soybeans by month, calendar year</h3>${cv('gpBRs')}</div></div></div>
+      <div id="gpSoyCx" class="grid" style="gap:12px"></div>
       ${card('Not replicated (no public data in the desk yet)', `<ul class="read">${P.missing.map(m => `<li>${m}</li>`).join('')}</ul>`)}`;
-    stateMap(); history(); revisions(); sdTables(); exportsSec(); weekly(); cot(); curve(); mktSU(); spreads(); decdec(); basis(); world(); brazil();
+    stateMap(); history(); revisions(); sdTables(); exportsSec(); weekly(); cot(); curve(); mktSU(); spreads(); decdec(); basis(); world(); brazil(); soyComplex();
   }
 
   function yieldTable(k) {
@@ -247,6 +248,66 @@ const GrainPack = (() => {
       chart(id, { type: 'line', data: { labels, datasets: ks.map((k, i) => ({ label: `${B.mys[i]} (${fmt(B.totals[k], 1)})`, data: B.monthly[k], borderColor: i === ks.length - 1 ? '#c0392b' : PAL[i + 1], borderWidth: i === ks.length - 1 ? 2.4 : 1.4, pointRadius: 0, borderDash: i === ks.length - 1 ? [5, 3] : [] })) } }); };
     const sep = ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
     mk('gpBRc', P.brazil.corn, sep); mk('gpBRs', P.brazil.soybeans, MON);
+  }
+  // ── Brazil, Argentina and US soybean complex: balances and monthly usage ──
+  const MOS = { 1: MON, 4: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'], 9: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'] };
+  const SAL = { 'Beginning Stocks': 'Beginning stocks', 'Area Harvested': 'Area harvested (m ha)', Yield: 'Yield (t/ha)', 'Total Supply': 'Total supply', Crush: 'Crush (soybeans)', 'Other domestic': 'Seed, feed & residual',
+    'Domestic Consumption': 'Total domestic', 'Industrial Dom. Cons.': 'Industrial (biodiesel)', 'Food Use Dom. Cons.': 'Food use', 'Ending Stocks': 'Ending stocks', su: 'Stocks/use %' };
+  const SAB = new Set(['Production', 'Total Supply', 'Total use', 'Ending Stocks']);
+  function saTable(B, title) {
+    const rows = B.rows.filter(a => B.cols.some(c => c.v[a] != null));
+    return `<div><h3>${title}</h3><div class="tbl"><table><tr><th></th>${B.cols.map((c, i) => `<th style="${i === B.cols.length - 1 ? 'background:#fdf3e1' : ''}">${c.my}</th>`).join('')}</tr>
+      ${rows.map(a => `<tr style="${SAB.has(a) ? 'font-weight:600;background:#f6f8f5' : ''}"><td class="l">${SAL[a] || a}</td>${B.cols.map(c => `<td>${c.v[a] == null ? '–' : a === 'su' ? fmt(c.v[a], 1) + '%' : fmt(c.v[a], a === 'Yield' ? 2 : 1)}</td>`).join('')}</tr>`).join('')}</table></div></div>`;
+  }
+  // monthly usage table: months x seasons, each with a cumulative column (like the report's usage blocks)
+  function usage(blocks, start, title, dec = 2) {
+    const mo = MOS[start];
+    const head1 = blocks.map(b => `<th colspan="${b.M.seasons.length * 2}" style="text-align:center;border-left:2px solid #ccc">${b.name}</th>`).join('');
+    const head2 = blocks.map(b => b.M.seasons.map((s, j) => `<th style="${j === 0 ? 'border-left:2px solid #ccc' : ''}">${s}</th><th style="color:#2f6b3a">cum</th>`).join('')).join('');
+    const cum = v => { let c = 0; return v.map(x => x == null ? null : (c += x)); };
+    const C = blocks.map(b => b.M.seasons.map(s => ({ v: b.M.values[s], c: b.stock ? null : cum(b.M.values[s]) })));
+    const body = mo.map((m, i) => `<tr><td>${m}</td>${C.map(bl => bl.map((x, j) => `<td style="${j === 0 ? 'border-left:2px solid #ccc' : ''}">${x.v[i] == null ? '' : fmt(x.v[i], dec)}</td><td style="color:#2f6b3a;font-style:italic">${x.c && x.c[i] != null ? fmt(x.c[i], dec) : ''}</td>`).join('')).join('')}</tr>`).join('');
+    const tot = `<tr style="font-weight:600"><td>Total</td>${C.map((bl, k) => bl.map((x, j) => `<td style="${j === 0 ? 'border-left:2px solid #ccc' : ''}">${blocks[k].stock ? '' : fmt(x.v.reduce((a, b) => a + (b || 0), 0), dec)}</td><td></td>`).join('')).join('')}</tr>`;
+    return `<h3>${title}</h3><div class="tbl"><table style="font-size:11.5px"><tr><th></th>${head1}</tr><tr><th>Month</th>${head2}</tr>${body}${tot}</table></div>`;
+  }
+  function bandChart(id, M, start, unit) {
+    const s = M.seasons, cur = s.at(-1), prev = s.at(-2);
+    chart(id, { type: 'line', data: { labels: MOS[start], datasets: [
+      { label: 'Max 10', data: M.max10, borderWidth: 0, backgroundColor: 'rgba(160,190,140,.28)', fill: '+1', pointRadius: 0 },
+      { label: 'Min 10', data: M.min10, borderWidth: 0, pointRadius: 0, fill: false },
+      { label: '10-yr avg', data: M.avg10, borderColor: '#222', borderDash: [2, 3], borderWidth: 1.4, pointRadius: 0 },
+      { label: prev, data: M.values[prev], borderColor: '#1f3a5f', borderWidth: 2, pointRadius: 2 },
+      { label: cur, data: M.values[cur], borderColor: '#d62020', borderWidth: 2.4, pointRadius: 3 }] },
+      options: { plugins: { legend: { labels: { filter: i => i.text !== 'Min 10', boxWidth: 10, font: { size: 10 } } } }, scales: { y: { title: { display: true, text: unit } } } } });
+  }
+  function soyComplex() {
+    const S = P.sa_soy, U = P.us_fo, el = $('#gpSoyCx'); if (!el) return;
+    let h = '';
+    if (S) {
+      const B = S.brazil, A = S.argentina;
+      h += card('Brazil soybean complex: balance sheets (USDA PSD, million t)', `<div class="grid">${saTable(B.balance.soybeans, 'Soybeans')}${saTable(B.balance.meal, 'Soybean meal')}${saTable(B.balance.oil, 'Soybean oil')}</div>`,
+        'USDA PSD, Brazil local marketing years (soybeans Feb/Jan: 2025/26 = the crop harvested early 2026). Last column = USDA\'s first projection for the next season. ABIOVE and CONAB balances are not open data (ABIOVE monthly crush is members-only).');
+      h += card('Brazil soybean complex: monthly exports (million t)', usage([{ name: 'Soybeans', M: B.monthly.exports.soybeans }, { name: 'Soybean meal', M: B.monthly.exports.meal }, { name: 'Soybean oil', M: B.monthly.exports.oil }], 1, 'Exports by calendar year, with cumulative', 2), 'Comex Stat (Brazil Ministry of Development), NCM 1201 / 2304 / 1507. Brazil monthly crush and stocks are not published openly.');
+      h += card('Argentina soybean complex: balance sheets (USDA PSD, million t)', `<div class="grid">${saTable(A.balance.soybeans, 'Soybeans')}${saTable(A.balance.meal, 'Soybean meal')}${saTable(A.balance.oil, 'Soybean oil')}</div>`,
+        'USDA PSD, Argentina local marketing years (soybeans Apr/Mar).');
+      if (A.monthly) {
+        const M = A.monthly;
+        h += card(`Argentina soybean complex: monthly crush, output and stocks (million t, Apr/Mar)`,
+          usage([{ name: 'Soybean crush', M: M.crush }, { name: 'Meal production', M: M.meal_prod }, { name: 'Oil production', M: M.oil_prod }], 4, 'Crush and production', 2)
+          + usage([{ name: 'Meal: implied exports + domestic use', M: M.meal_disp }, { name: 'Meal stocks (end of month)', M: M.meal_stocks, stock: true }, { name: 'Oil stocks (end of month)', M: M.oil_stocks, stock: true }], 4, 'Meal disappearance and stocks', 2),
+          `${A.source}. Crush to ${A.crush_asof}, stocks to ${A.stocks_asof} (MAGyP surveys stocks at the start of a month; shown as the previous month's ending stocks). Meal = pellets + expellers; trailing-12-month extraction: meal ${A.yields.meal}%, oil ${A.yields.oil}%. Implied disappearance = production + opening − closing stocks (MAGyP does not publish monthly meal exports; domestic use is ~0.25 Mt/month).`);
+        h += `<div class="card"><h2>Argentine monthly soymeal picture (million t, Apr/Mar)</h2><div class="grid g3"><div><h3>Monthly soybean crush</h3>${cv('gpArCr')}</div><div><h3>Monthly meal disappearance (≈ exports)</h3>${cv('gpArEx')}</div><div><h3>Monthly meal ending stocks</h3>${cv('gpArSt')}</div></div><p class="note">Band = min/max of the previous 10 seasons; dotted = 10-season average.</p></div>`;
+      }
+    }
+    if (U && U.monthly) {
+      const M = U.monthly, keys = Object.keys(M);
+      h += `<div class="card"><h2>US soybean crush, meal and oil (NASS Fats &amp; Oils, Sep/Aug)</h2><div class="grid g3">${keys.map(k => `<div><h3>${k.replace(/_/g, ' ')} (${U.units[k]})</h3>${cv('gpUS' + k)}</div>`).join('')}</div>
+        ${usage(keys.filter(k => ['crush', 'meal_prod', 'oil_crude_prod'].includes(k)).map(k => ({ name: k.replace(/_/g, ' '), M: M[k] })), 9, 'Monthly production with cumulative', 1)}
+        <p class="note">USDA NASS Fats &amp; Oils (QuickStats API), data to ${U.asof}. Trailing-12-month yields: meal ${U.meal_yield_lb_bu ?? '–'} lb/bu, oil ${U.oil_yield_lb_bu ?? '–'} lb/bu. Series: ${Object.values(U.chosen).map(c => c.desc).join('; ')}.</p></div>`;
+    } else if (U && U.found) h += card('US soybean crush (NASS Fats & Oils)', `<p class="note">Series found but not matched yet: ${U.found.slice(0, 20).join('; ')}</p>`);
+    el.innerHTML = h;
+    if (S?.argentina?.monthly) { const M = S.argentina.monthly; bandChart('gpArCr', M.crush, 4, 'Mt'); bandChart('gpArEx', M.meal_disp, 4, 'Mt'); bandChart('gpArSt', M.meal_stocks, 4, 'Mt'); }
+    if (U?.monthly) Object.keys(U.monthly).forEach(k => bandChart('gpUS' + k, U.monthly[k], 9, U.units[k]));
   }
   return { mount };
 })();

@@ -55,7 +55,7 @@ def nass():
     for com in ["SOYBEANS", "OIL", "CAKE & MEAL"]:
         base = dict(commodity_desc=com, freq_desc="MONTHLY", agg_level_desc="NATIONAL", source_desc="SURVEY")
         sd = qs("get_param_values/", param="short_desc", **base).get("short_desc", [])
-        sd = [s for s in sd if "SOYBEAN" in s.upper()]
+        sd = [s for s in sd if "SOYBEAN" in s.upper() and "PRICE" not in s.upper() and "PCT" not in s.upper()]
         found[com] = sd
         print(com, len(sd), "soybean series")
         rows = []

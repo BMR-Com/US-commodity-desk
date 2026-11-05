@@ -486,6 +486,149 @@ def brazil_corn():
     return out
 
 
+# ---------------------------------------------------------------- Brazil & Argentina soybean complex
+SA_ROWS = {
+    "soybeans": ["Beginning Stocks", "Area Harvested", "Yield", "Production", "Imports", "Total Supply", "Crush",
+                 "Other domestic", "Domestic Consumption", "Exports", "Total use", "Ending Stocks", "su"],
+    "meal": ["Beginning Stocks", "Crush", "Production", "Imports", "Total Supply", "Domestic Consumption", "Exports",
+             "Total use", "Ending Stocks", "su"],
+    "oil": ["Beginning Stocks", "Crush", "Production", "Imports", "Total Supply", "Industrial Dom. Cons.",
+            "Food Use Dom. Cons.", "Domestic Consumption", "Exports", "Total use", "Ending Stocks", "su"]}
+
+
+def sa_balance(cc, com, n=7):
+    d = psd_frame(com)
+    d = d[d.cc == cc]
+    mys = sorted(d.my.unique())[-n:]
+    cols = []
+    for my in mys:
+        v = d[d.my == my].groupby("attr").v.sum()
+        row = {}
+        for a in SA_ROWS[com]:
+            if a in v:
+                row[a] = r1(v[a] / (1 if a == "Yield" else 1000), 2)
+        dom, ex = v.get("Domestic Consumption"), v.get("Exports")
+        if dom is not None and ex is not None:
+            row["Total use"] = r1((dom + ex) / 1000, 2)
+            if v.get("Ending Stocks") is not None and dom + ex:
+                row["su"] = r1(100 * v["Ending Stocks"] / (dom + ex), 1)
+        if com == "soybeans" and dom is not None and v.get("Crush") is not None:
+            row["Other domestic"] = r1((dom - v["Crush"]) / 1000, 2)
+        if com in ("meal", "oil") and v.get("Crush") is not None and v.get("Production"):
+            row["Crush"] = r1(v["Crush"] / 1000, 2)
+        cols.append(dict(my=f"{my}/{(my + 1) % 100:02d}", v=row))
+    return dict(rows=SA_ROWS[com], cols=cols)
+
+
+def monthly_table(df, col, start, n=4, scale=1e3):
+    """{season: [12 monthly values in start-month order]}, values in thousand t -> million t."""
+    d = df[["year", "month", col]].dropna().copy()
+    d["s"] = (d.year - (d.month < start)).astype(int)
+    d["i"] = (d.month - start) % 12
+    piv = d.pivot_table(index="i", columns="s", values=col, aggfunc="sum").reindex(range(12))
+    seasons = sorted(piv.columns)
+    lab = (lambda s: str(s)) if start == 1 else (lambda s: f"{s % 100:02d}/{(s + 1) % 100:02d}")
+    hist = piv[[s for s in seasons[:-1]][-10:]]
+    return dict(seasons=[lab(s) for s in seasons[-n:]],
+                values={lab(s): [r1(v / scale, 2) if pd.notna(v) else None for v in piv[s]] for s in seasons[-n:]},
+                min10=[r1(v / scale, 2) for v in hist.min(axis=1)], max10=[r1(v / scale, 2) for v in hist.max(axis=1)],
+                avg10=[r1(v / scale, 2) for v in hist.mean(axis=1)])
+
+
+def south_america_soy():
+    out = {"brazil": {}, "argentina": {}}
+    for cc, k in (("BR", "brazil"), ("AR", "argentina")):
+        out[k]["balance"] = {c: sa_balance(cc, c) for c in ("soybeans", "meal", "oil")}
+    # Brazil monthly exports (Comex Stat), calendar year, million t
+    bx = pd.read_csv(ROOT / "data" / "south_america" / "brazil_exports.csv")
+    mon = {}
+    for c in ("soybeans", "meal", "oil"):
+        x = bx[bx.commodity == c].rename(columns={"kt": "v"})
+        mon[c] = monthly_table(x, "v", 1)
+    out["brazil"]["monthly"] = {"exports": mon, "start": 1, "source": "Comex Stat (via the desk pipeline)"}
+    # Argentina monthly crush / output (MAGyP) and stocks; Apr/Mar season, million t
+    p1, p2 = ROOT / "data" / "south_america" / "ar_crush_monthly.csv", ROOT / "data" / "south_america" / "ar_stocks_monthly.csv"
+    if p1.exists():
+        cr = pd.read_csv(p1)
+        cr["meal"] = cr.pellets.fillna(0) + cr.expellers.fillna(0)
+        m = {"crush": monthly_table(cr, "crush", 4, scale=1e6), "oil_prod": monthly_table(cr, "oil", 4, scale=1e6),
+             "meal_prod": monthly_table(cr, "meal", 4, scale=1e6)}
+        last = cr.iloc[-1]
+        yld = cr.tail(12)
+        out["argentina"]["crush_asof"] = f"{int(last.year)}-{int(last.month):02d}"
+        out["argentina"]["yields"] = dict(meal=r1(100 * yld.meal.sum() / yld.crush.sum(), 1), oil=r1(100 * yld.oil.sum() / yld.crush.sum(), 1))
+        if p2.exists():
+            st = pd.read_csv(p2)
+            st["meal"] = st.pellets.fillna(0) + st.expellers.fillna(0)
+            # MAGyP stocks are surveyed at the start of the month: stocks dated M = end of month M-1
+            t = pd.to_datetime(dict(year=st.year, month=st.month, day=1)) - pd.DateOffset(months=1)
+            st["year"], st["month"] = t.dt.year, t.dt.month
+            for c, nm in (("meal", "meal_stocks"), ("oil", "oil_stocks"), ("beans", "bean_stocks")):
+                m[nm] = monthly_table(st, c, 4, scale=1e6)
+            # implied meal disappearance (exports + domestic use) = production + opening - closing stocks
+            j = cr[["year", "month", "meal"]].merge(st[["year", "month", "meal"]].rename(columns={"meal": "stk"}), on=["year", "month"])
+            j = j.sort_values(["year", "month"])
+            j["disp"] = j.meal + j.stk.shift(1) - j.stk
+            m["meal_disp"] = monthly_table(j.dropna(), "disp", 4, scale=1e6)
+            out["argentina"]["stocks_asof"] = f"{int(st.year.iloc[-1])}-{int(st.month.iloc[-1]):02d}"
+        out["argentina"]["monthly"] = m
+        out["argentina"]["source"] = "MAGyP (Subsecretaría de Mercados Agropecuarios): molienda de oleaginosas, existencias por provincia"
+    return out
+
+
+def us_fats_oils():
+    """NASS Fats & Oils monthly soybean crush, oil and meal production/stocks (after oilseeds_monthly.py nass)."""
+    d = {}
+    for f in (ROOT / "data" / "grains" / "raw" / "fats_oils").glob("*.csv.gz"):
+        d[f.stem.split(".")[0]] = pd.read_csv(f)
+    if not d:
+        return None
+    a = pd.concat(d.values())
+    want = {"crush": "SOYBEANS - CRUSHED, MEASURED IN TONS",
+            "meal_prod": "CAKE & MEAL, SOYBEAN - PRODUCTION, MEASURED IN TONS",
+            "meal_stocks": "CAKE & MEAL, SOYBEAN - STOCKS, MEASURED IN TONS",
+            "oil_crude_prod": "OIL, SOYBEAN, CRUDE - PRODUCTION, MEASURED IN LB",
+            "oil_stocks_crude": "OIL, SOYBEAN, ONSITE & OFFSITE, CRUDE - STOCKS, MEASURED IN LB",
+            "oil_stocks_refined": "OIL, SOYBEAN, ONSITE & OFFSITE, ONCE REFINED - STOCKS, MEASURED IN LB"}
+    series, chosen = {}, {}
+    for k, sd in want.items():
+        x = a[a.short_desc == sd].drop_duplicates(["year", "month"], keep="last")
+        if x.empty:
+            continue
+        chosen[k] = dict(desc=sd, unit=x.unit.iloc[0])
+        series[k] = x[["year", "month", "value"]].rename(columns={"value": k})
+    if "crush" not in series:
+        return dict(found=sorted(a.short_desc.unique())[:200])
+    m = None
+    for k, v in series.items():
+        m = v if m is None else m.merge(v, on=["year", "month"], how="outer")
+    m = m.sort_values(["year", "month"])
+    if "oil_stocks_crude" in m and "oil_stocks_refined" in m:
+        m["oil_stocks"] = m.oil_stocks_crude + m.oil_stocks_refined
+        series["oil_stocks"] = m[["year", "month", "oil_stocks"]]
+        chosen["oil_stocks"] = dict(desc="crude + once-refined stocks (onsite & offsite)", unit="LB")
+        for k in ("oil_stocks_crude", "oil_stocks_refined"):
+            series.pop(k); chosen.pop(k)
+    out = {"chosen": chosen, "asof": f"{int(m.year.iloc[-1])}-{int(m.month.iloc[-1]):02d}", "monthly": {}}
+    # Sep/Aug season; crush in million bu if tons -> convert (60 lb/bu), meal thousand short tons, oil million lb
+    conv = {}
+    for k, c in chosen.items():
+        u = c["unit"].upper()
+        conv[k] = (2000 / 60 / 1e6 if "TON" in u else 1 / 60 / 1e6) if k == "crush" else (1 / 1e3 if "TON" in u else 1 / 1e6)
+    for k in series:
+        out["monthly"][k] = monthly_table(m.assign(**{k: m[k] * conv[k]}), k, 9, n=4, scale=1)
+    out["units"] = {k: ("million bu" if k == "crush" else "thousand short tons" if "TON" in chosen[k]["unit"].upper() else "million lb") for k in chosen}
+    if "meal_prod" in m and "crush" in m:
+        t = m.dropna(subset=["meal_prod", "crush"]).tail(12)
+        cb = t.crush.sum() * conv["crush"] * 1e6
+        out["meal_yield_lb_bu"] = r1(t.meal_prod.sum() * (2000 if "TON" in chosen["meal_prod"]["unit"].upper() else 1) / cb, 2) if cb else None
+    if "oil_crude_prod" in m and "crush" in m:
+        t = m.dropna(subset=["oil_crude_prod", "crush"]).tail(12)
+        cb = t.crush.sum() * conv["crush"] * 1e6
+        out["oil_yield_lb_bu"] = r1(t.oil_crude_prod.sum() / cb, 2) if cb else None
+    return out
+
+
 def basis_band(key, label="Iowa interior"):
     b = json.loads((OUT / "basis.json").read_text()).get(key, [])
     b = next((x for x in b if x["label"] == label), None)
@@ -576,6 +719,31 @@ def outlook(p):
         b = p["brazil"]["corn"]
         L.append("Brazil corn exports (Sep/Aug, Comex Stat) by season: " + ", ".join(f"{m} {b['totals'][k]}" for m, k in zip(b["mys"], b["totals"])) + " MMT (latest season in progress).")
         out.append(dict(key="world", name="World & South America", lines=L))
+    L = []
+    sa = p.get("sa_soy") or {}
+    am = (sa.get("argentina") or {}).get("monthly")
+    if am:
+        c = am["crush"]; s1, s0 = c["seasons"][-1], c["seasons"][-2]
+        n = sum(v is not None for v in c["values"][s1])
+        a1, a0 = sum(v or 0 for v in c["values"][s1][:n]), sum(v or 0 for v in c["values"][s0][:n])
+        ms = am["meal_stocks"]; v = [x for x in ms["values"][ms["seasons"][-1]] if x is not None]
+        L.append(f"Argentina soybean crush {s1} through month {n} of the Apr/Mar season: {a1:.1f} Mt vs {a0:.1f} a year earlier "
+                 f"({100 * (a1 / a0 - 1):+.0f}%, MAGyP)." + (f" Meal stocks {v[-1]:.2f} Mt at the latest month-end." if v else ""))
+    bm = (sa.get("brazil") or {}).get("monthly")
+    if bm:
+        e = bm["exports"]["soybeans"]; s1, s0 = e["seasons"][-1], e["seasons"][-2]
+        n = sum(x is not None for x in e["values"][s1])
+        a1, a0 = sum(x or 0 for x in e["values"][s1][:n]), sum(x or 0 for x in e["values"][s0][:n])
+        L.append(f"Brazil soybean exports Jan–{MONTHS[n - 1][:3]} {s1}: {a1:.1f} Mt vs {a0:.1f} in {s0} ({100 * (a1 / a0 - 1):+.0f}%, Comex Stat).")
+    us = p.get("us_fo") or {}
+    if us.get("monthly"):
+        c = us["monthly"]["crush"]; s1, s0 = c["seasons"][-1], c["seasons"][-2]
+        n = sum(x is not None for x in c["values"][s1])
+        a1, a0 = sum(x or 0 for x in c["values"][s1][:n]), sum(x or 0 for x in c["values"][s0][:n])
+        L.append(f"US soybean crush {s1} season-to-date ({n} month{'s' if n > 1 else ''}, NASS to {us['asof']}): {a1:.0f} m bu vs {a0:.0f} a year earlier "
+                 f"({100 * (a1 / a0 - 1):+.1f}%); meal yield {us.get('meal_yield_lb_bu')} lb/bu, oil {us.get('oil_yield_lb_bu')} lb/bu (trailing 12 months).")
+    if L:
+        out.append(dict(key="soycx", name="Soybean complex: Brazil, Argentina, US crush", lines=L))
     return out
 
 
@@ -611,6 +779,14 @@ def main():
     pack["world"] = {"corn": world_corn(), "wheat": world_wheat()}
     pack["brazil"] = brazil_corn()
     pack["basis"] = {k: basis_band(k) for k in ("corn", "soybeans")}
+    try:
+        pack["sa_soy"] = south_america_soy()
+    except Exception as e:
+        print("sa_soy", e)
+    try:
+        pack["us_fo"] = us_fats_oils()
+    except Exception as e:
+        print("us_fo", e)
     pack["outlook"] = outlook(pack)
     pack["missing"] = [
         "Trade-poll surprise (no free analyst poll): shown instead as USDA's own Sep→Oct revision",
@@ -618,8 +794,8 @@ def main():
         "FOB and C&F prices, Matif premiums, Asia feed-wheat vs corn matrix (paid price feeds)",
         "Black Sea / Azov port line-ups, war-strike counts, Polymarket odds (not grains-desk data)",
         "Russian/Ukrainian/EU monthly wheat exports and French FranceAgriMer balance (not collected yet)",
-        "Argentine monthly crush, meal exports/stocks and truck deliveries (not collected yet)",
-        "US monthly crush and soymeal stocks (NASS Fats & Oils not collected yet)"]
+        "Argentine monthly meal exports (shown as implied disappearance) and truck deliveries to ports",
+        "Brazil monthly crush and stocks, ABIOVE/CONAB balances (not open data); US crush utilization (NOPA capacity is members-only)"]
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "pack.json").write_text(json.dumps(pack, separators=(",", ":"), default=lambda o: None if o is None else str(o)))
     print("pack.json", round((OUT / "pack.json").stat().st_size / 1e3), "KB")

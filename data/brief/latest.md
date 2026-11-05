@@ -1,6 +1,6 @@
-# Morning brief · Thu Nov 05, 2026 08:38 AM ET
+# Morning brief · Thu Nov 05, 2026 08:49 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-05 13:38 UTC). CME open interest from 20261104. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-05 13:49 UTC). CME open interest from 20261104. Research only, not investment advice.
 
 ## Key points
 
@@ -65,7 +65,7 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Corn | Dec 26 | 445.75 | +1.50 (+0.3%) | -1.2% | -11.2% | Sell | 26 | 445.25 | 449.50 | 55,943 (-90,314) | +23,392 | strongly bearish |
 | Soybeans | Nov 26 | 1,198.50 | +5.25 (+0.4%) | -1.7% | -7.6% | Sell | 27 | 1,167.00 | 1,199.00 | 185,400 (-21,536) | -2,644 | neutral |
 | Soybean meal | Dec 26 | 319.8 | +1.2 (+0.4%) | -2.9% | -12.6% | Sell | 28 | 316.2 | 320.6 | 169,859 (-34,834) | -3,874 | bearish |
-| Soybean oil | Dec 26 | 62.91 | -0.62 (-1.0%) | -4.2% | -7.0% | Strong sell | 27 | 61.64 | 65.53 | 56,271 (-13,587) | +12,216 | neutral |
+| Soybean oil | Dec 26 | 62.91 | -0.62 (-1.0%) | -4.2% | -7.0% | Strong sell | 27 | 61.64 | 65.53 | 56,271 (-13,587) | +12,216 | mildly bearish |
 | Chicago wheat | Dec 26 | 601.75 | +3.25 (+0.5%) | -0.3% | -12.3% | Sell | 27 | 598.50 | 604.25 | -74,859 (-23,725) | +2,694 | bearish |
 | KC HRW wheat | Dec 26 | 637.50 | +4.75 (+0.8%) | -1.2% | -13.7% | Sell | 22 | 637.00 | 640.50 | -1,865 (-8,260) | -1,313 | bearish |
 | Cotton | Dec 26 | 78.59 | +0.48 (+0.6%) | +0.1% | -1.8% | Sell | 43 | 77.73 | 80.47 | 56,190 (-10,276) | – | bearish |
@@ -105,7 +105,7 @@ Research signals: trend long 2.5x for 40% vol (12m excess +1%); carry -3.7%/yr (
 Flags: Funds near a 10-yr long extreme (99th pct); RSI 28: oversold; Export commitments -14% vs normal pace; Weather watch: Pergamino, N Buenos Aires; Marcos Juárez, Córdoba.
 Research signals: trend short 1.8x for 40% vol (12m excess -2%); carry -1.3%/yr (56th percentile for the month); IV-RV +3.5. Fat right tail: options price a 10% rally 2.5x as likely as a lognormal at ATM vol.
 
-**Soybean oil** (Dec 26, neutral). Dec 26 trades at 62.91 ¢/lb (-4.2% on the week, -7.0% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 27 (oversold) and ADX 22 (weak trend). Nearest support 61.64, resistance 65.53; 52-week range 48.53–74.55. Levels to watch: a close above 66.14 (200-day average) would bring trend-follower buying; below 49.32 (250-day momentum flip) adds selling; the 61.64–65.53 band is the immediate range. Next catalysts: USDA weekly export sales Nov 5; USDA WASDE Nov 10; USDA weekly export sales Nov 12.
+**Soybean oil** (Dec 26, mildly bearish). Dec 26 trades at 62.91 ¢/lb (-4.2% on the week, -7.0% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 27 (oversold) and ADX 22 (weak trend). Nearest support 61.64, resistance 65.53; 52-week range 48.53–74.55. Levels to watch: a close above 66.14 (200-day average) would bring trend-follower buying; below 49.32 (250-day momentum flip) adds selling; the 61.64–65.53 band is the immediate range. Next catalysts: USDA weekly export sales Nov 5; USDA WASDE Nov 10; USDA weekly export sales Nov 12.
 Flags: RSI 27: oversold; Realized vol low (15%, 13th pct): cheap to own optionality into catalysts; Weather watch: Pergamino, N Buenos Aires; Marcos Juárez, Córdoba.
 Research signals: trend long 1.7x for 40% vol (12m excess +27%); carry -4.9%/yr (44th percentile for the month); IV-RV +2.7. Fat left tail: options price a 8% drop 2.0x as likely as a lognormal at ATM vol.
 - [Palm Oil Sinks to Lowest Since June as Stockpile Concerns Mount](https://news.google.com/rss/articles/CBMitAFBVV95cUxPdVozcXBhSDcwS19YMHR3Q3RfV0JWY2JKLTMzOUZyVUxOUU5jWWVNNUxKaVVWTmhVZjlJU2dfR3EwcHJ6OFNlT21wajF1N2VzUDhHMTktdjd5dFU0TmVTVEp0bXRTZmlaSXBUWDBVYnZDdnFLN24yVVhwdC1qbG01VWJQRFhrcmNZTnJUd3BiUFpKcEJiSFlYb1BlcURNR3M0ZXZmaURnMmRGWFkyV3lZcl9JSXA?oc=5) · Bloomberg.com

@@ -1,11 +1,11 @@
 {
- "generated": "2026-11-06 17:44 UTC",
- "generated_et": "Fri Nov 06, 2026 12:44 PM ET",
+ "generated": "2026-11-06 18:28 UTC",
+ "generated_et": "Fri Nov 06, 2026 01:28 PM ET",
  "date": "2026-11-06",
- "prices_from": "2026-11-06 17:44 UTC",
+ "prices_from": "2026-11-06 18:28 UTC",
  "cme_oi_date": "20261105",
  "headlines": [
-  "Biggest moves vs prior settle: Lean hogs -1.250 (-2.3%); Feeder cattle -4.700 (-1.4%); Chicago wheat -5.50 (-0.9%).",
+  "Biggest moves vs prior settle: Lean hogs -1.525 (-2.8%); Feeder cattle -4.475 (-1.4%); Chicago wheat -7.25 (-1.2%).",
   "Today: Baker Hughes rig count 1:00 PM ET; CFTC Commitments of Traders 3:30 PM ET.",
   "1 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported sales of 167,000 MT of soybeans for delivery to Spain during MY 2026/2027.",
   "Strongest desk views: Corn strongly bearish; KC HRW wheat strongly bearish.",
@@ -97,21 +97,21 @@
    "contract": "Dec 26",
    "unit": "\u00a2/bu",
    "dp": 2,
-   "last": 441.25,
-   "chg": 1.25,
-   "chg_pct": 0.2840909090909091,
-   "r1w": -1.4517,
-   "r1m": -11.7941,
+   "last": 441.0,
+   "chg": 1.0,
+   "chg_pct": 0.22727272727272727,
+   "r1w": -1.5075,
+   "r1m": -11.8441,
    "rating": "Sell",
    "trend": "mixed",
-   "rsi": 23.7182,
+   "rsi": 23.3514,
    "sup": 440.75,
    "res": 449.5,
    "cta_up": 479.515,
    "cta_dn": 425.75,
    "hi52": 549.75,
    "lo52": 425.75,
-   "atr": 8.0843,
+   "atr": 8.1378,
    "mm_net": 55943.0,
    "mm_chg": -90314.0,
    "mm_pct3": 67.0,
@@ -123,12 +123,12 @@
    "esr_norm": 0.41778,
    "view": "strongly bearish",
    "conviction": "high",
-   "technical": "Dec 26 trades at 441.25 \u00a2/bu (-1.5% on the week, -11.8% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 24 (oversold) and ADX 53 (trending). Nearest support 440.75, resistance 449.50; 52-week range 425.75\u2013549.75.",
+   "technical": "Dec 26 trades at 441.00 \u00a2/bu (-1.5% on the week, -11.8% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 23 (oversold) and ADX 53 (trending). Nearest support 440.75, resistance 449.50; 52-week range 425.75\u2013549.75.",
    "levels": "Levels to watch: a close above 479.51 (200-day average) would bring trend-follower buying; below 425.75 (100-day breakout low) adds selling; the 440.75\u2013449.50 band is the immediate range. Next catalysts: USDA WASDE Nov 10; CONAB Brazil crop survey (date estimated) Nov 12; USDA weekly export sales Nov 12.",
    "flags": [
     {
      "tilt": "bull",
-     "text": "RSI 24: oversold"
+     "text": "RSI 23: oversold"
     },
     {
      "tilt": "bear",
@@ -153,6 +153,12 @@
    },
    "news": [
     {
+     "title": "USMCA key to corn profitability",
+     "source": "Brownfield Ag News",
+     "time": "2026-11-06T17:55Z",
+     "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5IZngwN2JCZlRKLVNxcm04RnQtZVR1RUp2U1Y4eVQweTQ4a0I1UnFyMUJNRGlsZVk1d0RWYlE1ZWVVWmw1X2VQTS1DVDJuNG9fRTJYVEpaTW9URElBZTA3WncwRHp6S2tYN25ad1VGc0lCeVVp?oc=5"
+    },
+    {
      "title": "Excessive rainfall taking toll on unharvested corn",
      "source": "Brownfield Ag News",
      "time": "2026-11-06T17:10Z",
@@ -163,12 +169,6 @@
      "source": "Farm Progress",
      "time": "2026-11-06T09:22Z",
      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQbURhcmFnWFVhaDl0TUw4eW85RjR5eHFwZWVtS05uYkVrM2J6RmxNU0pKY3Bianp1UmVCYS02SkthNGdqbnBwMFhIVjBoQTgtUDYzTmI3QnJKNnRWdzUycXc1aUpnQ0tvN3lDS2FUbDJkdFZWZnEzanpzUkI2bTVhLTRBR0lzRVo1WVlITUJPdlpEWGFmWUhMeEl5UG1kUjA?oc=5"
-    },
-    {
-     "title": "Why corn could rally: Mexico's record buy signals market bottom",
-     "source": "Farm Progress",
-     "time": "2026-11-06T07:50Z",
-     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOa2c1LTdxbmFpTFJ5N25DMHc1Q2tuTEQxU3FQdXg0czU2bF9PNG4zSThzLTdMV2tsTGNJZmp1Sk4zRXh5YjF0eUtZempmX1NDTUVRa3FTWEpuV3NySXFNYjk4T3A0bFZXVWUxTXMycUYtRDVWeXRxZ3FYRjQ5X1dwNWNDZGQtZ1FLMjAzOFpKSEhTMjdJT0ZOdmFlUGRTZWh3X005dDZn?oc=5"
     }
    ]
   },
@@ -179,14 +179,14 @@
    "contract": "Nov 26",
    "unit": "\u00a2/bu",
    "dp": 2,
-   "last": 1181.25,
-   "chg": 0.25,
-   "chg_pct": 0.021168501270110076,
-   "r1w": -3.3545,
-   "r1m": -8.2524,
-   "rating": "Sell",
+   "last": 1180.5,
+   "chg": -0.5,
+   "chg_pct": -0.04233700254022015,
+   "r1w": -3.4158,
+   "r1m": -8.3107,
+   "rating": "Strong sell",
    "trend": "mixed",
-   "rsi": 21.1718,
+   "rsi": 20.8913,
    "sup": 1167.0,
    "res": 1199.0,
    "cta_up": 1190.9313,
@@ -205,7 +205,7 @@
    "esr_norm": 0.53953,
    "view": "mildly bearish",
    "conviction": "low",
-   "technical": "Nov 26 trades at 1181.25 \u00a2/bu (-3.4% on the week, -8.3% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 21 (oversold) and ADX 33 (trending). Nearest support 1167.00, resistance 1199.00; 52-week range 1055.50\u20131335.25.",
+   "technical": "Nov 26 trades at 1180.50 \u00a2/bu (-3.4% on the week, -8.3% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 21 (oversold) and ADX 33 (trending). Nearest support 1167.00, resistance 1199.00; 52-week range 1055.50\u20131335.25.",
    "levels": "Levels to watch: a close above 1190.93 (200-day average) would bring trend-follower buying; below 1124.75 (100-day breakout low) adds selling; the 1167.00\u20131199.00 band is the immediate range. Next catalysts: USDA WASDE Nov 10; CONAB Brazil crop survey (date estimated) Nov 12; USDA weekly export sales Nov 12.",
    "flags": [
     {
@@ -265,14 +265,14 @@
    "contract": "Dec 26",
    "unit": "$/st",
    "dp": 1,
-   "last": 317.2,
-   "chg": 0.0,
-   "chg_pct": 0.0,
-   "r1w": -2.2797,
-   "r1m": -11.2975,
+   "last": 316.9,
+   "chg": -0.3,
+   "chg_pct": -0.09457755359394704,
+   "r1w": -2.3722,
+   "r1m": -11.3814,
    "rating": "Sell",
    "trend": "mixed",
-   "rsi": 25.176,
+   "rsi": 25.0147,
    "sup": 316.2,
    "res": 317.3,
    "cta_up": 324.5485,
@@ -291,7 +291,7 @@
    "esr_norm": 0.3929,
    "view": "bearish",
    "conviction": "medium",
-   "technical": "Dec 26 trades at 317.2 $/st (-2.3% on the week, -11.3% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 25 (oversold) and ADX 33 (trending). Nearest support 316.2, resistance 317.3; 52-week range 299.1\u2013376.9.",
+   "technical": "Dec 26 trades at 316.9 $/st (-2.4% on the week, -11.4% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 25 (oversold) and ADX 33 (trending). Nearest support 316.2, resistance 317.3; 52-week range 299.1\u2013376.9.",
    "levels": "Levels to watch: a close above 324.5 (200-day average) would bring trend-follower buying; below 315.4 (60-day momentum flip) adds selling; the 316.2\u2013317.3 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
    "flags": [
     {
@@ -345,14 +345,14 @@
    "contract": "Dec 26",
    "unit": "\u00a2/lb",
    "dp": 2,
-   "last": 62.12,
-   "chg": -0.12,
-   "chg_pct": -0.19280205655526994,
-   "r1w": -5.736,
-   "r1m": -8.5395,
+   "last": 62.01,
+   "chg": -0.23,
+   "chg_pct": -0.36953727506426737,
+   "r1w": -5.9029,
+   "r1m": -8.7014,
    "rating": "Strong sell",
    "trend": "mixed",
-   "rsi": 24.9657,
+   "rsi": 24.6507,
    "sup": 61.64,
    "res": 65.53,
    "cta_up": 66.178,
@@ -371,7 +371,7 @@
    "esr_norm": 0.25103,
    "view": "mildly bearish",
    "conviction": "low",
-   "technical": "Dec 26 trades at 62.12 \u00a2/lb (-5.7% on the week, -8.5% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 25 (oversold) and ADX 25 (weak trend). Nearest support 61.64, resistance 65.53; 52-week range 48.53\u201374.55.",
+   "technical": "Dec 26 trades at 62.01 \u00a2/lb (-5.9% on the week, -8.7% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 25 (oversold) and ADX 25 (weak trend). Nearest support 61.64, resistance 65.53; 52-week range 48.53\u201374.55.",
    "levels": "Levels to watch: a close above 66.18 (200-day average) would bring trend-follower buying; below 50.26 (250-day momentum flip) adds selling; the 61.64\u201365.53 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
    "flags": [
     {
@@ -407,16 +407,16 @@
    "contract": "Dec 26",
    "unit": "\u00a2/bu",
    "dp": 2,
-   "last": 593.75,
-   "chg": -5.5,
-   "chg_pct": -0.917813934084272,
-   "r1w": -1.6156,
-   "r1m": -13.0992,
+   "last": 592.0,
+   "chg": -7.25,
+   "chg_pct": -1.2098456403838131,
+   "r1w": -1.9056,
+   "r1m": -13.3553,
    "rating": "Strong sell",
    "trend": "mixed",
-   "rsi": 22.8592,
+   "rsi": 22.3929,
    "sup": 590.5,
-   "res": 601.75,
+   "res": 593.25,
    "cta_up": 652.9875,
    "cta_dn": 583.3449,
    "hi52": 795.0,
@@ -433,12 +433,12 @@
    "esr_norm": 0.6727,
    "view": "bearish",
    "conviction": "high",
-   "technical": "Dec 26 trades at 593.75 \u00a2/bu (-1.6% on the week, -13.1% on the month), in a mixed trend: the daily rating is strong sell and the weekly strong sell. RSI is 23 (oversold) and ADX 48 (trending). Nearest support 590.50, resistance 601.75; 52-week range 557.25\u2013795.00.",
-   "levels": "Levels to watch: a close above 652.99 (200-day average) would bring trend-follower buying; below 583.34 (250-day momentum flip) adds selling; the 590.50\u2013601.75 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
+   "technical": "Dec 26 trades at 592.00 \u00a2/bu (-1.9% on the week, -13.4% on the month), in a mixed trend: the daily rating is strong sell and the weekly strong sell. RSI is 22 (oversold) and ADX 48 (trending). Nearest support 590.50, resistance 593.25; 52-week range 557.25\u2013795.00.",
+   "levels": "Levels to watch: a close above 652.99 (200-day average) would bring trend-follower buying; below 583.34 (250-day momentum flip) adds selling; the 590.50\u2013593.25 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
    "flags": [
     {
      "tilt": "bull",
-     "text": "RSI 23: oversold"
+     "text": "RSI 22: oversold"
     },
     {
      "tilt": "neutral",
@@ -455,6 +455,12 @@
    },
    "news": [
     {
+     "title": "Nufarm\u2019s Mountain Herbicide Gets EPA Approval for Wheat, With 2027 Launch Expected",
+     "source": "Successful Farming",
+     "time": "2026-11-06T17:06Z",
+     "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQelN4S180N1pzSlNObHRIRnRjZ2oxR2swdmcweUFOQUktTERSSUlJZGFFejVvQktvbDF2N29qbXpQaVplSENwbk1fMnJPNVJXMDVmT2NUWktyN3IyTkEtOEdSaTVEQTYtYzFiLU9TMDMtbXp0Ukx0UWE3b1V1bnpneVQ2RTh6d1RXTHN4S1hMdUQxVExxTUFTYXo0MjdMTGpaZDJMUW9BYnVHTjc2T1RtTkQ1Qnh0LThMc0E?oc=5"
+    },
+    {
      "title": "544955 | Peshwa Wheat Ltd. Profile",
      "source": "MarketWatch",
      "time": "2026-11-06T03:39Z",
@@ -465,12 +471,6 @@
      "source": "Brownfield Ag News",
      "time": "2026-11-05T21:31Z",
      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNZlpiMkhkYVBsOExlbG1pYjhoVlZ0bnEwRkprdFZoTVR3QWtGVGlPTmtZUnhMMC1JXzZSWlNQVm9jUkxxTWF6R0Y2b3JwSjNsbkhlVDZpalhEc1A5WUFwVkVocTA0bHlteGZHTk9zOHNvcG04VEVHbVFLS0pNQjd3VDY2bllfQQ?oc=5"
-    },
-    {
-     "title": "Corn, Soybeans and Wheat Make New Lows for the Move | Tuesday, Nov. 3, 2026",
-     "source": "Successful Farming",
-     "time": "2026-11-05T15:56Z",
-     "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOVXRPMXA3MnktR2NmMVdhWEE1a2YyZ0tBRTMtSG9XNHpJTUlXRmttN3hLTzdvQzctRGpWX3pON1p0X3JuT0t2RHhtTXl6TWZsVWdDMzRfdV9kRW9FUWN2ZnAydEFiSklKWlpEOENKcG9HRGltQWF0ZXBMNVB3X3o3MngzREtuQ3dNMHRjLXJqN09kTFlnYmZHeTIxU1NZQ1ZCMVFxSk52SWJzc21xclE?oc=5"
     }
    ]
   },
@@ -481,15 +481,15 @@
    "contract": "Dec 26",
    "unit": "\u00a2/bu",
    "dp": 2,
-   "last": 633.75,
-   "chg": -2.0,
-   "chg_pct": -0.31458906802988595,
-   "r1w": -1.6298,
-   "r1m": -13.9219,
+   "last": 632.5,
+   "chg": -3.25,
+   "chg_pct": -0.5112072355485647,
+   "r1w": -1.8238,
+   "r1m": -14.0917,
    "rating": "Sell",
    "trend": "mixed",
-   "rsi": 20.154,
-   "sup": 633.0,
+   "rsi": 19.8612,
+   "sup": 628.25,
    "res": 634.75,
    "cta_up": 693.665,
    "cta_dn": 579.3607,
@@ -507,8 +507,8 @@
    "esr_norm": 0.67081,
    "view": "strongly bearish",
    "conviction": "high",
-   "technical": "Dec 26 trades at 633.75 \u00a2/bu (-1.6% on the week, -13.9% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 20 (oversold) and ADX 48 (trending). Nearest support 633.00, resistance 634.75; 52-week range 564.00\u2013858.25.",
-   "levels": "Levels to watch: a close above 693.66 (200-day average) would bring trend-follower buying; below 579.36 (250-day momentum flip) adds selling; the 633.00\u2013634.75 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
+   "technical": "Dec 26 trades at 632.50 \u00a2/bu (-1.8% on the week, -14.1% on the month), in a mixed trend: the daily rating is sell and the weekly strong sell. RSI is 20 (oversold) and ADX 48 (trending). Nearest support 628.25, resistance 634.75; 52-week range 564.00\u2013858.25.",
+   "levels": "Levels to watch: a close above 693.66 (200-day average) would bring trend-follower buying; below 579.36 (250-day momentum flip) adds selling; the 628.25\u2013634.75 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
    "flags": [
     {
      "tilt": "bull",
@@ -533,6 +533,12 @@
    },
    "news": [
     {
+     "title": "Nufarm\u2019s Mountain Herbicide Gets EPA Approval for Wheat, With 2027 Launch Expected",
+     "source": "Successful Farming",
+     "time": "2026-11-06T17:06Z",
+     "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQelN4S180N1pzSlNObHRIRnRjZ2oxR2swdmcweUFOQUktTERSSUlJZGFFejVvQktvbDF2N29qbXpQaVplSENwbk1fMnJPNVJXMDVmT2NUWktyN3IyTkEtOEdSaTVEQTYtYzFiLU9TMDMtbXp0Ukx0UWE3b1V1bnpneVQ2RTh6d1RXTHN4S1hMdUQxVExxTUFTYXo0MjdMTGpaZDJMUW9BYnVHTjc2T1RtTkQ1Qnh0LThMc0E?oc=5"
+    },
+    {
      "title": "544955 | Peshwa Wheat Ltd. Profile",
      "source": "MarketWatch",
      "time": "2026-11-06T03:39Z",
@@ -543,12 +549,6 @@
      "source": "Brownfield Ag News",
      "time": "2026-11-05T21:31Z",
      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNZlpiMkhkYVBsOExlbG1pYjhoVlZ0bnEwRkprdFZoTVR3QWtGVGlPTmtZUnhMMC1JXzZSWlNQVm9jUkxxTWF6R0Y2b3JwSjNsbkhlVDZpalhEc1A5WUFwVkVocTA0bHlteGZHTk9zOHNvcG04VEVHbVFLS0pNQjd3VDY2bllfQQ?oc=5"
-    },
-    {
-     "title": "Corn, Soybeans and Wheat Make New Lows for the Move | Tuesday, Nov. 3, 2026",
-     "source": "Successful Farming",
-     "time": "2026-11-05T15:56Z",
-     "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOVXRPMXA3MnktR2NmMVdhWEE1a2YyZ0tBRTMtSG9XNHpJTUlXRmttN3hLTzdvQzctRGpWX3pON1p0X3JuT0t2RHhtTXl6TWZsVWdDMzRfdV9kRW9FUWN2ZnAydEFiSklKWlpEOENKcG9HRGltQWF0ZXBMNVB3X3o3MngzREtuQ3dNMHRjLXJqN09kTFlnYmZHeTIxU1NZQ1ZCMVFxSk52SWJzc21xclE?oc=5"
     }
    ]
   },
@@ -559,14 +559,14 @@
    "contract": "Dec 26",
    "unit": "\u00a2/lb",
    "dp": 2,
-   "last": 78.8,
-   "chg": 0.09,
-   "chg_pct": 0.11434379367297676,
-   "r1w": 1.2463,
-   "r1m": -1.4261,
+   "last": 78.66,
+   "chg": -0.05,
+   "chg_pct": -0.06352432981832042,
+   "r1w": 1.0664,
+   "r1m": -1.6012,
    "rating": "Sell",
    "trend": "mixed",
-   "rsi": 44.4357,
+   "rsi": 43.6235,
    "sup": 77.73,
    "res": 80.47,
    "cta_up": 78.6484,
@@ -585,7 +585,7 @@
    "esr_norm": 0.57926,
    "view": "bearish",
    "conviction": "high",
-   "technical": "Dec 26 trades at 78.80 \u00a2/lb (+1.2% on the week, -1.4% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 44 and ADX 14 (range-bound). Nearest support 77.73, resistance 80.47; 52-week range 66.86\u201393.74.",
+   "technical": "Dec 26 trades at 78.66 \u00a2/lb (+1.1% on the week, -1.6% on the month), in a mixed trend: the daily rating is sell and the weekly sell. RSI is 44 and ADX 14 (range-bound). Nearest support 77.73, resistance 80.47; 52-week range 66.86\u201393.74.",
    "levels": "Levels to watch: a close above 78.65 (200-day average) would bring trend-follower buying; below 75.50 (100-day breakout low) adds selling; the 77.73\u201380.47 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
    "flags": [
     {
@@ -622,14 +622,14 @@
    "contract": "Dec 26",
    "unit": "\u00a2/lb",
    "dp": 3,
-   "last": 53.85,
-   "chg": -1.25,
-   "chg_pct": -2.268602540834846,
-   "r1w": -8.535,
-   "r1m": -21.5015,
+   "last": 53.575,
+   "chg": -1.525,
+   "chg_pct": -2.767695099818512,
+   "r1w": -9.0021,
+   "r1m": -21.9023,
    "rating": "Strong sell",
    "trend": "down",
-   "rsi": 18.372,
+   "rsi": 18.0538,
    "sup": null,
    "res": 71.2,
    "cta_up": 67.825,
@@ -648,7 +648,7 @@
    "esr_norm": null,
    "view": "bearish",
    "conviction": "medium",
-   "technical": "Dec 26 trades at 53.850 \u00a2/lb (-8.5% on the week, -21.5% on the month), in a down trend: the daily rating is strong sell and the weekly strong sell. RSI is 18 (oversold) and ADX 48 (trending). Against the same point of past seasons, Dec 26 sits at the 10th percentile (cheap vs a 20-year history).",
+   "technical": "Dec 26 trades at 53.575 \u00a2/lb (-9.0% on the week, -21.9% on the month), in a down trend: the daily rating is strong sell and the weekly strong sell. RSI is 18 (oversold) and ADX 48 (trending). Against the same point of past seasons, Dec 26 sits at the 10th percentile (cheap vs a 20-year history).",
    "levels": "Levels to watch: a close above 67.825 (20-day momentum flip) would bring trend-follower buying. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
    "flags": [
     {
@@ -696,14 +696,14 @@
    "contract": "Dec 26",
    "unit": "\u00a2/lb",
    "dp": 3,
-   "last": 213.25,
-   "chg": -1.15,
-   "chg_pct": -0.5363805970149252,
-   "r1w": -3.485,
-   "r1m": -4.6075,
+   "last": 213.075,
+   "chg": -1.325,
+   "chg_pct": -0.6180037313432837,
+   "r1w": -3.5642,
+   "r1m": -4.6858,
    "rating": "Strong sell",
    "trend": "down",
-   "rsi": 26.5137,
+   "rsi": 26.307,
    "sup": 211.3,
    "res": 219.725,
    "cta_up": 214.4423,
@@ -722,12 +722,12 @@
    "esr_norm": null,
    "view": "bearish",
    "conviction": "medium",
-   "technical": "Dec 26 trades at 213.250 \u00a2/lb (-3.5% on the week, -4.6% on the month), in a down trend: the daily rating is strong sell and the weekly strong sell. RSI is 27 (oversold) and ADX 26 (trending). Nearest support 211.300, resistance 219.725; 52-week range 197.050\u2013245.900.",
+   "technical": "Dec 26 trades at 213.075 \u00a2/lb (-3.6% on the week, -4.7% on the month), in a down trend: the daily rating is strong sell and the weekly strong sell. RSI is 26 (oversold) and ADX 26 (trending). Nearest support 211.300, resistance 219.725; 52-week range 197.050\u2013245.900.",
    "levels": "Levels to watch: a close above 214.442 (250-day momentum flip) would bring trend-follower buying; below 211.300 (55-day breakout low) adds selling; the 211.300\u2013219.725 band is the immediate range. Next catalysts: USDA WASDE Nov 10; USDA weekly export sales Nov 12; USDA weekly export sales Nov 19.",
    "flags": [
     {
      "tilt": "bull",
-     "text": "RSI 27: oversold"
+     "text": "RSI 26: oversold"
     }
    ],
    "event": "USDA WASDE",
@@ -766,14 +766,14 @@
    "contract": "Nov 26",
    "unit": "\u00a2/lb",
    "dp": 3,
-   "last": 320.35,
-   "chg": -4.7,
-   "chg_pct": -1.4459313951699737,
-   "r1w": -5.1588,
-   "r1m": -4.3374,
+   "last": 320.575,
+   "chg": -4.475,
+   "chg_pct": -1.3767112751884323,
+   "r1w": -5.0921,
+   "r1m": -4.2703,
    "rating": "Strong sell",
    "trend": "down",
-   "rsi": 29.9769,
+   "rsi": 30.1323,
    "sup": 320.125,
    "res": 333.325,
    "cta_up": 326.597,
@@ -792,14 +792,9 @@
    "esr_norm": null,
    "view": "bearish",
    "conviction": "medium",
-   "technical": "Nov 26 trades at 320.350 \u00a2/lb (-5.2% on the week, -4.3% on the month), in a down trend: the daily rating is strong sell and the weekly neutral. RSI is 30 (oversold) and ADX 26 (trending). Nearest support 320.125, resistance 333.325; 52-week range 284.000\u2013372.800.",
+   "technical": "Nov 26 trades at 320.575 \u00a2/lb (-5.1% on the week, -4.3% on the month), in a down trend: the daily rating is strong sell and the weekly neutral. RSI is 30 and ADX 26 (trending). Nearest support 320.125, resistance 333.325; 52-week range 284.000\u2013372.800.",
    "levels": "Levels to watch: a close above 326.597 (60-day momentum flip) would bring trend-follower buying; below 304.150 (55-day breakout low) adds selling; the 320.125\u2013333.325 band is the immediate range. Next catalysts: Feeder cattle Nov 26: last trading day (settles to CME Feeder Index) Nov 19; Feeder cattle Jan 27: last trading day (settles to CME Feeder Index) Jan 28.",
-   "flags": [
-    {
-     "tilt": "bull",
-     "text": "RSI 30: oversold"
-    }
-   ],
+   "flags": [],
    "event": "Feeder cattle Nov 26: last trading day (settles to CME Feeder Index)",
    "event_date": "2026-11-19",
    "oi": {
@@ -880,6 +875,12 @@
    },
    "news": [
     {
+     "title": "Cheese, butter, and nonfat dry milk move lower Friday at CME",
+     "source": "Brownfield Ag News",
+     "time": "2026-11-06T18:20Z",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPQnBEMTMweEMzQURsNDJNak8zcXloc3ozMnJDMUNRWno3SXNDRFNPdGM0UkZZMVFydjNFZ1EzVGNiNmFERmFLN25mN2lDYjNTcWd1R1hXSGpOZmJySVAtSHUxY3hkTEFjWFd6MUNxdmEyaUpjdTl5YzI4Mlk2VDd6dlIwSjB4MXQ3N2NKN25kWVh0NDdXMVdtYw?oc=5"
+    },
+    {
      "title": "\u2018We\u2019re losing to cottage cheese\u2019: The protein-maxxing craze is hurting cream cheese sales",
      "source": "MarketWatch",
      "time": "2026-11-06T17:14Z",
@@ -890,12 +891,6 @@
      "source": "MarketWatch",
      "time": "2026-11-06T15:50Z",
      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPS3RERHBHVExReW9vNFhONHF3MFZmZkV2SGZ1SVp2TlNQSHZ6OENIc0xhQ294Z3FXcXR6WlpNTmdiaWxicmdfSUUwRnNpSzFMVmQ4THpscmFqUU1YaWktNXJsNnhkUXRIelJ4NGdMdzNVbWRwMk96VnNwR3ZENVEzNXJ2cFR3MUNyRGUwdEZ1QWJuUzN0MXFHUmwzdXdSWmxMOUhuTEREa3JqbUdiQ3hWRHpwRXF2TEhNYy05MExNWWZJT1E?oc=5"
-    },
-    {
-     "title": "Circularity closes $7M seed round to scale jet fuel made from dairy biogas",
-     "source": "Feedstuffs",
-     "time": "2026-11-06T14:13Z",
-     "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQSUR5WTJoUFRyMHRPR1BuVjRuQkdzRk9pTl9SQnRFMXBtZFFacGNTQTh1bVBSZXFJV2haN2NRTV9kU3Zxb2RJSkpybjlnd1FZdG9kaF9oWkVtS3hrNVpNOERYM2NyTU1DSDRKTzhHb3RFU1N6blg0LUdRQ2pvVmJ4eUVsbFNjRV85MkdROG54bE9adlk0M0dHbDExVlRvSnBsTElfaVZocWtyVU8yVVloa1RUWnpGWk1icWc?oc=5"
     }
    ]
   },
@@ -950,6 +945,12 @@
    },
    "news": [
     {
+     "title": "Cheese, butter, and nonfat dry milk move lower Friday at CME",
+     "source": "Brownfield Ag News",
+     "time": "2026-11-06T18:20Z",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPQnBEMTMweEMzQURsNDJNak8zcXloc3ozMnJDMUNRWno3SXNDRFNPdGM0UkZZMVFydjNFZ1EzVGNiNmFERmFLN25mN2lDYjNTcWd1R1hXSGpOZmJySVAtSHUxY3hkTEFjWFd6MUNxdmEyaUpjdTl5YzI4Mlk2VDd6dlIwSjB4MXQ3N2NKN25kWVh0NDdXMVdtYw?oc=5"
+    },
+    {
      "title": "\u2018We\u2019re losing to cottage cheese\u2019: The protein-maxxing craze is hurting cream cheese sales",
      "source": "MarketWatch",
      "time": "2026-11-06T17:14Z",
@@ -960,12 +961,6 @@
      "source": "MarketWatch",
      "time": "2026-11-06T15:50Z",
      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPS3RERHBHVExReW9vNFhONHF3MFZmZkV2SGZ1SVp2TlNQSHZ6OENIc0xhQ294Z3FXcXR6WlpNTmdiaWxicmdfSUUwRnNpSzFMVmQ4THpscmFqUU1YaWktNXJsNnhkUXRIelJ4NGdMdzNVbWRwMk96VnNwR3ZENVEzNXJ2cFR3MUNyRGUwdEZ1QWJuUzN0MXFHUmwzdXdSWmxMOUhuTEREa3JqbUdiQ3hWRHpwRXF2TEhNYy05MExNWWZJT1E?oc=5"
-    },
-    {
-     "title": "Circularity closes $7M seed round to scale jet fuel made from dairy biogas",
-     "source": "Feedstuffs",
-     "time": "2026-11-06T14:13Z",
-     "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQSUR5WTJoUFRyMHRPR1BuVjRuQkdzRk9pTl9SQnRFMXBtZFFacGNTQTh1bVBSZXFJV2haN2NRTV9kU3Zxb2RJSkpybjlnd1FZdG9kaF9oWkVtS3hrNVpNOERYM2NyTU1DSDRKTzhHb3RFU1N6blg0LUdRQ2pvVmJ4eUVsbFNjRV85MkdROG54bE9adlk0M0dHbDExVlRvSnBsTElfaVZocWtyVU8yVVloa1RUWnpGWk1icWc?oc=5"
     }
    ]
   }
@@ -1046,7 +1041,7 @@
  "macro": {
   "view": "headwind",
   "score": -4,
-  "summary": "Macro backdrop for ags: headwind (score -4 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk \u2212; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +12.7%; weakest: Lean hogs -22.2%. Key releases ahead: US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
+  "summary": "Macro backdrop for ags: headwind (score -4 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk \u2212; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +12.7%; weakest: Lean hogs -22.5%. Key releases ahead: US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
   "sections": [
    {
     "title": "Rates",
@@ -1056,27 +1051,27 @@
    {
     "title": "Dollar & farm currencies",
     "score": -1,
-    "text": "Dollar index 102.16 (-0.1% in a month, +3.9% YTD). USD/BRL 5.498 (+10.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.664 (-0.6%); USD/MXN 18.64 (+3.7%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 102.23 (-0.0% in a month, +4.0% YTD). USD/BRL 5.502 (+10.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.664 (-0.6%); USD/MXN 18.64 (+3.7%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
     "score": -1,
-    "text": "S&P 500 -5.3% in a month (+8.0% YTD); VIX 24.1. Risk-off: funds tend to cut commodity length along with equities. "
+    "text": "S&P 500 -5.3% in a month (+8.0% YTD); VIX 25.6. Risk-off: funds tend to cut commodity length along with equities. "
    },
    {
     "title": "Energy",
     "score": 0,
-    "text": "WTI 90.16 $/bbl (+3.0% in a month), Brent 97.56, ULSD 4.302 $/gal (-3.9%), natural gas 3.00 (-14.7%). Crude little changed on the month. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+    "text": "WTI 89.81 $/bbl (+2.6% in a month), Brent 97.19, ULSD 4.298 $/gal (-4.0%), natural gas 3.01 (-14.3%). Crude little changed on the month. Natural gas drives nitrogen fertilizer costs for next year's corn. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -5.8% in a month, Shanghai Composite -5.0%, Hang Seng +1.5%, yuan +0.6% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -6.1% in a month, Shanghai Composite -5.0%, Hang Seng +1.5%, yuan +0.6% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": -1,
-    "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -4.6% in a month; gold -1.7%. "
+    "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -4.5% in a month; gold -1.7%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1084,59 +1079,59 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7429.5,
-   "d1": 0.6298252742787502,
-   "m1": -5.389831587660376,
+   "last": 7411.0,
+   "d1": 0.3792496275226931,
+   "m1": -5.625417847250958,
    "kind": "price",
-   "time": "2026-11-06 17:32 UTC"
+   "time": "2026-11-06 18:16 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 7391.35,
-   "d1": 0.5115773849620142,
-   "m1": -5.260601357176498,
+   "last": 7391.86,
+   "d1": 0.5185126409661622,
+   "m1": -5.254064379045598,
    "kind": "price",
-   "time": "2026-11-06 17:42 UTC"
+   "time": "2026-11-06 18:26 UTC"
   },
   {
    "name": "VIX",
-   "last": 24.09,
-   "d1": -14.513840528328803,
-   "m1": 59.748011418289515,
+   "last": 25.57,
+   "d1": -9.261888846383037,
+   "m1": 69.56233507537,
    "kind": "price",
-   "time": "2026-11-06 17:27 UTC"
+   "time": "2026-11-06 18:11 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 4.853,
-   "d1": 1.6000106811523196,
-   "m1": -42.39999504089358,
+   "last": 4.837,
+   "d1": 1.0681152318170462e-05,
+   "m1": -43.99999504089358,
    "kind": "yield",
-   "time": "2026-11-06 17:27 UTC"
+   "time": "2026-11-06 18:12 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 102.16,
-   "d1": 0.6006862923788159,
-   "m1": -0.0782451735534373,
+   "last": 102.23,
+   "d1": 0.6696178511147899,
+   "m1": -0.009778818445249637,
    "kind": "price",
-   "time": "2026-11-06 17:32 UTC"
+   "time": "2026-11-06 18:17 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.1154,
-   "d1": -0.7204757869204492,
-   "m1": -0.8844422194317803,
+   "last": 1.1147,
+   "d1": -0.7827813875562306,
+   "m1": -0.9466449184154513,
    "kind": "price",
-   "time": "2026-11-06 17:42 UTC"
+   "time": "2026-11-06 18:26 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.4982,
-   "d1": 0.7236121905105364,
-   "m1": 10.374593200394422,
+   "last": 5.5021,
+   "d1": 0.7950577704354256,
+   "m1": 10.452884443616117,
    "kind": "price",
-   "time": "2026-11-06 17:42 UTC"
+   "time": "2026-11-06 18:27 UTC"
   },
   {
    "name": "USD/CNY",
@@ -1144,47 +1139,47 @@
    "d1": -0.1393654323607718,
    "m1": -0.6070579037970258,
    "kind": "price",
-   "time": "2026-11-06 17:40 UTC"
+   "time": "2026-11-06 18:20 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 90.16,
-   "d1": -0.39769847151666093,
-   "m1": 2.9811500368528865,
+   "last": 89.81,
+   "d1": -0.7843533687545534,
+   "m1": 2.5813784916787874,
    "kind": "price",
-   "time": "2026-11-06 17:31 UTC"
+   "time": "2026-11-06 18:16 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 2.996,
-   "d1": 1.6627069173100972,
-   "m1": -14.692484954240204,
+   "last": 3.011,
+   "d1": 2.171699108151115,
+   "m1": -14.265377902943,
    "kind": "price",
-   "time": "2026-11-06 17:32 UTC"
+   "time": "2026-11-06 18:16 UTC"
   },
   {
    "name": "Gold",
-   "last": 4070.6,
-   "d1": -1.0429074996961218,
-   "m1": -1.6929551043530555,
+   "last": 4070.7,
+   "d1": -1.0404764798833122,
+   "m1": -1.6905400538716697,
    "kind": "price",
-   "time": "2026-11-06 17:32 UTC"
+   "time": "2026-11-06 18:16 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.267,
-   "d1": -0.04784658589536139,
-   "m1": -5.752310690015894,
+   "last": 6.245,
+   "d1": -0.39872377994519814,
+   "m1": -6.083162639085571,
    "kind": "price",
-   "time": "2026-11-06 17:31 UTC"
+   "time": "2026-11-06 18:16 UTC"
   },
   {
    "name": "S&P GSCI",
-   "last": 694.7075,
-   "d1": -0.7347968515155068,
-   "m1": -4.621620240104973,
+   "last": 695.4177,
+   "d1": -0.6333179596422323,
+   "m1": -4.524114850706584,
    "kind": "price",
-   "time": "2026-11-06 17:42 UTC"
+   "time": "2026-11-06 18:26 UTC"
   }
  ],
  "econ": [
@@ -1351,19 +1346,19 @@
     "atm": 68.05,
     "label": "Dec 2026",
     "rr25": 12.18,
-    "rv20": 50.1
+    "rv20": 50.4
    },
    "CL": {
     "atm": 55.74,
     "label": "Dec 2026",
     "rr25": -0.12,
-    "rv20": 55.8
+    "rv20": 55.9
    },
    "HO": {
     "atm": 64.74,
     "label": "Dec 2026",
     "rr25": 5.48,
-    "rv20": 51.0
+    "rv20": 51.1
    },
    "RB": {
     "atm": 53.31,
@@ -1513,6 +1508,6 @@
  "track": {
   "line": "Track record: 192 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-11-06 11:39 UTC"
+  "generated": "2026-11-06 17:44 UTC"
  }
 }

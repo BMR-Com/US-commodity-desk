@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-05 23:41 UTC",
+ "generated": "2026-11-06 02:49 UTC",
  "inventories": {
   "storL48": {
    "date": "2026-10-30",
@@ -84,44 +84,44 @@
  "prices": {
   "NG": {
    "date": "2026-11-05",
-   "last": 2.951,
-   "d1": -0.27036160865157033,
-   "w1": -0.03387533875338633,
-   "m1": -7.867624102403992
+   "last": 3.001,
+   "d1": 1.4193984454207387,
+   "w1": 1.6598915989159968,
+   "m1": -6.306587574149236
   },
   "CL": {
    "date": "2026-11-05",
-   "last": 91.389999,
-   "d1": 3.7108441768891165,
-   "w1": -10.40196176470588,
-   "m1": 3.522881779824205
+   "last": 91.720001,
+   "d1": 4.085335766500142,
+   "w1": -10.078430392156868,
+   "m1": 3.8966946522054124
   },
   "HO": {
    "date": "2026-11-05",
-   "last": 4.3733,
-   "d1": 3.99001307811202,
-   "w1": -7.658361486486475,
-   "m1": -5.3951154087438
+   "last": 4.3809,
+   "d1": 4.170728807513968,
+   "w1": -7.497888513513518,
+   "m1": -5.230709325718741
   },
   "RB": {
    "date": "2026-11-05",
-   "last": 2.7842,
-   "d1": 2.037674998167538,
-   "w1": -12.583987441130306,
-   "m1": -13.913796302022142
+   "last": 2.7989,
+   "d1": 2.5764128124312835,
+   "w1": -12.122448979591837,
+   "m1": -13.459278956156073
   },
   "BZ": {
    "date": "2026-11-05",
-   "last": 99.440002,
-   "d1": 5.0940592339655755,
-   "w1": -13.440107419222858,
-   "m1": -0.7584780666210933
+   "last": 99.959999,
+   "d1": 5.643622733768039,
+   "w1": -12.987463779268737,
+   "m1": -0.23951896924707672
   }
  },
  "cracks": {
-  "321": 47.793800999999995,
-  "ho": 92.28860100000001,
-  "rb": 25.54640099999999
+  "321": 47.981799000000024,
+  "ho": 92.27779899999999,
+  "rb": 25.833799000000013
  },
  "vol": {
   "NG": {
@@ -134,20 +134,20 @@
    "atm": 55.74,
    "label": "Dec 2026",
    "rr25": -0.12,
-   "rv20": 56.0
+   "rv20": 56.4
   },
   "HO": {
    "atm": 64.74,
    "label": "Dec 2026",
    "rr25": 5.48,
-   "rv20": 51.7
+   "rv20": 52.2
   },
   "RB": {
    "atm": 53.31,
    "label": "Dec 2026",
    "rr25": 6.6,
-   "rv20": 37.7
+   "rv20": 38.1
   }
  },
- "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $47.79/bbl (ULSD $92.29, gasoline $25.55). Options: NG IV 68% vs RV 50%; CL IV 56% vs RV 56%; HO IV 65% vs RV 52%; RB IV 53% vs RV 38%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
+ "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $47.98/bbl (ULSD $92.28, gasoline $25.83). Options: NG IV 68% vs RV 50%; CL IV 56% vs RV 56%; HO IV 65% vs RV 52%; RB IV 53% vs RV 38%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
 }

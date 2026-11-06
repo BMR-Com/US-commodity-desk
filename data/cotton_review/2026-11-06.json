@@ -1,0 +1,600 @@
+{
+ "source": "https://www.ams.usda.gov/mnreports/cnwwcmr.pdf",
+ "date": "2026-11-06",
+ "volume": "Vol. 108 No. 14",
+ "prices": {
+  "spot_7mkt_avg": 73.36,
+  "chg_week_pts": -74.0,
+  "year_ago": 61.43,
+  "range": [
+   "72.47",
+   "74.42"
+  ],
+  "dec_settle": 78.71,
+  "dec_settle_prev": 78.5
+ },
+ "spot_41_4_34": [
+  {
+   "date": "Oct 30",
+   "SE": 77.33,
+   "ND": 75.58,
+   "SD": 75.58,
+   "ETX-STX": 72.08,
+   "WTX-KS-OK": 71.33,
+   "DSW": 70.08,
+   "SJV": 70.33,
+   "7-MKT AVG": 73.19
+  },
+  {
+   "date": "Nov 2",
+   "SE": 77.16,
+   "ND": 75.41,
+   "SD": 75.41,
+   "ETX-STX": 71.91,
+   "WTX-KS-OK": 71.66,
+   "DSW": 69.91,
+   "SJV": 70.16,
+   "7-MKT AVG": 73.09
+  },
+  {
+   "date": "Nov 3",
+   "SE": 76.54,
+   "ND": 74.79,
+   "SD": 74.79,
+   "ETX-STX": 71.29,
+   "WTX-KS-OK": 71.04,
+   "DSW": 69.29,
+   "SJV": 69.54,
+   "7-MKT AVG": 72.47
+  },
+  {
+   "date": "Nov 4",
+   "SE": 77.61,
+   "ND": 75.86,
+   "SD": 75.86,
+   "ETX-STX": 72.36,
+   "WTX-KS-OK": 72.86,
+   "DSW": 70.36,
+   "SJV": 70.61,
+   "7-MKT AVG": 73.65
+  },
+  {
+   "date": "Nov 5",
+   "SE": 78.21,
+   "ND": 76.46,
+   "SD": 76.46,
+   "ETX-STX": 73.46,
+   "WTX-KS-OK": 74.21,
+   "DSW": 70.96,
+   "SJV": 71.21,
+   "7-MKT AVG": 74.42
+  }
+ ],
+ "spot_31_3_36": [
+  {
+   "date": "Oct 30",
+   "SE": 83.08,
+   "ND": 79.83,
+   "SD": 79.83,
+   "ETX-STX": 77.33,
+   "WTX-KS-OK": 75.08,
+   "DSW": 76.08,
+   "SJV": 82.73,
+   "7-MKT AVG": 79.14
+  },
+  {
+   "date": "Nov 2",
+   "SE": 82.66,
+   "ND": 79.66,
+   "SD": 79.66,
+   "ETX-STX": 77.16,
+   "WTX-KS-OK": 75.41,
+   "DSW": 75.91,
+   "SJV": 82.56,
+   "7-MKT AVG": 79.0
+  },
+  {
+   "date": "Nov 3",
+   "SE": 82.04,
+   "ND": 79.04,
+   "SD": 79.04,
+   "ETX-STX": 76.54,
+   "WTX-KS-OK": 74.79,
+   "DSW": 75.29,
+   "SJV": 81.94,
+   "7-MKT AVG": 78.38
+  },
+  {
+   "date": "Nov 4",
+   "SE": 83.11,
+   "ND": 80.11,
+   "SD": 80.11,
+   "ETX-STX": 77.61,
+   "WTX-KS-OK": 76.61,
+   "DSW": 76.36,
+   "SJV": 83.01,
+   "7-MKT AVG": 79.56
+  },
+  {
+   "date": "Nov 5",
+   "SE": 83.71,
+   "ND": 80.71,
+   "SD": 80.71,
+   "ETX-STX": 78.71,
+   "WTX-KS-OK": 77.96,
+   "DSW": 76.96,
+   "SJV": 83.61,
+   "7-MKT AVG": 80.34
+  }
+ ],
+ "futures_months": [
+  "Dec-26",
+  "Mar-27",
+  "May-27",
+  "Jul-27",
+  "Oct-27",
+  "Dec-27"
+ ],
+ "futures": [
+  {
+   "date": "Oct 30",
+   "futures": [
+    77.83,
+    81.59,
+    83.23,
+    83.73,
+    77.66,
+    77.35
+   ],
+   "spot_7mkt": 73.19,
+   "a_index": 90.2
+  },
+  {
+   "date": "Nov 2",
+   "futures": [
+    77.66,
+    81.49,
+    83.13,
+    83.64,
+    77.76,
+    77.36
+   ],
+   "spot_7mkt": 73.09,
+   "a_index": 89.55
+  },
+  {
+   "date": "Nov 3",
+   "futures": [
+    77.04,
+    80.9,
+    82.55,
+    83.05,
+    77.49,
+    76.67
+   ],
+   "spot_7mkt": 72.47,
+   "a_index": 89.4
+  },
+  {
+   "date": "Nov 4",
+   "futures": [
+    78.11,
+    81.96,
+    83.56,
+    84.02,
+    77.87,
+    77.21
+   ],
+   "spot_7mkt": 73.65,
+   "a_index": 88.9
+  },
+  {
+   "date": "Nov 5",
+   "futures": [
+    78.71,
+    82.55,
+    84.06,
+    84.49,
+    78.48,
+    77.62
+   ],
+   "spot_7mkt": 74.42,
+   "a_index": 89.9
+  }
+ ],
+ "awp": 63.57,
+ "awp_window": "Nov. 6-Nov. 12 Warehouse Cotton Maturity",
+ "ldp": 0.0,
+ "regions": [
+  {
+   "key": "Southeastern",
+   "region": "Southeast",
+   "subs": {
+    "Southeast": {
+     "text": "Spot cotton trading was active. Supplies were moderate. Demand was moderate. Producer offerings were",
+     "crop": [],
+     "crop_key": [],
+     "demand": [
+      "Demand was moderate.",
+      "Producer offerings were"
+     ],
+     "market": [
+      "Spot cotton trading was active."
+     ],
+     "trading": "active",
+     "demand_level": "moderate",
+     "supplies": "moderate",
+     "foreign_inquiries": null
+    },
+    "Textile Mill": {
+     "text": "Demand from mill buyers was light. No domestic sales",
+     "crop": [],
+     "crop_key": [],
+     "demand": [
+      "Demand from mill buyers was light."
+     ],
+     "market": [],
+     "trading": null,
+     "demand_level": null,
+     "supplies": null,
+     "foreign_inquiries": null
+    }
+   },
+   "trades": [
+    {
+     "area": null,
+     "text": "moderate. Average local spot prices were lower. Trading Demand from mill buyers was light. No domestic sales were reported, and no domestic inquiries were reported. of CCC-loan equities was inactive. Yarn demand remained slow to moderate. The undertone Overcast skies and periods of rainfall prevailed across from mill buyers remained cautious. the lower Southeast during the period. Daytime highs Inquiries through export channels were heavy. Agents ranged from the lower 60s to the mid-80s, while overnight for mills in Taiwan inquired for a moderate volume of lows were mostly in the 40s to 60s. In the aftermath of the color 31, leaf 3, and staple 36 for prompt December 2026 recent hurricane and subsequent thunderstorms, fields shipment. Representatives for mills in Mexico inquired dried and firmed in some areas, allowing fieldwork to for a moderate volume of color 41, leaf 4, and staple 34 resume, while excessive moisture continued to impede for prompt December 2026 delivery. Representatives for progress elsewhere. Producers took advantage of periods mills in Vietnam inquired for moderate volume of color of favorable weather to apply defoliants and advance 31, leaf 3, and staple 35 for January 2027 through harvesting activities where conditions permitted. Damage S eptember 2027 shipment. No sales were reported. assessments remained underway, and some acreage was inspected for insurance purposes. Production estimates were revised lower. Modules were transported to gin yards, and ginning operations resumed. Bale pressing progressed slowly, and not all gins had initiated pressing operations. According to the National Agricultural Statistics Service's Crop Progress report released November 2, cotton harvested reached 62 percent in Alabama and 47 percent in Georgia. In the upper Southeast, cloudy conditions and intermittent storms prevailed during the period. Daytime highs ranged from the upper 60s to the mid-80s, while nighttime lows were in the 30s to 60s. Periodic thunderstorms hampered fieldwork and slowed module transportation. According to the National Agricultural Statistics Service's Crop Progress report released November 2, cotton harvested reached 48 percent in Virginia, 43 percent in South Carolina, and 41 percent in North Carolina. Trading",
+     "lo": null,
+     "hi": null,
+     "color": "31",
+     "volume": "moderate"
+    },
+    {
+     "area": null,
+     "text": "An even-running lot containing a moderate volume of color 31 and 41, leaf 2-4, staple 36-38, mike 47-49, strength 29-33, and uniformity 78-81, sold for around 82.75 cents per pound, FOB car/truck (Rule 5 compression charges paid).",
+     "lo": 82.75,
+     "hi": 82.75,
+     "color": "31 and 41",
+     "volume": "moderate"
+    },
+    {
+     "area": null,
+     "text": "Lots containing a heavy volume of color 21-51, leaf 2-4, staple 34-39, mike 37-49, strength 29-33, and uniformity 78-82 sold for 81.50 to 81.75 cents, same terms as above.",
+     "lo": 81.5,
+     "hi": 81.75,
+     "color": "21-51",
+     "volume": "heavy"
+    }
+   ]
+  },
+  {
+   "key": "South Central",
+   "region": "South Central (Delta)",
+   "subs": {},
+   "trades": [
+    {
+     "area": null,
+     "text": "of spot cotton was inactive. Supplies and producer Trading of spot cotton and CCC-loan equities was inactive. offerings were light. Demand was light. Trading of S upplies and producer offerings were light. Demand was CCC-loan equities was slow. Average local spot prices light. Average local spot prices were lower. Limited were lower. Limited forward contracting was reported as forward contracting was reported as the season concluded. the season concluded. ICE Futures trended higher on Local market participants monitored cotton price November 4. Local market participants continued to movements for indications of improved marketing closely monitor fluctuations in cotton prices. opportunities. Daytime highs were in the 60s and 70s, while overnight Daytime high temperatures were in the 70s, with lows ranged from the 50s to 60s. A period of chilly rainfall overnight lows in the 60s. Heavy rainfall entered the entered the region November 1 and persisted through territory on October 31 and persisted through November 3, November 3, bringing overnight lows into the 40s l o w ering daytime highs into the 60s and nighttime lows mid-week. Precipitation totals measured from one and into the 40s and 50s. Accumulated rain totals measured one-quarter of an inch up to three and one-half inches of from around one-half of an inch up to one and rain. Fieldwork remained at a standstill until soils dried three-quarters of an inch of rainfall. Sunshine gave way to following the heavy rainfall received during the reporting damp conditions, and producers hoped for a return to drier period. Generally sunny skies in the near-term forecast weather to allow harvest activities to resume. Producers were expected to support field drying and aid harvesting performed equipment maintenance while preparing to efforts in areas where cotton remained unharvested. finalize harvest activities by month's end, weather According to the National Agricultural Statistics Service's permitting. According to the National Agricultural Crop Progress report released November 2, cotton harvest Statistics Service's Crop Progress report released advanced to 92 percent in Arkansas, 87 percent in November 2, cotton harvest advanced to 91 percent in Missouri, and 80 percent in Tennessee, compared with 81 Louisiana and 95 percent harvested in Mississippi, percent, 64 percent, and 67 percent, respectively, the compared with 81 percent and 83 percent, respectively, the previous week. All states remained ahead of the five-year previous week and well ahead of the five-year average. average. Cotton modules accumulated on gin yards. Gins Gins in Louisiana were expected to be completed by the continued to operate daily. second week of November. Trading",
+     "lo": null,
+     "hi": null,
+     "color": null,
+     "volume": null
+    },
+    {
+     "area": "North Delta",
+     "text": "An even-running lot containing a heavy volume of color 31 and better, leaf 3 and better, staple 34, mike averaging 45.2, strength averaging 30.0, and uniformity averaging 80.5 traded for around 79.25 cents per pound, FOB car/truck (Rule 5, compression charges paid).",
+     "lo": 79.25,
+     "hi": 79.25,
+     "color": "31",
+     "volume": "heavy"
+    },
+    {
+     "area": "North Delta",
+     "text": "A lot containing a moderate volume of mostly color 11 and 21, leaf 1-3, staple 34, mike 43-48, strength 29-31, and uniformity 79-81 sold for around 79.25 cents, same terms as above.",
+     "lo": 79.25,
+     "hi": 79.25,
+     "color": "11 and 21",
+     "volume": "moderate"
+    },
+    {
+     "area": "North Delta",
+     "text": "A heavy volume mixed lot of CCC-loan equities traded for around 22.50 cents.",
+     "lo": 22.5,
+     "hi": 22.5,
+     "color": null,
+     "volume": "heavy"
+    },
+    {
+     "area": "South Delta",
+     "text": "No trading reported."
+    }
+   ]
+  },
+  {
+   "key": "Southwestern",
+   "region": "Southwest (Texas, Oklahoma, Kansas)",
+   "subs": {
+    "East Texas-South Texas": {
+     "text": "Spot cotton trading was active. Supplies and producer offerings were moderate. Demand was light. Average local spot prices were lower. Trading of CCC-loan equities was inactive. Forward contracting activity was inactive. Foreign mill inquiries were moderate, with mills from various countries seeking to take advantage of lower market levels. In East Texas, sunny but overcast conditions were interrupted by showers this week. Daytime highs ranged from the 70s to the 80s, with nighttime lows ranging from the 40s to the 70s. Rainfall activity produced accumulated moisture totals ranging from trace amounts up to one and one-quarter of an inch of rain. Producers completed post-harvest offseason preparations, shredding stalks and cultivating soil. Ginning operations continued to process modules stored on gin yards. Samples were transported to the classing office for classing services. In South Texas, overcast conditions dominated the skies throughout the region, with areas of the Upper Coast and Coastal Bend receiving rainfall early in the reporting period. Daytime high temperatures were in the 80s to the 90s, with nighttime low temperatures in the 60s to the 70s. Accumulated moisture totals ranged from trace amounts up to over two and one-quarter inches of moisture. Gins worked through modules on yards. Many are nearing the end of the season, but some expect to continue until late November. The Corpus Christi Classing Office reported a season total of 27.6 percent for color 31, 46.5 percent for leaf 3, staple averaging 36.9, mike averaging 43.4, strength averaging 31.5, and uniformity averaging 82.0 for week ending October 5.",
+     "crop": [
+      "In East Texas, sunny but overcast conditions were interrupted by showers this week.",
+      "Daytime highs ranged from the 70s to the 80s, with nighttime lows ranging from the 40s to the 70s.",
+      "Rainfall activity produced accumulated moisture totals ranging from trace amounts up to one and one-quarter of an inch of rain.",
+      "Producers completed post-harvest offseason preparations, shredding stalks and cultivating soil.",
+      "Ginning operations continued to process modules stored on gin yards.",
+      "In South Texas, overcast conditions dominated the skies throughout the region, with areas of the Upper Coast and Coastal Bend receiving rainfall early in the reporting period.",
+      "Daytime high temperatures were in the 80s to the 90s, with nighttime low temperatures in the 60s to the 70s.",
+      "Accumulated moisture totals ranged from trace amounts up to over two and one-quarter inches of moisture.",
+      "Gins worked through modules on yards.",
+      "The Corpus Christi Classing Office reported a season total of 27.6 percent for color 31, 46.5 percent for leaf 3, staple averaging 36.9, mike averaging 43.4, strength averaging 31.5, and uniformity averaging 82.0 for week ending October 5."
+     ],
+     "crop_key": [
+      "In East Texas, sunny but overcast conditions were interrupted by showers this week.",
+      "Producers completed post-harvest offseason preparations, shredding stalks and cultivating soil.",
+      "The Corpus Christi Classing Office reported a season total of 27.6 percent for color 31, 46.5 percent for leaf 3, staple averaging 36.9, mike averaging 43.4, strength averaging 31.5, and uniformity averaging 82.0 for week ending October 5."
+     ],
+     "demand": [
+      "Demand was light.",
+      "Forward contracting activity was inactive.",
+      "Foreign mill inquiries were moderate, with mills from various countries seeking to take advantage of lower market levels."
+     ],
+     "market": [
+      "Spot cotton trading was active.",
+      "Supplies and producer offerings were moderate.",
+      "Average local spot prices were lower.",
+      "Trading of CCC-loan equities was inactive."
+     ],
+     "trading": "active",
+     "demand_level": "light",
+     "supplies": "moderate",
+     "foreign_inquiries": "moderate"
+    },
+    "West Texas-Kansas-Oklahoma": {
+     "text": "Spot cotton trading was slow. Supplies and producer offerings were moderate. Demand was light. Average local spot prices were steady. Producer interest in forward contracting was light. Trading of CCC-loan equities was inactive. Foreign mill inquiries were moderate, with mills from various countries seeking to take advantage of lower market levels. In Texas, daytime highs ranged from the mid-50s to the mid-80s, while nighttime temperatures fluctuated between the 30s and 60s. Light to moderate rainfall temporarily interrupted harvesting activities, with precipitation ranging from trace amounts to approximately two and one-half i nches of moisture. As fields dried and soils firmed under sunnier conditions, aerial applications of defoliants proceeded where needed. Stripper harvesting resumed by mid-week. Wet field conditions briefly hampered module transportation; however, ginning operations remained uninterrupted as gins worked through seed cotton supplies on gin yards. A few gins processed available module inventories and awaited additional module deliveries before resuming operations. Many sources reduced production estimates further. Recent rainfall delayed insurance adjustment activities. In Kansas, daytime temperatures ranged from the upper 50s to the mid-70s, while nighttime lows settled in the 30s and 50s. Several locations received up to two inches of moisture over multiple days. Harvesting activities were delayed until soils dried and firmed sufficiently to support field equipment. Ginning was underway at some locations, and modules accumulated slowly on gin yards, although not all gins were operating. Local sources reported pockets of irrigated fields yielding three and one-half to four bales per acre. In Oklahoma, harvest progress was slow after recent rainfall left soils soft and saturated. Water levels at Altus Lake increased slightly, which could benefit next year's crops. Daytime temperatures ranged from the mid-60s to the lower 80s, while overnight lows dipped into the 40s and 60s. Local experts reported fields were slow to defoliate, and regrowth remained a concern in some areas. Module transportation was hindered by soggy conditions. Warehouses received increasing numbers of bales as ginning operations advanced slowly, although not all gins had begun pressing bales.",
+     "crop": [
+      "In Texas, daytime highs ranged from the mid-50s to the mid-80s, while nighttime temperatures fluctuated between the 30s and 60s.",
+      "Light to moderate rainfall temporarily interrupted harvesting activities, with precipitation ranging from trace amounts to approximately two and one-half i nches of moisture.",
+      "As fields dried and soils firmed under sunnier conditions, aerial applications of defoliants proceeded where needed.",
+      "Stripper harvesting resumed by mid-week.",
+      "Wet field conditions briefly hampered module transportation; however, ginning operations remained uninterrupted as gins worked through seed cotton supplies on gin yards.",
+      "A few gins processed available module inventories and awaited additional module deliveries before resuming operations.",
+      "Recent rainfall delayed insurance adjustment activities.",
+      "In Kansas, daytime temperatures ranged from the upper 50s to the mid-70s, while nighttime lows settled in the 30s and 50s.",
+      "Several locations received up to two inches of moisture over multiple days.",
+      "Harvesting activities were delayed until soils dried and firmed sufficiently to support field equipment.",
+      "Ginning was underway at some locations, and modules accumulated slowly on gin yards, although not all gins were operating.",
+      "Local sources reported pockets of irrigated fields yielding three and one-half to four bales per acre.",
+      "In Oklahoma, harvest progress was slow after recent rainfall left soils soft and saturated.",
+      "Water levels at Altus Lake increased slightly, which could benefit next year's crops.",
+      "Daytime temperatures ranged from the mid-60s to the lower 80s, while overnight lows dipped into the 40s and 60s.",
+      "Local experts reported fields were slow to defoliate, and regrowth remained a concern in some areas.",
+      "Module transportation was hindered by soggy conditions.",
+      "Warehouses received increasing numbers of bales as ginning operations advanced slowly, although not all gins had begun pressing bales."
+     ],
+     "crop_key": [
+      "Light to moderate rainfall temporarily interrupted harvesting activities, with precipitation ranging from trace amounts to approximately two and one-half i nches of moisture.",
+      "Wet field conditions briefly hampered module transportation; however, ginning operations remained uninterrupted as gins worked through seed cotton supplies on gin yards.",
+      "Recent rainfall delayed insurance adjustment activities."
+     ],
+     "demand": [
+      "Demand was light.",
+      "Producer interest in forward contracting was light.",
+      "Foreign mill inquiries were moderate, with mills from various countries seeking to take advantage of lower market levels."
+     ],
+     "market": [
+      "Spot cotton trading was slow.",
+      "Supplies and producer offerings were moderate.",
+      "Average local spot prices were steady.",
+      "Trading of CCC-loan equities was inactive."
+     ],
+     "trading": "slow",
+     "demand_level": "light",
+     "supplies": "moderate",
+     "foreign_inquiries": "moderate"
+    }
+   },
+   "trades": [
+    {
+     "area": null,
+     "text": "Trad ing",
+     "lo": null,
+     "hi": null,
+     "color": null,
+     "volume": null
+    },
+    {
+     "area": "East Texas/South Texas",
+     "text": "A lot containing a heavy volume of color 12 and 22, leaf 2 and 3, staple 37 and 38, mike averaging 39.9, strength averaging 31.5, and uniformity averaging 81.3 sold for around 77.25 cents per pound, FOB warehouse, (compression charges not paid).",
+     "lo": 77.25,
+     "hi": 77.25,
+     "color": "12 and 22",
+     "volume": "heavy"
+    },
+    {
+     "area": "East Texas/South Texas",
+     "text": "Mixed lots containing a moderate volume of color 32 and better, leaf 2-4, staple 36 and 37, mike 38-49, strength 30-35, and uniformity 79-84 sold for around 76.00 to 76.50 cents, same terms as above.",
+     "lo": 76.0,
+     "hi": 76.5,
+     "color": "32",
+     "volume": "moderate"
+    },
+    {
+     "area": "East Texas/South Texas",
+     "text": "A lot containing a heavy volume of color 12 and 22, leaf 2-4, staple 37 and 38, mike averaging 37.7, strength averaging 33.8, and uniformity averaging 82.1 sold for around 74.00 cents, same terms as above.",
+     "lo": 74.0,
+     "hi": 74.0,
+     "color": "12 and 22",
+     "volume": "heavy"
+    },
+    {
+     "area": "West Texas, Kansas, Oklahoma",
+     "text": "In Texas, a lot containing a light volume of color 21-31, leaf 2-3, staple 35-36, mike averaging 43.0, strength averaging 32.9, and uniformity averaging 80.0 sold for around 74.75 cents per pound, FOB cars/truck (compression charges not paid).",
+     "lo": 74.75,
+     "hi": 74.75,
+     "color": "21-31",
+     "volume": "light"
+    },
+    {
+     "area": "West Texas, Kansas, Oklahoma",
+     "text": "In Kansas, a mixed lot containing a light volume of color 42, 52, 43, and 53, leaf 5-7, staple 36 and 37, mike averaging 38.9, strength averaging 35.3, and uniformity averaging 81.9 traded for around 64.50 cents, same terms as above.",
+     "lo": 64.5,
+     "hi": 64.5,
+     "color": "42",
+     "volume": "light"
+    },
+    {
+     "area": "West Texas, Kansas, Oklahoma",
+     "text": "In Oklahoma, a lot containing a light volume of color 22-33, leaf 2-4, staple 37-38, mike averaging 45.2, strength averaging 38.0, and uniformity averaging 81.7 sold for around 70.00 cents, same terms as above.",
+     "lo": 70.0,
+     "hi": 70.0,
+     "color": "22-33",
+     "volume": "light"
+    }
+   ]
+  },
+  {
+   "key": "Western",
+   "region": "West (Arizona, California, New Mexico)",
+   "subs": {
+    "Desert Southwest (DSW)": {
+     "text": "Spot cotton trading was inactive. Supplies and producer offerings were light. Demand was light. No forward contracting was reported during the period. Average local prices were lower. Foreign mill inquiries were light. Untimely rainfall was received in Safford, AZ, and Las Cruces, NM, during the final weekend of October. Daytime temperatures ranged from the 60s to the 80s. Nighttime lows ranged from the 40s to 60s. Total accumulated precipitation totals ranged from trace amounts up to one and one-quarter inches of rain in cotton-producing areas of the region. Saturated, muddy field conditions stalled progress in fields in Safford Valley. Producers waited for dry and open weather to allow soil to firm before returning to fields. The untimely rainfall may result in decreased yields, according to local sources. Ginning had begun in the region. Harvest continued in El Paso, TX.",
+     "crop": [
+      "Untimely rainfall was received in Safford, AZ, and Las Cruces, NM, during the final weekend of October.",
+      "Daytime temperatures ranged from the 60s to the 80s.",
+      "Total accumulated precipitation totals ranged from trace amounts up to one and one-quarter inches of rain in cotton-producing areas of the region.",
+      "Saturated, muddy field conditions stalled progress in fields in Safford Valley.",
+      "Producers waited for dry and open weather to allow soil to firm before returning to fields.",
+      "The untimely rainfall may result in decreased yields, according to local sources.",
+      "Ginning had begun in the region.",
+      "Harvest continued in El Paso, TX."
+     ],
+     "crop_key": [],
+     "demand": [
+      "Demand was light.",
+      "No forward contracting was reported during the period.",
+      "Foreign mill inquiries were light."
+     ],
+     "market": [
+      "Spot cotton trading was inactive.",
+      "Supplies and producer offerings were light.",
+      "Average local prices were lower."
+     ],
+     "trading": "inactive",
+     "demand_level": "light",
+     "supplies": "light",
+     "foreign_inquiries": "light"
+    },
+    "San Joaquin Valley (SJV)": {
+     "text": "Spot cotton trading was inactive. Supplies and demand were light. No forward contracting or domestic mill activity was reported. Average local prices were lower. Foreign mill inquiries were light. In the SJV, open skies and sunny weather ruled during the period, with intermittent rainfall bringing some precipitation to the region. Daytime temperatures were in the 60s and 70s. Overnight lows were in the 40s. Accumulated rainfall totals measured from trace amounts up to over one-half of an inch of moisture. Weekend precipitation temporarily delayed harvest progression. However, as conditions allowed, producers resumed picking, moving quickly to make up for delays. Lower yields were reported in some fields, but overall producers have been pleased with the quality of the crop. Modules were transported to gins for pressing. Gins processed accumulated modules on gin yards.",
+     "crop": [
+      "In the SJV, open skies and sunny weather ruled during the period, with intermittent rainfall bringing some precipitation to the region.",
+      "Daytime temperatures were in the 60s and 70s.",
+      "Accumulated rainfall totals measured from trace amounts up to over one-half of an inch of moisture.",
+      "Weekend precipitation temporarily delayed harvest progression.",
+      "Lower yields were reported in some fields, but overall producers have been pleased with the quality of the crop.",
+      "Modules were transported to gins for pressing.",
+      "Gins processed accumulated modules on gin yards."
+     ],
+     "crop_key": [
+      "Weekend precipitation temporarily delayed harvest progression.",
+      "Lower yields were reported in some fields, but overall producers have been pleased with the quality of the crop."
+     ],
+     "demand": [
+      "No forward contracting or domestic mill activity was reported.",
+      "Foreign mill inquiries were light."
+     ],
+     "market": [
+      "Spot cotton trading was inactive.",
+      "Supplies and demand were light.",
+      "Average local prices were lower."
+     ],
+     "trading": "inactive",
+     "demand_level": "light",
+     "supplies": null,
+     "foreign_inquiries": "light"
+    },
+    "American Pima (AP)": {
+     "text": "Spot cotton trading was inactive. Supplies were moderate. Demand was light. No forward contracting or domestic mill activity was reported. Average local spot prices were steady. Mill inquiries were moderate. Daytime highs in the Far West ranged from the 60s to the 80s, with nighttime lows in the 40s to the 60s. In the DSW, heavy weekend rains slowed harvest activities until fields could dry out and soils firm enough to support equipment. Flooding may result in decreased yields, according to local sources. Ginning began in the region. Harvesting activities continued in El Paso, TX. In the SJV, harvest was delayed as weekend rainstorms crossed the region, but picking resumed once suitable conditions returned. Pressing operations continued in the SJV.",
+     "crop": [
+      "In the DSW, heavy weekend rains slowed harvest activities until fields could dry out and soils firm enough to support equipment.",
+      "Flooding may result in decreased yields, according to local sources.",
+      "Ginning began in the region.",
+      "Harvesting activities continued in El Paso, TX.",
+      "In the SJV, harvest was delayed as weekend rainstorms crossed the region, but picking resumed once suitable conditions returned."
+     ],
+     "crop_key": [
+      "Flooding may result in decreased yields, according to local sources.",
+      "In the SJV, harvest was delayed as weekend rainstorms crossed the region, but picking resumed once suitable conditions returned."
+     ],
+     "demand": [
+      "Demand was light.",
+      "No forward contracting or domestic mill activity was reported.",
+      "Mill inquiries were moderate."
+     ],
+     "market": [
+      "Spot cotton trading was inactive.",
+      "Average local spot prices were steady."
+     ],
+     "trading": "inactive",
+     "demand_level": "light",
+     "supplies": "moderate",
+     "foreign_inquiries": null
+    }
+   },
+   "trades": [
+    {
+     "area": "Desert Southwest",
+     "text": "No trading reported."
+    },
+    {
+     "area": "San Joaquin Valley",
+     "text": "No trading reported."
+    },
+    {
+     "area": "American Pima",
+     "text": "No trading reported."
+    }
+   ]
+  }
+ ],
+ "domestic_mill": [
+  "No forward contracting or domestic mill activity was reported."
+ ],
+ "export_inquiries": [],
+ "export_demand_level": null,
+ "brief": {
+  "headline": [
+   "Watch: West Texas-Kansas-Oklahoma (regrowth, insurance adjusters in fields, harvest delays); San Joaquin Valley (SJV) (harvest delays); American Pima (AP) (harvest delays).",
+   "Spot 41-4-34 7-market average 73.36\u00a2 (-74 pts on the week; 61.43\u00a2 a year ago), -535 pts vs Dec futures; A Index 89.90\u00a2; AWP 63.57\u00a2.",
+   "Versus the previous report (2026-10-23): spot -2.53\u00a2; export demand was slow to moderate."
+  ],
+  "crop": [
+   {
+    "area": "East Texas-South Texas",
+    "t": "In East Texas, sunny but overcast conditions were interrupted by showers this week. Producers completed post-harvest offseason preparations, shredding stalks and cultivating soil. The Corpus Christi Classing Office reported a season total of 27.6 percent for color 31, 46.5 percent for leaf 3, staple averaging 36.9, mike averaging 43.4, strength averaging 31.5, and uniformity averaging 82.0 for week ending October 5."
+   },
+   {
+    "area": "West Texas-Kansas-Oklahoma",
+    "t": "Light to moderate rainfall temporarily interrupted harvesting activities, with precipitation ranging from trace amounts to approximately two and one-half i nches of moisture. Wet field conditions briefly hampered module transportation; however, ginning operations remained uninterrupted as gins worked through seed cotton supplies on gin yards. Recent rainfall delayed insurance adjustment activities."
+   },
+   {
+    "area": "San Joaquin Valley (SJV)",
+    "t": "Weekend precipitation temporarily delayed harvest progression. Lower yields were reported in some fields, but overall producers have been pleased with the quality of the crop."
+   },
+   {
+    "area": "American Pima (AP)",
+    "t": "Flooding may result in decreased yields, according to local sources. In the SJV, harvest was delayed as weekend rainstorms crossed the region, but picking resumed once suitable conditions returned."
+   }
+  ],
+  "mill": [
+   {
+    "area": "US mills",
+    "t": "No forward contracting or domestic mill activity was reported."
+   },
+   {
+    "area": "Spot market",
+    "t": "Southeast: trading active, demand moderate; East Texas-South Texas: trading active, demand light; West Texas-Kansas-Oklahoma: trading slow, demand light; Desert Southwest (DSW): trading inactive, demand light; San Joaquin Valley (SJV): trading inactive, demand light; American Pima (AP): trading inactive, demand light."
+   }
+  ]
+ }
+}

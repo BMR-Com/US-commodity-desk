@@ -1,5 +1,5 @@
 {
- "built": "2026-11-06 20:10 UTC",
+ "built": "2026-11-06 21:53 UTC",
  "asof": "2026-11-06",
  "prices": {
   "H": 82.4,
@@ -21,8 +21,8 @@
    "dsu": -17.5,
    "may_pct": 15.9,
    "may": 97.2,
-   "may_hedge_pct": 18.8,
-   "may_hedge": 99.7,
+   "may_hedge_pct": 18.3,
+   "may_hedge": 99.3,
    "may_lo": 90.1,
    "may_hi": 104.3,
    "jul_dec": 4.1
@@ -32,8 +32,8 @@
    "dsu": -9.7,
    "may_pct": 8.8,
    "may": 91.3,
-   "may_hedge_pct": 12.2,
-   "may_hedge": 94.2,
+   "may_hedge_pct": 11.7,
+   "may_hedge": 93.7,
    "may_lo": 84.2,
    "may_hi": 98.4,
    "jul_dec": 2.5
@@ -43,8 +43,8 @@
    "dsu": 3.9,
    "may_pct": -3.3,
    "may": 81.1,
-   "may_hedge_pct": 0.8,
-   "may_hedge": 84.5,
+   "may_hedge_pct": 0.3,
+   "may_hedge": 84.1,
    "may_lo": 74.0,
    "may_hi": 88.2,
    "jul_dec": -0.4
@@ -54,8 +54,8 @@
    "dsu": 0.0,
    "may_pct": 0.2,
    "may": 84.0,
-   "may_hedge_pct": 4.1,
-   "may_hedge": 87.3,
+   "may_hedge_pct": 3.6,
+   "may_hedge": 86.9,
    "may_lo": 76.9,
    "may_hi": 91.1,
    "jul_dec": 0.4
@@ -156,15 +156,15 @@
   "p_may_above_now": 69.0
  },
  "hedge": {
-  "date": "2026-10-27",
-  "pm_short_m": 22.54,
-  "pm_long_m": 9.88,
-  "mm_net_m": 4.99,
-  "oi_m": 41.46,
+  "date": "2026-11-03",
+  "pm_short_m": 21.29,
+  "pm_long_m": 9.22,
+  "mm_net_m": 4.6,
+  "oi_m": 40.42,
   "world_exports": 44.71,
-  "pct": 50.4,
+  "pct": 47.6,
   "median_pct": 27.3,
-  "rank": "17 of 17",
+  "rank": "16 of 17",
   "high_years": [
    {
     "my": "2010/11",
@@ -204,7 +204,7 @@
   ],
   "high_mean": 16.3,
   "low_mean": 0.4,
-  "net_pct": 28.3,
+  "net_pct": 27.0,
   "net_rank": "11 of 17",
   "net_hist": {
    "2010/11": 20.7,
@@ -1106,7 +1106,7 @@
   ],
   "loan_rate": 55.0,
   "loan_note": "2026-crop upland loan rate 55.00 c/lb (One Big Beautiful Bill Act; 52.00 for 2025)",
-  "mm_net_lots": 47877,
+  "mm_net_lots": 44168,
   "typical_low": 77.3,
   "worst_low": 64.7
  },

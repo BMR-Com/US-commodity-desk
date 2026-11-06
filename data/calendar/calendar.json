@@ -1,64 +1,6 @@
 {
-"generated": "2026-11-05 23:21 UTC",
+"generated": "2026-11-06 02:01 UTC",
 "events": [
-{
-"date": "2026-10-29",
-"time": "9:30 AM CT",
-"event": "EIA Weekly Natural Gas Storage Report",
-"cat": "Energy",
-"markets": [
-"NG"
-],
-"importance": 3,
-"link": "https://ir.eia.gov/ngs/ngs.html",
-"estimated": false
-},
-{
-"date": "2026-10-29",
-"time": "7:30 AM CT",
-"event": "USDA weekly export sales",
-"cat": "USDA",
-"markets": [
-"ZC",
-"ZS",
-"ZM",
-"ZL",
-"ZW",
-"KE",
-"HE",
-"LE",
-"CT"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
-{
-"date": "2026-10-29",
-"time": "2:30 PM CT",
-"event": "CFTC cotton on-call report",
-"cat": "CFTC",
-"markets": [
-"CT"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
-{
-"date": "2026-10-29",
-"time": "",
-"event": "Buenos Aires Grain Exchange crop progress (weekly)",
-"cat": "South America",
-"markets": [
-"ZS",
-"ZC",
-"ZW"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-10-30",
 "time": "12:00 PM CT",
@@ -2745,6 +2687,64 @@
 "DY"
 ],
 "importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-04",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Natural Gas Storage Report",
+"cat": "Energy",
+"markets": [
+"NG"
+],
+"importance": 3,
+"link": "https://ir.eia.gov/ngs/ngs.html",
+"estimated": false
+},
+{
+"date": "2027-02-04",
+"time": "7:30 AM CT",
+"event": "USDA weekly export sales",
+"cat": "USDA",
+"markets": [
+"ZC",
+"ZS",
+"ZM",
+"ZL",
+"ZW",
+"KE",
+"HE",
+"LE",
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-04",
+"time": "2:30 PM CT",
+"event": "CFTC cotton on-call report",
+"cat": "CFTC",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-04",
+"time": "",
+"event": "Buenos Aires Grain Exchange crop progress (weekly)",
+"cat": "South America",
+"markets": [
+"ZS",
+"ZC",
+"ZW"
+],
+"importance": 1,
 "link": null,
 "estimated": false
 }

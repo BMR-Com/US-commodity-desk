@@ -1,18 +1,18 @@
 {
- "built": "2026-11-07 01:39 UTC",
+ "built": "2026-11-07 13:02 UTC",
  "asof": "2026-11-06",
  "prices": {
-  "H": 82.67,
-  "K": 84.24,
-  "N": 84.61,
-  "Z_old": 79.0,
-  "Z_new": 77.66
+  "H": 82.79,
+  "K": 84.35,
+  "N": 84.75,
+  "Z_old": 79.11,
+  "Z_new": 77.73
  },
  "spreads": {
-  "HK": -1.57,
-  "KN": -0.37,
-  "NZ": 6.95,
-  "ZH": -3.67
+  "HK": -1.56,
+  "KN": -0.4,
+  "NZ": 7.02,
+  "ZH": -3.68
  },
  "usda_su": 27.5,
  "scenarios": {
@@ -20,44 +20,44 @@
    "su": 10.0,
    "dsu": -17.5,
    "may_pct": 15.9,
-   "may": 97.6,
+   "may": 97.7,
    "may_hedge_pct": 18.3,
-   "may_hedge": 99.7,
-   "may_lo": 90.5,
-   "may_hi": 104.7,
+   "may_hedge": 99.8,
+   "may_lo": 90.6,
+   "may_hi": 104.9,
    "jul_dec": 4.1
   },
   "base": {
    "su": 17.8,
    "dsu": -9.7,
    "may_pct": 8.8,
-   "may": 91.7,
+   "may": 91.8,
    "may_hedge_pct": 11.7,
-   "may_hedge": 94.1,
-   "may_lo": 84.6,
-   "may_hi": 98.8,
+   "may_hedge": 94.2,
+   "may_lo": 84.7,
+   "may_hi": 98.9,
    "jul_dec": 2.5
   },
   "bear": {
    "su": 31.5,
    "dsu": 3.9,
    "may_pct": -3.3,
-   "may": 81.4,
+   "may": 81.5,
    "may_hedge_pct": 0.3,
-   "may_hedge": 84.5,
-   "may_lo": 74.3,
-   "may_hi": 88.6,
+   "may_hedge": 84.6,
+   "may_lo": 74.4,
+   "may_hi": 88.7,
    "jul_dec": -0.4
   },
   "usda": {
    "su": 27.5,
    "dsu": 0.0,
    "may_pct": 0.2,
-   "may": 84.4,
+   "may": 84.5,
    "may_hedge_pct": 3.6,
-   "may_hedge": 87.2,
-   "may_lo": 77.3,
-   "may_hi": 91.5,
+   "may_hedge": 87.4,
+   "may_lo": 77.4,
+   "may_hi": 91.6,
    "jul_dec": 0.4
   }
  },
@@ -67,15 +67,15 @@
   "days": 91,
   "vol_pct": 20.1,
   "may_expiry": {
-   "10": 78.3,
-   "25": 84.5,
-   "50": 91.1,
-   "75": 97.3,
-   "90": 102.6
+   "10": 78.4,
+   "25": 84.6,
+   "50": 91.2,
+   "75": 97.5,
+   "90": 102.7
   },
   "may_high": {
-   "10": 84.9,
-   "25": 88.0,
+   "10": 85.0,
+   "25": 88.1,
    "50": 101.9,
    "75": 126.1,
    "90": 151.5
@@ -83,9 +83,9 @@
   "may_low": {
    "10": 65.7,
    "25": 74.9,
-   "50": 82.0,
-   "75": 84.2,
-   "90": 85.2
+   "50": 82.1,
+   "75": 84.3,
+   "90": 85.3
   },
   "p_above": {
    "90": 70.0,
@@ -130,7 +130,7 @@
    "75": 124.6,
    "90": 150.8
   },
-  "p_nz_above_now": 66.0,
+  "p_nz_above_now": 65.0,
   "su_floor": 17.8,
   "p_su_below_floor": 50.0,
   "fits": [
@@ -472,26 +472,26 @@
   "implied_su": {
    "px": {
     "ex_2010": 23.3,
-    "ex_short": 21.2,
+    "ex_short": 21.1,
     "since_2013": 22.6,
-    "all": 24.2
+    "all": 24.1
    },
    "kn": {
-    "ex_2010": 25.6,
-    "ex_short": 23.1,
-    "since_2013": 26.1,
-    "all": 25.8
+    "ex_2010": 25.8,
+    "ex_short": 23.4,
+    "since_2013": 26.3,
+    "all": 26.0
    },
    "nz": {
-    "ex_2010": 21.6,
-    "ex_short": 20.2,
+    "ex_2010": 21.5,
+    "ex_short": 20.1,
     "since_2013": 21.7,
     "all": 23.1
    },
    "hk": {
-    "ex_2010": 39.4,
-    "since_2013": 39.2,
-    "all": 38.8
+    "ex_2010": 39.2,
+    "since_2013": 39.0,
+    "all": 38.6
    }
   },
   "sim": {
@@ -724,9 +724,9 @@
   "N_old": 41752,
   "S_old_seas_pct": 67.0,
   "P_old_seas_pct": 40.0,
-  "ls_old": 0.481,
-  "ls_old_pct": 24.0,
-  "pmu_net_old": -113877,
+  "ls_old": 0.479,
+  "ls_old_pct": 23.0,
+  "pmu_net_old": -107066,
   "front": "December 2026",
   "S_front": 11439,
   "S_2nd": 29421,
@@ -1107,8 +1107,8 @@
   "loan_rate": 55.0,
   "loan_note": "2026-crop upland loan rate 55.00 c/lb (One Big Beautiful Bill Act; 52.00 for 2025)",
   "mm_net_lots": 44168,
-  "typical_low": 77.6,
-  "worst_low": 64.9
+  "typical_low": 77.7,
+  "worst_low": 65.0
  },
  "oi_fwd": {
   "date": "2026-10-29",

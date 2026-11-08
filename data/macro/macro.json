@@ -1,18 +1,17 @@
 {
- "generated": "2026-11-06 23:08 UTC",
+ "generated": "2026-11-08 23:45 UTC",
  "view": "headwind",
- "score": -4,
+ "score": -3,
  "components": {
   "rates": 1,
   "dollar": 0,
   "brl": -1,
-  "mxn": -1,
   "risk": -1,
   "energy": 0,
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -4 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; mxn \u2212; risk \u2212; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +12.9%; weakest: Lean hogs -22.8%. Key releases ahead: US Average Hourly Earnings m/m (11-06 8:30 AM ET); US Non-Farm Employment Change (11-06 8:30 AM ET); US Unemployment Rate (11-06 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk \u2212; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +6.4%; weakest: Lean hogs -22.5%. Key releases ahead: US Core CPI m/m (11-10 8:30 AM ET); US CPI m/m (11-10 8:30 AM ET); US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -22,7 +21,7 @@
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 102.28 (+0.0% in a month, +4.1% YTD). USD/BRL 5.496 (+10.3% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.665 (-0.6%); USD/MXN 18.60 (+3.5%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 102.25 (+0.0% in a month, +4.0% YTD). USD/BRL 5.496 (+9.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.665 (-0.6%); USD/MXN 18.62 (+2.4%)."
   },
   {
    "title": "Risk appetite",
@@ -32,50 +31,60 @@
   {
    "title": "Energy",
    "score": 0,
-   "text": "WTI 90.34 $/bbl (+3.2% in a month), Brent 97.76, ULSD 4.343 $/gal (-3.0%), natural gas 3.00 (-14.5%). Crude little changed on the month. Natural gas drives nitrogen fertilizer costs for next year's corn. "
+   "text": "WTI 90.34 $/bbl (-0.7% in a month), Brent 97.47, ULSD 4.331 $/gal (-5.6%), natural gas 3.01 (-15.1%). Crude little changed on the month. Natural gas drives nitrogen fertilizer costs for next year's corn. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -5.9% in a month, Shanghai Composite -5.0%, Hang Seng +1.5%, yuan +0.6% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -6.3% in a month, Shanghai Composite -5.0%, Hang Seng +1.5%, yuan +0.6% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -4.1% in a month; gold -1.5%. "
+   "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -4.1% in a month; gold -3.4%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",
  "events_ahead": [
   {
-   "date": "2026-11-06",
+   "date": "2026-11-10",
    "time": "8:30 AM ET",
    "country": "US",
-   "title": "Average Hourly Earnings m/m",
+   "title": "Core CPI m/m",
+   "impact": "High",
+   "forecast": "0.2%",
+   "previous": "0.3%",
+   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+  },
+  {
+   "date": "2026-11-10",
+   "time": "8:30 AM ET",
+   "country": "US",
+   "title": "CPI m/m",
    "impact": "High",
    "forecast": "0.3%",
-   "previous": "0.1%",
-   "why": "Labor market sets the Fed path, dollar and demand"
+   "previous": "0.6%",
+   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
   },
   {
-   "date": "2026-11-06",
+   "date": "2026-11-13",
    "time": "8:30 AM ET",
    "country": "US",
-   "title": "Non-Farm Employment Change",
+   "title": "Core PPI m/m",
    "impact": "High",
-   "forecast": "65K",
-   "previous": "29K",
-   "why": "Labor market sets the Fed path, dollar and demand"
+   "forecast": "0.3%",
+   "previous": "0.7%",
+   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
   },
   {
-   "date": "2026-11-06",
+   "date": "2026-11-13",
    "time": "8:30 AM ET",
    "country": "US",
-   "title": "Unemployment Rate",
+   "title": "PPI m/m",
    "impact": "High",
-   "forecast": "4.2%",
-   "previous": "4.2%",
-   "why": "Labor market sets the Fed path, dollar and demand"
+   "forecast": "0.4%",
+   "previous": "1.3%",
+   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
   }
  ]
 }

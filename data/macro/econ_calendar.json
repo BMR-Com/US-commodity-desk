@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-06 23:08 UTC",
+"generated": "2026-11-08 23:45 UTC",
 "source": "Forex Factory weekly calendar export (forecast = consensus; no actuals in the export)",
 "events": [
 {
@@ -751,6 +751,356 @@
 "forecast": "13.4B",
 "previous": "8.3B",
 "why": "China credit and policy easing: commodity demand"
+},
+{
+"date": "2026-11-09",
+"time": "8:40 AM ET",
+"country": "US",
+"title": "FOMC Member Bowman Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-09",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Final Wholesale Inventories m/m",
+"impact": "Low",
+"forecast": "0.6%",
+"previous": "0.6%",
+"why": ""
+},
+{
+"date": "2026-11-09",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "FOMC Member Goolsbee Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-09",
+"time": "12:15 PM ET",
+"country": "US",
+"title": "FOMC Member Barkin Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-10",
+"time": "4:00 AM ET",
+"country": "US",
+"title": "FOMC Member Waller Speaks",
+"impact": "Medium",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-10",
+"time": "6:00 AM ET",
+"country": "US",
+"title": "NFIB Small Business Index",
+"impact": "Low",
+"forecast": "97.7",
+"previous": "97.9",
+"why": "Manufacturing/services cycle: industrial and energy demand"
+},
+{
+"date": "2026-11-10",
+"time": "8:16 AM ET",
+"country": "US",
+"title": "ADP Weekly Employment Change",
+"impact": "Low",
+"forecast": "",
+"previous": "16.8K",
+"why": "Labor market sets the Fed path, dollar and demand"
+},
+{
+"date": "2026-11-10",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Core CPI m/m",
+"impact": "High",
+"forecast": "0.2%",
+"previous": "0.3%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-11-10",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "CPI m/m",
+"impact": "High",
+"forecast": "0.3%",
+"previous": "0.6%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-11-10",
+"time": "10:50 AM ET",
+"country": "US",
+"title": "FOMC Member Logan Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-10",
+"time": "1:01 PM ET",
+"country": "US",
+"title": "10-y Bond Auction",
+"impact": "Low",
+"forecast": "",
+"previous": "5.30|2.8",
+"why": "Treasury demand and yields"
+},
+{
+"date": "2026-11-10",
+"time": "1:30 PM ET",
+"country": "US",
+"title": "FOMC Member Schmid Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-10",
+"time": "4:30 PM ET",
+"country": "US",
+"title": "API Weekly Statistical Bulletin",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-11-10",
+"time": "6:30 PM ET",
+"country": "US",
+"title": "FOMC Member Bowman Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-10",
+"time": "6:30 PM ET",
+"country": "US",
+"title": "FOMC Member Paulson Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-11",
+"time": "8:00 AM ET",
+"country": "US",
+"title": "Bank Holiday",
+"impact": "Holiday",
+"forecast": "",
+"previous": "",
+"why": ""
+},
+{
+"date": "2026-11-12",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Unemployment Claims",
+"impact": "Medium",
+"forecast": "194K",
+"previous": "189K",
+"why": "Labor market sets the Fed path, dollar and demand"
+},
+{
+"date": "2026-11-12",
+"time": "9:00 AM ET",
+"country": "US",
+"title": "FOMC Member Hammack Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-12",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Existing Home Sales",
+"impact": "Low",
+"forecast": "3.86M",
+"previous": "3.99M",
+"why": "Housing cycle: lumber, copper"
+},
+{
+"date": "2026-11-12",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "FOMC Member Barr Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-12",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Mortgage Delinquencies",
+"impact": "Low",
+"forecast": "",
+"previous": "4.37%",
+"why": ""
+},
+{
+"date": "2026-11-12",
+"time": "11:30 AM ET",
+"country": "US",
+"title": "FOMC Member Goolsbee Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-12",
+"time": "12:00 PM ET",
+"country": "US",
+"title": "Crude Oil Inventories",
+"impact": "Low",
+"forecast": "",
+"previous": "-0.9M",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-11-12",
+"time": "1:01 PM ET",
+"country": "US",
+"title": "30-y Bond Auction",
+"impact": "Low",
+"forecast": "",
+"previous": "5.62|2.5",
+"why": "Treasury demand and yields"
+},
+{
+"date": "2026-11-12",
+"time": "1:10 PM ET",
+"country": "US",
+"title": "FOMC Member Daly Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-12",
+"time": "1:30 PM ET",
+"country": "US",
+"title": "FOMC Member Schmid Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-12",
+"time": "2:00 PM ET",
+"country": "US",
+"title": "Federal Budget Balance",
+"impact": "Low",
+"forecast": "",
+"previous": "-26.9B",
+"why": ""
+},
+{
+"date": "2026-11-12",
+"time": "6:30 PM ET",
+"country": "US",
+"title": "FOMC Member Williams Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-13",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Core PPI m/m",
+"impact": "High",
+"forecast": "0.3%",
+"previous": "0.7%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-11-13",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "PPI m/m",
+"impact": "High",
+"forecast": "0.4%",
+"previous": "1.3%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-11-13",
+"time": "9:10 AM ET",
+"country": "US",
+"title": "FOMC Member Collins Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-13",
+"time": "10:30 AM ET",
+"country": "US",
+"title": "Natural Gas Storage",
+"impact": "Low",
+"forecast": "",
+"previous": "77B",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-11-13",
+"time": "10:50 AM ET",
+"country": "US",
+"title": "FOMC Member Bowman Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-13",
+"time": "12:00 PM ET",
+"country": "US",
+"title": "FOMC Member Daly Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-13",
+"time": "7:00 PM ET",
+"country": "US",
+"title": "FOMC Member Jefferson Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
 }
 ]
 }

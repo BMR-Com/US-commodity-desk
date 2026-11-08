@@ -1,11 +1,11 @@
 {
- "generated": "2026-11-06 18:28 UTC",
+ "generated": "2026-11-08 23:47 UTC",
  "first_call": "2026-10-21",
- "last_call": "2026-11-06",
- "calls_logged": 192,
+ "last_call": "2026-11-08",
+ "calls_logged": 204,
  "calls_scored": {
-  "1d": 172,
-  "5d": 115,
+  "1d": 176,
+  "5d": 120,
   "20d": 0
  },
  "min_eff": 10,
@@ -13,28 +13,28 @@
  "view": {
   "all": {
    "1d": {
-    "n": 136,
+    "n": 140,
     "n_eff": 16.0,
     "too_few": false,
-    "hit": 63.2,
-    "base": 49.2,
-    "edge": 14.0,
+    "hit": 62.9,
+    "base": 49.0,
+    "edge": 13.8,
     "avg_pct": 0.38,
     "avg_atr": 0.17,
-    "t": 1.34,
+    "t": 1.35,
     "rank_ic": 0.086
    },
    "5d": {
-    "n": 89,
+    "n": 93,
     "n_eff": 2.2,
     "too_few": true,
-    "hit": 76.4,
-    "base": 51.8,
-    "edge": 24.6,
-    "avg_pct": 1.42,
-    "avg_atr": 0.46,
-    "t": 0.65,
-    "rank_ic": -0.19
+    "hit": 76.3,
+    "base": 51.6,
+    "edge": 24.8,
+    "avg_pct": 1.49,
+    "avg_atr": 0.5,
+    "t": 0.68,
+    "rank_ic": -0.166
    },
    "20d": {
     "n": 0,
@@ -49,12 +49,12 @@
      "n": 16,
      "n_eff": 16.0,
      "too_few": false,
-     "hit": 68.8,
+     "hit": 75.0,
      "base": 51.8,
-     "edge": 17.0,
-     "avg_pct": 0.59,
-     "avg_atr": 0.23,
-     "t": 2.67,
+     "edge": 23.2,
+     "avg_pct": 0.63,
+     "avg_atr": 0.25,
+     "t": 3.02,
      "rank_ic": null
     },
     "5d": {
@@ -64,9 +64,9 @@
      "hit": 100.0,
      "base": 52.1,
      "edge": 47.9,
-     "avg_pct": 2.46,
-     "avg_atr": 0.94,
-     "t": 2.6,
+     "avg_pct": 2.52,
+     "avg_atr": 0.96,
+     "t": 2.77,
      "rank_ic": null
     },
     "20d": {
@@ -78,28 +78,28 @@
    "DC": {
     "name": "Class III milk",
     "1d": {
-     "n": 10,
-     "n_eff": 10.0,
+     "n": 11,
+     "n_eff": 11.0,
      "too_few": false,
-     "hit": 30.0,
+     "hit": 27.3,
      "base": 42.2,
-     "edge": -12.2,
-     "avg_pct": -0.27,
+     "edge": -14.9,
+     "avg_pct": -0.25,
      "avg_atr": -0.11,
-     "t": -0.76,
-     "rank_ic": -0.294
+     "t": -0.8,
+     "rank_ic": -0.254
     },
     "5d": {
-     "n": 5,
-     "n_eff": 1.0,
+     "n": 6,
+     "n_eff": 1.2,
      "too_few": true,
-     "hit": 80.0,
+     "hit": 66.7,
      "base": 49.9,
-     "edge": 30.1,
-     "avg_pct": 0.22,
-     "avg_atr": 0.1,
+     "edge": 16.8,
+     "avg_pct": 0.19,
+     "avg_atr": 0.08,
      "t": 0.16,
-     "rank_ic": 0.0
+     "rank_ic": -0.06
     },
     "20d": {
      "n": 0,
@@ -122,16 +122,16 @@
      "rank_ic": -0.156
     },
     "5d": {
-     "n": 5,
-     "n_eff": 1.0,
+     "n": 6,
+     "n_eff": 1.2,
      "too_few": true,
-     "hit": 40.0,
+     "hit": 50.0,
      "base": 48.9,
-     "edge": -8.9,
-     "avg_pct": -0.4,
-     "avg_atr": -0.38,
-     "t": -0.16,
-     "rank_ic": -0.316
+     "edge": 1.1,
+     "avg_pct": -0.27,
+     "avg_atr": -0.27,
+     "t": -0.13,
+     "rank_ic": -0.378
     },
     "20d": {
      "n": 0,
@@ -145,12 +145,12 @@
      "n": 15,
      "n_eff": 15.0,
      "too_few": false,
-     "hit": 66.7,
+     "hit": 60.0,
      "base": 49.6,
-     "edge": 17.1,
-     "avg_pct": 0.27,
-     "avg_atr": 0.15,
-     "t": 1.23,
+     "edge": 10.4,
+     "avg_pct": 0.25,
+     "avg_atr": 0.13,
+     "t": 1.1,
      "rank_ic": null
     },
     "5d": {
@@ -180,9 +180,9 @@
      "hit": 86.7,
      "base": 49.0,
      "edge": 37.7,
-     "avg_pct": 0.51,
-     "avg_atr": 0.26,
-     "t": 3.97,
+     "avg_pct": 0.47,
+     "avg_atr": 0.24,
+     "t": 3.08,
      "rank_ic": 0.389
     },
     "5d": {
@@ -192,9 +192,9 @@
      "hit": 80.0,
      "base": 51.2,
      "edge": 28.8,
-     "avg_pct": 1.62,
-     "avg_atr": 0.81,
-     "t": 1.44,
+     "avg_pct": 1.55,
+     "avg_atr": 0.77,
+     "t": 1.28,
      "rank_ic": -0.65
     },
     "20d": {
@@ -206,16 +206,16 @@
    "GF": {
     "name": "Feeder cattle",
     "1d": {
-     "n": 10,
-     "n_eff": 10.0,
+     "n": 11,
+     "n_eff": 11.0,
      "too_few": false,
-     "hit": 60.0,
-     "base": 53.6,
-     "edge": 6.4,
-     "avg_pct": 0.04,
-     "avg_atr": 0.0,
-     "t": 0.1,
-     "rank_ic": 0.454
+     "hit": 63.6,
+     "base": 52.7,
+     "edge": 11.0,
+     "avg_pct": 0.11,
+     "avg_atr": 0.05,
+     "t": 0.32,
+     "rank_ic": 0.448
     },
     "5d": {
      "n": 8,
@@ -227,7 +227,7 @@
      "avg_pct": -2.55,
      "avg_atr": -1.96,
      "t": -1.3,
-     "rank_ic": null
+     "rank_ic": 0.274
     },
     "20d": {
      "n": 0,
@@ -244,9 +244,9 @@
      "hit": 68.8,
      "base": 52.8,
      "edge": 15.9,
-     "avg_pct": 0.55,
-     "avg_atr": 0.23,
-     "t": 3.2,
+     "avg_pct": 0.54,
+     "avg_atr": 0.22,
+     "t": 3.06,
      "rank_ic": -0.287
     },
     "5d": {
@@ -256,9 +256,9 @@
      "hit": 100.0,
      "base": 53.4,
      "edge": 46.6,
-     "avg_pct": 2.59,
+     "avg_pct": 2.58,
      "avg_atr": 1.03,
-     "t": 4.21,
+     "t": 4.13,
      "rank_ic": -0.359
     },
     "20d": {
@@ -270,27 +270,27 @@
    "HE": {
     "name": "Lean hogs",
     "1d": {
-     "n": 13,
-     "n_eff": 13.0,
+     "n": 14,
+     "n_eff": 14.0,
      "too_few": false,
-     "hit": 69.2,
+     "hit": 71.4,
      "base": 44.2,
-     "edge": 25.0,
-     "avg_pct": 1.46,
-     "avg_atr": 0.64,
-     "t": 2.43,
+     "edge": 27.2,
+     "avg_pct": 1.56,
+     "avg_atr": 0.66,
+     "t": 2.76,
      "rank_ic": null
     },
     "5d": {
-     "n": 8,
-     "n_eff": 1.6,
+     "n": 9,
+     "n_eff": 1.8,
      "too_few": true,
      "hit": 100.0,
      "base": 44.4,
      "edge": 55.6,
-     "avg_pct": 7.84,
-     "avg_atr": 3.74,
-     "t": 3.32,
+     "avg_pct": 7.97,
+     "avg_atr": 3.69,
+     "t": 3.79,
      "rank_ic": null
     },
     "20d": {
@@ -302,28 +302,28 @@
    "LE": {
     "name": "Live cattle",
     "1d": {
-     "n": 12,
-     "n_eff": 12.0,
+     "n": 13,
+     "n_eff": 13.0,
      "too_few": false,
-     "hit": 58.3,
-     "base": 50.7,
-     "edge": 7.6,
+     "hit": 61.5,
+     "base": 50.1,
+     "edge": 11.4,
      "avg_pct": 0.16,
      "avg_atr": 0.1,
-     "t": 0.72,
-     "rank_ic": 0.457
+     "t": 0.78,
+     "rank_ic": 0.385
     },
     "5d": {
-     "n": 7,
-     "n_eff": 1.4,
+     "n": 8,
+     "n_eff": 1.6,
      "too_few": true,
-     "hit": 14.3,
-     "base": 59.6,
-     "edge": -45.3,
-     "avg_pct": -3.54,
-     "avg_atr": -3.0,
-     "t": -2.01,
-     "rank_ic": 0.109
+     "hit": 25.0,
+     "base": 57.1,
+     "edge": -32.1,
+     "avg_pct": -2.71,
+     "avg_atr": -2.34,
+     "t": -1.12,
+     "rank_ic": -0.109
     },
     "20d": {
      "n": 0,
@@ -340,10 +340,10 @@
      "hit": 85.7,
      "base": 54.9,
      "edge": 30.8,
-     "avg_pct": 0.52,
-     "avg_atr": 0.23,
-     "t": 1.75,
-     "rank_ic": 0.041
+     "avg_pct": 0.5,
+     "avg_atr": 0.22,
+     "t": 1.66,
+     "rank_ic": 0.014
     },
     "5d": {
      "n": 2,
@@ -352,9 +352,9 @@
      "hit": 100.0,
      "base": 55.8,
      "edge": 44.2,
-     "avg_pct": 2.42,
-     "avg_atr": 1.05,
-     "t": 4.7,
+     "avg_pct": 2.35,
+     "avg_atr": 1.01,
+     "t": 3.76,
      "rank_ic": -0.671
     },
     "20d": {
@@ -369,13 +369,13 @@
      "n": 10,
      "n_eff": 10.0,
      "too_few": false,
-     "hit": 30.0,
+     "hit": 20.0,
      "base": 49.5,
-     "edge": -19.5,
-     "avg_pct": -0.29,
-     "avg_atr": -0.14,
-     "t": -1.19,
-     "rank_ic": -0.462
+     "edge": -29.5,
+     "avg_pct": -0.35,
+     "avg_atr": -0.17,
+     "t": -1.49,
+     "rank_ic": -0.52
     },
     "5d": {
      "n": 9,
@@ -407,7 +407,7 @@
      "avg_pct": 0.65,
      "avg_atr": 0.46,
      "t": 1.74,
-     "rank_ic": 0.385
+     "rank_ic": 0.39
     },
     "5d": {
      "n": 3,
@@ -416,9 +416,9 @@
      "hit": 66.7,
      "base": 50.0,
      "edge": 16.7,
-     "avg_pct": 1.85,
-     "avg_atr": 1.3,
-     "t": 0.77,
+     "avg_pct": 1.68,
+     "avg_atr": 1.18,
+     "t": 0.75,
      "rank_ic": 0.667
     },
     "20d": {
@@ -434,12 +434,12 @@
      "n": 24,
      "n_eff": 16.0,
      "too_few": false,
-     "hit": 62.5,
+     "hit": 58.3,
      "base": 50.8,
-     "edge": 11.7,
-     "avg_pct": 0.31,
-     "avg_atr": 0.15,
-     "t": 1.54,
+     "edge": 7.5,
+     "avg_pct": 0.29,
+     "avg_atr": 0.14,
+     "t": 1.4,
      "rank_ic": null
     },
     "5d": {
@@ -451,7 +451,7 @@
      "edge": 48.6,
      "avg_pct": 1.98,
      "avg_atr": 0.87,
-     "t": 3.75,
+     "t": 3.72,
      "rank_ic": null
     },
     "20d": {
@@ -462,27 +462,27 @@
    },
    "bearish": {
     "1d": {
-     "n": 66,
+     "n": 70,
      "n_eff": 16.0,
      "too_few": false,
-     "hit": 75.8,
-     "base": 48.9,
-     "edge": 26.9,
-     "avg_pct": 0.72,
+     "hit": 77.1,
+     "base": 48.5,
+     "edge": 28.6,
+     "avg_pct": 0.73,
      "avg_atr": 0.34,
-     "t": 2.32,
+     "t": 2.36,
      "rank_ic": null
     },
     "5d": {
-     "n": 34,
+     "n": 37,
      "n_eff": 2.2,
      "too_few": true,
-     "hit": 94.1,
-     "base": 50.4,
-     "edge": 43.8,
-     "avg_pct": 3.48,
-     "avg_atr": 1.56,
-     "t": 1.69,
+     "hit": 91.9,
+     "base": 49.9,
+     "edge": 42.0,
+     "avg_pct": 3.52,
+     "avg_atr": 1.58,
+     "t": 1.66,
      "rank_ic": null
     },
     "20d": {
@@ -496,12 +496,12 @@
      "n": 23,
      "n_eff": 15.0,
      "too_few": false,
-     "hit": 47.8,
+     "hit": 43.5,
      "base": 46.9,
-     "edge": 0.9,
-     "avg_pct": 0.06,
-     "avg_atr": 0.07,
-     "t": 0.25,
+     "edge": -3.4,
+     "avg_pct": 0.03,
+     "avg_atr": 0.06,
+     "t": 0.13,
      "rank_ic": null
     },
     "5d": {
@@ -511,9 +511,9 @@
      "hit": 88.2,
      "base": 49.6,
      "edge": 38.6,
-     "avg_pct": 1.33,
-     "avg_atr": 0.73,
-     "t": 1.26,
+     "avg_pct": 1.3,
+     "avg_atr": 0.71,
+     "t": 1.27,
      "rank_ic": null
     },
     "20d": {
@@ -536,15 +536,15 @@
      "rank_ic": null
     },
     "5d": {
-     "n": 20,
-     "n_eff": 2.0,
+     "n": 21,
+     "n_eff": 2.2,
      "too_few": true,
-     "hit": 20.0,
-     "base": 56.1,
-     "edge": -36.1,
-     "avg_pct": -2.15,
-     "avg_atr": -1.75,
-     "t": -1.23,
+     "hit": 23.8,
+     "base": 55.8,
+     "edge": -32.0,
+     "avg_pct": -2.03,
+     "avg_atr": -1.65,
+     "t": -1.22,
      "rank_ic": null
     },
     "20d": {
@@ -589,28 +589,28 @@
  "rating": {
   "all": {
    "1d": {
-    "n": 164,
+    "n": 168,
     "n_eff": 16.0,
     "too_few": false,
-    "hit": 63.4,
-    "base": 49.0,
-    "edge": 14.4,
+    "hit": 63.7,
+    "base": 48.9,
+    "edge": 14.8,
     "avg_pct": 0.38,
     "avg_atr": 0.18,
-    "t": 1.37,
-    "rank_ic": 0.056
+    "t": 1.36,
+    "rank_ic": 0.067
    },
    "5d": {
-    "n": 107,
+    "n": 112,
     "n_eff": 2.2,
     "too_few": true,
-    "hit": 76.6,
-    "base": 51.5,
-    "edge": 25.1,
-    "avg_pct": 1.69,
-    "avg_atr": 0.64,
-    "t": 0.79,
-    "rank_ic": 0.102
+    "hit": 76.8,
+    "base": 51.2,
+    "edge": 25.6,
+    "avg_pct": 1.76,
+    "avg_atr": 0.68,
+    "t": 0.82,
+    "rank_ic": 0.155
    },
    "20d": {
     "n": 0,
@@ -621,27 +621,27 @@
   "by_rating": {
    "strong sell": {
     "1d": {
-     "n": 44,
+     "n": 47,
      "n_eff": 15.0,
      "too_few": false,
-     "hit": 59.1,
-     "base": 48.7,
-     "edge": 10.4,
-     "avg_pct": 0.48,
-     "avg_atr": 0.24,
-     "t": 1.28,
+     "hit": 61.7,
+     "base": 48.4,
+     "edge": 13.3,
+     "avg_pct": 0.51,
+     "avg_atr": 0.25,
+     "t": 1.37,
      "rank_ic": null
     },
     "5d": {
-     "n": 17,
-     "n_eff": 1.8,
+     "n": 19,
+     "n_eff": 2.0,
      "too_few": true,
      "hit": 100.0,
-     "base": 50.2,
-     "edge": 49.8,
-     "avg_pct": 4.23,
-     "avg_atr": 1.9,
-     "t": 1.9,
+     "base": 49.3,
+     "edge": 50.7,
+     "avg_pct": 4.43,
+     "avg_atr": 2.0,
+     "t": 2.06,
      "rank_ic": null
     },
     "20d": {
@@ -655,23 +655,23 @@
      "n": 85,
      "n_eff": 16.0,
      "too_few": false,
-     "hit": 71.8,
+     "hit": 70.6,
      "base": 50.2,
-     "edge": 21.5,
-     "avg_pct": 0.56,
-     "avg_atr": 0.28,
-     "t": 2.94,
+     "edge": 20.4,
+     "avg_pct": 0.55,
+     "avg_atr": 0.27,
+     "t": 2.81,
      "rank_ic": null
     },
     "5d": {
-     "n": 62,
+     "n": 63,
      "n_eff": 2.2,
      "too_few": true,
      "hit": 95.2,
-     "base": 51.2,
-     "edge": 43.9,
-     "avg_pct": 2.55,
-     "avg_atr": 1.23,
+     "base": 51.1,
+     "edge": 44.2,
+     "avg_pct": 2.57,
+     "avg_atr": 1.25,
      "t": 1.88,
      "rank_ic": null
     },
@@ -683,27 +683,27 @@
    },
    "buy": {
     "1d": {
-     "n": 23,
-     "n_eff": 13.0,
+     "n": 24,
+     "n_eff": 14.0,
      "too_few": false,
-     "hit": 52.2,
-     "base": 45.2,
-     "edge": 6.9,
-     "avg_pct": -0.21,
-     "avg_atr": -0.2,
+     "hit": 54.2,
+     "base": 45.0,
+     "edge": 9.2,
+     "avg_pct": -0.2,
+     "avg_atr": -0.19,
      "t": -0.59,
      "rank_ic": null
     },
     "5d": {
-     "n": 19,
-     "n_eff": 2.0,
+     "n": 21,
+     "n_eff": 2.2,
      "too_few": true,
-     "hit": 21.1,
-     "base": 51.6,
-     "edge": -30.5,
-     "avg_pct": -1.75,
-     "avg_atr": -1.53,
-     "t": -0.87,
+     "hit": 23.8,
+     "base": 51.1,
+     "edge": -27.3,
+     "avg_pct": -1.57,
+     "avg_atr": -1.36,
+     "t": -0.84,
      "rank_ic": null
     },
     "20d": {
@@ -753,10 +753,10 @@
    "hit": 31.6,
    "base": 45.3,
    "edge": -13.7,
-   "avg_pct": -0.41,
-   "avg_atr": -0.23,
-   "t": -1.3,
-   "rank_ic": -0.15
+   "avg_pct": -0.44,
+   "avg_atr": -0.25,
+   "t": -1.41,
+   "rank_ic": -0.161
   },
   "5d": {
    "n": 11,
@@ -778,32 +778,32 @@
  },
  "levels": {
   "support": {
-   "n": 107,
-   "n_eff": 2.2,
-   "too_few": true,
-   "held_5d": 30.8,
-   "avg_dist_atr": 1.13
-  },
-  "resistance": {
    "n": 111,
    "n_eff": 2.2,
    "too_few": true,
-   "held_5d": 82.9,
+   "held_5d": 31.5,
    "avg_dist_atr": 1.16
+  },
+  "resistance": {
+   "n": 116,
+   "n_eff": 2.2,
+   "too_few": true,
+   "held_5d": 82.8,
+   "avg_dist_atr": 1.23
   }
  },
  "macro": {
   "n_days": 11,
   "n_eff": 2.2,
   "too_few": true,
-  "corr_5d": -0.012,
+  "corr_5d": -0.014,
   "avg_move_atr_when": {
    "positive": null,
    "zero": -1.43,
-   "negative": -1.3
+   "negative": -1.35
   }
  },
  "by_market_rows": [],
  "weak": [],
- "line": "Track record: 192 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything."
+ "line": "Track record: 204 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything."
 }

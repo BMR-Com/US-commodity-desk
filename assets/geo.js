@@ -2,7 +2,7 @@
 // crop-region weather vs history, US drought, and weather websites. Geo.mount(el, ['corn']) or several keys (picker).
 const Geo = (() => {
   const LIB = ['https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js', 'https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js'];
-  let libs = null, world = null, us = null, WX = null;
+  let libs = null, world = null, us = null, WX = null, WE = null;
   const cache = {};
   const load = src => new Promise((ok, no) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s); });
   async function ready() {
@@ -11,6 +11,7 @@ const Geo = (() => {
     if (!world) world = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(r => r.json());
     if (!us) us = await fetch('https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json').then(r => r.json());
     if (!WX) WX = await getJSON('data/geo/weather.json').catch(() => ({ regions: [] }));
+    if (!WE) WE = await getJSON('data/geo/wx_ensemble.json').catch(() => ({ regions: {} }));
   }
   const n0 = v => v == null ? '–' : Math.round(v).toLocaleString();
   const n1 = v => v == null ? '–' : (+v).toLocaleString(undefined, { maximumFractionDigits: 1 });
@@ -100,6 +101,39 @@ const Geo = (() => {
           options: { plugins: { legend: { display: false }, title: { display: true, text: '28–100 cm soil moisture (m³/m³), last 52 weeks vs 2011–25 10th–90th pct', font: { size: 11 } } }, scales: { x: { ticks: { maxTicksLimit: 6 } } } } }); }
     }
   }
+  // ensemble odds: three ensembles for the next 15 days, GEFS for weeks 3-4, plus the global drivers
+  const pc = v => v == null ? '–' : Math.round(v * 100) + '%';
+  const CONS = { dry: 'dn', wet: 'up', split: '', 'near normal': '' };
+  function ensCell(m) {
+    if (!m) return '<td class="note">–</td>';
+    const a = m.rain_anom_pct;
+    return `<td>${n0(m.rain_p50)} mm${a != null ? ` <span class="${a <= -30 ? 'dn' : a >= 30 ? 'up' : 'note'}">(${a > 0 ? '+' : ''}${a}%)</span>` : ''}<br><span class="note">${n0(m.rain_p10)}–${n0(m.rain_p90)} · dry ${pc(m.p_dry)} / wet ${pc(m.p_wet)}</span></td>`;
+  }
+  function drivers() {
+    const D = WE.drivers || {}; const out = [];
+    const n = (D.nino34 || []).slice(-1)[0]; if (n) out.push(`Niño 3.4 <b>${n.nino34_anom > 0 ? '+' : ''}${n.nino34_anom.toFixed(1)}°C</b> (week of ${n.week})`);
+    for (const [k, lab] of [['ao', 'Arctic Osc.'], ['nao', 'N. Atlantic Osc.'], ['pna', 'Pacific–N. American']]) {
+      const x = D[k]; if (!x || !x.days) continue; const ds = Object.keys(x.days).sort(), v = i => x.days[ds[Math.min(i, ds.length - 1)]];
+      const o = x.obs_last30 ? x.obs_last30[x.obs_last30.length - 1] : null;
+      out.push(`${lab} <b>${o != null ? o.toFixed(1) : '–'}</b> now → ${v(7).mean.toFixed(1)} in 7 d → ${v(14).mean.toFixed(1)} in 14 d <span class="note">(GEFS range ${v(14).min.toFixed(1)} to ${v(14).max.toFixed(1)})</span>`);
+    }
+    return out.length ? `<p>${out.join(' · ')}</p>` : '';
+  }
+  function ensCard(regs) {
+    if (!WE || !WE.regions) return '';
+    const rows = regs.map(r => [r, WE.regions[r.id]]).filter(([, e]) => e && (e.next15 || e.wk34));
+    if (!rows.length) return '';
+    return `<div class="card" style="margin-top:12px"><h2>What the forecast models agree on <span class="note">ensembles, run ${WE.generated}; rain vs the same dates in 2011–2025</span></h2>
+      ${drivers()}
+      <div class="tbl"><table class="geo-wx"><tr><th class="l">Region</th><th class="l">15-day read</th><th>ECMWF ENS</th><th>ECMWF AI (AIFS)</th><th>GEFS</th><th>Frost / heat odds</th><th>Weeks 3–4 (GEFS)</th></tr>
+      ${rows.map(([r, e]) => { const n = e.next15 || {}, w = e.wk34; const fr = Math.max(...Object.values(n).map(m => m.p_frost3 || 0)), f0 = Math.max(...Object.values(n).map(m => m.p_frost0 || 0)), ht = Math.max(...Object.values(n).map(m => m.p_heat35 || 0));
+        return `<tr><td class="l"><b>${r.name}</b><br><span class="note">${r.country}</span></td>
+          <td class="l"><b class="${CONS[e.consensus] || ''}">${e.consensus || '–'}</b>${n.ecmwf_ens && n.ecmwf_ens.tmax_anom != null ? `<br><span class="note">max temp ${n.ecmwf_ens.tmax_anom > 0 ? '+' : ''}${n.ecmwf_ens.tmax_anom}°C</span>` : ''}</td>
+          ${ensCell(n.ecmwf_ens)}${ensCell(n.aifs_ens)}${ensCell(n.gefs)}
+          <td>${fr > 0 ? `<span class="${fr >= .3 ? 'dn' : ''}">frost ${pc(fr)}</span>${f0 > 0 ? ` <span class="note">(≤0°C ${pc(f0)})</span>` : ''}` : '<span class="note">no frost</span>'}<br>${ht > 0 ? `<span class="${ht >= .5 ? 'dn' : ''}">≥35°C ${pc(ht)}</span>` : '<span class="note">no 35°C</span>'}</td>
+          <td>${w ? `${n0(w.rain_p50)} mm${w.rain_anom_pct != null ? ` (${w.rain_anom_pct > 0 ? '+' : ''}${w.rain_anom_pct}%)` : ''}<br><span class="note">dry ${pc(w.p_dry)} / wet ${pc(w.p_wet)}${w.tmax_anom != null ? ` · ${w.tmax_anom > 0 ? '+' : ''}${w.tmax_anom}°C` : ''}</span>` : '–'}</td></tr>`; }).join('')}</table></div>
+      <p class="note">Each cell: median 15-day rain across members (vs the 2011–2025 average), the 10th–90th percentile range, and the share of members in the driest / wettest third of past years. "Dry" or "wet" means both ECMWF ensembles put at least 60% of members there; "split" means they point opposite ways. Frost = any day with minimum ≤3°C (≤0°C in brackets), shown when any ensemble has members there; for coffee and cane, frost matters June–August. Weeks 3–4 come from GEFS alone and have little skill beyond broad direction. Source: Open-Meteo ensemble API (ECMWF ENS and AIFS ENS, NOAA GEFS); drivers from NOAA CPC.</p></div>`;
+  }
   const STC = { planting: '#9fd3a4', vegetative: '#5fae6b', critical: '#d9822b', harvest: '#a0743c' };
   function calendarCard(G, regs) {
     if (!G.calendar || !G.calendar.length) return '';
@@ -164,6 +198,7 @@ const Geo = (() => {
         <div class="tbl"><table class="geo-wx"><tr><th class="l">Region</th><th>Rain 30 d</th><th>Rain 60 d</th><th>Season to date</th><th>Water bal. 60 d</th><th>Max temp 30 d (anom)</th><th>Soil moisture</th><th>Next 16 d rain</th><th class="l">Read</th></tr>
         ${regs.map(wxRow).join('') || '<tr><td colspan="9" class="note">Weather data loading.</td></tr>'}</table></div>
         <details style="margin-top:8px"><summary><b>Charts: season rain and soil moisture vs history</b></summary><div class="geo-chs" id="geoCh"></div></details></div>
+      ${ensCard(regs)}
       ${G.usdm ? `<div class="card" style="margin-top:12px"><h2>United States: drought in the producing states <span class="note">U.S. Drought Monitor, % of state area</span></h2>
         <div class="grid g2"><div class="tbl"><table><tr><th class="l">State</th><th>D1+ now</th><th>D2+ now</th><th>D1+ month ago</th></tr>
         ${Object.entries(G.usdm.latest).map(([s, r]) => `<tr><td class="l">${s}</td><td class="${r[3] > 30 ? 'dn' : ''}">${n1(r[3])}%</td><td>${n1(r[4])}%</td><td>${n1(G.usdm.month_ago[s][3])}%</td></tr>`).join('')}

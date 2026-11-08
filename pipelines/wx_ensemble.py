@@ -32,7 +32,7 @@ LIMIT = {"hit": False}
 log = []
 
 
-def get(url, params, tries=3, timeout=180):
+def get(url, params, tries=3, timeout=180, pause=15):
     if LIMIT["hit"]:
         return None
     for i in range(tries):
@@ -48,7 +48,7 @@ def get(url, params, tries=3, timeout=180):
                 return None
         except Exception as e:
             log.append([url.split("/")[2], str(e)[:160]])
-        time.sleep(15 * (i + 1))
+        time.sleep(pause * (i + 1))
     return None
 
 
@@ -56,7 +56,8 @@ def ens_daily(model, days, pts):
     """{region id: DataFrame(index=date, columns=MultiIndex(var, member))} for rain, tmax, tmin."""
     p = {"latitude": ",".join(str(x[3]) for x in pts), "longitude": ",".join(str(x[4]) for x in pts), "models": model,
          "daily": "precipitation_sum,temperature_2m_max,temperature_2m_min", "forecast_days": days, "timezone": "auto"}
-    r = get("https://ensemble-api.open-meteo.com/v1/ensemble", p)
+    # big ensemble requests can take minutes on the first try; the server keeps computing and a repeat is served from cache
+    r = get("https://ensemble-api.open-meteo.com/v1/ensemble", p, tries=6, timeout=50, pause=8)
     if r is None:
         return {}
     js = r.json(); js = js if isinstance(js, list) else [js]
@@ -189,7 +190,7 @@ def main():
                     if b:
                         res[rid]["wk34"] = b
             print(label, i, len(got), flush=True)
-            time.sleep(12)
+            time.sleep(4)
             if LIMIT["hit"]:
                 break
         if LIMIT["hit"]:

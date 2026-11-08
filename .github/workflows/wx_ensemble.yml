@@ -12,13 +12,13 @@ concurrency: {group: wx-ensemble, cancel-in-progress: false}
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install -q requests pandas numpy
-      - run: timeout 1800 python -u pipelines/wx_ensemble.py
+      - run: timeout 3000 python -u pipelines/wx_ensemble.py
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

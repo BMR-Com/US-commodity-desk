@@ -106,6 +106,7 @@ const Geo = (() => {
   const CONS = { dry: 'dn', wet: 'up', split: '', 'near normal': '' };
   function ensCell(m) {
     if (!m) return '<td class="note">–</td>';
+    if (m.rain_normal != null && m.rain_normal < 5) return `<td>${n0(m.rain_p50)} mm<br><span class="note">dry season (avg ${n1(m.rain_normal)} mm)</span></td>`;
     const a = m.rain_anom_pct;
     return `<td>${n0(m.rain_p50)} mm${a != null ? ` <span class="${a <= -30 ? 'dn' : a >= 30 ? 'up' : 'note'}">(${a > 0 ? '+' : ''}${a}%)</span>` : ''}<br><span class="note">${n0(m.rain_p10)}–${n0(m.rain_p90)} · dry ${pc(m.p_dry)} / wet ${pc(m.p_wet)}</span></td>`;
   }
@@ -130,9 +131,9 @@ const Geo = (() => {
         return `<tr><td class="l"><b>${r.name}</b><br><span class="note">${r.country}</span></td>
           <td class="l"><b class="${CONS[e.consensus] || ''}">${e.consensus || '–'}</b>${n.ecmwf_ens && n.ecmwf_ens.tmax_anom != null ? `<br><span class="note">max temp ${n.ecmwf_ens.tmax_anom > 0 ? '+' : ''}${n.ecmwf_ens.tmax_anom}°C</span>` : ''}</td>
           ${ensCell(n.ecmwf_ens)}${ensCell(n.aifs_ens)}${ensCell(n.gefs)}
-          <td>${fr > 0 ? `<span class="${fr >= .3 ? 'dn' : ''}">frost ${pc(fr)}</span>${f0 > 0 ? ` <span class="note">(≤0°C ${pc(f0)})</span>` : ''}` : '<span class="note">no frost</span>'}<br>${ht > 0 ? `<span class="${ht >= .5 ? 'dn' : ''}">≥35°C ${pc(ht)}</span>` : '<span class="note">no 35°C</span>'}</td>
-          <td>${w ? `${n0(w.rain_p50)} mm${w.rain_anom_pct != null ? ` (${w.rain_anom_pct > 0 ? '+' : ''}${w.rain_anom_pct}%)` : ''}<br><span class="note">dry ${pc(w.p_dry)} / wet ${pc(w.p_wet)}${w.tmax_anom != null ? ` · ${w.tmax_anom > 0 ? '+' : ''}${w.tmax_anom}°C` : ''}</span>` : '–'}</td></tr>`; }).join('')}</table></div>
-      <p class="note">Each cell: median 15-day rain across members (vs the 2011–2025 average), the 10th–90th percentile range, and the share of members in the driest / wettest third of past years. "Dry" or "wet" means both ECMWF ensembles put at least 60% of members there; "split" means they point opposite ways. Frost = any day with minimum ≤3°C (≤0°C in brackets), shown when any ensemble has members there; for coffee and cane, frost matters June–August. Weeks 3–4 come from GEFS alone and have little skill beyond broad direction. Source: Open-Meteo ensemble API (ECMWF ENS and AIFS ENS, NOAA GEFS); drivers from NOAA CPC.</p></div>`;
+          <td>${fr > 0 ? `<span class="${fr >= .3 && /coffee|sugar/.test((e.crops || []).join()) ? 'dn' : ''}">frost ${pc(fr)}</span>${f0 > 0 ? ` <span class="note">(≤0°C ${pc(f0)})</span>` : ''}` : '<span class="note">no frost</span>'}<br>${ht > 0 ? `<span class="${ht >= .5 ? 'dn' : ''}">≥35°C ${pc(ht)}</span>` : '<span class="note">no 35°C</span>'}</td>
+          <td>${w && w.rain_normal != null && w.rain_normal < 5 ? `${n0(w.rain_p50)} mm<br><span class="note">dry season</span>` : w ? `${n0(w.rain_p50)} mm${w.rain_anom_pct != null ? ` (${w.rain_anom_pct > 0 ? '+' : ''}${w.rain_anom_pct}%)` : ''}<br><span class="note">dry ${pc(w.p_dry)} / wet ${pc(w.p_wet)}${w.tmax_anom != null ? ` · ${w.tmax_anom > 0 ? '+' : ''}${w.tmax_anom}°C` : ''}</span>` : '–'}</td></tr>`; }).join('')}</table></div>
+      <p class="note">Each cell: median 15-day rain across members (vs the 2011–2025 average), the 10th–90th percentile range, and the share of members in the driest / wettest third of past years. "Dry" or "wet" means both ECMWF ensembles put at least 60% of members there; "split" means they point opposite ways. Frost = share of members with a day at or below 3°C (0°C in brackets); it is flagged red only for coffee and cane, where frost damages the crop (Brazil: June–August). Regions in their dry season show rain only. Weeks 3–4 come from GEFS alone and have little skill beyond broad direction. Source: Open-Meteo ensemble API (ECMWF ENS and AIFS ENS, NOAA GEFS); drivers from NOAA CPC.</p></div>`;
   }
   const STC = { planting: '#9fd3a4', vegetative: '#5fae6b', critical: '#d9822b', harvest: '#a0743c' };
   function calendarCard(G, regs) {

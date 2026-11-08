@@ -140,8 +140,9 @@ def drivers():
             m = re.match(r"\s*(\d{2}[A-Z]{3}\d{4})", l)
             pr = re.findall(r"(\d+\.\d)\s*(-?\d+\.\d)", l[10:])
             if m and len(pr) == 4:
-                vals.append({"week": m.group(1), "nino34_anom": float(pr[2][1]), "nino12_anom": float(pr[0][1])})
+                vals.append({"week": m.group(1), "nino12_anom": float(pr[0][1]), "nino3_anom": float(pr[1][1]), "nino34_anom": float(pr[2][1]), "nino4_anom": float(pr[3][1])})
         d["nino34"] = vals[-12:]
+        d["nino_raw"] = [l for l in r.text.splitlines() if l.strip()][:4] + [l for l in r.text.splitlines() if l.strip()][-2:]
     for idx in ("ao", "nao", "pna"):
         z = "1000" if idx == "ao" else "500"
         r = get(f"https://ftp.cpc.ncep.noaa.gov/cwlinks/norm.daily.{idx}.gefs.z{z}.120days.csv", None, tries=2, timeout=60)

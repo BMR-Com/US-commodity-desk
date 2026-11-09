@@ -175,6 +175,7 @@ const Cotton = (() => {
     const REPO = {};
     try { const Lt = await getJSON('data/cotton/ice/latest.json');
       try { REPO.ewr = await getJSON('data/cotton/ewr/latest.json'); } catch (e) {}
+      try { REPO.cfr = await getJSON('data/cotton/cfr_compare.json'); } catch (e) {}
       try { REPO.tariffTxt = await fetch('data/cotton/ref/ice_tariffs_2026-27.csv').then(r => r.ok ? r.text() : null); } catch (e) {}
       try { const T = await getJSON('data/technicals/CT.json'); REPO.px = Object.fromEntries((T.series || []).map(x => [x.ticker, { label: x.label, close: x.bars[x.bars.length - 1][4], date: x.bars[x.bars.length - 1][0] }])); } catch (e) {}
       await Promise.all([['ctIceStock', 'stock'], ['ctIceGrade', 'grade'], ['ctIceWh', 'warehouse'], ['ctIceWhPrev', 'warehouse_prev'], ['ctIceStr', 'strength'], ['ctIceYog', 'year_of_growth']].map(async ([k, f]) => { if (Lt[f]) { REPO[k] = await fetch(Lt[f]).then(r => r.ok ? r.text() : null); REPO[k + 'Date'] = Lt[f + '_date']; } })); } catch (e) {}
@@ -248,6 +249,15 @@ const Cotton = (() => {
         ${row('<b>Needed back to break even</b>', `<b>${sg(P - gapR, 2)}</b> <span class="note">March ICE grid</span>`, d ? `<b>${sg(P + carryD, 2)}</b> <span class="note">over Dec, physical</span>` : '–', 'March: the average premium the same bales must earn on the March grid to cover the spread shortfall. Decert: the price over December futures the bales must sell for in the physical market (decertified cotton is rarely recertified, so the comparison stays on December)')}
         </table></div>
         <p class="note">Rules: ICE Cotton No. 2 (deliverer pays storage up to delivery and load-out to car/truck; receiver pays storage after; over-age allowance from the 4th month after the month of certification; ½ lb/bale/month weight-date allowance; 2¢/lb year-of-growth penalty from 1 January on older crop).${d ? ` For reference, AMS spot quotations on ${d.B.date} put the same qualities at ${sg(d.val)} pts vs December in the Texas markets (base 41-4-34 ${sg(d.rows.reduce((a, r) => a + r.w * r.basis, 0))} pts, quality differences ${sg(d.rows.reduce((a, r) => a + r.w * r.diff, 0))} pts); what a buyer actually pays for high grades can differ.` : ''}</p>`;
+    }
+    // Final output only: certs taken on December delivery, priced CFR Far East, against other origins' quotes (all vs December)
+    function cfrOut() {
+      const C = REPO.cfr; if (!C) return '';
+      return `<h3 style="margin-top:14px">December certs vs other origins, CFR Far East <span class="note">basis in points over December futures (${C.dec.toFixed(2)}), quotes of ${C.asof}</span></h3>
+        <div class="tbl"><table><tr><th class="l">CFR Far East, Nov/Dec shipment</th><th>Basis vs Dec</th><th>Certs over it</th></tr>
+        <tr><td class="l"><b>Certs taken on December delivery, priced CFR</b></td><td class="n"><b>+${fmt(C.cert_basis[0], 0)} to +${fmt(C.cert_basis[1], 0)}</b></td><td></td></tr>
+        ${C.rows.map(r => `<tr><td class="l">${r.origin}</td><td class="n">+${fmt(r.basis, 0)}</td><td class="n ${r.gap[0] > 0 ? 'dn' : 'up'}">+${fmt(r.gap[0], 0)} to +${fmt(r.gap[1], 0)}</td></tr>`).join('')}</table></div>
+        <p class="note">Storage is not included (about 100 pts a month at the Texas tariffs). A positive gap means certs taken on delivery would have to be offered above that origin's quote.</p>`;
     }
     const analyse = () => {
       const st = got('ctIceStock'), gr = got('ctIceGrade'), O = $('#ctCertOut'); if (!O) return;
@@ -350,7 +360,7 @@ const Cotton = (() => {
           ${row('Grade and staple', SUM.grade, `average of ${fmt(SUM.gradeN, 0)} bales at the USDA grid (invoicing staple)`)}
           ${row('Strength', sp, SUM.str ? (SUM.str.low ? `${fmt(SUM.str.low, 0)} bales in 25.0–25.9 at ${sg(SUM.str.disc)} pts` : 'no bales in 25.0–25.9') : 'no strength report loaded')}
           ${row('Year of growth', 'yog', SUM.yog ? `${fmt(SUM.yogOld, 0)} of ${fmt(SUM.yogT, 0)} bales are older crop: free in December, 2¢/lb discount from March` : 'no year-of-growth report loaded')}
-          <tr><td class="l"><b>Net average premium</b></td>${y.map(([, yv]) => `<td class="n"><b>${sg(net(yv))} pts</b><br><span class="note">${sg(net(yv) / 100, 2)}¢/lb · $${fmt(net(yv) * 5, 0)}/lot</span></td>`).join('')}<td class="l note">what a receiver pays over the notice price, on average</td></tr></table></div>` + (carry(net(y[0][1]), SUM), decert(net(y[0][1]), SUM), econ(net(y[0][1]))) + html;
+          <tr><td class="l"><b>Net average premium</b></td>${y.map(([, yv]) => `<td class="n"><b>${sg(net(yv))} pts</b><br><span class="note">${sg(net(yv) / 100, 2)}¢/lb · $${fmt(net(yv) * 5, 0)}/lot</span></td>`).join('')}<td class="l note">what a receiver pays over the notice price, on average</td></tr></table></div>` + (carry(net(y[0][1]), SUM), decert(net(y[0][1]), SUM), econ(net(y[0][1]))) + cfrOut() + html;
       }
       const E = REPO.ewr;
       if (E && E.states) {

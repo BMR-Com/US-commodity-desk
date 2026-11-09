@@ -365,6 +365,12 @@ if (EMBED) document.documentElement.classList.add("embed");
 <!-- ================= WEATHER ================= -->
 <section id="s-wx" hidden>
   <div class="panel">
+    <h2>Model runs: what the latest run changed<span class="sub" id="wrAsOf"></span></h2>
+    <div class="stats" id="wrStats"></div>
+    <div class="body"><div class="tw"><table id="wrTable"></table></div><div id="wrDaily" style="margin-top:12px"></div><div id="wrMsg" class="note" style="margin-top:8px"></div></div>
+    <div class="srcbar">Ensembles: NOAA GEFS (31 members), ECMWF ENS (51), ECMWF AIFS ENS (51) via Open-Meteo · 21-metro gas-weighted HDD, base 65°F · normal 2016–2025 · updated four times a day after each model cycle</div>
+  </div>
+  <div class="panel">
     <h2>Gas-weighted degree days<span class="sub">21 metros</span>
       <span class="right">
         <button class="btn sm" id="loadWx">Load 16-day forecast</button>
@@ -3974,5 +3980,44 @@ let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTime
 <script>
 (() => { const t = location.hash.slice(1); const b = t && document.querySelector('.tab[data-t="' + t + '"]'); if (b) b.click(); })();
 </script>
+<script>
+/* weather-model runs: latest vs previous run for each ensemble (data/energy/wx/runs.json) */
+(async () => {
+  let R; try { R = await fetch("data/energy/wx/runs.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null); } catch (e) { R = null; }
+  if (!R || !R.length) { const m = document.querySelector("#wrMsg"); if (m) m.textContent = "Model-run history builds after the next weather sync."; return; }
+  const BCF = 1.6;  // weekly storage change per gas-weighted HDD in winter weeks (storage regression, 2019-2026)
+  const last = R[R.length - 1], rows = [], daily = {};
+  for (const [name, m] of Object.entries(last.models)) {
+    // previous run of the same model with different numbers
+    let prev = null, prevT = null;
+    for (let i = R.length - 2; i >= 0; i--) { const p = R[i].models[name]; if (p && JSON.stringify(p.daily) !== JSON.stringify(m.daily)) { prev = p; prevT = R[i].generated; break; } }
+    const ds = Object.keys(m.daily).filter(d => prev && d in prev.daily);
+    const chg = ds.reduce((a, d) => a + m.daily[d] - prev.daily[d], 0);
+    const tot = Object.keys(m.daily).reduce((a, d) => a + m.daily[d], 0), nrm = Object.keys(m.daily).reduce((a, d) => a + (m.normal[d] || 0), 0);
+    rows.push({ name, m, prevT, chg: prev ? chg : null, n: ds.length, tot, nrm });
+    daily[name] = { ds, cur: m.daily, prev: prev ? prev.daily : null };
+  }
+  document.querySelector("#wrAsOf").textContent = "runs fetched " + last.generated.replace("T", " ") + " UTC";
+  const avg = rows.filter(r => r.chg !== null), mc = avg.length ? avg.reduce((a, r) => a + r.chg, 0) / avg.length : null;
+  document.querySelector("#wrStats").innerHTML = [
+    ["Change vs previous run", mc === null ? "—" : sgn(mc, 1) + " HDD", "average of the ensembles, same dates"],
+    ["≈ storage effect", mc === null ? "—" : sgn(-mc * BCF, 0) + " Bcf", "+ = more gas left in storage; about " + BCF + " Bcf per gas-weighted HDD"],
+    ["15-day HDD vs normal", sgn(rows.reduce((a, r) => a + r.m.mean, 0) / rows.length, 0), "ensemble means"],
+    ["Members warmer than normal by 30+ HDD", Math.round(rows.reduce((a, r) => a + r.m.share_warm30, 0) / rows.length * 100) + "%", "colder by 30+: " + Math.round(rows.reduce((a, r) => a + r.m.share_cold30, 0) / rows.length * 100) + "%"]
+  ].map(([l, v, s]) => '<div class="stat"><div class="k">' + l + '</div><div class="v num">' + v + '</div><div class="s">' + s + '</div></div>').join("");
+  let th = '<thead><tr><th>Model</th><th>Window</th><th>HDD</th><th>Normal</th><th>vs normal (p10 / p50 / p90)</th><th>Change vs previous run</th><th>≈ storage, Bcf</th><th>Previous run</th></tr></thead><tbody>';
+  rows.forEach(r => { th += "<tr><td>" + r.name + (r.m.new_run === false ? ' <span class="note">(same run as before)</span>' : "") + "</td><td>" + r.m.from.slice(5) + " to " + r.m.to.slice(5) + "</td><td class=num>" + fmt(r.tot, 0) + "</td><td class=num>" + fmt(r.nrm, 0) + "</td><td class=num>" + sgn(r.m.p10, 0) + " / " + sgn(r.m.p50, 0) + " / " + sgn(r.m.p90, 0) + "</td><td class=num><b>" + (r.chg === null ? "—" : sgn(r.chg, 1)) + "</b>" + (r.chg === null ? "" : ' <span class="note">over ' + r.n + " days</span>") + "</td><td class=num>" + (r.chg === null ? "—" : sgn(-r.chg * BCF, 0)) + "</td><td>" + (r.prevT ? r.prevT.replace("T", " ") : "—") + "</td></tr>"; });
+  document.querySelector("#wrTable").innerHTML = th + "</tbody>";
+  // day-by-day change table
+  const all = [...new Set(Object.values(daily).flatMap(x => x.ds))].sort();
+  if (all.length) {
+    let t = '<div class="tw"><table><thead><tr><th>Day-by-day change, HDD</th>' + all.map(d => "<th>" + d.slice(5) + "</th>").join("") + "</tr></thead><tbody>";
+    for (const [name, x] of Object.entries(daily)) { if (!x.prev) continue; t += "<tr><td>" + name + "</td>" + all.map(d => { const v = d in x.cur && d in x.prev ? x.cur[d] - x.prev[d] : null; return '<td class=num style="color:' + (v === null ? "" : v > 0.3 ? "var(--heat)" : v < -0.3 ? "var(--flame)" : "") + '">' + (v === null ? "" : sgn(v, 1)) + "</td>"; }).join("") + "</tr>"; }
+    document.querySelector("#wrDaily").innerHTML = t + "</tbody></table></div>";
+  }
+  document.querySelector("#wrMsg").textContent = "Positive change = the newer run is colder (more heating demand). A model shown as 'same run as before' had not published a new cycle when the data was fetched; it is compared with its last different run.";
+})();
+</script>
+
 </body>
 </html>

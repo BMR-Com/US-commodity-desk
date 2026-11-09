@@ -1,0 +1,33 @@
+name: ng-weather-sync
+# Gas-weighted weather from BMR-Com/natgas (ensembles, polar vortex, AO/NAO/PNA, snow) copied for the energy terminal,
+# with a run-by-run history so the Weather tab can show what each new model run changed.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipelines/ng_wx_runs.py', '.github/workflows/ng_weather_sync.yml']
+  schedule:
+    - cron: '12 1 * * *'
+    - cron: '42 9 * * *'
+    - cron: '48 15 * * *'
+    - cron: '6 22 * * *'
+permissions: {contents: write}
+concurrency: {group: ng-weather-sync, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/BMR-Com/natgas.git src
+          cd src && git sparse-checkout set data/research && cd ..
+          mkdir -p data/energy/wx
+          for f in hdd_members.json vortex.json snow.json cpc_dd.json hdd_fcst.json cpc.json; do cp src/data/research/$f data/energy/wx/ 2>/dev/null || true; done
+          rm -rf src
+          python3 pipelines/ng_wx_runs.py
+      - run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/energy/wx; git diff --cached --quiet && exit 0
+          git commit -q -m "data: gas weather runs $(date -u +%F-%H%M)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || exit 1

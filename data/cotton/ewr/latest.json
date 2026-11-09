@@ -1,0 +1,293 @@
+{
+"asof": "2026-11-09",
+"new_issued_total": 4645152,
+"crop_year": 2026,
+"crop_est": 12600000,
+"tenderable_cert": 75725,
+"trust_protocol": 757421,
+"states": [
+{
+"state": "AL & FL",
+"issued": 241828,
+"new_issued": 241828,
+"ccc": 45457,
+"shipping_order": 14599,
+"open_cur": 236740,
+"open_prev": 18718,
+"open_prev2": 330,
+"open_older": 1023,
+"total_open": 256811
+},
+{
+"state": "AR",
+"issued": 613266,
+"new_issued": 613266,
+"ccc": 393429,
+"shipping_order": 104249,
+"open_cur": 603592,
+"open_prev": 113916,
+"open_prev2": 727,
+"open_older": 834,
+"total_open": 719069
+},
+{
+"state": "AZ & NM",
+"issued": 21154,
+"new_issued": 21154,
+"ccc": 3096,
+"shipping_order": 18545,
+"open_cur": 19446,
+"open_prev": 66509,
+"open_prev2": 4051,
+"open_older": 1851,
+"total_open": 91857
+},
+{
+"state": "CA",
+"issued": 59915,
+"new_issued": 59915,
+"ccc": 33432,
+"shipping_order": 17749,
+"open_cur": 59465,
+"open_prev": 35840,
+"open_prev2": 11035,
+"open_older": 2019,
+"total_open": 108359
+},
+{
+"state": "GA",
+"issued": 352153,
+"new_issued": 351988,
+"ccc": 63913,
+"shipping_order": 43702,
+"open_cur": 349869,
+"open_prev": 71645,
+"open_prev2": 2370,
+"open_older": 2946,
+"total_open": 426830
+},
+{
+"state": "KS & OK",
+"issued": 41713,
+"new_issued": 41713,
+"ccc": 6763,
+"shipping_order": 348,
+"open_cur": 41712,
+"open_prev": 8525,
+"open_prev2": 95,
+"open_older": 209,
+"total_open": 50541
+},
+{
+"state": "LA",
+"issued": 215490,
+"new_issued": 215490,
+"ccc": 147575,
+"shipping_order": 8451,
+"open_cur": 205807,
+"open_prev": 2026,
+"open_prev2": 274,
+"open_older": 630,
+"total_open": 208737
+},
+{
+"state": "MO",
+"issued": 168380,
+"new_issued": 168380,
+"ccc": 95542,
+"shipping_order": 15507,
+"open_cur": 166799,
+"open_prev": 24204,
+"open_prev2": 160,
+"open_older": 140,
+"total_open": 191303
+},
+{
+"state": "MS",
+"issued": 573028,
+"new_issued": 566402,
+"ccc": 428502,
+"shipping_order": 43118,
+"open_cur": 565311,
+"open_prev": 49832,
+"open_prev2": 435,
+"open_older": 975,
+"total_open": 616553
+},
+{
+"state": "NC & VA",
+"issued": 309433,
+"new_issued": 309433,
+"ccc": 61250,
+"shipping_order": 80233,
+"open_cur": 302968,
+"open_prev": 78819,
+"open_prev2": 2844,
+"open_older": 3323,
+"total_open": 387954
+},
+{
+"state": "SC",
+"issued": 63091,
+"new_issued": 63091,
+"ccc": 23867,
+"shipping_order": 14855,
+"open_cur": 63062,
+"open_prev": 15492,
+"open_prev2": 257,
+"open_older": 604,
+"total_open": 79415
+},
+{
+"state": "TN",
+"issued": 581901,
+"new_issued": 580630,
+"ccc": 344070,
+"shipping_order": 68563,
+"open_cur": 576816,
+"open_prev": 100229,
+"open_prev2": 2208,
+"open_older": 795,
+"total_open": 680048
+},
+{
+"state": "TX",
+"issued": 1519165,
+"new_issued": 1411862,
+"ccc": 288951,
+"shipping_order": 297465,
+"open_cur": 1162448,
+"open_prev": 388232,
+"open_prev2": 21147,
+"open_older": 38947,
+"total_open": 1610774
+},
+{
+"state": "TOTAL",
+"issued": 4760517,
+"new_issued": 4645152,
+"ccc": 1935847,
+"shipping_order": 727384,
+"open_cur": 4354035,
+"open_prev": 973987,
+"open_prev2": 45933,
+"open_older": 54296,
+"total_open": 5428251
+}
+],
+"issued_same_date": {
+"years": [
+2022,
+2023,
+2024,
+2025,
+2026
+],
+"rows": [
+[
+"AL & FL",
+290319,
+261885,
+299082,
+213737,
+241828
+],
+[
+"AR",
+530661,
+623130,
+777624,
+625837,
+613266
+],
+[
+"AZ & NM",
+38978,
+30731,
+31332,
+18594,
+21154
+],
+[
+"CA",
+77757,
+31234,
+57403,
+62204,
+59915
+],
+[
+"GA",
+775219,
+432243,
+418458,
+401605,
+352153
+],
+[
+"KS & OK",
+72391,
+85662,
+106479,
+100040,
+41713
+],
+[
+"LA",
+322416,
+214914,
+274706,
+170232,
+215490
+],
+[
+"MO",
+152473,
+149986,
+188643,
+121620,
+168380
+],
+[
+"MS",
+675195,
+599511,
+717234,
+460517,
+573028
+],
+[
+"NC & VA",
+392728,
+239144,
+233579,
+212372,
+309433
+],
+[
+"SC",
+113533,
+60143,
+80217,
+38923,
+63091
+],
+[
+"TN",
+497034,
+588906,
+695265,
+434259,
+581901
+],
+[
+"TX",
+1494217,
+1374736,
+1976876,
+1839646,
+1519165
+]
+]
+}
+}

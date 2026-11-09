@@ -1,0 +1,85 @@
+{
+ "about": "Merchant attribution for ICE Cotton No. 2 licensed warehouses. Match a certified-stock row by warehouse code first (warehouse_map.csv), then by normalised warehouse name, then by the owner-on-record rules below. Anything unmatched is reported as Unmapped, never guessed.",
+ "owner_rules": [
+  [
+   "anderson clayton dallas|anderson clayton ft|fort worth warehouse # ?1",
+   "Ownership change"
+  ],
+  [
+   "memphis compress",
+   "Allenberg"
+  ],
+  [
+   "louis dreyfus|ldc cotton storage|\\bldc\\b|allenberg",
+   "Allenberg"
+  ],
+  [
+   "sunbelt",
+   "Ecom"
+  ],
+  [
+   "ecom",
+   "Ecom"
+  ],
+  [
+   "cargill",
+   "Ownership change"
+  ],
+  [
+   "staple cotton|staple coop",
+   "Staple Cooperative"
+  ],
+  [
+   "moody compress",
+   "Independent"
+  ],
+  [
+   "dallas warehouse company",
+   "Independent"
+  ],
+  [
+   "supply chain management|supply chain mgt",
+   "Wynne Cowan"
+  ],
+  [
+   "international cotton depot|\\bicd\\b",
+   "Cofco"
+  ],
+  [
+   "mallory",
+   "Mallory"
+  ],
+  [
+   "glencore|hickory hill",
+   "Glencore"
+  ],
+  [
+   "bunge",
+   "Bunge"
+  ],
+  [
+   "crittenden gin",
+   "Chris Collins"
+  ],
+  [
+   "union compress",
+   "Independent"
+  ],
+  [
+   "anderson clayton|olam",
+   "Olam"
+  ]
+ ],
+ "open_questions": [
+  "Union Compress (167003, West Memphis): owner not in the merchant table",
+  "Crittenden Gin rows in the merchant table: 14 rows all named Crittenden Gin Company with different merchants (Chris Collins, Bondurant, Staple, Allenberg, Olam, Cofco, Cargill); the warehouse names look copied down, so only the first row (Chris Collins) is used for code 153505",
+  "Bondurant: in the merchant table but not tied to a named warehouse",
+  "Bunge USA Meyers 1 (793961): delivery point not stated"
+ ],
+ "not_in_ice_report_2026_11_02": [
+  "794505 Cotton Trade Warehouse (Cargill)",
+  "794598 River City Warehouse (Sunbelt/Ecom)",
+  "819292 Cargill Baytown Warehouse"
+ ],
+ "licence_list": "data/cotton/ref/ice_licensed_warehouses_2026-27.csv (from the ICE Cotton No. 2 licensed-warehouse list, term 1 Aug 2026 - 31 Jul 2027; PDF in data/cotton/ref). Contact email domains confirm LDC (ldc.com) = Allenberg, Olam, Bunge, Cofco, Staple and the independents."
+}

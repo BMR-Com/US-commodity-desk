@@ -1,0 +1,41 @@
+code,warehouse,delivery_point,owner_on_record,merchant,how_mapped,note,capacity_bales,email_domain,licensed_2026_27
+153505,Crittenden Gin Company,Memphis,Crittenden Gin Company,Chris Collins,table,first Crittenden row in the merchant table; contact on Crittenden's own domain; merchant per the merchant table,113000,crittendengin.com,yes
+166150,Marion Distribution,Memphis,Marion Distribution Center (Louis Dreyfus),Allenberg,rule: LDC = Allenberg,,57000,ldc.com,yes
+167003,Union Compress,Memphis,Union Compress Warehouse of West Memphis LLC,Independent,"ICE licence list: contact on the company's own domain (unioncompress.com), no merchant parent",was UNCONFIRMED; filled from the 2026/27 ICE licensed-warehouse list,115080,unioncompress.com,yes
+167025,Staple Cotton Cooperative Assoc. West Memphis,Memphis,Staple Cotton Cooperative Association,Staple Cooperative,rule: Staple = Staple Cooperative,,125000,staplcotn.com,yes
+167035,Riverbend Distribution Center,Memphis,Riverbend Distribution Center LLC (Louis Dreyfus),Allenberg,rule: LDC = Allenberg,,130000,ldc.com,yes
+490150,Anderson Clayton Desoto,Memphis,Anderson Clayton Desoto (Olam Cotton),Olam,rule: Anderson Clayton = Olam,,256000,olamagri.com,yes
+710530,Staple Cotton Cooperative Assoc. Greer,Greenville,Staple Cotton Cooperative Association,Staple Cooperative,rule: Staple = Staple Cooperative,code confirmed 710530 by the ICE warehouse report,55000,staplcotn.com,yes
+793961,Bunge USA LLC - Meyers 1,Memphis,Bunge USA LLC,Bunge,rule: owner,delivery point inferred; not in the merchant table,116480,bunge.com,yes
+794505,Cotton Trade Warehouse,Memphis,Cotton Trade Warehouse,Ownership change,ownership changed; not attributed,ownership changed since the licence list; not attributed to a merchant; not on the ICE 2026/27 licensed list,,,no
+794540,Memphis Compress,Memphis,Memphis Compress Company (Louis Dreyfus Cotton Storage LLC),Allenberg,rule: LDC = Allenberg,,130000,ldc.com,yes
+794550,Producer's Warehouse #1,Memphis,Producer's Warehouse No. 1 (LDC Cotton Storage LLC),Allenberg,rule: LDC = Allenberg,,154000,ldc.com,yes
+794553,Producer's Warehouse #3,Memphis,Producer's Warehouse No. 3 (LDC Cotton Storage LLC),Allenberg,rule: LDC = Allenberg,,48000,ldc.com,yes
+794560,Distribution Center #1,Memphis,The Distribution Center No. 1 (LDC Cotton Storage LLC),Allenberg,table + rule,,70000,ldc.com,yes
+794598,River City Warehouse,Memphis,River City Warehouse (Sunbelt Warehouse),Ecom,table + rule: Sunbelt = Ecom,not on the ICE 2026/27 licensed list,,,no
+795007,Total Commodity Warehouse,Memphis,Total Commodity Warehouse (Sunbelt Warehouse),Ecom,table + rule: Sunbelt = Ecom,Sunbelt contact domain; Sunbelt = Ecom per mapping rule,70000,sunbeltwhse.com,yes
+795026,ICD #4 (Int'l Cotton Depots),Memphis,International Cotton Depots - ICD #4,Cofco,table,,36000,cofcointernational.com,yes
+819292,Cargill Baytown Warehouse,Houston,Cargill Baytown Warehouse,Ownership change,ownership changed; not attributed,ownership changed since the licence list; not attributed to a merchant; not on the ICE 2026/27 licensed list,,,no
+846847,Anderson Clayton Ft Worth 1,Dallas,Anderson Clayton Ft Worth 1,Ownership change,ownership changed; not attributed,ownership changed since the licence list; not attributed to a merchant,170370,olamagri.com,yes
+853007,Fort Worth Commodity Warehouse,Dallas,Fort Worth Commodity Warehouse (Sunbelt Warehouse),Ecom,table + rule: Sunbelt = Ecom,Sunbelt contact domain; Sunbelt = Ecom per mapping rule,65000,sunbeltwhse.com,yes
+857500,Dallas Warehouse Company LLC #2,Dallas,Dallas Warehouse Company LLC,Independent,table,code corrected from the ICE warehouse report (was read as 857509),63500,aol.com,yes
+858053,Moody Compress #1,Galveston,Moody Compress & Warehouse Company #1,Independent,table,,77200,moodycompress.com,yes
+858054,Moody Compress #2,Galveston,Moody Compress & Warehouse Company #2,Independent,table,,37180,moodycompress.com,yes
+858055,Moody Compress #3,Galveston,Moody Compress & Warehouse Company #3,Independent,table,,20000,moodycompress.com,yes
+858056,Moody Compress #4,Galveston,Moody Compress & Warehouse Company #4,Independent,table,,19120,moodycompress.com,yes
+858063,Moody Compress #6,Houston,Moody Compress & Warehouse Company - Plant #6,Independent,table,,98000,moodycompress.com,yes
+858065,Southern Compress #1,Galveston,Southern Compress Warehouse (LDC Cotton Storage LLC),Allenberg,table + rule: LDC = Allenberg,,75000,ldc.com,yes
+871048,Houston Commodity Warehousing Corp,Houston,Houston Commodity Warehouse (Sunbelt Warehouse),Ecom,table + rule: Sunbelt = Ecom,code corrected from the ICE warehouse report (was read as 871049); Sunbelt contact domain; Sunbelt = Ecom per mapping rule,85000,sunbeltwhse.com,yes
+875260,Supply Chain Management LLC Dallas 1,Dallas,Supply Chain Management LLC Dallas #1,Wynne Cowan,rule: Supply Chain Mgt = Wynne Cowan,code corrected from the ICE warehouse report (was read as 875269); Supply Chain Management contact domain; SCM = Wynne Cowan per mapping rule,110000,scmllc.net,yes
+913054,Supply Chain Management LLC Baytown,Houston,Supply Chain Management LLC,Wynne Cowan,table,Supply Chain Management contact domain; SCM = Wynne Cowan per mapping rule,65000,scmllc.net,yes
+925011,Dallas Warehouse Company LLC,Dallas,Dallas Warehouse Company LLC,Independent,table,,130000,aol.com,yes
+,Moody Compress #5,Galveston,,Independent,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Moody Compress #9,Galveston,,Independent,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Moody Compress #10,Houston,,Independent,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Mallory Distribution (MDC #1),Memphis,,Mallory,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Mallory-Delta Warehouse,Dallas,,Mallory,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Glencore Grain USA (Hickory Hill DC #1),Memphis,,Glencore,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Glencore Grain USA (Hickory Hill DC #2),Memphis,,Glencore,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Glencore Grain USA (Hickory Hill DC #3),Memphis,,Glencore,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,ICD #5 (Int'l Cotton Depots),Dallas,,Cofco,table,code not in the records list; not on the ICE 2026/27 licensed list,,,no
+,Cargill Cotton - Haslet,Dallas,Cargill Cotton - Haslet,Ownership change,ownership changed; not attributed,ownership changed since the licence list; not attributed to a merchant; not on the ICE 2026/27 licensed list,,,no

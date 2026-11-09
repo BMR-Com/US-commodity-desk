@@ -1,0 +1,33 @@
+name: cotton-certs-sync
+# Certs data (ICE quality grid, ICE certs files, warehouse map, tariffs, EWR receipts) is maintained in BMR-Com/Brazil--trade;
+# this copies it here so the cotton Certs tab on this desk shows the same numbers.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '9 21 * * 1-5'
+    - cron: '9 23 * * 1-5'
+    - cron: '9 15 * * 1'
+permissions: {contents: write}
+concurrency: {group: cotton-certs-sync, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: copy from the softs desk
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/BMR-Com/Brazil--trade.git src
+          cd src && git sparse-checkout set data/cotton && cd ..
+          mkdir -p data/cotton/ref
+          cp -r src/data/cotton/ice src/data/cotton/ewr data/cotton/ 2>/dev/null || true
+          rm -rf data/cotton/ewr/inbox
+          cp src/data/cotton/ice_diffs.json src/data/cotton/warehouse_map.csv src/data/cotton/warehouse_map_rules.json data/cotton/
+          cp src/data/cotton/ref/*.csv data/cotton/ref/
+          rm -rf src
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/cotton; git diff --cached --quiet && exit 0
+          git commit -q -m "data: cotton certs sync from the softs desk $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || exit 1

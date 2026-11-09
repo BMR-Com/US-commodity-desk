@@ -201,7 +201,7 @@ const Cotton = (() => {
       const yog = S.yogT ? S.yogOld / S.yogT * 2 : 0;                      // 2¢/lb on older crop from 1 January
       const tot = storage + interest + agePen + wda + yog, gap = spread - tot;
       const r = (l, v, n) => `<tr><td class="l">${l}</td><td class="n">${v.toFixed(2)}</td><td class="l note">${n}</td></tr>`;
-      EC.c = { z, h, dec, mar, spread, st, sw, storage, interest, agePen, ageLb, fOld, wda, yog, tot, gap, inv, months };
+      EC.c = { z, h, dec, mar, spread, st, sw, storage, interest, agePen, ageLb, fOld, wda, yog, yogShare: S.yogT ? S.yogOld / S.yogT : 0, tot, gap, inv, months };
       return '';
     }
     // Take December delivery, decertify and ship: the receiver pays storage until the bales load out (about two months
@@ -228,27 +228,26 @@ const Cotton = (() => {
     function econ(premPts) {
       const c = EC.c, d = EC.d; if (!c) return '';
       const f = v => v == null || isNaN(v) ? '–' : v.toFixed(2), P = premPts / 100;
-      const pen = c.agePen + c.wda + c.yog, carryR = c.storage + c.interest, needR = carryR + pen;
-      const carryD = d ? d.carry : null, beD = d ? P + carryD : null;                         // ¢/lb over Dec the bales must fetch
-      const row = (lab, a, b, note) => `<tr><td class="l">${lab}</td><td class="n">${a}</td><td class="n">${b}</td><td class="l note">${note}</td></tr>`;
-      return `<h3 style="margin-top:14px">What December delivery costs a long <span class="note">futures ${c.z.date}: Dec ${c.dec.toFixed(2)}, Mar ${c.mar.toFixed(2)}; ICE grid ${D.date}${d ? `; AMS spot ${d.B.date}` : ''}</span></h3>
-        <div class="grid g4" style="margin:6px 0"><label>Storage, $/bale/month <input id="ctCSt" type="number" step="0.05" value="${c.st.toFixed(2)}" style="width:75px"></label><label>Financing, %/yr <input id="ctCIr" type="number" step="0.25" value="${CF.ir}" style="width:70px"></label><label>Months to load-out (decert) <input id="ctDecMo" type="number" step="0.5" min="0" value="${DC.m}" style="width:60px"></label><span class="note">${CF.st != null ? 'your storage rate' : c.sw ? `storage: ICE 2026/27 tariffs weighted by where the certs sit` : 'assumed storage rate'}</span></div>
+      const carryR = c.storage + c.interest, pen = c.agePen + c.wda + c.yog, needR = carryR + pen, gapR = c.spread - needR;
+      const carryD = d ? d.carry : null;
+      const row = (lab, a, b, note) => `<tr><td class="l">${lab}</td><td class="n">${a}</td><td class="n">${b}</td><td class="l note">${note || ''}</td></tr>`;
+      return `<h3 style="margin-top:14px">What December delivery costs a long <span class="note">futures ${c.z.date}: Dec ${c.dec.toFixed(2)}, Mar ${c.mar.toFixed(2)}; ICE grid ${D.date}</span></h3>
+        <div class="grid g4" style="margin:6px 0"><label>Storage, $/bale/month <input id="ctCSt" type="number" step="0.05" value="${c.st.toFixed(2)}" style="width:75px"></label><label>Financing, %/yr <input id="ctCIr" type="number" step="0.25" value="${CF.ir}" style="width:70px"></label><label>Months to load-out (decert) <input id="ctDecMo" type="number" step="0.5" min="0" value="${DC.m}" style="width:60px"></label><span class="note">${CF.st != null ? 'your storage rate' : c.sw ? 'storage: ICE 2026/27 tariffs weighted by where the certs sit' : 'assumed storage rate'}</span></div>
         <div class="tbl"><table><tr><th class="l">¢/lb</th><th>Hold, redeliver in March (${c.months} mo)</th><th>Decertify and ship (${DC.m} mo)</th><th class="l">Basis</th></tr>
         <tr><td class="l" colspan="4"><b>Carry</b></td></tr>
         ${row('Storage', f(c.storage), d ? f(d.storage) : '–', `$${c.st.toFixed(2)}/bale/month ÷ ${CF.bw} lb`)}
         ${row('Financing', f(c.interest), d ? f(d.fin) : '–', `${CF.ir}% a year on the ${c.inv.toFixed(2)}¢ invoice`)}
-        ${row('<b>Carry: storage + financing</b>', `<b>${f(carryR)}</b>`, `<b>${d ? f(carryD) : '–'}</b>`, '')}
-        ${row('Delivery penalties on redelivery', f(pen), '–', `over-age ${f(c.agePen)} (${c.ageLb.toFixed(1)} lb/bale), weight-date ${f(c.wda)}, year of growth ${f(c.yog)}`)}
-        <tr><td class="l" colspan="4"><b>Premium / discount</b> <span class="note">kept separate</span></td></tr>
-        ${row('ICE premium paid on the certs', sg(P, 2), sg(P, 2), `grade and staple (and strength) of the certs on board, ${sg(premPts)} pts`)}
-        ${row('Premium recovered', sg(P, 2) + ' <span class="note">(on redelivery)</span>', d ? sg(d.val / 100, 2) + ' <span class="note">(spot value)</span>' : '–', d ? `redelivery at today's ICE grid; spot = base basis ${sg(d.rows.reduce((a, r) => a + r.w * r.basis, 0))} pts + market quality differences ${sg(d.rows.reduce((a, r) => a + r.w * r.diff, 0))} pts` : '')}
-        ${row('<b>Net premium cost</b>', '<b>0.00</b>', `<b>${d ? f(d.over) : '–'}</b>`, 'what the receiver does not get back')}
-        <tr><td class="l" colspan="4"><b>Breakeven</b></td></tr>
-        ${row('<b>Carry needed</b>', `<b>${f(needR)}</b> <span class="note">Mar over Dec</span>`, `<b>${d ? sg(beD, 2) : '–'}</b> <span class="note">over Dec</span>`, `March: storage + financing + penalties. Decert: the bales must sell at Dec + premium paid + carry to load-out (${d ? sg(beD - c.spread, 2) + ' on March' : ''})`)}
-        ${row('Market now', `${f(c.spread)} <span class="note">Mar − Dec</span>`, d ? `${sg(d.val / 100, 2)} <span class="note">spot vs Dec</span>` : '–', '')}
-        ${row('<b>Short of breakeven</b>', `<b class="${c.spread - needR < 0 ? 'dn' : 'up'}">${sg(c.spread - needR, 2)}</b>`, d ? `<b class="${d.val / 100 - beD < 0 ? 'dn' : 'up'}">${sg(d.val / 100 - beD, 2)}</b>` : '–', 'negative = taking December delivery loses money, so longs roll instead of stopping')}
+        ${row('Over-age allowance', f(c.agePen), '–', `${c.ageLb.toFixed(1)} lb/bale at a March delivery: 6 lb on October certs (${fmt(c.fOld * 100, 0)}% of bales, those on board at the previous weekly report), 3 lb on November certs`)}
+        ${row('Weight-date allowance', f(c.wda), '–', `½ lb/bale for each of the ${c.months} extra months`)}
+        ${row('Year of growth', f(c.yog), '–', `2¢/lb from 1 January on the older-crop share (${fmt(c.yogShare * 100, 1)}% of bales are 2025 crop)`)}
+        ${row('<b>Breakeven carry</b>', `<b>${f(needR)}</b> <span class="note">Mar over Dec</span>`, `<b>${d ? f(carryD) : '–'}</b> <span class="note">to load-out</span>`, 'March: what Mar has to pay over Dec. Decert: the cost of holding the bales until they leave the warehouse')}
+        ${row('Market now', `${f(c.spread)} <span class="note">Mar − Dec</span>`, '', '')}
+        ${row('<b>Short of breakeven</b>', `<b class="${gapR < 0 ? 'dn' : 'up'}">${sg(gapR, 2)}</b>`, '', 'if the ICE grid premium in March is the same as today')}
+        <tr><td class="l" colspan="4"><b>Premium / discount</b> <span class="note">kept separate: the receiver pays it now; what comes back is unknown</span></td></tr>
+        ${row('ICE premium paid on the certs', sg(P, 2), sg(P, 2), `grade, staple and strength of the certs on board, ${sg(premPts)} pts at the ${D.date} grid`)}
+        ${row('<b>Needed back to break even</b>', `<b>${sg(P - gapR, 2)}</b> <span class="note">March ICE grid</span>`, d ? `<b>${sg(P + carryD, 2)}</b> <span class="note">over Dec, physical</span>` : '–', 'March: the average premium the same bales must earn on the March grid to cover the spread shortfall. Decert: the price over December futures the bales must sell for in the physical market (decertified cotton is rarely recertified, so the comparison stays on December)')}
         </table></div>
-        <p class="note">Rules: ICE Cotton No. 2 (deliverer pays storage up to delivery and load-out to car/truck; receiver pays storage after; over-age allowance from the 4th month after certification; ½ lb/bale/month weight-date allowance; 2¢/lb year-of-growth penalty from 1 January for older crop). Spot market by delivery point: Galveston and Houston East Texas–South Texas, Dallas/Fort Worth West Texas–Kansas–Oklahoma, Memphis North Delta, Greenville Southeast; 37+ staple uses the 37 quote${d && d.miss ? `; ${fmt(d.miss, 0)} bales without a market quote use the ICE grid` : ''}. Excludes micronaire, freight to the mill, and any change in the ICE grid by March.</p>`;
+        <p class="note">Rules: ICE Cotton No. 2 (deliverer pays storage up to delivery and load-out to car/truck; receiver pays storage after; over-age allowance from the 4th month after the month of certification; ½ lb/bale/month weight-date allowance; 2¢/lb year-of-growth penalty from 1 January on older crop).${d ? ` For reference, AMS spot quotations on ${d.B.date} put the same qualities at ${sg(d.val)} pts vs December in the Texas markets (base 41-4-34 ${sg(d.rows.reduce((a, r) => a + r.w * r.basis, 0))} pts, quality differences ${sg(d.rows.reduce((a, r) => a + r.w * r.diff, 0))} pts); what a buyer actually pays for high grades can differ.` : ''}</p>`;
     }
     const analyse = () => {
       const st = got('ctIceStock'), gr = got('ctIceGrade'), O = $('#ctCertOut'); if (!O) return;

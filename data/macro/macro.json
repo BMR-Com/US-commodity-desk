@@ -1,47 +1,47 @@
 {
- "generated": "2026-11-09 19:09 UTC",
+ "generated": "2026-11-09 20:09 UTC",
  "view": "headwind",
- "score": -3,
+ "score": -4,
  "components": {
   "rates": 1,
   "dollar": 0,
   "brl": -1,
   "risk": -1,
-  "energy": 0,
+  "energy": -1,
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk \u2212; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Cheese +4.4%; weakest: Lean hogs -17.7%. Key releases ahead: US Core CPI m/m (11-10 8:30 AM ET); US CPI m/m (11-10 8:30 AM ET); US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: headwind (score -4 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +4.7%; weakest: Lean hogs -17.5%. Key releases ahead: US Core CPI m/m (11-10 8:30 AM ET); US CPI m/m (11-10 8:30 AM ET); US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
    "score": 1,
-   "text": "US 10-year 4.86% (-42 bp in a month), 2-year 4.51% (-26 bp); 2s10s curve +35 bp (-16 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.04% sets the cost of carrying inventory."
+   "text": "US 10-year 4.86% (-42 bp in a month), 2-year 4.51% (-26 bp); 2s10s curve +35 bp (-16 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.03% sets the cost of carrying inventory."
   },
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 101.83 (-0.4% in a month, +3.6% YTD). USD/BRL 5.511 (+9.8% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.672 (-0.4%); USD/MXN 18.59 (+2.2%)."
+   "text": "Dollar index 101.65 (-0.5% in a month, +3.4% YTD). USD/BRL 5.504 (+9.7% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.673 (-0.4%); USD/MXN 18.54 (+1.9%)."
   },
   {
    "title": "Risk appetite",
    "score": -1,
-   "text": "S&P 500 -3.3% in a month (+10.3% YTD); VIX 20.1. Risk-off: funds tend to cut commodity length along with equities. "
+   "text": "S&P 500 -3.2% in a month (+10.5% YTD); VIX 20.0. Risk-off: funds tend to cut commodity length along with equities. "
   },
   {
    "title": "Energy",
-   "score": 0,
-   "text": "WTI 87.68 $/bbl (-3.7% in a month), Brent 93.62, ULSD 4.279 $/gal (-6.7%), natural gas 3.21 (-9.4%). Crude little changed on the month. "
+   "score": -1,
+   "text": "WTI 85.71 $/bbl (-5.8% in a month), Brent 91.26, ULSD 4.176 $/gal (-9.0%), natural gas 3.21 (-9.6%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -5.2% in a month, Shanghai Composite -4.0%, Hang Seng +1.0%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -4.7% in a month, Shanghai Composite -4.0%, Hang Seng +1.0%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -7.0% in a month; gold -2.4%. "
+   "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -7.6% in a month; gold -1.8%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",

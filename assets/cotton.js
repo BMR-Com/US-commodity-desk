@@ -213,6 +213,33 @@ const Cotton = (() => {
         <tr><td class="l"><b>Mar − Dec spread</b></td><td class="n"><b>${spread.toFixed(2)}</b></td><td class="l note">${gap >= 0 ? `pays ${gap.toFixed(2)}¢ more than full carry: stopping and redelivering is profitable` : `${(-gap).toFixed(2)}¢ short of full carry: stopping December to redeliver in March loses money`}</td></tr></table></div>
         <p class="note">The grade premium is paid on delivery and received back on redelivery only if the ICE grid is unchanged in March. A receiver who instead sells the cotton to mills recovers only what mills pay for these qualities, which for high grades is usually less than the exchange grid; that shortfall is an extra cost on top of full carry. Rules: ICE Cotton No. 2 (age penalty schedule, weight-date allowance, year-of-growth penalty; deliverer pays storage up to delivery, receiver after).</p>`;
     }
+    // Take December delivery, decertify and ship: the receiver pays storage until the bales load out (about two months
+    // in season) and pays the ICE premium, against buying the same qualities in the spot market (AMS spot quotations).
+    const MKT = { Galveston: 'East Texas - South Texas', Houston: 'East Texas - South Texas', Dallas: 'West Texas - Kansas - Oklahoma', Memphis: 'North Delta', Greenville: 'Southeast' };
+    const DC = { m: +(LS.get('ctDecM') || 2) };
+    function decert(premPts, S) {
+      const px = REPO.px || {}, z = px.CTZ2026, h = px.CTH2027, B = D.basis, MG = (D.markets || {}).grids; if (!z || !B || !MG || !S.cells || !S.dp) return '';
+      const mk = (c, l, st) => `${c === '11' || c === '21' ? '11 & 21' : c === '12' || c === '22' ? '12 & 22' : c === '13' || c === '23' ? '13 & 23' : c}|${l === '1' || l === '2' ? '1 & 2' : l}|${String(st).replace('+', '')}`;
+      const dps = Object.entries(S.dp).filter(([, v]) => v.n), T = dps.reduce((a, [, v]) => a + v.n, 0); if (!T) return '';
+      const N = S.cells.reduce((a, x) => a + x.n, 0); let miss = 0;
+      const rows = dps.map(([dp, v]) => { const m = MKT[dp] || 'US Average', g = MG[m] || {}, b = (B.markets[m] || B.markets['US Average'] || {});
+        let pts = 0; S.cells.forEach(x => { const q = g[mk(x.c, x.l, x.s)]; if (q == null) { miss += x.n * v.n / T; pts += x.n * x.p; } else pts += x.n * q; });
+        const diff = pts / (N || 1), adj = /^Mar/i.test(b.basis_month || '') && h ? (h.close - z.close) * 100 : 0, basis = (b.basis_41_4_34 || 0) + adj;
+        return { dp, m, n: v.n, w: v.n / T, diff, basis, val: basis + diff, bm: b.basis_month }; });
+      const val = rows.reduce((a, r) => a + r.w * r.val, 0), over = (premPts - val) / 100;
+      const stw = (typeof stWeighted === 'function' && stWeighted()) || 5.0, st = CF.st != null ? CF.st : stw, inv = z.close + premPts / 100;
+      const storage = st * DC.m / CF.bw * 100, fin = inv * CF.ir / 100 * DC.m / 12, tot = over + storage + fin;
+      return `<h3 style="margin-top:14px">Take December delivery, decertify and ship <span class="note">AMS spot quotations ${B.date}; ICE grid ${D.date}</span></h3>
+        <div class="grid g3" style="margin:6px 0"><label>Months until the bales load out <input id="ctDecMo" type="number" step="0.5" min="0" value="${DC.m}" style="width:70px"></label><span class="note" style="grid-column:span 2">After delivery the receiver pays storage until the cotton leaves the warehouse; in season, load-out queues at the Texas warehouses run about two months. Load-out to car or truck is paid by the deliverer.</span></div>
+        <div class="tbl"><table><tr><th class="l">Delivery point</th><th>Bales</th><th class="l">Spot market used</th><th>Base 41-4-34 basis</th><th>Same qualities at spot</th><th>Spot value vs Dec</th></tr>
+        ${rows.map(r => `<tr><td class="l">${r.dp}</td><td class="n">${fmt(r.n, 0)}</td><td class="l">${r.m}</td><td class="n">${sg(r.basis)} pts${r.bm && !/^Dec/i.test(r.bm) ? ` <span class="note">(${r.bm} + spread)</span>` : ''}</td><td class="n">${sg(r.diff)} pts</td><td class="n">${sg(r.val)} pts</td></tr>`).join('')}</table></div>
+        <div class="tbl"><table><tr><th class="l">Cost of taking delivery instead of buying spot</th><th>¢/lb</th><th class="l">Basis</th></tr>
+        <tr><td class="l">ICE invoice over the spot value of the same bales</td><td class="n">${over.toFixed(2)}</td><td class="l note">invoice ${sg(premPts)} pts over Dec vs spot value ${sg(val)} pts (stock-weighted base basis plus each market's grade/staple differences)</td></tr>
+        <tr><td class="l">Storage until load-out</td><td class="n">${storage.toFixed(2)}</td><td class="l note">$${st.toFixed(2)}/bale/month × ${DC.m} months ÷ ${CF.bw} lb</td></tr>
+        <tr><td class="l">Financing until load-out</td><td class="n">${fin.toFixed(2)}</td><td class="l note">${CF.ir}% on the ${inv.toFixed(2)}¢ invoice for ${DC.m} months</td></tr>
+        <tr><td class="l"><b>Total</b></td><td class="n"><b>${tot.toFixed(2)}</b></td><td class="l note">${tot > 0 ? 'a long who takes December delivery to use or sell the cotton pays this much more than buying the same qualities in the spot market, so longs roll instead of stopping' : 'taking delivery is cheaper than buying the same cotton spot, so certs are likely to be stopped'}</td></tr></table></div>
+        <p class="note">Spot market by delivery point: Galveston and Houston use East Texas–South Texas, Dallas/Fort Worth uses West Texas–Kansas–Oklahoma, Memphis North Delta, Greenville Southeast. Grade/staple differences are each market's own commercial quotes (colours 11/21 and 12/22 and leaf 1/2 are quoted together; 37+ uses the 37 quote)${miss ? `; ${fmt(miss, 0)} bales had no market quote and use the ICE grid` : ''}. Micronaire, strength and freight from the warehouse to a mill are not included.</p>`;
+    }
     const analyse = () => {
       const st = got('ctIceStock'), gr = got('ctIceGrade'), O = $('#ctCertOut'); if (!O) return;
       let html = '', stTot = 0; const SUM = {};
@@ -221,7 +248,7 @@ const Cotton = (() => {
       const whDP = t => { if (!t || !WM) return null; const R = parseCSV(t), h = R[0].map(x => x.toLowerCase()), iC = h.findIndex(x => /number|code/.test(x)), iB = h.findIndex(x => /receipt|bales|stock/.test(x)), iN = h.findIndex(x => x === 'warehouse');
         const byCode = Object.fromEntries(WM.rows.filter(r => r.code).map(r => [r.code, r])), o = {};
         R.slice(1).filter(r => r[iN]).forEach(r => { const m = byCode[r[iC]] || {}, d = m.delivery_point || '?'; const x = o[d] = o[d] || { n: 0, cap: 0 }; x.n += +r[iB] || 0; x.cap += +m.capacity_bales || 0; }); return o; };
-      const DPn = whD > stD ? whDP(whT) : null;
+      const DPn = whD > stD ? whDP(whT) : null; SUM.dp = DPn || whDP(whT);
       if (DPn) {
         const P = whDP(got('ctIceWhPrev')) || {}, pd = got('ctIceWhPrevDate') || '', ks = Object.keys(DPn).filter(k => DPn[k].n || (P[k] || {}).n).sort((a, b) => DPn[b].n - DPn[a].n);
         const T = Object.values(DPn).reduce((a, x) => a + x.n, 0), TP = Object.values(P).reduce((a, x) => a + x.n, 0), C = Object.values(DPn).reduce((a, x) => a + x.cap, 0); stTot = T;
@@ -257,7 +284,7 @@ const Cotton = (() => {
         const cells = [];
         R.slice(1).forEach(r => { const c = r[iCo], l = r[iLf]; if (!/^\d+$/.test(c) || !/^\d+$/.test(l)) return; sc.forEach(([s, i]) => { const n = +String(r[i]).replace(/,/g, '') || 0; if (n) cells.push({ c, l, s: s.replace('+', ''), n, p: pts(G, c, l, s) }); }); });
         const n = cells.reduce((a, x) => a + x.n, 0), priced = cells.filter(x => x.p != null), np = priced.reduce((a, x) => a + x.n, 0);
-        const w0 = priced.reduce((a, x) => a + x.n * x.p, 0) / (np || 1), w = w0 + (strAdj ? strAdj.share * strAdj.disc : 0); SUM.grade = w0; SUM.gradeN = n; SUM.gradeDate = got('ctIceGradeDate');
+        const w0 = priced.reduce((a, x) => a + x.n * x.p, 0) / (np || 1), w = w0 + (strAdj ? strAdj.share * strAdj.disc : 0); SUM.grade = w0; SUM.gradeN = n; SUM.gradeDate = got('ctIceGradeDate'); SUM.cells = priced;
         const by = k => { const m = {}; priced.forEach(x => { (m[x[k]] = m[x[k]] || { n: 0, v: 0 }); m[x[k]].n += x.n; m[x[k]].v += x.n * x.p; }); return Object.entries(m).sort(); };
         const cheap = [...priced].sort((a, b) => a.p - b.p).slice(0, 5);
         const mkt = $('#ctPx')?.value;
@@ -314,7 +341,7 @@ const Cotton = (() => {
           ${row('Grade and staple', SUM.grade, `average of ${fmt(SUM.gradeN, 0)} bales at the USDA grid (invoicing staple)`)}
           ${row('Strength', sp, SUM.str ? (SUM.str.low ? `${fmt(SUM.str.low, 0)} bales in 25.0–25.9 at ${sg(SUM.str.disc)} pts` : 'no bales in 25.0–25.9') : 'no strength report loaded')}
           ${row('Year of growth', 'yog', SUM.yog ? `${fmt(SUM.yogOld, 0)} of ${fmt(SUM.yogT, 0)} bales are older crop: free in December, 2¢/lb discount from March` : 'no year-of-growth report loaded')}
-          <tr><td class="l"><b>Net average premium</b></td>${y.map(([, yv]) => `<td class="n"><b>${sg(net(yv))} pts</b><br><span class="note">${sg(net(yv) / 100, 2)}¢/lb · $${fmt(net(yv) * 5, 0)}/lot</span></td>`).join('')}<td class="l note">what a receiver pays over the notice price, on average</td></tr></table></div>` + carry(net(y[0][1]), SUM) + html;
+          <tr><td class="l"><b>Net average premium</b></td>${y.map(([, yv]) => `<td class="n"><b>${sg(net(yv))} pts</b><br><span class="note">${sg(net(yv) / 100, 2)}¢/lb · $${fmt(net(yv) * 5, 0)}/lot</span></td>`).join('')}<td class="l note">what a receiver pays over the notice price, on average</td></tr></table></div>` + carry(net(y[0][1]), SUM) + decert(net(y[0][1]), SUM) + html;
       }
       const E = REPO.ewr;
       if (E && E.states) {
@@ -328,7 +355,7 @@ const Cotton = (() => {
           <p class="note">Receipts issued so far: ${fmt(E.new_issued_total, 0)} new ${E.crop_year}-crop receipts, ${fmt(E.new_issued_total / (E.crop_est || 1) * 100, 1)}% of the USDA crop estimate of ${fmt(E.crop_est, 0)}. Receipts under shipping order are bales sold and called for shipment, a lead indicator of what can physically ship in the coming weeks. History builds from daily snapshots kept in data/cotton/ewr/history.csv.</p>`;
       }
       O.innerHTML = html || '<p class="note">No files loaded in this browser yet.</p>';
-      const bindC = (id, k, key) => { const el = $('#' + id); if (el) el.onchange = () => { CF[k] = +el.value || 0; LS.set(key, String(CF[k])); analyse(); }; }; { const el = $('#ctCSt'); if (el) el.onchange = () => { if (el.value === '') { CF.st = null; LS.del('ctCarrySt'); } else { CF.st = +el.value; LS.set('ctCarrySt', String(CF.st)); } analyse(); }; } bindC('ctCIr', 'ir', 'ctCarryIr');
+      const bindC = (id, k, key) => { const el = $('#' + id); if (el) el.onchange = () => { CF[k] = +el.value || 0; LS.set(key, String(CF[k])); analyse(); }; }; { const el = $('#ctDecMo'); if (el) el.onchange = () => { DC.m = Math.max(0, +el.value || 0); LS.set('ctDecM', String(DC.m)); analyse(); }; } { const el = $('#ctCSt'); if (el) el.onchange = () => { if (el.value === '') { CF.st = null; LS.del('ctCarrySt'); } else { CF.st = +el.value; LS.set('ctCarrySt', String(CF.st)); } analyse(); }; } bindC('ctCIr', 'ir', 'ctCarryIr');
     };
     const hook = (id, key) => { const el = $('#' + id); if (el) el.onchange = e => { const f = e.target.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { LS.set(key, rd.result); const m = f.name.match(/(\d{4}-\d{2}-\d{2})/); LS.set(key + 'Date', m ? m[1] : f.name); analyse(); }; rd.readAsText(f); }; };
     hook('ctFStock', 'ctIceStock'); hook('ctFGrade', 'ctIceGrade'); hook('ctFWh', 'ctIceWh'); hook('ctFStr', 'ctIceStr'); hook('ctFYog', 'ctIceYog');

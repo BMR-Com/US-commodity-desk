@@ -22,7 +22,7 @@ jobs:
           mkdir -p data/cotton/ref
           cp -r src/data/cotton/ice src/data/cotton/ewr data/cotton/ 2>/dev/null || true
           rm -rf data/cotton/ewr/inbox
-          cp src/data/cotton/ice_diffs.json src/data/cotton/warehouse_map.csv src/data/cotton/warehouse_map_rules.json data/cotton/
+          cp src/data/cotton/ice_diffs.json src/data/cotton/spot_basis.csv src/data/cotton/warehouse_map.csv src/data/cotton/warehouse_map_rules.json data/cotton/
           cp src/data/cotton/ref/*.csv data/cotton/ref/
           rm -rf src
       - name: commit

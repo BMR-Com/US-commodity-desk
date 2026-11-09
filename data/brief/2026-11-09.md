@@ -1,6 +1,6 @@
-# Morning brief · Mon Nov 09, 2026 04:06 PM ET
+# Morning brief · Mon Nov 09, 2026 04:20 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-09 21:06 UTC). CME open interest from 20261106. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-09 21:20 UTC). CME open interest from 20261106. Research only, not investment advice.
 
 ## Key points
 
@@ -45,20 +45,20 @@ Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for 
 
 ## US economy
 
-Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.1%. Jobs: payrolls +165k in 2026-10 (3-month average +137k), unemployment 4.1% (-0.1), wages 3.1% y/y. Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.51% (+0.63 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.23%, real 10-year 2.63%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.
+Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core PCE 3.1%. Jobs: payrolls +165k in 2026-10 (3-month average +137k), unemployment 4.1% (-0.1), wages 3.1% y/y. Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.56% (+0.68 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.22%, real 10-year 2.66%. Farm prices (PPI farm products) +1.5% y/y; food-at-home CPI +1.8% y/y. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.
 
 ## Macro outlook and what it means for ags
 
 Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl −; risk −; energy 0; china −; breadth −. Strongest ag/soft over the month: Rough rice +4.7%; weakest: Lean hogs -17.5%. Key releases ahead: US Core CPI m/m (11-10 8:30 AM ET); US CPI m/m (11-10 8:30 AM ET); US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).
 
 - **Rates**: US 10-year 4.88% (-36 bp in a month), 2-year 4.56% (-24 bp); 2s10s curve +32 bp (-12 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.04% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 101.69 (-0.5% in a month, +3.5% YTD). USD/BRL 5.514 (+9.9% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.673 (-0.4%); USD/MXN 18.54 (+2.0%).
-- **Risk appetite**: S&P 500 -3.4% in a month (+10.3% YTD); VIX 19.9. Risk-off: funds tend to cut commodity length along with equities. 
-- **Energy**: WTI 86.87 $/bbl (-4.5% in a month), Brent 92.66, ULSD 4.204 $/gal (-8.4%), natural gas 3.21 (-9.4%). Crude little changed on the month. 
+- **Dollar & farm currencies**: Dollar index 101.68 (-0.5% in a month, +3.5% YTD). USD/BRL 5.514 (+9.9% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.673 (-0.4%); USD/MXN 18.55 (+2.0%).
+- **Risk appetite**: S&P 500 -3.3% in a month (+10.3% YTD); VIX 20.0. Risk-off: funds tend to cut commodity length along with equities. 
+- **Energy**: WTI 87.06 $/bbl (-4.3% in a month), Brent 92.84, ULSD 4.209 $/gal (-8.3%), natural gas 3.21 (-9.5%). Crude little changed on the month. 
 - **China & industrial demand**: Copper -4.7% in a month, Shanghai Composite -4.0%, Hang Seng +1.0%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. 
-- **Commodity breadth**: 6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -7.3% in a month; gold -1.6%. 
+- **Commodity breadth**: 6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -7.3% in a month; gold -1.5%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,584.000 (+2.46% d/d); S&P 500 7,549.830 (+2.34% d/d); VIX 19.880 (-22.46% d/d); US 10-year 4.864 (+0 bp d/d); US dollar index 101.690 (-0.60% d/d); EUR/USD 1.123 (-0.02% d/d); USD/BRL 5.514 (+0.19% d/d); USD/CNY 6.673 (-0.23% d/d); WTI crude 86.870 (-4.36% d/d); Natural gas 3.211 (+7.10% d/d); Gold 4,149.400 (+1.83% d/d); Copper 6.377 (+2.23% d/d); S&P GSCI 684.436 (-2.06% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,578.250 (+2.38% d/d); S&P 500 7,549.940 (+2.35% d/d); VIX 20.010 (-21.96% d/d); US 10-year 4.864 (+0 bp d/d); US dollar index 101.676 (-0.61% d/d); EUR/USD 1.123 (-0.03% d/d); USD/BRL 5.514 (+0.19% d/d); USD/CNY 6.673 (-0.23% d/d); WTI crude 87.060 (-4.15% d/d); Natural gas 3.209 (+7.04% d/d); Gold 4,151.700 (+1.88% d/d); Copper 6.378 (+2.25% d/d); S&P GSCI 684.436 (-2.06% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 

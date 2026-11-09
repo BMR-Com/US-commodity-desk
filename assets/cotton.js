@@ -201,17 +201,8 @@ const Cotton = (() => {
       const yog = S.yogT ? S.yogOld / S.yogT * 2 : 0;                      // 2¢/lb on older crop from 1 January
       const tot = storage + interest + agePen + wda + yog, gap = spread - tot;
       const r = (l, v, n) => `<tr><td class="l">${l}</td><td class="n">${v.toFixed(2)}</td><td class="l note">${n}</td></tr>`;
-      return `<h3 style="margin-top:14px">Stop December, redeliver against March: does the spread pay? <span class="note">futures ${z.date}: Dec ${dec.toFixed(2)}, Mar ${mar.toFixed(2)}</span></h3>
-        <div class="grid g3" style="margin:6px 0"><label>Storage, $ per bale per month <input id="ctCSt" type="number" step="0.05" value="${st.toFixed(2)}" style="width:80px"></label><label>Financing rate, % a year <input id="ctCIr" type="number" step="0.25" value="${CF.ir}" style="width:80px"></label><span class="note">${CF.st != null ? 'your rate (clear the box to go back to the tariff-weighted rate)' : sw ? `$${sw.toFixed(2)}/bale/month: ICE 2026/27 tariffs weighted by the certs each warehouse holds (insurance included)` : 'assumed rate'}</span></div>
-        <div class="tbl"><table><tr><th class="l">Cost of carrying the delivered certs ~3 months</th><th>¢/lb</th><th class="l">Basis</th></tr>
-        ${r('Storage', storage, `$${st.toFixed(2)}/bale/month × ${months} months ÷ ${CF.bw} lb`)}
-        ${r('Financing', interest, `${CF.ir}% on the invoice of ${inv.toFixed(2)}¢ (notice price + average premium ${(premPts / 100).toFixed(2)}¢)`)}
-        ${r('Over-age allowance at March delivery', agePen, `${ageLb.toFixed(1)} lb/bale: 6 lb on October certs (${fmt(fOld * 100, 0)}% of bales), 3 lb on November certs; starts the 4th month after the month of certification`)}
-        ${r('Weight-date allowance', wda, '½ lb/bale for each month after the month of weighing')}
-        ${r('Year of growth', yog, S.yogT ? `${fmt(S.yogOld / S.yogT * 100, 1)}% of bales are older crop: 2¢/lb from 1 January` : 'no year-of-growth report')}
-        <tr><td class="l"><b>Full carry</b></td><td class="n"><b>${tot.toFixed(2)}</b></td><td class="l note">what Mar has to pay over Dec for a stopper to break even</td></tr>
-        <tr><td class="l"><b>Mar − Dec spread</b></td><td class="n"><b>${spread.toFixed(2)}</b></td><td class="l note">${gap >= 0 ? `pays ${gap.toFixed(2)}¢ more than full carry: stopping and redelivering is profitable` : `${(-gap).toFixed(2)}¢ short of full carry: stopping December to redeliver in March loses money`}</td></tr></table></div>
-        <p class="note">The grade premium is paid on delivery and received back on redelivery only if the ICE grid is unchanged in March. A receiver who instead sells the cotton to mills recovers only what mills pay for these qualities, which for high grades is usually less than the exchange grid; that shortfall is an extra cost on top of full carry. Rules: ICE Cotton No. 2 (age penalty schedule, weight-date allowance, year-of-growth penalty; deliverer pays storage up to delivery, receiver after).</p>`;
+      EC.c = { z, h, dec, mar, spread, st, sw, storage, interest, agePen, ageLb, fOld, wda, yog, tot, gap, inv, months };
+      return '';
     }
     // Take December delivery, decertify and ship: the receiver pays storage until the bales load out (about two months
     // in season) and pays the ICE premium, against buying the same qualities in the spot market (AMS spot quotations).
@@ -229,16 +220,35 @@ const Cotton = (() => {
       const val = rows.reduce((a, r) => a + r.w * r.val, 0), over = (premPts - val) / 100;
       const stw = (typeof stWeighted === 'function' && stWeighted()) || 5.0, st = CF.st != null ? CF.st : stw, inv = z.close + premPts / 100;
       const storage = st * DC.m / CF.bw * 100, fin = inv * CF.ir / 100 * DC.m / 12, tot = over + storage + fin;
-      return `<h3 style="margin-top:14px">Take December delivery, decertify and ship <span class="note">AMS spot quotations ${B.date}; ICE grid ${D.date}</span></h3>
-        <div class="grid g3" style="margin:6px 0"><label>Months until the bales load out <input id="ctDecMo" type="number" step="0.5" min="0" value="${DC.m}" style="width:70px"></label><span class="note" style="grid-column:span 2">After delivery the receiver pays storage until the cotton leaves the warehouse; in season, load-out queues at the Texas warehouses run about two months. Load-out to car or truck is paid by the deliverer.</span></div>
-        <div class="tbl"><table><tr><th class="l">Delivery point</th><th>Bales</th><th class="l">Spot market used</th><th>Base 41-4-34 basis</th><th>Same qualities at spot</th><th>Spot value vs Dec</th></tr>
-        ${rows.map(r => `<tr><td class="l">${r.dp}</td><td class="n">${fmt(r.n, 0)}</td><td class="l">${r.m}</td><td class="n">${sg(r.basis)} pts${r.bm && !/^Dec/i.test(r.bm) ? ` <span class="note">(${r.bm} + spread)</span>` : ''}</td><td class="n">${sg(r.diff)} pts</td><td class="n">${sg(r.val)} pts</td></tr>`).join('')}</table></div>
-        <div class="tbl"><table><tr><th class="l">Cost of taking delivery instead of buying spot</th><th>¢/lb</th><th class="l">Basis</th></tr>
-        <tr><td class="l">ICE invoice over the spot value of the same bales</td><td class="n">${over.toFixed(2)}</td><td class="l note">invoice ${sg(premPts)} pts over Dec vs spot value ${sg(val)} pts (stock-weighted base basis plus each market's grade/staple differences)</td></tr>
-        <tr><td class="l">Storage until load-out</td><td class="n">${storage.toFixed(2)}</td><td class="l note">$${st.toFixed(2)}/bale/month × ${DC.m} months ÷ ${CF.bw} lb</td></tr>
-        <tr><td class="l">Financing until load-out</td><td class="n">${fin.toFixed(2)}</td><td class="l note">${CF.ir}% on the ${inv.toFixed(2)}¢ invoice for ${DC.m} months</td></tr>
-        <tr><td class="l"><b>Total</b></td><td class="n"><b>${tot.toFixed(2)}</b></td><td class="l note">${tot > 0 ? 'a long who takes December delivery to use or sell the cotton pays this much more than buying the same qualities in the spot market, so longs roll instead of stopping' : 'taking delivery is cheaper than buying the same cotton spot, so certs are likely to be stopped'}</td></tr></table></div>
-        <p class="note">Spot market by delivery point: Galveston and Houston use East Texas–South Texas, Dallas/Fort Worth uses West Texas–Kansas–Oklahoma, Memphis North Delta, Greenville Southeast. Grade/staple differences are each market's own commercial quotes (colours 11/21 and 12/22 and leaf 1/2 are quoted together; 37+ uses the 37 quote)${miss ? `; ${fmt(miss, 0)} bales had no market quote and use the ICE grid` : ''}. Micronaire, strength and freight from the warehouse to a mill are not included.</p>`;
+      EC.d = { rows, val, over, storage, fin, tot, st, inv, B, miss, carry: storage + fin };
+      return '';
+    }
+    // one table: premium/discount kept separate from the carry (storage + financing), for the two things a long can do with December certs
+    const EC = {};
+    function econ(premPts) {
+      const c = EC.c, d = EC.d; if (!c) return '';
+      const f = v => v == null || isNaN(v) ? '–' : v.toFixed(2), P = premPts / 100;
+      const pen = c.agePen + c.wda + c.yog, carryR = c.storage + c.interest, needR = carryR + pen;
+      const carryD = d ? d.carry : null, beD = d ? P + carryD : null;                         // ¢/lb over Dec the bales must fetch
+      const row = (lab, a, b, note) => `<tr><td class="l">${lab}</td><td class="n">${a}</td><td class="n">${b}</td><td class="l note">${note}</td></tr>`;
+      return `<h3 style="margin-top:14px">What December delivery costs a long <span class="note">futures ${c.z.date}: Dec ${c.dec.toFixed(2)}, Mar ${c.mar.toFixed(2)}; ICE grid ${D.date}${d ? `; AMS spot ${d.B.date}` : ''}</span></h3>
+        <div class="grid g4" style="margin:6px 0"><label>Storage, $/bale/month <input id="ctCSt" type="number" step="0.05" value="${c.st.toFixed(2)}" style="width:75px"></label><label>Financing, %/yr <input id="ctCIr" type="number" step="0.25" value="${CF.ir}" style="width:70px"></label><label>Months to load-out (decert) <input id="ctDecMo" type="number" step="0.5" min="0" value="${DC.m}" style="width:60px"></label><span class="note">${CF.st != null ? 'your storage rate' : c.sw ? `storage: ICE 2026/27 tariffs weighted by where the certs sit` : 'assumed storage rate'}</span></div>
+        <div class="tbl"><table><tr><th class="l">¢/lb</th><th>Hold, redeliver in March (${c.months} mo)</th><th>Decertify and ship (${DC.m} mo)</th><th class="l">Basis</th></tr>
+        <tr><td class="l" colspan="4"><b>Carry</b></td></tr>
+        ${row('Storage', f(c.storage), d ? f(d.storage) : '–', `$${c.st.toFixed(2)}/bale/month ÷ ${CF.bw} lb`)}
+        ${row('Financing', f(c.interest), d ? f(d.fin) : '–', `${CF.ir}% a year on the ${c.inv.toFixed(2)}¢ invoice`)}
+        ${row('<b>Carry: storage + financing</b>', `<b>${f(carryR)}</b>`, `<b>${d ? f(carryD) : '–'}</b>`, '')}
+        ${row('Delivery penalties on redelivery', f(pen), '–', `over-age ${f(c.agePen)} (${c.ageLb.toFixed(1)} lb/bale), weight-date ${f(c.wda)}, year of growth ${f(c.yog)}`)}
+        <tr><td class="l" colspan="4"><b>Premium / discount</b> <span class="note">kept separate</span></td></tr>
+        ${row('ICE premium paid on the certs', sg(P, 2), sg(P, 2), `grade and staple (and strength) of the certs on board, ${sg(premPts)} pts`)}
+        ${row('Premium recovered', sg(P, 2) + ' <span class="note">(on redelivery)</span>', d ? sg(d.val / 100, 2) + ' <span class="note">(spot value)</span>' : '–', d ? `redelivery at today's ICE grid; spot = base basis ${sg(d.rows.reduce((a, r) => a + r.w * r.basis, 0))} pts + market quality differences ${sg(d.rows.reduce((a, r) => a + r.w * r.diff, 0))} pts` : '')}
+        ${row('<b>Net premium cost</b>', '<b>0.00</b>', `<b>${d ? f(d.over) : '–'}</b>`, 'what the receiver does not get back')}
+        <tr><td class="l" colspan="4"><b>Breakeven</b></td></tr>
+        ${row('<b>Carry needed</b>', `<b>${f(needR)}</b> <span class="note">Mar over Dec</span>`, `<b>${d ? sg(beD, 2) : '–'}</b> <span class="note">over Dec</span>`, `March: storage + financing + penalties. Decert: the bales must sell at Dec + premium paid + carry to load-out (${d ? sg(beD - c.spread, 2) + ' on March' : ''})`)}
+        ${row('Market now', `${f(c.spread)} <span class="note">Mar − Dec</span>`, d ? `${sg(d.val / 100, 2)} <span class="note">spot vs Dec</span>` : '–', '')}
+        ${row('<b>Short of breakeven</b>', `<b class="${c.spread - needR < 0 ? 'dn' : 'up'}">${sg(c.spread - needR, 2)}</b>`, d ? `<b class="${d.val / 100 - beD < 0 ? 'dn' : 'up'}">${sg(d.val / 100 - beD, 2)}</b>` : '–', 'negative = taking December delivery loses money, so longs roll instead of stopping')}
+        </table></div>
+        <p class="note">Rules: ICE Cotton No. 2 (deliverer pays storage up to delivery and load-out to car/truck; receiver pays storage after; over-age allowance from the 4th month after certification; ½ lb/bale/month weight-date allowance; 2¢/lb year-of-growth penalty from 1 January for older crop). Spot market by delivery point: Galveston and Houston East Texas–South Texas, Dallas/Fort Worth West Texas–Kansas–Oklahoma, Memphis North Delta, Greenville Southeast; 37+ staple uses the 37 quote${d && d.miss ? `; ${fmt(d.miss, 0)} bales without a market quote use the ICE grid` : ''}. Excludes micronaire, freight to the mill, and any change in the ICE grid by March.</p>`;
     }
     const analyse = () => {
       const st = got('ctIceStock'), gr = got('ctIceGrade'), O = $('#ctCertOut'); if (!O) return;
@@ -341,7 +351,7 @@ const Cotton = (() => {
           ${row('Grade and staple', SUM.grade, `average of ${fmt(SUM.gradeN, 0)} bales at the USDA grid (invoicing staple)`)}
           ${row('Strength', sp, SUM.str ? (SUM.str.low ? `${fmt(SUM.str.low, 0)} bales in 25.0–25.9 at ${sg(SUM.str.disc)} pts` : 'no bales in 25.0–25.9') : 'no strength report loaded')}
           ${row('Year of growth', 'yog', SUM.yog ? `${fmt(SUM.yogOld, 0)} of ${fmt(SUM.yogT, 0)} bales are older crop: free in December, 2¢/lb discount from March` : 'no year-of-growth report loaded')}
-          <tr><td class="l"><b>Net average premium</b></td>${y.map(([, yv]) => `<td class="n"><b>${sg(net(yv))} pts</b><br><span class="note">${sg(net(yv) / 100, 2)}¢/lb · $${fmt(net(yv) * 5, 0)}/lot</span></td>`).join('')}<td class="l note">what a receiver pays over the notice price, on average</td></tr></table></div>` + carry(net(y[0][1]), SUM) + decert(net(y[0][1]), SUM) + html;
+          <tr><td class="l"><b>Net average premium</b></td>${y.map(([, yv]) => `<td class="n"><b>${sg(net(yv))} pts</b><br><span class="note">${sg(net(yv) / 100, 2)}¢/lb · $${fmt(net(yv) * 5, 0)}/lot</span></td>`).join('')}<td class="l note">what a receiver pays over the notice price, on average</td></tr></table></div>` + (carry(net(y[0][1]), SUM), decert(net(y[0][1]), SUM), econ(net(y[0][1]))) + html;
       }
       const E = REPO.ewr;
       if (E && E.states) {

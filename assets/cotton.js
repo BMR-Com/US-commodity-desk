@@ -272,6 +272,23 @@ const Cotton = (() => {
         </table></div>
         <p class="note">Rules: ICE Cotton No. 2 (deliverer pays storage up to delivery and load-out to car/truck; receiver pays storage after; over-age allowance from the 4th month after the month of certification; ½ lb/bale/month weight-date allowance; 2¢/lb year-of-growth penalty from 1 January on older crop).${d ? ` For reference, AMS spot quotations on ${d.B.date} put the same qualities at ${sg(d.val)} pts vs ${c.P.fl} in the Texas markets (base 41-4-34 ${sg(d.rows.reduce((a, r) => a + r.w * r.basis, 0))} pts, quality differences ${sg(d.rows.reduce((a, r) => a + r.w * r.diff, 0))} pts); what a buyer actually pays for high grades can differ.` : ''}</p>`;
     }
+    // Plain-language read of the delivery numbers, regenerated from the same inputs
+    function brief(premPts) {
+      const c = EC.c, d = EC.d, C = REPO.cfr; if (!c) return '';
+      const f = v => v.toFixed(2), P = premPts / 100, fl = c.P.fl, nl = c.P.nl, f3 = fl.slice(0, 3), n3 = nl.slice(0, 3);
+      const needR = c.storage + c.interest + c.agePen + c.wda + c.yog, gapR = c.spread - needR, payR = gapR >= 0;
+      const carryD = d ? d.carry : null, needD = d ? P + carryD : null, spotD = d ? d.val / 100 : null, payD = d ? spotD >= needD : false;
+      const best = C && C.rows && C.rows.length ? C.rows.slice().sort((a, b) => b.basis - a.basis)[0] : null;
+      const cfrGap = best ? [C.cert_basis[0] - best.basis, C.cert_basis[1] - best.basis] : null;
+      const verdict = payR || payD ? `<b class="up">Taking ${f3} delivery can pay</b>` : `<b class="dn">Taking ${f3} delivery does not pay at today's prices</b>`;
+      const li = [];
+      li.push(`<b>Redeliver against ${n3}.</b> Holding the certs ${c.months} months costs <b>${f(needR)}¢</b>: storage and financing ${f(c.storage + c.interest)}¢ plus delivery penalties ${f(c.agePen + c.wda + c.yog)}¢. ${n3} is ${f(c.spread)}¢ over ${f3}, ${payR ? `<b>${f(gapR)}¢ more than full carry</b>, so stopping and redelivering earns money` : `<b>${f(-gapR)}¢ short of full carry</b>`}. It makes sense once ${nl}/${fl} reaches <b>${f(needR)}¢</b> (${f3} at or below ${f(c.mar - needR)} with ${n3} at ${f(c.mar)}), or if the ${n3} ICE grid pays at least ${sg(P * 100 - gapR * 100)} pts on these qualities against ${sg(premPts)} today.`);
+      if (d) li.push(`<b>Decertify and sell.</b> The receiver pays the ICE premium of ${sg(P, 2)}¢ and ${f(carryD)}¢ of storage and financing for ${DC.m} months to load-out, so the cotton has to sell at <b>${sg(needD, 2)}¢ over ${f3}</b>. The Texas spot market quotes the same qualities at about ${sg(spotD, 2)}¢, ${payD ? 'enough to cover it' : `<b>${f(needD - spotD)}¢ short</b>`}. It makes sense only when the physical basis for these grades reaches ${sg(needD, 2)}¢ over ${f3}, or the ICE premium on the certs falls to ${sg(spotD - carryD, 2)}¢.`);
+      if (best) li.push(`<b>Export.</b> Priced CFR Far East the delivered certs come to ${sg(C.cert_basis[0])} to ${sg(C.cert_basis[1])} pts over Dec (quotes of ${C.asof}, before storage), against ${sg(best.basis)} for ${best.origin}, the highest high-grade quote. They are ${fmt(cfrGap[0], 0)}–${fmt(cfrGap[1], 0)} pts too dear, so taking delivery to export does not pay either.`);
+      li.push(payR || payD ? `<b>For the spread:</b> with at least one route paying, longs can stop certs, which supports ${f3} against ${n3}.` : `<b>For the spread:</b> no route pays, so longs roll rather than stop. Certs stay with the deliverers, which keeps ${f3} under pressure against ${n3} until the spread widens toward ${f(needR)}¢.`);
+      return `<div class="card" style="margin:0 0 12px;border-left:4px solid var(--accent, #2f6db3)"><h3 style="margin-top:0">${verdict}</h3><ul style="margin:0;padding-left:18px">${li.map(x => `<li style="margin:4px 0">${x}</li>`).join('')}</ul>
+        <p class="note" style="margin-bottom:0">Prices ${c.z.date}; ICE grid ${D.date}; certs ${got('ctIceWhDate') || got('ctIceGradeDate') || ''}. Updates with each certs upload, the daily grid and prices.</p></div>`;
+    }
     // Final output only: certs taken on December delivery, priced CFR Far East, against other origins' quotes (all vs December)
     function cfrOut() {
       const C = REPO.cfr; if (!C) return '';
@@ -383,6 +400,7 @@ const Cotton = (() => {
           ${row('Strength', sp, SUM.str ? (SUM.str.low ? `${fmt(SUM.str.low, 0)} bales in 25.0–25.9 at ${sg(SUM.str.disc)} pts` : 'no bales in 25.0–25.9') : 'no strength report loaded')}
           ${row('Year of growth', 'yog', SUM.yog ? `${fmt(SUM.yogOld, 0)} of ${fmt(SUM.yogT, 0)} bales are older crop: free in December, 2¢/lb discount from March` : 'no year-of-growth report loaded')}
           <tr><td class="l"><b>Net average premium</b></td>${y.map(([, yv]) => `<td class="n"><b>${sg(net(yv))} pts</b><br><span class="note">${sg(net(yv) / 100, 2)}¢/lb · $${fmt(net(yv) * 5, 0)}/lot</span></td>`).join('')}<td class="l note">what a receiver pays over the notice price, on average</td></tr></table></div>` + (carry(net(y[0][1]), SUM), decert(net(y[0][1]), SUM), econ(net(y[0][1]))) + cfrOut() + html;
+        html = brief(net(y[0][1])) + html;
       }
       const E = REPO.ewr;
       if (E && E.states) {

@@ -176,6 +176,8 @@ const Cotton = (() => {
     try { const Lt = await getJSON('data/cotton/ice/latest.json');
       try { REPO.ewr = await getJSON('data/cotton/ewr/latest.json'); } catch (e) {}
       try { REPO.cfr = await getJSON('data/cotton/cfr_compare.json'); } catch (e) {}
+      try { REPO.cal = await getJSON('data/specs/calendar.json'); } catch (e) {}
+      try { const L2 = await getJSON('data/cotton/ice/latest.json'); REPO.whHist = await Promise.all((L2.warehouse_history || []).map(async x => { const t = await fetch(x.path).then(r => r.text()); const R = t.trim().split(/\r?\n/).map(l => l.split(',')), h = R[0].map(v => v.toLowerCase()), j = h.findIndex(v => /receipt|bales|stock/.test(v)); return { date: x.date, total: R.slice(1).reduce((a, r) => a + (+r[r.length - 1] || 0), 0) }; })); } catch (e) { REPO.whHist = []; }
       try { REPO.tariffTxt = await fetch('data/cotton/ref/ice_tariffs_2026-27.csv').then(r => r.ok ? r.text() : null); } catch (e) {}
       try { const T = await getJSON('data/technicals/CT.json'); REPO.px = Object.fromEntries((T.series || []).map(x => [x.ticker, { label: x.label, close: x.bars[x.bars.length - 1][4], date: x.bars[x.bars.length - 1][0] }])); } catch (e) {}
       await Promise.all([['ctIceStock', 'stock'], ['ctIceGrade', 'grade'], ['ctIceWh', 'warehouse'], ['ctIceWhPrev', 'warehouse_prev'], ['ctIceStr', 'strength'], ['ctIceYog', 'year_of_growth']].map(async ([k, f]) => { if (Lt[f]) { REPO[k] = await fetch(Lt[f]).then(r => r.ok ? r.text() : null); REPO[k + 'Date'] = Lt[f + '_date']; } })); } catch (e) {}
@@ -187,22 +189,42 @@ const Cotton = (() => {
     const stWeighted = () => { const tt = REPO.tariffTxt, wh = got('ctIceWh'); if (!tt || !wh) return null; const T = parseCSV(tt), th = T[0], iC = th.indexOf('code'), iS = th.indexOf('storage_c_per_bale_month');
       const rate = Object.fromEntries(T.slice(1).map(r => [r[iC], +r[iS]])), R = parseCSV(wh), h = R[0].map(x => x.toLowerCase()), jC = h.findIndex(x => /number|code/.test(x)), jB = h.findIndex(x => /receipt|bales|stock/.test(x));
       let n = 0, v = 0; R.slice(1).forEach(r => { const b = +r[jB] || 0, c = rate[r[jC]]; if (b && c) { n += b; v += b * c; } }); return n ? v / n / 100 : null; };
+    // Delivery pair: the spot (front) contract still open and the next one it rolls into (October is skipped).
+    const MON = { F: 1, G: 2, H: 3, J: 4, K: 5, M: 6, N: 7, Q: 8, U: 9, V: 10, X: 11, Z: 12 }, MN = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const ym = c => ({ y: +c.slice(3), m: MON[c[2]] }), mdiff = (a, b) => (b.y - a.y) * 12 + (b.m - a.m), clab = c => { const q = ym(c); return MN[q.m] + ' ' + String(q.y).slice(2); };
+    function pair() {
+      const C = ((((REPO.cal || {}).markets || {}).CT || {}).contracts || []).filter(x => !/^CTV/.test(x.contract)), today = new Date().toISOString().slice(0, 10), px = REPO.px || {};
+      const i = C.findIndex(x => x.ltd >= today); if (i < 0 || !C[i + 1]) return null;
+      const f = C[i].contract, n = C[i + 1].contract; if (!px[f] || !px[n]) return null;
+      return { f, n, fl: clab(f), nl: clab(n), months: mdiff(ym(f), ym(n)), F: px[f], N: px[n], fq: ym(f), nq: ym(n) };
+    }
+    // ICE over-age allowance, lb/bale, by months after the month of original certification
+    const ageSched = m => m < 4 ? 0 : m <= 10 ? 3 * (m - 3) : m <= 16 ? 21 + 4 * (m - 10) : m <= 22 ? 45 + 5 * (m - 16) : 75 + 6 * (m - 22);
+    // certification-month cohorts from the weekly warehouse reports: increases are new certs (dated to the week before the
+    // report), decreases come out of the oldest cohort first
+    function cohorts() {
+      const H = (REPO.whHist || []).slice().sort((a, b) => a.date < b.date ? -1 : 1), co = []; let prev = 0;
+      H.forEach(x => { const d = new Date(x.date); d.setDate(d.getDate() - 7); const q = { y: d.getFullYear(), m: d.getMonth() + 1 };
+        if (x.total > prev) co.push({ q, n: x.total - prev }); else { let out = prev - x.total; for (const c of co) { const t = Math.min(c.n, out); c.n -= t; out -= t; if (!out) break; } }
+        prev = x.total; });
+      return co.filter(c => c.n > 0);
+    }
     function carry(premPts, S) {
-      const px = REPO.px || {}, z = px.CTZ2026, h = px.CTH2027; if (!z || !h) return '';
+      const P = pair(); if (!P) return '';
       const sw = stWeighted(), st = CF.st != null ? CF.st : (sw || 5.0);
-      const months = 3, dec = z.close, mar = h.close, spread = mar - dec, inv = dec + premPts / 100;
-      const storage = st * months / CF.bw * 100;                      // ¢/lb: $/bale/month x months / lb per bale
-      const interest = inv * CF.ir / 100 * months / 12;                    // financing the invoice (notice price + premium)
-      // ICE over-age allowance starts in the 4th month after the month of original certification: October certs carry
-      // 6 lb/bale on a March delivery, November certs 3 lb. Bales already on board at the previous weekly report are taken as October certs.
-      const wt = t => { if (!t) return 0; const R = parseCSV(t), h = R[0].map(x => x.toLowerCase()), j = h.findIndex(x => /receipt|bales|stock/.test(x)); return R.slice(1).reduce((a, r) => a + (+r[j] || 0), 0); };
-      const tNow = wt(got('ctIceWh')), tPrev = wt(got('ctIceWhPrev')), fOld = tNow ? Math.min(1, tPrev / tNow) : 1, ageLb = 6 * fOld + 3 * (1 - fOld);
-      const agePen = ageLb / CF.bw * (mar + premPts / 100);
-      const wda = 0.5 * months / CF.bw * (mar + premPts / 100);                              // weight-date allowance, 0.5 lb/bale/month later
-      const yog = S.yogT ? S.yogOld / S.yogT * 2 : 0;                      // 2¢/lb on older crop from 1 January
+      const months = P.months, dec = P.F.close, mar = P.N.close, spread = mar - dec, inv = dec + premPts / 100, invN = mar + premPts / 100;
+      const storage = st * months / CF.bw * 100, interest = inv * CF.ir / 100 * months / 12;
+      const co = cohorts(), T = co.reduce((a, c) => a + c.n, 0) || 1;
+      const ageF = co.reduce((a, c) => a + c.n * ageSched(mdiff(c.q, P.fq)), 0) / T, ageN = co.reduce((a, c) => a + c.n * ageSched(mdiff(c.q, P.nq)), 0) / T;
+      const ageLb = ageN - ageF, agePen = ageLb / CF.bw * invN;                  // the receiver is allowed age at the front delivery, allows age at the next
+      const wda = 0.5 * months / CF.bw * invN;
+      const yogPen = (crop, yr) => Math.max(0, 2 * (yr - crop - 1));
+      const YG = S.yogCrops || [], YT = YG.reduce((a, x) => a + x.n, 0) || 1;
+      const yog = YG.reduce((a, x) => a + x.n * (yogPen(x.y, P.nq.y) - yogPen(x.y, P.fq.y)), 0) / YT;
+      const yogShare = YG.filter(x => yogPen(x.y, P.nq.y) > yogPen(x.y, P.fq.y)).reduce((a, x) => a + x.n, 0) / YT;
+      const coTxt = co.map(c => `${MN[c.q.m]} ${fmt(c.n / T * 100, 0)}%`).join(', ');
       const tot = storage + interest + agePen + wda + yog, gap = spread - tot;
-      const r = (l, v, n) => `<tr><td class="l">${l}</td><td class="n">${v.toFixed(2)}</td><td class="l note">${n}</td></tr>`;
-      EC.c = { z, h, dec, mar, spread, st, sw, storage, interest, agePen, ageLb, fOld, wda, yog, yogShare: S.yogT ? S.yogOld / S.yogT : 0, tot, gap, inv, months };
+      EC.c = { P, z: P.F, h: P.N, dec, mar, spread, st, sw, storage, interest, agePen, ageLb, coTxt, wda, yog, yogShare, tot, gap, inv, months };
       return '';
     }
     // Take December delivery, decertify and ship: the receiver pays storage until the bales load out (about two months
@@ -210,13 +232,13 @@ const Cotton = (() => {
     const MKT = { Galveston: 'East Texas - South Texas', Houston: 'East Texas - South Texas', Dallas: 'West Texas - Kansas - Oklahoma', Memphis: 'North Delta', Greenville: 'Southeast' };
     const DC = { m: +(LS.get('ctDecM') || 2) };
     function decert(premPts, S) {
-      const px = REPO.px || {}, z = px.CTZ2026, h = px.CTH2027, B = D.basis, MG = (D.markets || {}).grids; if (!z || !B || !MG || !S.cells || !S.dp) return '';
+      const PP = pair(), z = PP && PP.F, h = PP && PP.N, B = D.basis, MG = (D.markets || {}).grids; if (!z || !B || !MG || !S.cells || !S.dp) return '';
       const mk = (c, l, st) => `${c === '11' || c === '21' ? '11 & 21' : c === '12' || c === '22' ? '12 & 22' : c === '13' || c === '23' ? '13 & 23' : c}|${l === '1' || l === '2' ? '1 & 2' : l}|${String(st).replace('+', '')}`;
       const dps = Object.entries(S.dp).filter(([, v]) => v.n), T = dps.reduce((a, [, v]) => a + v.n, 0); if (!T) return '';
       const N = S.cells.reduce((a, x) => a + x.n, 0); let miss = 0;
       const rows = dps.map(([dp, v]) => { const m = MKT[dp] || 'US Average', g = MG[m] || {}, b = (B.markets[m] || B.markets['US Average'] || {});
         let pts = 0; S.cells.forEach(x => { const q = g[mk(x.c, x.l, x.s)]; if (q == null) { miss += x.n * v.n / T; pts += x.n * x.p; } else pts += x.n * q; });
-        const diff = pts / (N || 1), adj = /^Mar/i.test(b.basis_month || '') && h ? (h.close - z.close) * 100 : 0, basis = (b.basis_41_4_34 || 0) + adj;
+        const diff = pts / (N || 1), adj = b.basis_month && h && new RegExp('^' + PP.nl.slice(0, 3), 'i').test(b.basis_month) ? (h.close - z.close) * 100 : 0, basis = (b.basis_41_4_34 || 0) + adj;
         return { dp, m, n: v.n, w: v.n / T, diff, basis, val: basis + diff, bm: b.basis_month }; });
       const val = rows.reduce((a, r) => a + r.w * r.val, 0), over = (premPts - val) / 100;
       const stw = (typeof stWeighted === 'function' && stWeighted()) || 5.0, st = CF.st != null ? CF.st : stw, inv = z.close + premPts / 100;
@@ -232,23 +254,23 @@ const Cotton = (() => {
       const carryR = c.storage + c.interest, pen = c.agePen + c.wda + c.yog, needR = carryR + pen, gapR = c.spread - needR;
       const carryD = d ? d.carry : null;
       const row = (lab, a, b, note) => `<tr><td class="l">${lab}</td><td class="n">${a}</td><td class="n">${b}</td><td class="l note">${note || ''}</td></tr>`;
-      return `<h3 style="margin-top:14px">What December delivery costs a long <span class="note">futures ${c.z.date}: Dec ${c.dec.toFixed(2)}, Mar ${c.mar.toFixed(2)}; ICE grid ${D.date}</span></h3>
+      return `<h3 style="margin-top:14px">What ${c.P.fl} delivery costs a long <span class="note">futures ${c.z.date}: ${c.P.fl} ${c.dec.toFixed(2)}, ${c.P.nl} ${c.mar.toFixed(2)}; ICE grid ${D.date}</span></h3>
         <div class="grid g4" style="margin:6px 0"><label>Storage, $/bale/month <input id="ctCSt" type="number" step="0.05" value="${c.st.toFixed(2)}" style="width:75px"></label><label>Financing, %/yr <input id="ctCIr" type="number" step="0.25" value="${CF.ir}" style="width:70px"></label><label>Months to load-out (decert) <input id="ctDecMo" type="number" step="0.5" min="0" value="${DC.m}" style="width:60px"></label><span class="note">${CF.st != null ? 'your storage rate' : c.sw ? 'storage: ICE 2026/27 tariffs weighted by where the certs sit' : 'assumed storage rate'}</span></div>
-        <div class="tbl"><table><tr><th class="l">¢/lb</th><th>Hold, redeliver in March (${c.months} mo)</th><th>Decertify and ship (${DC.m} mo)</th><th class="l">Basis</th></tr>
+        <div class="tbl"><table><tr><th class="l">¢/lb</th><th>Hold, redeliver in ${c.P.nl} (${c.months} mo)</th><th>Decertify and ship (${DC.m} mo)</th><th class="l">Basis</th></tr>
         <tr><td class="l" colspan="4"><b>Carry</b></td></tr>
         ${row('Storage', f(c.storage), d ? f(d.storage) : '–', `$${c.st.toFixed(2)}/bale/month ÷ ${CF.bw} lb`)}
         ${row('Financing', f(c.interest), d ? f(d.fin) : '–', `${CF.ir}% a year on the ${c.inv.toFixed(2)}¢ invoice`)}
-        ${row('Over-age allowance', f(c.agePen), '–', `${c.ageLb.toFixed(1)} lb/bale at a March delivery: 6 lb on October certs (${fmt(c.fOld * 100, 0)}% of bales, those on board at the previous weekly report), 3 lb on November certs`)}
+        ${row('Over-age allowance', f(c.agePen), '–', `${c.ageLb.toFixed(1)} lb/bale more at a ${c.P.nl} delivery than at ${c.P.fl} (certified: ${c.coTxt || 'n/a'}); ICE schedule from the 4th month after certification`)}
         ${row('Weight-date allowance', f(c.wda), '–', `½ lb/bale for each of the ${c.months} extra months`)}
-        ${row('Year of growth', f(c.yog), '–', `2¢/lb from 1 January on the older-crop share (${fmt(c.yogShare * 100, 1)}% of bales are 2025 crop)`)}
-        ${row('<b>Breakeven carry</b>', `<b>${f(needR)}</b> <span class="note">Mar over Dec</span>`, `<b>${d ? f(carryD) : '–'}</b> <span class="note">to load-out</span>`, 'March: what Mar has to pay over Dec. Decert: the cost of holding the bales until they leave the warehouse')}
-        ${row('Market now', `${f(c.spread)} <span class="note">Mar − Dec</span>`, '', '')}
-        ${row('<b>Short of breakeven</b>', `<b class="${gapR < 0 ? 'dn' : 'up'}">${sg(gapR, 2)}</b>`, '', 'if the ICE grid premium in March is the same as today')}
+        ${row('Year of growth', f(c.yog), '–', c.yog ? `2¢/lb more on the ${fmt(c.yogShare * 100, 1)}% of bales whose penalty steps up between the two deliveries` : 'no step-up between the two deliveries')}
+        ${row('<b>Breakeven carry</b>', `<b>${f(needR)}</b> <span class="note">${c.P.nl} over ${c.P.fl}</span>`, `<b>${d ? f(carryD) : '–'}</b> <span class="note">to load-out</span>`, `Redeliver: what ${c.P.nl} has to pay over ${c.P.fl}. Decert: the cost of holding the bales until they leave the warehouse`)}
+        ${row('Market now', `${f(c.spread)} <span class="note">${c.P.nl} − ${c.P.fl}</span>`, '', '')}
+        ${row('<b>Short of breakeven</b>', `<b class="${gapR < 0 ? 'dn' : 'up'}">${sg(gapR, 2)}</b>`, '', `if the ICE grid premium in ${c.P.nl.slice(0, 3)} is the same as today`)}
         <tr><td class="l" colspan="4"><b>Premium / discount</b> <span class="note">kept separate: the receiver pays it now; what comes back is unknown</span></td></tr>
         ${row('ICE premium paid on the certs', sg(P, 2), sg(P, 2), `grade, staple and strength of the certs on board, ${sg(premPts)} pts at the ${D.date} grid`)}
-        ${row('<b>Needed back to break even</b>', `<b>${sg(P - gapR, 2)}</b> <span class="note">March ICE grid</span>`, d ? `<b>${sg(P + carryD, 2)}</b> <span class="note">over Dec, physical</span>` : '–', 'March: the average premium the same bales must earn on the March grid to cover the spread shortfall. Decert: the price over December futures the bales must sell for in the physical market (decertified cotton is rarely recertified, so the comparison stays on December)')}
+        ${row('<b>Needed back to break even</b>', `<b>${sg(P - gapR, 2)}</b> <span class="note">${c.P.nl.slice(0, 3)} ICE grid</span>`, d ? `<b>${sg(P + carryD, 2)}</b> <span class="note">over ${c.P.fl.slice(0, 3)}, physical</span>` : '–', `Redeliver: the average premium the same bales must earn on the ${c.P.nl.slice(0, 3)} grid to cover the spread shortfall. Decert: the physical basis over ${c.P.fl} futures the bales must sell at (decertified cotton is rarely recertified, so the comparison stays on ${c.P.fl.slice(0, 3)})`)}
         </table></div>
-        <p class="note">Rules: ICE Cotton No. 2 (deliverer pays storage up to delivery and load-out to car/truck; receiver pays storage after; over-age allowance from the 4th month after the month of certification; ½ lb/bale/month weight-date allowance; 2¢/lb year-of-growth penalty from 1 January on older crop).${d ? ` For reference, AMS spot quotations on ${d.B.date} put the same qualities at ${sg(d.val)} pts vs December in the Texas markets (base 41-4-34 ${sg(d.rows.reduce((a, r) => a + r.w * r.basis, 0))} pts, quality differences ${sg(d.rows.reduce((a, r) => a + r.w * r.diff, 0))} pts); what a buyer actually pays for high grades can differ.` : ''}</p>`;
+        <p class="note">Rules: ICE Cotton No. 2 (deliverer pays storage up to delivery and load-out to car/truck; receiver pays storage after; over-age allowance from the 4th month after the month of certification; ½ lb/bale/month weight-date allowance; 2¢/lb year-of-growth penalty from 1 January on older crop).${d ? ` For reference, AMS spot quotations on ${d.B.date} put the same qualities at ${sg(d.val)} pts vs ${c.P.fl} in the Texas markets (base 41-4-34 ${sg(d.rows.reduce((a, r) => a + r.w * r.basis, 0))} pts, quality differences ${sg(d.rows.reduce((a, r) => a + r.w * r.diff, 0))} pts); what a buyer actually pays for high grades can differ.` : ''}</p>`;
     }
     // Final output only: certs taken on December delivery, priced CFR Far East, against other origins' quotes (all vs December)
     function cfrOut() {
@@ -323,7 +345,7 @@ const Cotton = (() => {
         const now = new Date(), cy = now.getFullYear();
         const pen = (crop, dy) => dy <= crop + 1 ? 0 : 2 * (dy - crop - 1);        // ¢/lb: free through 31 Dec of the year after the crop year
         const months = [['Dec ' + String(cy).slice(2), cy], ['Mar ' + String(cy + 1).slice(2), cy + 1], ['Dec ' + String(cy + 1).slice(2), cy + 1], ['Mar ' + String(cy + 2).slice(2), cy + 2]];
-        const avgPen = dy => Y.reduce((a, x) => a + x.n * pen(x.y, dy), 0) / (T || 1); SUM.yog = months.slice(0, 2).map(([l, dy]) => [l, -avgPen(dy) * 100]); SUM.yogOld = Y.filter(x => pen(x.y, cy + 1) > 0).reduce((a, x) => a + x.n, 0); SUM.yogT = T;
+        const avgPen = dy => Y.reduce((a, x) => a + x.n * pen(x.y, dy), 0) / (T || 1); SUM.yog = months.slice(0, 2).map(([l, dy]) => [l, -avgPen(dy) * 100]); SUM.yogOld = Y.filter(x => pen(x.y, cy + 1) > 0).reduce((a, x) => a + x.n, 0); SUM.yogT = T; SUM.yogCrops = Y;
         html += `<h3 style="margin-top:14px">Year of growth <span class="note">ICE report ${got('ctIceYogDate') || ''}: ${fmt(T, 0)} bales</span></h3>
           <div class="grid g2"><div class="tbl"><table><tr><th class="l">Crop year</th>${dps.map(d => `<th>${d}</th>`).join('')}<th>Total</th><th>Share</th></tr>
             ${yrs.map(y => { const t = Y.filter(x => x.y === y).reduce((a, x) => a + x.n, 0); return `<tr><td class="l">${y}</td>${dps.map(d => `<td class="n">${fmt(Y.filter(x => x.y === y && x.dp === d).reduce((a, x) => a + x.n, 0), 0)}</td>`).join('')}<td class="n">${fmt(t, 0)}</td><td class="n">${fmt(t / T * 100, 1)}%</td></tr>`; }).join('')}</table></div>

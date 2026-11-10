@@ -88,6 +88,8 @@ jobs:
           python -W ignore models/cattle.py || echo cattle >> "$RUNNER_TEMP/failed"
           python -W ignore models/cattle_sd.py || echo cattle_sd >> "$RUNNER_TEMP/failed"
         continue-on-error: true
+      - name: publish checks (a key JSON that fails is restored to its committed copy; models/validate.py)
+        run: python models/validate.py || echo validate >> "$RUNNER_TEMP/failed"
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

@@ -43,6 +43,8 @@ jobs:
           python models/energy_summary.py || true
           python -W ignore models/morning_brief.py || echo morning_brief >> "$RUNNER_TEMP/failed"
           python -W ignore models/brief_track.py || echo "::warning::brief track record failed"
+      - name: publish checks (a key JSON that fails is restored to its committed copy; models/validate.py)
+        run: python models/validate.py || echo validate >> "$RUNNER_TEMP/failed"
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"

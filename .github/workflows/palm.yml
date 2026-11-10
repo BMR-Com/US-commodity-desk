@@ -9,7 +9,9 @@ on:
     - cron: '20 5 * * *'     # after MPOB's midday release (around the 10th) and the Bursa morning session
     - cron: '40 11 * * 1-5'  # after the Bursa close
 permissions: {contents: write}
-concurrency: {group: palm-${{ github.ref_name }}, cancel-in-progress: false}
+concurrency:
+  group: palm-${{ github.ref_name }}
+  cancel-in-progress: false
 jobs:
   run:
     runs-on: ubuntu-latest

@@ -37,7 +37,7 @@ const BalanceSheet = (() => {
     if (!prodOnly) {
       const b = S.base, dir = b.end < us ? 'tighter' : 'looser';
       sum = `<p class="bs-sum">Desk base case: ${m.cur} ending stocks <b class="${b.end < us ? 'up' : 'dn'}">${fmt(b.end, d)}</b> ${u} vs USDA's ${fmt(us, d)} (${diff(b.end)}; ${dir} than USDA), stocks/use ${fmt(b.su, 1)}% vs ${fmt(m.usda_su, 1)}%. `
-        + `Bearish ${fmt(S.bear.end, d)} · bullish ${fmt(S.bull.end, d)}. `
+        + `Bearish ${fmt(S.bear.end, d)} · bullish ${fmt(S.bull.end, d)}${m.bull_at_floor ? ' at the pipeline minimum (price would have to ration demand)' : ''}. `
         + `Production ${fmt(b.prod, d)} vs USDA ${fmt(m.prod_usda, d)}; exports ${fmt(b.exports, d)} vs USDA ${fmt(m.exp_usda, d)}.</p>`;
       const cap = m.capped || {}, SN = { base: 'Base', bear: 'Bearish', bull: 'Bullish' }, t = m.trade;
       const cn = Object.entries(cap).map(([s, c]) => {

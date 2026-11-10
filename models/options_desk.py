@@ -182,7 +182,7 @@ def main():
         # read
         r = front
         txt = [f"{name} {r['label']} options (on {r['underlying']} futures {r['F']:g}, {r['dte']} days): at-the-money implied vol {r['atm']:.1f}%"
-               + (f", {r['d_atm_1w']:+.1f} pts on the week" if r["d_atm_1w"] is not None else "") + "."]
+               + (f", {r['d_atm_1w']:+.1f} pts vs {wk:%b %d}" if r["d_atm_1w"] is not None else "") + "."]
         if r["rv20"]:
             txt.append(f"20-day realized vol is {r['rv20']:.1f}%, so options price a {'premium' if r['vrp'] > 0 else 'discount'} of {abs(r['vrp']):.1f} pts to recent movement"
                        + (" (rich: sellers' market unless a report is due)." if r["vrp"] > 4 else " (cheap: buyers' market)." if r["vrp"] < -2 else "."))
@@ -190,14 +190,15 @@ def main():
             txt.append(f"Expected move to expiry ±{r['move']:g} ({r['move_pct']:.1f}%), range {r['F'] - r['move']:g}–{r['F'] + r['move']:g}.")
         if r["rr25"] is not None:
             txt.append(f"25-delta risk reversal {r['rr25']:+.1f} pts: {'calls bid over puts (upside fear)' if r['rr25'] > 0.5 else 'puts bid over calls (downside protection)' if r['rr25'] < -0.5 else 'balanced skew'}"
-                       + (f", {r['d_rr_1w']:+.1f} on the week." if r["d_rr_1w"] is not None else "."))
+                       + (f", {r['d_rr_1w']:+.1f} vs {wk:%b %d}." if r["d_rr_1w"] is not None else "."))
         txt.append(f"Open interest: calls {r['cOI']:,}, puts {r['pOI']:,} (put/call {r['pc_oi'] if r['pc_oi'] is not None else '–'}); call wall {r['call_wall']}, put wall {r['put_wall']}, max pain {r['max_pain']}, most gamma at {r['gamma_peak']}.")
         tlist = term(last)
         if len(tlist) >= 2:
             sl = tlist[-1]["atm"] - tlist[0]["atm"]
             txt.append(f"Term structure {'upward sloping' if sl > 1 else 'inverted (front month richer: event or delivery risk)' if sl < -1 else 'flat'}: {tlist[0]['label']} {tlist[0]['atm']:.1f}% to {tlist[-1]['label']} {tlist[-1]['atm']:.1f}%.")
+        gap = lambda a: int(np.busday_count(pd.Timestamp(a).date(), last.date())) if a is not None else None   # weekdays, holidays ignored
         out = {"sym": sym, "name": name, "date": last.date().isoformat(), "prev": prev.date().isoformat() if prev is not None else None,
-               "week_ago": wk.date().isoformat() if wk is not None else None, "expiries": rows, "front": front["contract"],
+               "prev_gap_days": gap(prev), "week_ago": wk.date().isoformat() if wk is not None else None, "week_gap_days": gap(wk), "expiries": rows, "front": front["contract"],
                "term": tlist, "term_week_ago": term(wk) if wk is not None else [],
                "smiles": [{"contract": c["contract"], "label": c["label"], "F": c["F"], "now": smile_pts(last, c["contract"]),
                            "week_ago": smile_pts(wk, c["contract"]) if wk is not None else []} for c in liquid[:2]],

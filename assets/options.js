@@ -3,6 +3,19 @@ const Options = (() => {
   let V = null, built = false, sym = 'ZC', S = null, charts = {};
   const OPT = {};   // CME option desk per market (implied vols), loaded on demand
   async function loadOpt(k) { if (!(k in OPT)) OPT[k] = await getJSON(`data/options/${k}.json`).catch(() => null); return OPT[k]; }
+  let OIX = null;   // data/options/index.json: dates of every market, to spot a market the nightly CME download missed
+  // weekdays in (a, b], dates as YYYY-MM-DD (exchange holidays ignored)
+  const bdays = (a, b) => { let n = 0; const d = new Date(a + 'T12:00:00Z'), e = new Date(b + 'T12:00:00Z'); while (d < e) { d.setUTCDate(d.getUTCDate() + 1); const w = d.getUTCDay(); if (w && w < 6) n++; } return n; };
+  function staleNote(O) {
+    if (!O || !O.date) return '';
+    const dates = OIX ? Object.values(OIX.markets || {}).map(x => x.date).filter(Boolean) : [];
+    const newest = dates.length ? dates.reduce((a, b) => a > b ? a : b) : O.date;
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    // a day's settlements arrive the next morning, so up to 1 weekday behind today is current
+    const n = Math.max(bdays(O.date, newest), bdays(O.date, today) - 1);
+    return n > 1 ? `<p class="callout"><b>Data as of ${O.date} — ${n} trading days old.</b> The nightly CME option download missed the later days for this market${newest > O.date ? ` (newest market: ${newest})` : ''}; vols, OI and walls below are stale.</p>` : '';
+  }
+  const chgHead = (lab, ref, gap) => ref && (gap ?? bdays(ref, OPT[sym].date)) > (lab === '1d' ? 1 : 5) ? `vs ${ref.slice(5)}` : lab;
   const series = () => OPT[sym] && OPT[sym].expiries.find(e => e.contract === S.series);
   function smileIV(K) { const e = series(); if (!e || !e.smile || e.smile.length < 2) return null; const s = e.smile;
     if (K <= s[0][0]) return s[0][1]; if (K >= s[s.length - 1][0]) return s[s.length - 1][1];
@@ -126,8 +139,8 @@ const Options = (() => {
     if (!O) return `<div class="card" style="margin-top:12px"><h2>Implied vol desk</h2><p class="note">CME option settlements for ${m.name} are not collected yet (they are added by the nightly CME download); the pricer uses realized vol until then.</p></div>`;
     const pc = v => v == null ? '–' : (v > 0 ? '+' : '') + v.toFixed(1);
     return `<div class="card" style="margin-top:12px"><h2>Implied vol desk <span class="note">CME settlements ${O.date}${O.week_ago ? `, changes vs ${O.week_ago}` : ''}</span></h2>
-      <p>${O.read}</p>
-      <div class="tbl"><table><tr><th class="l">Option</th><th class="l">On futures</th><th>Days</th><th>Futures</th><th>ATM IV</th><th>1d</th><th>1w</th><th>RV20</th><th>IV−RV</th><th>25Δ RR</th><th>RR 1w</th><th>25Δ fly</th><th>Exp. move</th><th>Call OI</th><th>Put OI</th><th>P/C</th><th>OI chg 1w C / P</th><th>Call wall</th><th>Put wall</th><th>Max pain</th><th>Max γ</th></tr>
+      ${staleNote(O)}<p>${O.read}</p>
+      <div class="tbl"><table><tr><th class="l">Option</th><th class="l">On futures</th><th>Days</th><th>Futures</th><th>ATM IV</th><th title="change vs ${O.prev || ''}">${chgHead('1d', O.prev, O.prev_gap_days)}</th><th title="change vs ${O.week_ago || ''}">${chgHead('1w', O.week_ago, O.week_gap_days)}</th><th>RV20</th><th>IV−RV</th><th>25Δ RR</th><th>RR 1w</th><th>25Δ fly</th><th>Exp. move</th><th>Call OI</th><th>Put OI</th><th>P/C</th><th>OI chg 1w C / P</th><th>Call wall</th><th>Put wall</th><th>Max pain</th><th>Max γ</th></tr>
       ${O.expiries.filter(e => e.atm != null).map(e => `<tr class="${e.contract === O.front ? 'mk-today' : ''}"><td class="l">${e.label}</td><td class="l">${e.underlying}</td><td>${e.dte}</td><td>${fx(e.F, m.dp)}</td><td><b>${fx(e.atm, 1)}</b></td>
         <td class="${(e.d_atm_1d || 0) > 0 ? 'up' : (e.d_atm_1d || 0) < 0 ? 'dn' : ''}">${pc(e.d_atm_1d)}</td><td class="${(e.d_atm_1w || 0) > 0 ? 'up' : (e.d_atm_1w || 0) < 0 ? 'dn' : ''}">${pc(e.d_atm_1w)}</td>
         <td>${fx(e.rv20, 1)}</td><td>${pc(e.vrp)}</td><td>${pc(e.rr25)}</td><td>${pc(e.d_rr_1w)}</td><td>${pc(e.bf25)}</td><td>${e.move ? '±' + fx(e.move, m.dp) : '–'}</td>
@@ -228,7 +241,7 @@ const Options = (() => {
   }
   async function show() {
     const hs = (location.hash.split('/')[1] || '').toUpperCase();
-    if (!built) { V = await getJSON('data/vol/vol.json').catch(() => null); built = true; if (V && V.markets[hs]) sym = hs; if (V && !V.markets[sym]) sym = Object.keys(V.markets)[0]; if (V) { await loadOpt(sym); newState(); } }
+    if (!built) { V = await getJSON('data/vol/vol.json').catch(() => null); OIX = await getJSON('data/options/index.json').catch(() => null); built = true; if (V && V.markets[hs]) sym = hs; if (V && !V.markets[sym]) sym = Object.keys(V.markets)[0]; if (V) { await loadOpt(sym); newState(); } }
     else if (V && V.markets[hs] && hs !== sym) { sym = hs; await loadOpt(sym); newState(); }
     history.replaceState(null, '', '#options/' + sym);
     if (!V) { document.getElementById('options').innerHTML = '<main><div class="card"><p class="note">Volatility data not built yet.</p></div></main>'; return; }

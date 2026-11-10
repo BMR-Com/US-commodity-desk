@@ -3,7 +3,7 @@ name: palm
 on:
   workflow_dispatch: {}
   push:
-    branches: [main, palm-tabs]
+    branches: [main]
     paths: ['pipelines/palm.py', 'models/palm.py', '.github/workflows/palm.yml', 'models/technicals.py', 'models/seasonal_desk.py', 'pipelines/tvdates.py']
   schedule:
     - cron: '20 5 * * *'     # after MPOB's midday release (around the 10th) and the Bursa morning session

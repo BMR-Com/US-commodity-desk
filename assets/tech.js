@@ -56,7 +56,7 @@ const Tech = (() => {
         <div class="tbar"><div class="grp" data-r="g-seas"><span class="lab">Seasonal chart</span></div></div>
         <div class="tlegend"><span style="color:#2a78d6">■</span> current contract &nbsp; <span style="color:#eb6834">■</span> same contract last year &nbsp; <span style="color:#8a8984">■</span> 5-yr average &nbsp; shaded: 10–90th and 25–75th percentile of all years</div>
         <div style="position:relative;height:340px"><canvas data-r="c-seas" id="${id}seas"></canvas></div>
-        <p class="note">History: per-contract daily closes since 2006 (TradingView/CME). Each contract is aligned on weeks before its last trading day, so the same point in every season lines up. Percentile = share of past observations below today's level.</p></div></div>`;
+        <p class="note">History: per-contract daily closes (TradingView). Each contract is aligned on weeks before its last trading day, so the same point in every season lines up. Percentile = share of past observations below today's level.</p></div></div>`;
     const R = n => q(`[data-r="${n}"]`);
 
     function chips(name, items, cur, cb, cls = '') { const g = R(name); g.querySelectorAll('button').forEach(b => b.remove());

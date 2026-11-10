@@ -1,0 +1,38 @@
+name: palm
+# Palm oil section: separate workflow and data folder (data/palm), so a failure here cannot affect the rest of the desk.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main, palm-oil]
+    paths: ['pipelines/palm.py', 'models/palm.py', '.github/workflows/palm.yml']
+  schedule:
+    - cron: '20 5 * * *'     # after MPOB's midday release (around the 10th) and the Bursa morning session
+    - cron: '40 11 * * 1-5'  # after the Bursa close
+permissions: {contents: write}
+concurrency:
+  group: palm-${{ github.ref_name }}
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q pandas numpy requests lxml html5lib beautifulsoup4 git+https://github.com/rongardF/tvdatafeed.git
+      - name: raw data (each source independent; old data kept)
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python pipelines/palm.py
+      - name: model
+        continue-on-error: true
+        run: '[ -f models/palm.py ] && python -W ignore models/palm.py || echo "no model yet"'
+      - name: commit
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/palm
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: palm oil $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin ${{ github.ref_name }} && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

@@ -29,6 +29,7 @@
   <button data-c="cotton">Cotton</button>
   <button data-c="hogs">Lean hogs</button>
   <button data-c="cattle">Live &amp; feeder cattle</button>
+  <button data-c="palm" title="Malaysian and world palm oil balance, Bursa and CME prices, spreads to soybean oil and gasoil">Palm oil</button>
   <button data-c="cotfull" title="CFTC Commitments of Traders desk: summary and trade ideas, COT analyzer, scatter, index traders (CIT), triggers and flows, seasonality, custom formula">COT (full)</button>
   <button data-c="energy" title="Natural gas, crude and refined products: EIA storage and stocks, weather, cracks, COT, ETF options">Energy</button>
 </nav>
@@ -243,6 +244,7 @@
 <section id="grains" style="display:none"></section>
 <section id="hogs" style="display:none"></section>
 <section id="cattle" style="display:none"></section>
+<section id="palm" style="display:none"></section>
 <section id="cotfull" style="display:none;padding:0"><iframe id="cot-frame" title="COT positioning desk" style="display:block;width:100%;height:calc(100vh - 92px);min-height:640px;border:0;background:#1e3c72"></iframe></section>
 <section id="energy" style="display:none"></section>
 <footer>Data: USDA AMS (mandatory reporting datamart), USDA ERS, USDA WASDE, CFTC, CME Group. Prices and positions as of the dates shown. Research use only; not investment advice.</footer>
@@ -273,6 +275,7 @@
 <script src="assets/hogs.js?v=20261029e"></script>
 <script src="assets/cattle.js?v=20261029e"></script>
 <script src="assets/china.js?v=20261023e"></script>
+<script src="assets/palm.js?v=20261110a"></script>
 <script src="assets/price_outlook.js?v=20261029i"></script>
 <script src="assets/india.js?v=20261029g"></script>
 <script src="assets/cotton_loan.js?v=20261023a"></script>
@@ -300,8 +303,8 @@ window.addEventListener('message', e => {
 });
 $$('nav.comm button[data-c]').forEach(b => b.onclick = () => {
   $$('nav.comm button').forEach(x => x.classList.toggle('on', x === b));
-  ['summary', 'markets', 'options', 'signals', 'seasonal', 'basis', 'backtest', 'dairy', 'grains', 'cotton', 'hogs', 'cattle', 'cotfull', 'energy'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
-  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (b.dataset.c === 'energy') Energy.show(); else if (b.dataset.c === 'signals') Signals.show(); else if (b.dataset.c === 'seasonal') Seasonal.show(); else if (b.dataset.c === 'basis') Basis.show(); else if (b.dataset.c === 'backtest') Backtest.show(); else if (b.dataset.c === 'cotfull') CotFull.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
+  ['summary', 'markets', 'options', 'signals', 'seasonal', 'basis', 'backtest', 'dairy', 'grains', 'cotton', 'hogs', 'cattle', 'palm', 'cotfull', 'energy'].forEach(id => $('#' + id).style.display = id === b.dataset.c ? '' : 'none');
+  if (b.dataset.c === 'grains') Grains.show(); else if (b.dataset.c === 'cotton') Cotton.show(); else if (b.dataset.c === 'hogs') Hogs.show(); else if (b.dataset.c === 'cattle') Cattle.show(); else if (b.dataset.c === 'palm') Palm.show(); else if (b.dataset.c === 'summary') Summary.show(); else if (b.dataset.c === 'markets') Markets.show(); else if (b.dataset.c === 'options') Options.show(); else if (b.dataset.c === 'energy') Energy.show(); else if (b.dataset.c === 'signals') Signals.show(); else if (b.dataset.c === 'seasonal') Seasonal.show(); else if (b.dataset.c === 'basis') Basis.show(); else if (b.dataset.c === 'backtest') Backtest.show(); else if (b.dataset.c === 'cotfull') CotFull.show(); else if (!location.hash.startsWith('#d-')) history.replaceState(null, '', '#d-primer');
 });
 if (location.hash.startsWith('#cot/') || location.hash === '#cot') $('nav.comm button[data-c="cotfull"]').click();
 else if (location.hash.startsWith('#energy') || /^#e-(primer|sd|geo|charts|seas|news)$/.test(location.hash)) $('nav.comm button[data-c="energy"]').click();
@@ -312,11 +315,12 @@ else if (location.hash.startsWith('#basis')) $('nav.comm button[data-c="basis"]'
 else if (location.hash.startsWith('#seasonal')) $('nav.comm button[data-c="seasonal"]').click();
 else if (location.hash.startsWith('#signals')) $('nav.comm button[data-c="signals"]').click();
 else if (location.hash.startsWith('#options')) $('nav.comm button[data-c="options"]').click();
-else if (!/^#(g|h-|c-|ct-)/.test(location.hash)) $('nav.comm button[data-c="summary"]').click();
+else if (!/^#(g|h-|c-|ct-|po-)/.test(location.hash)) $('nav.comm button[data-c="summary"]').click();
 if (location.hash.startsWith('#g')) $('nav.comm button[data-c="grains"]').click();
 if (location.hash.startsWith('#ct-')) $('nav.comm button[data-c="cotton"]').click();
 if (location.hash.startsWith('#h-')) $('nav.comm button[data-c="hogs"]').click();
 if (location.hash.startsWith('#c-')) $('nav.comm button[data-c="cattle"]').click();
+if (location.hash.startsWith('#po-')) $('nav.comm button[data-c="palm"]').click();
 </script>
 </body>
 </html>

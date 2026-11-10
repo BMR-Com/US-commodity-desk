@@ -25,34 +25,43 @@ jobs:
         continue-on-error: true
       - name: spreads, crush, vol and trader sheet on the evening closes
         continue-on-error: true
-        run: python -W ignore models/grains_rv.py && python -W ignore models/trader_sheet.py && python -W ignore models/research.py
+        run: |
+          python -W ignore models/grains_rv.py || echo grains_rv >> "$RUNNER_TEMP/failed"
+          python -W ignore models/trader_sheet.py || echo trader_sheet >> "$RUNNER_TEMP/failed"
+          python -W ignore models/research.py || echo research >> "$RUNNER_TEMP/failed"
       - name: dairy weekly-to-monthly convergence lab (nowcast vs futures)
         continue-on-error: true
-        run: python -W ignore models/dairy_arb.py
+        run: python -W ignore models/dairy_arb.py || echo dairy_arb >> "$RUNNER_TEMP/failed"
       - name: dairy forecasting and trading lab (Wednesdays, after the NDPSR release)
         continue-on-error: true
-        run: if [ "$(date -u +%u)" = "3" ]; then python -W ignore models/dairy_lab.py && python -W ignore models/dairy_ideas.py; fi
+        run: |
+          if [ "$(date -u +%u)" = "3" ]; then
+            python -W ignore models/dairy_lab.py || echo dairy_lab >> "$RUNNER_TEMP/failed"
+            python -W ignore models/dairy_ideas.py || echo dairy_ideas >> "$RUNNER_TEMP/failed"
+          fi
       - name: dairy trade playbook (nightly positions; stats from the weekly ideas run)
         continue-on-error: true
-        run: python -W ignore models/dairy_playbook.py
+        run: python -W ignore models/dairy_playbook.py || echo dairy_playbook >> "$RUNNER_TEMP/failed"
       - name: meats strategy lab and trade playbooks (hogs, cattle)
         continue-on-error: true
-        run: python -W ignore models/meats_lab.py
+        run: python -W ignore models/meats_lab.py || echo meats_lab >> "$RUNNER_TEMP/failed"
       - name: contract calendar (notice and last trading days, roll-by dates)
         continue-on-error: true
-        run: python -W ignore models/contract_calendar.py
+        run: python -W ignore models/contract_calendar.py || echo contract_calendar >> "$RUNNER_TEMP/failed"
       - name: seasonality for every market (seasonal trades, heat maps, seasonal charts)
         continue-on-error: true
-        run: python -W ignore models/seasonal_desk.py
+        run: python -W ignore models/seasonal_desk.py || echo seasonal_desk >> "$RUNNER_TEMP/failed"
       - name: cash basis (USDA AgTransport weekly grain bids, then basis for grains and livestock)
         continue-on-error: true
-        run: python pipelines/agtransport_basis.py; python -W ignore models/basis_desk.py
+        run: |
+          python pipelines/agtransport_basis.py || echo "::warning::agtransport_basis failed"
+          python -W ignore models/basis_desk.py || echo basis_desk >> "$RUNNER_TEMP/failed"
       - name: contract specs (value per contract at today's price, margins)
         continue-on-error: true
-        run: python models/contract_specs.py
+        run: python models/contract_specs.py || echo contract_specs >> "$RUNNER_TEMP/failed"
       - name: lab export manifest (for mirroring into other repos)
         continue-on-error: true
-        run: python models/lab_export.py
+        run: python models/lab_export.py || echo lab_export >> "$RUNNER_TEMP/failed"
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
@@ -60,3 +69,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -q -m "data: per-contract futures history $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - name: report failed models (their data above is committed either way; this only turns the run red)
+        if: always()
+        run: |
+          if [ -s "$RUNNER_TEMP/failed" ]; then echo "::error::models failed: $(sort -u "$RUNNER_TEMP/failed" | tr '\n' ' ')"; exit 1; fi

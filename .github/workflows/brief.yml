@@ -24,7 +24,10 @@ jobs:
       - run: pip install -q requests pandas numpy openpyxl git+https://github.com/rongardF/tvdatafeed.git
       - name: overnight prices and technicals
         continue-on-error: true
-        run: python pipelines/ohlc.py && python -W ignore models/technicals.py && python models/vol.py
+        run: |
+          python pipelines/ohlc.py || echo "::warning::ohlc failed"
+          python -W ignore models/technicals.py || echo technicals >> "$RUNNER_TEMP/failed"
+          python models/vol.py || echo vol >> "$RUNNER_TEMP/failed"
       - name: cross-market snapshot (Yahoo), US/China economic calendar, macro read
         continue-on-error: true
         run: python pipelines/markets.py; python pipelines/econ_calendar.py; python models/macro.py
@@ -35,9 +38,10 @@ jobs:
       - name: trader sheet, summary, brief
         run: |
           python -W ignore models/trader_sheet.py || true
-          python -W ignore models/summary.py && python -W ignore models/outlook_brief.py || true
+          python -W ignore models/summary.py || echo summary >> "$RUNNER_TEMP/failed"
+          python -W ignore models/outlook_brief.py || true
           python models/energy_summary.py || true
-          python -W ignore models/morning_brief.py
+          python -W ignore models/morning_brief.py || echo morning_brief >> "$RUNNER_TEMP/failed"
           python -W ignore models/brief_track.py || echo "::warning::brief track record failed"
       - name: commit
         run: |
@@ -46,3 +50,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -q -m "brief: morning brief $(TZ=America/New_York date +%F' '%H:%M) ET"
           for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - name: report failed models (their data above is committed either way; this only turns the run red)
+        if: always()
+        run: |
+          if [ -s "$RUNNER_TEMP/failed" ]; then echo "::error::models failed: $(sort -u "$RUNNER_TEMP/failed" | tr '\n' ' ')"; exit 1; fi

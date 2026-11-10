@@ -71,6 +71,11 @@ jobs:
         continue-on-error: true
         run: |
           pip install -q numpy
-          python models/grains_condition.py && python -W ignore models/grains_wasde_brief.py
+          python models/grains_condition.py || echo grains_condition >> "$RUNNER_TEMP/failed"
+          python -W ignore models/grains_wasde_brief.py || echo grains_wasde_brief >> "$RUNNER_TEMP/failed"
           git add data/grains
           git diff --cached --quiet || { git commit -q -m "data: grains condition model $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }; }
+      - name: report failed models (their data above is committed either way; this only turns the run red)
+        if: always()
+        run: |
+          if [ -s "$RUNNER_TEMP/failed" ]; then echo "::error::models failed: $(sort -u "$RUNNER_TEMP/failed" | tr '\n' ' ')"; exit 1; fi

@@ -27,7 +27,8 @@ jobs:
           timeout 900 python pipelines/weather.py || true
           python pipelines/south_america.py || true
           python models/south_america.py || true
-          python -W ignore models/summary.py && python -W ignore models/outlook_brief.py || true
+          python -W ignore models/summary.py || echo summary >> "$RUNNER_TEMP/failed"
+          python -W ignore models/outlook_brief.py || true
         env: {FAS_API_KEY: '${{ secrets.FAS_API_KEY }}'}
       - name: commit
         run: |
@@ -43,3 +44,7 @@ jobs:
             fi
             git push -q && ok=1 && break; sleep 8
           done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - name: report failed models (their data above is committed either way; this only turns the run red)
+        if: always()
+        run: |
+          if [ -s "$RUNNER_TEMP/failed" ]; then echo "::error::models failed: $(sort -u "$RUNNER_TEMP/failed" | tr '\n' ' ')"; exit 1; fi

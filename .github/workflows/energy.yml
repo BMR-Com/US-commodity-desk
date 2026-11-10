@@ -32,7 +32,9 @@ jobs:
           case "$S" in "50 1"*) echo "EIA-only run";; *) python -u pipelines/energy_prices.py;; esac
       - name: energy summary for the morning brief
         continue-on-error: true
-        run: python models/energy_summary.py && python -W ignore models/energy_sd.py
+        run: |
+          python models/energy_summary.py || echo energy_summary >> "$RUNNER_TEMP/failed"
+          python -W ignore models/energy_sd.py || echo energy_sd >> "$RUNNER_TEMP/failed"
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
@@ -40,3 +42,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -q -m "energy: EIA, prices, ETF options $(date -u +%F' '%H:%M)"
           for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - name: report failed models (their data above is committed either way; this only turns the run red)
+        if: always()
+        run: |
+          if [ -s "$RUNNER_TEMP/failed" ]; then echo "::error::models failed: $(sort -u "$RUNNER_TEMP/failed" | tr '\n' ' ')"; exit 1; fi

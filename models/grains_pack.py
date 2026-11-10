@@ -308,7 +308,8 @@ def contracts(sym):
 def tightness_section(key, sym, mcode, month, d_w, cdf, desk_su=None):
     """Average price of the new-crop contract during `month` of the harvest year vs WASDE S/U known at that report."""
     pts = []
-    for y in range(2007, 2027):
+    last_crop = max(date.today().year, int(d_w.my.max()[:4]))   # follows the current crop year (was a fixed 2007-2026)
+    for y in range(2007, last_crop + 1):
         c = cdf[(cdf.contract == f"{sym}{mcode}{y}") & (cdf.date.dt.year == y) & (cdf.date.dt.month == month)]
         my = f"{y}/{(y + 1) % 100:02d}"
         s = d_w[(d_w.my == my) & (d_w.ry == y) & (d_w.rm <= month)]

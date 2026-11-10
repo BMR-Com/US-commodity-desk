@@ -289,6 +289,22 @@ def season_trade(T, key, start=10):
 DUTY_FREE = [("2000-01-01", "2021-02-01"), ("2022-04-14", "2022-10-31"), ("2025-08-19", "2025-12-31"), ("2026-06-01", "2026-10-31")]   # 11% duty otherwise (notified)
 
 
+DUTY_DEFAULT_UNTIL = "2026-12-31"   # assumed end of the current waiver when data/india/notes.json gives none
+
+
+def stale_tables(notes=None):
+    """::warning:: when today is past the last hand-coded entry of a table (no data is invented: the model keeps using
+    the last entry, or leaves the MSP block out, until someone adds the new notification)."""
+    ky = TODAY.year if TODAY.month >= 10 else TODAY.year - 1      # MSP season (kharif year) used by spot()
+    if ky > max(MSP):
+        print(f"::warning::india_cotton: no kapas MSP for {ky}-{(ky + 1) % 100:02d} in MSP (last {max(MSP)}); add the CACP/CCEA figure")
+    if TODAY.isoformat() > DUTY_FREE[-1][1]:
+        print(f"::warning::india_cotton: last duty-free window in DUTY_FREE ended {DUTY_FREE[-1][1]}; add any newer notification")
+    ext = (notes or {}).get("duty_expected_until")
+    if TODAY.isoformat() > (ext or DUTY_DEFAULT_UNTIL):
+        print(f"::warning::india_cotton: duty_expected_until {ext or DUTY_DEFAULT_UNTIL + ' (default)'} is past; update data/india/notes.json")
+
+
 def is_free(ym, extra_until=None):
     d = f"{ym}-15"
     if any(a <= d <= b for a, b in DUTY_FREE):
@@ -324,7 +340,7 @@ def import_scenarios(T, season, notes):
                 v = dp + (0.3 * fp * 2.0 if rush and prev == last_free and prev not in mon else 0.0)
             out.append(round(v, 2)); tot += v
         return round(tot, 2), out
-    ext = (notes or {}).get("duty_expected_until", "2026-12-31")
+    ext = (notes or {}).get("duty_expected_until", DUTY_DEFAULT_UNTIL)
     sc = {"notified": {"label": f"Duty back after {DUTY_FREE[-1][1]} (original notification), no rush"},
           "expected": {"label": f"Duty-free to {ext} ({(notes or {}).get('duty_status', 'expected')}), year-end rush, then duty"},
           "all_year": {"label": "Duty-free all season (short crop keeps the waiver going)"}}
@@ -414,7 +430,7 @@ def origin_section(page):
     IS = (page.get("desk_balance") or {}).get("import_scenarios") or {}
     split = {}
     for k, sc in (IS.get("scenarios") or {}).items():
-        until = {"notified": None, "expected": (page.get("notes") or {}).get("duty_expected_until", "2026-12-31"), "all_year": f"{y1 + 1}-07-31"}[k]
+        until = {"notified": None, "expected": (page.get("notes") or {}).get("duty_expected_until", DUTY_DEFAULT_UNTIL), "all_year": f"{y1 + 1}-07-31"}[k]
         tot = {o: 0.0 for o in ORIGINS}
         for m, v in zip(IS["months"], sc["path"]):
             sh = share("free" if is_free(m, until) else "duty", int(m[5:]))
@@ -587,6 +603,7 @@ def main():
     # this season: kharif year TODAY.year (season ends next year)
     ky, sy = TODAY.year if TODAY.month >= 6 else TODAY.year - 1, (TODAY.year if TODAY.month >= 6 else TODAY.year - 1) + 1
     notes = json.loads((D / "notes.json").read_text()) if (D / "notes.json").exists() else {}
+    stale_tables(notes)
     last = max(H)
     area_now = notes.get("area_lakh_ha")
     last_area = sum(g["area"] for g in H[last]["regions"].values())

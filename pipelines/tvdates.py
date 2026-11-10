@@ -6,10 +6,12 @@ against CME settlement files (data/cme/): after this conversion 93-96% of closes
 import pandas as pd
 
 
-def trade_dates(index):
-    """Exchange trade date for each TradingView bar timestamp: an evening (>= 18:00) open belongs to the next day."""
+def trade_dates(index, ex=None):
+    """Exchange trade date for each TradingView bar timestamp: an evening (>= 18:00) open belongs to the next day.
+    Bursa Malaysia (MYX) bars open with the 21:00 Kuala Lumpur night session = 13:00 UTC the day before."""
     ts = pd.to_datetime(index)
-    return (ts + pd.to_timedelta((ts.hour >= 18).astype(int), unit="D")).normalize()
+    cut = 12 if ex == "MYX" else 18
+    return (ts + pd.to_timedelta((ts.hour >= cut).astype(int), unit="D")).normalize()
 
 
 def fix_stored(dates):

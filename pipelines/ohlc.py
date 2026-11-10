@@ -16,7 +16,7 @@ from contracts import SPEC, CODES  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "ohlc"
 N_ACTIVE = {"DC": 6, "GDK": 6, "CSC": 6, "CB": 6, "GNF": 6, "DY": 6, "HE": 5, "LE": 5, "GF": 5,
-            "ZC": 5, "ZS": 6, "ZM": 6, "ZL": 6, "ZW": 5, "KE": 5, "CT": 5, "NG": 8, "CL": 8, "HO": 6, "RB": 6}
+            "ZC": 5, "ZS": 6, "ZM": 6, "ZL": 6, "ZW": 5, "KE": 5, "CT": 5, "NG": 8, "CL": 8, "HO": 6, "RB": 6, "FCPO": 6}
 
 
 def last_trade_guess(sym, y, m):
@@ -25,6 +25,8 @@ def last_trade_guess(sym, y, m):
         return pd.Timestamp(y, m, 14)
     if sym == "CT":
         return pd.Timestamp(y, m, 8)        # ~17 business days before month end
+    if sym == "FCPO":
+        return pd.Timestamp(y, m, 15)       # Bursa: noon on the 15th of the delivery month
     if sym == "HE":
         return pd.Timestamp(y, m, 14)
     if sym in ("NG", "CL", "HO", "RB"):      # NYMEX energy stops trading in the month before delivery
@@ -85,7 +87,7 @@ def get(tv, symbol, ex, n):
             if d is not None and len(d):
                 import sys as _s; _s.path.insert(0, str(Path(__file__).resolve().parent))
                 from tvdates import trade_dates
-                d.index = trade_dates(d.index)        # evening-session bars belong to the next trade date
+                d.index = trade_dates(d.index, ex)    # evening-session bars belong to the next trade date
                 return d[~d.index.duplicated(keep="last")]
         except Exception as e:
             print(symbol, "err", str(e)[:80])
@@ -103,7 +105,7 @@ def main():
         frames = []
         for series, symbol, n in [("cont", f"{root}1!", 2700)] + [(c, c, 800) for c in active(sym, today)]:
             # range=max makes Yahoo return weekly bars for some contracts; 2y (contracts) / 10y (front) stay daily
-            d = yahoo(yahoo_symbol(series, root, ex), "10y" if series == "cont" else "2y")
+            d = yahoo(yahoo_symbol(series, root, ex), "10y" if series == "cont" else "2y") if ex in Y_SUFFIX else None
             time.sleep(0.4)
             daily = d is not None and len(d) >= 20 and pd.Series(pd.to_datetime(d.index)).diff().dt.days.tail(60).median() <= 3
             if daily:
@@ -113,7 +115,7 @@ def main():
                     from tvDatafeed import TvDatafeed, Interval  # noqa: F401  (fallback only)
                     globals()["Interval"] = Interval
                     tv = TvDatafeed()
-                d = get(tv, symbol, ex, n)
+                d = get(tv, symbol, ex, 5000 if (series == "cont" and ex not in Y_SUFFIX) else n)
                 time.sleep(1.2)
                 if d is None:
                     continue

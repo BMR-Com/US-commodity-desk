@@ -26,7 +26,7 @@ COMMS = {
     "corn": ("Corn", "1005"), "soybeans": ("Oilseed, Soybean", "1201"), "meal": ("Meal, Soybean", "2304"), "oil": ("Oil, Soybean", "1507"),
     "wheat": ("Wheat", "1001"), "cotton": ("Cotton", "5201"), "pork": ("Meat, Swine", "0203"), "beef": ("Meat, Beef and Veal", "0201,0202"),
     "cheese": ("Dairy, Cheese", "0406"), "butter": ("Dairy, Butter", "0405"), "nfdm": ("Dairy, Milk, Nonfat Dry", "040210"),
-    "milk": ("Dairy, Milk, Fluid", None), "sorghum": ("Sorghum", "1007"),
+    "milk": ("Dairy, Milk, Fluid", None), "sorghum": ("Sorghum", "1007"), "palm": ("Oil, Palm", "1511"),
 }
 ATTRS = ["Production", "Exports", "Imports", "Domestic Consumption", "Domestic Use", "Beginning Stocks", "Ending Stocks", "TY Exports", "TY Imports", "Area Harvested", "Yield",
          "Total Supply", "Feed Dom. Consumption", "Crush", "Cow Milk Production", "Fluid Use Dom. Consum.",

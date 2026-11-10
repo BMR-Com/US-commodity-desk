@@ -28,12 +28,13 @@ MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "No
 NAME = {c: MON[m - 1] for c, m in MC.items()}
 GROUP = {"ZC": "Grains & oilseeds", "ZS": "Grains & oilseeds", "ZM": "Grains & oilseeds", "ZL": "Grains & oilseeds", "ZW": "Grains & oilseeds",
          "KE": "Grains & oilseeds", "CT": "Cotton", "LE": "Livestock", "GF": "Livestock", "HE": "Livestock", "DC": "Dairy", "GDK": "Dairy",
-         "CSC": "Dairy", "CB": "Dairy", "GNF": "Dairy", "DY": "Dairy", "CL": "Energy", "NG": "Energy", "HO": "Energy", "RB": "Energy"}
+         "CSC": "Dairy", "CB": "Dairy", "GNF": "Dairy", "DY": "Dairy", "CL": "Energy", "NG": "Energy", "HO": "Energy", "RB": "Energy", "FCPO": "Vegetable oils"}
 # $ per 1.00 of quoted price, unit, first month of the season (crops: marketing year; others: calendar year)
 SPEC = {"ZC": (50, "¢/bu", 9), "ZS": (50, "¢/bu", 9), "ZM": (100, "$/st", 9), "ZL": (600, "¢/lb", 9), "ZW": (50, "¢/bu", 6), "KE": (50, "¢/bu", 6),
         "CT": (500, "¢/lb", 8), "LE": (400, "¢/lb", 1), "GF": (500, "¢/lb", 1), "HE": (400, "¢/lb", 1), "DC": (2000, "$/cwt", 1), "GDK": (2000, "$/cwt", 1),
         "CSC": (20000, "$/lb", 1), "CB": (200, "¢/lb", 1), "GNF": (440, "¢/lb", 1), "DY": (440, "¢/lb", 1), "CL": (1000, "$/bbl", 1),
-        "NG": (10000, "$/MMBtu", 1), "HO": (42000, "$/gal", 1), "RB": (42000, "$/gal", 1)}
+        "NG": (10000, "$/MMBtu", 1), "HO": (42000, "$/gal", 1), "RB": (42000, "$/gal", 1),
+        "FCPO": (25, "RM/t", 1)}
 CYCLE_OVERRIDE = {"CT": "HKNZ"}          # desk ignores October cotton
 SPLIT = 2016
 

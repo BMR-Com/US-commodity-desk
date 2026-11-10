@@ -56,6 +56,11 @@ R = [
     ("cn_hn", "Zhengzhou, Henan", "China", 34.75, 113.62, ["wheat", "corn", "pork"], "10-01", "winter wheat / summer corn"),
     ("cn_sd", "Jinan, Shandong", "China", 36.65, 117.0, ["wheat", "corn", "pork"], "10-01", "winter wheat / summer corn"),
     ("cn_xj", "Aksu, Xinjiang", "China", 41.17, 80.26, ["cotton"], "04-01", "irrigated cotton: heat and water supply matter, rain little"),
+    # Palm oil: Malaysia and Indonesia (yields respond to rainfall with a 6-24 month lag; floods disrupt harvesting)
+    ("my_sb", "Lahad Datu, Sabah", "Malaysia", 5.03, 118.33, ["palm"], "01-01", "oil palm, East Malaysia"),
+    ("my_jh", "Kluang, Johor", "Malaysia", 2.03, 103.32, ["palm"], "01-01", "oil palm, Peninsular Malaysia"),
+    ("id_ri", "Pekanbaru, Riau", "Indonesia", 0.51, 101.45, ["palm"], "01-01", "oil palm, Sumatra"),
+    ("id_kt", "Pangkalan Bun, Central Kalimantan", "Indonesia", -2.68, 111.62, ["palm"], "01-01", "oil palm, Kalimantan"),
     # India
     ("in_pb", "Ludhiana, Punjab", "India", 30.90, 75.85, ["wheat"], "11-01", "rabi wheat (irrigated)"),
     ("in_up", "Kanpur, Uttar Pradesh", "India", 26.45, 80.33, ["wheat", "milk"], "11-01", "rabi wheat"),

@@ -57,6 +57,7 @@ PAGES = {
     "cheese": ("cheese", "Cheese", [], "cheese", "milk"),
     "butter": ("butter", "Butter", [], "milk", "milk"),
     "nfdm": ("nfdm", "Nonfat dry milk", [], "milk", "milk"),
+    "palm": ("palm", "Palm oil", [], None, "palm"),
 }
 
 LINKS_COMMON = [
@@ -82,6 +83,8 @@ LINKS = {
         ("NOAA WPC QPF", "https://www.wpc.ncep.noaa.gov/qpf/qpf2.shtml", "7-day rainfall forecast"),
         ("Iowa Environmental Mesonet", "https://mesonet.agron.iastate.edu/", "station rain, GDD, soil temperature"),
     ],
+    "Malaysia": [("MPOB statistics", "https://bepi.mpob.gov.my/", "monthly production, exports, stocks"), ("MetMalaysia", "https://www.met.gov.my/", "national met service, monsoon outlook")],
+    "Indonesia": [("BMKG", "https://www.bmkg.go.id/", "national met service, rainfall and ENSO outlook"), ("GAPKI", "https://gapki.id/en/", "industry production, exports and stocks")],
     "Brazil": [("INMET", "https://portal.inmet.gov.br/", "national met service: maps and stations"), ("CONAB crop monitoring", "https://www.conab.gov.br/info-agro/safras", "crop surveys and agro-climate bulletins"),
                ("CPTEC/INPE", "https://www.cptec.inpe.br/", "forecasts and climate monitoring"), ("Rural Clima / Climatempo agro", "https://www.climatempo.com.br/", "commercial forecasts")],
     "Argentina": [("Buenos Aires Grain Exchange (BCBA) weekly", "https://www.bolsadecereales.com/estimaciones-informes", "crop progress and condition"),

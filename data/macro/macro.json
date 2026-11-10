@@ -1,17 +1,17 @@
 {
- "generated": "2026-11-10 16:09 UTC",
+ "generated": "2026-11-10 17:09 UTC",
  "view": "headwind",
- "score": -4,
+ "score": -3,
  "components": {
   "rates": 1,
   "dollar": 0,
   "brl": -1,
   "risk": -1,
-  "energy": -1,
+  "energy": 0,
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -4 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +4.3%; weakest: Lean hogs -17.5%. Key releases ahead: US Core CPI m/m (11-10 8:30 AM ET); US CPI m/m (11-10 8:30 AM ET); US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk \u2212; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +4.1%; weakest: Lean hogs -17.8%. Key releases ahead: US Core CPI m/m (11-10 8:30 AM ET); US CPI m/m (11-10 8:30 AM ET); US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -21,27 +21,27 @@
   {
    "title": "Dollar & farm currencies",
    "score": -1,
-   "text": "Dollar index 102.28 (+0.1% in a month, +4.1% YTD). USD/BRL 5.605 (+11.7% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.668 (-0.5%); USD/MXN 18.67 (+2.7%)."
+   "text": "Dollar index 102.36 (+0.1% in a month, +4.2% YTD). USD/BRL 5.595 (+11.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.668 (-0.5%); USD/MXN 18.66 (+2.6%)."
   },
   {
    "title": "Risk appetite",
    "score": -1,
-   "text": "S&P 500 -4.0% in a month (+9.6% YTD); VIX 21.1. Risk-off: funds tend to cut commodity length along with equities. "
+   "text": "S&P 500 -4.2% in a month (+9.4% YTD); VIX 20.8. Risk-off: funds tend to cut commodity length along with equities. "
   },
   {
    "title": "Energy",
-   "score": -1,
-   "text": "WTI 85.67 $/bbl (-5.9% in a month), Brent 90.68, ULSD 4.071 $/gal (-11.3%), natural gas 3.21 (-9.6%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+   "score": 0,
+   "text": "WTI 86.77 $/bbl (-4.7% in a month), Brent 92.12, ULSD 4.138 $/gal (-9.8%), natural gas 3.28 (-7.4%). Crude little changed on the month. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -6.2% in a month, Shanghai Composite -3.9%, Hang Seng +1.4%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -7.0% in a month, Shanghai Composite -3.9%, Hang Seng +1.4%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -8.8% in a month; gold -3.9%. "
+   "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -8.0% in a month; gold -4.5%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",

@@ -34,8 +34,16 @@ BU_PER_MT = {"Corn": 39.368, "Oilseed,_Soybean": 36.744, "Wheat": 36.744}
 MT_CONVERT = {"beginning stocks", "ending stocks", "exports", "imports", "production"}
 
 
+def _local():
+    """The desk's own WASDE store (models/wasde_store.py); wasde-analytics is the fallback."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from wasde_store import local_dir
+    return local_dir()
+
+
 def load(name):
-    local = os.getenv("WASDE_DIR")
+    local = os.getenv("WASDE_DIR") or _local()
     if local and Path(local, f"{name}.json").exists():
         j = json.loads(Path(local, f"{name}.json").read_text())
     else:

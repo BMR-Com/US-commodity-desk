@@ -24,7 +24,8 @@ from export_projection import desk_projection  # noqa: E402  (the desk's one exp
 
 OUT = ROOT / "data" / "grains" / "derived" / "wasde_brief"
 WASDE_RAW = "https://raw.githubusercontent.com/BMR-Com/wasde-analytics/main/data"
-WASDE_LOCAL = os.getenv("WASDE_DIR")
+from wasde_store import local_dir as _wasde_local  # noqa: E402  (desk's own WASDE store; wasde-analytics is the fallback)
+WASDE_LOCAL = _wasde_local()
 N_RELEASES = 24
 BU_PER_MT = {"corn": 39.368, "soybeans": 36.744, "wheat": 36.744, "kc": 36.744}
 ALIAS = {"Beginning stocks": "Beginning Stocks", "Domestic use": "Domestic Use", "Ending stocks": "Ending Stocks", "Ending Stocks, Total": "Ending Stocks",
@@ -81,9 +82,9 @@ COMS = {
 
 
 def cotton_brief(key):
-    """The cotton read (crop conditions, Texas drought, export sales, Brazil, on-call, COT) comes from BMR-Com/wasde-analytics."""
+    """The cotton read (crop conditions, Texas drought, export sales, Brazil, on-call, COT): the desk's own build first, BMR-Com/wasde-analytics as fallback."""
     try:
-        local = os.getenv("COTTON_BRIEF_DIR")
+        local = os.getenv("COTTON_BRIEF_DIR") or str(ROOT / "data" / "wasde" / "brief")      # built by models/wasde_cotton_brief.py
         if local and (Path(local) / f"{key}.json").exists():
             return json.load(open(Path(local) / f"{key}.json")).get("Cotton")
         import requests

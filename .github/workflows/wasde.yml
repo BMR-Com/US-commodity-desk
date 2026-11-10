@@ -1,28 +1,50 @@
 name: wasde
-# WASDE day (USDA releases at 11 am CT around the 8th–14th). BMR-Com/wasde-analytics parses the release at 20:00 UTC;
-# this rebuilds the desk's grains balance sheets and WASDE briefs right after, with a later retry.
+# WASDE day (USDA releases at 12:00 ET around the 8th–14th). The desk fetches USDA's report CSV itself
+# (pipelines/wasde.py -> data/wasde/raw), rebuilds its WASDE JSONs (models/wasde_store.py), the cotton WASDE brief and
+# every model that uses WASDE. BMR-Com/wasde-analytics stays as a fallback only. The desk clock starts this at 12:05,
+# 12:20 and 16:30 ET on days 8-14; the crons below are a backstop.
 on:
   workflow_dispatch: {}
   schedule:
+    - cron: '10 17 8-14 * *'
     - cron: '25 20 8-14 * *'
-    - cron: '50 21 8-14 * *'
     - cron: '30 23 8-14 * *'
 permissions: {contents: write}
 concurrency: {group: wasde, cancel-in-progress: false}
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install -q requests pandas numpy
-      - run: python models/grains_wasde.py && python -W ignore models/grains_wasde_brief.py && python -W ignore models/summary.py && python -W ignore models/outlook_brief.py
+      - run: pip install -q requests pandas numpy curl_cffi python-dateutil
+      - name: fetch the USDA report (waits up to 35 minutes for it on report day)
+        continue-on-error: true
+        run: |
+          [ -n "$(ls data/wasde/raw/*.csv.gz 2>/dev/null)" ] || python pipelines/wasde.py seed
+          python -u pipelines/wasde.py fetch --wait 35
+      - name: rebuild WASDE models
+        run: |
+          fail=""
+          for m in wasde_store wasde_cotton_brief grains_wasde grains_esr_brief grains_wasde_brief balance_sheets dairy_sd grains_pack summary outlook_brief; do
+            python -W ignore models/$m.py > /tmp/$m.log 2>&1 || { fail="$fail $m"; tail -20 /tmp/$m.log; }
+          done
+          echo "$fail" > /tmp/failed_models
+      - name: publish checks
+        continue-on-error: true
+        run: python models/validate.py
       - name: commit
+        if: always()
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data
           git diff --cached --quiet && exit 0
           git commit -q -m "data: WASDE $(date -u +%F)"
           for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - name: report failed models
+        if: always()
+        run: |
+          f="$(cat /tmp/failed_models 2>/dev/null | xargs)"
+          [ -z "$f" ] || { echo "::error::models failed: $f"; exit 1; }

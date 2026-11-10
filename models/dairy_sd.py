@@ -10,7 +10,7 @@
 
 Writes data/dairy/derived/sd.json (consumed by the site).
 """
-import json
+import json, sys
 from pathlib import Path
 import pandas as pd
 import requests
@@ -18,7 +18,10 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "dairy" / "raw"
 OUT = ROOT / "data" / "dairy" / "derived"
-WASDE = "https://raw.githubusercontent.com/BMR-Com/wasde-analytics/main/data/{}.json"
+WASDE = "https://raw.githubusercontent.com/BMR-Com/wasde-analytics/main/data/{}.json"   # fallback
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from wasde_store import local_dir  # noqa: E402  (desk's own WASDE store)
+LOCAL_WASDE = local_dir()
 
 MILK_TABLES = {"fat": "M.E. Milk-fat basis, monthly", "skim": "M.E. Skim-solids basis, monthly"}
 PRODUCTS = {  # key: (ERS table, stock item names, production item, price column in class prices)
@@ -146,7 +149,8 @@ def wasde():
     out = {}
     for key, f in files.items():
         try:
-            j = requests.get(WASDE.format(f), timeout=60).json()
+            lp = Path(LOCAL_WASDE, f + ".json") if LOCAL_WASDE else None
+            j = json.loads(lp.read_text()) if lp and lp.exists() else requests.get(WASDE.format(f), timeout=60).json()
         except Exception as e:
             print("wasde", f, e)
             continue

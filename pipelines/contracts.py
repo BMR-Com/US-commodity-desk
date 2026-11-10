@@ -33,6 +33,8 @@ SPEC = {  # sym: (exchange, TV root, months, first year)
     # energy desk (NYMEX, every month)
     "NG": ("NYMEX", "NG", CODES, 2015), "CL": ("NYMEX", "CL", CODES, 2015),
     "HO": ("NYMEX", "HO", CODES, 2015), "RB": ("NYMEX", "RB", CODES, 2015),
+    # Bursa Malaysia crude palm oil (ringgit), every month
+    "FCPO": ("MYX", "FCPO", CODES, 2014),
 }
 
 
@@ -66,7 +68,7 @@ def run(sym):
             time.sleep(1.2)
             if d is None or not len(d):
                 continue
-            f = pd.DataFrame({"contract": c, "date": trade_dates(d.index).date.astype(str),
+            f = pd.DataFrame({"contract": c, "date": trade_dates(d.index, ex).date.astype(str),
                               "close": d.close.round(4).values, "volume": d.volume.values})
             frames.append(f)
             done.add(c)

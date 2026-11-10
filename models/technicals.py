@@ -19,11 +19,11 @@ MNAME = dict(zip(CODES, ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
 UNITS = {"CT": ("¢/lb", 2), "ZC": ("¢/bu", 2), "ZS": ("¢/bu", 2), "ZW": ("¢/bu", 2), "KE": ("¢/bu", 2), "ZM": ("$/st", 1), "ZL": ("¢/lb", 2),
          "HE": ("¢/lb", 3), "LE": ("¢/lb", 3), "GF": ("¢/lb", 3), "DC": ("$/cwt", 2), "GDK": ("$/cwt", 2),
          "CSC": ("$/lb", 3), "CB": ("¢/lb", 3), "GNF": ("¢/lb", 3), "DY": ("¢/lb", 3),
-         "NG": ("$/MMBtu", 3), "CL": ("$/bbl", 2), "HO": ("$/gal", 4), "RB": ("$/gal", 4)}
+         "NG": ("$/MMBtu", 3), "CL": ("$/bbl", 2), "HO": ("$/gal", 4), "RB": ("$/gal", 4), "FCPO": ("RM/t", 0)}
 NAMES = {"CT": "Cotton", "ZC": "Corn", "ZS": "Soybeans", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "ZM": "Soybean meal", "ZL": "Soybean oil",
          "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle", "DC": "Class III milk", "GDK": "Class IV milk",
          "CSC": "Cheese", "CB": "Butter", "GNF": "Nonfat dry milk", "DY": "Dry whey",
-         "NG": "Natural gas", "CL": "WTI crude", "HO": "ULSD (heating oil)", "RB": "RBOB gasoline"}
+         "NG": "Natural gas", "CL": "WTI crude", "HO": "ULSD (heating oil)", "RB": "RBOB gasoline", "FCPO": "Palm oil (Bursa FCPO)"}
 
 
 def ordinal(v):
@@ -289,7 +289,7 @@ def season_rows(sym, live, last_dates, closes):
     for c in live:
         L, y = code_parts(sym, c)
         m = CODES.index(L) + 1
-        est_last[c] = last_dates.get(c) or (pd.Timestamp(y, m, 8) if sym == "CT" else pd.Timestamp(y, m, 14) if sym in ("ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE")
+        est_last[c] = last_dates.get(c) or (pd.Timestamp(y, m, 8) if sym == "CT" else pd.Timestamp(y, m, 15) if sym == "FCPO" else pd.Timestamp(y, m, 14) if sym in ("ZC", "ZS", "ZM", "ZL", "ZW", "KE", "HE")
                                             else pd.Timestamp(y, m, 1) + pd.offsets.MonthEnd(0))
     def wk_series(c, last):
         s = closes.get(c)
@@ -376,7 +376,7 @@ def build(sym):
     u, dp = UNITS[sym]
     d = pd.read_csv(p, parse_dates=["date"])
     out = {"sym": sym, "name": NAMES[sym], "unit": u, "dp": dp, "generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "series": [],
-           "note": "Daily bars from TradingView (CME Group). The continuous series rolls between contracts, so gaps at rolls are price jumps, not moves."}
+           "note": ("Daily bars from TradingView (Bursa Malaysia Derivatives)." if sym == "FCPO" else "Daily bars from TradingView (CME Group).") + " The continuous series rolls between contracts, so gaps at rolls are price jumps, not moves."}
     frames = {}
     order = ["cont"] + sorted([s for s in d.series.unique() if s != "cont"], key=lambda c: (code_parts(sym, c)[1], CODES.index(code_parts(sym, c)[0])))
     for s in order:

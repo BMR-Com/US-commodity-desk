@@ -75,6 +75,17 @@ def ice_cotton(m):
     return {"fnd": fnd, "ltd": ltd, "out_by": prev_bd(fnd)}
 
 
+def bursa_cpo(m):
+    """Bursa Malaysia crude palm oil (FCPO): last trading day noon on the 15th of the delivery month (the business day
+    before if not a business day); sellers can tender from the 1st to the 20th of the delivery month, so speculative
+    longs are out by the last business day of the prior month. Malaysian holidays are not modelled (US calendar)."""
+    ltd = pd.Timestamp(m.year, m.month, 15)
+    while not isbd(ltd):
+        ltd = prev_bd(ltd)
+    fnd = first_bd(m)
+    return {"fnd": fnd, "ltd": ltd, "out_by": prev_bd(fnd)}
+
+
 def cme_le(m):
     """Live cattle: physical delivery; LTD = last business day of the contract month (noon CT). Deliveries can be
     tendered from the first business day of the contract month, so speculative longs exit before it."""
@@ -162,6 +173,7 @@ MKT = {
     "NG": ("Henry Hub natural gas", nymex_ng, None, "physical", "Roll at least 2 business days before the last trading day (3 business days before the delivery month)."),
     "HO": ("NY Harbor ULSD", nymex_products, None, "physical", "Roll before the last business day of the month before delivery."),
     "RB": ("RBOB gasoline", nymex_products, None, "physical", "As ULSD."),
+    "FCPO": ("Crude palm oil (Bursa Malaysia)", bursa_cpo, None, "physical", "Liquidity sits in the third month; roll before the contract month, when tendering starts on the 1st. Malaysian public holidays are not in this calendar."),
 }
 EXPLAIN = {
     "fpd": "First position day: the first day a short can declare intent to deliver (CBOT). Longs still holding can be assigned delivery after it.",

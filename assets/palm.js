@@ -10,8 +10,10 @@ const Palm = (() => {
   const pill = s => `<span class="${s > 0 ? 'up' : s < 0 ? 'dn' : ''}">${s > 0 ? 'supportive' : s < 0 ? 'weighing' : 'neutral'}</span>`;
 
   function shell() {
-    $('#palm').innerHTML = `<nav class="tabs" id="poTabs"><button data-t="po-outlook" class="on">1 · Outlook</button><button data-t="po-sd">2 · Supply &amp; demand</button>
-      <button data-t="po-px">3 · Prices, spreads &amp; positioning</button><button data-t="po-primer">4 · Primer</button></nav><main><div id="poBody"></div></main>`;
+    $('#palm').innerHTML = `<nav class="tabs" id="poTabs"><button data-t="po-primer">1 · Primer</button><button data-t="po-geo">Where it's grown, trade &amp; weather</button>
+      <button data-t="po-sd">2 · Malaysian supply &amp; demand</button><button data-t="po-ex">3 · Exports</button><button data-t="po-wasde">4 · USDA world balance</button>
+      <button data-t="po-px">5 · Prices, spreads &amp; positioning</button><button data-t="po-outlook" class="on">6 · Outlook</button><button data-t="po-seas">7 · Seasonality &amp; technicals</button></nav>
+      <main><div id="poBody"></div></main>`;
     $$('#poTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#poTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
   async function show() {
@@ -22,13 +24,15 @@ const Palm = (() => {
   const body = html => { $('#poBody').innerHTML = html; };
   function render() {
     history.replaceState(null, '', '#' + tab);
+    if (tab === 'po-geo') return Geo.mount($('#poBody'), 'palm');
+    if (tab === 'po-seas') return MktStudy.mount($('#poBody'), ['FCPO']);
     if (!D && tab !== 'po-primer') return body('<div class="card"><p class="note">Palm oil data not built yet.</p></div>');
-    ({ 'po-outlook': outlook, 'po-sd': sd, 'po-px': px, 'po-primer': primer }[tab] || outlook)();
+    ({ 'po-outlook': outlook, 'po-sd': sd, 'po-ex': exports, 'po-wasde': wasde, 'po-px': px, 'po-primer': primer }[tab] || outlook)();
   }
 
   function outlook() {
     const K = D.kpi, P = D.prices || {}, f = P.fcpo, pr = D.projection, sp = P.soy_palm;
-    body(`<div class="card"><h2>Palm oil brief · ${D.view}</h2>
+    body(`<div id="poTech" style="margin-bottom:12px"></div><div class="card"><h2>Palm oil brief · ${D.view}</h2>
         ${D.brief.map(b => `<p><b>${b.h}.</b> ${md(b.t)}</p>`).join('')}
         <p class="note">Updated ${D.generated}; Malaysian data through ${D.asof_label}${D.prelim ? ' (preliminary)' : ''}. Next MPOB report about ${D.calendar.next_mpob}. ${D.calendar.note}</p></div>
       <div class="grid g4" style="margin-top:12px">
@@ -48,11 +52,13 @@ const Palm = (() => {
           <tr><td class="l">Imports / domestic use (mt)</td><td colspan="3">${mt(pr.imports)} / ${mt(pr.dom)}</td></tr></tbody></table></div>
           <p class="note">Opening stocks plus production and imports, less exports and domestic use, with production and exports moved by their usual month-on-month change (last 10 years).
           ${D.backtest ? `Since ${D.backtest.since.slice(0, 4)} it called the direction of the stock change ${D.backtest.dir_hit}% of the time; on the level it missed by ${D.backtest.mae_pct}% on average vs ${D.backtest.mae_naive_pct}% for "no change", so use it for direction only.` : ''}</p>` : '<p class="note">Not enough history.</p>'}</div>
-      </div>`);
-  }
+      </div>
+      <div id="poSzUp" style="margin-top:12px"></div>`);
+    Tech.mount($('#poTech'), ['FCPO']);
+    MktStudy.upcoming($('#poSzUp'), ['FCPO'], () => $('#poTabs button[data-t="po-seas"]').click());  }
 
   function sd() {
-    const S = D.series, T = D.table, W = D.world;
+    const S = D.series, T = D.table;
     const cols = ['open', 'prod', 'imports', 'exports', 'dom', 'stocks'];
     body(`<div class="grid g2">
         <div class="card"><h2>Malaysian palm oil stocks (million t)</h2><div class="chart"><canvas id="cPoSt"></canvas></div><p class="note">MPOB month-end stocks of crude and processed palm oil. Shaded: range of the previous five years.</p></div>
@@ -64,12 +70,26 @@ const Palm = (() => {
       <div class="card" style="margin-top:12px"><h2>Malaysia: monthly balance (thousand t)</h2><div class="tbl"><table><thead><tr><th class="l">Month</th><th>Opening</th><th>Production</th><th>Imports</th><th>Exports</th><th>Domestic use</th><th>Closing</th><th>Months of use</th></tr></thead><tbody>
         ${T.map(r => `<tr><td class="l">${lbl(r.m)}${r.flag === 'p' ? ' (p)' : ''}</td>${cols.map(c => `<td>${kt(r[c])}</td>`).join('')}<td>${r.su == null ? '–' : fmt(r.su, 2)}</td></tr>`).join('')}</tbody></table></div>
         <p class="note">Source: Malaysian Palm Oil Board monthly statistics. Domestic use is the residual (opening + production + imports − exports − closing), so it also absorbs revisions. (p) preliminary.</p></div>
-      ${W ? `<div class="card" style="margin-top:12px"><h2>World palm oil balance (USDA, ${W.unit})</h2><div class="ctrls" id="poWSel"></div><div class="tbl"><table id="poWTab"></table></div>
-        <p class="note">USDA PSD, marketing years. Industrial use is mostly biodiesel.${W.revisions && W.revisions.rows.length ? ` Changes in ${W.my} since the ${W.revisions.from} data: ${W.revisions.rows.slice(0, 8).map(x => `${x.country} ${x.attr} ${x.chg > 0 ? '+' : ''}${fmt(x.chg, 2)}`).join('; ')}.` : ' Each month\'s figures are stored, so revisions will show here from the next USDA update.'}
-        ${W.vegoil_su ? ` Stocks/use of the five main vegetable oils together: ${W.vegoil_su.slice(-4).map(x => `${x.my} ${fmt(x.su, 1)}%`).join(', ')}.` : ''}</p></div>` : ''}`);
+`);
     const L = [...MON];
     const seas = (id, s) => chart(id, { type: 'line', data: { labels: L, datasets: seasonalDatasets(seasonal(s.month, s.vals)) }, options: { plugins: { legend: legendNoMin } } });
     seas('cPoSt', S.stocks); seas('cPoPr', S.prod); seas('cPoEx', S.exports); seas('cPoSu', S.su);
+  }
+
+  function wasde() {
+    const W = D.world;
+    if (!W) return body('<div class="card"><p class="note">USDA data not built yet.</p></div>');
+    const latest = W.regions.filter(r => r.name !== 'World').map(r => ({ name: r.name, a: r.rows.at(-1), b: r.rows.at(-2) })).filter(x => x.a);
+    const col = (k, d = 2) => x => x.a[k] == null ? '–' : `${fmt(x.a[k], d)}${x.b && x.b[k] != null ? ` <span class="note">(${x.a[k] - x.b[k] >= 0 ? '+' : ''}${fmt(x.a[k] - x.b[k], d)})</span>` : ''}`;
+    body(`<div class="card"><h2>USDA palm oil balance, ${W.my} (${W.unit})</h2><div class="tbl"><table><thead><tr><th class="l">Country</th><th>Production</th><th>Imports</th><th>Exports</th><th>Domestic use</th><th>of which industrial</th><th>Ending stocks</th><th>Stocks/use %</th></tr></thead><tbody>
+        ${[{ name: 'World', a: W.regions[0].rows.at(-1), b: W.regions[0].rows.at(-2) }, ...latest].map(x => `<tr><td class="l">${x.name === 'World' ? '<b>World</b>' : x.name}</td><td>${col('prod')(x)}</td><td>${col('imports')(x)}</td><td>${col('exports')(x)}</td><td>${col('use')(x)}</td><td>${col('industrial')(x)}</td><td>${col('end')(x)}</td><td>${col('su', 1)(x)}</td></tr>`).join('')}
+      </tbody></table></div><p class="note">USDA PSD (the database behind the WASDE world tables), marketing years beginning in the year shown. Brackets: change from the previous marketing year. Industrial use is mostly biodiesel.</p></div>
+      <div class="card" style="margin-top:12px"><h2>Revisions in the latest USDA update</h2>${W.revisions && W.revisions.rows.length ? `<div class="tbl"><table><thead><tr><th class="l">Country</th><th class="l">Line</th><th>Change (${W.unit})</th></tr></thead><tbody>
+        ${W.revisions.rows.map(x => `<tr><td class="l">${x.country}</td><td class="l">${x.attr}</td><td>${sgn(x.chg, 2)}</td></tr>`).join('')}</tbody></table></div><p class="note">${W.my}, ${W.revisions.from} data vs ${W.revisions.to}.</p>`
+        : `<p class="note">The desk stores USDA's palm oil figures each month from November 2026, so revisions appear here after the next update (the WASDE on ${D.calendar.next_wasde || 'the next report day'}).</p>`}</div>
+            ${W ? `<div class="card" style="margin-top:12px"><h2>World palm oil balance (USDA, ${W.unit})</h2><div class="ctrls" id="poWSel"></div><div class="tbl"><table id="poWTab"></table></div>
+        <p class="note">USDA PSD, marketing years. Industrial use is mostly biodiesel.${W.revisions && W.revisions.rows.length ? ` Changes in ${W.my} since the ${W.revisions.from} data: ${W.revisions.rows.slice(0, 8).map(x => `${x.country} ${x.attr} ${x.chg > 0 ? '+' : ''}${fmt(x.chg, 2)}`).join('; ')}.` : ' Each month\'s figures are stored, so revisions will show here from the next USDA update.'}
+        ${W.vegoil_su ? ` Stocks/use of the five main vegetable oils together: ${W.vegoil_su.slice(-4).map(x => `${x.my} ${fmt(x.su, 1)}%`).join(', ')}.` : ''}</p></div>` : ''}`);
     if (W) {
       let cur = 0;
       const draw = () => {
@@ -81,6 +101,32 @@ const Palm = (() => {
       };
       draw();
     }
+  }
+
+  function exports() {
+    const E = D.series.exports, P = D.series.prod;
+    const cum = s => { const by = {}; s.month.forEach((m, i) => { const [y, mm] = m.split('-').map(Number); (by[y] ||= Array(12).fill(null))[mm - 1] = s.vals[i]; });
+      const out = {}; Object.entries(by).forEach(([y, a]) => { let t = 0; out[y] = a.map(v => v == null ? null : (t += v)); }); return out; };
+    const C = cum(E), ys = Object.keys(C).map(Number).sort(), cy = ys.at(-1), lm = C[cy].findLastIndex(v => v != null);
+    const prev5 = ys.filter(y => y < cy).slice(-5), avg5 = prev5.length ? prev5.reduce((a, y) => a + (C[y][lm] || 0), 0) / prev5.length : null;
+    const ratio = { month: E.month.filter(m => P.month.includes(m)), vals: [] }; ratio.month.forEach(m => ratio.vals.push(E.vals[E.month.indexOf(m)] / P.vals[P.month.indexOf(m)]));
+    body(`<div class="grid g4">${[['Exports, Jan–' + MON[lm] + ' ' + cy, `${fmt(C[cy][lm], 2)} mt`, `${cy - 1}: ${fmt(C[cy - 1]?.[lm], 2)} · 5-yr avg ${fmt(avg5, 2)}`],
+        ['Change vs last year', `${sgn(100 * (C[cy][lm] / C[cy - 1][lm] - 1), 1, '%')}`, 'same months'], ['Latest month', `${fmt(E.vals.at(-1), 2)} mt`, lbl(E.month.at(-1))],
+        ['Exports ÷ production', `${fmt(100 * ratio.vals.at(-1), 0)}%`, `latest month; ${fmt(100 * ratio.vals.slice(-12).reduce((a, b) => a + b, 0) / 12, 0)}% over 12 months`]]
+        .map(([l, v, s2]) => `<div class="card kpi"><div class="lbl">${l}</div><div class="val">${v}</div><div class="sub">${s2}</div></div>`).join('')}</div>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>Malaysian exports by month (million t)</h2><div class="chart"><canvas id="cPoEx2"></canvas></div><p class="note">MPOB, crude and processed palm oil. Shaded: previous five years.</p></div>
+        <div class="card"><h2>Cumulative exports from January (million t)</h2><div class="chart"><canvas id="cPoExC"></canvas></div><p class="note">Calendar-year running total, this year against the last five.</p></div>
+        <div class="card"><h2>Exports as a share of production</h2><div class="chart"><canvas id="cPoExR"></canvas></div><p class="note">Above 100% Malaysia is drawing stocks; well below it, stocks build.</p></div>
+        <div class="card"><h2>Where Malaysian and Indonesian palm oil goes</h2><p>Destination detail by country (UN Comtrade, annual) is on the <a href="#po-geo" id="poGeoLink">Where it's grown, trade &amp; weather</a> tab.</p>
+          <p><b>During the month</b>, the market trades the cargo surveyors' Malaysian export counts (Intertek and AmSpec: days 1–10, 1–15, 1–20, 1–25 and the full month). They are published through newswires and are not freely downloadable, so they are not on this desk; MPOB's own figure arrives around the 10th of the following month.</p>
+          <p><b>Indonesia</b> reports exports with a six to eight week lag (GAPKI), and its export volume depends on the monthly export duty and levy and on how much the biodiesel mandate absorbs at home.</p></div>
+      </div>`);
+    chart('cPoEx2', { type: 'line', data: { labels: [...MON], datasets: seasonalDatasets(seasonal(E.month, E.vals)) }, options: { plugins: { legend: legendNoMin } } });
+    chart('cPoExC', { type: 'line', data: { labels: [...MON], datasets: [...prev5.map((y, i) => ({ label: String(y), data: C[y], borderColor: '#bbb', borderWidth: 1, pointRadius: 0 })),
+      { label: String(cy - 1), data: C[cy - 1], borderColor: '#2c6fbb', borderWidth: 1.5, pointRadius: 0 }, { label: String(cy), data: C[cy], borderColor: '#c0392b', borderWidth: 2.4, pointRadius: 2 }].filter((d, i, a) => a.findIndex(x => x.label === d.label) === i) } });
+    chart('cPoExR', { type: 'line', data: { labels: [...MON], datasets: seasonalDatasets(seasonal(ratio.month, ratio.vals)) }, options: { plugins: { legend: legendNoMin } } });
+    const gl = $('#poGeoLink'); if (gl) gl.onclick = e => { e.preventDefault(); $('#poTabs button[data-t="po-geo"]').click(); };
   }
 
   function px() {
@@ -101,7 +147,8 @@ const Palm = (() => {
       </tbody></table></div><p class="note">Daily closes from TradingView (delayed). Front-month series roll, so long-run changes include roll gaps.</p></div>
       ${C ? `<div class="card" style="margin-top:12px"><h2>CME palm oil: open interest and positions (CFTC)</h2><div class="chart"><canvas id="cPoCot"></canvas></div>
         <p class="note">CME USD Malaysian Crude Palm Oil Calendar futures and options, ${C.date}: open interest ${fmt(C.oi, 0)}; producers/merchants net ${sgn(C.pm, 0)}, swap dealers ${sgn(C.sw, 0)}, managed money ${sgn(C.mm, 0)}.
-        A cash-settled contract used mainly by commercial hedgers; Bursa Malaysia does not publish a comparable positions report.</p></div>` : ''}`);
+        A cash-settled contract used mainly by commercial hedgers; Bursa Malaysia does not publish a comparable positions report.</p></div>` : ''}
+      <div class="card" style="margin-top:12px"><h2>Options</h2><p class="note">Bursa lists options on FCPO (OCPO) and CME lists average-price options on its palm contract, but neither publishes free daily settlements or open interest by strike, so this desk has no palm options data. The desk options pricer works for soybean oil (ZL), the closest substitute.</p></div>`);
     const lab = w.date.map(d => d.slice(0, 7));
     const ln = (data, label, color, extra = {}) => ({ label, data, borderColor: color, borderWidth: 1.6, pointRadius: 0, spanGaps: true, ...extra });
     chart('cPoPx', { type: 'line', data: { labels: lab, datasets: [ln(w.fcpo_usd, 'Palm oil (FCPO)', PAL[0]), ln(w.zl_usd, 'Soybean oil (CBOT)', PAL[3])] } });

@@ -3,8 +3,8 @@ name: palm
 on:
   workflow_dispatch: {}
   push:
-    branches: [main]
-    paths: ['pipelines/palm.py', 'models/palm.py', '.github/workflows/palm.yml']
+    branches: [main, palm-tabs]
+    paths: ['pipelines/palm.py', 'models/palm.py', '.github/workflows/palm.yml', 'models/technicals.py', 'models/seasonal_desk.py', 'pipelines/tvdates.py']
   schedule:
     - cron: '20 5 * * *'     # after MPOB's midday release (around the 10th) and the Bursa morning session
     - cron: '40 11 * * 1-5'  # after the Bursa close
@@ -25,6 +25,15 @@ jobs:
         continue-on-error: true
         timeout-minutes: 15
         run: python pipelines/palm.py
+      - name: Bursa FCPO contracts and front-month bars (TradingView), technicals, contract calendar, seasonality
+        continue-on-error: true
+        timeout-minutes: 12
+        run: |
+          python pipelines/contracts.py FCPO || echo "::warning::FCPO contracts failed"
+          python pipelines/ohlc.py FCPO || echo "::warning::FCPO ohlc failed"
+          python -W ignore models/technicals.py FCPO || echo "::warning::FCPO technicals failed"
+          python -W ignore models/contract_calendar.py || echo "::warning::contract calendar failed"
+          python -W ignore models/seasonal_desk.py FCPO || echo "::warning::FCPO seasonality failed"
       - name: model
         continue-on-error: true
         run: '[ -f models/palm.py ] && python -W ignore models/palm.py || echo "no model yet"'
@@ -32,7 +41,7 @@ jobs:
         if: always()
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add data/palm
+          git add data/palm; for f in data/contracts/FCPO.csv data/ohlc/FCPO.csv data/technicals/FCPO.json data/seasonal data/specs/calendar.json; do [ -e "$f" ] && git add "$f"; done
           git diff --cached --quiet && exit 0
           git commit -q -m "data: palm oil $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase -X theirs origin ${{ github.ref_name }} && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

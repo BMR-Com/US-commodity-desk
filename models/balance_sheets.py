@@ -99,7 +99,7 @@ def export_test(cfg, wk, rd_cur=None, cur=None):
     commodity. Returns the projection's average % miss (mape_desk), its average signed % error (bias: how far it ran high or
     low), USDA's average % miss with the forecast it had at the same point of each season (same report month as the latest
     report), and the weight on USDA (w_usda, from W_GRID) that would have come closest to final exports when combined with the
-    bias-corrected projection. Bias for a test season uses only the seasons before it. Ties within 0.3 points of the best go
+    bias-corrected projection. Bias for a test season uses only the seasons before it. Near-ties (within 0.5 points of the best) go to USDA; originally: ties within 0.3 points of the best go
     to the weight nearest 0.5; fewer than 8 test seasons -> 0.5."""
     try:
         e = G.esr(cfg["dirs"]); w = G.wasde(cfg["wasde"], cfg["key"]); labels = G.my_label(e, cfg["start"])
@@ -148,12 +148,16 @@ def export_test(cfg, wk, rd_cur=None, cur=None):
             out["mape_usda"] = round(ape(lambda t: t["usda"]), 1)
             out["mape_desk_same"] = round(ape(lambda t: t["desk"]), 1)       # same seasons as USDA's
             out["mape_desk_adj"] = round(ape(lambda t: t["adj"]), 1)
+            if out["mape_desk_adj"] >= out["mape_desk_same"]:            # the correction did not help in past seasons: do not use it
+                for t in T:
+                    t["adj"] = t["desk"]
+                out["bias"] = 0.0; out["bias_used"] = False
             grid = {wu: ape(lambda t, wu=wu: wu * t["usda"] + (1 - wu) * t["adj"]) for wu in W_GRID}
             out["grid"] = {f"{k:.2f}": round(v, 2) for k, v in grid.items()}
             if len(V) >= 8:
                 best = min(grid.values())
-                near = [k for k, v in grid.items() if v <= best + 0.3]
-                out["w_usda"] = min(near, key=lambda k: (abs(k - 0.5), grid[k]))
+                near = [k for k, v in grid.items() if v <= best + 0.5]      # ~10 seasons: differences this small are noise
+                out["w_usda"] = max(near)            # near-ties go to USDA: the projection has to earn its weight
             else:
                 out["w_usda"] = 0.5; out["fallback"] = f"only {len(V)} past seasons to test"
             out["mape_blend"] = round(grid[out["w_usda"]], 1)
@@ -497,6 +501,8 @@ def build():
         # base = USDA and the bias-corrected export-sales projection, weighted by how each did at this week in past seasons
         xt = export_test(cfgs[key], b["wk"], rd_cur, cur) if b and key in cfgs and not product else None
         wu_ = (xt or {}).get("w_usda", 0.5); bias = (xt or {}).get("bias", 0.0)
+        if key == "cotton" and xt:           # cotton keeps the owner's midpoint of USDA and the four-view projection; the test is reported, not applied
+            xt = dict(xt, w_tested=xt.get("w_usda"), w_usda=0.5, bias=0.0, mape_blend=(xt.get("grid") or {}).get("0.50"), fallback=None); wu_, bias = 0.5, 0.0
         ex_adj = ex_c / (1 + bias) if ex_c else None
         base_ex = wu_ * ue + (1 - wu_) * (ex_adj or ue)
         exp_weight = ({"w_usda": wu_, "bias": round(bias, 4), "mape_usda": xt.get("mape_usda"), "mape_desk": xt.get("mape_desk_same", xt.get("mape_desk")),
@@ -504,7 +510,8 @@ def build():
                        "grid": xt.get("grid"), "fallback": xt.get("fallback"), "proj": ex_c, "proj_adj": ex_adj, "usda": ue, "base": base_ex} if xt else None)
         if ex_c and xt:
             wtxt = (f"base = {100 * wu_:.0f}% USDA ({ue:,.{dec}f}) and {100 * (1 - wu_):.0f}% the export-sales projection ({ex_c:,.{dec}f}, week {b['wk']}, to {b['week']}) "
-                    f"after allowing for how it has tended to run at this week ({'low' if bias < 0 else 'high'} by {100 * abs(bias):.1f}% on average, so it is read as {ex_adj:,.{dec}f}) = {base_ex:,.{dec}f}. "
+                    + (f"after allowing for how it has tended to run at this week ({'low' if bias < 0 else 'high'} by {100 * abs(bias):.1f}% on average, so it is read as {ex_adj:,.{dec}f}) " if abs(bias) > 1e-9 else "")
+                    + f"= {base_ex:,.{dec}f}. "
                     + (f"Those weights would have come closest to final exports at this week of past seasons ({xt['n']} seasons, {xt['years'][0]}–{xt['years'][1]}): "
                        f"USDA's forecast at the same point missed by {xt['mape_usda']:.1f}% on average, the projection by {exp_weight['mape_desk']:.1f}% "
                        f"and the mix by {xt['mape_blend']:.1f}%. " if not xt.get("fallback") else f"Weights held at 50/50 ({xt['fallback']}). "))

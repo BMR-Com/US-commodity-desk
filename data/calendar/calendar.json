@@ -1,21 +1,6 @@
 {
-"generated": "2026-11-09 23:21 UTC",
+"generated": "2026-11-10 02:01 UTC",
 "events": [
-{
-"date": "2026-11-02",
-"time": "10:00 AM CT",
-"event": "USDA export inspections",
-"cat": "USDA",
-"markets": [
-"ZC",
-"ZS",
-"ZW",
-"KE"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-11-03",
 "time": "3:30 PM CT",
@@ -2731,6 +2716,21 @@
 "cat": "CFTC",
 "markets": [
 "ALL"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-08",
+"time": "10:00 AM CT",
+"event": "USDA export inspections",
+"cat": "USDA",
+"markets": [
+"ZC",
+"ZS",
+"ZW",
+"KE"
 ],
 "importance": 1,
 "link": null,

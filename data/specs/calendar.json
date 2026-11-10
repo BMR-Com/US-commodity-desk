@@ -1286,6 +1286,70 @@
 "days_to_out": 135
 }
 ]
+},
+"FCPO": {
+"name": "Crude palm oil (Bursa Malaysia)",
+"settle": "physical",
+"roll": "Liquidity sits in the third month; roll before the contract month, when tendering starts on the 1st. Malaysian public holidays are not in this calendar.",
+"rule": "Bursa Malaysia crude palm oil (FCPO): last trading day noon on the 15th of the delivery month (the business day before if not a business day); sellers can tender from the 1st to the 20th of the delivery month, so speculative longs are out by the last business day of the prior month. Malaysian holidays are not modelled (US calendar).",
+"contracts": [
+{
+"contract": "FCPOX2026",
+"month": "2026-11",
+"fnd": "2026-11-02",
+"ltd": "2026-11-13",
+"out_by": "2026-10-30",
+"days_to_out": 0
+},
+{
+"contract": "FCPOZ2026",
+"month": "2026-12",
+"fnd": "2026-12-01",
+"ltd": "2026-12-15",
+"out_by": "2026-11-30",
+"days_to_out": 13
+},
+{
+"contract": "FCPOF2027",
+"month": "2027-01",
+"fnd": "2027-01-04",
+"ltd": "2027-01-15",
+"out_by": "2026-12-31",
+"days_to_out": 35
+},
+{
+"contract": "FCPOG2027",
+"month": "2027-02",
+"fnd": "2027-02-01",
+"ltd": "2027-02-12",
+"out_by": "2027-01-29",
+"days_to_out": 54
+},
+{
+"contract": "FCPOH2027",
+"month": "2027-03",
+"fnd": "2027-03-01",
+"ltd": "2027-03-15",
+"out_by": "2027-02-26",
+"days_to_out": 73
+},
+{
+"contract": "FCPOJ2027",
+"month": "2027-04",
+"fnd": "2027-04-01",
+"ltd": "2027-04-15",
+"out_by": "2027-03-31",
+"days_to_out": 95
+},
+{
+"contract": "FCPOK2027",
+"month": "2027-05",
+"fnd": "2027-05-03",
+"ltd": "2027-05-14",
+"out_by": "2027-04-30",
+"days_to_out": 117
+}
+]
 }
 },
 "check": {

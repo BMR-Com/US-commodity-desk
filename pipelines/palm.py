@@ -104,13 +104,13 @@ def prices():
     for k, (ex, sym) in S.items():
         for i in range(3):
             try:
-                n = 150 if (len(old) and k in old and old[k].notna().sum() > 300) else 5000
+                n = 150 if (len(old) and k in old and old[k].notna().sum() > 300 and (RAW / "prices.v2").exists()) else 5000
                 d = tv.get_hist(symbol=sym, exchange=ex, interval=Interval.in_daily, n_bars=n)
                 if d is not None and len(d):
-                    s = d["close"]; s.index = (pd.DatetimeIndex(s.index) + pd.Timedelta(hours=10)).normalize()   # Asian sessions stamp the prior UTC evening
+                    s = d["close"]; ts = pd.DatetimeIndex(s.index)
+                    # bars are stamped with the session open (UTC): Bursa night session opens 13:00 UTC the day before; CME/ICE evening opens 22:00-23:00
+                    s.index = (ts + pd.to_timedelta((ts.hour >= (12 if ex == "MYX" else 18)).astype(int), unit="D")).normalize()
                     new[k] = s[~s.index.duplicated(keep="last")]
-                    if k in ("FCPO", "CPO"):
-                        v = d["volume"]; v.index = s.index if len(v) == len(s) else v.index
                     break
             except Exception as e:
                 print(k, "err", str(e)[:80])
@@ -118,7 +118,10 @@ def prices():
     if not new:
         print("prices: nothing"); return
     df = pd.DataFrame(new); df = df[df.index <= pd.Timestamp(date.today()) + pd.Timedelta(days=1)]
-    df = df.combine_first(old) if len(old) else df
+    df = df[df.index.dayofweek < 5]
+    if len(old) and (RAW / "prices.v2").exists():
+        df = df.combine_first(old)
+    (RAW / "prices.v2").write_text("trade-date rule v2")
     df.index.name = "date"; df.sort_index().to_csv(out, float_format="%.4f")
     print({k: (str(v.index[-1].date()), float(v.iloc[-1]), len(v)) for k, v in new.items()})
 

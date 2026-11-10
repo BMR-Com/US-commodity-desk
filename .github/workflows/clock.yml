@@ -1,7 +1,7 @@
 # Desk clock: starts the data workflows at the right US Eastern times (pipelines/clock.py), because GitHub's own cron
 # runs arrive hours late or not at all on this repo. A workflow_dispatch starts immediately. One clock at a time; each
 # runs up to ~5h50m and hands over to the next while the day still has entries; the crons below restart it each
-# weekday morning (several, because any of them may be late or skipped). No secrets: uses the job's GITHUB_TOKEN.
+# weekday morning and on Sunday afternoon (several, because any of them may be late or skipped). No secrets: uses the job's GITHUB_TOKEN.
 name: clock
 on:
   workflow_dispatch: {}
@@ -13,6 +13,14 @@ on:
     - cron: '27 11 * * 1-5'
     - cron: '17 15 * * 1-5'
     - cron: '37 18 * * 1-5'
+    # Sunday: the 17:20 ET pre-open brief (22:20 UTC in EST, 21:20 UTC in EDT); a clock started any time from ~14:00 ET
+    # waits for it, and a late one still catches it up within the clock's 4 h grace. Saturday stays idle.
+    - cron: '7 19 * * 0'
+    - cron: '43 19 * * 0'
+    - cron: '19 20 * * 0'
+    - cron: '53 20 * * 0'
+    - cron: '29 21 * * 0'
+    - cron: '3 22 * * 0'
 permissions:
   actions: write
   contents: read

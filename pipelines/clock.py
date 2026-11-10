@@ -29,6 +29,7 @@ WEEKDAYS = {MON, TUE, WED, THU, FRI}
 # (workflow file, days of week, "HH:MM" ET, optional day-of-month range)
 TABLE = [
     ("brief.yml", WEEKDAYS, "06:35"),                                   # morning brief before 8 am ET
+    ("brief.yml", {SUN}, "17:20"),            # Sunday pre-open brief before the 8 pm ET CBOT reopen (runs markets itself)
     *[("markets.yml", WEEKDAYS, f"{h:02d}:07") for h in range(7, 19)],  # hourly cross-market snapshot
     ("intel.yml", WEEKDAYS, "06:20"), ("intel.yml", WEEKDAYS, "09:20"), ("intel.yml", WEEKDAYS, "12:20"),
     ("intel.yml", WEEKDAYS, "15:20"), ("intel.yml", WEEKDAYS, "18:20"), ("intel.yml", WEEKDAYS, "21:00"),
@@ -191,6 +192,17 @@ def selftest():
             print(f"start {t0:%a %m-%d %H:%M %Z}: {runs} clock run(s), {handovers} hand-over(s), "
                   f"{len(log) - handovers} dispatch(es) in the next 14 h")
             assert handovers <= 4, f"{handovers} hand-overs from {t0}"
+    for t0 in (datetime(2026, 11, 15, 19, 7, tzinfo=UTC), datetime(2026, 7, 12, 19, 7, tzinfo=UTC),   # Sunday crons
+               datetime(2026, 11, 15, 22, 3, tzinfo=UTC)):
+        clock = {"now": t0.astimezone(ET)}
+        got = []
+
+        def adv(sec):
+            clock["now"] += timedelta(seconds=sec)
+        with contextlib.redirect_stdout(io.StringIO()):
+            res = main(lambda: clock["now"], adv, lambda wf: got.append(wf) or True, lambda wf, tt: False)
+        assert "brief.yml" in got and res == "stop", (t0, got, res)
+        print(f"Sunday cron {t0:%H:%M UTC} ({clock['now']:%Z}): dispatched {got}, then {res}")
     print("selftest ok")
 
 

@@ -16,7 +16,9 @@ ROOT = Path(__file__).resolve().parent.parent
 ESRD = ROOT / "data" / "grains" / "raw" / "export_sales"
 OUT = ROOT / "data" / "grains" / "derived" / "esr_brief.json"
 WASDE_RAW = "https://raw.githubusercontent.com/BMR-Com/wasde-analytics/main/data"
-WASDE_LOCAL = os.getenv("WASDE_DIR")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from wasde_store import local_dir as _wasde_local  # noqa: E402  (desk's own WASDE store; wasde-analytics is the fallback)
+WASDE_LOCAL = _wasde_local()
 BU_PER_MT = {"corn": 39.368, "soybeans": 36.744, "wheat": 36.744, "kc": 36.744}
 
 EU = ["European Union", "Austria", "Belgium-Luxembourg", "Denmark", "France", "Germany", "Greece", "Ireland", "Italy", "Netherlands",

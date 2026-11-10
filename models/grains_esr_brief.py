@@ -43,13 +43,13 @@ GROUPS["cotton"] = groups([(c, [c]) for c in ("Vietnam", "Bangladesh", "China", 
 WHEAT_CLASSES = [("wheat_hrw", "HRW"), ("wheat_srw", "SRW"), ("wheat_hrs", "HRS"), ("wheat_white", "White"), ("wheat_durum", "Durum")]
 COMMS = [
     {"key": "corn", "name": "Corn", "sym": "ZC", "dirs": [("corn", "Corn")], "wasde": "Corn.json", "start": 9, "to_world": 0.0254012, "brazil": "corn",
-     "w_unit": "m bu", "w_fmt": 0, "px": "CBOT corn", "px_unit": "¢/bu", "px_fmt": 2},
+     "w_unit": "m bu", "w_fmt": 0, "px": "CBOT corn", "px_unit": "¢/bu", "px_fmt": 2, "blend": True, "blend_why": "that method has had about twice the error of the sales-flow views at this point of past seasons (walk-forward, 2016–2025), because how early buyers book varies a lot from year to year"},
     {"key": "soybeans", "name": "Soybeans", "sym": "ZS", "dirs": [("soybeans", "Soybeans")], "wasde": "Oilseed,_Soybean.json", "start": 9, "to_world": 0.0272155, "brazil": "soybeans",
-     "w_unit": "m bu", "w_fmt": 0, "px": "CBOT soybeans", "px_unit": "¢/bu", "px_fmt": 2},
+     "w_unit": "m bu", "w_fmt": 0, "px": "CBOT soybeans", "px_unit": "¢/bu", "px_fmt": 2, "blend": True, "blend_why": "that method has had about twice the error of the sales-flow views at this point of past seasons (walk-forward, 2016–2025), because how early buyers book varies a lot from year to year"},
     {"key": "meal", "name": "Soybean meal", "sym": "ZM", "dirs": [("soybean_meal", "Meal")], "wasde": "Meal,_Soybean.json", "start": 10, "to_world": 0.000907185, "brazil": "meal",
-     "w_unit": "k short tons", "w_fmt": 0, "px": "CBOT soybean meal", "px_unit": "$/st", "px_fmt": 1},
+     "w_unit": "k short tons", "w_fmt": 0, "px": "CBOT soybean meal", "px_unit": "$/st", "px_fmt": 1, "blend": True, "blend_why": "that method has had about twice the error of the sales-flow views at this point of past seasons (walk-forward, 2016–2025), because how early buyers book varies a lot from year to year"},
     {"key": "oil", "name": "Soybean oil", "sym": "ZL", "dirs": [("soybean_oil", "Oil")], "wasde": "Oil,_Soybean.json", "start": 10, "to_world": 0.000453592, "brazil": "oil",
-     "w_unit": "m lb", "w_fmt": 0, "px": "CBOT soybean oil", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1.0, "disp_unit": "MT"},
+     "w_unit": "m lb", "w_fmt": 0, "px": "CBOT soybean oil", "px_unit": "¢/lb", "px_fmt": 2, "disp": 1.0, "disp_unit": "MT", "share_only": True},
     {"key": "wheat", "name": "All wheat", "sym": "ZW", "dirs": [("wheat_all", "All wheat")], "classes": WHEAT_CLASSES, "wasde": "Wheat.json", "start": 6,
      "to_world": 0.0272155, "w_unit": "m bu", "w_fmt": 0, "px": "CBOT Chicago wheat", "px_unit": "¢/bu", "px_fmt": 2},
     {"key": "kc", "name": "HRW wheat", "sym": "KE", "dirs": [("wheat_hrw", "HRW")], "wasde": "Hard_Red_Winter.json", "world": "Wheat.json", "start": 6, "to_world": 0.0272155,
@@ -473,6 +473,10 @@ def build(cfg):
             "ly": L.commit + float(R["add"].iloc[-1]) if len(R) else None}
     vals = [v for v in (proj["share"], proj["add"], proj["ly"]) if v is not None]
     proj["central"] = float(np.median(vals)) if vals else None
+    if cfg.get("share_only") and proj["share"] is not None:
+        # Soybean oil: export volumes swing several-fold between seasons, so what past seasons added says little;
+        # the share-of-final view has had less than half the error of the others in walk-forward tests.
+        proj["central"] = proj["share"]
     if cfg.get("blend"):
         # Cotton: buying has moved later in the season (no Chinese front-loading, mills booking nearer shipment), so the
         # share-of-final method runs low. Central = median of four sales-flow views: 5-season median additions,
@@ -606,8 +610,9 @@ def build(cfg):
             head += (f"Projection (USDA units): **{fu(projw['central'])} {cfg['w_unit']}** ({gap:+.0%} vs USDA), the middle of four sales-flow views — "
                      f"what the rest of the season added in the last 5 seasons ({pp('add')}), the same weighted toward the last 3 ({pp('add3w')}), "
                      f"last season's finish ({pp('ly')}) and what the current net-sales rate implies ({pp('flow')}); range {pp('blend_lo')}–{pp('blend_hi')}. "
-                     f"Simply scaling by the usual share sold by now gives {pp('share')}, but that method has run low in each of the last three seasons because "
-                     f"buyers now book later in the season than when China front-loaded purchases, so it is shown for reference only. ")
+                     f"Simply scaling by the usual share sold by now gives {pp('share')}, but "
+                     + (cfg.get("blend_why") or "that method has run low in each of the last three seasons because buyers now book later in the season than when China front-loaded purchases")
+                     + ", so it is shown for reference only. ")
         else:
           head += (f"Three ways to project the season from here (USDA units): if this week's {pace*100:.0f}% is the usual share of the final, about {pp('share')}; "
                  f"if the rest of the season adds what it added in the last 5 seasons, about **{pp('add')}** (range {pp('add_lo')}–{pp('add_hi')}); "

@@ -20,6 +20,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "models"))
 import grains_esr_brief as EB  # noqa: E402  (export sales loaders)
+from export_projection import desk_projection  # noqa: E402  (the desk's one export projection)
 
 OUT = ROOT / "data" / "grains" / "derived" / "wasde_brief"
 WASDE_RAW = "https://raw.githubusercontent.com/BMR-Com/wasde-analytics/main/data"
@@ -340,10 +341,17 @@ def checks(key, cfg, df, rd, prev, my, ctx, cut, pcut=None):
             if hist:
                 ratio = float(np.median([h[2] for h in hist])); norm = float(np.mean([h[1] for h in hist]))
                 pace = float(L.commit) / (target * ratio)
+                pace_implied = round(target * pace / norm) if norm > 0 else None
+                # the export projection is the desk's (ESR brief central) when the brief covers this same ESR week and
+                # marketing year in the same units; for earlier cuts (past reports) only the commitment pace exists
+                P = desk_projection(cfg.get("esr") or key)
+                use = (P and P.get("week") == L.weekEndingDate.strftime("%Y-%m-%d") and P.get("my") == my
+                       and P.get("usda") and 0.5 < P["usda"] / target < 2)
                 out["export_sales"] = {"week": L.weekEndingDate.strftime("%Y-%m-%d"), "wk": wk + 1, "commit_kt": round(float(L.commit) / 1e3, 1),
                                        "pace": round(pace, 3), "pace_5y": round(norm, 3), "usda": target,
                                        "usda_prev": get(df, "United States", "Exports", my, prev) if prev is not None else None,
-                                       "implied": round(target * pace / norm) if norm > 0 else None}
+                                       "implied": round(P["value"]) if use else pace_implied, "pace_implied": pace_implied,
+                                       "implied_src": "desk" if use else "commitment pace"}
     # Brazil / Argentina
     sa = ctx.get("sa", {}); sac = cfg.get("sa", {})
     if sac.get("conab") and "conab" in sa:
@@ -419,7 +427,7 @@ def outlook(cfg, ch, rep, now):
         add("US export sales", "bullish" if d > 0.08 else "bearish" if d < -0.08 else "neutral",
             f"Week ending {ex['week']}: commitments " + (f"{ex['commit_kt'] / 1e3:,.1f} MMT" if ex['commit_kt'] >= 1000 else f"{ex['commit_kt'] * 1e3:,.0f} MT") + f" = {ex['pace']*100:.0f}% of USDA's {fmt(ex['usda'])} {U} target vs a 5-yr norm of "
             f"{ex['pace_5y']*100:.0f}% at this point — " + ("ahead of pace, supports a raise." if d > 0.08 else "behind pace, risk of a cut." if d < -0.08 else "on pace.")
-            + (f" Pace implies about {fmt(ex['implied'])} {U}." if ex.get("implied") else ""))
+            + ((f" Desk export projection {fmt(ex['implied'])} {U}." if ex.get("implied_src") == "desk" else f" Commitment pace implies about {fmt(ex['implied'])} {U}.") if ex.get("implied") else ""))
     cb = now.get("conab")
     if cb:
         g = cb["gap"]; tilt = "bearish" if g > 2 else "bullish" if g < -2 else "neutral"
@@ -552,7 +560,8 @@ def preview(df, cfg, rd, my, now):
     if ex and ex.get("implied"):
         d = ex["implied"] / ex["usda"] - 1
         sig.append({"line": "US exports", "usda": ex["usda"], "desk": ex["implied"], "dir": "up" if d > 0.04 else "down" if d < -0.04 else "flat",
-                    "basis": f"export-sales pace at week {ex['wk']} (early-season pace is a weak guide)" if ex["wk"] < 15 else f"export-sales pace at week {ex['wk']}"})
+                    "basis": (f"desk export projection (ESR brief), week {ex['wk']}" if ex.get("implied_src") == "desk" else f"export-sales commitment pace at week {ex['wk']}")
+                             + (" (early-season sales are a weak guide)" if ex["wk"] < 15 else "")})
     cb = now.get("conab")
     if cb:
         sig.append({"line": f"Brazil production {cb['season']}", "usda": cb["usda_mmt"], "desk": cb["conab_mmt"], "dir": "up" if cb["gap"] > 1 else "down" if cb["gap"] < -1 else "flat",

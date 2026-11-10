@@ -101,7 +101,8 @@ def main():
             "cta_up": r.get("cta_up"), "cta_dn": r.get("cta_dn"), "hi52": r.get("hi52"), "lo52": r.get("lo52"), "atr": r.get("atr"),
             "mm_net": r.get("mm_net"), "mm_chg": r.get("mm_dn"), "mm_pct3": r.get("mm_pct3"), "driver": r.get("driver"),
             "spread": r.get("spread"), "spread_v": r.get("spread_v"), "spread_read": r.get("spread_read"),
-            "esr_pace": r.get("esr_pace"), "esr_norm": r.get("esr_norm"),
+            "esr_pace": r.get("esr_pace"), "esr_norm": r.get("esr_norm"),   # commitment pace (shown as pace only)
+            "esr_proj": r.get("esr_implied"), "esr_usda": r.get("esr_target"), "esr_unit": r.get("esr_unit"),   # desk export projection
             "view": r.get("view"), "conviction": r.get("conviction"),
             "technical": sentences(s.get("paras", {}).get("technical"), 3),
             "levels": sentences(re.sub(r"^.*?(Levels to watch:)", r"\1", s.get("paras", {}).get("outlook", ""), count=1), 2)

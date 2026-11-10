@@ -73,7 +73,10 @@ const GC = {
 };
 
 const Grains = (() => {
-  let built = false, com = 'corn', tab = 'g-primer', W, F, COND, EXP, TESTS, SAL, FL, BAS;
+  let built = false, com = 'corn', tab = 'g-primer', W, F, COND, EXP, TESTS, SAL, FL, BAS, ESRB;
+  // the desk's one export projection: ESR brief central (middle of its sales-flow views), in USDA units
+  const deskProj = c => { const b = ESRB?.commodities?.find(x => x.key === (c.sym === 'KE' ? 'kc' : c.wasde)); const v = b?.proj?.central ?? b?.implied;
+    return v ? { v, usda: b.target, unit: b.w_unit, week: b.week } : null; };
   const el = s => document.querySelector('#grains ' + s);
   function shell() {
     $('#grains').innerHTML = `
@@ -87,8 +90,9 @@ const Grains = (() => {
     $$('#gTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; $$('#gTabs button').forEach(x => x.classList.toggle('on', x === b)); render(); });
   }
   async function load() {
-    [W, F, COND, EXP, TESTS, SAL, FL, BAS] = await Promise.all([getJSON(G + 'wasde.json'), getJSON(G + 'flows.json').catch(() => null),
-      getJSON(G + 'condition.json').catch(() => null), getJSON(G + 'exports.json').catch(() => null), getJSON(G + 'tests.json').catch(() => null), getJSON(G + 'sales.json').catch(() => null), getJSON(G + 'flash.json').catch(() => null), getJSON(G + 'basis.json').catch(() => null)]);
+    [W, F, COND, EXP, TESTS, SAL, FL, BAS, ESRB] = await Promise.all([getJSON(G + 'wasde.json'), getJSON(G + 'flows.json').catch(() => null),
+      getJSON(G + 'condition.json').catch(() => null), getJSON(G + 'exports.json').catch(() => null), getJSON(G + 'tests.json').catch(() => null), getJSON(G + 'sales.json').catch(() => null), getJSON(G + 'flash.json').catch(() => null), getJSON(G + 'basis.json').catch(() => null),
+      getJSON(G + 'esr_brief.json').catch(() => null)]);
   }
   function fromHash() {
     const h = location.hash.slice(1).split('/');
@@ -353,7 +357,7 @@ const Grains = (() => {
       { label: 'usual path to USDA', data: d.avg_path, borderColor: '#999', borderDash: [4, 3], pointRadius: 0 }] },
       options: { scales: { x: { title: { display: true, text: 'week of marketing year' } } } } });
     const t = d.test;
-    $('#gSalesTxt').innerHTML = `<p>Week ${d.week} (to ${d.as_of}): commitments ${fmt(d.commit, 0)} (shipped ${fmt(d.shipped, 0)} + unshipped ${fmt(d.outstanding, 0)}) = ${fmt(d.pct_of_usda, 1)}% of USDA's ${fmt(d.usda, 0)} vs ${fmt(d.avg_pct, 1)}% usually by now${d.commit_prev != null ? `; a year ago ${fmt(d.commit_prev, 0)}` : ''}. Commitment-implied exports <b>${fmt(d.implied, 0)}</b> (${sgn(d.implied - d.usda, 0)} vs USDA).</p>
+    $('#gSalesTxt').innerHTML = `<p>Week ${d.week} (to ${d.as_of}): commitments ${fmt(d.commit, 0)} (shipped ${fmt(d.shipped, 0)} + unshipped ${fmt(d.outstanding, 0)}) = ${fmt(d.pct_of_usda, 1)}% of USDA's ${fmt(d.usda, 0)} vs ${fmt(d.avg_pct, 1)}% usually by now${d.commit_prev != null ? `; a year ago ${fmt(d.commit_prev, 0)}` : ''}. Commitment pace implies ${fmt(d.implied, 0)} (${sgn(d.implied - d.usda, 0)} vs USDA).${(p => p ? ` Desk export projection (ESR brief, middle of its sales-flow views): <b>${fmt(p.v, 0)}</b> ${p.unit} vs USDA ${fmt(p.usda, 0)} (${sgn(p.v - p.usda, 0)}).` : '')(deskProj(c))}</p>
       <p>Net sales: last week ${fmt(d.net_last, 1)}, 4-week average ${fmt(d.net_4wk, 1)} vs ${fmt(d.need_weekly, 1)} a week needed to reach USDA (rough: ignores sales carried into next year).</p>
       ${t ? `<p class="note">Backtest (${t.revision_n} marketing years): ahead/behind USDA has called the direction of USDA's next export revision ${fmt(100 * t.revision_hit, 0)}% of the time (${fmt(100 * t.revision_hit_gap3, 0)}% when the gap is over 3%). As a level forecast at this stage it misses by ${fmt(t.near.mae_pct, 1)}% vs ${fmt(t.near.mae_usda_pct, 1)}% for USDA, so use it for the direction of the next revision, not the number.</p>` : ''}`;
     det.innerHTML = `<h2>Weekly net sales, current year (${d.unit})</h2><div class="chart"><canvas id="cNet"></canvas></div>
@@ -469,7 +473,7 @@ const Grains = (() => {
     const rv = Object.entries(it).filter(([k, x]) => x.change && Math.abs(x.change) > 0 && ['production', 'yield', 'exports', 'end_stocks', 'feed_residual', 'ethanol', 'crush'].includes(k));
     if (rv.length) L.push(`<b>This month's revisions:</b> ${rv.map(([k, x]) => `${k.replace('_', ' ')} ${sgn(x.change, k === 'yield' ? 1 : 0)}`).join(', ')}.`);
     const d = COND?.[c.wasde]?.model; if (d) L.push(`<b>Condition yield model:</b> ${fmt(d.estimate, 1)} bu/ac vs USDA ${fmt(d.usda, 1)} (${sgn(d.estimate - d.usda, 1)}).`);
-    const sa = SAL?.[c.wasde]; if (sa) L.push(`<b>Export sales:</b> commitments ${fmt(sa.pct_of_usda, 1)}% of USDA vs ${fmt(sa.avg_pct, 1)}% usually by week ${sa.week}; implied ${fmt(sa.implied, 0)} vs USDA ${fmt(sa.usda, 0)} (${sgn(sa.implied - sa.usda, 0)}). Net sales ${fmt(sa.net_4wk, 1)}/wk (4-wk avg) vs ${fmt(sa.need_weekly, 1)} needed.${sa.test ? ` This gap has called the direction of USDA's next export revision ${fmt(100 * sa.test.revision_hit, 0)}% of the time: the best-tested signal on the grains desk.` : ''}`);
+    const sa = SAL?.[c.wasde]; if (sa) L.push(`<b>Export sales:</b> commitments ${fmt(sa.pct_of_usda, 1)}% of USDA vs ${fmt(sa.avg_pct, 1)}% usually by week ${sa.week}; ${(p => p ? `desk export projection ${fmt(p.v, 0)} vs USDA ${fmt(p.usda, 0)} (${sgn(p.v - p.usda, 0)}); commitment pace ${fmt(sa.implied, 0)} (${sgn(sa.implied - sa.usda, 0)})` : `commitment pace implies ${fmt(sa.implied, 0)} vs USDA ${fmt(sa.usda, 0)} (${sgn(sa.implied - sa.usda, 0)})`)(deskProj(c))}. Net sales ${fmt(sa.net_4wk, 1)}/wk (4-wk avg) vs ${fmt(sa.need_weekly, 1)} needed.${sa.test ? ` The commitment-pace gap has called the direction of USDA's next export revision ${fmt(100 * sa.test.revision_hit, 0)}% of the time: the best-tested signal on the grains desk.` : ''}`);
     const bs = BAS?.[c.sym === 'KE' ? 'kc' : c.wasde]; if (bs) L.push(`<b>Cash basis:</b> ${bs.map(x => `${x.label} ${sgn(x.basis, 0)} vs usual ${sgn(x.usual, 0)}`).join('; ')} (¢/bu). ${bs.filter(x => x.usual != null).every(x => x.basis < x.usual) ? 'Cash is weak against futures everywhere: nearby supply is ample.' : bs.filter(x => x.usual != null).every(x => x.basis > x.usual) ? 'Cash is firm against futures: nearby demand is pulling grain.' : 'Mixed signals across locations.'}`);
     const fl = FL?.[c.wasde]; if (fl?.since && fl.since.n) L.push(`<b>Flash sales since the last weekly report:</b> ${fmt(fl.since.kt, 0)} kt in ${fl.since.n} announcement${fl.since.n === 1 ? '' : 's'}${fl.since.in_unit != null ? ` (${fmt(fl.since.in_unit, 1)} mil bu)` : ''}, to be added to commitments in the next report.`);
     const e = EXP?.[c.wasde]; if (e) L.push(`<b>Export pace:</b> week ${e.week}, ${fmt(e.pct_of_usda, 1)}% of USDA shipped vs ${fmt(e.avg_pct, 1)}% normally; inspections imply ${fmt(e.implied, 0)} vs USDA ${fmt(e.usda, 0)} (${sgn(e.implied - e.usda, 0)})${e.test ? `, typical miss at this stage ±${fmt(e.test.mae_pct, 0)}%. Pace ahead/behind USDA has called the direction of USDA's next export revision ${fmt(100 * e.test.revision_hit, 0)}% of the time` : ''}.`);

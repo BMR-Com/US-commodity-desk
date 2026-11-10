@@ -20,6 +20,7 @@ OUT = ROOT / "data" / "grains" / "derived"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from grains_wasde import tidy, load, FILES  # noqa: E402
 from grains_sales import esr  # noqa: E402
+from export_projection import desk_projection  # noqa: E402
 
 MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
           "November", "December"]
@@ -290,8 +291,12 @@ def export_section(name, wd):
     weekly = dict(wk=[int(x) for x in nets.index], cur=[r1(v / 1e3, 0) if pd.notna(v) else None for v in nets[cur]],
                   avg5=[r1(v / 1e3, 0) for v in nets[prev5].mean(axis=1)] if prev5 else [])
     unit = "mil bu" if conv > 30 else "thou short tons"
+    # proj/lo/hi above are the historical commitment pace (a pace display); the desk's export projection is the ESR
+    # brief's central, attached here when it covers the same marketing year
+    dp = desk_projection({"HRW": "kc"}.get(name, name)) if name in ("corn", "soybeans", "wheat", "meal", "HRW") else None
+    desk = {"value": r1(dp["value"], 1), "week": dp["week"], "usda": dp["usda"]} if dp and dp.get("my") == f"{cur[:4]}/{cur[-2:]}" else None
     return dict(my=cur, week=wk, as_of=str(c.week.iloc[-1].date()), unit=unit, proj=proj, lo=lo, hi=hi, usda=usda,
-                ytd=ytd, weekly=weekly, years_used=len(done[-10:]))
+                ytd=ytd, weekly=weekly, years_used=len(done[-10:]), desk=desk, proj_kind="commitment pace")
 
 
 # ---------------------------------------------------------------- Prices: tightness curve, market-derived S/U, spreads
@@ -823,10 +828,12 @@ def outlook(p):
         e = p["exports"].get(c)
         if e and e["proj"]:
             pv, lo, hi = e["proj"][-1][1], e["lo"][-1][1], e["hi"][-1][1]
-            vs = "above" if pv > (e["usda"] or 0) else "below"
-            L.append(f"Export sales week {e['week']}: commitments-based projection {fnum(pv)} m bu (range {fnum(lo)}–{fnum(hi)}) "
-                     f"vs USDA {fnum(e['usda'])}, {vs} USDA. YTD commitments {e['ytd'][-1]['commit']} MMT vs "
-                     f"{e['ytd'][-2]['commit']} a year ago.")
+            dv = (e.get("desk") or {}).get("value")
+            vs = "above" if (dv or pv) > (e["usda"] or 0) else "below"
+            L.append(f"Export sales week {e['week']}: "
+                     + (f"desk export projection {fnum(dv)} m bu vs USDA {fnum(e['usda'])}, {vs} USDA (commitment pace {fnum(pv)}, range {fnum(lo)}–{fnum(hi)}). "
+                        if dv else f"commitment pace points to {fnum(pv)} m bu (range {fnum(lo)}–{fnum(hi)}) vs USDA {fnum(e['usda'])}, {vs} USDA. ")
+                     + f"YTD commitments {e['ytd'][-1]['commit']} MMT vs {e['ytd'][-2]['commit']} a year ago.")
         k = p["cot"].get(c)
         if k:
             L.append(f"Managed money net {k['last']:+.1f} MMT ({k['wow']:+.1f} w/w), {nth(k['pct'])} percentile since 2006"
@@ -838,8 +845,10 @@ def outlook(p):
         out.append(dict(key=c, name=nm, lines=L))
     e = p["exports"].get("wheat")
     if e and e["proj"]:
-        L = [f"Export sales week {e['week']}: projection {fnum(e['proj'][-1][1])} m bu vs USDA {fnum(e['usda'])}; "
-             + ", ".join(f"{k} {fnum(p['exports'][k]['proj'][-1][1])}" for k in ("HRW", "SRW", "HRS", "White") if p["exports"].get(k) and p["exports"][k]["proj"]) + " m bu by class."]
+        dv = (e.get("desk") or {}).get("value")
+        L = [f"Export sales week {e['week']}: " + (f"desk export projection {fnum(dv)} m bu vs USDA {fnum(e['usda'])} (commitment pace {fnum(e['proj'][-1][1])}); "
+                                                  if dv else f"commitment pace {fnum(e['proj'][-1][1])} m bu vs USDA {fnum(e['usda'])}; ")
+             + "commitment pace by class " + ", ".join(f"{k} {fnum(p['exports'][k]['proj'][-1][1])}" for k in ("HRW", "SRW", "HRS", "White") if p["exports"].get(k) and p["exports"][k]["proj"]) + " m bu."]
         sd = p["sd"].get("wheat")
         if sd:
             b = sd["cols"][-1]

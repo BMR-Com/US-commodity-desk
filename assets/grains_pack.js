@@ -51,9 +51,9 @@ const GrainPack = (() => {
         <div class="card"><h2>USDA September → October change in new-crop ending stocks</h2>${cv('gpRev')}<p class="note">WASDE new-crop US ending stocks, October minus September report (m bu). The report this replicates shows the surprise vs the analyst poll; no free poll exists, so this is USDA's own revision.</p></div>
       </div>
       <div class="grid" id="gpSD"></div>
-      <div class="card"><h2>US export sales model: projected final exports by week</h2>
+      <div class="card"><h2>US export sales: commitment pace by week (not the desk projection)</h2>
         <div class="grid g3" id="gpProj"></div>
-        <p class="note">FAS weekly export sales. Projection at week w = current commitments ÷ the median share of the final (ESR) total that was committed by week w in the last 10 completed seasons; band = 10th–90th percentile of that share. Dashed pink = latest USDA WASDE exports. ESR basis, so it can differ from Census exports.</p></div>
+        <p class="note">FAS weekly export sales. Commitment pace at week w = current commitments ÷ the median share of the final (ESR) total that was committed by week w in the last 10 completed seasons; band = 10th–90th percentile of that share. This is a historical pace display; the desk's export projection (middle of the ESR brief's sales-flow views) is the dot. Dashed pink = latest USDA WASDE exports. ESR basis, so it can differ from Census exports.</p></div>
       <div class="card"><h2>YTD shipments, outstanding sales and commitments at the same week (MMT)</h2><div class="grid g3" id="gpYTD"></div></div>
       <div class="grid g2">
         <div class="card"><h2>${Cn}: weekly net sales vs 5-year average ('000 t)</h2>${cv('gpWeekly')}</div>
@@ -149,7 +149,8 @@ const GrainPack = (() => {
       const wk = Array.from({ length: 52 }, (_, i) => i + 1), m = a => { const o = Object.fromEntries(a); return wk.map(w => o[w] ?? null); };
       const ds = [{ label: 'High', data: m(E.hi), borderWidth: 0, backgroundColor: 'rgba(240,128,150,.3)', fill: '+1', pointRadius: 0 },
         { label: 'Low', data: m(E.lo), borderWidth: 0, pointRadius: 0, fill: false },
-        { label: 'Projected', data: m(E.proj), borderColor: '#2c6fbb', borderWidth: 1.8, pointRadius: 0 }];
+        { label: 'Commitment pace', data: m(E.proj), borderColor: '#2c6fbb', borderWidth: 1.8, pointRadius: 0 }];
+      if (E.desk?.value) ds.push({ label: `Desk projection ${f0(E.desk.value)}`, data: wk.map(w => w === E.week ? E.desk.value : null), borderColor: '#1a1a1a', backgroundColor: '#1a1a1a', pointRadius: 4, showLine: false });
       if (E.usda) ds.push({ label: `USDA ${f0(E.usda)}`, data: wk.map(() => E.usda), borderColor: '#e055e0', borderDash: [5, 4], borderWidth: 1.2, pointRadius: 0 });
       chart('gpP' + k, { type: 'line', data: { labels: wk, datasets: ds }, options: { spanGaps: true, plugins: { legend: { labels: { filter: i => !['High', 'Low'].includes(i.text), boxWidth: 10, font: { size: 10 } } } }, scales: { x: { title: { display: true, text: 'week of marketing year', font: { size: 10 } } } } } });
     });

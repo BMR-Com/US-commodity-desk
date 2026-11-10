@@ -56,7 +56,8 @@ def main():
         r.update({"hv20": v.get("hv20"), "hv_pct": v.get("hv20_pct10"), "day_move": v.get("day_move"), "day_move_usd": v.get("day_move_usd")})
         b = esr.get(key) if key else None
         if b:
-            r.update({"esr_pace": b.get("pace"), "esr_norm": b.get("pace_norm"), "esr_implied": b.get("implied"), "esr_target": b.get("target"), "esr_unit": b.get("w_unit")})
+            r.update({"esr_pace": b.get("pace"), "esr_norm": b.get("pace_norm"), "esr_implied": (b.get("proj") or {}).get("central") or b.get("implied"),
+                      "esr_target": b.get("target"), "esr_unit": b.get("w_unit")})   # esr_implied = the desk export projection
         w = wb.get(key) if key else None
         if w:
             r["wasde"] = w.get("outlook")
@@ -84,9 +85,9 @@ def main():
         if r.get("rsi") is not None and r["rsi"] > 70: F.append(("bear", f"RSI {r['rsi']:.0f}: overbought"))
         if r.get("pct_full") is not None and r["pct_full"] >= 80: F.append(("bear", f"{r['spread']} at {r['pct_full']:.0f}% of full carry"))
         if r.get("pct_full") is not None and r["pct_full"] < 0: F.append(("bull", f"{r['spread']} inverted"))
-        if r.get("esr_pace") and r.get("esr_norm"):
-            g = r["esr_pace"] / r["esr_norm"] - 1
-            if abs(g) >= 0.12: F.append(("bull" if g > 0 else "bear", f"Export commitments {g*100:+.0f}% vs normal pace"))
+        if r.get("esr_implied") and r.get("esr_target"):   # the desk export projection, not raw commitment pace
+            g = r["esr_implied"] / r["esr_target"] - 1
+            if abs(g) >= 0.12: F.append(("bull" if g > 0 else "bear", f"Desk export projection {g*100:+.0f}% vs USDA"))
         if r.get("hv_pct") is not None and r["hv_pct"] <= 15: F.append(("neutral", f"Realized vol low ({r['hv20']:.0f}%, {r['hv_pct']:.0f}th pct): cheap to own optionality into catalysts"))
         if r.get("hv_pct") is not None and r["hv_pct"] >= 85: F.append(("neutral", f"Realized vol high ({r['hv20']:.0f}%, {r['hv_pct']:.0f}th pct)"))
         if r.get("weather"): F.append(("neutral", f"Weather watch: {r['weather']}"))

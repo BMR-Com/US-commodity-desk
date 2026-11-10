@@ -6,8 +6,12 @@ Writes data/summary/summary.json.
 """
 import json, math
 from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from export_projection import desk_projection  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 D = ROOT / "data"
@@ -156,10 +160,19 @@ def grains_fund(key, wkey, sym):
                      + (f" ({sg(d)}); it beat trend in back-tests but not USDA's own same-date forecast, so treat small gaps as noise." if d is not None else "."))
         if d is not None and abs(d) >= 1.0 and key in ("corn", "soybeans"):
             votes.append(-np.sign(d) * 0.3)
+    proj = None
     if sal:
-        gap = (sal["implied"] - sal["usda"]) / sal["usda"] * 100 if sal.get("implied") and sal.get("usda") else None
-        parts.append(f"Export commitments are {f(sal['pct_of_usda'])}% of USDA's {f(sal['usda'], 0)} vs {f(sal['avg_pct'])}% usually by week {sal['week']}, "
-                     f"implying {f(sal['implied'], 0)} ({sg(gap, 0, '%')} vs USDA). This gap has called the direction of USDA's next export revision "
+        # the export projection shown and voted on is the desk's (ESR brief central); the commitment-pace gap is what
+        # grains_sales.py backtests (direction of USDA's next revision), so it is quoted as pace only
+        P = desk_projection(key)
+        proj = ({"value": P["value"], "usda": P["usda"], "src": "desk"} if P and P.get("usda") else
+                {"value": sal.get("implied"), "usda": sal.get("usda"), "src": "commitment pace"})
+        gap = (proj["value"] - proj["usda"]) / proj["usda"] * 100 if proj.get("value") and proj.get("usda") else None
+        pgap = (sal["implied"] - sal["usda"]) / sal["usda"] * 100 if sal.get("implied") and sal.get("usda") else None
+        parts.append(f"Export commitments are {f(sal['pct_of_usda'])}% of USDA's {f(sal['usda'], 0)} vs {f(sal['avg_pct'])}% usually by week {sal['week']}. "
+                     + (f"The desk export projection is {f(proj['value'], 0)} vs USDA {f(proj['usda'], 0)} ({sg(gap, 0, '%')}). " if proj["src"] == "desk" else
+                        f"Commitment pace implies {f(proj['value'], 0)} ({sg(gap, 0, '%')} vs USDA; desk projection not available). ")
+                     + f"The commitment-pace gap ({sg(pgap, 0, '%')}) has called the direction of USDA's next export revision "
                      f"{100 * (sal.get('test') or {}).get('revision_hit', 0):.0f}% of the time.")
         if gap is not None and abs(gap) >= 3:
             votes.append(np.sign(gap) * (0.5 if sal["week"] >= 10 else 0.25))  # early-season pace is noisy
@@ -196,7 +209,7 @@ def grains_fund(key, wkey, sym):
         if bits:
             parts.append("South America: " + " ".join(bits))
     score = float(np.clip(np.sum(votes), -1, 1)) if votes else 0.0
-    return score, " ".join(parts) or "Fundamental data not available.", {"sal": sal, "w": w}
+    return score, " ".join(parts) or "Fundamental data not available.", {"sal": sal, "proj": proj, "w": w}
 
 
 def hogs_fund():
@@ -344,13 +357,13 @@ def ideas(key, sym, group, T, F, fund_score, fund_ctx):
             idea("Convergence premium (tested)", 1, "Live cattle futures have tended to finish above their 20–60-day-out price: buy the second-month contract and hold into its final 20 days.",
                  f"Since 2010: +{b['h20']['mean_pct']:.1f}% on average from 20 days out, {100 * b['h20']['up_share']:.0f}% of contracts higher, clustered t 2.3–3.2, held in 2010–17 and 2018–26. Risk: coincides with a cattle-cycle bull market.",
                  horizon="into expiry", stop_atr=3, tgt_atr=2)
-    if group == "grains" and fund_ctx.get("sal"):
-        s = fund_ctx["sal"]
-        gap = (s["implied"] - s["usda"]) / s["usda"] * 100 if s.get("implied") and s.get("usda") else 0
+    if group == "grains" and fund_ctx.get("sal") and fund_ctx.get("proj"):
+        s, pj = fund_ctx["sal"], fund_ctx["proj"]
+        gap = (pj["value"] - pj["usda"]) / pj["usda"] * 100 if pj.get("value") and pj.get("usda") else 0
         if abs(gap) >= 5 and abs(fund_score) >= 0.25 and np.sign(gap) == np.sign(fund_score):
             d = int(np.sign(gap))
-            idea("Fundamental (export pace → USDA revision)", d, f"Commitments imply {gap:+.0f}% vs USDA's export forecast and the fundamental score is {word(fund_score)}: positions for USDA {'raising' if d > 0 else 'cutting'} exports at the next WASDE.",
-                 f"The sales gap has called the direction of USDA's next export revision {100 * (s.get('test') or {}).get('revision_hit', 0):.0f}% of the time; it has NOT reliably predicted price, so this is a fundamental lean, not a tested price edge.",
+            idea("Fundamental (export pace → USDA revision)", d, f"The {'desk export projection' if pj['src'] == 'desk' else 'commitment pace'} is {gap:+.0f}% vs USDA's export forecast and the fundamental score is {word(fund_score)}: positions for USDA {'raising' if d > 0 else 'cutting'} exports at the next WASDE.",
+                 f"The commitment-pace gap has called the direction of USDA's next export revision {100 * (s.get('test') or {}).get('revision_hit', 0):.0f}% of the time; it has NOT reliably predicted price, so this is a fundamental lean, not a tested price edge.",
                  horizon="to next WASDE")
     if sym in ("DC", "GDK"):
         sp = J("dairy/derived/dairy_spot.json") or {}
@@ -469,7 +482,7 @@ if __name__ == "__main__":
                 B = esr_read(key if key != "wheat" else "wheat")
                 if B:
                     fund_txt += (f" Export sales (week ending {B['week']}): commitments {B['pace']*100:.0f}% of USDA vs a {B['pace_norm']*100:.0f}% norm"
-                                 + (f"; pace implies {B['implied']:,.0f} {B['w_unit']} vs USDA {B['target']:,.0f}." if B.get("implied") else "."))
+                                 + (f"; desk export projection {((B.get('proj') or {}).get('central') or B['implied']):,.0f} {B['w_unit']} vs USDA {B['target']:,.0f}." if B.get("implied") else "."))
                 Wb, lab = wasde_read(key)
                 if Wb:
                     fund_txt += f" {lab} WASDE factor read: {Wb['outlook']}."

@@ -15,7 +15,7 @@ const Intel = (() => {
       const items = D.items.filter(i => !sel || i.tags.some(t => sel.includes(t))).slice(0, n);
       el.innerHTML = (chips ? `<div class="tbar"><div class="grp"><span class="lab">Filter</span>${[['', 'All'], ...Object.entries(TAGLAB)].map(([k, l]) => `<button class="chip ${(sel || []).join() === k || (!sel && !k) ? 'on' : ''}" data-t="${k}">${l}</button>`).join('')}</div></div>` : '') +
         `<ul class="news">${items.map(i => `<li><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a> <span class="note">${esc(i.source)} · ${ago(i.time)}</span></li>`).join('') || '<li class="note">No recent headlines.</li>'}</ul>
-        ${chips ? `<p class="note">Headlines and links only, from major outlets' public RSS (Reuters, Bloomberg, Dow Jones/WSJ, DTN, Farm Progress, Brownfield and others via Google News). Updated every 3 hours; ${D.generated}.</p>` : ''}`;
+        ${chips ? `<p class="note">Headlines and links only, from major outlets' public RSS (Reuters, Bloomberg, Dow Jones/WSJ, DTN, Farm Progress, Brownfield and others via Google News), plus ADMIS daily commentary, Rabobank free research and Czapp. Updated every 3 hours; ${D.generated}.</p>` : ''}`;
       el.querySelectorAll('[data-t]').forEach(b => b.onclick = () => { sel = b.dataset.t ? [b.dataset.t] : null; draw(); });
     };
     draw();

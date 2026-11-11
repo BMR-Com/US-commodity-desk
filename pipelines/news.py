@@ -12,6 +12,10 @@ from pathlib import Path
 from urllib.parse import quote
 import pandas as pd
 import requests
+try:
+    from research_sources import admis, rabobank
+except Exception:  # keep the news run alive if the research module breaks
+    admis = rabobank = lambda *a, **k: []
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "news"
 H = {"User-Agent": "Mozilla/5.0 (compatible; BMR-Com research desk; +https://bmr-com.github.io/US-commodity-desk/)"}
@@ -122,6 +126,11 @@ def main():
                 g["source"] = g["source"] or name
             items += got
             print(name, len(got))
+    for src in (admis, rabobank):  # ADMIS commentary + Rabobank free research (headline, link, short teaser)
+        try:
+            items += src()
+        except Exception as e:
+            print(src.__name__, "failed:", e)
     df = pd.DataFrame(old + items)
     if df.empty:
         return
@@ -135,9 +144,14 @@ def main():
         if not re.search(AG, t, re.I):
             return []
         return [k for k, rx in TAGS.items() if re.search(rx, t, re.I)]
+    if "teaser" not in df:
+        df["teaser"] = None
+    research = df.source.isin(["ADMIS", "Rabobank"])
     df["tags"] = df.title.apply(tags)
+    # research sources are ag/energy-focused already: tag on title + teaser, no outlet filter; keep untagged ones as "research"
+    df.loc[research, "tags"] = df[research].apply(lambda r: [k for k, rx in TAGS.items() if re.search(rx, f"{r.title} {r.teaser or ''}", re.I)] or ["research"], axis=1)
     df = df[df.tags.str.len() > 0].sort_values("time", ascending=False)
-    rows = df.drop(columns=["key"]).to_dict("records")
+    rows = [{k: v for k, v in r.items() if not (k == "teaser" and not isinstance(v, str))} for r in df.drop(columns=["key"]).to_dict("records")]
     p.write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "items": rows[:600]}, ensure_ascii=False, indent=0))
     print("kept", len(rows), "items;", df.source.value_counts().head(12).to_dict())
 

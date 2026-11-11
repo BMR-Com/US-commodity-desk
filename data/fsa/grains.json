@@ -1,0 +1,26 @@
+{
+ "built": "2026-11-10",
+ "crops": {
+  "corn": {
+   "crop": "corn",
+   "error": "FSA grain acreage backfill in progress"
+  },
+  "soybeans": {
+   "crop": "soybeans",
+   "error": "FSA grain acreage backfill in progress"
+  },
+  "wheat": {
+   "crop": "wheat",
+   "error": "FSA grain acreage backfill in progress"
+  },
+  "sorghum": {
+   "crop": "sorghum",
+   "error": "FSA grain acreage backfill in progress"
+  }
+ },
+ "method": [
+  "Same as the cotton FSA method: FSA planted + failed by state x the state's NASS/FSA ratio at the same release month",
+  "Abandonment from FSA failed share and poor/very-poor ratings (state means removed), past seasons at the same release month; drought left out",
+  "Production = harvested x USDA's same-month US yield (WASDE)"
+ ]
+}

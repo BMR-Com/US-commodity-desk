@@ -1,0 +1,15 @@
+{
+ "checked": "2026-11-10",
+ "ok": true,
+ "failures": [],
+ "notes": [
+  "cotton: Texas conditional block matches crop_projection.json (2026-11-10)",
+  "cotton: 17 states compared with crop.json estimate"
+ ],
+ "pending": [
+  "corn: FSA grain acreage backfill in progress",
+  "soybeans: FSA grain acreage backfill in progress",
+  "wheat: FSA grain acreage backfill in progress",
+  "sorghum: FSA grain acreage backfill in progress"
+ ]
+}

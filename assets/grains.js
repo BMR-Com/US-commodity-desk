@@ -128,6 +128,12 @@ const Grains = (() => {
     const idx = await getJSON(G + 'wasde_brief/index.json').catch(() => null);
     if (!idx) { body.innerHTML = '<div class="card"><p class="note">WASDE analysis not built yet.</p></div>'; return; }
     WasdeView.mount(body, { base: G + 'wasde_brief/', index: idx, key });
+    // FSA reported acres vs USDA for corn, soybeans and wheat (isolated: a failure leaves the WASDE view intact)
+    try {
+      const fk = ['corn', 'soybeans', 'wheat'].includes(c.wasde) ? c.wasde : null;   // KC wheat shows all-wheat
+      if (fk && typeof FsaAcres !== 'undefined')
+        FsaAcres.card(fk).then(h => { try { if (el('#gBody') === body) body.insertAdjacentHTML('beforeend', h); } catch (e) { /* ignore */ } }).catch(() => {});
+    } catch (e) { /* ignore */ }
   }
   const us = c => { const b = W.commodities[c.wasde].us; const my = Object.keys(b).sort(); return { b, my, cur: my.at(-1), prev: my.at(-2) }; };
 

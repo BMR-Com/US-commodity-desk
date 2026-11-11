@@ -1,0 +1,72 @@
+name: fsa
+# FSA crop acreage (port of BMR-Com/cotton-crop-progress): collector → cotton and grain models → build checks →
+# publish (only if the checks pass) → commit data/fsa only.
+# FSA posts a release a month, August–January. Each county workbook takes ~30 s to read and FSA refuses bursts, so the
+# collector works to a time budget and saves after every file; the 3-hourly runs carry a backfill on in stages and exit
+# at once when nothing is pending. Cotton's NASS/drought inputs are read from a sparse clone of cotton-crop-progress
+# (no second collector).
+on:
+  schedule:
+    - cron: '35 17 * * *'     # daily, after the noon-ET USDA releases
+    - cron: '50 */3 * * *'    # backfill stages (skipped when nothing is pending)
+  workflow_dispatch:
+    inputs:
+      budget: {description: 'collector time budget, minutes', default: '40'}
+permissions: {contents: write}
+concurrency: {group: fsa, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - name: anything to do?
+        id: need
+        run: |
+          p=$(python3 -c "import json;print(json.load(open('data/fsa/status.json')).get('pending',1))" 2>/dev/null || echo 1)
+          if [ "${{ github.event.schedule }}" = "50 */3 * * *" ] && [ "$p" = "0" ]; then echo "go=0" >> "$GITHUB_OUTPUT"; else echo "go=1" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/setup-python@v5
+        if: steps.need.outputs.go == '1'
+        with: {python-version: '3.11'}
+      - if: steps.need.outputs.go == '1'
+        run: pip install -q requests pandas numpy scipy openpyxl xlrd python-calamine
+      - name: FSA crop acreage (staged; progress saved after each file)
+        if: steps.need.outputs.go == '1'
+        continue-on-error: true
+        timeout-minutes: 55
+        env: {FSA_BUDGET_MIN: "${{ inputs.budget || '40' }}"}
+        run: python pipelines/fsa.py
+      - name: cotton-crop-progress inputs (sparse clone, read only)
+        if: steps.need.outputs.go == '1'
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/BMR-Com/cotton-crop-progress.git .cache/ccp
+          cd .cache/ccp && git sparse-checkout set --no-cone '/data/cotton_*.csv' '/data/ginning/annual.csv' '/data/drought/cotton_area_drought.csv' '/data/fsa/fsa_cotton_state.csv' '/docs/data/crop_projection.json' '/docs/data/crop.json'
+      - name: WASDE store (local JSONs for the grain figures)
+        if: steps.need.outputs.go == '1'
+        run: python models/wasde_store.py
+      - name: build (cotton, grains)
+        if: steps.need.outputs.go == '1'
+        run: |
+          mkdir -p .cache/fsa_build
+          python -W ignore models/fsa_cotton.py || echo cotton >> "$RUNNER_TEMP/failed"
+          python -W ignore models/fsa_grains.py || echo grains >> "$RUNNER_TEMP/failed"
+      - name: build checks (models/fsa_check.py)
+        id: check
+        if: steps.need.outputs.go == '1'
+        run: python models/fsa_check.py
+      - name: publish (only when the checks pass)
+        if: steps.need.outputs.go == '1' && success()
+        run: |
+          for f in cotton grains; do [ -f .cache/fsa_build/$f.json ] && cp .cache/fsa_build/$f.json data/fsa/$f.json; done
+          echo published
+      - name: commit
+        if: always() && steps.need.outputs.go == '1'
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/fsa
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: FSA crop acreage $(date -u +%F)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - name: report failed builds
+        if: always() && steps.need.outputs.go == '1'
+        run: '[ -f "$RUNNER_TEMP/failed" ] && { echo "::error::failed: $(tr "\n" " " < "$RUNNER_TEMP/failed")"; exit 1; } || true'

@@ -119,6 +119,11 @@ const Cotton = (() => {
         ${P.texas_regions ? `<p>${P.texas_regions}</p>` : ''}${(P.notes || []).map(n => `<p class="note">${n}</p>`).join('')}
         <p class="note">Inputs through: ${Object.entries(P.inputs_through || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(' · ')}. Built from ${(P.variables || []).length} public USDA data sets; see the ${src(SITE.crop, 'crop progress page')}.</p>`;
     }).catch(() => { host.innerHTML = '<p class="note">Crop projection not available yet.</p>'; });
+    // FSA reported acres vs USDA (desk port of the cotton-crop-progress FSA method), below the projection card; isolated
+    try {
+      if (typeof FsaAcres !== 'undefined') FsaAcres.card('cotton').then(h => { try { host.insertAdjacentHTML('afterend', h); } catch (e) { /* ignore */ } })
+        .catch(() => { try { host.insertAdjacentHTML('afterend', '<div class="card" style="margin-bottom:8px"><p class="note">FSA acreage card not available yet.</p></div>'); } catch (e) { /* ignore */ } });
+    } catch (e) { /* the rest of the tab stays */ }
   }
   function frame(u, title, what) {
     body().innerHTML = `<div class="card" style="margin-bottom:8px"><h2 style="display:inline">${title}</h2> <span class="note">${what} Live view of the ${src(u, 'full dashboard')}.</span></div>

@@ -79,21 +79,17 @@ def parse_book(content):
                   "not_planted": col("notplantedacres"), "planted_and_failed": col("plantedandfailedacres", "plantedandfailed")}
             if not cs or not cc or not fm["planted"]:
                 continue
-            for _, r in df.iterrows():
-                st, cr = str(r[cs]).strip(), str(r[cc]).strip()
-                if not st or st == "nan" or not cr or cr == "nan" or st.lower().startswith("total"):
-                    continue
-                k = (st.title(), cr.title(), str(r[ct]).strip().title() if ct else "", str(r[ci]).strip().title() if ci else "")
-                a = agg.setdefault(k, {f: 0.0 for f in FIELDS})
-                for f, c in fm.items():
-                    if c is None:
-                        continue
-                    try:
-                        v = float(r[c])
-                        if v == v:
-                            a[f] += v
-                    except (TypeError, ValueError):
-                        pass
+            keep = {"state": df[cs].astype(str).str.strip(), "crop": df[cc].astype(str).str.strip(),
+                    "crop_type": df[ct].astype(str).str.strip() if ct else "", "irrigation": df[ci].astype(str).str.strip() if ci else ""}
+            for f, c in fm.items():
+                keep[f] = pd.to_numeric(df[c], errors="coerce").fillna(0.0) if c is not None else 0.0
+            t = pd.DataFrame(keep)
+            t = t[(t["state"] != "") & (t["state"] != "nan") & (t["crop"] != "") & (t["crop"] != "nan") & ~t["state"].str.lower().str.startswith("total")]
+            for c in ("state", "crop", "crop_type", "irrigation"):
+                t[c] = t[c].astype(str).str.title()
+            g = t.groupby(["state", "crop", "crop_type", "irrigation"], as_index=False)[FIELDS].sum()
+            for r in g.itertuples(index=False):
+                agg[(r.state, r.crop, r.crop_type, r.irrigation)] = {f: float(getattr(r, f)) for f in FIELDS}
             if agg:
                 return agg, sh
     return agg, None
@@ -129,6 +125,7 @@ def main(maxn=99):
             r["err"] = repr(e)[:200]
             print("::warning::", r["label"], repr(e)[:200])
         idx["releases"] = [q for q in idx["releases"] if (q["year"], q["asof"]) != (r["year"], r["asof"])] + [r]
+        idx_f.write_text(json.dumps(idx, indent=1))   # saved after every release, so a timeout keeps what was read
         time.sleep(2)
     idx["releases"].sort(key=lambda q: q["asof"])
     idx["updated"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")

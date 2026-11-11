@@ -115,7 +115,14 @@ def main(maxn=99):
                 idx["releases"].append({**r, "rows": sum(1 for _ in g) - 1, "file": f.name})
     print("FSA releases on the page:", len(rel), "stored:", len(have))
     n = 0
-    for r in sorted(rel, key=lambda x: x["asof"], reverse=True):
+    # newest release first, then the releases nearest the same date in earlier years (what the cotton estimate needs),
+    # then the rest; a timeout leaves the most useful files stored
+    newest = max(rel, key=lambda x: x["asof"])
+    nd = (datetime.fromisoformat(newest["asof"]) - datetime(newest["year"], 1, 1)).days
+    def prio(x):
+        d = abs((datetime.fromisoformat(x["asof"]) - datetime(x["year"], 1, 1)).days - nd)
+        return (x is not newest, d > 25, d, x["asof"])
+    for r in sorted(rel, key=prio):
         if (r["year"], r["asof"]) in have or n >= maxn:
             continue
         try:

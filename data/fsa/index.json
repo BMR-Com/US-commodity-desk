@@ -1,0 +1,136 @@
+{
+ "releases": [
+  {
+   "year": 2026,
+   "asof": "2026-11-10",
+   "label": "2026 acreage data as of November 10, 2026",
+   "url": "https://www.fsa.usda.gov/documents/wrcdk92kc1587mahom35213",
+   "file_url": "https://www.fsa.usda.gov/sites/default/files/2026-11/Wrcdk92KC1587MaHom35213.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/2026-11/Wrcdk92KC1587MaHom35213.zip')"
+  },
+  {
+   "year": 2020,
+   "asof": "2020-11-10",
+   "label": "2020 acreage data as of November 10, 2020",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2020_FSA_Acres_web_as_of_110220-vkfNG6.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2020_FSA_Acres_web_as_of_110220-vkfNG6.zip')"
+  },
+  {
+   "year": 2021,
+   "asof": "2021-11-09",
+   "label": "2021 acreage data as of November 9, 2021",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2021_fsa_acres_web_as_of_110921.zip",
+   "rows": 18548,
+   "sheet": "county_data(county):18548",
+   "file": "2021_2021-11-09.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2016,
+   "asof": "2016-11-01",
+   "label": "2016 acreage data as of November 1, 2016",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2016_fsa_acres_nov2016_dd36.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2016_fsa_acres_nov2016_dd36.zip')"
+  },
+  {
+   "year": 2024,
+   "asof": "2024-11-01",
+   "label": "2024 acreage data as of November 1, 2024",
+   "url": "https://www.fsa.usda.gov/documents/kmwmjuc631qpebuukewh",
+   "file_url": "https://www.fsa.usda.gov/sites/default/files/2024-11/kmWMJUc631qPEbuuKeWH.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/2024-11/kmWMJUc631qPEbuuKeWH.zip')"
+  },
+  {
+   "year": 2017,
+   "asof": "2017-11-01",
+   "label": "2017 acreage data as of November 1, 2017",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2017_fsa_acres_nov2017gru14.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2017_fsa_acres_nov2017gru14.zip')"
+  },
+  {
+   "year": 2018,
+   "asof": "2018-11-01",
+   "label": "2018 acreage data as of November 1, 2018",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2018_fsa_acres_Nov_2018_grufs%21.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2018_fsa_acres_Nov_2018_grufs%21.zip')"
+  },
+  {
+   "year": 2019,
+   "asof": "2019-11-01",
+   "label": "2019 acreage data as of November 1, 2019",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2019_fsa_acres_nov_2019_ohnot.ZIP",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2019_fsa_acres_nov_2019_ohnot.ZIP')"
+  },
+  {
+   "year": 2022,
+   "asof": "2022-11-01",
+   "label": "2022 acreage data as of November 1, 2022",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/NEBP1OybFfUr83utFEB2.zip",
+   "rows": 18439,
+   "sheet": "county_data(county):18439",
+   "file": "2022_2022-11-01.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2023,
+   "asof": "2023-11-01",
+   "label": "2023 acreage data as of November 1, 2023",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/XoNdctf9jmvWFGY.zip",
+   "rows": 18745,
+   "sheet": "county_data(county):18745",
+   "file": "2023_2023-11-01.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2017,
+   "asof": "2017-12-01",
+   "label": "2017 acreage data as of December 1, 2017",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2017_fsa_acres_dec2017fsb19.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2017_fsa_acres_dec2017fsb19.zip')"
+  },
+  {
+   "year": 2019,
+   "asof": "2019-12-01",
+   "label": "2019 acreage data as of December 1, 2019",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2019_fsa_acres_dec2019_omron.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2019_fsa_acres_dec2019_omron.zip')"
+  },
+  {
+   "year": 2021,
+   "asof": "2021-12-01",
+   "label": "2021 acreage data as of December 1, 2021",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2021_fsa_acres_web_as_of_120121.zip",
+   "rows": 18560,
+   "sheet": "county_data(county):18560",
+   "file": "2021_2021-12-01.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2022,
+   "asof": "2022-12-01",
+   "label": "2022 acreage data as of December 1, 2022",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/DkSrOxeWEvkEdt2.zip",
+   "rows": 18488,
+   "sheet": "county_data(county):18488",
+   "file": "2022_2022-12-01.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2023,
+   "asof": "2023-12-01",
+   "label": "2023 acreage data as of December 1, 2023",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/Ph8ZGICAsuKH.zip",
+   "rows": 18813,
+   "sheet": "county_data(county):18813",
+   "file": "2023_2023-12-01.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2016,
+   "asof": "2016-12-01",
+   "label": "2016 acreage data as of December 1, 2016",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/2016_fsa_acres_dec2016_27gv.zip",
+   "err": "HTTPError('403 Client Error: Forbidden for url: https://www.fsa.usda.gov/sites/default/files/documents/2016_fsa_acres_dec2016_27gv.zip')"
+  }
+ ]
+}

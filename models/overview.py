@@ -233,7 +233,7 @@ def events(key, n=5, days=7):
     cut = (datetime.now(timezone.utc).timestamp() - days * 86400)
     its = [i for i in NEWS if ((rx and re.search(rx, i["title"] + " " + (i.get("teaser") or ""), re.I)) or (not rx and tag in (i.get("tags") or [])))]
     its = [i for i in its if i.get("time") and datetime.strptime(i["time"][:16], "%Y-%m-%dT%H:%M").replace(tzinfo=timezone.utc).timestamp() >= cut]
-    its.sort(key=lambda i: i["time"], reverse=True)
+    its.sort(key=lambda i: (i.get("tier") or 3, -datetime.strptime(i["time"][:16], "%Y-%m-%dT%H:%M").timestamp()))
     seen, out = set(), []
     for i in its:
         k = re.sub(r"[^a-z]", "", i["title"].lower())[:50]

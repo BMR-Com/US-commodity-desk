@@ -57,6 +57,60 @@ TAGS = {
 }
 
 
+# ───────── source quality and relevance (2026-11-11) ─────────
+# Only sources that matter for prices are kept. Tier 1: Reuters, Bloomberg, Dow Jones (WSJ, MarketWatch, Barron's), FT and
+# price-reporting agencies; tier 2: exchanges, commodity boards, official statistics and trade data, and broker/bank research
+# the desk reads; tier 3: specialist ag/energy trade press. Everything else (local papers, lifestyle, sports) is dropped.
+TIER_RX = [
+    (1, r"^reuters|^bloomberg|wall street journal|^wsj|dow jones|marketwatch|barron|financial times|^ft\b|s&p global|platts|argus"),
+    (2, r"usda|foreign agricultural service|\bnass\b|\bams\b|\bers\b|cftc|^ice\b|intercontinental exchange|cme group|\beia\b|energy information|"
+        r"\biea\b|international energy agency|opec|icco|international cocoa|international coffee org|\bico\b|icac|international cotton advisory|"
+        r"international sugar org|unica|conab|cocobod|conseil caf|cecaf|national cotton council|cotton incorporated|cotlook|mpob|malaysian palm|"
+        r"comtrade|census bureau|customs|secex|mdic|admis|rabobank|czapp|czarnikow|farmdoc"),
+    (3, r"dtn|progressive farmer|brownfield|farm progress|successful farming|agweb|pro farmer|farm journal|feedstuffs|national hog farmer|drovers|"
+        r"dairy herd|hoard|natural gas intelligence|rigzone|oilprice|barchart|daily coffee news|cotton grower|farm press|ethanol producer|"
+        r"pork business|the pig site|farms\.com|world.grain|sosland|food business news|agrimoney|nasdaq|investing\.com|kitco|fastmarkets|"
+        r"agricensus|spglobal|commodity|ag web|agri-pulse|agripulse|american ag network|rfd-tv|kfgo|farm news|country journal|agrolatam|notícias agrícolas|noticias agricolas"),
+]
+CONTEXT = (r"price|futures|market|crop|harvest|plant|acre|yield|export|import|shipment|sales|production|output|supply|demand|stock|inventor|"
+           r"usda|wasde|\bice\b|cbot|nymex|tariff|\btrade|\bmills?\b|\bgin|bale|weather|drought|\brain|frost|\bheat\b|flood|forecast|deficit|surplus|grind|"
+           r"arrival|crush|refin|opec|\brigs?\b|storage|\blng\b|barrel|bushel|tonne|\btons?\b|cash|basis|spread|rally|slump|slid|fell|\bfall|rise|\brose\b|gain|"
+           r"drop|climb|surge|plunge|record|outlook|report|estimate|fund|speculat|cot\b|hedg|contract|cargo|freight|port|farmer|grower|ethanol|"
+           r"biofuel|feedlot|slaughter|herd|cutout|disease|outbreak|subsid|policy|\bbans?\b|quota|duty|\bdeal|china|brazil|india|consum|inflation|dollar")
+NEG = {
+    "cotton": r"\b(tom|sen\.?|senator|aimee|rep\.?|mr\.?|ms\.?|judge|coach|officer|deputy)\s+cotton\b|cotton candy|cotton swab|cotton bowl|king cotton|"
+              r"cotton ball|cotton club|cottonwood|cotton[- ]?tail|cotton mouth|cottonmouth|cotton on\b|egyptian cotton sheets|cotton (t-?shirt|dress|sheets|towel)",
+    "sugar": r"blood sugar|sugar daddy|sugar land|sugar bowl|sugar ray|sugar[- ]free|sugary drink|diabet|sugar cookie|sugar rush|sugar glider",
+    "coffee": r"coffee shop|coffee table|coffeehouse|barista|latte|starbucks (menu|drink|holiday)|coffee (recipe|maker|machine|mug)|best coffee",
+    "cocoa": r"cocoa butter (lotion|skin)|hot cocoa (recipe|bar)|cocoa beach",
+    "cattle": r"cattle call|cattle dog",
+    "corn": r"corn ?hole|candy corn|corn dog|corn maze|corn nation|popcorn|cornhusker|cornell",
+    "wheat": r"shredded wheat|wheat thins|buckwheat",
+    "dairy": r"dairy queen|dairy[- ]free",
+    "hogs": r"road hog|hog wild|harley|groundhog|hedgehog",
+    "crude": r"crude (joke|humor|remark|language)",
+}
+
+
+NEG_ALL = (r"stock price & latest news|company profile|\bprofile\b|share price|\bltd\b|\(\w+\.(bo|ns)\)|digital edition|food banks?|donat|coupon|"
+           r"scholarship|recipe|obituar|\baward|festival|county fair|pageant|queen|podcast episode|webinar|hall of fame|4-h|ffa\b")
+
+
+def tier_of(source):
+    s = (source or "").lower()
+    for t, rx in TIER_RX:
+        if re.search(rx, s):
+            return t
+    return None
+
+
+def relevant_tags(text):
+    """Commodity tags for a headline (plus teaser): the commodity word, a market context word, and none of the known false hits."""
+    if not re.search(CONTEXT, text, re.I) or re.search(NEG_ALL, text, re.I):
+        return []
+    return [k for k, rx in TAGS.items() if re.search(rx, text, re.I) and not (k in NEG and re.search(NEG[k], text, re.I))]
+
+
 def fetch(url):
     for i in range(3):
         try:
@@ -118,6 +172,16 @@ def main():
             items += got
             print(site, len(got))
         time.sleep(1.2)
+    # commodity boards, exchanges, official statistics and trade data
+    boards = ["usda.gov", "fas.usda.gov", "cftc.gov", "eia.gov", "theice.com", "ice.com", "cmegroup.com", "icco.org", "ico.org", "icac.org", "isosugar.org",
+              "unica.com.br", "conab.gov.br", "cocobod.gh", "conseilcafecacao.ci", "cotton.org", "cottoninc.com", "opec.org", "iea.org", "mpob.gov.my"]
+    bq = " OR ".join(f"site:{b}" for b in boards)
+    url = f"https://news.google.com/rss/search?q={quote(f'({bq}) when:14d')}&hl=en-US&gl=US&ceid=US:en"
+    x = fetch(url)
+    if x:
+        got = parse(x, "boards")
+        items += got
+        print("boards", len(got))
     for name, url in [("Brownfield", "https://www.brownfieldagnews.com/feed/"), ("farmdoc daily", "https://farmdocdaily.illinois.edu/feed")]:
         x = fetch(url)
         if x:
@@ -139,18 +203,13 @@ def main():
     df["time"] = df.time.fillna(pd.Timestamp.now("UTC").strftime("%Y-%m-%dT%H:%MZ"))
     cutoff = (pd.Timestamp.now("UTC") - pd.Timedelta(days=45)).strftime("%Y-%m-%d")
     df = df[df.time >= cutoff]
-    AG = r"crude|\boil\b|OPEC|\bLNG\b|natural gas|diesel|gasoline|refiner|Brent|WTI|cotton|soy|corn|maize|grain|crop|safra|safrinha|harvest|plant|wheat|cattle|beef|hog|pork|dairy|milk|cheese|butter|farm|ag\b|agri|fertili|ethanol|biofuel|crush|livestock|feed|USDA|WASDE|export sales|tariff"
-    def tags(t):
-        if not re.search(AG, t, re.I):
-            return []
-        return [k for k, rx in TAGS.items() if re.search(rx, t, re.I)]
     if "teaser" not in df:
         df["teaser"] = None
-    research = df.source.isin(["ADMIS", "Rabobank"])
-    df["tags"] = df.title.apply(tags)
-    # research sources are ag/energy-focused already: tag on title + teaser, no outlet filter; keep untagged ones as "research"
-    df.loc[research, "tags"] = df[research].apply(lambda r: [k for k, rx in TAGS.items() if re.search(rx, f"{r.title} {r.teaser or ''}", re.I)] or ["research"], axis=1)
+    df["tier"] = df.source.apply(tier_of)
+    df = df[df.tier.notna()]
+    df["tags"] = df.apply(lambda r: relevant_tags(f"{r.title} {r.teaser if isinstance(r.teaser, str) else ''}"), axis=1)
     df = df[df.tags.str.len() > 0].sort_values("time", ascending=False)
+    df["tier"] = df.tier.astype(int)
     rows = [{k: v for k, v in r.items() if not (k == "teaser" and not isinstance(v, str))} for r in df.drop(columns=["key"]).to_dict("records")]
     p.write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "items": sorted([x for x in rows if x["source"] not in ("ADMIS", "Rabobank", "Czapp")][:600] + [x for x in rows if x["source"] in ("ADMIS", "Rabobank", "Czapp")], key=lambda x: x["time"], reverse=True)}, ensure_ascii=False, indent=0))
     print("kept", len(rows), "items;", df.source.value_counts().head(12).to_dict())

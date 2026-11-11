@@ -51,7 +51,7 @@ def parse_book(content):
             books += [z.read(n) for n in names if n.lower().endswith((".xlsx", ".xls"))]
     except zipfile.BadZipFile:
         books.append(content)                    # old .xls
-    agg = {}
+    county, state, used = {}, {}, []
     for b in books:
         xl = pd.ExcelFile(io.BytesIO(b))
         for sh in xl.sheet_names:
@@ -75,6 +75,7 @@ def parse_book(content):
                         if k.startswith(n):
                             return c
             cs, cc, ct, ci = col("statename", "state"), col("crop"), col("croptype", "type"), col("irrigationpractice", "irrigation")
+            has_county = any(k.startswith("county") for k in cols)
             fm = {"planted": col("plantedacres"), "volunteer": col("volunteeracres"), "failed": col("failedacres"), "prevented": col("preventedacres"),
                   "not_planted": col("notplantedacres"), "planted_and_failed": col("plantedandfailedacres", "plantedandfailed")}
             if not cs or not cc or not fm["planted"]:
@@ -88,11 +89,15 @@ def parse_book(content):
             for c in ("state", "crop", "crop_type", "irrigation"):
                 t[c] = t[c].astype(str).str.title()
             g = t.groupby(["state", "crop", "crop_type", "irrigation"], as_index=False)[FIELDS].sum()
+            tgt = county if has_county else state
+            used.append(f"{sh}{'(county)' if has_county else ''}:{len(g)}")
+            # county sheets split one table across sheets (Excel row limit): add them up
             for r in g.itertuples(index=False):
-                agg[(r.state, r.crop, r.crop_type, r.irrigation)] = {f: float(getattr(r, f)) for f in FIELDS}
-            if agg:
-                return agg, sh
-    return agg, None
+                a = tgt.setdefault((r.state, r.crop, r.crop_type, r.irrigation), {f: 0.0 for f in FIELDS})
+                for f in FIELDS:
+                    a[f] += float(getattr(r, f))
+    agg = county or state
+    return agg, ";".join(used) if agg else None
 
 
 def main(maxn=99):

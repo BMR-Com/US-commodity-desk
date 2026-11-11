@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""FSA crop acreage → corn, soybeans, wheat and sorghum planted, harvested and production: the cotton-crop-progress
+"""FSA crop acreage → corn, soybeans and wheat planted, harvested and production: the cotton-crop-progress
 FSA method (models/fsa_cotton.py, scripts/model.py fsa_model + abandonment_model) applied to the grains, same parameters.
 
 Per state at the latest FSA release:
@@ -12,9 +12,9 @@ Per state at the latest FSA release:
   production = harvested x USDA's US yield in the WASDE of the same month (US level).
 Cotton-only inputs that are left out: D2-D4 drought on the crop area (the desk has no cotton-area-style drought series
 for grains; whole-state drought is not used) and the Texas-only abandonment/yield blend. Ratings are NASS crop
-condition by state (data/grains/raw/crop_progress): corn, soybeans, sorghum from late June (ISO week 26) to the
+condition by state (data/grains/raw/crop_progress): corn and soybeans from late June (ISO week 26) to the
 release; wheat (winter + spring) from March to July.
-Corn and sorghum harvested are for grain, so their "abandonment" includes silage/forage cut; state means absorb the
+Corn harvested is for grain, so its "abandonment" includes silage/forage cut; state means absorb the
 normal share. Wheat: FSA acres for grain-type intended uses only (grain, grain/graze, seed, blank): FSA reclassified
 grazing wheat in 2019, which broke the NASS/FSA state ratio the method scales by (TX/OK 1.07 → 0.72); without grazing,
 forage and cover the ratio is stable across the break.
@@ -49,7 +49,6 @@ CROPS = {  # FSA crop, NASS folder, NASS planted / harvested / yield / productio
               # FSA reclassified grazing wheat in 2019 (GRAIN/GRAZE dropped, GRAZING 1.8m → 5.8m+ acres; TX/OK NASS/FSA ratio
               # 1.07 → 0.72), which breaks the state ratio the method scales by; grain-type uses keep it stable (US 1.09-1.15)
               "uses": ["GRAIN", "GRAIN/GRAZE", "SEED", "BLANK", ""]},
-    "sorghum": {"fsa": "SORGHUM", "planted": "SORGHUM - ACRES PLANTED", "harvested": "SORGHUM, GRAIN - ACRES HARVESTED", "wasde": "Sorghum", "unit": "bu"},
 }
 ST = {"ALABAMA": "AL", "ALASKA": "AK", "ARIZONA": "AZ", "ARKANSAS": "AR", "CALIFORNIA": "CA", "COLORADO": "CO", "CONNECTICUT": "CT",
       "DELAWARE": "DE", "FLORIDA": "FL", "GEORGIA": "GA", "HAWAII": "HI", "IDAHO": "ID", "ILLINOIS": "IL", "INDIANA": "IN", "IOWA": "IA",
@@ -64,7 +63,7 @@ NAME = {v: k.title() for k, v in ST.items()}
 ST.update({"CALIFRNIA": "CA", "CONCTICUT": "CT", "MASACUSET": "MA", "MISISIPPI": "MS", "NEW HAMP": "NH", "NEW MEXCO": "NM",
            "NEWJERSEY": "NJ", "NO CAROLN": "NC", "NO DAKOTA": "ND", "PENSLVANA": "PA", "RHODE ISL": "RI", "S CAROLIN": "SC",
            "S DAKOTA": "SD", "WASHNGTON": "WA", "WEST VA": "WV"})
-BU_PER_MT = {"corn": 39.368, "soybeans": 36.744, "wheat": 36.744, "sorghum": 39.368}
+BU_PER_MT = {"corn": 39.368, "soybeans": 36.744, "wheat": 36.744}
 
 
 def _ols(X, y, w):

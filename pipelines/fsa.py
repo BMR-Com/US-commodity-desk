@@ -10,8 +10,7 @@ Changes from the source, all in how files are fetched and read, not in the numbe
   - every sheet whose name contains "county_data" is read and the rows added up (newer workbooks split the county
     table across sheets at Excel's row limit; the source read the first one only). data/fsa/files.csv lists the
     sheets read per file so the two can be compared;
-  - the same pass also keeps Corn, Soybeans, Wheat and Sorghum (sweet corn, popcorn, sorghum forage and buckwheat
-    excluded) in data/fsa/fsa_grains_state.csv, by state, crop type, intended use and irrigation practice;
+  - the same pass also keeps Corn, Soybeans and Wheat (sweet corn, popcorn and buckwheat excluded) in data/fsa/fsa_grains_state.csv, by state, crop type, intended use and irrigation practice;
   - pauses between requests and retries with back-off (FSA answers 403 after many requests in a row), the stored
     release list is used when the listing page refuses, and a time budget (FSA_BUDGET_MIN, default 40) so a backfill
     runs in stages: each file is appended and recorded in data/fsa/processed.txt as soon as it is read (~30 s a file).
@@ -22,7 +21,7 @@ Outputs (data/fsa/):
   fsa_cotton_state.csv  crop_year, release, state, type, irr, planted, failed, prevented, volunteer, not_planted, file
   fsa_grains_state.csv  crop_year, release, state, crop, crop_raw, crop_type, intended_use, irr, planted, failed,
                         prevented, volunteer, not_planted, file
-  crop_names.csv        every Crop / Crop Type text seen that mentions corn, soy, wheat, sorghum or cotton, and whether kept
+  crop_names.csv        every Crop / Crop Type text seen that mentions corn, soy, wheat or cotton, and whether kept
   files.csv             file, release, sheets read (name:rows), cotton rows, grain rows
   release_dates.csv     file -> release date (seeded from cotton-crop-progress's stored rows, so re-read files keep the
                         source's dates; FSA's page labels changed since and contain typos)
@@ -41,7 +40,7 @@ H = {"User-Agent": "Mozilla/5.0 (BMR-Com research)"}        # the source's heade
 FIRST_YEAR = 2014
 COLS = {"planted acres": "planted", "failed acres": "failed", "prevented acres": "prevented",
         "volunteer acres": "volunteer", "not planted acres": "not_planted"}
-GRAINS = {"CORN", "SOYBEANS", "WHEAT", "SORGHUM"}
+GRAINS = {"CORN", "SOYBEANS", "WHEAT"}             # exchange-traded crops only (sorghum dropped, Ma 2026-11-11)
 EXCLUDE = re.compile(r"SWEET|POP|FORAGE|BUCK|SUDAN", re.I)
 BUDGET = float(os.environ.get("FSA_BUDGET_MIN", "40")) * 60
 GAP = (4.0, 9.0)                                   # seconds between requests (random in this range)
@@ -153,7 +152,7 @@ def cotton_by_state(d):
 
 
 def grains_by_state(d):
-    """Corn, Soybeans, Wheat, Sorghum rows by state, crop type, intended use and irrigation; plus the crop-name audit."""
+    """Corn, Soybeans, Wheat rows by state, crop type, intended use and irrigation; plus the crop-name audit."""
     lc = {c.lower(): c for c in d.columns}
     crop = lc.get("crop")
     if not crop:
@@ -161,7 +160,7 @@ def grains_by_state(d):
     ct, iu = _col(lc, "croptype", "type"), _col(lc, "intendeduse")
     irr = lc.get("irrigation practice")
     cr = d[crop].astype(str).str.upper().str.strip()
-    hit = cr.str.contains(r"CORN|SOY|WHEAT|SORGHUM|MILO|COTTON", na=False)
+    hit = cr.str.contains(r"CORN|SOY|WHEAT|COTTON", na=False)
     d = d[hit].copy()
     d["crop_raw"] = cr[hit]
     d["crop_type"] = d[ct].astype(str).str.upper().str.strip() if ct else ""

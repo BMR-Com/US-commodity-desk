@@ -46,7 +46,10 @@ def rabobank(pages=2, size=50):
                 "entityTypes": RABO_ENTITIES, "languageCodes": ["en"], "paging": {"pageSize": size, "pageNumber": pg},
                 "site": "www.rabobank.com", "sort": {"direction": "descending", "field": "DATE"}}
         try:
-            r = requests.post("https://www.rabobank.com/wapi/global-sites/components/filters", json=body, headers=H, timeout=30)
+            r = requests.post("https://www.rabobank.com/wapi/global-sites/components/filters", json=body, timeout=30, headers={
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36",
+                "Accept": "application/json, text/plain, */*", "Accept-Language": "en-US,en;q=0.9", "Content-Type": "application/json",
+                "Origin": "https://www.rabobank.com", "Referer": "https://www.rabobank.com/knowledge/food-agribusiness"})
             r.raise_for_status()
             res = r.json().get("results", [])
         except Exception as e:

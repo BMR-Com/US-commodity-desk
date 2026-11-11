@@ -1,0 +1,32 @@
+name: australia
+# Australian cotton: Cotton Australia history, USDA PSD, ABS, BOM dam storages, Open-Meteo rain, ICE/AUD; desk crop model.
+# Isolated: writes data/australia only.
+on:
+  schedule:
+    - cron: '17 21 * * *'   # daily, early morning in eastern Australia
+  workflow_dispatch: {}
+permissions: {contents: write}
+concurrency: {group: australia, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy yfinance
+      - name: Australia data
+        continue-on-error: true
+        timeout-minutes: 25
+        run: python pipelines/australia_cotton.py
+      - name: Australia crop model and page data
+        run: '[ -f models/australia_cotton.py ] && python -W ignore models/australia_cotton.py || true'
+      - name: commit
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/australia
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: Australia cotton $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin ${{ github.ref_name }} && git push -q origin HEAD:${{ github.ref_name }} && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

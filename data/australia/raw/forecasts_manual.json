@@ -1,0 +1,10 @@
+{
+ "note": "Published forecasts kept by hand (ABARES files sit behind a bot check). season = planting year-harvest year. lint_kt = thousand tonnes lint; bales_m = million 480-lb (227 kg) bales; area_kha = thousand hectares planted. Add a row when ABARES (Mar/Jun/Sep/Dec) or Cotton Australia publish.",
+ "rows": [
+  {"source": "ABARES", "report": "Australian Crop Report No. 219", "date": "2026-09-02", "season": "2026-27", "region": "Australia", "area_kha": 301, "lint_kt": 679, "chg_pct_area": -34, "chg_pct_prod": -34, "url": "https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/australian-crop-report/september-2026", "remark": "PDF p.3 says 679 kt; the web version of the same report says 697 kt"},
+  {"source": "ABARES", "report": "Australian Crop Report No. 219", "date": "2026-09-02", "season": "2026-27", "region": "NSW", "area_kha": 171, "yield_t_ha": 2.27, "lint_kt": 389, "seed_kt": 446, "chg_pct_area": -41.2, "chg_pct_prod": -40.2, "url": "https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/australian-crop-report/september-2026"},
+  {"source": "ABARES", "report": "Australian Crop Report No. 219", "date": "2026-09-02", "season": "2026-27", "region": "QLD", "area_kha": 108, "yield_t_ha": 2.36, "lint_kt": 254, "seed_kt": 291, "chg_pct_area": -25.1, "chg_pct_prod": -27.0, "url": "https://www.agriculture.gov.au/abares/research-topics/agricultural-outlook/australian-crop-report/september-2026"},
+  {"source": "Cotton Australia", "report": "CEO Adam Kay, reported by Gunnedah Times / The Land", "date": "2026-10-10", "season": "2026-27", "region": "Australia", "area_kha": 265, "bales_m": 2.7, "remark": "down from 4.5 m bales in 2025-26", "url": "https://gunnedahtimes.com.au/2026/10/10/cotton-planting-underwayas-growers-face-drier-season/"},
+  {"source": "ANZ Agri InFocus", "report": "Winter 2026", "date": "2026-06-08", "season": "2026-27", "region": "Australia", "bales_m": 3.0, "remark": "area just over 400 kha per ABARES June", "url": "https://www.fibre2fashion.com/news/textile-news/australia-to-see-cotton-crop-contract-to-3-mn-bales-in-2026-27-310835-newsdetails.htm"}
+ ]
+}

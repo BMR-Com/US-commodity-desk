@@ -1,0 +1,138 @@
+{
+ "releases": [
+  {
+   "year": 2026,
+   "asof": "2026-11-10",
+   "label": "2026 acreage data as of November 10, 2026",
+   "url": "https://www.fsa.usda.gov/documents/wrcdk92kc1587mahom35213",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2026,
+   "asof": "2026-10-09",
+   "label": "2026 acreage data as of October 9, 2026",
+   "url": "https://www.fsa.usda.gov/documents/iv4i8vwmylge",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2026,
+   "asof": "2026-09-11",
+   "label": "2026 acreage data as of September 11, 2026",
+   "url": "https://www.fsa.usda.gov/documents/06oaypahyasf",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2026,
+   "asof": "2026-08-12",
+   "label": "2026 acreage data as of August 12, 2026",
+   "url": "https://www.fsa.usda.gov/documents/jhirzdbkvkx5",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2025,
+   "asof": "2026-01-12",
+   "label": "2025 acreage data as of January 12, 2026",
+   "url": "https://www.fsa.usda.gov/documents/doisjehvqfz9zip",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2025,
+   "asof": "2025-12-09",
+   "label": "2025 acreage data as of December 9, 2025",
+   "url": "https://www.fsa.usda.gov/documents/uhya3k5akxvm",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2025,
+   "asof": "2025-09-12",
+   "label": "2025 acreage data as of September 12, 2025",
+   "url": "https://www.fsa.usda.gov/documents/awcpyhfbdxjx",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2025,
+   "asof": "2025-08-01",
+   "label": "2025 acreage data as of August 1, 2025",
+   "url": "https://www.fsa.usda.gov/documents/vdhkphsbjuj0zip",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2024,
+   "asof": "2025-01-02",
+   "label": "2024 acreage data as of January 2, 2025",
+   "url": "https://www.fsa.usda.gov/documents/FnNg0ix5oKdi",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2024,
+   "asof": "2024-12-02",
+   "label": "2024 acreage data as of December 2, 2024",
+   "url": "https://www.fsa.usda.gov/documents/kue2z66bqlhk",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2024,
+   "asof": "2024-11-01",
+   "label": "2024 acreage data as of November 1, 2024",
+   "url": "https://www.fsa.usda.gov/documents/kmwmjuc631qpebuukewh",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2024,
+   "asof": "2024-10-01",
+   "label": "2024 acreage data as of October 1, 2024",
+   "url": "https://www.fsa.usda.gov/documents/jpiiyambt86q-1zip",
+   "err": "ValueError('Excel file format cannot be determined, you must specify an engine manually.')"
+  },
+  {
+   "year": 2024,
+   "asof": "2024-09-03",
+   "label": "2024 acreage data as of September 3, 2024",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/ZarlPtaEjGLZ.zip",
+   "rows": 18656,
+   "sheet": "county_data",
+   "file": "2024_2024-09-03.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2024,
+   "asof": "2024-08-09",
+   "label": "2024 acreage data as of August 9, 2024",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/pUCQy90pWYR6.zip",
+   "rows": 18580,
+   "sheet": "county_data",
+   "file": "2024_2024-08-09.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2023,
+   "asof": "2024-01-02",
+   "label": "2023 acreage data as of January 2, 2024",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/3QPVeIgPizDl.zip",
+   "rows": 18839,
+   "sheet": "county_data",
+   "file": "2023_2024-01-02.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2023,
+   "asof": "2023-12-01",
+   "label": "2023 acreage data as of December 1, 2023",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/Ph8ZGICAsuKH.zip",
+   "rows": 18813,
+   "sheet": "county_data",
+   "file": "2023_2023-12-01.csv.gz",
+   "fetched": "2026-11-11"
+  },
+  {
+   "year": 2023,
+   "asof": "2023-11-01",
+   "label": "2023 acreage data as of November 1, 2023",
+   "url": "https://www.fsa.usda.gov/sites/default/files/documents/XoNdctf9jmvWFGY.zip",
+   "rows": 18745,
+   "sheet": "county_data",
+   "file": "2023_2023-11-01.csv.gz",
+   "fetched": "2026-11-11"
+  }
+ ]
+}

@@ -1,0 +1,261 @@
+{
+ "abs_status": 200,
+ "abs_agri": [
+  [
+   "ABS_LAMPS",
+   "1.0.0",
+   "Land Management Practices Survey, 2011-12"
+  ],
+  [
+   "ABS_LAMPS2014",
+   "1.0.0",
+   "Land Management Practices Survey, 2013-14"
+  ],
+  [
+   "AG_BROADACRE",
+   "1.0.1",
+   "Australian Agriculture: Broadacre Crops"
+  ],
+  [
+   "AG_HORTICULTURE",
+   "1.0.1",
+   "Australian Agriculture: Horticulture"
+  ],
+  [
+   "MERCH_EXP",
+   "1.0.0",
+   "Merchandise Exports by Commodity (SITC), Country and State"
+  ],
+  [
+   "MERCH_IMP",
+   "1.0.0",
+   "Merchandise Imports by Commodity (SITC), Country and State"
+  ]
+ ],
+ "abs_dsd_ABS_LAMPS": {
+  "dims": [
+   "MEASURE",
+   "MGT_PRACTICE",
+   "ANZSIC",
+   "REGION",
+   "FREQUENCY"
+  ],
+  "cotton_codes": {
+   "CL_LAMPS_IND": [
+    [
+     "0152",
+     "Cotton Growing"
+    ]
+   ],
+   "CL_LAND_MGT_PRACTISE": [
+    [
+     "LMFCROPAHACOT",
+     "Fertiliser - Nitrogen-based fertiliser - Land applied to - Cotton - Area (ha)"
+    ],
+    [
+     "LMFCROPATOCOT_D",
+     "Fertiliser - Nitrogen-based fertiliser - Land applied to - Cotton - Weight (t)"
+    ],
+    [
+     "RATE_COTTON_T",
+     "Fertiliser - Nitrogen-based fertiliser - Land applied to - Cotton - Tonnes applied per hectare (t/ha)"
+    ],
+    [
+     "LMFCROPALTCOT_D",
+     "Fertiliser - Nitrogen-based fertiliser - Land applied to - Cotton - Volume (L)"
+    ],
+    [
+     "RATE_COTTON_L",
+     "Fertiliser - Nitrogen-based fertiliser - Land applied to - Cotton - Litres applied per hectare (L/ha)"
+    ]
+   ]
+  },
+  "codelists": [
+   "CL_ASGS_AAE",
+   "CL_FREQ",
+   "CL_LAMPS_IND",
+   "CL_LAMPS_MEASURE",
+   "CL_LAMPS_UNIT_MEASURE",
+   "CL_LAND_MGT_PRACTISE",
+   "CL_OBS_STATUS"
+  ]
+ },
+ "abs_dsd_ABS_LAMPS2014": {
+  "dims": [
+   "MEASURE",
+   "MGT_PRACTICE",
+   "ANZSIC",
+   "REGION_ACZ",
+   "FREQUENCY"
+  ],
+  "cotton_codes": {
+   "CL_LAMPS_IND": [
+    [
+     "0152",
+     "Cotton Growing"
+    ]
+   ],
+   "CL_LAND_MGT_PRACTISE_2014": [
+    [
+     "HEADER_13",
+     "Crop stubble/trash management -Cotton"
+    ],
+    [
+     "LMCRSTMAHACO_DRS",
+     "Crop stubble/trash management - Crop stubble/trash managed - Cotton - Total Area (ha)"
+    ],
+    [
+     "LMCRSTMAHACO_CRS",
+     "Crop stubble/trash management - Crop stubble/trash managed - Cotton - Total number of businesses (n)"
+    ],
+    [
+     "LMCRSTCBAHACOT_RS",
+     "Crop stubble/trash management - Cool-moderate burn - Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTCBAHACOT_RSC",
+     "Crop stubble/trash management - Cool-moderate burn - Cotton - Number of businesses (n)"
+    ],
+    [
+     "LMCRSTHBAHACOT_RS",
+     "Crop stubble/trash management - Hot burn - Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTHBAHACOT_RSC",
+     "Crop stubble/trash management - Hot burn - Cotton - Number of businesses (n)"
+    ],
+    [
+     "LMCRSTWLAHACOT_RS",
+     "Crop stubble/trash management - Windrowed and left - Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTWLAHACOT_RSC",
+     "Crop stubble/trash management - Windrowed and left - Cotton - Number of businesses (n)"
+    ],
+    [
+     "LMCRSTINCAHACOT_RS",
+     "Crop stubble/trash management - Incorporated into soil - Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTINCAHACOTRSC",
+     "Crop stubble/trash management - Incorporated into soil - Cotton - Number of businesses (n)"
+    ],
+    [
+     "LMCRSTWRAHACOT_RS",
+     "Crop stubble/trash management - Windrowed and removed - Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTWRAHACOT_RSC",
+     "Crop stubble/trash management - Windrowed and removed - Cotton - Number of businesses (n)"
+    ],
+    [
+     "LMCRSTRETAHACOT_RS",
+     "Crop stubble/trash management - Retained on ground- Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTRETAHACOTRSC",
+     "Crop stubble/trash management - Retained on ground- Cotton - Number of businesses (n)"
+    ],
+    [
+     "LMCRSTRSAHACOT_RS",
+     "Crop stubble/trash management - Retained standing - Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTRSAHACOT_RSC",
+     "Crop stubble/trash management - Retained standing - Cotton - Number of businesses (n)"
+    ],
+    [
+     "LMCRSTGOAHACOT_RS",
+     "Crop stubble/trash management - Grazed off - Cotton - Area (ha)"
+    ],
+    [
+     "LMCRSTGOAHACOT_RSC",
+     "Crop stubble/trash management - Grazed off - Cotton - Number of businesses (n)"
+    ]
+   ]
+  },
+  "codelists": [
+   "CL_ASGS_AAE",
+   "CL_FREQ",
+   "CL_LAMPS2014_MEASURE",
+   "CL_LAMPS_IND",
+   "CL_LAMPS_UNIT_MEASURE",
+   "CL_LAND_MGT_PRACTISE_2014",
+   "CL_OBS_STATUS"
+  ]
+ },
+ "abs_dsd_AG_BROADACRE": {
+  "err": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "abs_dsd_AG_HORTICULTURE": {
+  "err": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "abs_dsd_MERCH_EXP": {
+  "dims": [
+   "COMMODITY_SITC",
+   "COUNTRY_DEST",
+   "STATE_ORIGIN",
+   "FREQ"
+  ],
+  "cotton_codes": {
+   "CL_MERCH_SITC": [
+    [
+     "263",
+     "Cotton, not manufactured into yarn or fabric"
+    ],
+    [
+     "265",
+     "Vegetable textile fibres (excl. cotton and jute) raw or processed but not spun and waste of these fibres"
+    ],
+    [
+     "652",
+     "Cotton fabrics, woven (excl. narrow or special fabrics)"
+    ]
+   ]
+  },
+  "codelists": [
+   "CL_FREQ",
+   "CL_MERCH_COUNTRY",
+   "CL_MERCH_SITC",
+   "CL_MERCH_STATE",
+   "CL_OBS_STATUS",
+   "CL_UNIT_MEASURE",
+   "CL_UNIT_MULT"
+  ]
+ },
+ "abs_dsd_MERCH_IMP": {
+  "dims": [
+   "COMMODITY_SITC",
+   "COUNTRY_ORIGIN",
+   "STATE_DEST",
+   "FREQ"
+  ],
+  "cotton_codes": {
+   "CL_MERCH_SITC": [
+    [
+     "263",
+     "Cotton, not manufactured into yarn or fabric"
+    ],
+    [
+     "265",
+     "Vegetable textile fibres (excl. cotton and jute) raw or processed but not spun and waste of these fibres"
+    ],
+    [
+     "652",
+     "Cotton fabrics, woven (excl. narrow or special fabrics)"
+    ]
+   ]
+  },
+  "codelists": [
+   "CL_FREQ",
+   "CL_MERCH_COUNTRY",
+   "CL_MERCH_SITC",
+   "CL_MERCH_STATE",
+   "CL_OBS_STATUS",
+   "CL_UNIT_MEASURE",
+   "CL_UNIT_MULT"
+  ]
+ },
+ "daff_https": "HTTPSConnectionPool(host='data.daff.gov.au', port=443): Max retries exceeded with url: /data/warehouse/agcstd9abcc002/agcstd9abcc0022017_IugZg/ACS2017_Cotton_Tables_v1.0.0.xlsx (Caused by NewConnectio",
+ "agri_acs": "HTTPSConnectionPool(host='www.agriculture.gov.au', port=443): Read timed out. (read timeout=150)"
+}

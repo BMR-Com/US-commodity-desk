@@ -369,7 +369,7 @@ if (EMBED) document.documentElement.classList.add("embed");
     <div class="stats" id="wsStats"></div>
     <div class="body"><div id="wsRead" style="margin-bottom:10px"></div><div id="wsChecks" style="line-height:1.7"></div>
       <div class="tw" style="margin-top:12px"><table id="wsExt"></table></div><div id="wsMsg" class="note" style="margin-top:8px"></div></div>
-    <div class="srcbar">Trend = change in the 15-day ensembles on the same dates vs ~24h and 2–3 days earlier · weeks 3–5: GEFS 35-day, ECMWF EC46, CFSv2 where available · AO/PNA: NOAA CPC GEFS · SSW: 10 hPa 60°N wind · positioning: CFTC managed money, NYMEX Henry Hub · rules of thumb, logged to signal_hist.json for scoring</div>
+    <div class="srcbar">Trend = change in the 15-day ensembles on the same dates vs ~24h and 2–3 days earlier · weeks 3–5: GEFS 35-day, ECMWF EC46, CFSv2 where available · AO/PNA: NOAA CPC GEFS · SSW: 10 hPa 60°N wind · positioning: CFTC managed money, NYMEX Henry Hub</div>
   </div>
   <div class="panel">
     <h2>Model runs: what the latest run changed<span class="sub" id="wrAsOf"></span></h2>
@@ -4002,14 +4002,13 @@ let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTime
     ["Weeks 3–4 vs normal", ex && ex.wk34_avg !== null ? sgn(ex.wk34_avg, 0) + " HDD/wk" : "—", "extended ensembles"]
   ].map(([l, v, s]) => '<div class="stat"><div class="k">' + l + '</div><div class="v num">' + v + '</div><div class="s">' + s + '</div></div>').join("");
   document.querySelector("#wsRead").innerHTML = "<b>" + S.action + "</b>";
-  document.querySelector("#wsChecks").innerHTML = S.cold_checks.map(c => '<div style="opacity:' + (c.on ? 1 : .6) + '">' + (c.on ? "● " : "○ ") + c.text + "</div>").join("") +
-    '<div class="note" style="margin-top:6px">Stand down when: ' + S.exit_when.join(" · ") + "</div>";
+  document.querySelector("#wsChecks").innerHTML = S.cold_checks.map(c => '<div style="opacity:' + (c.on ? 1 : .6) + '">' + (c.on ? "● " : "○ ") + c.text + "</div>").join("");
   if (ex && ex.by_model) {
     let h = "<thead><tr><th>Extended model</th><th>Week 3</th><th>Week 4</th><th>Week 5</th></tr></thead><tbody>";
     for (const [n, r] of Object.entries(ex.by_model)) h += "<tr><td>" + n + "</td>" + ["wk3", "wk4", "wk5"].map(k => r[k] ? "<td class=num>" + sgn(r[k].mean, 0) + ' <span class="note">(' + r[k].from.slice(5) + "; p10/p90 " + sgn(r[k].p10, 0) + "/" + sgn(r[k].p90, 0) + (r[k].chg_24h !== null ? "; 24h " + sgn(r[k].chg_24h, 0) : "") + ")</span></td>" : "<td>—</td>").join("") + "</tr>";
     document.querySelector("#wsExt").innerHTML = h + "</tbody>";
   }
-  document.querySelector("#wsMsg").textContent = "HDD + = colder than normal. A crowded fund short plus a colder forecast trend has produced fast covering rallies even when the 15-day level is still warm; this panel is there to stop 'sell the rally' calls in that setup. " + S.note;
+  document.querySelector("#wsMsg").textContent = "HDD + = colder than normal.";
 })();
 
 /* weather-model runs: latest vs previous run for each ensemble (data/energy/wx/runs.json) */

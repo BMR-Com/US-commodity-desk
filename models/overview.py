@@ -251,7 +251,7 @@ def live_alerts(sym, T, C):
     if not x or not T or x.get("last") is None:
         return None, []
     # only compare like with like: the intraday quote must be the same contract the levels were computed on
-    if x.get("contract") and T.get("contract") and x["contract"].lower() != T["contract"].replace(" futures", "").lower():
+    if not x.get("contract") or not T.get("contract") or x["contract"].lower() != T["contract"].replace(" futures", "").lower():
         return None, []
     px, prev, dp, L = x["last"], T["last"], T["dp"], T["levels"]
     al = []

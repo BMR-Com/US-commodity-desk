@@ -1,0 +1,31 @@
+name: fsa
+# FSA crop acreage data (monthly August-January): state acres by crop since 2016 -> data/fsa; US cotton crop estimate from it.
+on:
+  schedule:
+    - cron: '23 16 1-16 1,8,9,10,11,12 *'
+  workflow_dispatch: {}
+permissions: {contents: write}
+concurrency: {group: fsa, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas numpy openpyxl xlrd
+      - name: FSA acreage releases
+        continue-on-error: true
+        timeout-minutes: 30
+        run: python pipelines/fsa_acres.py
+      - name: US cotton estimate from FSA acres
+        run: '[ -f models/us_cotton_fsa.py ] && python -W ignore models/us_cotton_fsa.py || true'
+      - name: commit
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/fsa
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: FSA crop acreage $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin ${{ github.ref_name }} && git push -q origin HEAD:${{ github.ref_name }} && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 5; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

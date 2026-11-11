@@ -1,0 +1,159 @@
+{
+ "abares_crop_pdf": {
+  "status": 403,
+  "ct": "text/html; charset=UTF-8",
+  "len": 5937,
+  "head": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scal"
+ },
+ "abares_crop_xlsx": {
+  "status": 403,
+  "ct": "text/html; charset=UTF-8",
+  "len": 5940,
+  "head": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scal"
+ },
+ "abares_state_xlsx": {
+  "status": 403,
+  "ct": "text/html; charset=UTF-8",
+  "len": 5940,
+  "head": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scal"
+ },
+ "abares_crop_page": {
+  "err": "HTTPSConnectionPool(host='www.agriculture.gov.au', port=443): Read timed out. (read timeout=60)"
+ },
+ "abares_data_page": {
+  "err": "HTTPSConnectionPool(host='www.agriculture.gov.au', port=443): Read timed out. (read timeout=60)"
+ },
+ "abares_acr_index": {
+  "err": "HTTPSConnectionPool(host='www.agriculture.gov.au', port=443): Read timed out. (read timeout=60)"
+ },
+ "datagovau_ckan": {
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 263650,
+  "head": "{\"help\": \"https://data.gov.au/data/api/3/action/help_show?name=package_search\", \"success\": true, \"result\": {\"count\": 113, \"facets\": {}, \"results\": [{\"author\": \"Australian Bureau of Agriculture and Resource Economics and Sciences\", \"author_email\": null, \"contact_point\": \"dataman@agriculture.gov.au\", "
+ },
+ "datagovau_ckan2": {
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 250755,
+  "head": "{\"help\": \"https://data.gov.au/data/api/3/action/help_show?name=package_search\", \"success\": true, \"result\": {\"count\": 294, \"facets\": {}, \"results\": [{\"author\": \"Australian Bureau of Agriculture and Resource Economics and Sciences\", \"author_email\": null, \"contact_point\": \"Land_Management@agriculture.g"
+ },
+ "bom_kiwis": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 147,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"COPETON DAM\",\"418035\",\"589469\",\"-29.90438056\",\"150.92438333\"]]"
+ },
+ "bom_waterstorage": {
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 47683,
+  "head": "<!DOCTYPE html>\n<html lang=\"en-GB\">\n\n<head>\n    <title>Water Data Online: Water Information: Bureau of Meteorology</title>\n    <meta http-equiv=\"X-UA-Compatible\" Content=\"IE=edge\" />\n    <meta charset=\"utf-8\">\n<!-- Google Tag Manager -->\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.sta"
+ },
+ "bom_storage_json": {
+  "err": "HTTPSConnectionPool(host='water.bom.gov.au', port=443): Max retries exceeded with url: /waterstorage/resources/data/storages.json (Caused by ConnectTimeoutError(<HTTPSConnection(host='water.bom.gov.au', port=443) at 0x7faa07e7b6d0>, 'Connection to water.bom.gov.au timed out. (connect timeout=60)'))"
+ },
+ "waternsw_rt": {
+  "status": 403,
+  "ct": "text/html",
+  "len": 1484,
+  "head": "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\n<html xmlns='http://www.w3.org/1999/xhtml'>\n\n<head>\n    <meta content='text/html; charset=utf-8' http-equiv='content-type' />\n    <style type='text/css'>\n        body {\n         "
+ },
+ "waternsw_page": {
+  "status": 403,
+  "ct": "text/html; charset=UTF-8",
+  "len": 5711,
+  "head": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scal"
+ },
+ "nsw_awd": {
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 516963,
+  "head": "\n\n<!-- THEME DEBUG -->\n<!-- THEME HOOK: 'html' -->\n<!-- FILE NAME SUGGESTIONS:\n   \u25aa\ufe0f html--node--6866.html.twig\n   \u25aa\ufe0f html--node--%.html.twig\n   \u25aa\ufe0f html--node.html.twig\n   \u2705 html.html.twig\n-->\n<!-- BEGIN OUTPUT from 'modules/custom/dphi_components/themes/dphi_base_theme/templates/html.html.twig' -->",
+  "links": [
+   "/sites/default/files/2026-01/awd-namoi-20260112.pdf",
+   "/sites/default/files/2026-02/awd-bega-brogo-20260211.pdf",
+   "/sites/default/files/2026-02/awd-namoi-20260206.pdf",
+   "/sites/default/files/2026-04/AWD-bega-brogo-20260402.pdf",
+   "/sites/default/files/2026-04/AWD-murray-20260415.pdf",
+   "/sites/default/files/2026-06/awd-groundwater-1-july-2026.pdf",
+   "/sites/default/files/2026-06/awd-regulated-rivers-1-july-2026.pdf",
+   "/sites/default/files/2026-06/awd-unregulated-rivers-1-july-2026.pdf",
+   "/sites/default/files/2026-07/awd-lachlan-20260708.pdf",
+   "/sites/default/files/2026-07/awd-murray-20260715.pdf",
+   "/sites/default/files/2026-07/awd-murrumbidgee-20260715.pdf",
+   "/sites/default/files/2026-08/AWD-lachlan-20260810.pdf",
+   "/sites/default/files/2026-08/AWD-murray-20260817.pdf",
+   "/sites/default/files/2026-08/AWD-murrumbidgee-20260817.pdf",
+   "/sites/default/files/2026-08/awd-namoi-20260805.pdf",
+   "/sites/default/files/2026-08/awd-peel-reg-20260805.pdf",
+   "/sites/default/files/2026-09/AWD-murray-20260901.pdf",
+   "/sites/default/files/2026-09/AWD-murrumbidgee-20260901.pdf",
+   "/sites/default/files/2026-09/awd-lachlan-20260908.pdf",
+   "/sites/default/files/2026-09/awd-murray-20260915.pdf",
+   "/sites/default/files/2026-09/awd-murrumbidgee-20260915.pdf",
+   "/sites/default/files/2026-09/awd-namoi-20260904.pdf",
+   "/sites/default/files/2026-09/awd-peel-20260904.pdf",
+   "/sites/default/files/2026-09/was-murray-20260915-5.pdf",
+   "/sites/default/files/2026-10/AWD-macquarie-20261013.pdf",
+   "/sites/default/files/2026-10/AWD-murray-20261001.pdf",
+   "/sites/default/files/2026-11/AWD-murrumbidgee-20261102.pdf"
+  ]
+ },
+ "nsw_awd2": {
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 187445,
+  "head": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"og: https://ogp.me/ns#\">\n  <head>\n    <meta charset=\"utf-8\" />\n<script src=\"https://assets.adobedtm.com/cb27a424301a/0d1cbacaaea6/launch-d2b6400814d6.min.js\" async></script>\n<script>dataLayer = [];</script>\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];",
+  "links": []
+ },
+ "sunwater": {
+  "status": 404,
+  "ct": "text/html; charset=UTF-8",
+  "len": 72332,
+  "head": "<!DOCTYPE html>\n<html lang=\"en-AU\">\n<head>\n\n\t<!-- Global site tag (gtag.js) - Google Analytics -->\n\t<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-18048882-5\"></script>\n\t<script>\n\twindow.dataLayer = window.dataLayer || [];\n\tfunction gtag(){dataLayer.push(arguments);}\n\tgtag('js', n"
+ },
+ "qld_water_monitor": {
+  "status": 200,
+  "ct": "text/html",
+  "len": 11310,
+  "head": "<!DOCTYPE html>\n<!-- saved from url=(0068)https://qldspatial.information.qld.gov.au/catalogue/custom/index.page -->\n<!-- WMIS-603 test host source -->\n<html lang=\"en\">\n  <head>\n    <meta https-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">\n\n    <meta name=\"description\" content=\"The "
+ },
+ "mdba_storage": {
+  "status": 202,
+  "ct": "text/html; charset=UTF-8",
+  "len": 0,
+  "head": ""
+ },
+ "open_meteo": {
+  "status": 200,
+  "ct": "application/json; charset=utf-8",
+  "len": 832,
+  "head": "{\"latitude\":-29.490334,\"longitude\":149.82658,\"generationtime_ms\":0.06759166717529297,\"utc_offset_seconds\":0,\"timezone\":\"GMT\",\"timezone_abbreviation\":\"GMT\",\"elevation\":210.0,\"daily_units\":{\"time\":\"iso8601\",\"precipitation_sum\":\"mm\"},\"daily\":{\"time\":[\"2026-10-01\",\"2026-10-02\",\"2026-10-03\",\"2026-10-04\","
+ },
+ "nasa_power": {
+  "status": 200,
+  "ct": "application/json",
+  "len": 1587,
+  "head": "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[149.85,-29.47,266.99]},\"properties\":{\"parameter\":{\"PRECTOTCORR\":{\"202001\":3.4,\"202002\":5.49,\"202003\":5.09,\"202004\":1.93,\"202005\":0.56,\"202006\":0.25,\"202007\":0.6,\"202008\":1.12,\"202009\":0.9,\"202010\":1.95,\"202011\":0.15,\"202012\":4.72,\"202013\":2"
+ },
+ "cotton_aus": {
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 31985,
+  "head": "    <!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n\t<meta property=\"og:site_name\" content=\"Cotton Australia\">\n\t\t\t<meta property='og:title' content",
+  "links": []
+ },
+ "cotton_aus2": {
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 39035,
+  "head": "<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n\t<meta property=\"og:site_name\" content=\"Cotton Australia\">\n\t\t\t<meta property='og:title' content='Ho"
+ },
+ "abs_api": {
+  "status": 200,
+  "ct": "application/vnd.sdmx.structure+xml; version=2.1; charset=utf-8",
+  "len": 3231498,
+  "head": ""
+ }
+}

@@ -2,8 +2,8 @@
 reads of fundamentals, fair value, recent events, technicals and key levels, implied/realized vol, seasonality and COT.
 
 Built only from what the desk's other models already wrote (summary, technicals, COT desk, options/vol, seasonal,
-WASDE fits, cotton price outlook, energy S&D, palm, sugar/coffee data, news), plus data/overview/notes.json, which the
-daily research-reading task writes (own-words recent events and a fundamental read for markets without a model).
+WASDE fits, cotton price outlook, energy S&D, palm, sugar/coffee data, news), the intraday quotes in data/markets/markets.json (key-level alerts), and data/overview/notes.json, which the intraday
+overview task writes (own-words desk read and recent events from the whole news feed).
 Any part that is missing is shown as missing; a failure in one market does not stop the others.
 
 Usage: python models/overview.py            (desk detected from the repo: softs desk if data/sugar exists)
@@ -113,6 +113,14 @@ def tech(sym):
 
 
 # ───────── COT ─────────
+def _k(v):
+    return f"{v / 1000:+,.0f}k" if abs(v) >= 1000 else f"{v:+,.0f}"
+
+
+def _mdate(d):
+    return f"{MON[int(d[5:7]) - 1]} {d[:4]}"
+
+
 def cot(sym, group):
     if not flows:
         return None
@@ -122,17 +130,46 @@ def cot(sym, group):
         return None
     if not ctx:
         return None
-    mm, cta, p3 = ctx["mm"], ctx.get("cta") or {}, ctx.get("p3")
-    crowd = " — crowded long" if p3 is not None and p3 >= 90 else " — crowded short" if p3 is not None and p3 <= 10 else ""
-    txt = (f"Managed money net {'long' if mm['N'] >= 0 else 'short'} {abs(mm['N']):,.0f} lots ({ordn(p3)} pct of 3 yrs{crowd}), "
-           f"{sgn(mm['dN'], 0)} on the week.")
+    c, mm, cta, p3 = ctx["c"], ctx["mm"], ctx.get("cta") or {}, ctx.get("p3")
+    N = mm["N"]
+    S = c.get("series") or {}
+    ds, nn = S.get("date") or [], S.get("mm_n") or []
+    bits = [f"Managed money net {'long' if N >= 0 else 'short'} {abs(N):,.0f} lots ({mm['np_oi']:+.1f}% of OI; {ordn(p3)} pct of 3 yrs, {ordn(mm['pct']['all'])} of all history)."]
+    peaks = {}
+    if len(nn) >= 60:
+        w3 = list(zip(ds[-156:], nn[-156:]))
+        hi, lo = max(w3, key=lambda x: x[1]), min(w3, key=lambda x: x[1])
+        ahi, alo = max(zip(ds, nn), key=lambda x: x[1]), min(zip(ds, nn), key=lambda x: x[1])
+        peaks = {"long_3y": hi[1], "long_3y_date": hi[0], "short_3y": lo[1], "short_3y_date": lo[0], "long_max": ahi[1], "short_max": alo[1]}
+        if N >= 0 and hi[1] > 0:
+            bits.append(f"That is {100 * N / hi[1]:.0f}% of the 3-yr peak long ({_k(hi[1])}, {_mdate(hi[0])}); peak short {_k(lo[1])} ({_mdate(lo[0])}); {len(ds) // 52}-yr record long {_k(ahi[1])} ({_mdate(ahi[0])}).")
+        elif N < 0 and lo[1] < 0:
+            bits.append(f"That is {100 * N / lo[1]:.0f}% of the 3-yr peak short ({_k(lo[1])}, {_mdate(lo[0])}); peak long {_k(hi[1])} ({_mdate(hi[0])}); {len(ds) // 52}-yr record short {_k(alo[1])} ({_mdate(alo[0])}).")
+        w26 = list(zip(ds[-26:], nn[-26:]))
+        h6, l6 = max(w26, key=lambda x: x[1]), min(w26, key=lambda x: x[1])
+        if h6[0] > l6[0] and h6[1] - N > 0.15 * (h6[1] - l6[1] + 1):
+            bits.append(f"Funds have sold {abs(h6[1] - N):,.0f} lots since the 6-month high of {_k(h6[1])} ({h6[0]}).")
+        elif l6[0] >= h6[0] and N - l6[1] > 0.15 * (h6[1] - l6[1] + 1):
+            bits.append(f"Funds have bought {abs(N - l6[1]):,.0f} lots since the 6-month low of {_k(l6[1])} ({l6[0]}).")
+    d13 = N - nn[-14] if len(nn) >= 14 else None
+    stk = mm.get("streak") or 0
+    bits.append(f"Moves: 1 wk {_k(mm['dN'])} (z {mm['z']:+.1f}{', ' + c['driver'] if c.get('driver') else ''}), 4 wks {_k(mm['dN4'])}"
+                + (f", 13 wks {_k(d13)}" if d13 is not None else "")
+                + (f"; {abs(stk)} straight weeks of {'buying' if stk > 0 else 'selling'}" if abs(stk) >= 3 else "") + ".")
+    if mm.get("pct_L") is not None and mm.get("pct_S") is not None:
+        bits.append(f"Gross longs at the {ordn(mm['pct_L'])} pct and gross shorts at the {ordn(mm['pct_S'])} pct of 3 yrs"
+                    + (" — short-covering fuel" if mm["pct_S"] >= 85 else " — long-liquidation risk" if mm["pct_L"] >= 85 else "") + ".")
+    if p3 is not None and (p3 >= 90 or p3 <= 10):
+        bits.append(f"Crowded {'long' if p3 >= 90 else 'short'}: positioning is near the 3-yr extreme.")
     if cta:
-        txt += f" Trend-follower score {cta['score']:+.2f}."
         nx = cta.get("next") or {}
-        trig = [f"buy above {v['lvl']:.2f}" if k == "up" else f"sell below {v['lvl']:.2f}" for k, v in (("up", nx.get("up")), ("down", nx.get("dn"))) if v]
+        t = f"Trend-follower score {cta['score']:+.2f}"
+        trig = [f"buying above {v['lvl']:.2f}" if k == "up" else f"selling below {v['lvl']:.2f}" for k, v in (("up", nx.get("up")), ("down", nx.get("dn"))) if v]
         if trig and cta.get("r2", 0) >= 0.3:
-            txt += " Fund triggers: " + ", ".join(trig) + "."
-    return {"score": round(sc, 2), "text": txt, "date": ctx["c"].get("date"), "triggers": cta.get("next")}
+            t += "; flips to " + " / ".join(trig)
+        bits.append(t + ".")
+    return {"score": round(sc, 2), "text": " ".join(bits), "date": c.get("date"), "triggers": cta.get("next") if cta.get("r2", 0) >= 0.3 else None,
+            "net": N, "pct3": p3, "peaks": peaks}
 
 
 # ───────── vol ─────────
@@ -191,17 +228,54 @@ def seasonal(sym):
 
 
 # ───────── news / recent events ─────────
-def events(key, n=3):
-    tag = NEWS_TAG.get(key)
-    rx = NEWS_RX.get(key)
-    pri = {"ADMIS": 0, "Rabobank": 0, "Czapp": 0}
-    its = [i for i in NEWS if (rx and re.search(rx, i["title"] + " " + (i.get("teaser") or ""), re.I)) or (not rx and tag in (i.get("tags") or []))]
-    its.sort(key=lambda i: (i.get("time") or "")[:10], reverse=True)
-    recent = [i for i in its if (i.get("time") or "") >= (datetime.now(timezone.utc).date().isoformat()[:8] + "01")] or its
-    research = [i for i in recent if i["source"] in pri][:2]
-    rest = [i for i in recent if i["source"] not in pri and i not in research]
-    out = (research + rest)[:n]
-    return [{"title": i["title"], "link": i["link"], "source": i["source"], "date": (i.get("time") or "")[:10]} for i in out]
+def events(key, n=5, days=7):
+    tag, rx = NEWS_TAG.get(key), NEWS_RX.get(key)
+    cut = (datetime.now(timezone.utc).timestamp() - days * 86400)
+    its = [i for i in NEWS if ((rx and re.search(rx, i["title"] + " " + (i.get("teaser") or ""), re.I)) or (not rx and tag in (i.get("tags") or [])))]
+    its = [i for i in its if i.get("time") and datetime.strptime(i["time"][:16], "%Y-%m-%dT%H:%M").replace(tzinfo=timezone.utc).timestamp() >= cut]
+    its.sort(key=lambda i: i["time"], reverse=True)
+    seen, out = set(), []
+    for i in its:
+        k = re.sub(r"[^a-z]", "", i["title"].lower())[:50]
+        if k not in seen:
+            seen.add(k); out.append(i)
+    return [{"title": i["title"], "link": i["link"], "source": i["source"], "date": i["time"][:10]} for i in out[:n]]
+
+
+# ───────── intraday price and key-level alerts ─────────
+LIVE = {x["sym"].replace("=F", ""): x for x in (J("markets/markets.json") or {}).get("items", []) if x.get("sym", "").endswith("=F")}
+
+
+def live_alerts(sym, T, C):
+    x = LIVE.get(sym)
+    if not x or not T or x.get("last") is None:
+        return None, []
+    # only compare like with like: the intraday quote must be the same contract the levels were computed on
+    if x.get("contract") and T.get("contract") and x["contract"].lower() != T["contract"].replace(" futures", "").lower():
+        return None, []
+    px, prev, dp, L = x["last"], T["last"], T["dp"], T["levels"]
+    al = []
+    def chk(name, lvl, side):
+        if lvl is None:
+            return
+        if side == "dn" and px < lvl:
+            al.append({"kind": "break", "side": "dn", "text": f"{'Broke' if prev >= lvl else 'Holding'} below {name} {lvl:,.{dp}f}", "new": prev >= lvl})
+        if side == "up" and px > lvl:
+            al.append({"kind": "break", "side": "up", "text": f"{'Broke' if prev <= lvl else 'Holding'} above {name} {lvl:,.{dp}f}", "new": prev <= lvl})
+    for i, v in enumerate(L.get("support") or []):
+        chk(f"S{i + 1}", v, "dn")
+    for i, v in enumerate(L.get("resistance") or []):
+        chk(f"R{i + 1}", v, "up")
+    chk("the 52-wk low", L.get("lo52"), "dn")
+    chk("the 52-wk high", L.get("hi52"), "up")
+    tr = (C or {}).get("triggers") or {}
+    if tr.get("up"):
+        chk(f"the fund buy trigger ({tr['up']['name']})", tr["up"]["lvl"], "up")
+    if tr.get("dn"):
+        chk(f"the fund sell trigger ({tr['dn']['name']})", tr["dn"]["lvl"], "dn")
+    # keep the most relevant: new breaks first, at most three
+    al.sort(key=lambda a: not a["new"])
+    return {"last": px, "time": x.get("time"), "chg_1d": x.get("d1"), "vs_close_pct": round(100 * (px / prev - 1), 2) if prev else None}, al[:3]
 
 
 # ───────── fundamentals and fair value ─────────
@@ -368,7 +442,7 @@ def fundamental(key, sym, T):
         fair = grains_fair(key, {"kc": "wheat"}.get(key, key), T)
     # the daily research reading adds an own-words read; for markets without a model it is the fundamental read
     if n.get("fundamental"):
-        txt = (txt + " " if txt else "") + "Research read: " + n["fundamental"]
+        txt = (txt + " " if txt else "") + "Desk read: " + n["fundamental"]
         if score is None and n.get("fund_score") is not None:
             score = clip(float(n["fund_score"]))
         elif n.get("fund_score") is not None:
@@ -395,13 +469,14 @@ def build(key, sym, name, group):
         agree = bool(sg) and (all(x > 0 for x in sg) or all(x < 0 for x in sg))
     n = NOTES.get(key) or {}
     ev = [{"text": e} for e in (n.get("events") or [])][:3]
+    live, alerts = live_alerts(sym, T, C)
     return {"key": key, "sym": sym, "name": name, "group": group,
             "score": None if total is None else round(total, 2), "view": word(total), "shade": shade(total),
             "conviction": None if total is None else ("high" if abs(total) >= 0.4 and agree else "medium" if abs(total) >= 0.2 else "low"),
             "parts": parts, "price": T and {k: T[k] for k in ("contract", "last", "unit", "dp", "chg_1w", "chg_1m")},
             "fundamental": F, "fair": fair, "events": ev, "headlines": events(key), "notes_date": n.get("date"),
             "technical": T and {"text": T["text"], "score": T["score"]}, "levels": T and T["levels"],
-            "vol": V, "seasonal": S, "cot": C}
+            "vol": V, "seasonal": S, "cot": C, "live": live, "alerts": alerts}
 
 
 def main():

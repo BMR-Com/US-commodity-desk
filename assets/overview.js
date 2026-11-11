@@ -32,6 +32,10 @@ const Overview = (() => {
   .ov-rng i{position:absolute;top:-3px;width:3px;height:12px;background:#111;border-radius:1px}
   .ov-key{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:11.5px;margin:4px 0 2px}
   .ov-key span{padding:2px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.08)}
+  .ov-alert{font-size:12px;font-weight:600;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,.85)}
+  .ov-alert.up{color:var(--up);border:1px solid #9ad29f}.ov-alert.dn{color:var(--dn);border:1px solid #e6a49e}
+  .ov-alert b{font-size:10px;background:#111;color:#fff;border-radius:4px;padding:0 4px;margin-right:4px}
+  .ov-live{font-size:11.5px;color:#333}
   .ov-more{font-size:11.5px;cursor:pointer;color:#1d4f91;background:none;border:0;padding:0;text-align:left}`;
 
   function legend() {
@@ -67,10 +71,12 @@ const Overview = (() => {
     return `<div class="ov-tile ${m.shade}" id="ov-${m.key}">
       <div class="ov-hd"><div><h2>${esc(m.name)}</h2>${p ? `<div class="px">${esc(p.contract)} <b>${f(p.last, p.dp)}</b> ${esc(p.unit)} · 1w ${pc(p.chg_1w)} · 1m ${pc(p.chg_1m)}</div>` : ''}</div>
         <div class="ov-badge">${esc(m.view)}${m.conviction ? ` · ${m.conviction}` : ''}</div></div>
+      ${m.live ? `<div class="ov-live">Intraday ${f(m.live.last, p?.dp)} (${pc(m.live.vs_close_pct, 2)} vs the close the levels use) · ${esc(m.live.time)}, delayed</div>` : ''}
+      ${(m.alerts || []).map(a => `<div class="ov-alert ${a.side}">${a.new ? '<b>NEW</b>' : ''}${esc(a.text)}</div>`).join('')}
       <div class="ov-parts">${parts}</div>
       ${sec('Fundamental outlook', short ? `<span class="ov-f">${short}</span> <button class="ov-more" data-full="${fund.replace(/"/g, '&quot;')}">more</button>` : fund)}
       ${sec('Fair value (fundamentals, outright)', fv)}
-      ${sec('Recent events' + (m.notes_date ? ` <span class="note" style="text-transform:none">read ${esc(m.notes_date)}</span>` : ''), ev.length ? `<ul>${ev.slice(0, 5).join('')}</ul>` : '<span class="note">Nothing new picked up.</span>')}
+      ${sec('Recent events & news flow' + (m.notes_date ? ` <span class="note" style="text-transform:none">desk read ${esc(m.notes_date)}</span>` : ''), ev.length ? `<ul>${ev.slice(0, 7).join('')}</ul>` : '<span class="note">Nothing new picked up.</span>')}
       ${sec('Technicals & key levels', (m.technical ? esc(m.technical.text) : '<span class="note">No price data.</span>') + levels(m))}
       ${sec(m.vol && m.vol.kind === 'realized' ? 'Volatility (realized)' : 'Implied volatility', m.vol ? esc(m.vol.text) : '<span class="note">Not available.</span>')}
       ${sec('Seasonality', m.seasonal ? esc(m.seasonal.text) : '<span class="note">Not available.</span>')}
@@ -91,7 +97,7 @@ const Overview = (() => {
     const W = D.weights || {};
     el.innerHTML = `<div style="max-width:1400px;margin:0 auto;padding:12px 16px">
       <div class="card"><b>Overview</b> — one tile per market. Colour = overall read, a weighted blend of fundamentals (${(100 * (W.fundamental || 0)).toFixed(0)}%), technicals (${(100 * (W.technical || 0)).toFixed(0)}%), COT positioning (${(100 * (W.cot || 0)).toFixed(0)}%) and seasonality (${(100 * (W.seasonal || 0)).toFixed(0)}%), each scored −1 to +1 by the desk's own models; missing parts are left out of the blend.
-        ${legend()}<p class="note">Rule-based read built ${esc(D.generated)} from the desk's data; recent events from the daily ADMIS / Rabobank / Czapp reading and the news feed. Research only, not investment advice.</p></div>
+        ${legend()}<p class="note">Rule-based read built ${esc(D.generated)} from the desk's data; recent events from the whole news feed (major outlets, trade press, broker and bank research); intraday quotes and key-level alerts refresh hourly in trading hours. Research only, not investment advice.</p></div>
       ${D.groups.map(g => { const ms = D.markets.filter(m => m.group === g); return ms.length ? `${D.groups.length > 1 ? `<div class="ov-grp">${esc(g)}</div>` : ''}<div class="ov-grid ${big ? 'big' : ''}">${ms.map(tile).join('')}</div>` : ''; }).join('')}
     </div>`;
     el.querySelectorAll('.ov-more').forEach(b => b.onclick = () => { b.previousElementSibling.textContent = b.dataset.full; b.remove(); });

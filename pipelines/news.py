@@ -152,7 +152,7 @@ def main():
     df.loc[research, "tags"] = df[research].apply(lambda r: [k for k, rx in TAGS.items() if re.search(rx, f"{r.title} {r.teaser or ''}", re.I)] or ["research"], axis=1)
     df = df[df.tags.str.len() > 0].sort_values("time", ascending=False)
     rows = [{k: v for k, v in r.items() if not (k == "teaser" and not isinstance(v, str))} for r in df.drop(columns=["key"]).to_dict("records")]
-    p.write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "items": [x for x in rows if x["source"] not in ("ADMIS", "Rabobank", "Czapp")][:600] + [x for x in rows if x["source"] in ("ADMIS", "Rabobank", "Czapp")]}, ensure_ascii=False, indent=0))
+    p.write_text(json.dumps({"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%d %H:%M UTC"), "items": sorted([x for x in rows if x["source"] not in ("ADMIS", "Rabobank", "Czapp")][:600] + [x for x in rows if x["source"] in ("ADMIS", "Rabobank", "Czapp")], key=lambda x: x["time"], reverse=True)}, ensure_ascii=False, indent=0))
     print("kept", len(rows), "items;", df.source.value_counts().head(12).to_dict())
 
 

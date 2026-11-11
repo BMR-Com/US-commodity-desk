@@ -1,0 +1,31 @@
+name: overview
+# Overview tab: rebuilds data/overview/overview.json from what the other workflows already wrote (no downloads).
+# Kept separate: if it fails, nothing else on the desk is affected.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['models/overview.py', 'data/overview/notes.json', '.github/workflows/overview.yml']
+  schedule:
+    - cron: '53 */3 * * *'      # every 3 hours, after the news/intel run
+    - cron: '22 22 * * 1-5'     # after the daily data and COT runs
+permissions: {contents: write}
+concurrency: {group: overview, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q pandas numpy scipy requests
+      - run: python -W ignore models/overview.py
+      - name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/overview/overview.json
+          git diff --cached --quiet && exit 0
+          git commit -q -m "overview $(date -u +%F' '%H:%M)"
+          B="${GITHUB_REF_NAME}"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin "$B" && git push -q origin "HEAD:$B" && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

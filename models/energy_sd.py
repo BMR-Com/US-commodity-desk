@@ -269,8 +269,7 @@ def main():
         t = [f"{st_['name']} {st_['value']:,} {M['unit_stock']} (week to {st_['date']}), {st_['dev']:+,} ({st_['dev_pct']:+.1f}%) vs the 5-year average, {st_['wow']:+,} on the week"
              + (f"; {st_['days']} days of supply" if st_.get("days") else "") + "."]
         if f:
-            t.append(f"Inventory fair value for the {f['label']}: {f['fair']:.2f} {f['unit']} vs {f['actual']:.2f} actual (gap {f['gap']:+.2f}, z {f['gap_z']:+.1f}; R² {f['r2']} over {f['window_weeks']} weeks; model {f['quality'].split(':')[0]})"
-                     + (f"; walk-forward: {f['walk_forward']['reads']} (corr {f['walk_forward']['corr_gap_next']}, hit {f['walk_forward']['hit']}% over {f['walk_forward']['horizon_weeks']} weeks)." if f.get("walk_forward") else "."))
+            t.append(f"Inventory fair value for the {f['label']}: {f['fair']:.2f} {f['unit']} vs {f['actual']:.2f} actual (gap {f['gap']:+.2f}).")
         if M.get("projection"):
             t.append("At the 5-year average pace from here: " + "; ".join(f"{x['what']} {x['projected']:,} Bcf (5-yr avg {x['avg5']:,})" for x in M["projection"] if x["projected"]) + ".")
         M["read"] = " ".join(t)

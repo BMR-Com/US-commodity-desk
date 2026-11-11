@@ -481,10 +481,7 @@ const EnergyNG = (() => {
     const m = ols(rows, ys); if (!m) throw new Error('regression did not solve');
     M.fit = { m, rows, ys, meta };
     const tail = 156, md = meta.slice(-tail).map(r => r.d);
-    c.innerHTML = `<h2>Weather-driven storage model <span class="note">fitted on ${m.n} storage weeks, ${meta[0].d} to ${meta.at(-1).d}</span></h2>
-      <p class="note">Weekly Lower 48 storage change regressed on the week's gas-weighted HDD and CDD (7 days ending on the report Friday) and a linear trend that absorbs production and LNG growth. Degree days: repo 21-metro gas-weighted history.</p>
-      ${kpis([['Bcf per HDD', n(m.b[1], 2), 'weekly storage change per gas-weighted HDD'], ['Bcf per CDD', n(m.b[2], 2), 'power-burn channel'], ['Trend', sg(m.b[3] * 52, 1) + ' Bcf/yr', 'on the weekly change'],
-        ['R²', n(m.r2, 3), 'weekly change explained'], ['Residual s.d.', '±' + n(m.rmse, 1) + ' Bcf', 'one-week forecast error']])}
+    c.innerHTML = `<h2>Weather-driven storage model <span class="note">actual vs modelled weekly storage change, Bcf; inputs: gas-weighted HDD and CDD, Lower 48 storage</span></h2>
       <div class="chart"><canvas id="engMdFitC"></canvas></div>`;
     chart('engMdFitC', { type: 'line', data: { labels: md, datasets: [
       { label: 'Actual weekly change', data: ys.slice(-tail), borderColor: GREEN, borderWidth: 1.8, pointRadius: 0 },
@@ -507,7 +504,7 @@ const EnergyNG = (() => {
     const tb = path.slice(1).map((p, i) => `<tr><td>${p.d}</td><td>${n(p.hdd)}</td><td>${sg(p.dlt, 1)}</td><td>${n(p.v)}</td><td>±${n(m.rmse * Math.sqrt(i + 1))}</td><td class="l note">${p.how.map(x => ({ obs: 'observed', ens: 'ensemble', fc: 'forecast', norm: 'normal' })[x]).join(' + ')}</td></tr>`).join('');
     c.innerHTML = `<h2>Forward storage path <span class="note">Bcf, from the week ending ${path[0].d}</span></h2><div class="chart short"><canvas id="engMdPathC"></canvas></div>
       <div class="tbl"><table><tr><th>Week ending</th><th>HDD</th><th>Change, Bcf</th><th>Storage, Bcf</th><th>±1σ</th><th class="l">Weather used</th></tr>${tb}</table></div>
-      <p class="note">Implied next report: <b>${sg(path[1].dlt, 1)} Bcf</b> to ${n(path[1].v)} Bcf, one-sigma band ±${n(m.rmse, 1)} Bcf. Weather: observed gas-weighted HDD to ${M.H.last}, then ${W.model}${W.src.norm ? `, then normal for ${W.src.norm} day(s)` : ''}. Weeks beyond the first also carry weather-forecast error, which is not in the band.</p>`;
+      <p class="note">Implied next report: <b>${sg(path[1].dlt, 1)} Bcf</b> to ${n(path[1].v)} Bcf, Weather: observed gas-weighted HDD to ${M.H.last}, then ${W.model}${W.src.norm ? `, then normal for ${W.src.norm} day(s)` : ''}. Weeks beyond the first also carry weather-forecast error, which is not in the band.</p>`;
     chart('engMdPathC', { type: 'line', data: { labels: path.map(p => p.d), datasets: [
       { label: '+1σ', data: path.map((p, i) => p.v + m.rmse * Math.sqrt(i)), borderWidth: 0, pointRadius: 0, backgroundColor: 'rgba(44,111,187,.12)', fill: '+1' },
       { label: '_lo', data: path.map((p, i) => p.v - m.rmse * Math.sqrt(i)), borderWidth: 0, pointRadius: 0, fill: false },
@@ -560,12 +557,10 @@ const EnergyNG = (() => {
     M.fv = { m, obs, by };
     const fitP = m.fit.map(Math.exp), last = obs.at(-1), fvNow = fitP.at(-1), spotNow = spot.at(-1), sd = m.rmse, prem = spotNow.v / fvNow - 1;
     const front = M.px?.prices?.NG?.at(-1);
-    c.innerHTML = `<h2>Storage-implied fair value <span class="note">Henry Hub spot, $/MMBtu; fitted on ${m.n} weeks, ${obs[0].s} to ${last.s}</span>
+    c.innerHTML = `<h2>Storage-implied fair value <span class="note">Henry Hub spot, $/MMBtu; inputs: Lower 48 storage vs 5-yr average, Henry Hub spot</span>
         <select id="engFvWin" style="float:right">${[[5, '5 years'], [8, '8 years'], [12, '12 years'], [99, 'everything']].map(([v, l]) => `<option value="${v}" ${v === yrs ? 'selected' : ''}>${l}</option>`).join('')}</select></h2>
-      <p class="note">Log Henry Hub (weekly average spot) regressed on inventory deviation from the five-year average (%), a squared term for convexity, an annual cycle and a trend for the shale and LNG regime shift. Spot history in the repo starts ${spot[0].s}.</p>
       ${kpis([['Fair value', '$' + n(fvNow, 2), `at ${n(last.stor)} Bcf, ${sg(last.x * 100, 1, '%')} vs 5-yr avg (${last.s})`], ['Spot', '$' + n(spotNow.v, 2), spotNow.s + (front ? ` · front-month futures $${n(front.c, 3)} (${front.d})` : '')],
-        ['Spot vs fair value', sg(prem * 100, 1, '%'), sg(spotNow.v - fvNow, 2) + ' $/MMBtu'], ['One-sigma band', '$' + n(fvNow * Math.exp(-sd), 2) + ' – ' + n(fvNow * Math.exp(sd), 2), 'residual s.d. ' + n(sd * 100, 0) + '%'],
-        ['R²', n(m.r2, 3), m.n + ' weekly observations']])}
+        ['Spot vs fair value', sg(prem * 100, 1, '%'), sg(spotNow.v - fvNow, 2) + ' $/MMBtu'], ['One-sigma band', '$' + n(fvNow * Math.exp(-sd), 2) + ' – ' + n(fvNow * Math.exp(sd), 2), 'range around fair value']])}
       <div class="chart"><canvas id="engMdFvC"></canvas></div>`;
     chart('engMdFvC', { type: 'line', data: { labels: obs.map(o => o.s), datasets: [
       { label: '±1 standard error', data: fitP.map(v => v * Math.exp(sd)), borderWidth: 0, pointRadius: 0, backgroundColor: 'rgba(44,111,187,.12)', fill: '+1' },
@@ -579,7 +574,7 @@ const EnergyNG = (() => {
       const lo = Math.min(...obs.map(o => o.x)), hi = Math.max(...obs.map(o => o.x)), cur = [];
       for (let k = 0; k <= 60; k++) { const xv = lo + (hi - lo) * k / 60; cur.push({ x: xv * 100, y: Math.exp(m.b[0] + m.b[1] * xv + m.b[2] * xv * xv + base) }); }
       cc.innerHTML = `<h2>Price against inventory deviation <span class="note">$/MMBtu vs storage % from 5-yr average</span></h2><div class="chart"><canvas id="engMdCurveC"></canvas></div>
-        <p class="note">Line = fitted fair value at today's season and trend; dots = weekly observations; red = latest week.</p>`;
+        <p class="note">Line = fair value at today's date; dots = weekly observations; red = latest week.</p>`;
       chart('engMdCurveC', { type: 'scatter', data: { datasets: [
         { label: 'weekly', data: obs.map(o => ({ x: o.x * 100, y: o.P })), pointRadius: 2, backgroundColor: 'rgba(214,137,16,.4)' },
         { label: 'fitted now', data: cur, showLine: true, borderColor: BLUE, borderWidth: 2, pointRadius: 0 },
@@ -636,8 +631,8 @@ const EnergyNG = (() => {
       const lvl = x === null ? null : a5 * (1 + x);
       t += `<tr><td>${s.lbl}</td><td>$${n(s.p, 3)}</td><td>${lvl !== null ? n(lvl) : '–'}</td><td>${x !== null ? sg(x * 100, 1, '%') : '–'}</td><td>${n(a5)}</td><td>${lvl !== null ? sg(lvl - a5) : '–'}</td></tr>`;
     });
-    c.innerHTML = `<h2>What the strip is pricing <span class="note">storage level each contract price implies, by inverting the fair-value model</span></h2><div class="tbl"><table>${t}</table></div>
-      <p class="note">Contract dated mid delivery month. Negative = the price implies a deficit to the 5-year average. Futures: ${src}. The repo's EIA contract 1–4 series stop in ${(await eia('fut1').catch(() => [{ s: '?' }])).at(-1).s.slice(0, 7)}, so the live strip comes from the CME settlement file instead. Extrapolating the trend term months ahead adds error.</p>`;
+    c.innerHTML = `<h2>What the strip is pricing <span class="note">storage level each contract price implies</span></h2><div class="tbl"><table>${t}</table></div>
+      <p class="note">Contract dated mid delivery month. Negative = the price implies a deficit to the 5-year average. Futures: ${src}. The repo's EIA contract 1–4 series stop in ${(await eia('fut1').catch(() => [{ s: '?' }])).at(-1).s.slice(0, 7)}, so the live strip comes from the CME settlement file instead.</p>`;
   }
 
   return { storage, sdMonthly, weather, model };

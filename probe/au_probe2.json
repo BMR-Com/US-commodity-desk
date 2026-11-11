@@ -1,0 +1,1634 @@
+{
+ "acs2017_cotton": {
+  "err": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
+ },
+ "acs2017_water": {
+  "err": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
+ },
+ "acr2018_state": {
+  "err": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
+ },
+ "acr2018_crop": {
+  "err": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
+ },
+ "ckan_acs": {
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 765776,
+  "head": "{\"help\": \"https://data.gov.au/data/api/3/action/help_show?name=package_search\", \"success\": true, \"result\": {\"count\": 294, \"facets\": {}, \"results\": [{\"archived\": false, \"author\": \"Australian Bureau of Agriculture and Resource Economics and Sciences\", \"author_email\": null, \"contact_point\": \"dataman@agriculture.gov.au\", \"creator_user_id\": \"82ceae41-fd4a-41d4-91c1-6f3a6bd8c92f\", \"duplicate_score\": 1, ",
+  "titles": [
+   [
+    "Catchment scale Land Use of Australia - Commodities - September 2017",
+    "catchment-scale-land-use-of-australia-commodities-september-2017",
+    [
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/d96de336-3847-4db2-bc29-95f2ca5e663f/download/vectorpackageclumc0917.zip",
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/78a56b2c-1744-420e-8f38-bf24814d5039/download/commodities_2017.json",
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/15daa549-9903-4cc4-b32d-aebac0512a98/download/commodities_2017.shp",
+     "https://data.gov.au/geoserver/catchment-scale-land-use-of-australia-commodities-september-2017/wms?request=GetCapabilities",
+     "https://data.gov.au/geoserver/catchment-scale-land-use-of-australia-commodities-september-2017/wfs"
+    ]
+   ]
+  ]
+ },
+ "ckan_acr": {
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1487096,
+  "head": "{\"help\": \"https://data.gov.au/data/api/3/action/help_show?name=package_search\", \"success\": true, \"result\": {\"count\": 667, \"facets\": {}, \"results\": [{\"archived\": false, \"author\": \"\", \"author_email\": null, \"contact_point\": \"Source from publication or marineparks@dcceew.gov.au\", \"creator_user_id\": \"338a7650-0df4-4fea-a5b0-51229867aeda\", \"duplicate_score\": 1, \"geospatial_topic\": [\"oceans\"], \"id\": \"5df",
+  "titles": [
+   [
+    "Catchment scale Land Use of Australia - Commodities - September 2017",
+    "catchment-scale-land-use-of-australia-commodities-september-2017",
+    [
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/d96de336-3847-4db2-bc29-95f2ca5e663f/download/vectorpackageclumc0917.zip",
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/78a56b2c-1744-420e-8f38-bf24814d5039/download/commodities_2017.json",
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/15daa549-9903-4cc4-b32d-aebac0512a98/download/commodities_2017.shp",
+     "https://data.gov.au/geoserver/catchment-scale-land-use-of-australia-commodities-september-2017/wms?request=GetCapabilities",
+     "https://data.gov.au/geoserver/catchment-scale-land-use-of-australia-commodities-september-2017/wfs"
+    ]
+   ]
+  ]
+ },
+ "ckan_cotton": {
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 801410,
+  "head": "{\"help\": \"https://data.gov.au/data/api/3/action/help_show?name=package_search\", \"success\": true, \"result\": {\"count\": 419, \"facets\": {}, \"results\": [{\"archived\": false, \"author\": \"\", \"author_email\": null, \"contact_point\": \"sip@acma.gov.au\", \"creator_user_id\": \"af40f449-e5d7-4a85-8a37-467d627d0feb\", \"duplicate_score\": 1, \"geospatial_topic\": [], \"id\": \"edf48c23-f98e-4299-856d-7e358c042be5\", \"isopen\":",
+  "titles": [
+   [
+    "Catchment scale Land Use of Australia - Commodities - September 2017",
+    "catchment-scale-land-use-of-australia-commodities-september-2017",
+    [
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/d96de336-3847-4db2-bc29-95f2ca5e663f/download/vectorpackageclumc0917.zip",
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/78a56b2c-1744-420e-8f38-bf24814d5039/download/commodities_2017.json",
+     "https://data.gov.au/data/dataset/20df136e-f375-4c2a-b093-db1b40833f14/resource/15daa549-9903-4cc4-b32d-aebac0512a98/download/commodities_2017.shp",
+     "https://data.gov.au/geoserver/catchment-scale-land-use-of-australia-commodities-september-2017/wms?request=GetCapabilities",
+     "https://data.gov.au/geoserver/catchment-scale-land-use-of-australia-commodities-september-2017/wfs"
+    ]
+   ],
+   [
+    "Climate Vulnerability Assessment: Irrigated Cotton",
+    "nsw-climate-vulnerability-assessment-irrigated-cotton",
+    [
+     "https://datasets.seed.nsw.gov.au/dataset/939bef7e-3443-4f51-ba1e-f43589833821/resource/c6ae7eb8-acea-4859-9609-9eba2fb0de3b/download/broadacre-cropping_irrigated-cotton_ensemble.zip",
+     "https://datasets.seed.nsw.gov.au/dataset/939bef7e-3443-4f51-ba1e-f43589833821/resource/729e2bc1-8396-4439-97a5-44c3d8b02800/download/broadacre-cropping_irrigated-cotton_gcms.zip",
+     "https://datasets.seed.nsw.gov.au/dataset/939bef7e-3443-4f51-ba1e-f43589833821/resource/a79b914e-118c-4e5c-a4bb-0a5669db0c6d/download/readme.txt",
+     "https://datasets.seed.nsw.gov.au/dataset/939bef7e-3443-4f51-ba1e-f43589833821/resource/42bebe64-8c22-487f-a092-fcb7ebd995b3/download/datadictionary-ensemble-broadacre-cropping.txt",
+     "https://datasets.seed.nsw.gov.au/dataset/939bef7e-3443-4f51-ba1e-f43589833821/resource/8175d0fa-6912-4c20-898f-12f3f2e1d122/download/datadictionary-gcms-broadacre-cropping.txt",
+     "https://datasets.seed.nsw.gov.au/dataset/939bef7e-3443-4f51-ba1e-f43589833821/resource/9587a314-83de-4541-9cec-4de9800bebde/download/cva-data-quality-statement-irrigated-cotton.pdf"
+    ]
+   ]
+  ]
+ },
+ "abs_flows": {
+  "err": "requests.api.get() got multiple values for keyword argument 'headers'"
+ },
+ "kiwis_COPETON*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 147,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"COPETON DAM\",\"418035\",\"589469\",\"-29.90438056\",\"150.92438333\"]]"
+ },
+ "kiwis_KEEPIT*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 138,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"KEEPIT DAM\",\"419041\",\"589813\",\"-30.8792\",\"150.4928\"]]"
+ },
+ "kiwis_SPLIT ROCK*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 150,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"SPLIT ROCK DAM\",\"419080\",\"589945\",\"-30.57411389\",\"150.69679722\"]]"
+ },
+ "kiwis_BURRENDONG*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 142,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"BURRENDONG DAM\",\"421078\",\"641672\",\"-32.6673\",\"149.1115\"]]"
+ },
+ "kiwis_BURRINJUCK*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 202,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"BURRINJUCK DAM\",\"410131\",\"641477\",\"-35.0\",\"148.5989\"],[\"BURRINJUCK WALL\",\"41010889\",\"1215124\",\"-35.0024\",\"148.5886\"]]"
+ },
+ "kiwis_BLOWERING*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 208,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"BLOWERING DAM\",\"410102\",\"641448\",\"-35.4012\",\"148.2429\"],[\"BLOWERING DAM OFFTAK\",\"41010001\",\"1215090\",\"-35.4014\",\"148.244\"]]"
+ },
+ "kiwis_WYANGALA*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 144,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"WYANGALA STORAGE\",\"412010\",\"641502\",\"-33.9688\",\"148.9517\"]]"
+ },
+ "kiwis_PINDARI*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 202,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"PINDARI DAM\",\"416030\",\"589200\",\"-29.3854\",\"151.243\"],[\"PINDARI DAM WALL\",\"41610001\",\"1215389\",\"-29.3863\",\"151.2467\"]]"
+ },
+ "kiwis_GLENLYON*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 218,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"GLENLYON DAM\",\"416315A\",\"1083769\",\"-28.9651\",\"151.4511\"],[\"GLENLYON DAM\",\"416315A\",\"3082179\",\"-85.5274847762285\",\"50.7677326114252\"]]"
+ },
+ "kiwis_BEARDMORE*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 83,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"]]"
+ },
+ "kiwis_LESLIE*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 615,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"Leslie Ck/Mylor\",\"A5030515\",\"1618791\",\"-35.0410999999997\",\"138.7528\"],[\"Leslie Dam\",\"422315B\",\"3242897\",\"-28.216593\",\"151.91816\"],[\"Leslie Dam TW\",\"422395A\",\"74246\",\"-28.21748157\",\"151.92181244\"],[\"Leslie Dam TW\",\"422395A\",\"3242934\",\"-28.217\",\"151.92215\"],[\"Leslie St.\",\"61600314\",\"12182513\",\"-32.094167617\",\"115.97"
+ },
+ "kiwis_COOBY*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 83,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"]]"
+ },
+ "kiwis_FAIRBAIRN*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 283,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"Fairbairn Dam\",\"130216A\",\"3242440\",\"-23.65246\",\"148.07425\"],[\"Fairbairn Dam AWS\",\"1302WS01\",\"55349505\",\"-23.65359\",\"148.07848\"],[\"Fairbairn Outlet Ch\",\"130228A\",\"3242472\",\"-23.649433\",\"148.071971\"]]"
+ },
+ "kiwis_CHAFFEY*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 209,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"CHAFFEY DAM\",\"419069\",\"589910\",\"-31.348147\",\"151.13947\"],[\"CHAFFEYS PONTOON\",\"41310026\",\"589091\",\"-34.166925\",\"142.161112\"]]"
+ },
+ "kiwis_HUME*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 255,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"HUME\",\"sp-o10510\",\"9452617\",\"-36.103851\",\"147.032825\"],[\"HUME DAM\",\"409011\",\"1082042\",\"-36.0899\",\"147.0585\"],[\"HUME DAM STORAGE\",\"401027\",\"587591\",\"-36.0885\",\"147.0539\"]]"
+ },
+ "kiwis_DARTMOUTH*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 212,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"DARTMOUTH DAM\",\"401224A\",\"1081752\",\"-36.5585\",\"147.5262\"],[\"DARTMOUTH RG\",\"401829\",\"41292580\",\"-36.535226296\",\"147.498413676\"]]"
+ },
+ "kiwis_MENINDEE*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 2533,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"MENINDEE\",\"GW036991.1.1\",\"1216738\",\"-32.4211\",\"142.2999\"],[\"MENINDEE\",\"GW036993.1.1\",\"1216746\",\"-32.5401\",\"142.1726\"],[\"MENINDEE\",\"GW040805.2.2\",\"1216820\",\"-32.4798\",\"142.3659\"],[\"MENINDEE\",\"GW040808.1.1\",\"1216836\",\"-32.3975\",\"142.3738\"],[\"MENINDEE\",\"GW040805.1.1\",\"1216816\",\"-32.4798\",\"142.3659\"],[\"MENINDEE\",\"GW04"
+ },
+ "kiwis_COOLMUNDA*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 418,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"Coolmunda Dam\",\"416409A\",\"3242843\",\"-28.437064\",\"151.217928\"],[\"Coolmunda Dam AWS\",\"4164WS01\",\"55349509\",\"-28.42263\",\"151.21339\"],[\"Coolmunda Dam TW\",\"416416A\",\"3242859\",\"-28.436387\",\"151.217045\"],[\"Coolmunda Headwater\",\"416409A\",\"21949255\",\"-28.43702\",\"151.21834\"],[\"Coolmunda Tailwater\",\"416416A\",\"115644\",\"-28.43"
+ },
+ "kiwis_LAKE MENINDEE*": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 143,
+  "head": "[[\"station_name\",\"station_no\",\"station_id\",\"station_latitude\",\"station_longitude\"],[\"LAKE MENINDEE\",\"425022\",\"590861\",\"-32.39708\",\"142.37436\"]]"
+ },
+ "stations": {
+  "COPETON*": [
+   [
+    "COPETON DAM",
+    "418035",
+    "589469",
+    "-29.90438056",
+    "150.92438333"
+   ]
+  ],
+  "KEEPIT*": [
+   [
+    "KEEPIT DAM",
+    "419041",
+    "589813",
+    "-30.8792",
+    "150.4928"
+   ]
+  ],
+  "SPLIT ROCK*": [
+   [
+    "SPLIT ROCK DAM",
+    "419080",
+    "589945",
+    "-30.57411389",
+    "150.69679722"
+   ]
+  ],
+  "BURRENDONG*": [
+   [
+    "BURRENDONG DAM",
+    "421078",
+    "641672",
+    "-32.6673",
+    "149.1115"
+   ]
+  ],
+  "BURRINJUCK*": [
+   [
+    "BURRINJUCK DAM",
+    "410131",
+    "641477",
+    "-35.0",
+    "148.5989"
+   ],
+   [
+    "BURRINJUCK WALL",
+    "41010889",
+    "1215124",
+    "-35.0024",
+    "148.5886"
+   ]
+  ],
+  "BLOWERING*": [
+   [
+    "BLOWERING DAM",
+    "410102",
+    "641448",
+    "-35.4012",
+    "148.2429"
+   ],
+   [
+    "BLOWERING DAM OFFTAK",
+    "41010001",
+    "1215090",
+    "-35.4014",
+    "148.244"
+   ]
+  ],
+  "WYANGALA*": [
+   [
+    "WYANGALA STORAGE",
+    "412010",
+    "641502",
+    "-33.9688",
+    "148.9517"
+   ]
+  ],
+  "PINDARI*": [
+   [
+    "PINDARI DAM",
+    "416030",
+    "589200",
+    "-29.3854",
+    "151.243"
+   ],
+   [
+    "PINDARI DAM WALL",
+    "41610001",
+    "1215389",
+    "-29.3863",
+    "151.2467"
+   ]
+  ],
+  "GLENLYON*": [
+   [
+    "GLENLYON DAM",
+    "416315A",
+    "1083769",
+    "-28.9651",
+    "151.4511"
+   ],
+   [
+    "GLENLYON DAM",
+    "416315A",
+    "3082179",
+    "-85.5274847762285",
+    "50.7677326114252"
+   ]
+  ],
+  "BEARDMORE*": [],
+  "LESLIE*": [
+   [
+    "Leslie Ck/Mylor",
+    "A5030515",
+    "1618791",
+    "-35.0410999999997",
+    "138.7528"
+   ],
+   [
+    "Leslie Dam",
+    "422315B",
+    "3242897",
+    "-28.216593",
+    "151.91816"
+   ],
+   [
+    "Leslie Dam TW",
+    "422395A",
+    "74246",
+    "-28.21748157",
+    "151.92181244"
+   ],
+   [
+    "Leslie Dam TW",
+    "422395A",
+    "3242934",
+    "-28.217",
+    "151.92215"
+   ],
+   [
+    "Leslie St.",
+    "61600314",
+    "12182513",
+    "-32.094167617",
+    "115.974691723"
+   ],
+   [
+    "Leslie Street",
+    "616128",
+    "397656",
+    "-32.103088206",
+    "115.979011445"
+   ],
+   [
+    "Leslie_Ck Barron",
+    "110022A",
+    "71095",
+    "-17.29194444",
+    "145.5385"
+   ],
+   [
+    "Leslie_Ck Barron",
+    "110022B",
+    "58370354",
+    "-17.29593532",
+    "145.54408799"
+   ]
+  ],
+  "COOBY*": [],
+  "FAIRBAIRN*": [
+   [
+    "Fairbairn Dam",
+    "130216A",
+    "3242440",
+    "-23.65246",
+    "148.07425"
+   ],
+   [
+    "Fairbairn Dam AWS",
+    "1302WS01",
+    "55349505",
+    "-23.65359",
+    "148.07848"
+   ],
+   [
+    "Fairbairn Outlet Ch",
+    "130228A",
+    "3242472",
+    "-23.649433",
+    "148.071971"
+   ]
+  ],
+  "CHAFFEY*": [
+   [
+    "CHAFFEY DAM",
+    "419069",
+    "589910",
+    "-31.348147",
+    "151.13947"
+   ],
+   [
+    "CHAFFEYS PONTOON",
+    "41310026",
+    "589091",
+    "-34.166925",
+    "142.161112"
+   ]
+  ],
+  "HUME*": [
+   [
+    "HUME",
+    "sp-o10510",
+    "9452617",
+    "-36.103851",
+    "147.032825"
+   ],
+   [
+    "HUME DAM",
+    "409011",
+    "1082042",
+    "-36.0899",
+    "147.0585"
+   ],
+   [
+    "HUME DAM STORAGE",
+    "401027",
+    "587591",
+    "-36.0885",
+    "147.0539"
+   ]
+  ],
+  "DARTMOUTH*": [
+   [
+    "DARTMOUTH DAM",
+    "401224A",
+    "1081752",
+    "-36.5585",
+    "147.5262"
+   ],
+   [
+    "DARTMOUTH RG",
+    "401829",
+    "41292580",
+    "-36.535226296",
+    "147.498413676"
+   ]
+  ],
+  "MENINDEE*": [
+   [
+    "MENINDEE",
+    "GW036991.1.1",
+    "1216738",
+    "-32.4211",
+    "142.2999"
+   ],
+   [
+    "MENINDEE",
+    "GW036993.1.1",
+    "1216746",
+    "-32.5401",
+    "142.1726"
+   ],
+   [
+    "MENINDEE",
+    "GW040805.2.2",
+    "1216820",
+    "-32.4798",
+    "142.3659"
+   ],
+   [
+    "MENINDEE",
+    "GW040808.1.1",
+    "1216836",
+    "-32.3975",
+    "142.3738"
+   ],
+   [
+    "MENINDEE",
+    "GW040805.1.1",
+    "1216816",
+    "-32.4798",
+    "142.3659"
+   ],
+   [
+    "MENINDEE",
+    "GW040807.1.1",
+    "1216828",
+    "-32.4784",
+    "142.3212"
+   ],
+   [
+    "MENINDEE",
+    "GW040808.2.2",
+    "1216840",
+    "-32.3975",
+    "142.3738"
+   ],
+   [
+    "MENINDEE",
+    "GW040799.2.2",
+    "1216804",
+    "-32.6497",
+    "142.2695"
+   ],
+   [
+    "MENINDEE",
+    "GW040797.2.2",
+    "1216792",
+    "-32.6031",
+    "142.2455"
+   ],
+   [
+    "MENINDEE",
+    "GW040799.1.1",
+    "1216800",
+    "-32.6497",
+    "142.2695"
+   ],
+   [
+    "MENINDEE",
+    "GW040807.2.2",
+    "1216832",
+    "-32.4784",
+    "142.3212"
+   ],
+   [
+    "MENINDEE",
+    "GW040797.1.1",
+    "1216788",
+    "-32.6031",
+    "142.2455"
+   ],
+   [
+    "MENINDEE",
+    "GW040804.2.2",
+    "1216812",
+    "-32.60646967",
+    "142.37306421"
+   ],
+   [
+    "MENINDEE",
+    "GW040795.1.1",
+    "1216780",
+    "-32.5512",
+    "142.2237"
+   ],
+   [
+    "MENINDEE",
+    "GW040795.2.2",
+    "1216784",
+    "-32.5512",
+    "142.2237"
+   ],
+   [
+    "MENINDEE",
+    "GW040802.1.1",
+    "1216808",
+    "-32.5635",
+    "142.3187"
+   ],
+   [
+    "MENINDEE",
+    "GW036990.1.1",
+    "1216734",
+    "-32.482",
+    "142.3006"
+   ],
+   [
+    "Menindee",
+    "GW036994",
+    "655468",
+    "",
+    ""
+   ],
+   [
+    "MENINDEE",
+    "GW036992.1.1",
+    "1216742",
+    "-32.5273",
+    "142.186"
+   ],
+   [
+    "MENINDEE",
+    "GW040805",
+    "657688",
+    "-32.4798",
+    "142.3659"
+   ],
+   [
+    "MENINDEE",
+    "GW040806.1.1",
+    "1216824",
+    "-32.4787",
+    "142.4136"
+   ],
+   [
+    "MENINDEE",
+    "GW040798.1.1",
+    "1216796",
+    "-32.625",
+    "142.2549"
+   ],
+   [
+    "MENINDEE @ APPIN",
+    "GW087799.1.1",
+    "1217514",
+    "-32.4335",
+    "142.6987"
+   ],
+   [
+    "MENINDEE @ COMMON",
+    "GW087802.1.1",
+    "1217530",
+    "-32.3075",
+    "142.4064"
+   ],
+   [
+    "MENINDEE @ COMMON",
+    "GW087802.1.2",
+    "1217534",
+    "-32.3075",
+    "142.4064"
+   ],
+   [
+    "MENINDEE @ COMMON",
+    "GW087803.1.2",
+    "1217542",
+    "-32.4123",
+    "142.4189"
+   ],
+   [
+    "MENINDEE @ COMMON",
+    "GW087803.1.1",
+    "1217538",
+    "-32.4123",
+    "142.4189"
+   ],
+   [
+    "Menindee @ Wilcan",
+    "GW036807",
+    "654836",
+    "-31.9749",
+    "143.0266"
+   ],
+   [
+    "Menindee @ Wilcan P1",
+    "GW036807.1.1",
+    "9647844",
+    "-31.9749",
+    "143.0266"
+   ],
+   [
+    "Menindee @ Wilcan P2",
+    "GW036807.2.2",
+    "1216490",
+    "-31.9749",
+    "143.0266"
+   ],
+   [
+    "MENINDEE FRUITS",
+    "GW087800.1.1",
+    "1217518",
+    "-32.254",
+    "142.3665"
+   ],
+   [
+    "MENINDEE MAIN WEIR",
+    "425997",
+    "1084848",
+    "-32.31027778",
+    "142.51083333"
+   ],
+   [
+    "MENINDEE MET",
+    "047058",
+    "1079600",
+    "-32.390190378",
+    "142.416572175"
+   ],
+   [
+    "MENINDEE OUTLET",
+    "425994",
+    "1084836",
+    "-32.399641",
+    "142.374264"
+   ],
+   [
+    "MENINDEE TOTAL",
+    "425049",
+    "1215593",
+    "-32.3999999999995",
+    "142.395"
+   ],
+   [
+    "Menindee WQ",
+    "425001B",
+    "32087274",
+    "-32.388611",
+    "142.431996"
+   ],
+   [
+    "Menindee WQ",
+    "425902",
+    "31123254",
+    "-32.388611",
+    "142.431996"
+   ],
+   [
+    "MENINDEE@COPI HOLLOW",
+    "42510037",
+    "1084826",
+    "-32.2674",
+    "142.3869"
+   ],
+   [
+    "MENINDEE@OUTLET CH",
+    "425044",
+    "590901",
+    "-32.397795",
+    "142.374309"
+   ]
+  ],
+  "COOLMUNDA*": [
+   [
+    "Coolmunda Dam",
+    "416409A",
+    "3242843",
+    "-28.437064",
+    "151.217928"
+   ],
+   [
+    "Coolmunda Dam AWS",
+    "4164WS01",
+    "55349509",
+    "-28.42263",
+    "151.21339"
+   ],
+   [
+    "Coolmunda Dam TW",
+    "416416A",
+    "3242859",
+    "-28.436387",
+    "151.217045"
+   ],
+   [
+    "Coolmunda Headwater",
+    "416409A",
+    "21949255",
+    "-28.43702",
+    "151.21834"
+   ],
+   [
+    "Coolmunda Tailwater",
+    "416416A",
+    "115644",
+    "-28.43702",
+    "151.21833"
+   ]
+  ],
+  "LAKE MENINDEE*": [
+   [
+    "LAKE MENINDEE",
+    "425022",
+    "590861",
+    "-32.39708",
+    "142.37436"
+   ]
+  ]
+ },
+ "kiwis_tslist": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 18519,
+  "head": "[[\"ts_id\",\"ts_name\",\"parametertype_name\",\"ts_unitname\",\"from\",\"to\"],[\"159999010\",\"ObsPOR.Merged.AsStored.1\",\"Storage Level\",\"meter\",\"1976-05-26T15:30:00.000+10:00\",\"2026-11-10T22:15:01.000+10:00\"],[\"160001010\",\"DMmanQC.Manual.AsStored.1\",\"Storage Level\",\"meter\",\"\",\"\"],[\"160005010\",\"DMQaQc.Merged.MonthlyMean.CalMonth\",\"Storage Level\",\"meter\",\"1976-05-01T00:00:00.000+10:00\",\"2026-10-01T00:00:00.000+",
+  "rows": [
+   [
+    "ts_id",
+    "ts_name",
+    "parametertype_name",
+    "ts_unitname",
+    "from",
+    "to"
+   ],
+   [
+    "159999010",
+    "ObsPOR.Merged.AsStored.1",
+    "Storage Level",
+    "meter",
+    "1976-05-26T15:30:00.000+10:00",
+    "2026-11-10T22:15:01.000+10:00"
+   ],
+   [
+    "160001010",
+    "DMmanQC.Manual.AsStored.1",
+    "Storage Level",
+    "meter",
+    "",
+    ""
+   ],
+   [
+    "160005010",
+    "DMQaQc.Merged.MonthlyMean.CalMonth",
+    "Storage Level",
+    "meter",
+    "1976-05-01T00:00:00.000+10:00",
+    "2026-10-01T00:00:00.000+10:00"
+   ],
+   [
+    "160014010",
+    "Harmonised.Combined.AsStored.1",
+    "Storage Volume",
+    "megalitre",
+    "",
+    ""
+   ],
+   [
+    "160022010",
+    "DMQaQc.Merged.DailyMean.24HR",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "197186010",
+    "Harmonised.Provisional.AsStored.1",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "2011-07-25T15:08:20.000+10:00",
+    "2026-11-09T23:54:38.000+10:00"
+   ],
+   [
+    "197203010",
+    "Received.Validated.AsStored.1",
+    "Evaporation",
+    "millimeter",
+    "2010-11-20T09:00:00.000+10:00",
+    "2019-03-28T09:00:01.000+10:00"
+   ],
+   [
+    "197206010",
+    "Harmonised.Combined.AsStored.1",
+    "Evaporation",
+    "millimeter",
+    "",
+    ""
+   ],
+   [
+    "197209010",
+    "DMQaQc.Auto.AsStored.1",
+    "Evaporation",
+    "millimeter",
+    "2009-01-01T09:00:00.000+10:00",
+    "2026-11-09T09:00:01.000+10:00"
+   ],
+   [
+    "197231010",
+    "DMQaQc.Merged.MonthlyTotal.CalMonth",
+    "Rainfall",
+    "millimeter",
+    "2009-01-01T00:00:00.000+10:00",
+    "2026-10-01T00:00:00.000+10:00"
+   ],
+   [
+    "197233010",
+    "Received.Provisional.AsStored.1",
+    "Relative Humidity",
+    "percentage",
+    "2011-07-25T15:08:20.000+10:00",
+    "2026-11-10T01:01:45.000+10:00"
+   ],
+   [
+    "197240010",
+    "Harmonised.Validated.AsStored.1",
+    "Relative Humidity",
+    "percentage",
+    "2011-07-25T15:08:21.000+10:00",
+    "2019-03-28T13:37:41.000+10:00"
+   ],
+   [
+    "197246010",
+    "DMQaQc.Merged.DailyMean.24HR",
+    "Relative Humidity",
+    "percentage",
+    "2011-07-25T00:00:00.000+10:00",
+    "2026-11-10T00:00:00.000+10:00"
+   ],
+   [
+    "197248010",
+    "DMQaQc.Merged.YearlyMean.CalYear",
+    "Relative Humidity",
+    "percentage",
+    "2011-01-01T00:00:00.000+10:00",
+    "2025-01-01T00:00:00.000+10:00"
+   ],
+   [
+    "197253010",
+    "Received.Validated.AsStored.1",
+    "Wind Speed",
+    "meter per second",
+    "2011-07-25T23:31:37.000+10:00",
+    "2019-03-28T13:37:41.000+10:00"
+   ],
+   [
+    "197267010",
+    "DMQaQc.Merged.DailyMax.24HR",
+    "Wind Speed",
+    "kilometer per hour",
+    "2011-07-25T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "365123010",
+    "PR02QaQc.Merged.AsStored.1",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T15:30:00.000+10:00",
+    "2026-11-09T22:15:01.000+10:00"
+   ],
+   [
+    "365126010",
+    "PR02TVQaQc.Merged.DailyMean.24HR",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "364076010",
+    "PR02AHDQaQc.Merged.DailyMean.24HR",
+    "Storage Level",
+    "meter",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-10T00:00:00.000+10:00"
+   ],
+   [
+    "160025010",
+    "DMQaQc.Merged.DailyMax.24HR",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "197187010",
+    "Harmonised.Provisionalbest.AsStored.1",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "",
+    ""
+   ],
+   [
+    "197195010",
+    "DMQaQc.Merged.DailyMean.24HR",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "2011-07-25T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "197197010",
+    "DMQaQc.Merged.YearlyMean.CalYear",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "2011-01-01T00:00:00.000+10:00",
+    "2025-01-01T00:00:00.000+10:00"
+   ],
+   [
+    "197198010",
+    "DMQaQc.Merged.DailyMax.24HR",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "2011-07-25T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "197210010",
+    "DMmanQC.Manual.AsStored.1",
+    "Evaporation",
+    "millimeter",
+    "",
+    ""
+   ],
+   [
+    "197238010",
+    "Harmonised.Provisionalbest.AsStored.1",
+    "Relative Humidity",
+    "percentage",
+    "",
+    ""
+   ],
+   [
+    "197239010",
+    "Harmonised.Combined.AsStored.1",
+    "Relative Humidity",
+    "percentage",
+    "",
+    ""
+   ],
+   [
+    "197241010",
+    "CombinedProv.Merged.AsStored.1",
+    "Relative Humidity",
+    "percentage",
+    "2011-07-25T15:08:20.000+10:00",
+    "2026-11-10T01:01:45.000+10:00"
+   ],
+   [
+    "197255010",
+    "Harmonised.Provisional.AsStored.1",
+    "Wind Speed",
+    "kilometer per hour",
+    "2011-07-25T23:31:36.000+10:00",
+    "2026-11-09T23:54:38.000+10:00"
+   ],
+   [
+    "197264010",
+    "DMQaQc.Merged.DailyMean.24HR",
+    "Wind Speed",
+    "kilometer per hour",
+    "2011-07-25T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "365125010",
+    "PR02AVQaQc.Merged.DailyMean.24HR",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "159989010",
+    "Received.Validated.AsStored.1",
+    "Storage Level",
+    "meter",
+    "1976-05-26T15:29:59.000+10:00",
+    "2026-10-12T11:30:01.000+10:00"
+   ],
+   [
+    "160004010",
+    "DMQaQc.Merged.DailyMean.24HR",
+    "Storage Level",
+    "meter",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-10T00:00:00.000+10:00"
+   ],
+   [
+    "160015010",
+    "Harmonised.Validated.AsStored.1",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T15:30:00.000+10:00",
+    "2026-10-12T11:30:01.000+10:00"
+   ],
+   [
+    "160016010",
+    "CombinedProv.Merged.AsStored.1",
+    "Storage Volume",
+    "megalitre",
+    "1996-01-01T08:59:59.000+10:00",
+    "2026-11-09T22:15:01.000+10:00"
+   ],
+   [
+    "160020010",
+    "DMQaQc.Merged.AsStored.1",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T15:30:00.000+10:00",
+    "2026-11-09T22:15:01.000+10:00"
+   ],
+   [
+    "160024010",
+    "DMQaQc.Merged.YearlyMean.CalYear",
+    "Storage Volume",
+    "megalitre",
+    "1976-01-01T00:00:00.000+10:00",
+    "2025-01-01T00:00:00.000+10:00"
+   ],
+   [
+    "197188010",
+    "Harmonised.Combined.AsStored.1",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "",
+    ""
+   ],
+   [
+    "197193010",
+    "DMmanQC.Manual.AsStored.1",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "",
+    ""
+   ],
+   [
+    "197208010",
+    "ObsPOR.Merged.AsStored.1",
+    "Evaporation",
+    "millimeter",
+    "2009-01-01T09:00:00.000+10:00",
+    "2026-11-09T09:00:01.000+10:00"
+   ],
+   [
+    "197213010",
+    "DMQaQc.Merged.DailyTotal.09HR",
+    "Evaporation",
+    "millimeter",
+    "2009-01-01T09:00:00.000+10:00",
+    "2026-11-10T09:00:00.000+10:00"
+   ],
+   [
+    "197221010",
+    "Harmonised.Provisionalbest.AsStored.1",
+    "Rainfall",
+    "millimeter",
+    "",
+    ""
+   ],
+   [
+    "197225010",
+    "ObsPOR.Merged.AsStored.1",
+    "Rainfall",
+    "millimeter",
+    "2009-01-01T09:00:00.000+10:00",
+    "2026-11-09T23:54:38.000+10:00"
+   ],
+   [
+    "197234010",
+    "Received.Validated.AsStored.1",
+    "Relative Humidity",
+    "percentage",
+    "2011-07-25T15:08:21.000+10:00",
+    "2019-03-28T13:37:41.000+10:00"
+   ],
+   [
+    "197258010",
+    "Harmonised.Validated.AsStored.1",
+    "Wind Speed",
+    "kilometer per hour",
+    "2011-07-25T23:31:37.000+10:00",
+    "2019-03-28T13:37:41.000+10:00"
+   ],
+   [
+    "197261010",
+    "DMQaQc.Auto.AsStored.1",
+    "Wind Speed",
+    "kilometer per hour",
+    "2011-07-25T23:31:36.000+10:00",
+    "2026-11-09T23:54:38.000+10:00"
+   ],
+   [
+    "364074010",
+    "PR02QaQc.Merged.AsStored.1",
+    "Storage Level",
+    "meter",
+    "1976-05-26T15:30:00.000+10:00",
+    "2026-11-10T22:15:01.000+10:00"
+   ],
+   [
+    "795994010",
+    "Received.Provisional.AsStored.1",
+    "Wind Direction",
+    "degree",
+    "2026-10-20T08:31:43.000+10:00",
+    "2026-11-09T23:54:38.000+10:00"
+   ],
+   [
+    "159991010",
+    "Received.Provisionalbest.AsStored.1",
+    "Storage Level",
+    "meter",
+    "",
+    ""
+   ],
+   [
+    "159993010",
+    "Harmonised.Provisional.AsStored.1",
+    "Storage Level",
+    "meter",
+    "1996-01-01T08:59:59.000+10:00",
+    "2026-11-10T22:15:01.000+10:00"
+   ],
+   [
+    "159994010",
+    "Harmonised.Provisionalbest.AsStored.1",
+    "Storage Level",
+    "meter",
+    "",
+    ""
+   ],
+   [
+    "159998010",
+    "CombinedProv.Merged.AsStored.1",
+    "Storage Level",
+    "meter",
+    "1996-01-01T08:59:59.000+10:00",
+    "2026-11-10T22:15:01.000+10:00"
+   ],
+   [
+    "160000010",
+    "DMQaQc.Auto.AsStored.1",
+    "Storage Level",
+    "meter",
+    "1976-05-26T15:30:00.000+10:00",
+    "2026-11-10T22:15:01.000+10:00"
+   ],
+   [
+    "160002010",
+    "DMQaQc.Merged.AsStored.1",
+    "Storage Level",
+    "meter",
+    "1976-05-26T15:30:00.000+10:00",
+    "2026-11-10T22:15:01.000+10:00"
+   ],
+   [
+    "160006010",
+    "DMQaQc.Merged.YearlyMean.CalYear",
+    "Storage Level",
+    "meter",
+    "1976-01-01T00:00:00.000+10:00",
+    "2025-01-01T00:00:00.000+10:00"
+   ],
+   [
+    "160008010",
+    "DMQaQc.Merged.DailyMin.24HR",
+    "Storage Level",
+    "meter",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-10T00:00:00.000+10:00"
+   ],
+   [
+    "160009010",
+    "Received.Combined.AsStored.1",
+    "Storage Volume",
+    "megalitre",
+    "",
+    ""
+   ],
+   [
+    "160026010",
+    "DMQaQc.Merged.DailyMin.24HR",
+    "Storage Volume",
+    "megalitre",
+    "1976-05-26T00:00:00.000+10:00",
+    "2026-11-09T00:00:00.000+10:00"
+   ],
+   [
+    "197184010",
+    "Received.Validated.AsStored.1",
+    "Dry Air Temperature",
+    "degree Celsius",
+    "2011-07-25T15:08:21.000+10:00",
+    "2019-03-28T13:37:41.000+10:00"
+   ]
+  ]
+ },
+ "kiwis_cand": [
+  [
+   "159999010",
+   "ObsPOR.Merged.AsStored.1",
+   "Storage Level",
+   "meter",
+   "1976-05-26T15:30:00.000+10:00",
+   "2026-11-10T22:15:01.000+10:00"
+  ],
+  [
+   "160001010",
+   "DMmanQC.Manual.AsStored.1",
+   "Storage Level",
+   "meter",
+   "",
+   ""
+  ],
+  [
+   "160005010",
+   "DMQaQc.Merged.MonthlyMean.CalMonth",
+   "Storage Level",
+   "meter",
+   "1976-05-01T00:00:00.000+10:00",
+   "2026-10-01T00:00:00.000+10:00"
+  ],
+  [
+   "160014010",
+   "Harmonised.Combined.AsStored.1",
+   "Storage Volume",
+   "megalitre",
+   "",
+   ""
+  ],
+  [
+   "160022010",
+   "DMQaQc.Merged.DailyMean.24HR",
+   "Storage Volume",
+   "megalitre",
+   "1976-05-26T00:00:00.000+10:00",
+   "2026-11-09T00:00:00.000+10:00"
+  ],
+  [
+   "365123010",
+   "PR02QaQc.Merged.AsStored.1",
+   "Storage Volume",
+   "megalitre",
+   "1976-05-26T15:30:00.000+10:00",
+   "2026-11-09T22:15:01.000+10:00"
+  ],
+  [
+   "365126010",
+   "PR02TVQaQc.Merged.DailyMean.24HR",
+   "Storage Volume",
+   "megalitre",
+   "1976-05-26T00:00:00.000+10:00",
+   "2026-11-09T00:00:00.000+10:00"
+  ],
+  [
+   "364076010",
+   "PR02AHDQaQc.Merged.DailyMean.24HR",
+   "Storage Level",
+   "meter",
+   "1976-05-26T00:00:00.000+10:00",
+   "2026-11-10T00:00:00.000+10:00"
+  ],
+  [
+   "160025010",
+   "DMQaQc.Merged.DailyMax.24HR",
+   "Storage Volume",
+   "megalitre",
+   "1976-05-26T00:00:00.000+10:00",
+   "2026-11-09T00:00:00.000+10:00"
+  ],
+  [
+   "365125010",
+   "PR02AVQaQc.Merged.DailyMean.24HR",
+   "Storage Volume",
+   "megalitre",
+   "1976-05-26T00:00:00.000+10:00",
+   "2026-11-09T00:00:00.000+10:00"
+  ],
+  [
+   "159989010",
+   "Received.Validated.AsStored.1",
+   "Storage Level",
+   "meter",
+   "1976-05-26T15:29:59.000+10:00",
+   "2026-10-12T11:30:01.000+10:00"
+  ],
+  [
+   "160004010",
+   "DMQaQc.Merged.DailyMean.24HR",
+   "Storage Level",
+   "meter",
+   "1976-05-26T00:00:00.000+10:00",
+   "2026-11-10T00:00:00.000+10:00"
+  ],
+  [
+   "160015010",
+   "Harmonised.Validated.AsStored.1",
+   "Storage Volume",
+   "megalitre",
+   "1976-05-26T15:30:00.000+10:00",
+   "2026-10-12T11:30:01.000+10:00"
+  ],
+  [
+   "160016010",
+   "CombinedProv.Merged.AsStored.1",
+   "Storage Volume",
+   "megalitre",
+   "1996-01-01T08:59:59.000+10:00",
+   "2026-11-09T22:15:01.000+10:00"
+  ],
+  [
+   "160020010",
+   "DMQaQc.Merged.AsStored.1",
+   "Storage Volume",
+   "megalitre",
+   "1976-05-26T15:30:00.000+10:00",
+   "2026-11-09T22:15:01.000+10:00"
+  ],
+  [
+   "160024010",
+   "DMQaQc.Merged.YearlyMean.CalYear",
+   "Storage Volume",
+   "megalitre",
+   "1976-01-01T00:00:00.000+10:00",
+   "2025-01-01T00:00:00.000+10:00"
+  ],
+  [
+   "364074010",
+   "PR02QaQc.Merged.AsStored.1",
+   "Storage Level",
+   "meter",
+   "1976-05-26T15:30:00.000+10:00",
+   "2026-11-10T22:15:01.000+10:00"
+  ],
+  [
+   "159991010",
+   "Received.Provisionalbest.AsStored.1",
+   "Storage Level",
+   "meter",
+   "",
+   ""
+  ],
+  [
+   "159993010",
+   "Harmonised.Provisional.AsStored.1",
+   "Storage Level",
+   "meter",
+   "1996-01-01T08:59:59.000+10:00",
+   "2026-11-10T22:15:01.000+10:00"
+  ],
+  [
+   "159994010",
+   "Harmonised.Provisionalbest.AsStored.1",
+   "Storage Level",
+   "meter",
+   "",
+   ""
+  ]
+ ],
+ "kiwis_vals_159999010": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 28748912,
+  "head": "[{\"ts_id\": \"159999010\",\"rows\": \"684500\",\"columns\":\"Timestamp,Value\", \"data\": [[\"1990-01-01T00:34:00.000+10:00\",535.875],[\"1990-01-01T03:04:00.000+10:00\",535.858],[\"1990-01-01T05:12:00.000+10:00\",535.846],[\"1990-01-01T06:52:00.000+10:00\",535.838],[\"1990-01-01T08:52:00.000+10:00\",535.825],[\"1990-01-01T11:20:00.000+10:00\",535.803],[\"1990-01-01T12:53:00.000+10:00\",535.785],[\"1990-01-01T15:22:00.000+10",
+  "n": 684500,
+  "first_last": [
+   [
+    [
+     "1990-01-01T00:34:00.000+10:00",
+     535.875
+    ],
+    [
+     "1990-01-01T03:04:00.000+10:00",
+     535.858
+    ]
+   ],
+   [
+    [
+     "2026-11-10T22:00:00.000+10:00",
+     557.126
+    ],
+    [
+     "2026-11-10T22:15:00.000+10:00",
+     557.141
+    ],
+    [
+     "2026-11-10T22:15:01.000+10:00",
+     null
+    ]
+   ]
+  ]
+ },
+ "kiwis_vals_160001010": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 76,
+  "head": "[{\"ts_id\": \"160001010\",\"rows\": \"0\",\"columns\":\"Timestamp,Value\", \"data\": []}]",
+  "n": 0,
+  "first_last": [
+   [],
+   []
+  ]
+ },
+ "kiwis_vals_160005010": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 18659,
+  "head": "[{\"ts_id\": \"160005010\",\"rows\": \"443\",\"columns\":\"Timestamp,Value\", \"data\": [[\"1990-01-01T00:00:00.000+10:00\",532.073],[\"1990-02-01T00:00:00.000+10:00\",526.119],[\"1990-03-01T00:00:00.000+10:00\",523.844],[\"1990-04-01T00:00:00.000+10:00\",524.534],[\"1990-05-01T00:00:00.000+10:00\",529.002],[\"1990-06-01T00:00:00.000+10:00\",534.045],[\"1990-07-01T00:00:00.000+10:00\",541.448],[\"1990-08-01T00:00:00.000+10:00",
+  "n": 443,
+  "first_last": [
+   [
+    [
+     "1990-01-01T00:00:00.000+10:00",
+     532.073
+    ],
+    [
+     "1990-02-01T00:00:00.000+10:00",
+     526.119
+    ]
+   ],
+   [
+    [
+     "2026-09-01T00:00:00.000+10:00",
+     559.007
+    ],
+    [
+     "2026-10-01T00:00:00.000+10:00",
+     557.43
+    ],
+    [
+     "2026-11-01T00:00:00.000+10:00",
+     null
+    ]
+   ]
+  ]
+ },
+ "kiwis_vals_160014010": {
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 76,
+  "head": "[{\"ts_id\": \"160014010\",\"rows\": \"0\",\"columns\":\"Timestamp,Value\", \"data\": []}]",
+  "n": 0,
+  "first_last": [
+   [],
+   []
+  ]
+ },
+ "cotton_aus_stats": {
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 31985,
+  "head": "    <!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n\t<meta property=\"og:site_name\" content=\"Cotton Australia\">\n\t\t\t<meta property='og:title' content='Statistics'/>\n\t\t\t\t<meta property='og:image' content='/img/linkedin-icon.jpg'/>\n\t\t<meta property='o",
+  "text": " Cotton Australia | Statistics var chartNames = []; !function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js'); fbq('init', '1037450722051514'); fbq('track', 'PageView'); About CA About CA About About Board Staff Members CA&#039;s Roles CA&#039;s History Timeline Publications Publications Annual Reports Sustainability Reports Current and Future Activities Brochures Strategic Plan Submissions Australian Cotton Industry Awards Australian Cotton Industry Awards Awards Recipients Previous Awards Finalists Awards Roll of Honour Awards Sponsors Contact Awards Team Special Projects Special Projects Strategic Roadmap for Australian Cotton myBMP Re-design Cotton to Market Cotton to Market Better Cotton Learn about cotton Learn about cotton Industry overview The cotton plant Why choose Australian cotton? Where is cotton grown? How is cotton grown? Cotton&#039;s water use Water information and resources Cotton products and uses Sustainability Cotton, Biodegradability and Microplastics Circularity Community myBMP program Biotechnology and cotton Other Fact Sheets Other Fact Sheets Statistics Environment and climate Biodiversity and cotton Crop protection Research, technology and innovation Economics Careers Organic cotton Hemp Myth buster World cotton history News and events News and events News Stories CA Media Releases Cotton Matters Webinars Events Growers Growers myBMP CottonInfo Stewardship Stewardship SDS for cotton products Biosecurity Spraydrift and Satacrop Spray Drift app Bee awareness Transport Workforce Job Seekers Telecommunications Training Leadership programs Approved gin trash suppliers Growers Articles Cotton Classroom Cotton Classroom Educational Resources Educational Resources Education Kit Interactive Quiz How To Grow A Pair Of Jeans Posters Education videos Lessons And Units Lessons And Units Cotton Australia resources - Primary Cotton Australia resources - Secondary Wrapped in Cotton: Textiles and Design Careers &amp; Scholarships Events &amp; partners Contact the Education Team Contact Contact Cotton Australia Cotton Grower Associations Cotton organisations Home Learn about cotton Other Fact Sheets Statistics Statistics Bales of Australian cotton produced (year listed is when season finished) function ChartID1() { var data = new google.visualization.DataTable(); data.addColumn('date', 'X'); data.addColumn('number', 'TOTAL'); data.addRows([ [new Date(1990,0), 1287500, ], [new Date(1991,0), 1804000, ], [new Date(1992,0), 2018000, ], [new Date(1993,0), 1559860, ], [new Date(1994,0), 1411910, ], [new Date(1995,0), 1365140, ], [new Date(1996,0), 1712600, ], [new Date(1997,0), 2710800, ], [new Date(1998,0), 3020065, ], [new Date(1999,0), 3221340, ], [new Date(2000,0), 3202160, ], [new Date(2001,0), 3441334, ], [new Date(2002,0), 3072320, ], [new Date(2003,0), 1630100, ], [new Date(2004,0), 1531000, ], [new Date(2005,0), 2904000, ], [new Date(2006,0), 2618000, ], [new Date(2007,0), 1199700, ], [new Date(2008,0), 601810, ], [new Date(2009,0), 1494300, ], [new Date(2010,0), 1594850, ], [new Date(2011,0), 3999600, ], [new Date(2012,0), 5300000, ], [new Date(2013,0), 4400000, ], [new Date(2014,0), 3900000, ], [new Date(2015,0), 2200000, ], [new Date(2016,0), 2742700, ], [new Date(2017,0), 3874675, ], [new Date(2018,0), 4658740, ], [new Date(2019,0), 2134845, ], [new Date(2020,0), 589656, ], [new Date(2021,0), 2809345, ], [new Date(2022,0), 5630232, ], [new Date(2023,0), 5113780, ], [new Date(2024,0), 5056223, ], ]); console.log(data); var options = { height: 400, legend: { position: 'bottom' }, hAxis: { title: \"Year\", format: 'yyyy', }, vAxis: { title: \"Bales of Australian cotton produced\" }, }; console.log(options); function resize() { var chart = new google.visualization.LineChart(document.getElementById('ChartID1')); chart.draw(data, options); $('#loader.ChartID1').hide(); } window.onload = resize(); window.onresize = resize; } chartNames.push(ChartID1); Note: hover cursor over the graph for further data. Hectares of Australian cotton planted (year listed is when season finished) function ChartID2() { var data = new google.visualization.DataTable(); data.addColumn('date', 'X'); data.addColumn('number', 'TOTAL'); data.addRows([ [new Date(1990,0), 375819, ], [new Date(1991,0), 274200, ], [new Date(1992,0), 282000, ], [new Date(1993,0), 257220, ], [new Date(1994,0), 275500, ], [new Date(1995,0), 208300, ], [new Date(1996,0), 287000, ], [new Date(1997,0), 389500, ], [new Date(1998,0), 434310, ], [new Date(1999,0), 535400, ], [new Date(2000,0), 461900, ], [new Date(2001,0), 511077, ], [new Date(2002,0), 404000, ], [new Date(2003,0), 220500, ], [new Date(2004,0), 196500, ], [new Date(2005,0), 323450, ], [new Date(2006,0), 333385, ], [new Date(2007,0), 134290, ], [new Date(2008,0), 64585, ], [new Date(2009,0), 161390, ], [new Date(2010,0), 182000, ], [new Date(2011,0), 599630, ], [new Date(2012,0), 566000, ], [new Date(2013,0), 425786, ], [new Date(2014,0), 414000, ], [new Date(2015,0), 196689, ], [new Date(2016,0), 263339, ], [new Date(2017,0), 472941, ], [new Date(2018,0), 452190, ], [new Date(2019,0), 292380, ], [new Date(2020,0), 58858, ], [new Date(2021,0), 271739, ], [new Date(2022,0), 635288, ], [new Date(2023,0), 672247, ], [new Date(2024,0), 519000, ], ]); console.log(data); var options = { height: 400, legend: { position: 'bottom' }, hAxis: { title: \"Year\", format: 'yyyy', }, vAxis: { title: \"Hectares of Australian cotton planted\" }, }; console.log(options); function resize() { var chart = new google.visualization.LineChart(document.getElementById('ChartID2')); chart.draw(data, options); $('#loader.ChartID2').hide(); } window.onload = resize(); window.onresize = ",
+  "links": [
+   "#",
+   "/css/site.css?v=88",
+   "/img/apple-touch-icon.png",
+   "/img/favicon-16x16.png",
+   "/img/favicon-32x32.png",
+   "/img/safari-pinned-tab.svg",
+   "/img/site.webmanifest",
+   "http://www.t-bone.com.au",
+   "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+   "https://cottonaustralia.com.au/",
+   "https://cottonaustralia.com.au/annual-reports",
+   "https://cottonaustralia.com.au/approved-gin-trash-suppliers",
+   "https://cottonaustralia.com.au/awards-finalists",
+   "https://cottonaustralia.com.au/awards-recipients",
+   "https://cottonaustralia.com.au/awards-roll-of-honour",
+   "https://cottonaustralia.com.au/awards-sponsors",
+   "https://cottonaustralia.com.au/bee-awareness",
+   "https://cottonaustralia.com.au/better-cotton-initiative",
+   "https://cottonaustralia.com.au/biodiversity-and-cotton",
+   "https://cottonaustralia.com.au/biosecurity",
+   "https://cottonaustralia.com.au/biotechnology-and-cotton",
+   "https://cottonaustralia.com.au/board",
+   "https://cottonaustralia.com.au/brochures",
+   "https://cottonaustralia.com.au/ca-media-releases",
+   "https://cottonaustralia.com.au/careers",
+   "https://cottonaustralia.com.au/cas-history",
+   "https://cottonaustralia.com.au/cas-roles",
+   "https://cottonaustralia.com.au/circularity",
+   "https://cottonaustralia.com.au/community",
+   "https://cottonaustralia.com.au/contact",
+   "https://cottonaustralia.com.au/contact-awards-team",
+   "https://cottonaustralia.com.au/contact-cotton-australia",
+   "https://cottonaustralia.com.au/cotton-australia",
+   "https://cottonaustralia.com.au/cotton-australia-resources-primary",
+   "https://cottonaustralia.com.au/cotton-australia-resources-secondary",
+   "https://cottonaustralia.com.au/cotton-biodegradability-and-microplastics",
+   "https://cottonaustralia.com.au/cotton-careers",
+   "https://cottonaustralia.com.au/cotton-grower-association",
+   "https://cottonaustralia.com.au/cotton-matters",
+   "https://cottonaustralia.com.au/cotton-organisations",
+   "https://cottonaustralia.com.au/cotton-to-market",
+   "https://cottonaustralia.com.au/cottoninfo",
+   "https://cottonaustralia.com.au/cottons-water-use",
+   "https://cottonaustralia.com.au/crop-protection",
+   "https://cottonaustralia.com.au/current-and-future-activities",
+   "https://cottonaustralia.com.au/disclaimer",
+   "https://cottonaustralia.com.au/economics",
+   "https://cottonaustralia.com.au/education-kit",
+   "https://cottonaustralia.com.au/education-videos",
+   "https://cottonaustralia.com.au/environment",
+   "https://cottonaustralia.com.au/events",
+   "https://cottonaustralia.com.au/events-partners",
+   "https://cottonaustralia.com.au/grow-a-pair-of-jeans",
+   "https://cottonaustralia.com.au/growers-articles",
+   "https://cottonaustralia.com.au/hemp",
+   "https://cottonaustralia.com.au/how-is-cotton-grown",
+   "https://cottonaustralia.com.au/industry-overview",
+   "https://cottonaustralia.com.au/interactive-quiz",
+   "https://cottonaustralia.com.au/job-seekers",
+   "https://cottonaustralia.com.au/leadership-programs",
+   "https://cottonaustralia.com.au/lessons-and-units",
+   "https://cottonaustralia.com.au/members",
+   "https://cottonaustralia.com.au/mybmp",
+   "https://cottonaustralia.com.au/mybmp-program",
+   "https://cottonaustralia.com.au/mybmp-re-design",
+   "https://cottonaustralia.com.au/myth-buster",
+   "https://cottonaustralia.com.au/nav-only1",
+   "https://cottonaustralia.com.au/nav-only2",
+   "https://cottonaustralia.com.au/nav-only3",
+   "https://cottonaustralia.com.au/nav-only4",
+   "https://cottonaustralia.com.au/nav-only5",
+   "https://cottonaustralia.com.au/nav-only7",
+   "https://cottonaustralia.com.au/news-stories",
+   "https://cottonaustralia.com.au/organic-cotton",
+   "https://cottonaustralia.com.au/posters",
+   "https://cottonaustralia.com.au/research-technology-and-innovation",
+   "https://cottonaustralia.com.au/sds",
+   "https://cottonaustralia.com.au/spray-drift-app",
+   "https://cottonaustralia.com.au/spraydrift-and-satacrop",
+   "https://cottonaustralia.com.au/staff",
+   "https://cottonaustralia.com.au/statistics",
+   "https://cottonaustralia.com.au/stewardship",
+   "https://cottonaustralia.com.au/strategic-plan",
+   "https://cottonaustralia.com.au/strategic-roadmap-for-australian-cotton",
+   "https://cottonaustralia.com.au/submissions",
+   "https://cottonaustralia.com.au/sustainability",
+   "https://cottonaustralia.com.au/sustainability-reports",
+   "https://cottonaustralia.com.au/telecommunications",
+   "https://cottonaustralia.com.au/terms-conditions",
+   "https://cottonaustralia.com.au/the-cotton-plant",
+   "https://cottonaustralia.com.au/timeline",
+   "https://cottonaustralia.com.au/training",
+   "https://cottonaustralia.com.au/transport",
+   "https://cottonaustralia.com.au/uses-of-cotton",
+   "https://cottonaustralia.com.au/water",
+   "https://cottonaustralia.com.au/webinars",
+   "https://cottonaustralia.com.au/where-is-cotton-grown",
+   "https://cottonaustralia.com.au/why-choose-australian-cotton",
+   "https://cottonaustralia.com.au/workforce",
+   "https://cottonaustralia.com.au/world-cotton-history",
+   "https://cottonaustralia.com.au/wrapped-in-cotton-textiles-and-design",
+   "https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap",
+   "https://twitter.com/cottonaustralia",
+   "https://www.cottondata.com.au/",
+   "https://www.youtube.com/channel/UCcTsQcz7PRPX1bl3J3ORv-g"
+  ]
+ },
+ "nsw_awd_pdf": {
+  "status": 200,
+  "ct": "application/pdf",
+  "len": 190871,
+  "head": ""
+ },
+ "nsw_awd_pdf2": {
+  "status": 200,
+  "ct": "application/pdf",
+  "len": 147117,
+  "head": ""
+ }
+}

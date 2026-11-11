@@ -22,8 +22,20 @@ FIELDS = ["planted", "volunteer", "failed", "prevented", "not_planted", "planted
 
 
 def releases():
-    r = requests.get(PAGE, headers=H, timeout=90)
-    r.raise_for_status()
+    seen = OUT / "releases_seen.json"
+    try:
+        r = None
+        for i in range(3):
+            r = requests.get(PAGE, headers=H, timeout=90)
+            if r.status_code == 200:
+                break
+            time.sleep(20 * (i + 1))
+        r.raise_for_status()
+    except Exception as e:
+        if seen.exists():
+            print("::warning::FSA page unavailable (", repr(e)[:120], ") - using the stored release list")
+            return json.loads(seen.read_text())["releases"]
+        raise
     out = []
     for href, label in re.findall(r'href="([^"]+)"[^>]*>\s*([^<]{0,160}?)\s*<', r.text):
         label = re.sub(r"&nbsp;|\s+", " ", label).strip()
@@ -32,6 +44,9 @@ def releases():
             continue
         asof = datetime(int(m.group(4)), MON[m.group(2).lower()], int(m.group(3))).date().isoformat()
         out.append({"year": int(m.group(1)), "asof": asof, "label": label, "url": href if href.startswith("http") else "https://www.fsa.usda.gov" + href})
+    if out:
+        OUT.mkdir(parents=True, exist_ok=True)
+        seen.write_text(json.dumps({"note": "release list as last read from the FSA page; used when the page refuses a request", "releases": out}, indent=1))
     return out
 
 
@@ -126,7 +141,11 @@ def main(maxn=99):
         if (r["year"], r["asof"]) in have or n >= maxn:
             continue
         try:
-            x = requests.get(r["url"], headers=H, timeout=300)
+            for i in range(3):
+                x = requests.get(r["url"], headers=H, timeout=300)
+                if x.status_code == 200:
+                    break
+                time.sleep(30 * (i + 1))
             x.raise_for_status()
             if "html" in (x.headers.get("content-type") or "").lower():
                 # newer links (/documents/<id>) open a document page; the file link is on that page

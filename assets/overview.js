@@ -80,6 +80,7 @@ const Overview = (() => {
       ${sec('Technicals & key levels', (m.technical ? esc(m.technical.text) : '<span class="note">No price data.</span>') + levels(m))}
       ${sec(m.vol && m.vol.kind === 'realized' ? 'Volatility (realized)' : 'Implied volatility', m.vol ? esc(m.vol.text) : '<span class="note">Not available.</span>')}
       ${sec('Seasonality', m.seasonal ? esc(m.seasonal.text) : '<span class="note">Not available.</span>')}
+      ${m.optsig ? sec('Options & open interest idea', `<b class="${m.optsig.lean === 'bullish' ? 'up' : m.optsig.lean === 'bearish' ? 'dn' : ''}">${esc(m.optsig.lean)}</b>: ${esc(m.optsig.structure)}${m.optsig.signals && m.optsig.signals.length ? ` <span class="note">(${m.optsig.signals.map(esc).join('; ')})</span>` : ''} <span class="note">data to ${esc(m.optsig.asof)}</span>`) : ''}
       ${sec('COT', m.cot ? esc(m.cot.text) + (m.cot.date ? ` <span class="note">(${esc(m.cot.date)})</span>` : '') : '<span class="note">Not available.</span>')}
     </div>`;
   }

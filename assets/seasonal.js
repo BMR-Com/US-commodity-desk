@@ -266,6 +266,7 @@ const MktStudy = (() => {
   }
   // Outlook card: seasonal windows opening within 90 days (or open now) and the best tested technical pattern, per symbol.
   async function upcoming(el, syms, onOpen) {
+    try { let h = el.parentNode.querySelector(':scope > .optsig-slot'); if (!h) { h = document.createElement('div'); h.className = 'optsig-slot'; el.after(h); } OptSig.card(h, syms); } catch (e) { /* optional */ }
     el.innerHTML = '<div class="card"><h2>Seasonal &amp; technical studies</h2><p class="note">Loading…</p></div>';
     const [S, TL] = await Promise.all([SzData.summary().catch(() => null), SzData.tech()]);
     if (!S) { el.innerHTML = ''; return; }

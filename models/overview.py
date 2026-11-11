@@ -87,6 +87,7 @@ def shade(s):
 SUMMARY = {m["key"]: m for m in (J("summary/summary.json") or {}).get("markets", [])}
 NOTES = (J("overview/notes.json") or {}).get("markets", {})
 NEWS = (J("news/news.json") or {}).get("items", [])
+OPTSIG = (J("optsig/optsig.json") or {}).get("markets", {})
 
 
 # ───────── technicals + key levels ─────────
@@ -476,7 +477,8 @@ def build(key, sym, name, group):
             "parts": parts, "price": T and {k: T[k] for k in ("contract", "last", "unit", "dp", "chg_1w", "chg_1m")},
             "fundamental": F, "fair": fair, "events": ev, "headlines": events(key), "notes_date": n.get("date"),
             "technical": T and {"text": T["text"], "score": T["score"]}, "levels": T and T["levels"],
-            "vol": V, "seasonal": S, "cot": C, "live": live, "alerts": alerts}
+            "vol": V, "seasonal": S, "cot": C, "live": live, "alerts": alerts,
+            "optsig": (lambda o: o and {"lean": o["idea"]["lean"], "structure": o["idea"]["structure"], "asof": o["asof"], "signals": [a["text"].split(":")[0] for a in o["active"]]})(OPTSIG.get(sym))}
 
 
 def main():

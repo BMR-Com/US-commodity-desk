@@ -102,5 +102,10 @@ const Overview = (() => {
     </div>`;
     el.querySelectorAll('.ov-more').forEach(b => b.onclick = () => { b.previousElementSibling.textContent = b.dataset.full; b.remove(); });
   }
-  return { show };
+  function tileInto(el, m) {
+    if (!document.getElementById('ov-css')) { const st = document.createElement('style'); st.id = 'ov-css'; st.textContent = css; document.head.appendChild(st); }
+    el.innerHTML = `<div class="ov-grid big">${tile(m)}</div>`;
+    el.querySelectorAll('.ov-more').forEach(b => b.onclick = () => { b.previousElementSibling.textContent = b.dataset.full; b.remove(); });
+  }
+  return { show, tileInto };
 })();

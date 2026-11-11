@@ -19,8 +19,8 @@ jobs:
         continue-on-error: true
         timeout-minutes: 30
         run: python pipelines/fsa_acres.py
-      - name: US cotton estimate from FSA acres
-        run: '[ -f models/us_cotton_fsa.py ] && python -W ignore models/us_cotton_fsa.py || true'
+      - name: US crop estimates from FSA acres
+        run: '[ -f models/fsa_crops.py ] && python -W ignore models/fsa_crops.py || true'
       - name: commit
         if: always()
         run: |

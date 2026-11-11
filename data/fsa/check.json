@@ -1,30 +1,7 @@
 {
- "checked": "2026-11-11",
- "ok": false,
- "failures": [
-  "cotton TX planted: 5908298.4697 vs crop.json 5911845.564788881",
-  "cotton TX hr_fsa: 0.720915 vs crop.json 0.7131794115468028",
-  "cotton GA hr_fsa: 0.978153 vs crop.json 0.9756676122899075",
-  "cotton AR planted: 561836.8023 vs crop.json 561459.5602668552",
-  "cotton OK hr_fsa: 0.789566 vs crop.json 0.7670409392182378",
-  "cotton AL planted: 376601.8272 vs crop.json 376793.6829535753",
-  "cotton MS planted: 360918.7215 vs crop.json 360373.93549580395",
-  "cotton NC planted: 351853.3389 vs crop.json 351759.01620262535",
-  "cotton NC hr_fsa: 0.97927 vs crop.json 0.9774751817905344",
-  "cotton MO hr_fsa: 0.985868 vs crop.json 0.984013345526778",
-  "cotton SC planted: 197440.4557 vs crop.json 197418.91259631026",
-  "cotton TN planted: 191523.1489 vs crop.json 191343.07575689818",
-  "cotton TN hr_fsa: 0.988527 vs crop.json 0.9855299348396247",
-  "cotton LA planted: 121015.1934 vs crop.json 120781.6632860528",
-  "cotton LA hr_fsa: 0.978024 vs crop.json 0.9763974713063042",
-  "cotton KS hr_fsa: 0.921393 vs crop.json 0.917539475728893",
-  "cotton AZ planted: 81918.0855 vs crop.json 81901.35988067475",
-  "cotton FL planted: 75731.2085 vs crop.json 75778.15274106021",
-  "cotton FL hr_fsa: 0.959047 vs crop.json 0.9573098759595633",
-  "cotton NM hr_fsa: 0.815484 vs crop.json 0.8207838872152912",
-  "cotton CA planted: 19082.5264 vs crop.json 19064.450402478025",
-  "cotton CA hr_fsa: 0.977275 vs crop.json 0.9760978047820441"
- ],
+ "checked": "2026-11-10",
+ "ok": true,
+ "failures": [],
  "notes": [
   "cotton: Texas conditional block matches crop_projection.json (2026-11-10)",
   "cotton: 17 states compared with crop.json estimate"

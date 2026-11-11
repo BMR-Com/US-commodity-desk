@@ -61,7 +61,7 @@ const FsaAcres = (() => {
         <tr><td class="l">Production, m bu</td><td class="n"><b>${fmt(U.prod, 0)}</b>${vs(U.prod, A.prod)}</td><td class="n">${fmt(A.prod, 0)}</td></tr></table></div>
       <h3 style="margin-top:10px">Top states</h3><div class="tbl"><table><tr><th class="l">State</th><th class="n">FSA acres (m)</th><th class="n">Failed</th><th class="n">Planted</th><th class="n">Abandon.</th><th class="n">Harvested</th><th class="n">NASS planted last yr</th></tr>${st}</table></div>
       ${backtest(G.backtest, 'US yield, m bu')}
-      <p class="note">Variables: USDA FSA planted and failed acres by state (${NAMES[crop]}${crop === 'corn' ? '; sweet corn and popcorn excluded' : crop === 'sorghum' ? '; sorghum forage excluded' : ''}); NASS planted and harvested acres; NASS crop condition (poor + very poor); USDA WASDE planted, harvested, yield and production. No drought input for grains.${crop === 'corn' ? ' Harvested is for grain, so the abandonment column includes acres cut for silage.' : ''} Built ${G.built || ''}.</p></div>`;
+      <p class="note">Variables: USDA FSA planted and failed acres by state (${NAMES[crop]}${crop === 'corn' ? '; sweet corn and popcorn excluded' : crop === 'sorghum' ? '; sorghum forage excluded' : crop === 'wheat' ? '; grain, grain/graze and seed uses' : ''}); NASS planted and harvested acres; NASS crop condition (poor + very poor); USDA WASDE planted, harvested, yield and production. No drought input for grains.${crop === 'corn' ? ' Harvested is for grain, so the abandonment column includes acres cut for silage.' : ''} Built ${G.built || ''}.</p></div>`;
   }
 
   async function card(crop) {

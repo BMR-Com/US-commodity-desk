@@ -15,7 +15,9 @@ for grains; whole-state drought is not used) and the Texas-only abandonment/yiel
 condition by state (data/grains/raw/crop_progress): corn, soybeans, sorghum from late June (ISO week 26) to the
 release; wheat (winter + spring) from March to July.
 Corn and sorghum harvested are for grain, so their "abandonment" includes silage/forage cut; state means absorb the
-normal share.
+normal share. Wheat: FSA acres for grain-type intended uses only (grain, grain/graze, seed, blank): FSA reclassified
+grazing wheat in 2019, which broke the NASS/FSA state ratio the method scales by (TX/OK 1.07 → 0.72); without grazing,
+forage and cover the ratio is stable across the break.
 
 USDA figures (US planted, harvested, yield, production) come from the desk's WASDE store (models/wasde_store.py →
 data/wasde/json, raw values, not the rounded grains_wasde tables). State finals from NASS (data/grains/raw/annual).
@@ -43,7 +45,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 CROPS = {  # FSA crop, NASS folder, NASS planted / harvested / yield / production short_desc, WASDE file
     "corn": {"fsa": "CORN", "planted": "CORN - ACRES PLANTED", "harvested": "CORN, GRAIN - ACRES HARVESTED", "wasde": "Corn", "unit": "bu"},
     "soybeans": {"fsa": "SOYBEANS", "planted": "SOYBEANS - ACRES PLANTED", "harvested": "SOYBEANS - ACRES HARVESTED", "wasde": "Oilseed,_Soybean", "unit": "bu"},
-    "wheat": {"fsa": "WHEAT", "planted": "WHEAT - ACRES PLANTED", "harvested": "WHEAT - ACRES HARVESTED", "wasde": "Wheat", "unit": "bu"},
+    "wheat": {"fsa": "WHEAT", "planted": "WHEAT - ACRES PLANTED", "harvested": "WHEAT - ACRES HARVESTED", "wasde": "Wheat", "unit": "bu",
+              # FSA reclassified grazing wheat in 2019 (GRAIN/GRAZE dropped, GRAZING 1.8m → 5.8m+ acres; TX/OK NASS/FSA ratio
+              # 1.07 → 0.72), which breaks the state ratio the method scales by; grain-type uses keep it stable (US 1.09-1.15)
+              "uses": ["GRAIN", "GRAIN/GRAZE", "SEED", "BLANK", ""]},
     "sorghum": {"fsa": "SORGHUM", "planted": "SORGHUM - ACRES PLANTED", "harvested": "SORGHUM, GRAIN - ACRES HARVESTED", "wasde": "Sorghum", "unit": "bu"},
 }
 ST = {"ALABAMA": "AL", "ALASKA": "AK", "ARIZONA": "AZ", "ARKANSAS": "AR", "CALIFORNIA": "CA", "COLORADO": "CO", "CONNECTICUT": "CT",
@@ -55,6 +60,10 @@ ST = {"ALABAMA": "AL", "ALASKA": "AK", "ARIZONA": "AZ", "ARKANSAS": "AR", "CALIF
       "TENNESSEE": "TN", "TEXAS": "TX", "UTAH": "UT", "VERMONT": "VT", "VIRGINIA": "VA", "WASHINGTON": "WA", "WEST VIRGINIA": "WV",
       "WISCONSIN": "WI", "WYOMING": "WY"}
 NAME = {v: k.title() for k, v in ST.items()}
+# 2014-2017 workbooks use truncated state names (cotton keeps the source's name map unchanged, see HANDOFF)
+ST.update({"CALIFRNIA": "CA", "CONCTICUT": "CT", "MASACUSET": "MA", "MISISIPPI": "MS", "NEW HAMP": "NH", "NEW MEXCO": "NM",
+           "NEWJERSEY": "NJ", "NO CAROLN": "NC", "NO DAKOTA": "ND", "PENSLVANA": "PA", "RHODE ISL": "RI", "S CAROLIN": "SC",
+           "S DAKOTA": "SD", "WASHNGTON": "WA", "WEST VA": "WV"})
 BU_PER_MT = {"corn": 39.368, "soybeans": 36.744, "wheat": 36.744, "sorghum": 39.368}
 
 
@@ -156,6 +165,8 @@ def usda_final(w, cy):
 def fsa_crop(crop):
     f = pd.read_csv(FSA_CSV, keep_default_na=False, na_values=[""])
     f = f[f.crop == CROPS[crop]["fsa"]].copy()
+    if CROPS[crop].get("uses"):
+        f = f[f.intended_use.fillna("").astype(str).isin(CROPS[crop]["uses"])]
     f["st"] = f.state.astype(str).str.upper().str.strip().map(ST)
     f = f.dropna(subset=["st"])
     return f.groupby(["crop_year", "release", "st"])[["planted", "failed"]].sum().reset_index()

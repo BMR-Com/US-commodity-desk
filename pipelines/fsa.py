@@ -24,9 +24,11 @@ Outputs (data/fsa/):
                         prevented, volunteer, not_planted, file
   crop_names.csv        every Crop / Crop Type text seen that mentions corn, soy, wheat, sorghum or cotton, and whether kept
   files.csv             file, release, sheets read (name:rows), cotton rows, grain rows
-  links.txt, processed.txt
+  release_dates.csv     file -> release date (seeded from cotton-crop-progress's stored rows, so re-read files keep the
+                        source's dates; FSA's page labels changed since and contain typos)
+  links.txt, processed.txt, failures.json (failed attempts per file), status.json (releases pending)
 """
-import io, os, random, re, sys, time, zipfile
+import io, json, os, random, re, sys, time, zipfile
 from pathlib import Path
 
 import pandas as pd
@@ -118,6 +120,9 @@ def county_table(xb):
         cols = cols or list(d.columns)
         parts.append(d)
         used.append(f"{name}:{len(d)}")
+    others = [s for s in xl.sheet_names if s not in names]
+    if others:
+        used.append("other sheets: " + ",".join(others))
     if not parts:
         return None, ";".join(used)
     return pd.concat(parts, ignore_index=True), ";".join(used)
@@ -178,6 +183,23 @@ def grains_by_state(d):
     return g, audit
 
 
+def plausible(rd, year):
+    """FSA's labels have typos (the 2015 August release reads 'as of August 1, 2014'): a release falls Jul–Mar of its season."""
+    return pd.notna(rd) and pd.Timestamp(year, 7, 1) <= rd <= pd.Timestamp(year + 1, 3, 31)
+
+
+DATES = OUT / "release_dates.csv"      # file -> release date; seeded from cotton-crop-progress so re-read files keep its dates
+KNOWN = dict(pd.read_csv(DATES).values) if DATES.exists() else {}
+
+
+def replace_rows(path, fname):
+    """Drop a file's earlier rows before its re-read rows are appended (no duplicate releases)."""
+    if path.exists():
+        d = pd.read_csv(path, keep_default_na=False, na_values=[""])
+        if (d.file.astype(str) == fname).any():
+            d[d.file.astype(str) != fname].to_csv(path, index=False)
+
+
 def append(path, g):
     g.to_csv(path, mode="a", header=not path.exists(), index=False)
 
@@ -229,7 +251,8 @@ def fetch_file(url, fname):
     resp = get(url)
     b = resp.content
     if "html" in (resp.headers.get("content-type") or ""):     # /documents/<id> is a landing page → follow its file link
-        m2 = re.search(r'href="([^"]+?\.(?:zip|xlsx))"', resp.text)
+        m2 = (re.search(r'href="([^"]+?\.(?:zip|xlsx))"', resp.text)
+              or re.search(r'href="([^"]*/sites/default/files/[^"]+)"', resp.text))
         if not m2:
             raise RuntimeError(f"no file link on {url}")
         fu = m2.group(1)
@@ -249,6 +272,8 @@ def main():
     done_path, cot_path, gr_path = OUT / "processed.txt", OUT / "fsa_cotton_state.csv", OUT / "fsa_grains_state.csv"
     aud_path, files_path = OUT / "crop_names.csv", OUT / "files.csv"
     done = set(done_path.read_text().split()) if done_path.exists() else set()
+    fp = OUT / "failures.json"
+    fails = json.loads(fp.read_text()) if fp.exists() else {}
     todo = [r for r in order(listing()) if r[3] not in done]
     print(f"{len(todo)} releases to read", flush=True)
     for _, href, label, fname, year, rd in todo:
@@ -258,6 +283,8 @@ def main():
         url = href if href.startswith("http") else ROOT_URL + href
         try:
             files = fetch_file(url, fname)
+            for p in (cot_path, gr_path):
+                replace_rows(p, fname)
             n_c = n_g = 0
             sheets = []
             for n, xb in files:
@@ -266,7 +293,9 @@ def main():
                 sheets.append(f"{n}[{used}]")
                 if d is None:
                     continue
-                rel = rd.date().isoformat() if pd.notna(rd) else (release_date(xb, n) or release_date(xb, fname))
+                rel = KNOWN.get(fname) or (rd.date().isoformat() if plausible(rd, year) else None) \
+                    or release_date(xb, n) or release_date(xb, fname)
+                KNOWN[fname] = rel
                 g = cotton_by_state(d)
                 if g is not None and len(g):
                     g.insert(0, "release", rel)
@@ -291,10 +320,13 @@ def main():
             print(f"{label.strip()[:60]} ({fname}): cotton {n_c} rows, grains {n_g} rows", flush=True)
             done.add(fname)
             done_path.write_text("\n".join(sorted(done)))
+            fails.pop(fname, None)
         except Exception as e:
             print("skip", fname, e, flush=True)
-    left = sum(1 for r in todo if r[3] not in done)
-    import json
+            fails[fname] = fails.get(fname, 0) + 1
+    (OUT / "failures.json").write_text(json.dumps(fails, indent=1, sort_keys=True))
+    pd.DataFrame(sorted(KNOWN.items()), columns=["file", "release"]).to_csv(DATES, index=False)
+    left = sum(1 for r in todo if r[3] not in done and fails.get(r[3], 0) < 3)
     from datetime import datetime, timezone
     (OUT / "status.json").write_text(json.dumps({"updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
                                                  "pending": left, "read": len(done)}, indent=1))

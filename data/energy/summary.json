@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-11 22:20 UTC",
+ "generated": "2026-11-11 23:41 UTC",
  "inventories": {
   "storL48": {
    "date": "2026-10-30",
@@ -84,44 +84,44 @@
  "prices": {
   "NG": {
    "date": "2026-11-11",
-   "last": 3.349,
-   "d1": 1.6080097087378675,
-   "w1": 13.180128421764103,
-   "m1": 2.0103563813585135
+   "last": 3.24,
+   "d1": -1.6990291262135804,
+   "w1": 9.49645150388645,
+   "m1": -1.3097776424002339
   },
   "CL": {
    "date": "2026-11-11",
-   "last": 88.480003,
-   "d1": 2.835892575129084,
-   "w1": 0.4085338036132313,
-   "m1": -6.01231788838239
+   "last": 86.239998,
+   "d1": 0.23244653379304037,
+   "w1": -2.1334599818386257,
+   "m1": -8.391758109111525
   },
   "HO": {
    "date": "2026-11-11",
-   "last": 4.2972,
-   "d1": 4.025757098937288,
-   "w1": 2.1804779455474987,
-   "m1": -12.913424124513618
+   "last": 4.203,
+   "d1": 1.7453823621971232,
+   "w1": -0.05944596361905363,
+   "m1": -14.822470817120614
   },
   "RB": {
    "date": "2026-11-11",
-   "last": 2.6471,
-   "d1": 1.468107942348973,
-   "w1": -2.9868797185369833,
-   "m1": -18.553275283837422
+   "last": 2.5701,
+   "d1": -1.483440662373503,
+   "w1": -5.808839698013635,
+   "m1": -20.922433155902898
   },
   "BZ": {
    "date": "2026-11-11",
-   "last": 94.379997,
-   "d1": 3.15881414709398,
-   "w1": -0.2536524967136078,
-   "m1": -10.701111539386677
+   "last": 92.43,
+   "d1": 1.0274369008074657,
+   "w1": -2.314524340059454,
+   "m1": -12.546127116167527
   }
  },
  "cracks": {
-  "321": 45.799597000000006,
-  "ho": 92.00239700000002,
-  "rb": 22.698197000000008
+  "321": 44.56480200000001,
+  "ho": 90.28600200000001,
+  "rb": 21.704201999999995
  },
  "vol": {
   "NG": {
@@ -150,10 +150,10 @@
   }
  },
  "ng_signal": {
-  "generated": "2026-11-11T17:28",
+  "generated": "2026-11-11T22:18",
   "regime": "HIGH",
   "cold_checks_on": 2,
   "action": "Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls."
  },
- "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $45.80/bbl (ULSD $92.00, gasoline $22.70). NG weather/positioning: squeeze risk HIGH (2 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). 15-day ensembles colder over 2-3 days: +9.9 HDD on matched dates (\u2248-16 Bcf); stratospheric wind at 60N -3.5 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls. Options: NG IV 67% vs RV 56%; CL IV 56% vs RV 57%; HO IV 64% vs RV 49%; RB IV 56% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
+ "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $44.56/bbl (ULSD $90.29, gasoline $21.70). NG weather/positioning: squeeze risk HIGH (2 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). 15-day ensembles colder over 2-3 days: +9.0 HDD on matched dates (\u2248-14 Bcf); stratospheric wind at 60N -3.5 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls. Options: NG IV 67% vs RV 56%; CL IV 56% vs RV 57%; HO IV 64% vs RV 49%; RB IV 56% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
 }

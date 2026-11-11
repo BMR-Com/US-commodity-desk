@@ -55,7 +55,7 @@ def parse_book(content):
     for b in books:
         xl = pd.ExcelFile(io.BytesIO(b))
         for sh in xl.sheet_names:
-            raw = xl.parse(sh, header=None, nrows=15)
+            raw = pd.read_excel(xl, sheet_name=sh, header=None, nrows=15)
             hdr = None
             for i in range(len(raw)):
                 vals = [norm(v) for v in raw.iloc[i].tolist()]
@@ -63,7 +63,7 @@ def parse_book(content):
                     hdr = i; break
             if hdr is None:
                 continue
-            df = xl.parse(sh, header=hdr)
+            df = pd.read_excel(xl, sheet_name=sh, header=hdr)
             cols = {norm(c): c for c in df.columns}
             def col(*names):
                 for n in names:
@@ -100,7 +100,14 @@ def main(maxn=99):
     idx_f = OUT / "index.json"
     idx = json.loads(idx_f.read_text()) if idx_f.exists() else {"releases": []}
     have = {(r["year"], r["asof"]) for r in idx["releases"] if r.get("rows")}
+    have |= {(int(f.name[:4]), f.name[5:15]) for f in RAW.glob("*.csv.gz")}   # files kept even if the index was lost
     rel = [r for r in releases() if r["year"] >= 2016]
+    known = {(q["year"], q["asof"]) for q in idx["releases"]}
+    for r in rel:
+        f = RAW / f"{r['year']}_{r['asof']}.csv.gz"
+        if f.exists() and (r["year"], r["asof"]) not in known:
+            with gzip.open(f, "rt") as g:
+                idx["releases"].append({**r, "rows": sum(1 for _ in g) - 1, "file": f.name})
     print("FSA releases on the page:", len(rel), "stored:", len(have))
     n = 0
     for r in sorted(rel, key=lambda x: x["asof"], reverse=True):
@@ -109,6 +116,16 @@ def main(maxn=99):
         try:
             x = requests.get(r["url"], headers=H, timeout=300)
             x.raise_for_status()
+            if "html" in (x.headers.get("content-type") or "").lower():
+                # newer links (/documents/<id>) open a document page; the file link is on that page
+                cand = re.findall(r'href="([^"]+?\.(?:zip|xlsx|xls)(?:\?[^"]*)?)"', x.text, re.I) or \
+                       re.findall(r'href="(/sites/default/files/[^"]+)"', x.text) or re.findall(r'href="([^"]*/download[^"]*)"', x.text)
+                if not cand:
+                    raise RuntimeError("document page without a file link")
+                fu = cand[0] if cand[0].startswith("http") else "https://www.fsa.usda.gov" + cand[0]
+                r["file_url"] = fu
+                x = requests.get(fu, headers=H, timeout=300)
+                x.raise_for_status()
             agg, sheet = parse_book(x.content)
             if not agg:
                 raise RuntimeError(f"no acreage table found ({len(x.content)} bytes, {x.headers.get('content-type')})")

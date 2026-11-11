@@ -98,7 +98,8 @@ const EnergyGeo = (() => {
     if (G.refining) usMap(el.querySelector('#egR'), G.refining);
     if (G.flows && G.flows.length) el.querySelector('#egFK').innerHTML = flowMap(el.querySelector('#egF'), G.flows);
   }
-  function mount(el) {
+  function mount(el, k) {
+    if (k && KEYS.some(x => x[0] === k)) key = k;
     el.innerHTML = `<div class="mk-bar" style="margin:0 0 8px">${KEYS.map(k => `<button data-g="${k[0]}" class="${k[0] === key ? 'on' : ''}">${k[1]}</button>`).join('')}</div><div id="egBody"></div>`;
     const body = el.querySelector('#egBody');
     el.querySelectorAll('[data-g]').forEach(b => b.onclick = () => { key = b.dataset.g; el.querySelectorAll('[data-g]').forEach(x => x.classList.toggle('on', x === b)); render(body); });

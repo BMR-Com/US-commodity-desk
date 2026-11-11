@@ -16,18 +16,28 @@ OUT = ROOT / "data" / "grains" / "derived" / "rv.json"
 CODES = "FGHJKMNQUVXZ"
 MN = dict(zip(CODES, ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]))
 SYMS = {"ZC": "Corn", "ZS": "Soybeans", "ZM": "Soybean meal", "ZL": "Soybean oil", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "CT": "Cotton",
-        "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle"}
-UNIT = {"ZC": "¢/bu", "ZS": "¢/bu", "ZW": "¢/bu", "KE": "¢/bu", "ZM": "$/st", "ZL": "¢/lb", "CT": "¢/lb", "HE": "¢/lb", "LE": "¢/lb", "GF": "¢/lb"}
-USD = {"ZC": 50, "ZS": 50, "ZW": 50, "KE": 50, "ZM": 100, "ZL": 600, "CT": 500, "HE": 400, "LE": 400, "GF": 500}   # $ per 1.00 of quote
+        "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle",
+        "NG": "Natural gas", "CL": "WTI crude oil", "HO": "ULSD (heating oil)", "RB": "RBOB gasoline"}
+UNIT = {"ZC": "¢/bu", "ZS": "¢/bu", "ZW": "¢/bu", "KE": "¢/bu", "ZM": "$/st", "ZL": "¢/lb", "CT": "¢/lb", "HE": "¢/lb", "LE": "¢/lb", "GF": "¢/lb",
+        "NG": "$/MMBtu", "CL": "$/bbl", "HO": "$/gal", "RB": "$/gal"}
+USD = {"ZC": 50, "ZS": 50, "ZW": 50, "KE": 50, "ZM": 100, "ZL": 600, "CT": 500, "HE": 400, "LE": 400, "GF": 500,
+       "NG": 10000, "CL": 1000, "HO": 42000, "RB": 42000}   # $ per 1.00 of quote
 STORAGE = {"ZC": 0.165, "ZS": 0.165, "ZW": 0.165, "KE": 0.165}      # ¢/bu/day: CBOT tariff (SRW/HRW at the variable-rate floor)
 CASH = {"HE", "GF"}
 CROSS = {"ZC": {("N", "U"), ("N", "Z"), ("U", "Z")}, "ZS": {("Q", "U"), ("U", "X"), ("N", "X"), ("Q", "X")}, "ZW": {("K", "N")}, "KE": {("K", "N")},
          "CT": {("N", "Z"), ("K", "Z")}}   # spreads across crop years: no storage arbitrage, so no full-carry measure
 
 
+# energy: extra spreads traders watch beyond consecutive months (same season), e.g. NG winter (Jan/Mar) and the Mar/Apr "widowmaker"
+EXTRA = {"NG": [("F", "H"), ("H", "J"), ("V", "F")], "HO": [("F", "K")], "RB": [("H", "N"), ("J", "V")]}
+
+
 def ltd(sym, code):
     """Approximate last trading day of a contract (enough to align seasons and pick the front month)."""
     L, y = code[len(sym)], int(code[len(sym) + 1:]); m = CODES.index(L) + 1
+    if sym in ("NG", "CL", "HO", "RB"):   # energy contracts expire in the month before delivery
+        first = pd.Timestamp(y, m, 1)
+        return {"NG": first - pd.offsets.BDay(3), "CL": first - pd.Timedelta(days=10), "HO": first - pd.offsets.BDay(1), "RB": first - pd.offsets.BDay(1)}[sym]
     if sym in ("ZC", "ZS", "ZM", "ZL", "ZW", "KE"):
         return pd.Timestamp(y, m, 14)
     if sym == "CT":
@@ -112,6 +122,13 @@ def spreads(sym, px, today, r):
             pairs.append((a, b)); newcrop = (a, b)
     else:
         newcrop = None
+    for x, y_ in EXTRA.get(sym, []):
+        a = next((c for c in L if c[len(sym)] == x), None) or next((c for c in px.columns if ltd(sym, c) >= today.normalize() and c[len(sym)] == x), None)
+        if not a:
+            continue
+        b = next((c for c in sorted(px.columns, key=lambda c: ltd(sym, c)) if c[len(sym)] == y_ and ltd(sym, c) > ltd(sym, a)), None)
+        if b and (a, b) not in pairs and b in px.columns and px[b].last_valid_index() is not None:
+            pairs.append((a, b))
     for a, b in pairs:
         pa, pb = px[a].dropna(), px[b].dropna()
         if not len(pa) or not len(pb):

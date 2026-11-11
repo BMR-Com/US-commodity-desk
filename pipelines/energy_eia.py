@@ -1,4 +1,4 @@
-"""EIA Open Data v2 series for the energy desk (energy.html), fetched server-side with the EIA_API_KEY secret.
+"""EIA Open Data v2 series for the Energy section, fetched server-side with the EIA_API_KEY secret.
 
 The series list (pipelines/energy_eia_specs.json) is the energy terminal's own SPECS table (BMR-Com/natgas):
 for each series it tries the known ID on each candidate route; if a route returns nothing it falls back to the

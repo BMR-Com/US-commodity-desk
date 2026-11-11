@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Energy desk (energy.html): prices and ETF option chains with yfinance (Stooq fallback), from BMR-Com/natgas.
+Energy desk (Energy section): prices and ETF option chains with yfinance (Stooq fallback), from BMR-Com/natgas.
 Writes data/energy/prices.json and data/energy/options.json.
 
     pip install yfinance

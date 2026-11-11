@@ -29,7 +29,7 @@
     const ct = s => { const d = new Date(s.replace(' UTC', 'Z').replace(' ', 'T')); return isNaN(d) ? null : d; };
     const tCT = d => d.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: 'numeric', minute: '2-digit' });
     const dCT = d => d.toLocaleDateString('en-US', { timeZone: 'America/Chicago', month: 'short', day: 'numeric' });
-    const num = v => { const a = Math.abs(v); const dp = a >= 1000 ? 1 : a >= 10 ? 2 : a >= 1 ? 3 : 4;
+    const num = (v, u) => { const a = Math.abs(v); const dp = /¢/.test(u || '') ? 2 : a >= 1000 ? 1 : a >= 10 ? 2 : a >= 1 ? 3 : 4;
       return v.toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp }); };
     const delayTxt = i => i.delay_min == null ? 'delay depends on exchange (often 15 min)' : i.delay_min === 0 ? 'real time' : `delayed ~${i.delay_min} min`;
 
@@ -41,7 +41,7 @@
         const cls = i.d1 == null || Math.abs(i.d1) < 1e-9 ? 'st' : i.d1 > 0 ? 'up' : 'dn';
         const t = ct(i.time || '');
         const tip = `${i.name}${i.contract ? ' ' + i.contract : ''} ${i.unit || ''} · last trade ${t ? dCT(t) + ' ' + tCT(t) + ' CT' : '?'} · ${delayTxt(i)}${i.exch ? ' (' + i.exch + ')' : ''}`;
-        return `<span class="it" title="${tip.replace(/"/g, '&quot;')}">${i.name} <b>${num(i.last)}${i.kind === 'yield' ? '%' : ''}</b> <span class="${cls}">${ch}</span></span>`;
+        return `<span class="it" title="${tip.replace(/"/g, '&quot;')}">${i.name} <b>${num(i.last, i.unit)}${i.kind === 'yield' ? '%' : ''}</b> <span class="${cls}">${ch}</span></span>`;
       }).join('')).join('');
       const tr = bar.querySelector('.track');
       tr.innerHTML = html || 'No prices in the snapshot.';

@@ -1,0 +1,135 @@
+{
+ "generated": "2026-11-11T13:47",
+ "regime": "ELEVATED",
+ "action": "Squeeze risk elevated. Size shorts small and use options (call spreads, not naked calls) rather than futures; a colder run can force covering.",
+ "cold_checks_on": 2,
+ "cold_checks": [
+  {
+   "key": "trend72",
+   "on": false,
+   "text": "15-day ensembles colder over 2-3 days: +5.9 HDD on matched dates (\u2248-9 Bcf)"
+  },
+  {
+   "key": "trend24",
+   "on": false,
+   "text": "\u2026and over ~24h: +2.8 HDD"
+  },
+  {
+   "key": "back_end",
+   "on": false,
+   "text": "back end of the 15-day window (last 5 days) -4.2 HDD/day vs normal"
+  },
+  {
+   "key": "wk34",
+   "on": false,
+   "text": "weeks 3-4: extended models not yet available"
+  },
+  {
+   "key": "ao",
+   "on": false,
+   "text": "GEFS AO week 2 -0.49 (now -1.22)"
+  },
+  {
+   "key": "pna",
+   "on": true,
+   "text": "GEFS PNA week 2 +0.54 (western ridge / eastern trough)"
+  },
+  {
+   "key": "ssw",
+   "on": true,
+   "text": "stratospheric wind at 60N -3.5 m/s (below 0 = SSW; surface effect lags 2-8 weeks)"
+  }
+ ],
+ "trend_24h": {
+  "avg_hdd": 2.8,
+  "bcf": 4,
+  "by_model": {
+   "GEFS (GFS ensemble)": {
+    "hdd": 4.6,
+    "days": 9,
+    "vs_run": "2026-11-10T07:53"
+   },
+   "ECMWF ENS": {
+    "hdd": 4.5,
+    "days": 13,
+    "vs_run": "2026-11-10T07:53"
+   },
+   "ECMWF AIFS ENS": {
+    "hdd": -0.7,
+    "days": 13,
+    "vs_run": "2026-11-10T07:53"
+   }
+  }
+ },
+ "trend_72h": {
+  "avg_hdd": 5.9,
+  "bcf": 9,
+  "by_model": {
+   "GEFS (GFS ensemble)": {
+    "hdd": 7.3,
+    "days": 7,
+    "vs_run": "2026-11-08T22:47"
+   },
+   "ECMWF ENS": {
+    "hdd": 6.4,
+    "days": 12,
+    "vs_run": "2026-11-08T22:47"
+   },
+   "ECMWF AIFS ENS": {
+    "hdd": 4.0,
+    "days": 12,
+    "vs_run": "2026-11-08T22:47"
+   }
+  }
+ },
+ "back_end": {
+  "avg_per_day": -4.23,
+  "by_model": {
+   "GEFS (GFS ensemble)": -2.8,
+   "ECMWF ENS": -4.29,
+   "ECMWF AIFS ENS": -5.59
+  }
+ },
+ "extended": null,
+ "teleconnections": {
+  "ao": {
+   "now": -1.22,
+   "wk2_mean": -0.49,
+   "min": -2.03
+  },
+  "nao": {
+   "now": -0.79,
+   "wk2_mean": -0.07,
+   "min": -1.62
+  },
+  "pna": {
+   "now": 1.5,
+   "wk2_mean": 0.54,
+   "min": 0.46
+  },
+  "u10_min": -3.5,
+  "ssw": true
+ },
+ "positioning": {
+  "date": "2026-11-03",
+  "net": -224495,
+  "chg_1w": -19031,
+  "chg_4w": -79814,
+  "pct_3y": 0.6,
+  "pct_all": 2.3
+ },
+ "price": {
+  "date": "2026-11-10",
+  "last": 3.311,
+  "chg_5d_pct": 14.4,
+  "rsi14": 73.2
+ },
+ "exit_when": [
+  "Two consecutive model cycles not colder on matched dates (24h trend \u2264 0) AND weeks 3-4 no longer colder than normal",
+  "Managed money covers back above its 25th percentile (3-year)",
+  "Price fails at the 50-day average while the trend is flat"
+ ],
+ "bcf_per_hdd": 1.6,
+ "note": "Rules of thumb, not fitted. signal_hist.json keeps every reading so the rules can be scored against what price did next.",
+ "read": "NG weather/positioning: squeeze risk ELEVATED (2 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). GEFS PNA week 2 +0.54 (western ridge / eastern trough); stratospheric wind at 60N -3.5 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Squeeze risk elevated. Size shorts small and use options (call spreads, not naked calls) rather than futures; a colder run can force covering."
+}

@@ -107,6 +107,10 @@ def main():
                  + (f"; refinery utilization {out['refinery_util']['value']:.1f}%" if out.get("refinery_util") else "") + ".")
     if out.get("cracks"):
         t.append(f"3-2-1 crack ${out['cracks']['321']:.2f}/bbl (ULSD ${out['cracks']['ho']:.2f}, gasoline ${out['cracks']['rb']:.2f}).")
+    sig = J(E / "wx" / "signal.json")   # models/ng_wx_signal.py: weather trend x positioning squeeze risk
+    if sig and sig.get("read"):
+        out["ng_signal"] = {k: sig.get(k) for k in ("generated", "regime", "cold_checks_on", "action")}
+        t.append(sig["read"])
     ivs = [f"{k} IV {v['atm']:.0f}% vs RV {v['rv20']:.0f}%" for k, v in iv.items() if v.get("atm") and v.get("rv20")]
     if ivs:
         t.append("Options: " + "; ".join(ivs) + ".")

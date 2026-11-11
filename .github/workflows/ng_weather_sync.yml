@@ -5,7 +5,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ['pipelines/ng_wx_runs.py', '.github/workflows/ng_weather_sync.yml']
+    paths: ['pipelines/ng_wx_runs.py', 'models/ng_wx_signal.py', '.github/workflows/ng_weather_sync.yml']
   schedule:
     - cron: '12 1 * * *'
     - cron: '42 9 * * *'
@@ -23,9 +23,10 @@ jobs:
           git clone -q --depth 1 --filter=blob:none --sparse https://github.com/BMR-Com/natgas.git src
           cd src && git sparse-checkout set data/research && cd ..
           mkdir -p data/energy/wx
-          for f in hdd_members.json vortex.json snow.json cpc_dd.json hdd_fcst.json cpc.json; do cp src/data/research/$f data/energy/wx/ 2>/dev/null || true; done
+          for f in hdd_members.json hdd_ext.json vortex.json snow.json cpc_dd.json hdd_fcst.json cpc.json; do cp src/data/research/$f data/energy/wx/ 2>/dev/null || true; done
           rm -rf src
           python3 pipelines/ng_wx_runs.py
+          python3 models/ng_wx_signal.py || echo "signal failed"
       - run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
           git add data/energy/wx; git diff --cached --quiet && exit 0

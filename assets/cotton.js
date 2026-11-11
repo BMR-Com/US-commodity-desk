@@ -119,8 +119,6 @@ const Cotton = (() => {
         ${P.texas_regions ? `<p>${P.texas_regions}</p>` : ''}${(P.notes || []).map(n => `<p class="note">${n}</p>`).join('')}
         <p class="note">Inputs through: ${Object.entries(P.inputs_through || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(' · ')}. Built from ${(P.variables || []).length} public USDA data sets; see the ${src(SITE.crop, 'crop progress page')}.</p>`;
     }).catch(() => { host.innerHTML = '<p class="note">Crop projection not available yet.</p>'; });
-    // FSA reported acres vs USDA (desk's own FSA collector), below the projection card
-    if (typeof FsaView !== 'undefined') FsaView.card('cotton').then(h => host.insertAdjacentHTML('afterend', h)).catch(() => {});
   }
   function frame(u, title, what) {
     body().innerHTML = `<div class="card" style="margin-bottom:8px"><h2 style="display:inline">${title}</h2> <span class="note">${what} Live view of the ${src(u, 'full dashboard')}.</span></div>

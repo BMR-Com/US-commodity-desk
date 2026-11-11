@@ -128,7 +128,6 @@ const Grains = (() => {
     const idx = await getJSON(G + 'wasde_brief/index.json').catch(() => null);
     if (!idx) { body.innerHTML = '<div class="card"><p class="note">WASDE analysis not built yet.</p></div>'; return; }
     WasdeView.mount(body, { base: G + 'wasde_brief/', index: idx, key });
-    if (typeof FsaView !== 'undefined' && ['corn', 'soybeans', 'wheat'].includes(c.wasde)) FsaView.append(body, c.wasde);
   }
   const us = c => { const b = W.commodities[c.wasde].us; const my = Object.keys(b).sort(); return { b, my, cur: my.at(-1), prev: my.at(-2) }; };
 

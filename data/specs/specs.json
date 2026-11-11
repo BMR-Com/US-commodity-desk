@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-10",
+"generated": "2026-11-11",
 "margins_asof": "2026-10-21",
 "groups": {
 "grains": [
@@ -12,16 +12,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.25\u00a2 = $12.50",
 "usd": 50,
-"price": 440.75,
+"price": 448.0,
 "months": "Mar, May, Jul, Sep, Dec",
 "settle": "Physical (shipping certificates, Illinois River)",
 "options": "Yes, incl. weeklies and short-dated new crop",
 "of": "ZC",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 22038,
-"day_move": 173,
-"hv20": 12.5,
+"notional": 22400,
+"day_move": 201,
+"hv20": 14.2,
 "margin_period": "12/2026",
 "maint": 1100,
 "initial": 1210,
@@ -41,9 +41,9 @@
 "maint": 1000
 }
 ],
-"margin_pct": 5.0,
-"leverage": 20.0,
-"days_covered": 6.4
+"margin_pct": 4.9,
+"leverage": 20.4,
+"days_covered": 5.5
 },
 {
 "sym": "XC",
@@ -54,16 +54,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.125\u00a2 = $1.25",
 "usd": 10,
-"price": 440.75,
+"price": 448.0,
 "months": "as corn",
 "settle": "Physical",
 "options": "No",
 "of": "ZC",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 4408,
-"day_move": 35,
-"hv20": 12.5,
+"notional": 4480,
+"day_move": 40,
+"hv20": 14.2,
 "margin_period": "12/2026",
 "maint": 220,
 "initial": 242,
@@ -75,9 +75,9 @@
 "maint": 220
 }
 ],
-"margin_pct": 5.0,
-"leverage": 20.0,
-"days_covered": 6.3
+"margin_pct": 4.9,
+"leverage": 20.4,
+"days_covered": 5.5
 },
 {
 "sym": "MZC",
@@ -88,16 +88,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.50\u00a2 = $2.50",
 "usd": 5,
-"price": 440.75,
+"price": 448.0,
 "months": "as corn",
 "settle": "Cash-settled to the corn future",
 "options": "No",
 "of": "ZC",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 2204,
-"day_move": 17,
-"hv20": 12.5,
+"notional": 2240,
+"day_move": 20,
+"hv20": 14.2,
 "margin_period": "12/2026",
 "maint": 110,
 "initial": 121,
@@ -109,9 +109,9 @@
 "maint": 110
 }
 ],
-"margin_pct": 5.0,
-"leverage": 20.0,
-"days_covered": 6.5
+"margin_pct": 4.9,
+"leverage": 20.4,
+"days_covered": 5.5
 },
 {
 "sym": "ZS",
@@ -122,16 +122,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.25\u00a2 = $12.50",
 "usd": 50,
-"price": 1189.5,
+"price": 1226.75,
 "months": "Jan, Mar, May, Jul, Aug, Sep, Nov",
 "settle": "Physical (shipping certificates)",
 "options": "Yes",
 "of": "ZS",
 "front_contract": "Jan 27",
 "price_date": "2026-11-10",
-"notional": 59475,
-"day_move": 419,
-"hv20": 11.2,
+"notional": 61338,
+"day_move": 614,
+"hv20": 15.9,
 "margin_period": "01/2027",
 "maint": 2250,
 "initial": 2475,
@@ -151,9 +151,9 @@
 "maint": 2050
 }
 ],
-"margin_pct": 3.8,
-"leverage": 26.4,
-"days_covered": 5.4
+"margin_pct": 3.7,
+"leverage": 27.3,
+"days_covered": 3.7
 },
 {
 "sym": "XK",
@@ -164,16 +164,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.125\u00a2 = $1.25",
 "usd": 10,
-"price": 1189.5,
+"price": 1226.75,
 "months": "as soybeans",
 "settle": "Physical",
 "options": "No",
 "of": "ZS",
 "front_contract": "Jan 27",
 "price_date": "2026-11-10",
-"notional": 11895,
-"day_move": 84,
-"hv20": 11.2,
+"notional": 12268,
+"day_move": 123,
+"hv20": 15.9,
 "margin_period": "11/2026",
 "maint": 460,
 "initial": 506,
@@ -185,9 +185,9 @@
 "maint": 460
 }
 ],
-"margin_pct": 3.9,
-"leverage": 25.9,
-"days_covered": 5.5
+"margin_pct": 3.7,
+"leverage": 26.7,
+"days_covered": 3.7
 },
 {
 "sym": "MZS",
@@ -198,16 +198,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.50\u00a2 = $2.50",
 "usd": 5,
-"price": 1189.5,
+"price": 1226.75,
 "months": "as soybeans",
 "settle": "Cash-settled to the soybean future",
 "options": "No",
 "of": "ZS",
 "front_contract": "Jan 27",
 "price_date": "2026-11-10",
-"notional": 5948,
-"day_move": 42,
-"hv20": 11.2,
+"notional": 6134,
+"day_move": 61,
+"hv20": 15.9,
 "margin_period": "11/2026",
 "maint": 230,
 "initial": 253,
@@ -219,9 +219,9 @@
 "maint": 230
 }
 ],
-"margin_pct": 3.9,
-"leverage": 25.9,
-"days_covered": 5.5
+"margin_pct": 3.7,
+"leverage": 26.7,
+"days_covered": 3.8
 },
 {
 "sym": "ZM",
@@ -232,16 +232,16 @@
 "quote": "$/short ton",
 "tick": "$0.10 = $10",
 "usd": 100,
-"price": 323.4,
+"price": 326.5,
 "months": "Jan, Mar, May, Jul, Aug, Sep, Oct, Dec",
 "settle": "Physical (shipping certificates)",
 "options": "Yes",
 "of": "ZM",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 32340,
-"day_move": 338,
-"hv20": 16.6,
+"notional": 32650,
+"day_move": 360,
+"hv20": 17.5,
 "margin_period": "10/2026-12/2026",
 "maint": 1550,
 "initial": 1705,
@@ -261,9 +261,9 @@
 "maint": 1400
 }
 ],
-"margin_pct": 4.8,
-"leverage": 20.9,
-"days_covered": 4.6
+"margin_pct": 4.7,
+"leverage": 21.1,
+"days_covered": 4.3
 },
 {
 "sym": "MZM",
@@ -274,16 +274,16 @@
 "quote": "$/short ton",
 "tick": "$0.20 = $2",
 "usd": 10,
-"price": 323.4,
+"price": 326.5,
 "months": "as meal",
 "settle": "Cash-settled",
 "options": "No",
 "of": "ZM",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 3234,
-"day_move": 34,
-"hv20": 16.6,
+"notional": 3265,
+"day_move": 36,
+"hv20": 17.5,
 "margin_period": "12/2026",
 "maint": 155,
 "initial": 170,
@@ -295,9 +295,9 @@
 "maint": 155
 }
 ],
-"margin_pct": 4.8,
-"leverage": 20.9,
-"days_covered": 4.6
+"margin_pct": 4.7,
+"leverage": 21.1,
+"days_covered": 4.3
 },
 {
 "sym": "ZL",
@@ -308,16 +308,16 @@
 "quote": "\u00a2/lb",
 "tick": "0.01\u00a2 = $6",
 "usd": 600,
-"price": 61.58,
+"price": 62.71,
 "months": "Jan, Mar, May, Jul, Aug, Sep, Oct, Dec",
 "settle": "Physical (warehouse receipts)",
 "options": "Yes",
 "of": "ZL",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 36948,
-"day_move": 392,
-"hv20": 16.9,
+"notional": 37626,
+"day_move": 405,
+"hv20": 17.1,
 "margin_period": "10/2026-12/2026",
 "maint": 2100,
 "initial": 2310,
@@ -337,9 +337,9 @@
 "maint": 2000
 }
 ],
-"margin_pct": 5.7,
-"leverage": 17.6,
-"days_covered": 5.4
+"margin_pct": 5.6,
+"leverage": 17.9,
+"days_covered": 5.2
 },
 {
 "sym": "MZL",
@@ -350,16 +350,16 @@
 "quote": "\u00a2/lb",
 "tick": "0.02\u00a2 = $1.20",
 "usd": 60,
-"price": 61.58,
+"price": 62.71,
 "months": "as oil",
 "settle": "Cash-settled",
 "options": "No",
 "of": "ZL",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 3695,
-"day_move": 39,
-"hv20": 16.9,
+"notional": 3763,
+"day_move": 41,
+"hv20": 17.1,
 "margin_period": "12/2026",
 "maint": 210,
 "initial": 231,
@@ -371,9 +371,9 @@
 "maint": 210
 }
 ],
-"margin_pct": 5.7,
-"leverage": 17.6,
-"days_covered": 5.4
+"margin_pct": 5.6,
+"leverage": 17.9,
+"days_covered": 5.1
 },
 {
 "sym": "ZW",
@@ -384,16 +384,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.25\u00a2 = $12.50",
 "usd": 50,
-"price": 588.25,
+"price": 591.5,
 "months": "Mar, May, Jul, Sep, Dec",
 "settle": "Physical (shipping certificates)",
 "options": "Yes",
 "of": "ZW",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 29412,
-"day_move": 317,
-"hv20": 17.1,
+"notional": 29575,
+"day_move": 322,
+"hv20": 17.3,
 "margin_period": "12/2026",
 "maint": 2050,
 "initial": 2255,
@@ -413,9 +413,9 @@
 "maint": 1900
 }
 ],
-"margin_pct": 7.0,
-"leverage": 14.3,
-"days_covered": 6.5
+"margin_pct": 6.9,
+"leverage": 14.4,
+"days_covered": 6.4
 },
 {
 "sym": "XW",
@@ -426,16 +426,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.125\u00a2 = $1.25",
 "usd": 10,
-"price": 588.25,
+"price": 591.5,
 "months": "as wheat",
 "settle": "Physical",
 "options": "No",
 "of": "ZW",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 5882,
-"day_move": 63,
-"hv20": 17.1,
+"notional": 5915,
+"day_move": 64,
+"hv20": 17.3,
 "margin_period": "12/2026",
 "maint": 410,
 "initial": 451,
@@ -447,9 +447,9 @@
 "maint": 410
 }
 ],
-"margin_pct": 7.0,
-"leverage": 14.3,
-"days_covered": 6.5
+"margin_pct": 6.9,
+"leverage": 14.4,
+"days_covered": 6.4
 },
 {
 "sym": "MZW",
@@ -460,16 +460,16 @@
 "quote": "\u00a2/bu",
 "tick": "0.50\u00a2 = $2.50",
 "usd": 5,
-"price": 588.25,
+"price": 591.5,
 "months": "as wheat",
 "settle": "Cash-settled",
 "options": "No",
 "of": "ZW",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 2941,
+"notional": 2958,
 "day_move": 32,
-"hv20": 17.1,
+"hv20": 17.3,
 "margin_period": "12/2026",
 "maint": 205,
 "initial": 226,
@@ -481,8 +481,8 @@
 "maint": 205
 }
 ],
-"margin_pct": 7.0,
-"leverage": 14.3,
+"margin_pct": 6.9,
+"leverage": 14.4,
 "days_covered": 6.4
 },
 {
@@ -494,15 +494,15 @@
 "quote": "\u00a2/bu",
 "tick": "0.25\u00a2 = $12.50",
 "usd": 50,
-"price": 635.25,
+"price": 633.5,
 "months": "Mar, May, Jul, Sep, Dec",
 "settle": "Physical",
 "options": "Yes",
 "of": "KE",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 31762,
-"day_move": 311,
+"notional": 31675,
+"day_move": 309,
 "hv20": 15.5,
 "margin_period": "12/2026",
 "maint": 2000,
@@ -524,8 +524,8 @@
 }
 ],
 "margin_pct": 6.3,
-"leverage": 15.9,
-"days_covered": 6.4
+"leverage": 15.8,
+"days_covered": 6.5
 },
 {
 "sym": "MKC",
@@ -536,14 +536,14 @@
 "quote": "\u00a2/bu",
 "tick": "0.125\u00a2 = $1.25",
 "usd": 10,
-"price": 635.25,
+"price": 633.5,
 "months": "as KC wheat",
 "settle": "Physical",
 "options": "No",
 "of": "KE",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 6352,
+"notional": 6335,
 "day_move": 62,
 "hv20": 15.5,
 "margin_period": "12/2026",
@@ -558,7 +558,7 @@
 }
 ],
 "margin_pct": 6.3,
-"leverage": 15.9,
+"leverage": 15.8,
 "days_covered": 6.5
 }
 ],
@@ -572,7 +572,7 @@
 "quote": "\u00a2/lb",
 "tick": "0.01\u00a2 = $5",
 "usd": 500,
-"price": 78.7,
+"price": 78.6,
 "months": "Mar, May, Jul, Oct, Dec",
 "settle": "Physical (certificated cotton at ICE warehouses)",
 "options": "Yes",
@@ -580,12 +580,12 @@
 "of": "CT",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 39350,
-"day_move": 320,
+"notional": 39300,
+"day_move": 321,
 "hv20": 12.9,
-"maint_est": 1054,
+"maint_est": 1058,
 "margin_pct": 2.7,
-"leverage": 37.3
+"leverage": 37.1
 }
 ],
 "hogs": [
@@ -604,9 +604,9 @@
 "options": "Yes",
 "of": "HE",
 "front_contract": "Dec 26",
-"price_date": "2026-11-09",
+"price_date": "2026-11-10",
 "notional": 22350,
-"day_move": 561,
+"day_move": 560,
 "hv20": 39.8,
 "margin_period": "10/2026-12/2026",
 "maint": 1500,
@@ -668,16 +668,16 @@
 "quote": "\u00a2/lb",
 "tick": "0.025\u00a2 = $10",
 "usd": 400,
-"price": 216.2,
+"price": 219.15,
 "months": "Feb, Apr, Jun, Aug, Oct, Dec",
 "settle": "Physical delivery or certificate",
 "options": "Yes, incl. weeklies",
 "of": "LE",
 "front_contract": "Dec 26",
-"price_date": "2026-11-09",
-"notional": 86480,
-"day_move": 760,
-"hv20": 14.0,
+"price_date": "2026-11-10",
+"notional": 87660,
+"day_move": 815,
+"hv20": 14.8,
 "margin_period": "12/2026",
 "maint": 3000,
 "initial": 3300,
@@ -697,9 +697,9 @@
 "maint": 3000
 }
 ],
-"margin_pct": 3.5,
-"leverage": 28.8,
-"days_covered": 3.9
+"margin_pct": 3.4,
+"leverage": 29.2,
+"days_covered": 3.7
 },
 {
 "sym": "GF",
@@ -710,16 +710,16 @@
 "quote": "\u00a2/lb",
 "tick": "0.025\u00a2 = $12.50",
 "usd": 500,
-"price": 328.35,
+"price": 330.475,
 "months": "Jan, Mar, Apr, May, Aug, Sep, Oct, Nov",
 "settle": "Cash-settled to the CME Feeder Cattle Index",
 "options": "Yes",
 "of": "GF",
 "front_contract": "Nov 26",
-"price_date": "2026-11-09",
-"notional": 164175,
-"day_move": 1704,
-"hv20": 16.5,
+"price_date": "2026-11-10",
+"notional": 165238,
+"day_move": 1731,
+"hv20": 16.6,
 "margin_period": "11/2026",
 "maint": 5400,
 "initial": 5940,
@@ -740,8 +740,8 @@
 }
 ],
 "margin_pct": 3.3,
-"leverage": 30.4,
-"days_covered": 3.2
+"leverage": 30.6,
+"days_covered": 3.1
 }
 ],
 "dairy": [
@@ -754,16 +754,16 @@
 "quote": "$/cwt",
 "tick": "$0.01 = $20",
 "usd": 2000,
-"price": 17.63,
+"price": 17.78,
 "months": "24 consecutive months",
 "settle": "Cash-settled to USDA Class III price",
 "options": "Yes",
 "of": "DC",
 "front_contract": "Nov 26",
 "price_date": "2026-11-10",
-"notional": 35260,
-"day_move": 532,
-"hv20": 23.9,
+"notional": 35560,
+"day_move": 540,
+"hv20": 24.1,
 "margin_period": "11/2026",
 "maint": 1550,
 "initial": 1705,
@@ -784,7 +784,7 @@
 }
 ],
 "margin_pct": 4.4,
-"leverage": 22.7,
+"leverage": 22.9,
 "days_covered": 2.9
 },
 {
@@ -838,16 +838,16 @@
 "quote": "$/lb",
 "tick": "$0.001 = $20",
 "usd": 20000,
-"price": 1.662,
+"price": 1.676,
 "months": "24 consecutive months",
 "settle": "Cash-settled to USDA monthly cheese price",
 "options": "Yes",
 "of": "CSC",
 "front_contract": "Nov 26",
-"price_date": "2026-11-09",
-"notional": 33240,
-"day_move": 559,
-"hv20": 26.7,
+"price_date": "2026-11-10",
+"notional": 33520,
+"day_move": 525,
+"hv20": 24.9,
 "margin_period": "11/2026",
 "maint": 1500,
 "initial": 1650,
@@ -868,8 +868,8 @@
 }
 ],
 "margin_pct": 4.5,
-"leverage": 22.2,
-"days_covered": 2.7
+"leverage": 22.3,
+"days_covered": 2.9
 },
 {
 "sym": "CB",
@@ -922,16 +922,16 @@
 "quote": "\u00a2/lb",
 "tick": "0.025\u00a2 = $11",
 "usd": 440,
-"price": 209.0,
+"price": 209.5,
 "months": "24 consecutive months",
 "settle": "Cash-settled to USDA monthly NDM price",
 "options": "Yes",
 "of": "GNF",
 "front_contract": "Nov 26",
-"price_date": "2026-11-09",
-"notional": 91960,
-"day_move": 1443,
-"hv20": 24.9,
+"price_date": "2026-11-10",
+"notional": 92180,
+"day_move": 1349,
+"hv20": 23.2,
 "margin_period": "11/2026",
 "maint": 2900,
 "initial": 3190,
@@ -951,9 +951,9 @@
 "maint": 3100
 }
 ],
-"margin_pct": 3.2,
-"leverage": 31.7,
-"days_covered": 2.0
+"margin_pct": 3.1,
+"leverage": 31.8,
+"days_covered": 2.1
 },
 {
 "sym": "DY",
@@ -1008,16 +1008,16 @@
 "quote": "$/bbl",
 "tick": "$0.01 = $10",
 "usd": 1000,
-"price": 84.96,
+"price": 86.48,
 "months": "Every month, about 10 years out",
 "settle": "Physical delivery at Cushing, Oklahoma",
 "options": "Yes, incl. weeklies",
 "of": "CL",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 84960,
-"day_move": 2817,
-"hv20": 52.6,
+"notional": 86480,
+"day_move": 2836,
+"hv20": 52.1,
 "margin_period": "12/2026",
 "maint": 9515,
 "initial": 10466,
@@ -1037,8 +1037,8 @@
 "maint": 7276
 }
 ],
-"margin_pct": 11.2,
-"leverage": 8.9,
+"margin_pct": 11.0,
+"leverage": 9.1,
 "days_covered": 3.4
 },
 {
@@ -1050,16 +1050,16 @@
 "quote": "$/bbl",
 "tick": "$0.025 = $12.50",
 "usd": 500,
-"price": 84.96,
+"price": 86.48,
 "months": "Every month",
 "settle": "Cash-settled to CL",
 "options": "No",
 "of": "CL",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 42480,
-"day_move": 1408,
-"hv20": 52.6,
+"notional": 43240,
+"day_move": 1418,
+"hv20": 52.1,
 "margin_period": "12/2026",
 "maint": 4767,
 "initial": 5244,
@@ -1071,8 +1071,8 @@
 "maint": 4449
 }
 ],
-"margin_pct": 11.2,
-"leverage": 8.9,
+"margin_pct": 11.0,
+"leverage": 9.1,
 "days_covered": 3.4
 },
 {
@@ -1084,16 +1084,16 @@
 "quote": "$/bbl",
 "tick": "$0.01 = $1",
 "usd": 100,
-"price": 84.96,
+"price": 86.48,
 "months": "Every month",
 "settle": "Cash-settled to CL",
 "options": "Yes",
 "of": "CL",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 8496,
-"day_move": 282,
-"hv20": 52.6,
+"notional": 8648,
+"day_move": 284,
+"hv20": 52.1,
 "margin_period": "12/2026",
 "maint": 953,
 "initial": 1048,
@@ -1105,8 +1105,8 @@
 "maint": 890
 }
 ],
-"margin_pct": 11.2,
-"leverage": 8.9,
+"margin_pct": 11.0,
+"leverage": 9.1,
 "days_covered": 3.4
 },
 {
@@ -1118,16 +1118,16 @@
 "quote": "$/MMBtu",
 "tick": "$0.001 = $10",
 "usd": 10000,
-"price": 3.266,
+"price": 3.296,
 "months": "Every month, about 12 years out",
 "settle": "Physical delivery at Henry Hub, Louisiana",
 "options": "Yes, incl. weeklies",
 "of": "NG",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 32660,
-"day_move": 820,
-"hv20": 39.8,
+"notional": 32960,
+"day_move": 839,
+"hv20": 40.4,
 "margin_period": "12/2026",
 "maint": 2562,
 "initial": 2818,
@@ -1148,7 +1148,7 @@
 }
 ],
 "margin_pct": 7.8,
-"leverage": 12.7,
+"leverage": 12.9,
 "days_covered": 3.1
 },
 {
@@ -1160,16 +1160,16 @@
 "quote": "$/MMBtu",
 "tick": "$0.005 = $12.50",
 "usd": 2500,
-"price": 3.266,
+"price": 3.296,
 "months": "Every month",
 "settle": "Cash-settled to NG",
 "options": "No",
 "of": "NG",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 8165,
-"day_move": 205,
-"hv20": 39.8,
+"notional": 8240,
+"day_move": 210,
+"hv20": 40.4,
 "margin_period": "11/2026",
 "maint": 811,
 "initial": 892,
@@ -1181,9 +1181,9 @@
 "maint": 792
 }
 ],
-"margin_pct": 9.9,
-"leverage": 10.1,
-"days_covered": 4.0
+"margin_pct": 9.8,
+"leverage": 10.2,
+"days_covered": 3.9
 },
 {
 "sym": "MNG",
@@ -1194,16 +1194,16 @@
 "quote": "$/MMBtu",
 "tick": "$0.001 = $1",
 "usd": 1000,
-"price": 3.266,
+"price": 3.296,
 "months": "Every month",
 "settle": "Cash-settled to NG",
 "options": "No",
 "of": "NG",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 3266,
-"day_move": 82,
-"hv20": 39.8,
+"notional": 3296,
+"day_move": 84,
+"hv20": 40.4,
 "margin_period": "11/2026",
 "maint": 324,
 "initial": 356,
@@ -1215,9 +1215,9 @@
 "maint": 317
 }
 ],
-"margin_pct": 9.9,
-"leverage": 10.1,
-"days_covered": 4.0
+"margin_pct": 9.8,
+"leverage": 10.2,
+"days_covered": 3.9
 },
 {
 "sym": "HO",
@@ -1228,16 +1228,16 @@
 "quote": "$/gal",
 "tick": "$0.0001 = $4.20",
 "usd": 42000,
-"price": 4.0513,
+"price": 4.1568,
 "months": "Every month",
 "settle": "Physical delivery in New York Harbor",
 "options": "Yes",
 "of": "HO",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 170155,
-"day_move": 4974,
-"hv20": 46.4,
+"notional": 174586,
+"day_move": 4895,
+"hv20": 44.5,
 "margin_period": "12/2026",
 "maint": 13510,
 "initial": 14861,
@@ -1257,9 +1257,9 @@
 "maint": 12825
 }
 ],
-"margin_pct": 7.9,
-"leverage": 12.6,
-"days_covered": 2.7
+"margin_pct": 7.7,
+"leverage": 12.9,
+"days_covered": 2.8
 },
 {
 "sym": "MHO",
@@ -1270,16 +1270,16 @@
 "quote": "$/gal",
 "tick": "$0.0001 = $0.42",
 "usd": 4200,
-"price": 4.0513,
+"price": 4.1568,
 "months": "Every month",
 "settle": "Cash-settled to HO",
 "options": "No",
 "of": "HO",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 17015,
-"day_move": 497,
-"hv20": 46.4,
+"notional": 17459,
+"day_move": 489,
+"hv20": 44.5,
 "margin_period": "11/2026",
 "maint": 1427,
 "initial": 1570,
@@ -1291,8 +1291,8 @@
 "maint": 1427
 }
 ],
-"margin_pct": 8.4,
-"leverage": 11.9,
+"margin_pct": 8.2,
+"leverage": 12.2,
 "days_covered": 2.9
 },
 {
@@ -1304,16 +1304,16 @@
 "quote": "$/gal",
 "tick": "$0.0001 = $4.20",
 "usd": 42000,
-"price": 2.6059,
+"price": 2.625,
 "months": "Every month",
 "settle": "Physical delivery in New York Harbor",
 "options": "Yes",
 "of": "RB",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 109448,
-"day_move": 3314,
-"hv20": 48.1,
+"notional": 110250,
+"day_move": 3320,
+"hv20": 47.8,
 "margin_period": "12/2026",
 "maint": 8587,
 "initial": 9446,
@@ -1334,7 +1334,7 @@
 }
 ],
 "margin_pct": 7.8,
-"leverage": 12.7,
+"leverage": 12.8,
 "days_covered": 2.6
 },
 {
@@ -1346,16 +1346,16 @@
 "quote": "$/gal",
 "tick": "$0.0001 = $0.42",
 "usd": 4200,
-"price": 2.6059,
+"price": 2.625,
 "months": "Every month",
 "settle": "Cash-settled to RB",
 "options": "No",
 "of": "RB",
 "front_contract": "Dec 26",
 "price_date": "2026-11-10",
-"notional": 10945,
-"day_move": 331,
-"hv20": 48.1,
+"notional": 11025,
+"day_move": 332,
+"hv20": 47.8,
 "margin_period": "11/2026",
 "maint": 930,
 "initial": 1023,
@@ -1367,8 +1367,8 @@
 "maint": 930
 }
 ],
-"margin_pct": 8.5,
-"leverage": 11.8,
+"margin_pct": 8.4,
+"leverage": 11.9,
 "days_covered": 2.8
 }
 ]

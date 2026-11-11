@@ -20,6 +20,16 @@ if models and not any(r["generated"] == cur["generated"] for r in runs):
     for name, m in models.items():
         m["new_run"] = not (last and name in last["models"] and last["models"][name]["daily"] == m["daily"])
     runs.append({"generated": cur["generated"], "ext_generated": ext.get("generated"), "models": models, "extended": extended})
+# full archive (one line per run) so forecast revisions at 1-5 week leads can be tested against price later;
+# runs.json keeps only the last 60 for the Weather tab
+arch = D / "runs_archive.jsonl"
+seen = set()
+if arch.exists():
+    seen = {json.loads(l)["generated"] for l in arch.read_text().splitlines() if l.strip()}
+with arch.open("a") as fh:
+    for r in runs:
+        if r["generated"] not in seen:
+            fh.write(json.dumps(r, separators=(",", ":")) + "\n")
 runs = runs[-60:]
 p.write_text(json.dumps(runs, separators=(",", ":")))
 print("runs kept", len(runs), "latest", runs[-1]["generated"] if runs else None, "extended", list(extended))

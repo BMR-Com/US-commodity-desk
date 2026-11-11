@@ -4,8 +4,7 @@ The 8 Nov research note read the 15-day ensembles correctly (warm through ~22 No
   1. the desk only saw 15 days; the cold risk (SSW, negative AO, -EPO) sat in days 15-35;
   2. it compared forecast LEVELS with normal, while price moves on the CHANGE in forecasts over 1-3 days, especially the
      newest days entering the back end of the window;
-  3. it treated a 2nd-percentile managed-money short as a 13-week bearish signal, and so a reason to sell rallies, when the
-     same position is the fuel for a short squeeze the moment the weather trend turns colder.
+  3. a crowded fund short is fuel, not a trigger: it matters only once the forecast trend turns colder.
 
 This model puts those three things together. Inputs (all already on the desk):
   data/energy/wx/runs.json      run history of GEFS / ECMWF ENS / AIFS 15-day gas-weighted HDD, plus extended weeks
@@ -166,15 +165,23 @@ def main():
     add("ssw", tl and tl.get("ssw"), f"stratospheric wind at 60N {tl['u10_min']:+.1f} m/s (below 0 = SSW; surface effect lags 2-8 weeks)" if tl and tl.get("u10_min") is not None else "SSW: n/a")
     n_on = sum(c["on"] for c in checks)
 
-    crowded = pos and pos["pct_3y"] <= 10
-    if crowded and n_on >= 3:
-        regime, action = "HIGH", "Squeeze risk high. Do not sell rallies or add outright shorts on 'fundamentals are bearish'; funds are max short and the forecast trend is turning colder. Short ideas wait for the trend to stall."
-    elif crowded and n_on >= 1:
-        regime, action = "ELEVATED", "Squeeze risk elevated. Size shorts small and use options (call spreads, not naked calls) rather than futures; a colder run can force covering."
-    elif pos and pos["pct_3y"] >= 90 and n_on == 0:
+    # Weather is the trigger; positioning is only the fuel. A crowded short on its own has tended to keep winning,
+    # so it never raises the regime by itself.
+    on = {c["key"]: c["on"] for c in checks}
+    weather_trigger = on["trend72"] or on["wk34"] or (on["trend24"] and on["back_end"])
+    pattern_flags = sum(on[k] for k in ("ao", "pna", "ssw"))
+    crowded = bool(pos and pos["pct_3y"] <= 10)
+    if weather_trigger and crowded:
+        regime, action = "HIGH", "Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls."
+    elif weather_trigger or (crowded and pattern_flags >= 2):
+        regime, action = "ELEVATED", ("Forecasts turning colder; positioning is not crowded, so the move needs the weather to verify." if weather_trigger and not crowded
+                                      else "Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold.")
+    elif pos and pos["pct_3y"] >= 90 and not weather_trigger and n_on == 0:
         regime, action = "LONG-SQUEEZE", "Funds are crowded long while the weather trend is warm: downside air-pocket risk."
     else:
-        regime, action = "LOW", "No crowding/weather combination; trade the fundamentals and the curve."
+        regime, action = "LOW", "No colder forecast trend; trade the fundamentals and the curve."
+    for c in checks:
+        c["role"] = "trigger" if c["key"] in ("trend72", "trend24", "back_end", "wk34") else "pattern"
     exit_rules = ["Two consecutive model cycles not colder on matched dates (24h trend ≤ 0) AND weeks 3-4 no longer colder than normal",
                   "Managed money covers back above its 25th percentile (3-year)",
                   "Price fails at the 50-day average while the trend is flat"]

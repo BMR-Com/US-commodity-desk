@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12 03:21 UTC",
+ "generated": "2026-11-12 11:39 UTC",
  "inventories": {
   "storL48": {
    "date": "2026-10-30",
@@ -128,32 +128,32 @@
    "atm": 66.61,
    "label": "Dec 2026",
    "rr25": 11.04,
-   "rv20": 55.6
+   "rv20": 55.7
   },
   "CL": {
    "atm": 55.74,
    "label": "Dec 2026",
    "rr25": -0.12,
-   "rv20": 57.1
+   "rv20": 55.7
   },
   "HO": {
    "atm": 63.75,
    "label": "Dec 2026",
    "rr25": 3.37,
-   "rv20": 49.2
+   "rv20": 49.4
   },
   "RB": {
    "atm": 56.36,
    "label": "Dec 2026",
    "rr25": 6.25,
-   "rv20": 41.2
+   "rv20": 40.4
   }
  },
  "ng_signal": {
-  "generated": "2026-11-12T02:49",
-  "regime": "HIGH",
-  "cold_checks_on": 2,
-  "action": "Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls."
+  "generated": "2026-11-12T08:13",
+  "regime": "LOW",
+  "cold_checks_on": 1,
+  "action": "No colder forecast trend; trade the fundamentals and the curve."
  },
- "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $44.42/bbl (ULSD $90.17, gasoline $21.54). NG weather/positioning: squeeze risk HIGH (2 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). 15-day ensembles colder over 2-3 days: +8.3 HDD on matched dates (\u2248-13 Bcf); stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls. Options: NG IV 67% vs RV 56%; CL IV 56% vs RV 57%; HO IV 64% vs RV 49%; RB IV 56% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
+ "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $44.42/bbl (ULSD $90.17, gasoline $21.54). NG weather/positioning: squeeze risk LOW (1 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). No colder forecast trend; trade the fundamentals and the curve. Options: NG IV 67% vs RV 56%; CL IV 56% vs RV 56%; HO IV 64% vs RV 49%; RB IV 56% vs RV 40%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
 }

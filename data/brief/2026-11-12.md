@@ -1,6 +1,6 @@
-# Morning brief · Thu Nov 12, 2026 04:58 PM ET
+# Morning brief · Thu Nov 12, 2026 05:54 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-12 21:58 UTC). CME open interest from 20261111. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-12 22:54 UTC). CME open interest from 20261111. Research only, not investment advice.
 
 ## Key points
 
@@ -36,7 +36,7 @@ Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, 
 | RBOB | 2.599 | -0.3% | -5.9% | -20.3% |
 | Brent | 93.81 | +1.1% | -4.6% | -11.6% |
 
-Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $45.09/bbl (ULSD $90.52, gasoline $22.38). NG weather/positioning: squeeze risk LOW (1 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). No colder forecast trend; trade the fundamentals and the curve. Options: NG IV 67% vs RV 56%; CL IV 48% vs RV 57%; HO IV 64% vs RV 50%; RB IV 56% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).
+Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 414.4 mb (+4.7 mb on the week, -4.3% vs 5-yr avg); gasoline +1.8 mb, distillate +4.1 mb; refinery utilization 95.2%. 3-2-1 crack $45.09/bbl (ULSD $90.52, gasoline $22.38). NG weather/positioning: squeeze risk LOW (1 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). No colder forecast trend; trade the fundamentals and the curve. Options: NG IV 67% vs RV 56%; CL IV 48% vs RV 57%; HO IV 64% vs RV 50%; RB IV 56% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).
 
 ## US economy
 
@@ -47,13 +47,13 @@ Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed
 Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl −; risk 0; energy 0; china −; breadth −. Strongest ag/soft over the month: Rough rice +5.6%; weakest: Lean hogs -18.9%. Key releases ahead: US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).
 
 - **Rates**: US 10-year 5.10% (-11 bp in a month), 2-year 4.86% (+7 bp); 2s10s curve +24 bp (-18 bp in a month). Yields are little changed on the month. T-bill yield 4.13% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 103.17 (+1.0% in a month, +5.0% YTD). USD/BRL 5.640 (+13.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.670 (-0.3%); USD/MXN 18.60 (+1.8%).
-- **Risk appetite**: S&P 500 -2.7% in a month (+10.9% YTD); VIX 19.0. Neutral risk backdrop. 
-- **Energy**: WTI 88.93 $/bbl (-4.6% in a month), Brent 96.12, ULSD 4.303 $/gal (-9.9%), natural gas 3.34 (-7.4%). Crude little changed on the month. 
-- **China & industrial demand**: Copper -8.0% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Dollar & farm currencies**: Dollar index 103.17 (+1.0% in a month, +5.0% YTD). USD/BRL 5.641 (+13.2% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.670 (-0.3%); USD/MXN 18.58 (+1.7%).
+- **Risk appetite**: S&P 500 -2.7% in a month (+10.9% YTD); VIX 18.7. Neutral risk backdrop. 
+- **Energy**: WTI 88.77 $/bbl (-4.7% in a month), Brent 95.83, ULSD 4.290 $/gal (-10.2%), natural gas 3.36 (-6.6%). Crude little changed on the month. 
+- **China & industrial demand**: Copper -7.9% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. 
 - **Commodity breadth**: 8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -7.5% in a month; gold -7.1%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,614.250 (-0.34% d/d); S&P 500 7,592.400 (-0.35% d/d); VIX 18.970 (+8.46% d/d); US 10-year 5.103 (+10 bp d/d); US dollar index 103.166 (+0.25% d/d); EUR/USD 1.106 (-0.99% d/d); USD/BRL 5.640 (+1.02% d/d); USD/CNY 6.670 (-0.01% d/d); WTI crude 88.930 (+2.77% d/d); Natural gas 3.337 (+3.79% d/d); Gold 3,879.900 (-3.01% d/d); Copper 6.185 (-1.67% d/d); S&P GSCI 687.805 (+0.59% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,622.500 (-0.24% d/d); S&P 500 7,592.400 (-0.35% d/d); VIX 18.700 (+6.92% d/d); US 10-year 5.103 (+10 bp d/d); US dollar index 103.172 (+0.25% d/d); EUR/USD 1.105 (-1.02% d/d); USD/BRL 5.641 (+1.04% d/d); USD/CNY 6.670 (-0.01% d/d); WTI crude 88.770 (+2.59% d/d); Natural gas 3.364 (+4.63% d/d); Gold 3,882.700 (-2.94% d/d); Copper 6.194 (-1.53% d/d); S&P GSCI 687.805 (+0.59% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 

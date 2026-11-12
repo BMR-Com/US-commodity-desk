@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-12 21:58 UTC",
- "generated_et": "Thu Nov 12, 2026 04:58 PM ET",
+ "generated": "2026-11-12 22:54 UTC",
+ "generated_et": "Thu Nov 12, 2026 05:54 PM ET",
  "date": "2026-11-12",
- "prices_from": "2026-11-12 21:58 UTC",
+ "prices_from": "2026-11-12 22:54 UTC",
  "cme_oi_date": "20261111",
  "headlines": [
   "Biggest moves vs prior settle: KC HRW wheat -14.50 (-2.3%); Chicago wheat -10.75 (-1.8%); Lean hogs -0.925 (-1.7%).",
@@ -1093,22 +1093,22 @@
    {
     "title": "Dollar & farm currencies",
     "score": -1,
-    "text": "Dollar index 103.17 (+1.0% in a month, +5.0% YTD). USD/BRL 5.640 (+13.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.670 (-0.3%); USD/MXN 18.60 (+1.8%)."
+    "text": "Dollar index 103.17 (+1.0% in a month, +5.0% YTD). USD/BRL 5.641 (+13.2% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.670 (-0.3%); USD/MXN 18.58 (+1.7%)."
    },
    {
     "title": "Risk appetite",
     "score": 0,
-    "text": "S&P 500 -2.7% in a month (+10.9% YTD); VIX 19.0. Neutral risk backdrop. "
+    "text": "S&P 500 -2.7% in a month (+10.9% YTD); VIX 18.7. Neutral risk backdrop. "
    },
    {
     "title": "Energy",
     "score": 0,
-    "text": "WTI 88.93 $/bbl (-4.6% in a month), Brent 96.12, ULSD 4.303 $/gal (-9.9%), natural gas 3.34 (-7.4%). Crude little changed on the month. "
+    "text": "WTI 88.77 $/bbl (-4.7% in a month), Brent 95.83, ULSD 4.290 $/gal (-10.2%), natural gas 3.36 (-6.6%). Crude little changed on the month. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -8.0% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -7.9% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
@@ -1121,11 +1121,11 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7614.25,
-   "d1": -0.34356390288593497,
-   "m1": -3.0741813321452427,
+   "last": 7622.5,
+   "d1": -0.23558667626464302,
+   "m1": -2.9691627152086064,
    "kind": "price",
-   "time": "2026-11-12 20:58 UTC"
+   "time": "2026-11-12 21:58 UTC"
   },
   {
    "name": "S&P 500",
@@ -1133,15 +1133,15 @@
    "d1": -0.35409551994329824,
    "m1": -2.7295055375594623,
    "kind": "price",
-   "time": "2026-11-12 21:08 UTC"
+   "time": "2026-11-12 21:58 UTC"
   },
   {
    "name": "VIX",
-   "last": 18.97,
-   "d1": 8.46197969268021,
-   "m1": 24.230513630110263,
+   "last": 18.7,
+   "d1": 6.918240392889818,
+   "m1": 22.462340795100786,
    "kind": "price",
-   "time": "2026-11-12 20:53 UTC"
+   "time": "2026-11-12 21:15 UTC"
   },
   {
    "name": "US 10-year",
@@ -1153,27 +1153,27 @@
   },
   {
    "name": "US dollar index",
-   "last": 103.166,
-   "d1": 0.2487574859399988,
-   "m1": 0.9649634878443836,
+   "last": 103.172,
+   "d1": 0.2545878229203602,
+   "m1": 0.970835478431642,
    "kind": "price",
-   "time": "2026-11-12 20:58 UTC"
+   "time": "2026-11-12 21:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.1058,
-   "d1": -0.9933014849634381,
-   "m1": -0.9158991944770101,
+   "last": 1.1055,
+   "d1": -1.0201616853201978,
+   "m1": -0.9427803938273915,
    "kind": "price",
-   "time": "2026-11-12 21:08 UTC"
+   "time": "2026-11-12 22:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.6398,
-   "d1": 1.0228066455012286,
-   "m1": 13.135403188524375,
+   "last": 5.6408,
+   "d1": 1.0407191258454684,
+   "m1": 13.15546336852873,
    "kind": "price",
-   "time": "2026-11-12 21:08 UTC"
+   "time": "2026-11-12 22:04 UTC"
   },
   {
    "name": "USD/CNY",
@@ -1181,39 +1181,39 @@
    "d1": -0.005996834715726873,
    "m1": -0.3302437619801535,
    "kind": "price",
-   "time": "2026-11-12 20:16 UTC"
+   "time": "2026-11-12 21:58 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 88.93,
-   "d1": 2.7736059800769874,
-   "m1": -4.5508192038996365,
+   "last": 88.77,
+   "d1": 2.5886990087870654,
+   "m1": -4.722548304623542,
    "kind": "price",
-   "time": "2026-11-12 20:57 UTC"
+   "time": "2026-11-12 21:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 3.337,
-   "d1": 3.794715057160758,
-   "m1": -7.357023826567888,
+   "last": 3.364,
+   "d1": 4.63452845438681,
+   "m1": -6.607440261484687,
    "kind": "price",
-   "time": "2026-11-12 20:57 UTC"
+   "time": "2026-11-12 21:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3879.9,
-   "d1": -3.014623172103481,
-   "m1": -7.119426868853818,
+   "last": 3882.7,
+   "d1": -2.944631921009877,
+   "m1": -7.052397923580179,
    "kind": "price",
-   "time": "2026-11-12 20:58 UTC"
+   "time": "2026-11-12 21:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.185,
-   "d1": -1.669315778852487,
-   "m1": -8.043411324024973,
+   "last": 6.194,
+   "d1": -1.5262315172533958,
+   "m1": -7.909602221667045,
    "kind": "price",
-   "time": "2026-11-12 20:58 UTC"
+   "time": "2026-11-12 21:57 UTC"
   },
   {
    "name": "S&P GSCI",
@@ -1258,7 +1258,7 @@
  ],
  "us_econ": "Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed funds target 3.75-4.0% (effective 3.88%); 2-year Treasury 4.73% (+0.85 vs fed funds: market pricing hikes); 10-year breakeven inflation 2.20%, real 10-year 2.78%. For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); a weak job market or falling real incomes hits meat and dairy demand first.",
  "energy": {
-  "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 94.5%. 3-2-1 crack $45.09/bbl (ULSD $90.52, gasoline $22.38). NG weather/positioning: squeeze risk LOW (1 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). No colder forecast trend; trade the fundamentals and the curve. Options: NG IV 67% vs RV 56%; CL IV 48% vs RV 57%; HO IV 64% vs RV 50%; RB IV 56% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).",
+  "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 414.4 mb (+4.7 mb on the week, -4.3% vs 5-yr avg); gasoline +1.8 mb, distillate +4.1 mb; refinery utilization 95.2%. 3-2-1 crack $45.09/bbl (ULSD $90.52, gasoline $22.38). NG weather/positioning: squeeze risk LOW (1 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). No colder forecast trend; trade the fundamentals and the curve. Options: NG IV 67% vs RV 56%; CL IV 48% vs RV 57%; HO IV 64% vs RV 50%; RB IV 56% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).",
   "prices": {
    "NG": {
     "date": "2026-11-12",
@@ -1311,54 +1311,54 @@
     "unit": "Bcf"
    },
    "crude": {
-    "date": "2026-10-30",
-    "value": 409.76,
-    "chg": -0.865,
-    "yago": 421.168,
-    "avg5": 432.0894,
-    "vs_avg5": -22.329400000000025,
-    "vs_avg5_pct": -5.167773150648925,
-    "vs_yago": -11.408,
-    "chg_avg5": 5.2294,
+    "date": "2026-11-06",
+    "value": 414.417,
+    "chg": 4.657,
+    "yago": 427.581,
+    "avg5": 433.008,
+    "vs_avg5": -18.591,
+    "vs_avg5_pct": -4.293454162509702,
+    "vs_yago": -13.164,
+    "chg_avg5": 0.9186,
     "name": "Crude stocks ex-SPR",
     "unit": "mb"
    },
    "cushing": {
-    "date": "2026-10-30",
-    "value": 27.25,
-    "chg": 0.28,
-    "yago": 22.865,
-    "avg5": 25.090400000000002,
-    "vs_avg5": 2.1595999999999984,
-    "vs_avg5_pct": 8.607276089659788,
-    "vs_yago": 4.385,
-    "chg_avg5": 0.2904,
+    "date": "2026-11-06",
+    "value": 27.356,
+    "chg": 0.106,
+    "yago": 22.519,
+    "avg5": 24.987,
+    "vs_avg5": 2.369,
+    "vs_avg5_pct": 9.480930083643502,
+    "vs_yago": 4.837,
+    "chg_avg5": -0.1034,
     "name": "Cushing crude",
     "unit": "mb"
    },
    "gaso": {
-    "date": "2026-10-30",
-    "value": 208.958,
-    "chg": -0.222,
-    "yago": 206.009,
-    "avg5": 210.587,
-    "vs_avg5": -1.629,
-    "vs_avg5_pct": -0.7735520236291871,
-    "vs_yago": 2.949,
-    "chg_avg5": -2.6168,
+    "date": "2026-11-06",
+    "value": 210.757,
+    "chg": 1.799,
+    "yago": 205.064,
+    "avg5": 209.5086,
+    "vs_avg5": 1.2483999999999942,
+    "vs_avg5_pct": 0.5958705275105558,
+    "vs_yago": 5.693,
+    "chg_avg5": -1.0784,
     "name": "Gasoline stocks",
     "unit": "mb"
    },
    "dist": {
-    "date": "2026-10-30",
-    "value": 99.259,
-    "chg": -3.565,
-    "yago": 111.546,
-    "avg5": 113.2256,
-    "vs_avg5": -13.966600000000005,
-    "vs_avg5_pct": -12.335196280699778,
-    "vs_yago": -12.287,
-    "chg_avg5": -0.8248,
+    "date": "2026-11-06",
+    "value": 103.33,
+    "chg": 4.071,
+    "yago": 110.909,
+    "avg5": 112.5942,
+    "vs_avg5": -9.264199999999997,
+    "vs_avg5_pct": -8.227954903538548,
+    "vs_yago": -7.579,
+    "chg_avg5": -0.6314,
     "name": "Distillate stocks",
     "unit": "mb"
    }

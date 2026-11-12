@@ -1,12 +1,12 @@
-# Morning brief · Thu Nov 12, 2026 08:50 AM ET
+# Morning brief · Thu Nov 12, 2026 09:10 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-12 13:50 UTC). CME open interest from 20261111. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-12 14:10 UTC). CME open interest from 20261111. Research only, not investment advice.
 
 ## Key points
 
 - Biggest moves vs prior settle: KC HRW wheat -4.25 (-0.7%); Soybean meal -1.6 (-0.5%); Lean hogs +0.225 (+0.4%).
 - Today: CONAB Brazil crop survey (date estimated) 9:00 AM ET; EIA Weekly Natural Gas Storage Report 10:30 AM ET; USDA weekly export sales 8:30 AM ET; CFTC cotton on-call report 3:30 PM ET; Buenos Aires Grain Exchange crop progress (weekly).
-- 2 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported the following sales activities for MY 2026/2027: 312,700 MT of corn received in the reporting period for delivery to Mexico and 150,000 MT of soybeans for delivery to Mexico.
+- 1 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported the following sales activities for MY 2026/2027: 312,700 MT of corn received in the reporting period for delivery to Mexico and 150,000 MT of soybeans for delivery to Mexico.
 - Macro backdrop for ags: headwind (-3).
 
 ## Calendar
@@ -78,7 +78,6 @@ Board crush 1.970 $/bu (10-yr pct 82), oil share 49.2%. Soybean / corn price rat
 ## Flash export sales (last 3 days)
 
 - 2026-11-10: Private exporters reported the following sales activities for MY 2026/2027: 312,700 MT of corn received in the reporting period for delivery to Mexico and 150,000 MT of soybeans for delivery to Mexico.
-- 2026-11-09: Private exporters reported sales of 110,000 MT of corn for delivery to Mexico during MY 2026/2027.
 
 ## Technical outlook by market
 

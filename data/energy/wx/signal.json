@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12T08:13",
+ "generated": "2026-11-12T17:45",
  "regime": "LOW",
  "action": "No colder forecast trend; trade the fundamentals and the curve.",
  "cold_checks_on": 1,
@@ -208,10 +208,10 @@
   "pct_all": 2.3
  },
  "price": {
-  "date": "2026-11-11",
-  "last": 3.283,
-  "chg_5d_pct": 10.9,
-  "rsi14": 71.8
+  "date": "2026-11-12",
+  "last": 3.289,
+  "chg_5d_pct": 11.6,
+  "rsi14": 79.4
  },
  "exit_when": [
   "Two consecutive model cycles not colder on matched dates (24h trend \u2264 0) AND weeks 3-4 no longer colder than normal",

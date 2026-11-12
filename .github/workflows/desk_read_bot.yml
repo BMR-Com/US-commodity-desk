@@ -1,0 +1,51 @@
+name: desk read backup
+# Backup for Claude's intraday Overview desk read (07:41 / 11:41 / 14:41 CT weekdays).
+# Runs every hour in trading hours; does nothing while Claude's "Overview desk read" commits are recent.
+# If none for BACKUP_AFTER_H hours, it writes a rule-based news read into data/overview/notes.json (marked "by": "bot"),
+# rebuilds the overview and opens a GitHub issue for new key-level breaks / view changes (watchers get notified).
+on:
+  workflow_dispatch:
+    inputs:
+      force: {description: 'Run the backup even if Claude ran recently', type: boolean, default: false}
+  schedule:
+    - cron: '45 13-22 * * 1-5'
+permissions: {contents: write, issues: write}
+concurrency: {group: overview, cancel-in-progress: false}
+env:
+  BACKUP_AFTER_H: '5'
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 300}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: is Claude's read current?
+        id: chk
+        env: {FORCE_BACKUP: "${{ inputs.force && '1' || '0' }}"}
+        run: echo "mode=$(python models/desk_read_bot.py check)" >> "$GITHUB_OUTPUT"
+      - if: steps.chk.outputs.mode == 'backup'
+        run: pip install -q pandas numpy scipy requests
+      - if: steps.chk.outputs.mode == 'backup'
+        name: backup read + rebuild + alerts
+        run: |
+          python -W ignore models/desk_read_bot.py notes
+          python -W ignore models/overview.py
+          python -W ignore models/desk_read_bot.py alerts
+      - if: steps.chk.outputs.mode == 'backup'
+        name: commit
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/overview/notes.json data/overview/overview.json data/overview/alert_state.json
+          git diff --cached --quiet && exit 0
+          git commit -q -m "Overview backup read $(TZ=America/Chicago date +'%F %H:%M') CT (bot)"
+          B="${GITHUB_REF_NAME}"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin "$B" && git push -q origin "HEAD:$B" && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - if: steps.chk.outputs.mode == 'backup' && hashFiles('data/overview/bot_alert.md') != ''
+        name: alert issue
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          gh label create desk-alert --color d93f0b --description "Backup desk alerts" 2>/dev/null || true
+          gh issue create --title "Desk alert – $(TZ=America/Chicago date +'%H:%M') CT (backup)" --body-file data/overview/bot_alert.md --label desk-alert

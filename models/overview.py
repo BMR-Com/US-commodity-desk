@@ -443,7 +443,7 @@ def fundamental(key, sym, T):
         fair = grains_fair(key, {"kc": "wheat"}.get(key, key), T)
     # the daily research reading adds an own-words read; for markets without a model it is the fundamental read
     if n.get("fundamental"):
-        txt = (txt + " " if txt else "") + "Desk read: " + n["fundamental"]
+        txt = (txt + " " if txt else "") + ("Auto read (GitHub backup, no analyst): " if n.get("by") == "bot" else "Desk read: ") + n["fundamental"]
         if score is None and n.get("fund_score") is not None:
             score = clip(float(n["fund_score"]))
         elif n.get("fund_score") is not None:
@@ -475,7 +475,7 @@ def build(key, sym, name, group):
             "score": None if total is None else round(total, 2), "view": word(total), "shade": shade(total),
             "conviction": None if total is None else ("high" if abs(total) >= 0.4 and agree else "medium" if abs(total) >= 0.2 else "low"),
             "parts": parts, "price": T and {k: T[k] for k in ("contract", "last", "unit", "dp", "chg_1w", "chg_1m")},
-            "fundamental": F, "fair": fair, "events": ev, "headlines": events(key), "notes_date": n.get("date"),
+            "fundamental": F, "fair": fair, "events": ev, "headlines": events(key), "notes_date": n.get("date"), "notes_by": n.get("by") or "claude",
             "technical": T and {"text": T["text"], "score": T["score"]}, "levels": T and T["levels"],
             "vol": V, "seasonal": S, "cot": C, "live": live, "alerts": alerts,
             "optsig": (lambda o: o and {"lean": o["idea"]["lean"], "structure": o["idea"]["structure"], "asof": o["asof"], "signals": [a["text"].split(":")[0] for a in o["active"]]})(OPTSIG.get(sym))}

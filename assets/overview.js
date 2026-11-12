@@ -76,7 +76,7 @@ const Overview = (() => {
       <div class="ov-parts">${parts}</div>
       ${sec('Fundamental outlook', short ? `<span class="ov-f">${short}</span> <button class="ov-more" data-full="${fund.replace(/"/g, '&quot;')}">more</button>` : fund)}
       ${sec('Fair value (fundamentals, outright)', fv)}
-      ${sec('Recent events & news flow' + (m.notes_date ? ` <span class="note" style="text-transform:none">desk read ${esc(m.notes_date)}</span>` : ''), ev.length ? `<ul>${ev.slice(0, 7).join('')}</ul>` : '<span class="note">Nothing new picked up.</span>')}
+      ${sec('Recent events & news flow' + (m.notes_date ? ` <span class="note" style="text-transform:none">${m.notes_by === 'bot' ? 'auto read (GitHub backup)' : 'desk read'} ${esc(m.notes_date)}</span>` : ''), ev.length ? `<ul>${ev.slice(0, 7).join('')}</ul>` : '<span class="note">Nothing new picked up.</span>')}
       ${sec('Technicals & key levels', (m.technical ? esc(m.technical.text) : '<span class="note">No price data.</span>') + levels(m))}
       ${sec(m.vol && m.vol.kind === 'realized' ? 'Volatility (realized)' : 'Implied volatility', m.vol ? esc(m.vol.text) : '<span class="note">Not available.</span>')}
       ${sec('Seasonality', m.seasonal ? esc(m.seasonal.text) : '<span class="note">Not available.</span>')}

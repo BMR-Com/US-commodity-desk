@@ -3,19 +3,19 @@
   "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
   "markets": {
     "corn": {
-      "fundamental": "Post-WASDE support from the yield cut is fading overnight as Brazil's record crop looms over second-half exports. A new threat on the demand side: several states are asking EPA to waive renewable fuel volumes, which would cut ethanol grind if granted.",
+      "fundamental": "Wet fields have put Iowa's harvest behind, a short-term logistics delay rather than a crop loss. Brazil's strained farm economy (cited by Corteva) does not yet change its record-crop outlook; the RFS waiver requests remain the demand risk.",
       "events": [
-        "Corn traded mostly lower overnight after the post-report rally (Brownfield).",
-        "States' requests to waive renewable fuel mandates draw pushback from biofuel groups over lost grain demand (Successful Farming, AgWeb).",
-        "Brazil's record corn crop is shaping up as competition for US exports (Ohio's Country Journal)."
+        "Heavy rains left Iowa fields saturated and harvest behind (AgroLatam).",
+        "Corteva flagged Brazil's farm-economy stress in its earnings (Bloomberg).",
+        "States' RFS waiver requests threaten ethanol grind (Successful Farming)."
       ],
       "date": "2026-11-12"
     },
     "soybeans": {
-      "fundamental": "USDA's carryout cut remains the support, but Brazil's side is turning heavier: abundant supplies and a weaker real are accelerating the fall in Brazilian soybean prices, which makes Brazil's new crop more competitive against US export offers.",
+      "fundamental": "Nothing new on supply; a weaker real today adds to Brazil's export competitiveness against US offers, while US growers are still looking to China for longer-term demand under the tariff overhang.",
       "events": [
-        "Supply pressure and a weaker real are speeding the slide in Brazilian soybean prices (Czapp).",
-        "Soybeans extended gains Wednesday after USDA's stocks cut (Barchart).",
+        "US soybean farmers eye long-term gains in the China market (Brownfield).",
+        "A weaker real and ample supply keep Brazilian soybean prices sliding (Czapp, Barchart).",
         "Tariffs continue to limit US sales to China (Brownfield)."
       ],
       "date": "2026-11-12"
@@ -37,11 +37,11 @@
       "date": "2026-11-12"
     },
     "wheat": {
-      "date": "2026-11-11",
-      "fundamental": "World prices are weak enough to pull China back in: it booked French and Argentine wheat, which shows import demand but at the expense of US origin. Wheat's bounce today was largely spillover from corn and soybeans.",
+      "date": "2026-11-12",
+      "fundamental": "Wheat gave back its post-WASDE bounce as the spillover support from corn and soybeans faded; cheap French and Argentine origin keeps US export demand under pressure.",
       "events": [
-        "China booked French and Argentine wheat as global prices slumped (Bloomberg).",
-        "Wheat bounced on spillover support after USDA's carryout update (Barchart, AgWeb)."
+        "Wheat fell on Thursday (Barchart).",
+        "China booked French and Argentine wheat as global prices slumped (Bloomberg)."
       ]
     },
     "kc": {
@@ -53,11 +53,12 @@
       ]
     },
     "cotton": {
-      "date": "2026-11-11",
+      "date": "2026-11-12",
       "events": [
-        "Weekly US export sales were the best in seven weeks (all 2026/27), led by Vietnam; shipments slowed. Commitments run ahead of last year but behind the 5-year pace vs USDA (ADMIS).",
-        "A weaker dollar after the midterms and hopes of lower tariffs helped early in the week; equity weakness capped mill-demand optimism (ADMIS)."
-      ]
+        "Trade deals in progress could lift US cotton and rice exports (Brownfield).",
+        "Last week's export sales were the best in seven weeks, led by Vietnam (ADMIS)."
+      ],
+      "fundamental": "A possible demand-side positive: new US trade deals could open more export room for cotton, which matters with commitments still behind the usual pace. Nothing new on old-crop supply or certs today."
     },
     "hogs": {
       "fundamental": "Cash hogs stay soft and the cutout near five-year lows keeps pressure on deferred months; front-month gains look like spread adjustment rather than better demand.",
@@ -69,11 +70,11 @@
       "date": "2026-11-12"
     },
     "cattle": {
-      "fundamental": "Imported beef is starting to cap wholesale beef values, and fed steer prices have slipped, deepening feedlot losses. That tempers the futures rally that confirmed a low; tight domestic supply and screwworm remain the support.",
+      "fundamental": "Futures bounced again, but the debate has shifted to demand: imported beef and grid pricing are capping what packers pay, and cheaper beef-on-dairy calves point to more fed supply further out.",
       "events": [
-        "Rising beef imports are weighing on beef prices (ADMIS).",
-        "Feedlot losses widened as fed steer prices dropped (Drovers).",
-        "Cattle futures extended their rally to confirm a low while waiting on cash (AgWeb)."
+        "Cattle futures rebounded even as beef-demand worries grow (AgroLatam).",
+        "Beef demand and grid pricing are reshaping the cattle market (Drovers).",
+        "Beef-on-dairy calf prices are falling (Dairy Herd)."
       ],
       "date": "2026-11-12"
     },
@@ -87,20 +88,19 @@
       "date": "2026-11-12"
     },
     "class3": {
-      "fundamental": "A first HPAI case in an Oregon dairy herd revives the risk of local milk losses, but with US output at a 30-year high the supply side stays heavy for Class III; CME dairy trade was mixed again.",
+      "fundamental": "Block cheese fell at the CME, which hits Class III directly, on top of US milk output at a 30-year high. The Oregon HPAI case is a small local risk at the margin.",
       "events": [
+        "Cheese blocks and butter led CME dairy declines Thursday (Brownfield).",
         "Oregon reported its first HPAI case in a dairy herd (Feedstuffs).",
-        "Another mixed CME dairy session Wednesday (Brownfield).",
-        "US milk production at a 30-year high (Dairy Herd)."
+        "EPA ended its livestock emissions program (Brownfield)."
       ],
       "date": "2026-11-12"
     },
     "class4": {
-      "fundamental": "Tight nonfat dry milk is still carrying Class IV; a new HPAI case in Oregon adds a small supply risk at the margin.",
+      "fundamental": "Butter's drop at the CME takes some support out of Class IV; tight nonfat dry milk is still the main prop.",
       "events": [
-        "Tight NDM supplies continue to support Class IV (Czapp, Brownfield).",
-        "Oregon reported its first HPAI case in a dairy herd (Feedstuffs).",
-        "Mixed CME dairy trade Wednesday (Brownfield)."
+        "Butter led CME dairy declines Thursday (Brownfield).",
+        "Tight NDM supplies continue to support Class IV (Czapp, Brownfield)."
       ],
       "date": "2026-11-12"
     },
@@ -123,28 +123,28 @@
       "date": "2026-11-12"
     },
     "crude": {
-      "fundamental": "Supply keeps returning: Middle East output is climbing, Saudi production is near pre-war levels and Nigeria is pumping at its OPEC quota, while the EIA now expects global stock builds this quarter. WTI dipped through 86 early on peace hopes but has bounced back above 87 by midday.",
+      "fundamental": "The peace trade reversed: Brent briefly reached $94 after Trump said the US had no need for an Iran deal, and WTI is back near 88. Supply is still returning from the Gulf, Saudi Arabia and Nigeria, so the move is a risk-premium reset rather than a new shortage.",
       "events": [
-        "Middle East crude output is climbing (ADMIS, OilPrice.com).",
-        "Nigeria hit its OPEC quota for a sixth straight month; India is shifting purchases to Gulf barrels as Russian discounts narrow (OilPrice.com).",
-        "EIA sees global oil inventories building in the fourth quarter (Dow Jones)."
+        "Brent briefly hit $94 after Trump said the US has no need for an Iran deal (OilPrice.com).",
+        "Middle East output is climbing and Nigeria is at its OPEC quota (ADMIS, OilPrice.com).",
+        "EIA sees global stocks building this quarter (Dow Jones)."
       ],
       "date": "2026-11-12"
     },
     "ulsd": {
-      "fundamental": "Russian diesel exports have doubled since sanctions were lifted, but none is reaching the US, so the domestic distillate squeeze persists even as crude weakens.",
+      "fundamental": "Diesel bounced with crude as Iran-deal optimism faded; the domestic distillate squeeze persists because Russian diesel is not reaching the US.",
       "events": [
-        "Russian diesel exports doubled after sanctions were lifted, with none going to the US (Financial Times).",
-        "The US plan to import Russian diesel has stalled at sea (WSJ).",
-        "API showed a distillate build (OilPrice.com)."
+        "Crude rebounded after Trump said a deal with Iran is not needed (OilPrice.com).",
+        "Russian diesel exports doubled, none to the US (Financial Times).",
+        "The US plan to import Russian diesel has stalled (WSJ)."
       ],
       "date": "2026-11-12"
     },
     "rbob": {
-      "fundamental": "Gasoline follows crude lower on peace optimism; California refinery closures are a regional tightening theme but not a national supply shock yet.",
+      "fundamental": "Gasoline recovered with crude once the Iran peace optimism faded; California refinery closures remain a regional rather than national tightening theme.",
       "events": [
-        "Crude sank on Iran and Ukraine peace optimism (OilPrice.com).",
-        "Continued California refinery closures are reshaping West Coast crude and product flows (OilPrice.com)."
+        "Crude rebounded after Trump said a deal with Iran is not needed (OilPrice.com).",
+        "California refinery closures are reshaping West Coast flows (OilPrice.com)."
       ],
       "date": "2026-11-12"
     }

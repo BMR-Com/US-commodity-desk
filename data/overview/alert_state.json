@@ -1,10 +1,10 @@
 {
- "updated": "2026-11-12 17:55 UTC",
+ "updated": "2026-11-12 20:43 UTC",
  "views": {
   "corn": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.31
+   "score": -0.37
   },
   "soybeans": {
    "view": "bullish",
@@ -14,7 +14,7 @@
   "meal": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.02
+   "score": -0.06
   },
   "oil": {
    "view": "mildly bearish",
@@ -27,9 +27,9 @@
    "score": -0.32
   },
   "kc": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.18
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.29
   },
   "cotton": {
    "view": "bullish",
@@ -52,9 +52,9 @@
    "score": -0.04
   },
   "class3": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.2
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.26
   },
   "class4": {
    "view": "mildly bullish",
@@ -64,7 +64,7 @@
   "palm": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.28
+   "score": -0.29
   },
   "natgas": {
    "view": "bearish",
@@ -72,9 +72,9 @@
    "score": -0.23
   },
   "crude": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.19
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.25
   },
   "ulsd": {
    "view": "bullish",
@@ -88,21 +88,20 @@
   }
  },
  "alerts": {
-  "corn": [
-   "Broke below S1 445.25"
-  ],
+  "corn": [],
   "soybeans": [],
   "meal": [],
   "oil": [],
-  "wheat": [],
+  "wheat": [
+   "Broke below the fund sell trigger (100-day breakout low) 585.00"
+  ],
   "kc": [
-   "Broke below S1 633.00",
-   "Broke below S2 628.25"
+   "Broke below the fund sell trigger (100-day breakout low) 622.00"
   ],
   "cotton": [],
   "hogs": [],
   "cattle": [
-   "Broke below the fund sell trigger (60-day momentum flip) 219.877"
+   "Holding below the fund sell trigger (60-day momentum flip) 219.877"
   ],
   "feeders": [],
   "class3": [],
@@ -118,6 +117,7 @@
   "2026-11-12 Palm climbs on El Nino threat to Indonesia 2027 supply",
   "2026-11-11 Oregon first HPAI case in dairy herd",
   "2026-11-12 States' RFS waiver requests threaten biofuel demand",
-  "2026-11-12 Beef imports pressuring beef prices; feedlot losses widen"
+  "2026-11-12 Beef imports pressuring beef prices; feedlot losses widen",
+  "2026-11-12 Brent briefly hits $94 after Trump says US has no need for Iran deal; peace trade unwinds"
  ]
 }

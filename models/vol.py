@@ -36,7 +36,7 @@ SPEC = {
     "HO": ("ULSD (heating oil)", "Energy", "$/gal", 42000, 0.01, 4, "pr"), "RB": ("RBOB gasoline", "Energy", "$/gal", 42000, 0.01, 4, "pr"),
 }
 RULE_TEXT = {"grain": "last Friday at least 2 business days before the last business day of the month before the contract month",
-             "cotton": "last Friday at least 5 business days before the last business day of the month before the contract month",
+             "cotton": "last Friday with at least 5 business days before first notice day (FND: 5 business days before the first business day of the contract month)",
              "le": "first Friday of the contract month", "gf": "last Thursday of the contract month (same as futures)",
              "he": "10th business day of the contract month (same as futures)",
              "dairy": "business day before the USDA class/product price announcement (about the first Wednesday after the contract month)",
@@ -53,6 +53,32 @@ def bdays_back(d, n):
     return d
 
 
+def ice_holidays(y):
+    """ICE US softs holidays (approx.): New Year, MLK, Presidents, Good Friday, Memorial, Juneteenth, July 4, Labor, Thanksgiving, Christmas."""
+    from pandas.tseries.holiday import USFederalHolidayCalendar, GoodFriday
+    import pandas as pd
+    cal = USFederalHolidayCalendar()
+    hs = {h.date() for h in cal.holidays(f"{y - 1}-12-01", f"{y + 1}-01-31") if not (h.month == 10 or (h.month == 11 and h.day == 11) or (h.month == 11 and h.weekday() == 0 and h.day <= 12))}
+    hs |= {d.date() for d in pd.DatetimeIndex(GoodFriday.dates(f"{y}-01-01", f"{y}-12-31"))}
+    return hs
+
+
+def ice_bdays_back(d, n):
+    hs = ice_holidays(d.year)
+    while n > 0:
+        d -= timedelta(days=1)
+        if d.weekday() < 5 and d not in hs:
+            n -= 1
+    return d
+
+
+def ice_first_bday(y, m):
+    d, hs = date(y, m, 1), ice_holidays(y)
+    while d.weekday() >= 5 or d in hs:
+        d += timedelta(days=1)
+    return d
+
+
 def last_bday(y, m):
     d = date(y + (m == 12), m % 12 + 1, 1) - timedelta(days=1)
     while d.weekday() >= 5:
@@ -62,8 +88,14 @@ def last_bday(y, m):
 
 def expiry(rule, y, m):
     py, pm = (y, m - 1) if m > 1 else (y - 1, 12)
+    if rule == "cotton":   # ICE: last Friday with at least 5 full business days before first notice day (FND = 5 ICE business days before the first business day of the month)
+        fnd = ice_bdays_back(ice_first_bday(y, m), 5)
+        d = ice_bdays_back(fnd, 6)
+        while d.weekday() != 4:
+            d -= timedelta(days=1)
+        return d
     if rule in ("grain", "cotton"):
-        lim = bdays_back(last_bday(py, pm), 2 if rule == "grain" else 5)
+        lim = bdays_back(last_bday(py, pm), 2)
         d = lim
         while d.weekday() != 4:
             d -= timedelta(days=1)

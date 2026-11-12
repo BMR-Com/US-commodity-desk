@@ -1,6 +1,6 @@
-# Morning brief · Thu Nov 12, 2026 06:39 AM ET
+# Morning brief · Thu Nov 12, 2026 08:39 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-12 11:39 UTC). CME open interest from 20261110. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-12 13:39 UTC). CME open interest from 20261111. Research only, not investment advice.
 
 ## Key points
 
@@ -47,13 +47,13 @@ Inflation: CPI 3.7% y/y (2026-09), core 2.6%; core 3-month annualized 3.4%; core
 Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl −; risk 0; energy −; china −; breadth −. Strongest ag/soft over the month: Rough rice +5.3%; weakest: Lean hogs -18.1%. Key releases ahead: US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).
 
 - **Rates**: US 10-year 4.98% (-26 bp in a month), 2-year 4.73% (-7 bp); 2s10s curve +25 bp (-19 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.12% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 102.90 (+0.7% in a month, +4.7% YTD). USD/BRL 5.587 (+12.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.658 (-0.5%); USD/MXN 18.60 (+1.9%).
+- **Dollar & farm currencies**: Dollar index 102.93 (+0.7% in a month, +4.7% YTD). USD/BRL 5.612 (+12.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.658 (-0.5%); USD/MXN 18.69 (+2.4%).
 - **Risk appetite**: S&P 500 -2.4% in a month (+11.3% YTD); VIX 18.3. Neutral risk backdrop. 
-- **Energy**: WTI 86.14 $/bbl (-7.5% in a month), Brent 92.45, ULSD 4.221 $/gal (-11.6%), natural gas 3.27 (-9.1%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
-- **China & industrial demand**: Copper -7.7% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. 
-- **Commodity breadth**: 9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -8.1% in a month; gold -5.4%. 
+- **Energy**: WTI 85.91 $/bbl (-7.8% in a month), Brent 92.29, ULSD 4.186 $/gal (-12.4%), natural gas 3.28 (-9.1%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
+- **China & industrial demand**: Copper -7.8% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Commodity breadth**: 9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -8.1% in a month; gold -5.6%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,610.250 (-0.40% d/d); S&P 500 7,619.380 (+1.31% d/d); VIX 18.310 (+4.69% d/d); US 10-year 4.998 (+2 bp d/d); US dollar index 102.900 (-0.01% d/d); EUR/USD 1.109 (-0.68% d/d); USD/BRL 5.587 (+0.07% d/d); USD/CNY 6.658 (-0.19% d/d); WTI crude 86.140 (-0.45% d/d); Natural gas 3.275 (+1.87% d/d); Gold 3,953.000 (-1.19% d/d); Copper 6.205 (-1.35% d/d); S&P GSCI 683.738 (-0.00% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,605.500 (-0.46% d/d); S&P 500 7,619.380 (+1.31% d/d); VIX 18.330 (+4.80% d/d); US 10-year 4.998 (+2 bp d/d); US dollar index 102.927 (+0.02% d/d); EUR/USD 1.109 (-0.72% d/d); USD/BRL 5.612 (+0.53% d/d); USD/CNY 6.658 (-0.19% d/d); WTI crude 85.910 (-0.72% d/d); Natural gas 3.276 (+1.90% d/d); Gold 3,941.900 (-1.46% d/d); Copper 6.204 (-1.37% d/d); S&P GSCI 683.738 (-0.00% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -61,18 +61,18 @@ _Directional channels from macro to ag prices are standard relationships, not si
 
 | Market | Contract | Last | Chg | 1 wk | 1 m | Rating | RSI | Support | Resistance | Funds net (chg) | OI chg | View |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Corn | Dec 26 | 448.00 | +0.00 (+0.0%) | +1.8% | -6.8% | Sell | 35 | 445.25 | 449.50 | -22,900 (-78,843) | +6,155 | bearish |
-| Soybeans | Jan 27 | 1,229.00 | -1.75 (-0.1%) | +3.4% | -4.9% | Neutral | 44 | 1,180.75 | 1,269.50 | 132,799 (-52,601) | +893 | bullish |
-| Soybean meal | Dec 26 | 329.8 | +0.1 (+0.0%) | +4.0% | -9.5% | Neutral | 43 | 316.2 | 330.7 | 111,668 (-58,191) | +2,311 | neutral |
-| Soybean oil | Dec 26 | 63.73 | -0.15 (-0.2%) | +2.4% | -5.0% | Sell | 39 | 61.64 | 65.53 | 40,377 (-15,894) | +4,785 | neutral |
-| Chicago wheat | Dec 26 | 597.25 | -2.25 (-0.4%) | -0.3% | -11.3% | Sell | 31 | 590.50 | 601.75 | -88,726 (-13,867) | +8,392 | bearish |
-| KC HRW wheat | Dec 26 | 634.00 | -5.50 (-0.9%) | -0.3% | -11.3% | Sell | 25 | 633.00 | 634.75 | -6,722 (-4,857) | -957 | mildly bearish |
+| Corn | Dec 26 | 448.00 | +0.00 (+0.0%) | +1.8% | -6.8% | Sell | 35 | 445.25 | 449.50 | -22,900 (-78,843) | +14,976 | bearish |
+| Soybeans | Jan 27 | 1,229.00 | -1.75 (-0.1%) | +3.4% | -4.9% | Neutral | 44 | 1,180.75 | 1,269.50 | 132,799 (-52,601) | -3,963 | bullish |
+| Soybean meal | Dec 26 | 329.8 | +0.1 (+0.0%) | +4.0% | -9.5% | Neutral | 43 | 316.2 | 330.7 | 111,668 (-58,191) | +5,498 | neutral |
+| Soybean oil | Dec 26 | 63.73 | -0.15 (-0.2%) | +2.4% | -5.0% | Sell | 39 | 61.64 | 65.53 | 40,377 (-15,894) | -4,723 | neutral |
+| Chicago wheat | Dec 26 | 597.25 | -2.25 (-0.4%) | -0.3% | -11.3% | Sell | 31 | 590.50 | 601.75 | -88,726 (-13,867) | +172 | bearish |
+| KC HRW wheat | Dec 26 | 634.00 | -5.50 (-0.9%) | -0.3% | -11.3% | Sell | 25 | 633.00 | 634.75 | -6,722 (-4,857) | -497 | mildly bearish |
 | Cotton | Dec 26 | 78.97 | +0.45 (+0.6%) | +0.3% | -2.1% | Neutral | 46 | 77.73 | 80.47 | 53,148 (-3,042) | – | mildly bullish |
-| Lean hogs | Dec 26 | 56.025 | +0.225 (+0.4%) | -2.6% | -17.6% | Strong sell | 30 | – | 71.200 | -50,492 (-3,383) | -3,802 | bearish |
-| Live cattle | Dec 26 | 218.975 | -0.225 (-0.1%) | +0.4% | -3.3% | Sell | 42 | 218.725 | 219.725 | 51,692 (-4,325) | -152 | bearish |
-| Feeder cattle | Jan 27 | 327.800 | +1.125 (+0.3%) | +0.6% | -2.4% | Sell | 47 | 325.000 | 342.000 | 11,302 (-2,051) | -1,065 | mildly bearish |
-| Class III milk | Nov 26 | 17.84 | +0.02 (+0.1%) | -0.1% | +7.9% | Buy | 59 | 17.81 | 17.90 | -4,988 (-53) | +116 | mildly bearish |
-| Class IV milk | Nov 26 | 21.04 | +0.00 (+0.0%) | +0.1% | +1.0% | Buy | 59 | 20.24 | 21.46 | 1,760 (+9) | +23 | mildly bullish |
+| Lean hogs | Dec 26 | 56.025 | +0.225 (+0.4%) | -2.6% | -17.6% | Strong sell | 30 | – | 71.200 | -50,492 (-3,383) | +5,393 | bearish |
+| Live cattle | Dec 26 | 218.975 | -0.225 (-0.1%) | +0.4% | -3.3% | Sell | 42 | 218.725 | 219.725 | 51,692 (-4,325) | -1,670 | bearish |
+| Feeder cattle | Jan 27 | 327.800 | +1.125 (+0.3%) | +0.6% | -2.4% | Sell | 47 | 325.000 | 342.000 | 11,302 (-2,051) | -513 | mildly bearish |
+| Class III milk | Nov 26 | 17.84 | +0.02 (+0.1%) | -0.1% | +7.9% | Buy | 59 | 17.81 | 17.90 | -4,988 (-53) | +377 | mildly bearish |
+| Class IV milk | Nov 26 | 21.04 | +0.00 (+0.0%) | +0.1% | +1.0% | Buy | 59 | 20.24 | 21.46 | 1,760 (+9) | +81 | mildly bullish |
 
 Board crush 1.970 $/bu (10-yr pct 82), oil share 49.2%. Soybean / corn price ratio 2.742. Chicago wheat − corn 152.50 ¢/bu. KC HRW − Chicago SRW 37.50 ¢/bu. Soybean oil / meal value 0.967.
 
@@ -166,4 +166,4 @@ Research signals: trend long 1.9x for 40% vol (12m excess +48%); carry +24.3%/yr
 
 ## Track record
 
-Track record: 240 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything. Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.
+Track record: 252 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything. Calls are logged daily in data/brief/calls.csv and scored in data/brief/scorecard.json.

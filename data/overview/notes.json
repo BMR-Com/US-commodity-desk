@@ -3,11 +3,11 @@
   "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
   "markets": {
     "corn": {
-      "fundamental": "Post-WASDE support is holding but competition is building: Brazil has quietly put together a record corn crop, which will contest US export demand in the second half of the marketing year. Weather talk gave grains a lift overnight.",
+      "fundamental": "Post-WASDE support from the yield cut is fading overnight as Brazil's record crop looms over second-half exports. A new threat on the demand side: several states are asking EPA to waive renewable fuel volumes, which would cut ethanol grind if granted.",
       "events": [
-        "Brazil's corn output has reached a record with little fanfare, a competitive threat for US exports (Ohio's Country Journal).",
-        "Grains firmed on weather concerns after the WASDE pause (Brownfield).",
-        "Analysts see a possible bottom in grains while watching South America (AgWeb, American Ag Network)."
+        "Corn traded mostly lower overnight after the post-report rally (Brownfield).",
+        "States' requests to waive renewable fuel mandates draw pushback from biofuel groups over lost grain demand (Successful Farming, AgWeb).",
+        "Brazil's record corn crop is shaping up as competition for US exports (Ohio's Country Journal)."
       ],
       "date": "2026-11-12"
     },
@@ -28,11 +28,11 @@
       ]
     },
     "oil": {
-      "fundamental": "Two-way pressure: crude is falling again on peace optimism, a negative for biofuel margins, while palm oil is rising on El Niño risk to Indonesia's 2027 output, which supports the global veg-oil balance.",
+      "fundamental": "Policy risk is back: state requests for renewable fuel waivers could trim biomass-based diesel demand if EPA grants them. Palm's El Niño risk still supports the global veg-oil balance, and crude has recovered from its early drop.",
       "events": [
-        "Palm oil climbed on El Niño threats to Indonesia's 2027 supply (Bloomberg).",
-        "Crude sank on Iran and Ukraine peace optimism (OilPrice.com).",
-        "Ohio Soybean Association backed a biofuels bill (Ohio Ag Net)."
+        "Biofuel groups warn state RFS waiver requests threaten grain and oilseed demand (Successful Farming, AgWeb).",
+        "Petrobras is buying out partners in the Logum pipeline to expand biofuels logistics (Reuters).",
+        "Palm oil rose on El Niño risk to Indonesia's 2027 output (Bloomberg)."
       ],
       "date": "2026-11-12"
     },
@@ -69,21 +69,22 @@
       "date": "2026-11-12"
     },
     "cattle": {
-      "fundamental": "Futures extended their rally and confirmed a low; the question is whether cash follows. Beef supply stays tight with USDA trimming output and screwworm spreading in mild weather, while Tyson restoring a shift at Amarillo signals stronger packer demand.",
+      "fundamental": "Imported beef is starting to cap wholesale beef values, and fed steer prices have slipped, deepening feedlot losses. That tempers the futures rally that confirmed a low; tight domestic supply and screwworm remain the support.",
       "events": [
-        "Cattle extended their rally to confirm a low as traders wait on cash (AgWeb).",
-        "Cash cattle finally traded steady to higher (Brownfield).",
-        "New World screwworm spreading faster in milder weather (Bloomberg)."
+        "Rising beef imports are weighing on beef prices (ADMIS).",
+        "Feedlot losses widened as fed steer prices dropped (Drovers).",
+        "Cattle futures extended their rally to confirm a low while waiting on cash (AgWeb)."
       ],
       "date": "2026-11-12"
     },
     "feeders": {
-      "date": "2026-11-11",
-      "fundamental": "Screwworm's resurgence lengthens the likely closure to Mexican feeder imports, supporting a tight domestic feeder supply; USDA is staffing up its sterile-fly plant in Texas.",
+      "fundamental": "Weaker fed steer prices and wider feedlot losses cut into what feedlots can pay for replacements, a near-term headwind; the screwworm-driven closure to Mexican feeders still keeps domestic supply tight.",
       "events": [
-        "Screwworm spreading fast with milder weather (Bloomberg).",
+        "Feedlot losses widened as fed steer prices fell (Drovers).",
+        "Screwworm spreading faster in milder weather (Bloomberg).",
         "USDA began hiring for its Texas sterile-fly facility (USDA)."
-      ]
+      ],
+      "date": "2026-11-12"
     },
     "class3": {
       "fundamental": "A first HPAI case in an Oregon dairy herd revives the risk of local milk losses, but with US output at a 30-year high the supply side stays heavy for Class III; CME dairy trade was mixed again.",
@@ -122,11 +123,11 @@
       "date": "2026-11-12"
     },
     "crude": {
-      "fundamental": "Peace optimism on both Iran and Ukraine is draining the risk premium just as Saudi output nears pre-war levels and API showed a big US crude build. WTI has slipped through the 86 support, and plunging tanker rates are letting Asian buyers source more from Africa and Brazil.",
+      "fundamental": "Supply keeps returning: Middle East output is climbing, Saudi production is near pre-war levels and Nigeria is pumping at its OPEC quota, while the EIA now expects global stock builds this quarter. WTI dipped through 86 early on peace hopes but has bounced back above 87 by midday.",
       "events": [
-        "Oil sank as optimism grew over Iran and Ukraine peace talks (OilPrice.com).",
-        "Asian buyers turned to African and Brazilian crude as tanker rates plunged (OilPrice.com).",
-        "Saudi output rebounded close to pre-war levels (OilPrice.com, WSJ)."
+        "Middle East crude output is climbing (ADMIS, OilPrice.com).",
+        "Nigeria hit its OPEC quota for a sixth straight month; India is shifting purchases to Gulf barrels as Russian discounts narrow (OilPrice.com).",
+        "EIA sees global oil inventories building in the fourth quarter (Dow Jones)."
       ],
       "date": "2026-11-12"
     },

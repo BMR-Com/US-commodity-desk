@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12 13:44 UTC",
+ "updated": "2026-11-12 17:55 UTC",
  "views": {
   "corn": {
    "view": "bearish",
@@ -9,17 +9,17 @@
   "soybeans": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.33
+   "score": 0.27
   },
   "meal": {
    "view": "neutral",
    "shade": "neutral",
-   "score": 0.04
+   "score": -0.02
   },
   "oil": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": -0.0
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.11
   },
   "wheat": {
    "view": "bearish",
@@ -34,7 +34,7 @@
   "cotton": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.27
+   "score": 0.21
   },
   "hogs": {
    "view": "bearish",
@@ -44,12 +44,12 @@
   "cattle": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.31
+   "score": -0.25
   },
   "feeders": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.16
+   "view": "neutral",
+   "shade": "neutral",
+   "score": -0.04
   },
   "class3": {
    "view": "mildly bearish",
@@ -64,7 +64,7 @@
   "palm": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.36
+   "score": -0.28
   },
   "natgas": {
    "view": "bearish",
@@ -72,9 +72,9 @@
    "score": -0.23
   },
   "crude": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.25
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.19
   },
   "ulsd": {
    "view": "bullish",
@@ -88,31 +88,36 @@
   }
  },
  "alerts": {
-  "corn": [],
-  "soybeans": [
-   "Broke below the fund sell trigger (120-day momentum flip) 1,228.59"
+  "corn": [
+   "Broke below S1 445.25"
   ],
+  "soybeans": [],
   "meal": [],
   "oil": [],
   "wheat": [],
-  "kc": [],
+  "kc": [
+   "Broke below S1 633.00",
+   "Broke below S2 628.25"
+  ],
   "cotton": [],
   "hogs": [],
-  "cattle": [],
+  "cattle": [
+   "Broke below the fund sell trigger (60-day momentum flip) 219.877"
+  ],
   "feeders": [],
   "class3": [],
   "class4": [],
   "palm": [],
   "natgas": [],
-  "crude": [
-   "Broke below S1 86.00"
-  ],
+  "crude": [],
   "ulsd": [],
   "rbob": []
  },
  "news": [
   "2026-11-12 Oil sinks on Iran/Ukraine peace optimism",
   "2026-11-12 Palm climbs on El Nino threat to Indonesia 2027 supply",
-  "2026-11-11 Oregon first HPAI case in dairy herd"
+  "2026-11-11 Oregon first HPAI case in dairy herd",
+  "2026-11-12 States' RFS waiver requests threaten biofuel demand",
+  "2026-11-12 Beef imports pressuring beef prices; feedlot losses widen"
  ]
 }

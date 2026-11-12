@@ -1,24 +1,24 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
   "markets": {
     "corn": {
-      "date": "2026-11-11",
-      "fundamental": "USDA's November cut to the corn crop and ending stocks gave the market a bottom-building argument, but follow-through stalled today and questions about export and ethanol demand remain. A governors' request to waive the RFS adds policy noise for ethanol grind.",
+      "fundamental": "Post-WASDE support is holding but competition is building: Brazil has quietly put together a record corn crop, which will contest US export demand in the second half of the marketing year. Weather talk gave grains a lift overnight.",
       "events": [
-        "Corn rallied on Tuesday's WASDE crop and stocks cut, then paused Wednesday (AgWeb, Farm Progress).",
-        "Analysts see rebound potential but flag demand as the open question (Brownfield).",
-        "Ethanol group urged EPA to reject governors' RFS waiver request (AgWeb)."
-      ]
+        "Brazil's corn output has reached a record with little fanfare, a competitive threat for US exports (Ohio's Country Journal).",
+        "Grains firmed on weather concerns after the WASDE pause (Brownfield).",
+        "Analysts see a possible bottom in grains while watching South America (AgWeb, American Ag Network)."
+      ],
+      "date": "2026-11-12"
     },
     "soybeans": {
-      "date": "2026-11-11",
-      "fundamental": "USDA trimmed US carryout even with a bigger crop, which tightened the balance and sparked a 40-cent rally; overnight weakness showed the move needs export help. Tariffs are still limiting US sales to China, the key demand swing.",
+      "fundamental": "USDA's carryout cut remains the support, but Brazil's side is turning heavier: abundant supplies and a weaker real are accelerating the fall in Brazilian soybean prices, which makes Brazil's new crop more competitive against US export offers.",
       "events": [
-        "Soybeans led grains higher after USDA lowered ending stocks (Successful Farming, Barchart).",
-        "Tariffs continue to cap US soybean sales potential to China (Brownfield).",
-        "Beans slipped overnight as the post-report rally paused (Brownfield, AgWeb)."
-      ]
+        "Supply pressure and a weaker real are speeding the slide in Brazilian soybean prices (Czapp).",
+        "Soybeans extended gains Wednesday after USDA's stocks cut (Barchart).",
+        "Tariffs continue to limit US sales to China (Brownfield)."
+      ],
+      "date": "2026-11-12"
     },
     "meal": {
       "date": "2026-11-11",
@@ -28,12 +28,13 @@
       ]
     },
     "oil": {
-      "date": "2026-11-11",
-      "fundamental": "Soyoil gained with crude and on biofuel policy talk; state-level backing for biofuel legislation supports the domestic crush-for-fuel demand story.",
+      "fundamental": "Two-way pressure: crude is falling again on peace optimism, a negative for biofuel margins, while palm oil is rising on El Niño risk to Indonesia's 2027 output, which supports the global veg-oil balance.",
       "events": [
-        "Soybean oil rose nearly 2% intraday alongside firmer crude (Barchart, WSJ).",
+        "Palm oil climbed on El Niño threats to Indonesia's 2027 supply (Bloomberg).",
+        "Crude sank on Iran and Ukraine peace optimism (OilPrice.com).",
         "Ohio Soybean Association backed a biofuels bill (Ohio Ag Net)."
-      ]
+      ],
+      "date": "2026-11-12"
     },
     "wheat": {
       "date": "2026-11-11",
@@ -59,21 +60,22 @@
       ]
     },
     "hogs": {
-      "date": "2026-11-11",
-      "fundamental": "Pork demand is the weak spot: the cutout is sliding back toward a five-year low, which keeps packer margins and cash hog bids under pressure.",
+      "fundamental": "Cash hogs stay soft and the cutout near five-year lows keeps pressure on deferred months; front-month gains look like spread adjustment rather than better demand.",
       "events": [
-        "Pork cutout slipped back toward a five-year low; hogs ended mixed (The Pig Site).",
-        "CME lean hog futures and options set a new volume record (National Hog Farmer)."
-      ]
+        "Lean hogs edged up in front while deferred contracts ended lower (The Pig Site).",
+        "Hogs closed mixed Wednesday with weak cash (Barchart).",
+        "Pork cutout slipped back toward a five-year low (The Pig Site)."
+      ],
+      "date": "2026-11-12"
     },
     "cattle": {
-      "date": "2026-11-11",
-      "fundamental": "Beef supply stays tight: USDA lowered its beef output outlook and New World screwworm is spreading faster in mild weather, keeping the Mexican feeder pipeline in doubt. Packers are back in profit and Tyson is restoring a shift at Amarillo, a sign of better slaughter demand.",
+      "fundamental": "Futures extended their rally and confirmed a low; the question is whether cash follows. Beef supply stays tight with USDA trimming output and screwworm spreading in mild weather, while Tyson restoring a shift at Amarillo signals stronger packer demand.",
       "events": [
-        "New World screwworm spreading quickly as milder weather fuels a resurgence (Bloomberg).",
-        "USDA cut its red meat and poultry outlook as beef output slips (National Hog Farmer).",
-        "Traders eye a cash cattle rebound; Tyson restores a second shift at Amarillo (ADMIS, Drovers)."
-      ]
+        "Cattle extended their rally to confirm a low as traders wait on cash (AgWeb).",
+        "Cash cattle finally traded steady to higher (Brownfield).",
+        "New World screwworm spreading faster in milder weather (Bloomberg)."
+      ],
+      "date": "2026-11-12"
     },
     "feeders": {
       "date": "2026-11-11",
@@ -84,59 +86,66 @@
       ]
     },
     "class3": {
-      "date": "2026-11-11",
-      "fundamental": "Cheese got a lift as CME blocks jumped, but milk output at a 30-year high keeps the supply side heavy for Class III.",
+      "fundamental": "A first HPAI case in an Oregon dairy herd revives the risk of local milk losses, but with US output at a 30-year high the supply side stays heavy for Class III; CME dairy trade was mixed again.",
       "events": [
-        "CME cheese blocks rose more than 5 cents (Brownfield).",
-        "US milk production at a 30-year high as new demand outlets open (Dairy Herd)."
-      ]
+        "Oregon reported its first HPAI case in a dairy herd (Feedstuffs).",
+        "Another mixed CME dairy session Wednesday (Brownfield).",
+        "US milk production at a 30-year high (Dairy Herd)."
+      ],
+      "date": "2026-11-12"
     },
     "class4": {
-      "date": "2026-11-11",
-      "fundamental": "Tight powder supplies are carrying Class IV higher, offsetting the heavy milk flow.",
+      "fundamental": "Tight nonfat dry milk is still carrying Class IV; a new HPAI case in Oregon adds a small supply risk at the margin.",
       "events": [
-        "Tight nonfat dry milk supplies drive dairy price gains (Czapp, Brownfield).",
-        "Milk production hits a 30-year high (Dairy Herd)."
-      ]
+        "Tight NDM supplies continue to support Class IV (Czapp, Brownfield).",
+        "Oregon reported its first HPAI case in a dairy herd (Feedstuffs).",
+        "Mixed CME dairy trade Wednesday (Brownfield)."
+      ],
+      "date": "2026-11-12"
     },
     "palm": {
-      "date": "2026-11-11",
-      "fundamental": "No new Malaysian supply data since the last read; firmer crude and soyoil today lend the vegetable-oil complex some support.",
+      "fund_score": 0.2,
+      "fundamental": "El Niño is now threatening Indonesia's 2027 palm output, a lagged but meaningful supply risk for the largest producer; that outweighs today's softer crude for the veg-oil outlook.",
       "events": [
-        "Soyoil and crude both higher intraday (Barchart, WSJ)."
-      ]
+        "Palm oil rose as El Niño threatens Indonesia's 2027 supplies (Bloomberg).",
+        "Crude sank on peace optimism, a drag on biodiesel economics (OilPrice.com)."
+      ],
+      "date": "2026-11-12"
     },
     "natgas": {
-      "date": "2026-11-11",
-      "fundamental": "The Polish cancellation of a long-term Qatari LNG deal after months of force majeure highlights constrained global LNG supply, a structural positive for US export demand. Near term, gas gave back part of its cold-weather rally today.",
+      "fundamental": "Qatar losing the Polish LNG contract is seen as a real setback to its expansion, reinforcing tighter global LNG supply and the case for US export demand. Near-term US prices still hinge on the coming cold spell.",
       "events": [
-        "Orlen cancelled its long-term QatarEnergy LNG contract over delivery failures (Reuters, WSJ, Bloomberg).",
-        "US natural gas had rallied on a coming cold spell before slipping today (WSJ, NGI)."
-      ]
+        "Losing the Orlen LNG deal is a serious blow to Qatar's expansion plans (Bloomberg).",
+        "Orlen cancelled its long-term QatarEnergy contract over delivery failures (Reuters, WSJ).",
+        "US gas had rallied on a coming cold spell before slipping (WSJ, NGI)."
+      ],
+      "date": "2026-11-12"
     },
     "crude": {
-      "date": "2026-11-11",
-      "fundamental": "Saudi production has rebounded close to pre-war levels, lifting OPEC output and easing the supply shortfall, while API showed a sharp US crude build. Against that, fading hopes for an Iran deal keep a risk premium in place, so prices are recovering from heavy selling.",
+      "fundamental": "Peace optimism on both Iran and Ukraine is draining the risk premium just as Saudi output nears pre-war levels and API showed a big US crude build. WTI has slipped through the 86 support, and plunging tanker rates are letting Asian buyers source more from Africa and Brazil.",
       "events": [
-        "Saudi crude output jumped about a quarter, with OPEC production near pre-war levels (OilPrice.com, WSJ).",
-        "API reported a sharp build in US crude and distillate stocks (OilPrice.com).",
-        "Oil rebounded as Iran peace optimism faded (WSJ, OilPrice.com)."
-      ]
+        "Oil sank as optimism grew over Iran and Ukraine peace talks (OilPrice.com).",
+        "Asian buyers turned to African and Brazilian crude as tanker rates plunged (OilPrice.com).",
+        "Saudi output rebounded close to pre-war levels (OilPrice.com, WSJ)."
+      ],
+      "date": "2026-11-12"
     },
     "ulsd": {
-      "date": "2026-11-11",
-      "fundamental": "Distillate tightness persists: the plan to bring in Russian diesel has stalled at sea, though API showed a distillate build. Diesel led the energy complex higher today.",
+      "fundamental": "Russian diesel exports have doubled since sanctions were lifted, but none is reaching the US, so the domestic distillate squeeze persists even as crude weakens.",
       "events": [
-        "The US plan to import Russian diesel has stalled on the high seas (WSJ, Reuters).",
-        "API showed a sharp distillate inventory build (OilPrice.com)."
-      ]
+        "Russian diesel exports doubled after sanctions were lifted, with none going to the US (Financial Times).",
+        "The US plan to import Russian diesel has stalled at sea (WSJ).",
+        "API showed a distillate build (OilPrice.com)."
+      ],
+      "date": "2026-11-12"
     },
     "rbob": {
-      "date": "2026-11-11",
-      "fundamental": "Gasoline lagged crude and diesel today; no gasoline-specific supply news.",
+      "fundamental": "Gasoline follows crude lower on peace optimism; California refinery closures are a regional tightening theme but not a national supply shock yet.",
       "events": [
-        "RBOB flat to lower while crude and diesel firmed (WSJ)."
-      ]
+        "Crude sank on Iran and Ukraine peace optimism (OilPrice.com).",
+        "Continued California refinery closures are reshaping West Coast crude and product flows (OilPrice.com)."
+      ],
+      "date": "2026-11-12"
     }
   }
 }

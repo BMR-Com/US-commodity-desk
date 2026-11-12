@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11 20:44 UTC",
+ "updated": "2026-11-12 13:44 UTC",
  "views": {
   "corn": {
    "view": "bearish",
@@ -9,12 +9,12 @@
   "soybeans": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.38
+   "score": 0.33
   },
   "meal": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.02
+   "score": 0.04
   },
   "oil": {
    "view": "neutral",
@@ -32,9 +32,9 @@
    "score": -0.18
   },
   "cotton": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.2
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.27
   },
   "hogs": {
    "view": "bearish",
@@ -59,17 +59,17 @@
   "class4": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.18
+   "score": 0.12
   },
   "palm": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.44
+   "score": -0.36
   },
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.24
+   "score": -0.23
   },
   "crude": {
    "view": "bullish",
@@ -89,7 +89,9 @@
  },
  "alerts": {
   "corn": [],
-  "soybeans": [],
+  "soybeans": [
+   "Broke below the fund sell trigger (120-day momentum flip) 1,228.59"
+  ],
   "meal": [],
   "oil": [],
   "wheat": [],
@@ -102,13 +104,15 @@
   "class4": [],
   "palm": [],
   "natgas": [],
-  "crude": [],
+  "crude": [
+   "Broke below S1 86.00"
+  ],
   "ulsd": [],
   "rbob": []
  },
  "news": [
-  "2026-11-11 Ivory Coast weather agency: El Nino could cut cocoa output up to 25%",
-  "2026-11-11 Screwworm resurgence in milder weather",
-  "2026-11-11 Orlen cancels QatarEnergy LNG deal"
+  "2026-11-12 Oil sinks on Iran/Ukraine peace optimism",
+  "2026-11-12 Palm climbs on El Nino threat to Indonesia 2027 supply",
+  "2026-11-11 Oregon first HPAI case in dairy herd"
  ]
 }

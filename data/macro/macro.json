@@ -1,17 +1,17 @@
 {
- "generated": "2026-11-12 18:47 UTC",
+ "generated": "2026-11-12 19:10 UTC",
  "view": "headwind",
- "score": -3,
+ "score": -4,
  "components": {
   "rates": 1,
-  "dollar": 0,
+  "dollar": -1,
   "brl": -1,
   "risk": 0,
   "energy": -1,
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk 0; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +5.3%; weakest: Lean hogs -19.1%. Key releases ahead: US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: headwind (score -4 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar \u2212; brl \u2212; risk 0; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +6.4%; weakest: Lean hogs -18.9%. Key releases ahead: US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -20,28 +20,28 @@
   },
   {
    "title": "Dollar & farm currencies",
-   "score": -1,
-   "text": "Dollar index 103.18 (+1.0% in a month, +5.0% YTD). USD/BRL 5.652 (+13.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.662 (-0.5%); USD/MXN 18.63 (+2.0%)."
+   "score": -2,
+   "text": "Dollar index 103.22 (+1.0% in a month, +5.0% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.647 (+13.3% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.663 (-0.4%); USD/MXN 18.63 (+2.0%)."
   },
   {
    "title": "Risk appetite",
    "score": 0,
-   "text": "S&P 500 -2.4% in a month (+11.3% YTD); VIX 17.6. Neutral risk backdrop. "
+   "text": "S&P 500 -2.5% in a month (+11.2% YTD); VIX 18.3. Neutral risk backdrop. "
   },
   {
    "title": "Energy",
    "score": -1,
-   "text": "WTI 88.09 $/bbl (-5.5% in a month), Brent 95.06, ULSD 4.247 $/gal (-11.1%), natural gas 3.31 (-8.0%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+   "text": "WTI 88.38 $/bbl (-5.1% in a month), Brent 95.46, ULSD 4.265 $/gal (-10.7%), natural gas 3.31 (-8.2%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -7.8% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -7.9% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "7 of 33 commodities trade above their 50-day average (21%); S&P GSCI -7.8% in a month; gold -6.9%. "
+   "text": "7 of 33 commodities trade above their 50-day average (21%); S&P GSCI -7.6% in a month; gold -7.0%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",

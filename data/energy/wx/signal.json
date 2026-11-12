@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-12T17:45",
+ "generated": "2026-11-12T21:55",
  "regime": "LOW",
  "action": "No colder forecast trend; trade the fundamentals and the curve.",
  "cold_checks_on": 1,
@@ -7,19 +7,19 @@
   {
    "key": "trend72",
    "on": false,
-   "text": "15-day ensembles colder over 2-3 days: +1.6 HDD on matched dates (\u2248-3 Bcf)",
+   "text": "15-day ensembles colder over 2-3 days: -1.4 HDD on matched dates (\u2248+2 Bcf)",
    "role": "trigger"
   },
   {
    "key": "trend24",
    "on": false,
-   "text": "\u2026and over ~24h: -4.3 HDD",
+   "text": "\u2026and over ~24h: -1.0 HDD",
    "role": "trigger"
   },
   {
    "key": "back_end",
    "on": false,
-   "text": "back end of the 15-day window (last 5 days) -4.1 HDD/day vs normal",
+   "text": "back end of the 15-day window (last 5 days) -3.5 HDD/day vs normal",
    "role": "trigger"
   },
   {
@@ -31,13 +31,13 @@
   {
    "key": "ao",
    "on": false,
-   "text": "GEFS AO week 2 -0.78 (now -1.68)",
+   "text": "GEFS AO week 2 -0.61 (now -1.98)",
    "role": "pattern"
   },
   {
    "key": "pna",
    "on": false,
-   "text": "GEFS PNA week 2 +0.37 (western ridge / eastern trough)",
+   "text": "GEFS PNA week 2 +0.41 (western ridge / eastern trough)",
    "role": "pattern"
   },
   {
@@ -48,66 +48,66 @@
   }
  ],
  "trend_24h": {
-  "avg_hdd": -4.3,
-  "bcf": -7,
+  "avg_hdd": -1.0,
+  "bcf": -2,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": -7.7,
+    "hdd": -6.9,
     "days": 9,
-    "vs_run": "2026-11-11T07:15"
+    "vs_run": "2026-11-11T22:10"
    },
    "ECMWF ENS": {
-    "hdd": -2.3,
-    "days": 13,
-    "vs_run": "2026-11-11T07:15"
+    "hdd": -0.7,
+    "days": 14,
+    "vs_run": "2026-11-11T22:10"
    },
    "ECMWF AIFS ENS": {
-    "hdd": -2.8,
-    "days": 13,
-    "vs_run": "2026-11-11T07:15"
+    "hdd": 4.5,
+    "days": 14,
+    "vs_run": "2026-11-11T22:10"
    }
   }
  },
  "trend_72h": {
-  "avg_hdd": 1.6,
-  "bcf": 3,
+  "avg_hdd": -1.4,
+  "bcf": -2,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": 5.7,
-    "days": 7,
-    "vs_run": "2026-11-10T03:55"
+    "hdd": -4.5,
+    "days": 8,
+    "vs_run": "2026-11-10T20:17"
    },
    "ECMWF ENS": {
-    "hdd": 4.4,
-    "days": 12,
-    "vs_run": "2026-11-10T03:55"
+    "hdd": 0.7,
+    "days": 13,
+    "vs_run": "2026-11-10T20:17"
    },
    "ECMWF AIFS ENS": {
-    "hdd": -5.2,
-    "days": 12,
-    "vs_run": "2026-11-10T03:55"
+    "hdd": -0.5,
+    "days": 13,
+    "vs_run": "2026-11-10T20:17"
    }
   }
  },
  "back_end": {
-  "avg_per_day": -4.09,
+  "avg_per_day": -3.46,
   "by_model": {
-   "GEFS (GFS ensemble)": -6.18,
-   "ECMWF ENS": -3.52,
-   "ECMWF AIFS ENS": -2.58
+   "GEFS (GFS ensemble)": -6.27,
+   "ECMWF ENS": -1.88,
+   "ECMWF AIFS ENS": -2.23
   }
  },
  "extended": {
-  "wk34_avg": -8.6,
+  "wk34_avg": -8.7,
   "by_model": {
    "GEFS 35-day": {
     "wk3": {
      "from": "2026-11-26",
      "to": "2026-12-02",
-     "mean": -14.4,
-     "p10": -34.2,
-     "p90": 13.6,
-     "share_cold": 0.323,
+     "mean": -14.9,
+     "p10": -40.8,
+     "p90": 8.5,
+     "share_cold": 0.226,
      "chg_24h": null
     },
     "wk4": {
@@ -182,19 +182,19 @@
  },
  "teleconnections": {
   "ao": {
-   "now": -1.68,
-   "wk2_mean": -0.78,
-   "min": -1.93
+   "now": -1.98,
+   "wk2_mean": -0.61,
+   "min": -1.98
   },
   "nao": {
-   "now": -0.91,
-   "wk2_mean": -0.12,
+   "now": -1.23,
+   "wk2_mean": -0.02,
    "min": -1.49
   },
   "pna": {
-   "now": 1.55,
-   "wk2_mean": 0.37,
-   "min": 0.31
+   "now": 1.64,
+   "wk2_mean": 0.41,
+   "min": 0.36
   },
   "u10_min": -3.0,
   "ssw": true

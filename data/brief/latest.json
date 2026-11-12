@@ -1,15 +1,15 @@
 {
- "generated": "2026-11-12 21:54 UTC",
- "generated_et": "Thu Nov 12, 2026 04:54 PM ET",
+ "generated": "2026-11-12 21:58 UTC",
+ "generated_et": "Thu Nov 12, 2026 04:58 PM ET",
  "date": "2026-11-12",
- "prices_from": "2026-11-12 21:54 UTC",
+ "prices_from": "2026-11-12 21:58 UTC",
  "cme_oi_date": "20261111",
  "headlines": [
   "Biggest moves vs prior settle: KC HRW wheat -14.50 (-2.3%); Chicago wheat -10.75 (-1.8%); Lean hogs -0.925 (-1.7%).",
   "Today: CONAB Brazil crop survey (date estimated) 9:00 AM ET; EIA Weekly Natural Gas Storage Report 10:30 AM ET; USDA weekly export sales 8:30 AM ET; CFTC cotton on-call report 3:30 PM ET; Buenos Aires Grain Exchange crop progress (weekly).",
   "1 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported the following sales activities for MY 2026/2027: 312,700 MT of corn received in the reporting period for delivery to Mexico and 150,000 MT of soybeans for delivery to Mexico.",
   "Through a trend-follower trigger: Live cattle below 219.877; Class III milk below 17.78.",
-  "Macro backdrop for ags: headwind (-2)."
+  "Macro backdrop for ags: headwind (-3)."
  ],
  "events_today": [
   {
@@ -1082,38 +1082,38 @@
  "general_news": [],
  "macro": {
   "view": "headwind",
-  "score": -2,
-  "summary": "Macro backdrop for ags: headwind (score -2 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar 0; brl \u2212; risk 0; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +5.6%; weakest: Lean hogs -18.9%. Key releases ahead: US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
+  "score": -3,
+  "summary": "Macro backdrop for ags: headwind (score -3 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl \u2212; risk 0; energy 0; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +5.6%; weakest: Lean hogs -18.9%. Key releases ahead: US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
   "sections": [
    {
     "title": "Rates",
-    "score": 1,
-    "text": "US 10-year 4.98% (-26 bp in a month), 2-year 4.73% (-7 bp); 2s10s curve +25 bp (-19 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.13% sets the cost of carrying inventory."
+    "score": 0,
+    "text": "US 10-year 5.10% (-11 bp in a month), 2-year 4.86% (+7 bp); 2s10s curve +24 bp (-18 bp in a month). Yields are little changed on the month. T-bill yield 4.13% sets the cost of carrying inventory."
    },
    {
     "title": "Dollar & farm currencies",
     "score": -1,
-    "text": "Dollar index 103.18 (+1.0% in a month, +5.0% YTD). USD/BRL 5.649 (+13.3% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.663 (-0.4%); USD/MXN 18.61 (+1.9%)."
+    "text": "Dollar index 103.17 (+1.0% in a month, +5.0% YTD). USD/BRL 5.640 (+13.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.670 (-0.3%); USD/MXN 18.60 (+1.8%)."
    },
    {
     "title": "Risk appetite",
     "score": 0,
-    "text": "S&P 500 -2.7% in a month (+11.0% YTD); VIX 18.5. Neutral risk backdrop. "
+    "text": "S&P 500 -2.7% in a month (+10.9% YTD); VIX 19.0. Neutral risk backdrop. "
    },
    {
     "title": "Energy",
     "score": 0,
-    "text": "WTI 88.95 $/bbl (-4.5% in a month), Brent 96.03, ULSD 4.288 $/gal (-10.2%), natural gas 3.35 (-6.9%). Crude little changed on the month. "
+    "text": "WTI 88.93 $/bbl (-4.6% in a month), Brent 96.12, ULSD 4.303 $/gal (-9.9%), natural gas 3.34 (-7.4%). Crude little changed on the month. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -7.9% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -8.0% in a month, Shanghai Composite -3.8%, Hang Seng -1.4%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": -1,
-    "text": "8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -7.4% in a month; gold -6.9%. "
+    "text": "8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -7.5% in a month; gold -7.1%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1121,43 +1121,43 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7620.5,
-   "d1": -0.26176297362737744,
-   "m1": -2.994621773859907,
+   "last": 7614.25,
+   "d1": -0.34356390288593497,
+   "m1": -3.0741813321452427,
    "kind": "price",
-   "time": "2026-11-12 19:58 UTC"
+   "time": "2026-11-12 20:58 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 7595.77,
-   "d1": -0.30986619876713917,
-   "m1": -2.6863305775549184,
+   "last": 7592.4,
+   "d1": -0.35409551994329824,
+   "m1": -2.7295055375594623,
    "kind": "price",
-   "time": "2026-11-12 20:08 UTC"
+   "time": "2026-11-12 21:08 UTC"
   },
   {
    "name": "VIX",
-   "last": 18.53,
-   "d1": 5.946256389318116,
-   "m1": 21.349046787872616,
+   "last": 18.97,
+   "d1": 8.46197969268021,
+   "m1": 24.230513630110263,
    "kind": "price",
-   "time": "2026-11-12 19:53 UTC"
+   "time": "2026-11-12 20:53 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 5.105,
-   "d1": 10.699985504150433,
-   "m1": -11.20000076293941,
+   "last": 5.103,
+   "d1": 10.499985504150366,
+   "m1": -11.400000762939477,
    "kind": "yield",
-   "time": "2026-11-12 19:53 UTC"
+   "time": "2026-11-12 19:59 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 103.18,
-   "d1": 0.26236160556083465,
-   "m1": 0.9786647992146902,
+   "last": 103.166,
+   "d1": 0.2487574859399988,
+   "m1": 0.9649634878443836,
    "kind": "price",
-   "time": "2026-11-12 19:58 UTC"
+   "time": "2026-11-12 20:58 UTC"
   },
   {
    "name": "EUR/USD",
@@ -1165,63 +1165,63 @@
    "d1": -0.9933014849634381,
    "m1": -0.9158991944770101,
    "kind": "price",
-   "time": "2026-11-12 20:07 UTC"
+   "time": "2026-11-12 21:08 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.6491,
-   "d1": 1.1893927127027526,
-   "m1": 13.321962862564817,
+   "last": 5.6398,
+   "d1": 1.0228066455012286,
+   "m1": 13.135403188524375,
    "kind": "price",
-   "time": "2026-11-12 20:08 UTC"
+   "time": "2026-11-12 21:08 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6626,
-   "d1": -0.1154371896095907,
-   "m1": -0.43932923860462436,
+   "last": 6.6699,
+   "d1": -0.005996834715726873,
+   "m1": -0.3302437619801535,
    "kind": "price",
-   "time": "2026-11-12 18:52 UTC"
+   "time": "2026-11-12 20:16 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 88.95,
-   "d1": 2.7967193514882416,
-   "m1": -4.529353066309161,
+   "last": 88.93,
+   "d1": 2.7736059800769874,
+   "m1": -4.5508192038996365,
    "kind": "price",
-   "time": "2026-11-12 19:57 UTC"
+   "time": "2026-11-12 20:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 3.353,
-   "d1": 4.292382255516958,
-   "m1": -6.912826158370433,
+   "last": 3.337,
+   "d1": 3.794715057160758,
+   "m1": -7.357023826567888,
    "kind": "price",
-   "time": "2026-11-12 19:57 UTC"
+   "time": "2026-11-12 20:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3887.4,
-   "d1": -2.827146606674158,
-   "m1": -6.939885051156558,
+   "last": 3879.9,
+   "d1": -3.014623172103481,
+   "m1": -7.119426868853818,
    "kind": "price",
-   "time": "2026-11-12 19:57 UTC"
+   "time": "2026-11-12 20:58 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.194,
-   "d1": -1.5262315172533958,
-   "m1": -7.909602221667045,
+   "last": 6.185,
+   "d1": -1.669315778852487,
+   "m1": -8.043411324024973,
    "kind": "price",
-   "time": "2026-11-12 19:57 UTC"
+   "time": "2026-11-12 20:58 UTC"
   },
   {
    "name": "S&P GSCI",
-   "last": 688.4302,
-   "d1": 0.6859639384288796,
-   "m1": -7.420527754945983,
+   "last": 687.8046,
+   "d1": 0.5944671693448589,
+   "m1": -7.504657878575804,
    "kind": "price",
-   "time": "2026-11-12 20:08 UTC"
+   "time": "2026-11-12 20:54 UTC"
   }
  ],
  "econ": [

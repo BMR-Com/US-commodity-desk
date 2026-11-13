@@ -16,22 +16,22 @@
   "soybeans": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "China buying continues and is starting to show up in prices; Friday's move takes Jan beans through the long-term momentum trigger. Red crown rot spreading across the Midwest is a longer-run yield risk, not a near-term supply change.",
+   "time": "14:50 CT",
+   "fundamental": "Fresh export announcements pushed beans to a two-week high and Jan holds about 1,233, above the long-term momentum trigger. China buying is now the main driver; CONAB left Brazil's crop estimates unchanged, so no offset from South America this week.",
    "events": [
-    "Beans slipped Thursday despite fresh export business, then rallied Friday (Barchart)",
-    "US farmers eye longer-term gains in the China market (Brownfield)",
-    "Red crown rot spreading, complicating disease management (AgWeb)"
+    "Soybeans hit two-week high on export announcements (Investing.com, Barchart)",
+    "CONAB holds off on Brazil soybean and corn changes (Brownfield)",
+    "Farm groups press for removal of remaining China tariffs (RFD-TV)"
    ]
   },
   "meal": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "No meal-specific news; it is trading off the soybean rally and has pushed through nearby resistance.",
+   "time": "14:50 CT",
+   "fundamental": "Meal is riding the soybean rally and is up about 1.5%, testing 330.7 resistance; no meal-specific supply news.",
    "events": [
-    "Meal follows beans higher Friday (desk quote)",
-    "China soybean demand underpins the complex (Brownfield)"
+    "Soybean complex rallies on export sales (Barchart)",
+    "Dec meal ~330, at first resistance (desk quote)"
    ]
   },
   "oil": {
@@ -81,12 +81,11 @@
   "hogs": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Pork demand is the weak spot: the cutout sits near a five-year low and hogs trade mixed. USDA's expanded feral-swine control is a disease-risk positive, not a supply change.",
+   "time": "14:50 CT",
+   "fundamental": "Hogs rallied Friday with Dec near 55.5, but the pork cutout near a five-year low keeps demand the weak link; the bounce looks like short covering.",
    "events": [
-    "Pork cutout stays near a five-year low (The Pig Site)",
-    "Hogs post mixed trade Thursday (Barchart)",
-    "USDA expands feral swine control efforts (RFD-TV)"
+    "Hogs rallying on Friday (Barchart)",
+    "Pork cutout stays near five-year low (The Pig Site)"
    ]
   },
   "cattle": {
@@ -114,22 +113,23 @@
   "class3": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Spot cheese fell Thursday, weighing on Class III. State officials are pushing USDA to allow bird-flu vaccines for dairy cows, which would reduce herd-health risk over time.",
+   "time": "14:50 CT",
+   "fundamental": "Dry whey jumped to $0.91 at the CME spot session, a support for Class III after Thursday's cheese drop. Bird flu keeps turning up in new dairy states, a herd-health risk that could slow milk growth if it spreads further.",
    "events": [
-    "Cheese blocks and butter lead CME spot declines (Brownfield)",
-    "State ag leaders push USDA on dairy bird-flu vaccine (Farm Progress, Successful Farming)",
-    "EPA ends livestock emissions program (Brownfield)"
+    "CME spot dry whey jumps to $0.91; dairy mixed (Brownfield)",
+    "HPAI spreads to new states as dairy cases climb (Dairy Herd)",
+    "States push USDA to allow dairy bird-flu vaccines (Farm Progress)"
    ]
   },
   "class4": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Butter led spot dairy lower on Thursday, a negative for Class IV.",
+   "time": "14:50 CT",
+   "fundamental": "Spot dairy was mixed Friday after Thursday's butter-led drop; strong protein demand is encouraging milk expansion, which weighs on butter and powder. HPAI spread is the main upside supply risk.",
    "events": [
-    "Butter falls at CME spot Thursday (Brownfield)",
-    "Push for dairy bird-flu vaccine option (Farm Progress)"
+    "CME dairy prices mixed Friday (Brownfield)",
+    "Protein demand driving milk production growth (Brownfield)",
+    "HPAI spreads to new states (Dairy Herd)"
    ]
   },
   "palm": {
@@ -158,12 +158,12 @@
   "crude": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Unchanged balance: strong Iraqi and Gulf output points loose while the Iran blockade keeps a risk premium. WTI is drifting near 88 and Brent near 95.5 as traders weigh de-escalation odds, leaving oil on course for a second weekly loss.",
+   "time": "14:50 CT",
+   "fundamental": "Brent is back above $96 as Iran tensions rise again, while the US side keeps adding supply (record output, rig count steady at 463). WTI holds near 88.8; the risk premium is doing the work against a looser physical balance.",
    "events": [
-    "Oil swings as traders weigh Iran de-escalation prospects (Energy Connects)",
-    "Iraq October oil output highest since 2019 (Bloomberg, IEA)",
-    "Brent spikes after Trump says no need for Iran deal; blockade stays (OilPrice.com, Reuters)"
+    "Brent climbs back above $96 on Iran escalation (OilPrice.com)",
+    "US oil rig count holds at 463 as output hits another record (OilPrice.com)",
+    "Iraq October output highest since 2019 (Bloomberg/IEA)"
    ]
   },
   "ulsd": {

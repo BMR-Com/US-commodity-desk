@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13 17:55 UTC",
+ "updated": "2026-11-13 20:50 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -35,12 +35,12 @@
   "cotton": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.32
+   "score": 0.2
   },
   "hogs": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.26
+   "score": -0.2
   },
   "cattle": {
    "view": "neutral",
@@ -50,12 +50,12 @@
   "feeders": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.26
+   "score": 0.32
   },
   "class3": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.26
+   "score": -0.32
   },
   "class4": {
    "view": "neutral",
@@ -96,17 +96,14 @@
   "wheat": [
    "Broke above R1 593.25"
   ],
-  "kc": [
-   "Broke above R1 629.50"
-  ],
+  "kc": [],
   "cotton": [],
   "hogs": [],
   "cattle": [
-   "Broke above R1 219.725",
-   "Broke above the fund buy trigger (60-day momentum flip) 219.036"
+   "Holding above the fund buy trigger (60-day momentum flip) 219.036"
   ],
   "feeders": [
-   "Broke above the fund buy trigger (200-day average) 334.973"
+   "Holding above the fund buy trigger (200-day average) 334.973"
   ],
   "class3": [],
   "class4": [],
@@ -127,6 +124,9 @@
   "2026-11-13 Iran says LNG tanker hit mine in Hormuz",
   "2026-11-13 Iraq Oct oil output highest since 2019 (IEA)",
   "2026-11-13 Corn export sales marketing-year high",
-  "2026-11-13 Grains rally broadly Friday; cattle higher week confirms lows (AgWeb)"
+  "2026-11-13 Grains rally broadly Friday; cattle higher week confirms lows (AgWeb)",
+  "2026-11-13 Soybeans two-week high on export announcements",
+  "2026-11-13 HPAI spreads to new dairy states",
+  "2026-11-13 Brent back above $96; US crude output record"
  ]
 }

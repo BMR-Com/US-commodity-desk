@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-12",
+"generated": "2026-11-13",
 "explain": {
 "fpd": "First position day: the first day a short can declare intent to deliver (CBOT). Longs still holding can be assigned delivery after it.",
 "fnd": "First notice day: the first day delivery notices can be issued to long holders.",
@@ -20,7 +20,7 @@
 "fnd": "2026-11-30",
 "ltd": "2026-12-14",
 "out_by": "2026-11-25",
-"days_to_out": 9
+"days_to_out": 8
 },
 {
 "contract": "ZCH2027",
@@ -29,7 +29,7 @@
 "fnd": "2027-02-26",
 "ltd": "2027-03-12",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "ZCK2027",
@@ -38,7 +38,7 @@
 "fnd": "2027-04-30",
 "ltd": "2027-05-14",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "ZCN2027",
@@ -47,7 +47,7 @@
 "fnd": "2027-06-30",
 "ltd": "2027-07-14",
 "out_by": "2027-06-28",
-"days_to_out": 154
+"days_to_out": 153
 },
 {
 "contract": "ZCU2027",
@@ -56,7 +56,7 @@
 "fnd": "2027-08-31",
 "ltd": "2027-09-14",
 "out_by": "2027-08-27",
-"days_to_out": 197
+"days_to_out": 196
 },
 {
 "contract": "ZCZ2027",
@@ -65,7 +65,7 @@
 "fnd": "2027-11-30",
 "ltd": "2027-12-14",
 "out_by": "2027-11-26",
-"days_to_out": 260
+"days_to_out": 259
 },
 {
 "contract": "ZCH2028",
@@ -74,7 +74,7 @@
 "fnd": "2028-02-29",
 "ltd": "2028-03-14",
 "out_by": "2028-02-25",
-"days_to_out": 321
+"days_to_out": 320
 }
 ]
 },
@@ -100,7 +100,7 @@
 "fnd": "2026-12-31",
 "ltd": "2027-01-14",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "ZSH2027",
@@ -109,7 +109,7 @@
 "fnd": "2027-02-26",
 "ltd": "2027-03-12",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "ZSK2027",
@@ -118,7 +118,7 @@
 "fnd": "2027-04-30",
 "ltd": "2027-05-14",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "ZSN2027",
@@ -127,7 +127,7 @@
 "fnd": "2027-06-30",
 "ltd": "2027-07-14",
 "out_by": "2027-06-28",
-"days_to_out": 154
+"days_to_out": 153
 },
 {
 "contract": "ZSQ2027",
@@ -136,7 +136,7 @@
 "fnd": "2027-07-30",
 "ltd": "2027-08-13",
 "out_by": "2027-07-28",
-"days_to_out": 175
+"days_to_out": 174
 },
 {
 "contract": "ZSU2027",
@@ -145,7 +145,7 @@
 "fnd": "2027-08-31",
 "ltd": "2027-09-14",
 "out_by": "2027-08-27",
-"days_to_out": 197
+"days_to_out": 196
 }
 ]
 },
@@ -162,7 +162,7 @@
 "fnd": "2026-11-30",
 "ltd": "2026-12-14",
 "out_by": "2026-11-25",
-"days_to_out": 9
+"days_to_out": 8
 },
 {
 "contract": "ZMF2027",
@@ -171,7 +171,7 @@
 "fnd": "2026-12-31",
 "ltd": "2027-01-14",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "ZMH2027",
@@ -180,7 +180,7 @@
 "fnd": "2027-02-26",
 "ltd": "2027-03-12",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "ZMK2027",
@@ -189,7 +189,7 @@
 "fnd": "2027-04-30",
 "ltd": "2027-05-14",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "ZMN2027",
@@ -198,7 +198,7 @@
 "fnd": "2027-06-30",
 "ltd": "2027-07-14",
 "out_by": "2027-06-28",
-"days_to_out": 154
+"days_to_out": 153
 },
 {
 "contract": "ZMQ2027",
@@ -207,7 +207,7 @@
 "fnd": "2027-07-30",
 "ltd": "2027-08-13",
 "out_by": "2027-07-28",
-"days_to_out": 175
+"days_to_out": 174
 },
 {
 "contract": "ZMU2027",
@@ -216,7 +216,7 @@
 "fnd": "2027-08-31",
 "ltd": "2027-09-14",
 "out_by": "2027-08-27",
-"days_to_out": 197
+"days_to_out": 196
 }
 ]
 },
@@ -233,7 +233,7 @@
 "fnd": "2026-11-30",
 "ltd": "2026-12-14",
 "out_by": "2026-11-25",
-"days_to_out": 9
+"days_to_out": 8
 },
 {
 "contract": "ZLF2027",
@@ -242,7 +242,7 @@
 "fnd": "2026-12-31",
 "ltd": "2027-01-14",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "ZLH2027",
@@ -251,7 +251,7 @@
 "fnd": "2027-02-26",
 "ltd": "2027-03-12",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "ZLK2027",
@@ -260,7 +260,7 @@
 "fnd": "2027-04-30",
 "ltd": "2027-05-14",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "ZLN2027",
@@ -269,7 +269,7 @@
 "fnd": "2027-06-30",
 "ltd": "2027-07-14",
 "out_by": "2027-06-28",
-"days_to_out": 154
+"days_to_out": 153
 },
 {
 "contract": "ZLQ2027",
@@ -278,7 +278,7 @@
 "fnd": "2027-07-30",
 "ltd": "2027-08-13",
 "out_by": "2027-07-28",
-"days_to_out": 175
+"days_to_out": 174
 },
 {
 "contract": "ZLU2027",
@@ -287,7 +287,7 @@
 "fnd": "2027-08-31",
 "ltd": "2027-09-14",
 "out_by": "2027-08-27",
-"days_to_out": 197
+"days_to_out": 196
 }
 ]
 },
@@ -304,7 +304,7 @@
 "fnd": "2026-11-30",
 "ltd": "2026-12-14",
 "out_by": "2026-11-25",
-"days_to_out": 9
+"days_to_out": 8
 },
 {
 "contract": "ZWH2027",
@@ -313,7 +313,7 @@
 "fnd": "2027-02-26",
 "ltd": "2027-03-12",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "ZWK2027",
@@ -322,7 +322,7 @@
 "fnd": "2027-04-30",
 "ltd": "2027-05-14",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "ZWN2027",
@@ -331,7 +331,7 @@
 "fnd": "2027-06-30",
 "ltd": "2027-07-14",
 "out_by": "2027-06-28",
-"days_to_out": 154
+"days_to_out": 153
 },
 {
 "contract": "ZWU2027",
@@ -340,7 +340,7 @@
 "fnd": "2027-08-31",
 "ltd": "2027-09-14",
 "out_by": "2027-08-27",
-"days_to_out": 197
+"days_to_out": 196
 },
 {
 "contract": "ZWZ2027",
@@ -349,7 +349,7 @@
 "fnd": "2027-11-30",
 "ltd": "2027-12-14",
 "out_by": "2027-11-26",
-"days_to_out": 260
+"days_to_out": 259
 },
 {
 "contract": "ZWH2028",
@@ -358,7 +358,7 @@
 "fnd": "2028-02-29",
 "ltd": "2028-03-14",
 "out_by": "2028-02-25",
-"days_to_out": 321
+"days_to_out": 320
 }
 ]
 },
@@ -375,7 +375,7 @@
 "fnd": "2026-11-30",
 "ltd": "2026-12-14",
 "out_by": "2026-11-25",
-"days_to_out": 9
+"days_to_out": 8
 },
 {
 "contract": "KEH2027",
@@ -384,7 +384,7 @@
 "fnd": "2027-02-26",
 "ltd": "2027-03-12",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "KEK2027",
@@ -393,7 +393,7 @@
 "fnd": "2027-04-30",
 "ltd": "2027-05-14",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "KEN2027",
@@ -402,7 +402,7 @@
 "fnd": "2027-06-30",
 "ltd": "2027-07-14",
 "out_by": "2027-06-28",
-"days_to_out": 154
+"days_to_out": 153
 },
 {
 "contract": "KEU2027",
@@ -411,7 +411,7 @@
 "fnd": "2027-08-31",
 "ltd": "2027-09-14",
 "out_by": "2027-08-27",
-"days_to_out": 197
+"days_to_out": 196
 },
 {
 "contract": "KEZ2027",
@@ -420,7 +420,7 @@
 "fnd": "2027-11-30",
 "ltd": "2027-12-14",
 "out_by": "2027-11-26",
-"days_to_out": 260
+"days_to_out": 259
 },
 {
 "contract": "KEH2028",
@@ -429,7 +429,7 @@
 "fnd": "2028-02-29",
 "ltd": "2028-03-14",
 "out_by": "2028-02-25",
-"days_to_out": 321
+"days_to_out": 320
 }
 ]
 },
@@ -445,7 +445,7 @@
 "fnd": "2026-11-23",
 "ltd": "2026-12-08",
 "out_by": "2026-11-20",
-"days_to_out": 6
+"days_to_out": 5
 },
 {
 "contract": "CTH2027",
@@ -453,7 +453,7 @@
 "fnd": "2027-02-22",
 "ltd": "2027-03-08",
 "out_by": "2027-02-19",
-"days_to_out": 66
+"days_to_out": 65
 },
 {
 "contract": "CTK2027",
@@ -461,7 +461,7 @@
 "fnd": "2027-04-26",
 "ltd": "2027-05-06",
 "out_by": "2027-04-23",
-"days_to_out": 110
+"days_to_out": 109
 },
 {
 "contract": "CTN2027",
@@ -469,7 +469,7 @@
 "fnd": "2027-06-24",
 "ltd": "2027-07-08",
 "out_by": "2027-06-23",
-"days_to_out": 151
+"days_to_out": 150
 },
 {
 "contract": "CTV2027",
@@ -477,7 +477,7 @@
 "fnd": "2027-09-24",
 "ltd": "2027-10-07",
 "out_by": "2027-09-23",
-"days_to_out": 215
+"days_to_out": 214
 },
 {
 "contract": "CTZ2027",
@@ -485,7 +485,7 @@
 "fnd": "2027-11-23",
 "ltd": "2027-12-07",
 "out_by": "2027-11-22",
-"days_to_out": 257
+"days_to_out": 256
 },
 {
 "contract": "CTH2028",
@@ -493,7 +493,7 @@
 "fnd": "2028-02-23",
 "ltd": "2028-03-09",
 "out_by": "2028-02-22",
-"days_to_out": 318
+"days_to_out": 317
 }
 ]
 },
@@ -509,7 +509,7 @@
 "fnd": "2026-12-01",
 "ltd": "2026-12-31",
 "out_by": "2026-11-30",
-"days_to_out": 11
+"days_to_out": 10
 },
 {
 "contract": "LEG2027",
@@ -517,7 +517,7 @@
 "fnd": "2027-02-01",
 "ltd": "2027-02-26",
 "out_by": "2027-01-29",
-"days_to_out": 52
+"days_to_out": 51
 },
 {
 "contract": "LEJ2027",
@@ -525,7 +525,7 @@
 "fnd": "2027-04-01",
 "ltd": "2027-04-30",
 "out_by": "2027-03-31",
-"days_to_out": 93
+"days_to_out": 92
 },
 {
 "contract": "LEM2027",
@@ -533,7 +533,7 @@
 "fnd": "2027-06-01",
 "ltd": "2027-06-30",
 "out_by": "2027-05-28",
-"days_to_out": 135
+"days_to_out": 134
 },
 {
 "contract": "LEQ2027",
@@ -541,7 +541,7 @@
 "fnd": "2027-08-02",
 "ltd": "2027-08-31",
 "out_by": "2027-07-30",
-"days_to_out": 177
+"days_to_out": 176
 },
 {
 "contract": "LEV2027",
@@ -549,7 +549,7 @@
 "fnd": "2027-10-01",
 "ltd": "2027-10-29",
 "out_by": "2027-09-30",
-"days_to_out": 220
+"days_to_out": 219
 },
 {
 "contract": "LEZ2027",
@@ -557,7 +557,7 @@
 "fnd": "2027-12-01",
 "ltd": "2027-12-30",
 "out_by": "2027-11-30",
-"days_to_out": 262
+"days_to_out": 261
 }
 ]
 },
@@ -572,49 +572,49 @@
 "month": "2026-11",
 "ltd": "2026-11-19",
 "out_by": "2026-11-19",
-"days_to_out": 5
+"days_to_out": 4
 },
 {
 "contract": "GFF2027",
 "month": "2027-01",
 "ltd": "2027-01-28",
 "out_by": "2027-01-28",
-"days_to_out": 51
+"days_to_out": 50
 },
 {
 "contract": "GFH2027",
 "month": "2027-03",
 "ltd": "2027-03-25",
 "out_by": "2027-03-25",
-"days_to_out": 90
+"days_to_out": 89
 },
 {
 "contract": "GFJ2027",
 "month": "2027-04",
 "ltd": "2027-04-29",
 "out_by": "2027-04-29",
-"days_to_out": 114
+"days_to_out": 113
 },
 {
 "contract": "GFK2027",
 "month": "2027-05",
 "ltd": "2027-05-27",
 "out_by": "2027-05-27",
-"days_to_out": 134
+"days_to_out": 133
 },
 {
 "contract": "GFQ2027",
 "month": "2027-08",
 "ltd": "2027-08-26",
 "out_by": "2027-08-26",
-"days_to_out": 196
+"days_to_out": 195
 },
 {
 "contract": "GFU2027",
 "month": "2027-09",
 "ltd": "2027-09-30",
 "out_by": "2027-09-30",
-"days_to_out": 220
+"days_to_out": 219
 }
 ]
 },
@@ -629,49 +629,49 @@
 "month": "2026-12",
 "ltd": "2026-12-14",
 "out_by": "2026-12-14",
-"days_to_out": 21
+"days_to_out": 20
 },
 {
 "contract": "HEG2027",
 "month": "2027-02",
 "ltd": "2027-02-12",
 "out_by": "2027-02-12",
-"days_to_out": 62
+"days_to_out": 61
 },
 {
 "contract": "HEJ2027",
 "month": "2027-04",
 "ltd": "2027-04-14",
 "out_by": "2027-04-14",
-"days_to_out": 103
+"days_to_out": 102
 },
 {
 "contract": "HEK2027",
 "month": "2027-05",
 "ltd": "2027-05-14",
 "out_by": "2027-05-14",
-"days_to_out": 125
+"days_to_out": 124
 },
 {
 "contract": "HEM2027",
 "month": "2027-06",
 "ltd": "2027-06-14",
 "out_by": "2027-06-14",
-"days_to_out": 145
+"days_to_out": 144
 },
 {
 "contract": "HEN2027",
 "month": "2027-07",
 "ltd": "2027-07-15",
 "out_by": "2027-07-15",
-"days_to_out": 166
+"days_to_out": 165
 },
 {
 "contract": "HEQ2027",
 "month": "2027-08",
 "ltd": "2027-08-13",
 "out_by": "2027-08-13",
-"days_to_out": 187
+"days_to_out": 186
 }
 ]
 },
@@ -687,7 +687,7 @@
 "ltd": "2026-12-01",
 "settles": "2026-12-02",
 "out_by": "2026-12-01",
-"days_to_out": 12
+"days_to_out": 11
 },
 {
 "contract": "DCZ2026",
@@ -695,7 +695,7 @@
 "ltd": "2026-12-29",
 "settles": "2026-12-30",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "DCF2027",
@@ -703,7 +703,7 @@
 "ltd": "2027-02-02",
 "settles": "2027-02-03",
 "out_by": "2027-02-02",
-"days_to_out": 54
+"days_to_out": 53
 },
 {
 "contract": "DCG2027",
@@ -711,7 +711,7 @@
 "ltd": "2027-03-02",
 "settles": "2027-03-03",
 "out_by": "2027-03-02",
-"days_to_out": 73
+"days_to_out": 72
 },
 {
 "contract": "DCH2027",
@@ -719,7 +719,7 @@
 "ltd": "2027-03-30",
 "settles": "2027-03-31",
 "out_by": "2027-03-30",
-"days_to_out": 92
+"days_to_out": 91
 },
 {
 "contract": "DCJ2027",
@@ -727,7 +727,7 @@
 "ltd": "2027-05-04",
 "settles": "2027-05-05",
 "out_by": "2027-05-04",
-"days_to_out": 117
+"days_to_out": 116
 },
 {
 "contract": "DCK2027",
@@ -735,7 +735,7 @@
 "ltd": "2027-06-02",
 "settles": "2027-06-03",
 "out_by": "2027-06-02",
-"days_to_out": 137
+"days_to_out": 136
 }
 ]
 },
@@ -751,7 +751,7 @@
 "ltd": "2026-12-01",
 "settles": "2026-12-02",
 "out_by": "2026-12-01",
-"days_to_out": 12
+"days_to_out": 11
 },
 {
 "contract": "GDKZ2026",
@@ -759,7 +759,7 @@
 "ltd": "2026-12-29",
 "settles": "2026-12-30",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "GDKF2027",
@@ -767,7 +767,7 @@
 "ltd": "2027-02-02",
 "settles": "2027-02-03",
 "out_by": "2027-02-02",
-"days_to_out": 54
+"days_to_out": 53
 },
 {
 "contract": "GDKG2027",
@@ -775,7 +775,7 @@
 "ltd": "2027-03-02",
 "settles": "2027-03-03",
 "out_by": "2027-03-02",
-"days_to_out": 73
+"days_to_out": 72
 },
 {
 "contract": "GDKH2027",
@@ -783,7 +783,7 @@
 "ltd": "2027-03-30",
 "settles": "2027-03-31",
 "out_by": "2027-03-30",
-"days_to_out": 92
+"days_to_out": 91
 },
 {
 "contract": "GDKJ2027",
@@ -791,7 +791,7 @@
 "ltd": "2027-05-04",
 "settles": "2027-05-05",
 "out_by": "2027-05-04",
-"days_to_out": 117
+"days_to_out": 116
 },
 {
 "contract": "GDKK2027",
@@ -799,7 +799,7 @@
 "ltd": "2027-06-02",
 "settles": "2027-06-03",
 "out_by": "2027-06-02",
-"days_to_out": 137
+"days_to_out": 136
 }
 ]
 },
@@ -815,7 +815,7 @@
 "ltd": "2026-12-01",
 "settles": "2026-12-02",
 "out_by": "2026-12-01",
-"days_to_out": 12
+"days_to_out": 11
 },
 {
 "contract": "CSCZ2026",
@@ -823,7 +823,7 @@
 "ltd": "2026-12-29",
 "settles": "2026-12-30",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "CSCF2027",
@@ -831,7 +831,7 @@
 "ltd": "2027-02-02",
 "settles": "2027-02-03",
 "out_by": "2027-02-02",
-"days_to_out": 54
+"days_to_out": 53
 },
 {
 "contract": "CSCG2027",
@@ -839,7 +839,7 @@
 "ltd": "2027-03-02",
 "settles": "2027-03-03",
 "out_by": "2027-03-02",
-"days_to_out": 73
+"days_to_out": 72
 },
 {
 "contract": "CSCH2027",
@@ -847,7 +847,7 @@
 "ltd": "2027-03-30",
 "settles": "2027-03-31",
 "out_by": "2027-03-30",
-"days_to_out": 92
+"days_to_out": 91
 },
 {
 "contract": "CSCJ2027",
@@ -855,7 +855,7 @@
 "ltd": "2027-05-04",
 "settles": "2027-05-05",
 "out_by": "2027-05-04",
-"days_to_out": 117
+"days_to_out": 116
 },
 {
 "contract": "CSCK2027",
@@ -863,7 +863,7 @@
 "ltd": "2027-06-02",
 "settles": "2027-06-03",
 "out_by": "2027-06-02",
-"days_to_out": 137
+"days_to_out": 136
 }
 ]
 },
@@ -879,7 +879,7 @@
 "ltd": "2026-12-01",
 "settles": "2026-12-02",
 "out_by": "2026-12-01",
-"days_to_out": 12
+"days_to_out": 11
 },
 {
 "contract": "CBZ2026",
@@ -887,7 +887,7 @@
 "ltd": "2026-12-29",
 "settles": "2026-12-30",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "CBF2027",
@@ -895,7 +895,7 @@
 "ltd": "2027-02-02",
 "settles": "2027-02-03",
 "out_by": "2027-02-02",
-"days_to_out": 54
+"days_to_out": 53
 },
 {
 "contract": "CBG2027",
@@ -903,7 +903,7 @@
 "ltd": "2027-03-02",
 "settles": "2027-03-03",
 "out_by": "2027-03-02",
-"days_to_out": 73
+"days_to_out": 72
 },
 {
 "contract": "CBH2027",
@@ -911,7 +911,7 @@
 "ltd": "2027-03-30",
 "settles": "2027-03-31",
 "out_by": "2027-03-30",
-"days_to_out": 92
+"days_to_out": 91
 },
 {
 "contract": "CBJ2027",
@@ -919,7 +919,7 @@
 "ltd": "2027-05-04",
 "settles": "2027-05-05",
 "out_by": "2027-05-04",
-"days_to_out": 117
+"days_to_out": 116
 },
 {
 "contract": "CBK2027",
@@ -927,7 +927,7 @@
 "ltd": "2027-06-02",
 "settles": "2027-06-03",
 "out_by": "2027-06-02",
-"days_to_out": 137
+"days_to_out": 136
 }
 ]
 },
@@ -943,7 +943,7 @@
 "ltd": "2026-12-01",
 "settles": "2026-12-02",
 "out_by": "2026-12-01",
-"days_to_out": 12
+"days_to_out": 11
 },
 {
 "contract": "GNFZ2026",
@@ -951,7 +951,7 @@
 "ltd": "2026-12-29",
 "settles": "2026-12-30",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "GNFF2027",
@@ -959,7 +959,7 @@
 "ltd": "2027-02-02",
 "settles": "2027-02-03",
 "out_by": "2027-02-02",
-"days_to_out": 54
+"days_to_out": 53
 },
 {
 "contract": "GNFG2027",
@@ -967,7 +967,7 @@
 "ltd": "2027-03-02",
 "settles": "2027-03-03",
 "out_by": "2027-03-02",
-"days_to_out": 73
+"days_to_out": 72
 },
 {
 "contract": "GNFH2027",
@@ -975,7 +975,7 @@
 "ltd": "2027-03-30",
 "settles": "2027-03-31",
 "out_by": "2027-03-30",
-"days_to_out": 92
+"days_to_out": 91
 },
 {
 "contract": "GNFJ2027",
@@ -983,7 +983,7 @@
 "ltd": "2027-05-04",
 "settles": "2027-05-05",
 "out_by": "2027-05-04",
-"days_to_out": 117
+"days_to_out": 116
 },
 {
 "contract": "GNFK2027",
@@ -991,7 +991,7 @@
 "ltd": "2027-06-02",
 "settles": "2027-06-03",
 "out_by": "2027-06-02",
-"days_to_out": 137
+"days_to_out": 136
 }
 ]
 },
@@ -1007,7 +1007,7 @@
 "ltd": "2026-12-01",
 "settles": "2026-12-02",
 "out_by": "2026-12-01",
-"days_to_out": 12
+"days_to_out": 11
 },
 {
 "contract": "DYZ2026",
@@ -1015,7 +1015,7 @@
 "ltd": "2026-12-29",
 "settles": "2026-12-30",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "DYF2027",
@@ -1023,7 +1023,7 @@
 "ltd": "2027-02-02",
 "settles": "2027-02-03",
 "out_by": "2027-02-02",
-"days_to_out": 54
+"days_to_out": 53
 },
 {
 "contract": "DYG2027",
@@ -1031,7 +1031,7 @@
 "ltd": "2027-03-02",
 "settles": "2027-03-03",
 "out_by": "2027-03-02",
-"days_to_out": 73
+"days_to_out": 72
 },
 {
 "contract": "DYH2027",
@@ -1039,7 +1039,7 @@
 "ltd": "2027-03-30",
 "settles": "2027-03-31",
 "out_by": "2027-03-30",
-"days_to_out": 92
+"days_to_out": 91
 },
 {
 "contract": "DYJ2027",
@@ -1047,7 +1047,7 @@
 "ltd": "2027-05-04",
 "settles": "2027-05-05",
 "out_by": "2027-05-04",
-"days_to_out": 117
+"days_to_out": 116
 },
 {
 "contract": "DYK2027",
@@ -1055,7 +1055,7 @@
 "ltd": "2027-06-02",
 "settles": "2027-06-03",
 "out_by": "2027-06-02",
-"days_to_out": 137
+"days_to_out": 136
 }
 ]
 },
@@ -1070,49 +1070,49 @@
 "month": "2026-12",
 "ltd": "2026-11-20",
 "out_by": "2026-11-18",
-"days_to_out": 4
+"days_to_out": 3
 },
 {
 "contract": "CLF2027",
 "month": "2027-01",
 "ltd": "2026-12-21",
 "out_by": "2026-12-17",
-"days_to_out": 24
+"days_to_out": 23
 },
 {
 "contract": "CLG2027",
 "month": "2027-02",
 "ltd": "2027-01-20",
 "out_by": "2027-01-15",
-"days_to_out": 43
+"days_to_out": 42
 },
 {
 "contract": "CLH2027",
 "month": "2027-03",
 "ltd": "2027-02-22",
 "out_by": "2027-02-18",
-"days_to_out": 65
+"days_to_out": 64
 },
 {
 "contract": "CLJ2027",
 "month": "2027-04",
 "ltd": "2027-03-22",
 "out_by": "2027-03-18",
-"days_to_out": 85
+"days_to_out": 84
 },
 {
 "contract": "CLK2027",
 "month": "2027-05",
 "ltd": "2027-04-20",
 "out_by": "2027-04-16",
-"days_to_out": 105
+"days_to_out": 104
 },
 {
 "contract": "CLM2027",
 "month": "2027-06",
 "ltd": "2027-05-20",
 "out_by": "2027-05-18",
-"days_to_out": 127
+"days_to_out": 126
 }
 ]
 },
@@ -1127,49 +1127,49 @@
 "month": "2026-12",
 "ltd": "2026-11-25",
 "out_by": "2026-11-23",
-"days_to_out": 7
+"days_to_out": 6
 },
 {
 "contract": "NGF2027",
 "month": "2027-01",
 "ltd": "2026-12-29",
 "out_by": "2026-12-24",
-"days_to_out": 29
+"days_to_out": 28
 },
 {
 "contract": "NGG2027",
 "month": "2027-02",
 "ltd": "2027-01-27",
 "out_by": "2027-01-25",
-"days_to_out": 48
+"days_to_out": 47
 },
 {
 "contract": "NGH2027",
 "month": "2027-03",
 "ltd": "2027-02-24",
 "out_by": "2027-02-22",
-"days_to_out": 67
+"days_to_out": 66
 },
 {
 "contract": "NGJ2027",
 "month": "2027-04",
 "ltd": "2027-03-29",
 "out_by": "2027-03-24",
-"days_to_out": 89
+"days_to_out": 88
 },
 {
 "contract": "NGK2027",
 "month": "2027-05",
 "ltd": "2027-04-28",
 "out_by": "2027-04-26",
-"days_to_out": 111
+"days_to_out": 110
 },
 {
 "contract": "NGM2027",
 "month": "2027-06",
 "ltd": "2027-05-26",
 "out_by": "2027-05-24",
-"days_to_out": 131
+"days_to_out": 130
 }
 ]
 },
@@ -1184,49 +1184,49 @@
 "month": "2026-12",
 "ltd": "2026-11-30",
 "out_by": "2026-11-25",
-"days_to_out": 9
+"days_to_out": 8
 },
 {
 "contract": "HOF2027",
 "month": "2027-01",
 "ltd": "2026-12-31",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "HOG2027",
 "month": "2027-02",
 "ltd": "2027-01-29",
 "out_by": "2027-01-27",
-"days_to_out": 50
+"days_to_out": 49
 },
 {
 "contract": "HOH2027",
 "month": "2027-03",
 "ltd": "2027-02-26",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "HOJ2027",
 "month": "2027-04",
 "ltd": "2027-03-31",
 "out_by": "2027-03-29",
-"days_to_out": 91
+"days_to_out": 90
 },
 {
 "contract": "HOK2027",
 "month": "2027-05",
 "ltd": "2027-04-30",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "HOM2027",
 "month": "2027-06",
 "ltd": "2027-05-28",
 "out_by": "2027-05-26",
-"days_to_out": 133
+"days_to_out": 132
 }
 ]
 },
@@ -1241,49 +1241,49 @@
 "month": "2026-12",
 "ltd": "2026-11-30",
 "out_by": "2026-11-25",
-"days_to_out": 9
+"days_to_out": 8
 },
 {
 "contract": "RBF2027",
 "month": "2027-01",
 "ltd": "2026-12-31",
 "out_by": "2026-12-29",
-"days_to_out": 31
+"days_to_out": 30
 },
 {
 "contract": "RBG2027",
 "month": "2027-02",
 "ltd": "2027-01-29",
 "out_by": "2027-01-27",
-"days_to_out": 50
+"days_to_out": 49
 },
 {
 "contract": "RBH2027",
 "month": "2027-03",
 "ltd": "2027-02-26",
 "out_by": "2027-02-24",
-"days_to_out": 69
+"days_to_out": 68
 },
 {
 "contract": "RBJ2027",
 "month": "2027-04",
 "ltd": "2027-03-31",
 "out_by": "2027-03-29",
-"days_to_out": 91
+"days_to_out": 90
 },
 {
 "contract": "RBK2027",
 "month": "2027-05",
 "ltd": "2027-04-30",
 "out_by": "2027-04-28",
-"days_to_out": 113
+"days_to_out": 112
 },
 {
 "contract": "RBM2027",
 "month": "2027-06",
 "ltd": "2027-05-28",
 "out_by": "2027-05-26",
-"days_to_out": 133
+"days_to_out": 132
 }
 ]
 },
@@ -1307,7 +1307,7 @@
 "fnd": "2026-12-01",
 "ltd": "2026-12-15",
 "out_by": "2026-11-30",
-"days_to_out": 11
+"days_to_out": 10
 },
 {
 "contract": "FCPOF2027",
@@ -1315,7 +1315,7 @@
 "fnd": "2027-01-04",
 "ltd": "2027-01-15",
 "out_by": "2026-12-31",
-"days_to_out": 33
+"days_to_out": 32
 },
 {
 "contract": "FCPOG2027",
@@ -1323,7 +1323,7 @@
 "fnd": "2027-02-01",
 "ltd": "2027-02-12",
 "out_by": "2027-01-29",
-"days_to_out": 52
+"days_to_out": 51
 },
 {
 "contract": "FCPOH2027",
@@ -1331,7 +1331,7 @@
 "fnd": "2027-03-01",
 "ltd": "2027-03-15",
 "out_by": "2027-02-26",
-"days_to_out": 71
+"days_to_out": 70
 },
 {
 "contract": "FCPOJ2027",
@@ -1339,7 +1339,7 @@
 "fnd": "2027-04-01",
 "ltd": "2027-04-15",
 "out_by": "2027-03-31",
-"days_to_out": 93
+"days_to_out": 92
 },
 {
 "contract": "FCPOK2027",
@@ -1347,7 +1347,7 @@
 "fnd": "2027-05-03",
 "ltd": "2027-05-14",
 "out_by": "2027-04-30",
-"days_to_out": 115
+"days_to_out": 114
 }
 ]
 }

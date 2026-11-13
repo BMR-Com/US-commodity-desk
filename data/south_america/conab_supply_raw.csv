@@ -19,42 +19,42 @@ Suprimento,5,ALGODÃO,7,720
 Suprimento,5,ALGODÃO,8,2016.6
 Suprimento,5,ALGODÃO,9,2736.6
 Suprimento,5,ALGODÃO,10,1242.6999999999994
-Suprimento,12,ARROZ EM CASCA,1,2020/21
-Suprimento,12,ARROZ EM CASCA,3,753.9999999999995
-Suprimento,12,ARROZ EM CASCA,4,11766.400000000001
-Suprimento,12,ARROZ EM CASCA,5,895.1
-Suprimento,12,ARROZ EM CASCA,6,13415.500000000002
-Suprimento,12,ARROZ EM CASCA,7,10802.1
-Suprimento,12,ARROZ EM CASCA,8,1311.1
-Suprimento,12,ARROZ EM CASCA,9,12113.2
-Suprimento,12,ARROZ EM CASCA,10,1302.3000000000015
-Suprimento,19,FEIJÃO,1,2020/21
-Suprimento,19,FEIJÃO,3,268.7000000000001
-Suprimento,19,FEIJÃO,4,2893.8
-Suprimento,19,FEIJÃO,5,83.1
-Suprimento,19,FEIJÃO,6,3245.6000000000004
-Suprimento,19,FEIJÃO,7,2900
-Suprimento,19,FEIJÃO,8,223.7
-Suprimento,19,FEIJÃO,9,3123.7
-Suprimento,19,FEIJÃO,10,121.90000000000038
-Suprimento,26,MILHO,1,2020/21
-Suprimento,26,MILHO,3,15312.10656500001
-Suprimento,26,MILHO,4,87096.8
-Suprimento,26,MILHO,5,3090.715167
-Suprimento,26,MILHO,6,105499.62173200001
-Suprimento,26,MILHO,7,71168.6
-Suprimento,26,MILHO,8,20815.735513
-Suprimento,26,MILHO,9,91984.335513
-Suprimento,26,MILHO,10,13515.286219000009
-Suprimento,33,TRIGO,1,2020
-Suprimento,33,TRIGO,3,2238.3999999999987
-Suprimento,33,TRIGO,4,6234.6
-Suprimento,33,TRIGO,5,6007.798
-Suprimento,33,TRIGO,6,14480.797999999999
-Suprimento,33,TRIGO,7,11599
-Suprimento,33,TRIGO,8,823.133
-Suprimento,33,TRIGO,9,12422.133
-Suprimento,33,TRIGO,10,2058.664999999999
+Suprimento,13,ARROZ EM CASCA,1,2020/21
+Suprimento,13,ARROZ EM CASCA,3,753.9999999999995
+Suprimento,13,ARROZ EM CASCA,4,11766.400000000001
+Suprimento,13,ARROZ EM CASCA,5,895.1
+Suprimento,13,ARROZ EM CASCA,6,13415.500000000002
+Suprimento,13,ARROZ EM CASCA,7,10802.1
+Suprimento,13,ARROZ EM CASCA,8,1311.1
+Suprimento,13,ARROZ EM CASCA,9,12113.2
+Suprimento,13,ARROZ EM CASCA,10,1302.3000000000015
+Suprimento,21,FEIJÃO,1,2020/21
+Suprimento,21,FEIJÃO,3,268.7000000000001
+Suprimento,21,FEIJÃO,4,2893.8
+Suprimento,21,FEIJÃO,5,83.1
+Suprimento,21,FEIJÃO,6,3245.6000000000004
+Suprimento,21,FEIJÃO,7,2900
+Suprimento,21,FEIJÃO,8,223.7
+Suprimento,21,FEIJÃO,9,3123.7
+Suprimento,21,FEIJÃO,10,121.90000000000038
+Suprimento,29,MILHO,1,2020/21
+Suprimento,29,MILHO,3,15312.10656500001
+Suprimento,29,MILHO,4,87096.8
+Suprimento,29,MILHO,5,3090.715167
+Suprimento,29,MILHO,6,105499.62173200001
+Suprimento,29,MILHO,7,71168.6
+Suprimento,29,MILHO,8,20815.735513
+Suprimento,29,MILHO,9,91984.335513
+Suprimento,29,MILHO,10,13515.286219000009
+Suprimento,37,TRIGO,1,2020
+Suprimento,37,TRIGO,3,2238.3999999999987
+Suprimento,37,TRIGO,4,6234.6
+Suprimento,37,TRIGO,5,6007.798
+Suprimento,37,TRIGO,6,14480.797999999999
+Suprimento,37,TRIGO,7,11599
+Suprimento,37,TRIGO,8,823.133
+Suprimento,37,TRIGO,9,12422.133
+Suprimento,37,TRIGO,10,2058.664999999999
 Suprimento - Soja,4,PRODUTO,1,SAFRA
 Suprimento - Soja,7,1.1. Estoque Inicial,1,5260
 Suprimento - Soja,7,1.1. Estoque Inicial,2,9361.52727977973
@@ -62,7 +62,7 @@ Suprimento - Soja,7,1.1. Estoque Inicial,3,9548.822162779674
 Suprimento - Soja,7,1.1. Estoque Inicial,4,11033.745997779683
 Suprimento - Soja,7,1.1. Estoque Inicial,5,7231.119012779731
 Suprimento - Soja,7,1.1. Estoque Inicial,6,9974.598687779711
-Suprimento - Soja,7,1.1. Estoque Inicial,7,9529.671512321307
+Suprimento - Soja,7,1.1. Estoque Inicial,7,9225.604705913582
 Suprimento - Soja,8,1.2. Produção,1,140179.3
 Suprimento - Soja,8,1.2. Produção,2,130828.69999999998
 Suprimento - Soja,8,1.2. Produção,3,159154.3
@@ -96,29 +96,29 @@ Suprimento - Soja,12,1.6. Processamento,2,49468
 Suprimento - Soja,12,1.6. Processamento,3,52612
 Suprimento - Soja,12,1.6. Processamento,4,53665
 Suprimento - Soja,12,1.6. Processamento,5,57886.26999999999
-Suprimento - Soja,12,1.6. Processamento,6,61781.583193592276
-Suprimento - Soja,12,1.6. Processamento,7,63755.70999999999
+Suprimento - Soja,12,1.6. Processamento,6,62085.65
+Suprimento - Soja,12,1.6. Processamento,7,63864.718892825054
 Suprimento - Soja,13,1.7. Estoque Final,1,9361.52727977973
 Suprimento - Soja,13,1.7. Estoque Final,2,9548.822162779674
 Suprimento - Soja,13,1.7. Estoque Final,3,11033.745997779683
 Suprimento - Soja,13,1.7. Estoque Final,4,7231.119012779731
 Suprimento - Soja,13,1.7. Estoque Final,5,9974.598687779711
-Suprimento - Soja,13,1.7. Estoque Final,6,9529.671512321307
-Suprimento - Soja,13,1.7. Estoque Final,7,6538.486032240835
+Suprimento - Soja,13,1.7. Estoque Final,6,9225.604705913582
+Suprimento - Soja,13,1.7. Estoque Final,7,6125.41033300804
 Suprimento - Soja,15,2.1. Estoque Inicial,1,1473
 Suprimento - Soja,15,2.1. Estoque Inicial,2,1785.8493246621983
 Suprimento - Soja,15,2.1. Estoque Inicial,3,2717.4550485647123
 Suprimento - Soja,15,2.1. Estoque Inicial,4,3523.068162564705
 Suprimento - Soja,15,2.1. Estoque Inicial,5,2589.017172054053
 Suprimento - Soja,15,2.1. Estoque Inicial,6,3802.3709292322746
-Suprimento - Soja,15,2.1. Estoque Inicial,7,3684.140136803162
+Suprimento - Soja,15,2.1. Estoque Inicial,7,3891.9331772255864
 Suprimento - Soja,16,2.2. Produção,1,36771.14188994825
 Suprimento - Soja,16,2.2. Produção,2,38881.26169590251
 Suprimento - Soja,16,2.2. Produção,3,41079
 Suprimento - Soja,16,2.2. Produção,4,41019.22371748935
 Suprimento - Soja,16,2.2. Produção,5,44233.71758117822
-Suprimento - Soja,16,2.2. Produção,6,47576.68129133857
-Suprimento - Soja,16,2.2. Produção,7,49082.36566061827
+Suprimento - Soja,16,2.2. Produção,6,47784.474331761
+Suprimento - Soja,16,2.2. Produção,7,49156.480602356234
 Suprimento - Soja,17,2.3. Importação,1,4.3602240000000005
 Suprimento - Soja,17,2.3. Importação,2,3.2237020000000003
 Suprimento - Soja,17,2.3. Importação,3,0.11592
@@ -145,22 +145,22 @@ Suprimento - Soja,20,2.6. Estoque Final,2,2717.4550485647123
 Suprimento - Soja,20,2.6. Estoque Final,3,3523.068162564705
 Suprimento - Soja,20,2.6. Estoque Final,4,2589.017172054053
 Suprimento - Soja,20,2.6. Estoque Final,5,3802.3709292322746
-Suprimento - Soja,20,2.6. Estoque Final,6,3684.140136803162
-Suprimento - Soja,20,2.6. Estoque Final,7,3589.1257974214313
+Suprimento - Soja,20,2.6. Estoque Final,6,3891.9331772255864
+Suprimento - Soja,20,2.6. Estoque Final,7,3871.033779581827
 Suprimento - Soja,22,3.1. Estoque Inicial,1,412
 Suprimento - Soja,22,3.1. Estoque Inicial,2,489.1747822915913
 Suprimento - Soja,22,3.1. Estoque Inicial,3,519.4094713386885
 Suprimento - Soja,22,3.1. Estoque Inicial,4,311.60406143856017
 Suprimento - Soja,22,3.1. Estoque Inicial,5,465.23997678425076
 Suprimento - Soja,22,3.1. Estoque Inicial,6,660.5593212416061
-Suprimento - Soja,22,3.1. Estoque Inicial,7,785.1691480132558
+Suprimento - Soja,22,3.1. Estoque Inicial,7,635.784478474312
 Suprimento - Soja,23,3.2. Produção,1,9637.963449291592
 Suprimento - Soja,23,3.2. Produção,2,9658.640457047097
 Suprimento - Soja,23,3.2. Produção,3,10471.384350099874
 Suprimento - Soja,23,3.2. Produção,4,10905.672891345692
 Suprimento - Soja,23,3.2. Produção,5,11765.020973457356
-Suprimento - Soja,23,3.2. Produção,6,12453.60982677165
-Suprimento - Soja,23,3.2. Produção,7,12780.761193150827
+Suprimento - Soja,23,3.2. Produção,6,12495.225157232706
+Suprimento - Soja,23,3.2. Produção,7,12840.679086481638
 Suprimento - Soja,24,3.3. Importação,1,107.11839499999999
 Suprimento - Soja,24,3.3. Importação,2,24.396213
 Suprimento - Soja,24,3.3. Importação,3,21.374271999999998
@@ -173,19 +173,19 @@ Suprimento - Soja,25,3.4. Exportação,2,2596.8019809999996
 Suprimento - Soja,25,3.4. Exportação,3,2332.564032
 Suprimento - Soja,25,3.4. Exportação,4,1367.217035
 Suprimento - Soja,25,3.4. Exportação,5,1362.9372009999997
-Suprimento - Soja,25,3.4. Exportação,6,1899.9999999999995
-Suprimento - Soja,25,3.4. Exportação,7,1399.9999999999995
+Suprimento - Soja,25,3.4. Exportação,6,2049.9999999999995
+Suprimento - Soja,25,3.4. Exportação,7,1799.9999999999995
 Suprimento - Soja,26,3.5. Vendas no Mercado Interno,1,8017
 Suprimento - Soja,26,3.5. Vendas no Mercado Interno,2,7056
 Suprimento - Soja,26,3.5. Vendas no Mercado Interno,3,8368
 Suprimento - Soja,26,3.5. Vendas no Mercado Interno,4,9484.000000000002
 Suprimento - Soja,26,3.5. Vendas no Mercado Interno,5,10312
-Suprimento - Soja,26,3.5. Vendas no Mercado Interno,6,10529
-Suprimento - Soja,26,3.5. Vendas no Mercado Interno,7,11629.036730822885
+Suprimento - Soja,26,3.5. Vendas no Mercado Interno,6,10570
+Suprimento - Soja,26,3.5. Vendas no Mercado Interno,7,11189.000000000002
 Suprimento - Soja,27,3.6. Estoque Final,1,489.1747822915913
 Suprimento - Soja,27,3.6. Estoque Final,2,519.4094713386885
 Suprimento - Soja,27,3.6. Estoque Final,3,311.60406143856017
 Suprimento - Soja,27,3.6. Estoque Final,4,465.23997678425076
 Suprimento - Soja,27,3.6. Estoque Final,5,660.5593212416061
-Suprimento - Soja,27,3.6. Estoque Final,6,785.1691480132558
-Suprimento - Soja,27,3.6. Estoque Final,7,636.8936103411979
+Suprimento - Soja,27,3.6. Estoque Final,6,635.784478474312
+Suprimento - Soja,27,3.6. Estoque Final,7,587.4635649559477

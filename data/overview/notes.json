@@ -5,12 +5,12 @@
   "corn": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Export demand is the new positive: weekly sales hit a marketing-year high, and wet fields have put the Iowa harvest behind. The yield debate (farm surveys vs. satellite/AI estimates) leaves room for revisions either way.",
+   "time": "11:50 CT",
+   "fundamental": "Export demand stays the new positive after the marketing-year-high sales print, and Friday's broad grain rally lifted Dec to about 446. Slow Iowa harvest keeps some farmer selling off the market near term; the yield debate is unchanged.",
    "events": [
+    "Grains rally broadly Friday (AgWeb)",
     "Corn export sales post a marketing-year high (MarketWatch)",
-    "Heavy rain leaves Iowa harvest behind schedule (AgroLatam)",
-    "Split views on the 2026 US corn yield (farmdoc daily, Successful Farming)"
+    "Heavy rain leaves Iowa harvest behind schedule (AgroLatam)"
    ]
   },
   "soybeans": {
@@ -48,21 +48,22 @@
   "wheat": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Global prices keep sliding: China bought French and Argentine wheat rather than US, and Chicago printed new lows Thursday. Friday's bounce is short covering with corn and beans, not new demand.",
+   "time": "11:50 CT",
+   "fundamental": "Nothing new on supply or demand: China is still sourcing French and Argentine wheat. Friday's bounce has carried Dec through the 593 resistance at about 594, which reads as short covering alongside corn and beans after new lows, not fresh export business.",
    "events": [
-    "Wheat falls to new lows Thursday (Barchart)",
-    "China books French and Argentine wheat as global prices slump (Bloomberg)",
-    "Grains drop on technical selling and a firmer dollar (AgWeb)"
+    "Dec Chicago wheat trades through 593 resistance midday (desk quote)",
+    "Grains rally broadly Friday after Thursday's lows (AgWeb, Barchart)",
+    "China books French and Argentine wheat (Bloomberg)"
    ]
   },
   "kc": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Same picture as Chicago: cheap competing origins cap export demand, and Friday's lift is a technical bounce from fresh lows.",
+   "time": "11:50 CT",
+   "fundamental": "Same as Chicago: the rebound to about 632 takes KC over its first resistance, but cheap competing origins still cap US export demand, so this looks like position squaring.",
    "events": [
-    "KC follows Chicago to new lows, then bounces Friday (Barchart)",
+    "KC Dec trades above 629.50 resistance (desk quote)",
+    "Wheat follows the broad grain rally Friday (AgWeb)",
     "China sources wheat from France and Argentina (Bloomberg)"
    ]
   },
@@ -91,23 +92,23 @@
   "cattle": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Beef demand and September exports look solid, but rising beef imports are pressuring wholesale beef. Beef-on-dairy cattle now make up about a quarter of feedlot placements, adding to fed supply over time.",
+   "time": "11:50 CT",
+   "fundamental": "Fundamentals unchanged (rising beef imports vs. solid demand), but the market has turned: Dec is back near 220.75, above resistance and the 60-day momentum trigger, and the week looks set to close higher after a midday correction, suggesting the recent low is in.",
    "events": [
+    "Cattle correct midday but a higher week confirms the lows (AgWeb)",
     "Beef imports pressuring beef prices (ADMIS)",
-    "US beef demand firm, exports climb in September (Farm Progress)",
-    "Beef-on-dairy now about a quarter of feedlot inventory (RFD-TV)"
+    "US beef exports climb in September (Farm Progress)"
    ]
   },
   "feeders": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Feeders led the cattle rebound this week; cheaper beef-on-dairy calves give feedlots an alternative supply source, which may cap the upside.",
+   "time": "11:50 CT",
+   "fundamental": "Feeders keep leading: Jan is around 335, above its 200-day average, helped by firmer corn being shrugged off. Cheaper beef-on-dairy calves remain the main cap on upside.",
    "events": [
-    "Feeders power higher Thursday (Barchart)",
-    "Beef-on-dairy calf prices dropping (Dairy Herd)",
-    "Feedlot losses narrow (Drovers)"
+    "Jan feeders clear the 200-day average Friday (desk quote)",
+    "Higher week for cattle confirms the lows (AgWeb)",
+    "Beef-on-dairy calf prices dropping (Dairy Herd)"
    ]
   },
   "class3": {
@@ -146,23 +147,23 @@
   "natgas": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Global LNG risk rose after Iran said an LNG tanker hit a mine in Hormuz; new US/Canadian LNG capacity (CP2 re-exports, Woodfibre) supports export demand longer term. Henry Hub is still heading for a solid weekly gain despite Friday's dip.",
+   "time": "11:50 CT",
+   "fundamental": "Henry Hub is giving back part of the week's gain: Dec slipped to about 3.21, below 3.23 support, as the Hormuz LNG-tanker incident lifts global LNG risk but does little for prompt US balances. Longer-term LNG export capacity remains the support.",
    "events": [
-    "Iran says LNG tanker hit mine, explosion in Hormuz (Reuters)",
-    "Venture Global seeks DOE approval to re-export LNG from CP2 (Reuters)",
-    "Natural gas on track for sizable weekly gain (ADMIS)"
+    "Dec gas dips below 3.23 support midday (desk quote)",
+    "Iran says LNG tanker hit mine in Hormuz (Reuters)",
+    "Natural gas still on track for a sizable weekly gain (ADMIS)"
    ]
   },
   "crude": {
    "date": "2026-11-13",
    "by": "claude",
-   "time": "09:45 CT",
-   "fundamental": "Supply-side news leans loose: Iraq's October output was the highest since 2019 and Middle East production is climbing, so oil is heading for a second weekly loss. Escalation risk stays: Trump said the US does not need an Iran deal and the blockade continues, which briefly lifted Brent to the mid-90s.",
+   "time": "11:50 CT",
+   "fundamental": "Unchanged balance: strong Iraqi and Gulf output points loose while the Iran blockade keeps a risk premium. WTI is drifting near 88 and Brent near 95.5 as traders weigh de-escalation odds, leaving oil on course for a second weekly loss.",
    "events": [
+    "Oil swings as traders weigh Iran de-escalation prospects (Energy Connects)",
     "Iraq October oil output highest since 2019 (Bloomberg, IEA)",
-    "Brent spikes after Trump says no need for Iran deal; blockade stays (OilPrice.com, Reuters)",
-    "Supertanker shortage crimping US crude exports (Bloomberg)"
+    "Brent spikes after Trump says no need for Iran deal; blockade stays (OilPrice.com, Reuters)"
    ]
   },
   "ulsd": {

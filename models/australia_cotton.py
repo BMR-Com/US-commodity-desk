@@ -28,6 +28,10 @@ TRAIN_FROM = 2000   # area per GL of stored water rose through the 1990s (water-
 EVAL_FROM = 2005    # variable sets are compared on the same seasons (price starts 2000, needs three prior seasons)
 
 
+
+def _fmt_wet(rows):
+    return ", ".join("%s %.0f%%" % (x["label"], x["since_aug_pct"]) for x in rows)
+
 def jl(name, default=None):
     f = RAW / f"{name}.json"
     return json.loads(f.read_text()) if f.exists() else default
@@ -384,7 +388,7 @@ def main():
         {"h": "Water", "t": f"The {len(dams)} dams in the model hold **{dr['gl']:.0f} GL** today vs {dr['gl_last']:.0f} GL a year ago and a {dr['gl_avg10']:.0f} GL ten-season average for this date. "
               "Irrigated area follows water in storage more than anything else: the area model's first variable."} if dr["gl"] and dr["gl_last"] and dr["gl_avg10"] else {"h": "Water", "t": "Storage data incomplete."},
         {"h": "Rain", "t": (f"Since 1 August the northern cotton towns have had **{dr['plant_pct']:.0f}%** of the 1991–2020 average for this date (April–July: {dr['fallow_pct']:.0f}%). "
-              + (f"Wettest: {', '.join(f'{x['label']} {x['since_aug_pct']:.0f}%' for x in wet[:3])}; driest: {', '.join(f'{x['label']} {x['since_aug_pct']:.0f}%' for x in wet[-2:])}. " if len(wet) >= 4 else "")
+              + (f"Wettest: {_fmt_wet(wet[:3])}; driest: {_fmt_wet(wet[-2:])}. " if len(wet) >= 4 else "")
               + "Rain at planting mostly adds dryland area and fills on-farm storages from runoff; it changes valley allocations only if it reaches the dams.") if dr["plant_pct"] is not None and dr["fallow_pct"] is not None else "Rain data incomplete."},
         {"h": "Model", "t": f"Area uses {', '.join(names[v] for v in a['vars'])}; yield uses {', '.join(names[v] for v in yv['vars'])}. Judged on what was known at this date each season, "
               f"the estimate missed the final crop by {mape:.0f}% on average over {len(bt)} seasons (80% of misses between {P['backtest']['q10_pct']:+.0f}% and {P['backtest']['q90_pct']:+.0f}%), "

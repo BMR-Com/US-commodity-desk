@@ -90,7 +90,7 @@ if __name__ == "__main__":
            "five_area": {"date": [str(x.date()) for x in live.index[-n:]], "live_fob": live.iloc[-n:].round(2).tolist(),
                          "dressed": dressed.reindex(live.index[-n:]).round(2).tolist()},
            "boxed_beef": {"date": [str(x.date()) for x in bb.index[-750:]], "choice": bb.choice.iloc[-750:].round(2).tolist(),
-                          "select": bb.select.iloc[-750:].round(2).tolist()},
+                          "select": bb["select"].iloc[-750:].round(2).tolist()},
            "cutout_minus_dressed": {"date": [str(x.date()) for x in spread.index[-n:]], "spread": spread.iloc[-n:].round(2).tolist()},
            "cof": {k: {"month": v.index.tolist()[-60:], "k_head": v.tolist()[-60:], "yoy": yoy(v)} for k, v in cof.items()},
            "curve_le": curve("LE", live.iloc[-1], f"5-area live steer, week of {live.index[-1].date()}"),

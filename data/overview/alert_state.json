@@ -1,41 +1,41 @@
 {
- "updated": "2026-11-13 02:09 UTC",
- "by": "bot",
+ "updated": "2026-11-13 15:50 UTC",
+ "by": "claude",
  "views": {
   "corn": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.37
+   "score": -0.39
   },
   "soybeans": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.27
+   "view": "strongly bullish",
+   "shade": "bull3",
+   "score": 0.46
   },
   "meal": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.07
+   "score": -0.02
   },
   "oil": {
    "view": "mildly bearish",
    "shade": "bear1",
-   "score": -0.11
+   "score": -0.1
   },
   "wheat": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.32
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.46
   },
   "kc": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.29
+   "score": -0.23
   },
   "cotton": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.21
+   "score": 0.32
   },
   "hogs": {
    "view": "bearish",
@@ -43,14 +43,14 @@
    "score": -0.26
   },
   "cattle": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.25
-  },
-  "feeders": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.04
+   "score": 0.05
+  },
+  "feeders": {
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.26
   },
   "class3": {
    "view": "bearish",
@@ -58,9 +58,9 @@
    "score": -0.26
   },
   "class4": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.12
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.06
   },
   "palm": {
    "view": "bearish",
@@ -90,19 +90,24 @@
  },
  "alerts": {
   "corn": [],
-  "soybeans": [],
-  "meal": [],
+  "soybeans": [
+   "Broke above the fund buy trigger (250-day momentum flip) 1,233.63"
+  ],
+  "meal": [
+   "Broke above R1 329.0",
+   "Broke above R2 330.7"
+  ],
   "oil": [],
   "wheat": [
-   "Broke below the fund sell trigger (100-day breakout low) 585.00"
+   "Broke above R1 593.25"
   ],
   "kc": [
-   "Broke below the fund sell trigger (100-day breakout low) 622.00"
+   "Broke above R1 629.50"
   ],
   "cotton": [],
   "hogs": [],
   "cattle": [
-   "Holding below the fund sell trigger (60-day momentum flip) 219.877"
+   "Broke below S1 218.725"
   ],
   "feeders": [],
   "class3": [],
@@ -119,6 +124,9 @@
   "2026-11-11 Oregon first HPAI case in dairy herd",
   "2026-11-12 States' RFS waiver requests threaten biofuel demand",
   "2026-11-12 Beef imports pressuring beef prices; feedlot losses widen",
-  "2026-11-12 Brent briefly hits $94 after Trump says US has no need for Iran deal; peace trade unwinds"
+  "2026-11-12 Brent briefly hits $94 after Trump says US has no need for Iran deal; peace trade unwinds",
+  "2026-11-13 Iran says LNG tanker hit mine in Hormuz",
+  "2026-11-13 Iraq Oct oil output highest since 2019 (IEA)",
+  "2026-11-13 Corn export sales marketing-year high"
  ]
 }

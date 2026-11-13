@@ -3,150 +3,204 @@
   "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
   "markets": {
     "corn": {
-      "fundamental": "Wet fields have put Iowa's harvest behind, a short-term logistics delay rather than a crop loss. Brazil's strained farm economy (cited by Corteva) does not yet change its record-crop outlook; the RFS waiver requests remain the demand risk.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "8 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 2 down by keyword).",
       "events": [
-        "Heavy rains left Iowa fields saturated and harvest behind (AgroLatam).",
-        "Corteva flagged Brazil's farm-economy stress in its earnings (Bloomberg).",
-        "States' RFS waiver requests threaten ethanol grind (Successful Farming)."
-      ],
-      "date": "2026-11-12"
+        "The Split Personality of 2026 US Corn Yield Estimates (farmdoc daily, 2026-11-13)",
+        "Ag Market View for Nov 12.2026 (ADMIS, 2026-11-12)",
+        "Corn was mostly lower overnight | Morning Market Minute (Brownfield Ag News, 2026-11-12)"
+      ]
     },
     "soybeans": {
-      "fundamental": "Nothing new on supply; a weaker real today adds to Brazil's export competitiveness against US offers, while US growers are still looking to China for longer-term demand under the tariff overhang.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (1 supply-tight, 0 supply-loose, 3 up, 2 down by keyword).",
       "events": [
-        "US soybean farmers eye long-term gains in the China market (Brownfield).",
-        "A weaker real and ample supply keep Brazilian soybean prices sliding (Czapp, Barchart).",
-        "Tariffs continue to limit US sales to China (Brownfield)."
-      ],
-      "date": "2026-11-12"
+        "Soybean Disease Management Gets More Complex as Red Crown Rot Spreads (AgWeb, 2026-11-12)",
+        "Soybean farmers eye long-term gains in China market (Brownfield Ag News, 2026-11-12)",
+        "Soybeans, corn, wheat gain ground on weather concerns (Brownfield Ag News, 2026-11-12)"
+      ]
     },
     "meal": {
-      "date": "2026-11-11",
-      "fundamental": "Meal is riding the soybean complex after the WASDE; no meal-specific supply news since the report.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-11",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
       "events": [
         "Meal firmed about 1% with soybeans after USDA's stocks cut (Barchart)."
       ]
     },
     "oil": {
-      "fundamental": "Policy risk is back: state requests for renewable fuel waivers could trim biomass-based diesel demand if EPA grants them. Palm's El Niño risk still supports the global veg-oil balance, and crude has recovered from its early drop.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "5 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (1 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
       "events": [
-        "Biofuel groups warn state RFS waiver requests threaten grain and oilseed demand (Successful Farming, AgWeb).",
-        "Petrobras is buying out partners in the Logum pipeline to expand biofuels logistics (Reuters).",
-        "Palm oil rose on El Niño risk to Indonesia's 2027 output (Bloomberg)."
-      ],
-      "date": "2026-11-12"
+        "Petrobras to buy out Logum partners, expand biofuels logistics presence (Reuters, 2026-11-12)",
+        "Chevron to Restart Ralston Biodiesel Facility in Iowa, Supported by Landus Cooperative Feedstock Supply Agreement (Financial Times, 2026-11-12)",
+        "Palm Oil Climbs as El Niño Threatens Indonesia’s 2027 Supplies (Bloomberg.com, 2026-11-12)"
+      ]
     },
     "wheat": {
       "date": "2026-11-12",
-      "fundamental": "Wheat gave back its post-WASDE bounce as the spillover support from corn and soybeans faded; cheap French and Argentine origin keeps US export demand under pressure.",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "5 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 1 down by keyword).",
       "events": [
-        "Wheat fell on Thursday (Barchart).",
-        "China booked French and Argentine wheat as global prices slumped (Bloomberg)."
+        "Soybeans, corn, wheat gain ground on weather concerns (Brownfield Ag News, 2026-11-12)",
+        "Could 2027 bring a bounce-back for U.S. wheat growers? (Farm Progress, 2026-11-12)",
+        "Soybeans, corn, wheat up on weather concerns (Brownfield Ag News, 2026-11-12)"
       ]
     },
     "kc": {
-      "date": "2026-11-11",
-      "fundamental": "HRW is following Chicago; Chinese buying of cheap French and Argentine wheat underlines how competitive non-US supply is.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-11",
+      "fundamental": "5 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 1 down by keyword).",
       "events": [
-        "KC wheat pushed above first resistance intraday with the broader grain bounce (Barchart).",
-        "China's purchases went to French and Argentine origins, not the US (Bloomberg)."
+        "Soybeans, corn, wheat gain ground on weather concerns (Brownfield Ag News, 2026-11-12)",
+        "Could 2027 bring a bounce-back for U.S. wheat growers? (Farm Progress, 2026-11-12)",
+        "Soybeans, corn, wheat up on weather concerns (Brownfield Ag News, 2026-11-12)"
       ]
     },
     "cotton": {
       "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
       "events": [
-        "Trade deals in progress could lift US cotton and rice exports (Brownfield).",
-        "Last week's export sales were the best in seven weeks, led by Vietnam (ADMIS)."
-      ],
-      "fundamental": "A possible demand-side positive: new US trade deals could open more export room for cotton, which matters with commitments still behind the usual pace. Nothing new on old-crop supply or certs today."
+        "Candid about cotton: What 2026 taught, what 2027 demands (Farm Progress, 2026-11-12)",
+        "Trade deals could boost U.S. cotton and rice exports (Brownfield Ag News, 2026-11-12)"
+      ]
     },
     "hogs": {
-      "fundamental": "Cash hogs stay soft and the cutout near five-year lows keeps pressure on deferred months; front-month gains look like spread adjustment rather than better demand.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "4 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 2 up, 0 down by keyword).",
       "events": [
-        "Lean hogs edged up in front while deferred contracts ended lower (The Pig Site).",
-        "Hogs closed mixed Wednesday with weak cash (Barchart).",
-        "Pork cutout slipped back toward a five-year low (The Pig Site)."
-      ],
-      "date": "2026-11-12"
+        "A Tick Bite Can Take Beef and Pork Off the Menu. Farmers and Ranchers Face Greater Risk (Successful Farming, 2026-11-12)",
+        "National Pork Board - Market Growth Archives (Brownfield Ag News, 2026-11-11)",
+        "Cattle and hog futures start the week higher (Brownfield Ag News, 2026-11-11)"
+      ]
     },
     "cattle": {
-      "fundamental": "Futures bounced again, but the debate has shifted to demand: imported beef and grid pricing are capping what packers pay, and cheaper beef-on-dairy calves point to more fed supply further out.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (1 supply-tight, 0 supply-loose, 3 up, 2 down by keyword).",
       "events": [
-        "Cattle futures rebounded even as beef-demand worries grow (AgroLatam).",
-        "Beef demand and grid pricing are reshaping the cattle market (Drovers).",
-        "Beef-on-dairy calf prices are falling (Dairy Herd)."
-      ],
-      "date": "2026-11-12"
+        "Why High Beef Prices Are Here to Stay (WSJ, 2026-11-12)",
+        "Beef Imports Pressuring Beef Prices (ADMIS, 2026-11-12)",
+        "Grains Fall After Hitting Resistance: Cattle Extend Gains, But For How Long? (AgWeb, 2026-11-12)"
+      ]
     },
     "feeders": {
-      "fundamental": "Weaker fed steer prices and wider feedlot losses cut into what feedlots can pay for replacements, a near-term headwind; the screwworm-driven closure to Mexican feeders still keeps domestic supply tight.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (1 supply-tight, 0 supply-loose, 3 up, 2 down by keyword).",
       "events": [
-        "Feedlot losses widened as fed steer prices fell (Drovers).",
-        "Screwworm spreading faster in milder weather (Bloomberg).",
-        "USDA began hiring for its Texas sterile-fly facility (USDA)."
-      ],
-      "date": "2026-11-12"
+        "Why High Beef Prices Are Here to Stay (WSJ, 2026-11-12)",
+        "Beef Imports Pressuring Beef Prices (ADMIS, 2026-11-12)",
+        "Grains Fall After Hitting Resistance: Cattle Extend Gains, But For How Long? (AgWeb, 2026-11-12)"
+      ]
     },
     "class3": {
-      "fundamental": "Block cheese fell at the CME, which hits Class III directly, on top of US milk output at a 30-year high. The Oregon HPAI case is a small local risk at the margin.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 2 up, 3 down by keyword).",
       "events": [
-        "Cheese blocks and butter led CME dairy declines Thursday (Brownfield).",
-        "Oregon reported its first HPAI case in a dairy herd (Feedstuffs).",
-        "EPA ended its livestock emissions program (Brownfield)."
-      ],
-      "date": "2026-11-12"
+        "State Officials Push USDA to Allow Bird Flu Vaccines for Dairy Cattle (Successful Farming, 2026-11-12)",
+        "EPA ends livestock emissions program, helps provide regulatory certainty for dairy farmers (Brownfield Ag News, 2026-11-12)",
+        "Cheese blocks, butter lead drops Thursday at CME (Brownfield Ag News, 2026-11-12)"
+      ]
     },
     "class4": {
-      "fundamental": "Butter's drop at the CME takes some support out of Class IV; tight nonfat dry milk is still the main prop.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 2 up, 3 down by keyword).",
       "events": [
-        "Butter led CME dairy declines Thursday (Brownfield).",
-        "Tight NDM supplies continue to support Class IV (Czapp, Brownfield)."
-      ],
-      "date": "2026-11-12"
+        "State Officials Push USDA to Allow Bird Flu Vaccines for Dairy Cattle (Successful Farming, 2026-11-12)",
+        "EPA ends livestock emissions program, helps provide regulatory certainty for dairy farmers (Brownfield Ag News, 2026-11-12)",
+        "Cheese blocks, butter lead drops Thursday at CME (Brownfield Ag News, 2026-11-12)"
+      ]
     },
     "palm": {
-      "fund_score": 0.2,
-      "fundamental": "El Niño is now threatening Indonesia's 2027 palm output, a lagged but meaningful supply risk for the largest producer; that outweighs today's softer crude for the veg-oil outlook.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "1 headline in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (1 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
       "events": [
-        "Palm oil rose as El Niño threatens Indonesia's 2027 supplies (Bloomberg).",
-        "Crude sank on peace optimism, a drag on biodiesel economics (OilPrice.com)."
+        "Palm Oil Climbs as El Niño Threatens Indonesia’s 2027 Supplies (Bloomberg.com, 2026-11-12)"
       ],
-      "date": "2026-11-12"
+      "claude_fund_score": 0.2,
+      "fund_score": 0.2
     },
     "natgas": {
-      "fundamental": "Qatar losing the Polish LNG contract is seen as a real setback to its expansion, reinforcing tighter global LNG supply and the case for US export demand. Near-term US prices still hinge on the coming cold spell.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
       "events": [
-        "Losing the Orlen LNG deal is a serious blow to Qatar's expansion plans (Bloomberg).",
-        "Orlen cancelled its long-term QatarEnergy contract over delivery failures (Reuters, WSJ).",
-        "US gas had rallied on a coming cold spell before slipping (WSJ, NGI)."
-      ],
-      "date": "2026-11-12"
+        "Qatar’s Loss of Polish LNG Deal Is a Serious Blow to Expansion Plans (Bloomberg.com, 2026-11-12)",
+        "EU Imports of Russian LNG Top 2025 Value Ahead of January Ban (Crude Oil Prices Today | OilPrice.com, 2026-11-12)"
+      ]
     },
     "crude": {
-      "fundamental": "The peace trade reversed: Brent briefly reached $94 after Trump said the US had no need for an Iran deal, and WTI is back near 88. Supply is still returning from the Gulf, Saudi Arabia and Nigeria, so the move is a risk-premium reset rather than a new shortage.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "8 headlines in the last 30 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported higher (0 supply-tight, 2 supply-loose, 1 up, 0 down by keyword).",
       "events": [
-        "Brent briefly hit $94 after Trump said the US has no need for an Iran deal (OilPrice.com).",
-        "Middle East output is climbing and Nigeria is at its OPEC quota (ADMIS, OilPrice.com).",
-        "EIA sees global stocks building this quarter (Dow Jones)."
-      ],
-      "date": "2026-11-12"
+        "Oil Supertanker Squeeze Is Crimping US Crude Exports, Texas Port CEO Says (Bloomberg.com, 2026-11-12)",
+        "Mideast Output Climbing (ADMIS, 2026-11-12)",
+        "EIA forecasts Alaskan crude oil production to grow 13% in 2027 (U.S. Energy Information Administration (EIA) (.gov), 2026-11-12)"
+      ]
     },
     "ulsd": {
-      "fundamental": "Diesel bounced with crude as Iran-deal optimism faded; the domestic distillate squeeze persists because Russian diesel is not reaching the US.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "5 headlines in the last 30 hours; the news flow is mixed on supply and demand, prices mostly reported lower (1 supply-tight, 1 supply-loose, 0 up, 1 down by keyword).",
       "events": [
-        "Crude rebounded after Trump said a deal with Iran is not needed (OilPrice.com).",
-        "Russian diesel exports doubled, none to the US (Financial Times).",
-        "The US plan to import Russian diesel has stalled (WSJ)."
-      ],
-      "date": "2026-11-12"
+        "Chevron to Restart Ralston Biodiesel Facility in Iowa, Supported by Landus Cooperative Feedstock Supply Agreement (Financial Times, 2026-11-12)",
+        "Trump’s Plan to Import Russian Diesel Stalls on the High Seas (WSJ, 2026-11-12)",
+        "Russian diesel exports double after Trump lifts sanctions, but US gets none (Financial Times, 2026-11-12)"
+      ]
     },
     "rbob": {
-      "fundamental": "Gasoline recovered with crude once the Iran peace optimism faded; California refinery closures remain a regional rather than national tightening theme.",
+      "date": "2026-11-12",
+      "by": "bot",
+      "time": "20:09 CT",
+      "claude_date": "2026-11-12",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
       "events": [
         "Crude rebounded after Trump said a deal with Iran is not needed (OilPrice.com).",
         "California refinery closures are reshaping West Coast flows (OilPrice.com)."
-      ],
-      "date": "2026-11-12"
+      ]
     }
-  }
+  },
+  "bot_note": "Automatic backup read (GitHub Actions) at 2026-11-12 20:09 CT: Claude's desk read had not run for 5+ hours."
 }

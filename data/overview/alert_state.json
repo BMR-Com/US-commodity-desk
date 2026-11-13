@@ -1,5 +1,6 @@
 {
- "updated": "2026-11-12 20:43 UTC",
+ "updated": "2026-11-13 02:09 UTC",
+ "by": "bot",
  "views": {
   "corn": {
    "view": "bearish",
@@ -14,7 +15,7 @@
   "meal": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.06
+   "score": -0.07
   },
   "oil": {
    "view": "mildly bearish",
@@ -69,22 +70,22 @@
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.23
+   "score": -0.24
   },
   "crude": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.25
+   "score": 0.22
   },
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.45
+   "score": 0.37
   },
   "rbob": {
    "view": "mildly bearish",
    "shade": "bear1",
-   "score": -0.12
+   "score": -0.18
   }
  },
  "alerts": {

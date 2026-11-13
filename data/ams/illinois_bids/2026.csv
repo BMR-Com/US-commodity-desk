@@ -9336,6 +9336,56 @@ report_date,commodity,class,grade,protein,trade_loc,delivery_point,quote_type,sa
 07/01/2026,Corn,Yellow,US #2,,Central,Mills and Processors,Basis,Bid,-13.0,16.0,September (U),4.0975,4.3875,4.2613,Yes,,,Truck,Delivered
 07/01/2026,Corn,Yellow,US #2,,Chicago,Mills and Processors,Basis,Bid,2.0,16.0,September (U),4.2475,4.3875,4.3175,No,2026-07-01,Last Half,Truck,Delivered
 07/01/2026,Corn,Yellow,US #2,,Chicago,Mills and Processors,Basis,Bid,2.0,16.0,September (U),4.2475,4.3875,4.3175,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Mississippi River,Barge Loading Elevators,Basis,Bid,43.0,43.0,January (F),12.745,12.745,12.745,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Mississippi River,Barge Loading Elevators,Basis,Bid,33.0,33.0,January (F),12.645,12.645,12.645,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,North Illinois River,Barge Loading Elevators,Basis,Bid,1.0,7.0,January (F),12.325,12.385,12.36,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,North Illinois River,Barge Loading Elevators,Basis,Bid,-5.0,-2.0,January (F),12.265,12.295,12.2817,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,South Illinois River,Barge Loading Elevators,Basis,Bid,9.0,13.0,January (F),12.405,12.445,12.43,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,South Illinois River,Barge Loading Elevators,Basis,Bid,-2.0,5.0,January (F),12.295,12.365,12.335,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Little Egypt,Country Elevators,Basis,Bid,-14.0,43.0,January (F),12.175,12.745,12.3725,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Little Egypt,Country Elevators,Basis,Bid,-28.0,35.0,January (F),12.035,12.665,12.2775,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,North,Country Elevators,Basis,Bid,-41.0,-23.0,January (F),11.905,12.085,11.983,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,North,Country Elevators,Basis,Bid,-72.0,-33.0,January (F),11.595,11.985,11.8292,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,North Central,Country Elevators,Basis,Bid,-36.0,-10.0,January (F),11.955,12.215,12.1175,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,North Central,Country Elevators,Basis,Bid,-40.0,-18.0,January (F),11.915,12.135,12.0381,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,South Central,Country Elevators,Basis,Bid,-38.0,-12.0,January (F),11.935,12.195,12.1096,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,South Central,Country Elevators,Basis,Bid,-40.0,-18.0,January (F),11.915,12.135,12.0279,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Southwest,Country Elevators,Basis,Bid,-16.0,11.0,January (F),12.155,12.425,12.2664,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Southwest,Country Elevators,Basis,Bid,-28.0,2.0,January (F),12.035,12.335,12.1736,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Wabash,Country Elevators,Basis,Bid,-25.0,-20.0,January (F),12.065,12.115,12.0983,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Wabash,Country Elevators,Basis,Bid,-30.0,-25.0,January (F),12.015,12.065,12.0317,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,West,Country Elevators,Basis,Bid,-42.0,-16.0,January (F),11.895,12.155,12.049,No,2027-01-01,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,West,Country Elevators,Basis,Bid,-55.0,-21.0,January (F),11.765,12.105,11.945,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Central,Mills and Processors,Basis,Bid,5.0,15.0,January (F),12.365,12.465,12.41,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Central,Mills and Processors,Basis,Bid,,,,,,,Yes,,,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Chicago,Terminal Elevators,Basis,Bid,-10.0,35.0,January (F),12.215,12.665,12.44,No,2026-11-01,Last Half,Truck,Delivered
+11/13/2026,Soybeans,,US #1,,Chicago,Terminal Elevators,Basis,Bid,-10.0,35.0,January (F),12.215,12.665,12.44,Yes,,,Truck,Delivered
+11/13/2026,Wheat,Soft Red Winter,US #1,Ordinary,South Illinois River,Barge Loading Elevators,Basis,Bid,-45.0,-40.0,July (N),5.725,5.775,5.75,No,2027-06-01,,Truck,Delivered
+11/13/2026,Wheat,Soft Red Winter,US #1,Ordinary,Southwest,Country Elevators,Basis,Bid,-65.0,-65.0,July (N),5.525,5.525,5.525,No,2027-06-01,,Truck,Delivered
+11/13/2026,Wheat,Soft Red Winter,US #1,Ordinary,Chicago,Terminals/Mills/Processors,Basis,Bid,-5.0,15.0,December (Z),5.8825,6.0825,5.9825,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Mississippi River,Barge Loading Elevators,Basis,Bid,27.0,27.0,March (H),4.8375,4.8375,4.8375,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Mississippi River,Barge Loading Elevators,Basis,Bid,28.0,28.0,December (Z),4.735,4.735,4.735,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,North Illinois River,Barge Loading Elevators,Basis,Bid,-14.0,-4.0,March (H),4.4275,4.5275,4.4942,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,North Illinois River,Barge Loading Elevators,Basis,Bid,-12.0,-6.0,December (Z),4.335,4.395,4.3717,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,South Illinois River,Barge Loading Elevators,Basis,Bid,-5.0,3.0,March (H),4.5175,4.5975,4.5525,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,South Illinois River,Barge Loading Elevators,Basis,Bid,-5.0,3.0,December (Z),4.405,4.485,4.45,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Little Egypt,Country Elevators,Basis,Bid,-33.0,26.0,March (H),4.2375,4.8275,4.46,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Little Egypt,Country Elevators,Basis,Bid,-20.0,30.0,December (Z),4.255,4.755,4.455,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,North,Country Elevators,Basis,Bid,-43.0,-15.0,March (H),4.1375,4.4175,4.2832,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,North,Country Elevators,Basis,Bid,-40.0,-15.0,December (Z),4.055,4.305,4.2236,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,North Central,Country Elevators,Basis,Bid,-35.0,-10.0,March (H),4.2175,4.4675,4.3175,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,North Central,Country Elevators,Basis,Bid,-35.0,-5.0,December (Z),4.105,4.405,4.1913,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,South Central,Country Elevators,Basis,Bid,-30.0,-14.0,March (H),4.2675,4.4275,4.3406,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,South Central,Country Elevators,Basis,Bid,-32.0,-4.0,December (Z),4.135,4.415,4.2657,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Southwest,Country Elevators,Basis,Bid,-33.0,-5.0,March (H),4.2375,4.5175,4.3863,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Southwest,Country Elevators,Basis,Bid,-26.0,-2.0,December (Z),4.195,4.435,4.3063,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Wabash,Country Elevators,Basis,Bid,-23.0,-14.0,March (H),4.3375,4.4275,4.3775,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Wabash,Country Elevators,Basis,Bid,-16.0,-8.0,December (Z),4.295,4.375,4.34,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,West,Country Elevators,Basis,Bid,-39.0,-19.0,March (H),4.1775,4.3775,4.2675,No,2027-01-01,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,West,Country Elevators,Basis,Bid,-39.0,-15.0,December (Z),4.065,4.305,4.185,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Central,Mills and Processors,Basis,Bid,-8.0,15.0,December (Z),4.375,4.605,4.49,Yes,,,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Chicago,Mills and Processors,Basis,Bid,10.0,15.0,December (Z),4.555,4.605,4.58,No,2026-11-01,Last Half,Truck,Delivered
+11/13/2026,Corn,Yellow,US #2,,Chicago,Mills and Processors,Basis,Bid,7.0,25.0,December (Z),4.525,4.705,4.615,Yes,,,Truck,Delivered
 11/12/2026,Soybeans,,US #1,,Mississippi River,Barge Loading Elevators,Basis,Bid,43.0,43.0,January (F),12.62,12.62,12.62,No,2027-01-01,,Truck,Delivered
 11/12/2026,Soybeans,,US #1,,Mississippi River,Barge Loading Elevators,Basis,Bid,33.0,33.0,January (F),12.52,12.52,12.52,Yes,,,Truck,Delivered
 11/12/2026,Soybeans,,US #1,,North Illinois River,Barge Loading Elevators,Basis,Bid,1.0,7.0,January (F),12.2,12.26,12.235,No,2027-01-01,,Truck,Delivered

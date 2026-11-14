@@ -1,16 +1,16 @@
 {
- "generated": "2026-11-13 18:48 UTC",
+ "generated": "2026-11-14 00:14 UTC",
  "inventories": {
   "storL48": {
-   "date": "2026-10-30",
-   "value": 3801.0,
-   "chg": 77.0,
-   "yago": 3905.0,
-   "avg5": 3761.4,
-   "vs_avg5": 39.59999999999991,
-   "vs_avg5_pct": 1.05279948955177,
-   "vs_yago": -104.0,
-   "chg_avg5": 36.0,
+   "date": "2026-11-06",
+   "value": 3862.0,
+   "chg": 61.0,
+   "yago": 3950.0,
+   "avg5": 3808.6,
+   "vs_avg5": 53.40000000000009,
+   "vs_avg5_pct": 1.4020900068266506,
+   "vs_yago": -88.0,
+   "chg_avg5": 47.2,
    "name": "Natural gas storage, Lower 48",
    "unit": "Bcf"
   },
@@ -83,77 +83,77 @@
  },
  "prices": {
   "NG": {
-   "date": "2026-11-12",
-   "last": 3.347,
-   "d1": 4.105754276827378,
-   "w1": 13.573125212080072,
-   "m1": 4.659161976235149
+   "date": "2026-11-13",
+   "last": 3.242,
+   "d1": -2.934131736526946,
+   "w1": 8.138759172781839,
+   "m1": 0.1854140914709479
   },
   "CL": {
-   "date": "2026-11-12",
-   "last": 88.519997,
-   "d1": 2.2997781382154026,
-   "w1": -2.209456546932942,
-   "m1": -6.90924311322928
+   "date": "2026-11-13",
+   "last": 88.919998,
+   "d1": 0.20283976116384217,
+   "w1": -2.10283381916031,
+   "m1": -9.237524658185913
   },
   "HO": {
-   "date": "2026-11-12",
-   "last": 4.2867,
-   "d1": 1.790421010139398,
-   "w1": -1.4981961901698093,
-   "m1": -13.00280066566546
+   "date": "2026-11-13",
+   "last": 4.3067,
+   "d1": 0.47124693806135376,
+   "w1": -0.5771406145393176,
+   "m1": -11.121429750701662
   },
   "RB": {
-   "date": "2026-11-12",
-   "last": 2.6279,
-   "d1": 0.7823585810162959,
-   "w1": -4.903379894333071,
-   "m1": -19.37720509280565
+   "date": "2026-11-13",
+   "last": 2.5998,
+   "d1": -2.65837951175677,
+   "w1": -6.370871898296537,
+   "m1": -18.250424501603668
   },
   "BZ": {
-   "date": "2026-11-12",
-   "last": 95.860001,
-   "d1": 3.3419565902984782,
-   "w1": -2.47227589304837,
-   "m1": -9.6171951653252
+   "date": "2026-11-13",
+   "last": 96.080002,
+   "d1": 0.27134418701733054,
+   "w1": -2.2782729861676176,
+   "m1": -9.290026610461243
   }
  },
  "cracks": {
-  "321": 45.07500299999998,
-  "ho": 91.52140299999998,
-  "rb": 21.85180299999999
+  "321": 44.16820200000001,
+  "ho": 91.961402,
+  "rb": 20.271602
  },
  "vol": {
   "NG": {
    "atm": 81.23,
    "label": "Dec 2026",
    "rr25": 5.82,
-   "rv20": 56.0
+   "rv20": 56.2
   },
   "CL": {
    "atm": 47.86,
    "label": "Jan 2027",
    "rr25": 1.65,
-   "rv20": 54.9
+   "rv20": 55.0
   },
   "HO": {
    "atm": 63.75,
    "label": "Dec 2026",
    "rr25": 3.37,
-   "rv20": 49.7
+   "rv20": 49.8
   },
   "RB": {
    "atm": 56.36,
    "label": "Dec 2026",
    "rr25": 6.25,
-   "rv20": 41.9
+   "rv20": 41.8
   }
  },
  "ng_signal": {
-  "generated": "2026-11-13T17:23",
-  "regime": "LOW",
-  "cold_checks_on": 1,
-  "action": "No colder forecast trend; trade the fundamentals and the curve."
+  "generated": "2026-11-13T21:40",
+  "regime": "ELEVATED",
+  "cold_checks_on": 3,
+  "action": "Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold."
  },
- "read": "Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 414.4 mb (+4.7 mb on the week, -4.3% vs 5-yr avg); gasoline +1.8 mb, distillate +4.1 mb; refinery utilization 95.2%. 3-2-1 crack $45.08/bbl (ULSD $91.52, gasoline $21.85). NG weather/positioning: squeeze risk LOW (1 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). No colder forecast trend; trade the fundamentals and the curve. Options: NG IV 81% vs RV 56%; CL IV 48% vs RV 55%; HO IV 64% vs RV 50%; RB IV 56% vs RV 42%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
+ "read": "Gas storage 3,862 Bcf (week to 2026-11-06), +61 Bcf vs a 5-year average +47 for the week; +53 Bcf (+1.4%) vs the 5-year average, -88 vs last year. Crude stocks 414.4 mb (+4.7 mb on the week, -4.3% vs 5-yr avg); gasoline +1.8 mb, distillate +4.1 mb; refinery utilization 95.2%. 3-2-1 crack $44.17/bbl (ULSD $91.96, gasoline $20.27). NG weather/positioning: squeeze risk ELEVATED (3 of 7 cold-risk checks on; managed money net -224,495 (1st pct of 3 yrs, -79,814 in 4 wks)). GEFS AO week 2 -1.05 (now -1.68); GEFS PNA week 2 +0.81 (western ridge / eastern trough); stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold. Options: NG IV 81% vs RV 56%; CL IV 48% vs RV 55%; HO IV 64% vs RV 50%; RB IV 56% vs RV 42%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
 }

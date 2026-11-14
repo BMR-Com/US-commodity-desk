@@ -1,31 +1,6 @@
 {
-"generated": "2026-11-13 23:22 UTC",
+"generated": "2026-11-14 02:02 UTC",
 "events": [
-{
-"date": "2026-11-06",
-"time": "12:00 PM CT",
-"event": "Baker Hughes rig count",
-"cat": "Energy",
-"markets": [
-"CL",
-"NG"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
-{
-"date": "2026-11-06",
-"time": "2:30 PM CT",
-"event": "CFTC Commitments of Traders",
-"cat": "CFTC",
-"markets": [
-"ALL"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-11-09",
 "time": "10:00 AM CT",
@@ -2764,6 +2739,43 @@
 "ZS",
 "ZC",
 "ZW"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-12",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-12",
+"time": "",
+"event": "Lean hogs Feb 27: last trading day (settles to Lean Hog Index)",
+"cat": "CME contract",
+"markets": [
+"HE"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-12",
+"time": "2:30 PM CT",
+"event": "CFTC Commitments of Traders",
+"cat": "CFTC",
+"markets": [
+"ALL"
 ],
 "importance": 1,
 "link": null,

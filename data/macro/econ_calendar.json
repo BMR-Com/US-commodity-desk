@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-14 00:18 UTC",
+"generated": "2026-11-15 23:25 UTC",
 "source": "Forex Factory weekly calendar export (forecast = consensus; no actuals in the export)",
 "events": [
 {
@@ -1127,6 +1127,416 @@
 "time": "7:00 PM ET",
 "country": "US",
 "title": "FOMC Member Jefferson Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-16",
+"time": "5:00 AM ET",
+"country": "US",
+"title": "FOMC Member Barr Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-16",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Empire State Manufacturing Index",
+"impact": "Low",
+"forecast": "17.6",
+"previous": "25.5",
+"why": "Manufacturing/services cycle: industrial and energy demand"
+},
+{
+"date": "2026-11-16",
+"time": "9:05 AM ET",
+"country": "US",
+"title": "FOMC Member Williams Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-16",
+"time": "9:48 AM ET",
+"country": "US",
+"title": "Cleveland Fed Inflation Expectations",
+"impact": "Low",
+"forecast": "",
+"previous": "3.3%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-11-16",
+"time": "12:00 PM ET",
+"country": "US",
+"title": "Fed Chairman Warsh Speaks",
+"impact": "High",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-17",
+"time": "7:30 AM ET",
+"country": "US",
+"title": "FOMC Member Musalem Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-17",
+"time": "8:15 AM ET",
+"country": "US",
+"title": "ADP Weekly Employment Change",
+"impact": "Low",
+"forecast": "",
+"previous": "19.8K",
+"why": "Labor market sets the Fed path, dollar and demand"
+},
+{
+"date": "2026-11-17",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Core Retail Sales m/m",
+"impact": "High",
+"forecast": "0.4%",
+"previous": "0.9%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-11-17",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Retail Sales m/m",
+"impact": "High",
+"forecast": "0.2%",
+"previous": "0.8%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-11-17",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Import Prices m/m",
+"impact": "Low",
+"forecast": "0.7%",
+"previous": "1.1%",
+"why": ""
+},
+{
+"date": "2026-11-17",
+"time": "9:10 AM ET",
+"country": "US",
+"title": "FOMC Member Waller Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-17",
+"time": "9:15 AM ET",
+"country": "US",
+"title": "Capacity Utilization Rate",
+"impact": "Low",
+"forecast": "76.8%",
+"previous": "76.9%",
+"why": ""
+},
+{
+"date": "2026-11-17",
+"time": "9:15 AM ET",
+"country": "US",
+"title": "Industrial Production m/m",
+"impact": "Low",
+"forecast": "0.1%",
+"previous": "0.7%",
+"why": "Growth and demand"
+},
+{
+"date": "2026-11-17",
+"time": "9:30 AM ET",
+"country": "US",
+"title": "FOMC Member Hammack Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-17",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Business Inventories m/m",
+"impact": "Low",
+"forecast": "0.5%",
+"previous": "0.4%",
+"why": "Manufacturing/services cycle: industrial and energy demand"
+},
+{
+"date": "2026-11-17",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "NAHB Housing Market Index",
+"impact": "Low",
+"forecast": "29",
+"previous": "29",
+"why": "Housing cycle: lumber, copper"
+},
+{
+"date": "2026-11-17",
+"time": "2:25 PM ET",
+"country": "US",
+"title": "FOMC Member Williams Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-17",
+"time": "4:30 PM ET",
+"country": "US",
+"title": "API Weekly Statistical Bulletin",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-11-18",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Building Permits",
+"impact": "Low",
+"forecast": "1.38M",
+"previous": "1.40M",
+"why": "Housing cycle: lumber, copper"
+},
+{
+"date": "2026-11-18",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Housing Starts",
+"impact": "Low",
+"forecast": "1.25M",
+"previous": "1.22M",
+"why": "Housing cycle: lumber, copper"
+},
+{
+"date": "2026-11-18",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Pending Home Sales m/m",
+"impact": "Low",
+"forecast": "-2.3%",
+"previous": "-7.3%",
+"why": "Housing cycle: lumber, copper"
+},
+{
+"date": "2026-11-18",
+"time": "10:30 AM ET",
+"country": "US",
+"title": "Crude Oil Inventories",
+"impact": "Low",
+"forecast": "",
+"previous": "4.7M",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-11-18",
+"time": "1:35 PM ET",
+"country": "US",
+"title": "FOMC Member Barr Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-18",
+"time": "2:00 PM ET",
+"country": "US",
+"title": "FOMC Meeting Minutes",
+"impact": "High",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-18",
+"time": "2:30 PM ET",
+"country": "US",
+"title": "FOMC Member Williams Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-18",
+"time": "4:00 PM ET",
+"country": "US",
+"title": "TIC Long-Term Purchases",
+"impact": "Low",
+"forecast": "160.7B",
+"previous": "279.2B",
+"why": ""
+},
+{
+"date": "2026-11-18",
+"time": "4:15 PM ET",
+"country": "US",
+"title": "FOMC Member Kashkari Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-19",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Philly Fed Manufacturing Index",
+"impact": "Medium",
+"forecast": "19.2",
+"previous": "20.9",
+"why": "Manufacturing/services cycle: industrial and energy demand"
+},
+{
+"date": "2026-11-19",
+"time": "8:30 AM ET",
+"country": "US",
+"title": "Unemployment Claims",
+"impact": "Medium",
+"forecast": "199K",
+"previous": "200K",
+"why": "Labor market sets the Fed path, dollar and demand"
+},
+{
+"date": "2026-11-19",
+"time": "8:50 AM ET",
+"country": "US",
+"title": "FOMC Member Hammack Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-19",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "CB Leading Index m/m",
+"impact": "Low",
+"forecast": "0.0%",
+"previous": "0.0%",
+"why": ""
+},
+{
+"date": "2026-11-19",
+"time": "10:15 AM ET",
+"country": "US",
+"title": "Mortgage Delinquencies",
+"impact": "Low",
+"forecast": "",
+"previous": "4.37%",
+"why": ""
+},
+{
+"date": "2026-11-19",
+"time": "10:30 AM ET",
+"country": "US",
+"title": "Natural Gas Storage",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-11-19",
+"time": "12:30 PM ET",
+"country": "US",
+"title": "FOMC Member Goolsbee Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-19",
+"time": "2:15 PM ET",
+"country": "US",
+"title": "FOMC Member Barr Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-19",
+"time": "4:00 PM ET",
+"country": "US",
+"title": "FOMC Member Barkin Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-19",
+"time": "6:30 PM ET",
+"country": "US",
+"title": "FOMC Member Paulson Speaks",
+"impact": "Low",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-20",
+"time": "8:25 AM ET",
+"country": "US",
+"title": "FOMC Member Waller Speaks",
+"impact": "Medium",
+"forecast": "",
+"previous": "",
+"why": "Fed policy path: rates, dollar and fund flows into commodities"
+},
+{
+"date": "2026-11-20",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Revised UoM Consumer Sentiment",
+"impact": "Medium",
+"forecast": "52.1",
+"previous": "51.0",
+"why": "Consumer outlook and inflation expectations"
+},
+{
+"date": "2026-11-20",
+"time": "10:00 AM ET",
+"country": "US",
+"title": "Revised UoM Inflation Expectations",
+"impact": "Medium",
+"forecast": "",
+"previous": "4.3%",
+"why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+},
+{
+"date": "2026-11-20",
+"time": "12:15 PM ET",
+"country": "US",
+"title": "FOMC Member Cook Speaks",
 "impact": "Low",
 "forecast": "",
 "previous": "",

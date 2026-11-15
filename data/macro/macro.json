@@ -1,17 +1,17 @@
 {
- "generated": "2026-11-14 00:18 UTC",
+ "generated": "2026-11-15 23:25 UTC",
  "view": "headwind",
- "score": -4,
+ "score": -5,
  "components": {
   "rates": 0,
-  "dollar": 0,
+  "dollar": -1,
   "brl": -1,
   "risk": 0,
   "energy": -1,
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -4 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar 0; brl \u2212; risk 0; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +3.7%; weakest: Lean hogs -15.9%. Key releases ahead: US Core PPI m/m (11-13 8:30 AM ET); US PPI m/m (11-13 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: headwind (score -5 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl \u2212; risk 0; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +3.8%; weakest: KC wheat -12.3%. Key releases ahead: US Fed Chairman Warsh Speaks (11-16 12:00 PM ET); US Core Retail Sales m/m (11-17 8:30 AM ET); US Retail Sales m/m (11-17 8:30 AM ET); US FOMC Meeting Minutes (11-18 2:00 PM ET).",
  "sections": [
   {
    "title": "Rates",
@@ -20,8 +20,8 @@
   },
   {
    "title": "Dollar & farm currencies",
-   "score": -1,
-   "text": "Dollar index 103.41 (+0.8% in a month, +5.2% YTD). USD/BRL 5.667 (+12.8% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.670 (-0.3%); USD/MXN 18.52 (+0.8%)."
+   "score": -2,
+   "text": "Dollar index 103.42 (+1.6% in a month, +5.2% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.641 (+10.7% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.670 (-0.3%); USD/MXN 18.52 (+0.4%)."
   },
   {
    "title": "Risk appetite",
@@ -31,40 +31,60 @@
   {
    "title": "Energy",
    "score": -1,
-   "text": "WTI 88.92 $/bbl (-5.3% in a month), Brent 96.08, ULSD 4.307 $/gal (-9.3%), natural gas 3.24 (-8.9%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+   "text": "WTI 88.25 $/bbl (-10.9% in a month), Brent 95.20, ULSD 4.281 $/gal (-9.4%), natural gas 3.16 (-6.7%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -9.0% in a month, Shanghai Composite -3.5%, Hang Seng -2.8%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -7.5% in a month, Shanghai Composite -3.5%, Hang Seng -2.8%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "7 of 33 commodities trade above their 50-day average (21%); S&P GSCI -7.4% in a month; gold -5.4%. "
+   "text": "7 of 33 commodities trade above their 50-day average (21%); S&P GSCI -7.4% in a month; gold -7.1%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",
  "events_ahead": [
   {
-   "date": "2026-11-13",
-   "time": "8:30 AM ET",
+   "date": "2026-11-16",
+   "time": "12:00 PM ET",
    "country": "US",
-   "title": "Core PPI m/m",
+   "title": "Fed Chairman Warsh Speaks",
    "impact": "High",
-   "forecast": "0.3%",
-   "previous": "0.7%",
-   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+   "forecast": "",
+   "previous": "",
+   "why": "Fed policy path: rates, dollar and fund flows into commodities"
   },
   {
-   "date": "2026-11-13",
+   "date": "2026-11-17",
    "time": "8:30 AM ET",
    "country": "US",
-   "title": "PPI m/m",
+   "title": "Core Retail Sales m/m",
    "impact": "High",
    "forecast": "0.4%",
-   "previous": "1.3%",
-   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
+   "previous": "0.9%",
+   "why": "Growth and demand"
+  },
+  {
+   "date": "2026-11-17",
+   "time": "8:30 AM ET",
+   "country": "US",
+   "title": "Retail Sales m/m",
+   "impact": "High",
+   "forecast": "0.2%",
+   "previous": "0.8%",
+   "why": "Growth and demand"
+  },
+  {
+   "date": "2026-11-18",
+   "time": "2:00 PM ET",
+   "country": "US",
+   "title": "FOMC Meeting Minutes",
+   "impact": "High",
+   "forecast": "",
+   "previous": "",
+   "why": "Fed policy path: rates, dollar and fund flows into commodities"
   }
  ]
 }

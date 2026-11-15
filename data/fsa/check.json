@@ -1,7 +1,13 @@
 {
- "checked": "2026-11-14",
- "ok": true,
- "failures": [],
+ "checked": "2026-11-15",
+ "ok": false,
+ "failures": [
+  "cotton Texas tx_abandonment: {'central': 0.471, 'lo95': 0.354, 'hi95': 0.654} vs crop_projection.json {'central': 0.456, 'lo95': 0.348, 'hi95': 0.594}",
+  "cotton Texas tx_harvested_acres: {'central': 3.123, 'lo95': 2.044, 'hi95': 3.811} vs crop_projection.json {'central': 3.207, 'lo95': 2.398, 'hi95': 3.847}",
+  "cotton Texas tx_yield: {'central': 505, 'lo95': 414, 'hi95': 618} vs crop_projection.json {'central': 535, 'lo95': 447, 'hi95': 630}",
+  "cotton Texas texas: {'central': 3.286, 'lo68': 2.302, 'hi68': 3.608, 'lo95': 2.084, 'hi95': 4.171, 'lo99': 1.971, 'hi99': 4.388} vs crop_projection.json {'central': 3.575, 'lo68': 2.612, 'hi68': 3.999, 'lo95': 2.374, 'hi95': 4.376, 'lo99': 2.264, 'hi99': 4.539}",
+  "cotton Texas abandonment {'central': 0.512, 'lo95': 0.346, 'hi95': 0.677} vs {'central': 0.51, 'lo95': 0.37, 'hi95': 0.649}"
+ ],
  "notes": [
   "cotton: Texas conditional block matches crop_projection.json (2026-11-13)",
   "cotton: 17 states compared with crop.json estimate"

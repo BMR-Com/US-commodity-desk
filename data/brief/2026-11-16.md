@@ -1,6 +1,6 @@
-# Morning brief · Mon Nov 16, 2026 04:18 PM ET
+# Morning brief · Mon Nov 16, 2026 04:21 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-16 21:18 UTC). CME open interest from 20261113. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-16 21:21 UTC). CME open interest from 20261113. Research only, not investment advice.
 
 ## Key points
 
@@ -48,13 +48,13 @@ Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed
 Macro backdrop for ags: headwind (score -6 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar −; brl −; risk −; energy −; china −; breadth −. Strongest ag/soft over the month: Rough rice +2.5%; weakest: Sugar #11 -13.2%. Key releases ahead: US Fed Chairman Warsh Speaks (11-16 12:00 PM ET); US Core Retail Sales m/m (11-17 8:30 AM ET); US Retail Sales m/m (11-17 8:30 AM ET); US FOMC Meeting Minutes (11-18 2:00 PM ET).
 
 - **Rates**: US 10-year 5.12% (+3 bp in a month), 2-year 4.83% (+9 bp); 2s10s curve +29 bp (-6 bp in a month). Yields are little changed on the month. T-bill yield 4.12% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 103.61 (+1.7% in a month, +5.4% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.789 (+13.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.664 (-0.4%); USD/MXN 18.51 (+0.3%).
-- **Risk appetite**: S&P 500 -3.2% in a month (+8.3% YTD); VIX 23.3. Risk-off: funds tend to cut commodity length along with equities. 
-- **Energy**: WTI 85.49 $/bbl (-13.7% in a month), Brent 92.30, ULSD 4.079 $/gal (-13.6%), natural gas 3.13 (-7.4%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
+- **Dollar & farm currencies**: Dollar index 103.59 (+1.7% in a month, +5.4% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.790 (+13.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.664 (-0.4%); USD/MXN 18.52 (+0.4%).
+- **Risk appetite**: S&P 500 -3.2% in a month (+8.3% YTD); VIX 23.6. Risk-off: funds tend to cut commodity length along with equities. 
+- **Energy**: WTI 85.51 $/bbl (-13.6% in a month), Brent 92.38, ULSD 4.078 $/gal (-13.7%), natural gas 3.13 (-7.5%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
 - **China & industrial demand**: Copper -8.9% in a month, Shanghai Composite -3.1%, Hang Seng -1.8%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. 
 - **Commodity breadth**: 8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -10.6% in a month; gold -7.8%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,438.500 (-1.91% d/d); S&P 500 7,416.590 (-1.92% d/d); VIX 23.290 (+20.67% d/d); US 10-year 5.121 (-3 bp d/d); US dollar index 103.613 (+0.20% d/d); EUR/USD 1.100 (-0.46% d/d); USD/BRL 5.789 (+2.63% d/d); USD/CNY 6.664 (-0.10% d/d); WTI crude 85.490 (-3.47% d/d); Natural gas 3.134 (-2.97% d/d); Gold 3,853.600 (-0.84% d/d); Copper 5.990 (-1.64% d/d); S&P GSCI 672.043 (-2.14% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,434.000 (-1.96% d/d); S&P 500 7,416.590 (-1.92% d/d); VIX 23.630 (+22.44% d/d); US 10-year 5.121 (-3 bp d/d); US dollar index 103.595 (+0.18% d/d); EUR/USD 1.100 (-0.48% d/d); USD/BRL 5.790 (+2.66% d/d); USD/CNY 6.664 (-0.10% d/d); WTI crude 85.510 (-3.44% d/d); Natural gas 3.133 (-3.00% d/d); Gold 3,854.800 (-0.81% d/d); Copper 5.989 (-1.67% d/d); S&P GSCI 672.043 (-2.14% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -72,7 +72,7 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Lean hogs | Dec 26 | 55.375 | -0.075 (-0.1%) | -0.9% | -17.3% | Sell | 30 | 53.175 | 71.200 | -50,492 (-3,383) | -7,731 | bearish |
 | Live cattle | Dec 26 | 220.500 | -0.150 (-0.1%) | +2.0% | -3.4% | Sell | 47 | 218.725 | 225.500 | 51,692 (-4,325) | +2,454 | neutral |
 | Feeder cattle | Jan 27 | 333.250 | -2.100 (-0.6%) | +2.8% | -1.5% | Buy | 53 | 328.850 | 342.000 | 11,302 (-2,051) | +342 | bullish |
-| Class III milk | Nov 26 | 17.55 | -0.03 (-0.2%) | -0.5% | +1.2% | Neutral | 52 | 17.54 | 17.64 | -4,988 (-53) | +191 | bearish |
+| Class III milk | Nov 26 | 17.57 | -0.01 (-0.1%) | -0.3% | +1.3% | Neutral | 52 | 17.54 | 17.64 | -4,988 (-53) | +191 | bearish |
 | Class IV milk | Jan 27 | 18.97 | -0.53 (-2.7%) | -3.6% | -3.1% | Sell | 39 | 18.49 | 20.31 | 1,760 (+9) | +48 | mildly bullish |
 
 Board crush 1.955 $/bu (10-yr pct 82), oil share 49.2%. Soybean / corn price ratio 2.764. Chicago wheat − corn 147.75 ¢/bu. KC HRW − Chicago SRW 35.50 ¢/bu. Soybean oil / meal value 0.967.

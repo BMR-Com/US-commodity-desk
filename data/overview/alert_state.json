@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-16 13:58 UTC",
- "by": "claude",
+ "updated": "2026-11-16 23:02 UTC",
+ "by": "bot",
  "views": {
   "corn": {
    "view": "bearish",
@@ -13,24 +13,24 @@
    "score": 0.35
   },
   "meal": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": -0.02
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.15
   },
   "oil": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.15
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.21
   },
   "wheat": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.46
+   "score": -0.52
   },
   "kc": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.24
+   "score": -0.29
   },
   "cotton": {
    "view": "mildly bullish",
@@ -40,17 +40,17 @@
   "hogs": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.2
+   "score": -0.25
   },
   "cattle": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.06
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.12
   },
   "feeders": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.33
+   "score": 0.27
   },
   "class3": {
    "view": "bearish",
@@ -58,14 +58,14 @@
    "score": -0.32
   },
   "class4": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.24
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.11
   },
   "palm": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.36
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.48
   },
   "natgas": {
    "view": "bearish",
@@ -73,26 +73,24 @@
    "score": -0.41
   },
   "crude": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.28
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.17
   },
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.37
+   "score": 0.33
   },
   "rbob": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.17
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.23
   }
  },
  "alerts": {
   "corn": [],
-  "soybeans": [
-   "Holding below the fund sell trigger (250-day momentum flip) 1,229.88"
-  ],
+  "soybeans": [],
   "meal": [],
   "oil": [],
   "wheat": [],
@@ -106,7 +104,9 @@
   "palm": [],
   "natgas": [],
   "crude": [],
-  "ulsd": [],
+  "ulsd": [
+   "Broke below the fund sell trigger (100-day average) 4.0666"
+  ],
   "rbob": []
  },
  "news": [

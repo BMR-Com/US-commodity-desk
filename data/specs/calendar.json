@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-15",
+"generated": "2026-11-16",
 "explain": {
 "fpd": "First position day: the first day a short can declare intent to deliver (CBOT). Longs still holding can be assigned delivery after it.",
 "fnd": "First notice day: the first day delivery notices can be issued to long holders.",
@@ -1405,18 +1405,18 @@
 }
 },
 "LE": {
-"checked": 70,
-"exact": 70,
+"checked": 71,
+"exact": 71,
 "offsets_business_days": {
-"0": 70
+"0": 71
 }
 },
 "GF": {
-"checked": 94,
+"checked": 95,
 "exact": 55,
 "offsets_business_days": {
 "0": 55,
-"1": 39
+"1": 40
 }
 },
 "HE": {
@@ -1429,98 +1429,107 @@
 }
 },
 "DC": {
-"checked": 141,
+"checked": 142,
 "exact": 19,
 "offsets_business_days": {
 "-4": 4,
 "-2": 2,
 "-1": 1,
 "0": 19,
-"1": 115
+"1": 116
 }
 },
 "GDK": {
-"checked": 141,
+"checked": 142,
 "exact": 24,
 "offsets_business_days": {
 "-4": 4,
 "-2": 2,
 "-1": 1,
 "0": 24,
-"1": 110
+"1": 111
 }
 },
 "CSC": {
-"checked": 141,
+"checked": 142,
 "exact": 24,
 "offsets_business_days": {
 "-4": 4,
 "-2": 2,
 "-1": 1,
 "0": 24,
-"1": 110
+"1": 111
 }
 },
 "CB": {
-"checked": 141,
+"checked": 142,
 "exact": 24,
 "offsets_business_days": {
 "-4": 4,
 "-2": 2,
 "-1": 1,
 "0": 24,
-"1": 110
+"1": 111
 }
 },
 "GNF": {
-"checked": 141,
+"checked": 142,
 "exact": 24,
 "offsets_business_days": {
 "-4": 4,
 "-2": 2,
 "-1": 1,
 "0": 24,
-"1": 110
+"1": 111
 }
 },
 "DY": {
-"checked": 141,
+"checked": 142,
 "exact": 27,
 "offsets_business_days": {
 "-4": 4,
 "-2": 2,
 "-1": 1,
 "0": 27,
-"1": 107
+"1": 108
 }
 },
 "CL": {
-"checked": 142,
-"exact": 142,
+"checked": 143,
+"exact": 143,
 "offsets_business_days": {
-"0": 142
+"0": 143
 }
 },
 "NG": {
-"checked": 142,
-"exact": 141,
+"checked": 143,
+"exact": 142,
 "offsets_business_days": {
-"0": 141,
+"0": 142,
 "1": 1
 }
 },
 "HO": {
-"checked": 142,
-"exact": 142,
+"checked": 143,
+"exact": 143,
 "offsets_business_days": {
-"0": 142
+"0": 143
 }
 },
 "RB": {
-"checked": 142,
-"exact": 142,
+"checked": 143,
+"exact": 143,
 "offsets_business_days": {
-"0": 142
+"0": 143
+}
+},
+"FCPO": {
+"checked": 142,
+"exact": 132,
+"offsets_business_days": {
+"-2": 2,
+"-1": 8,
+"0": 132
 }
 }
 },

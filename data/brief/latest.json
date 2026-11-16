@@ -1,13 +1,12 @@
 {
- "generated": "2026-11-16 12:54 UTC",
- "generated_et": "Mon Nov 16, 2026 07:54 AM ET",
+ "generated": "2026-11-16 16:21 UTC",
+ "generated_et": "Mon Nov 16, 2026 11:21 AM ET",
  "date": "2026-11-16",
- "prices_from": "2026-11-16 12:54 UTC",
+ "prices_from": "2026-11-16 16:21 UTC",
  "cme_oi_date": "20261113",
  "headlines": [
   "Biggest moves vs prior settle: Cotton -1.38 (-1.8%); Class IV milk -0.23 (-1.2%); Feeder cattle +3.675 (+1.1%).",
   "Today: USDA export inspections 11:00 AM ET.",
-  "1 flash export sale announcement(s) in the last 3 days, latest: Private exporters reported sales activity to China, Mexico, Vietnam, and Unknown Destinations.",
   "Through a trend-follower trigger: Soybeans below 1,229.88.",
   "Macro releases today: Fed Chairman Warsh Speaks 12:00 PM ET.",
   "Macro backdrop for ags: headwind (-5)."
@@ -139,13 +138,7 @@
    "time_et": "1:00 PM ET"
   }
  ],
- "flash": [
-  {
-   "t": "2026-11-13T08:10:16-05:00",
-   "title": "Export Sales to China, Mexico, Vietnam, and Unknown Destinations",
-   "text": "Private exporters reported sales activity to China, Mexico, Vietnam, and Unknown Destinations."
-  }
- ],
+ "flash": [],
  "markets": [
   {
    "sym": "ZC",
@@ -192,7 +185,7 @@
     },
     {
      "tilt": "neutral",
-     "text": "Weather watch: Sorriso, Mato Grosso; Central Iowa"
+     "text": "Weather watch: Pergamino, N Buenos Aires; Sorriso, Mato Grosso"
     }
    ],
    "event": "USDA WASDE",
@@ -254,7 +247,7 @@
     },
     {
      "tilt": "neutral",
-     "text": "Weather watch: Sorriso, Mato Grosso; Central Iowa"
+     "text": "Weather watch: Pergamino, N Buenos Aires; Sorriso, Mato Grosso"
     }
    ],
    "event": "USDA WASDE",
@@ -266,6 +259,12 @@
     "report": "PRELIMINARY"
    },
    "news": [
+    {
+     "title": "Soybeans Traded Both Sides of Unchanged",
+     "source": "ADMIS",
+     "time": "2026-11-16T15:03Z",
+     "link": "https://www.admis.com/soybeans-traded-both-sides-of-unchanged/"
+    },
     {
      "title": "How Brazil Plans to Accelerate the Global Shift Away From Fossil Fuels",
      "source": "Crude Oil Prices Today | OilPrice.com",
@@ -388,7 +387,14 @@
     "vol": 200875,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Chevron to restart Iowa biodiesel plant as demand surges",
+     "source": "Farm Progress",
+     "time": "2026-11-16T13:33Z",
+     "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPVzc4ZDBuSFpxaEVrWlU2VzJveDYxSUZ3emVINXJfNEpvMFRTM3YyaWQ1NkhXZTZBOW8yNEVVY1FELTYyQzRha0VobmFXR2ViRDRiUGhyNFVZS0NwUjZYbE5PSFh3NlBoV3RkVG9GUUtsNTlCMG5nV0FpZ3d4SmYtdmVfTUZ3MDZRMkRab25oTDZpWG54Z2x0SmVzX2VrSGc?oc=5"
+    }
+   ]
   },
   {
    "sym": "ZW",
@@ -432,10 +438,6 @@
     {
      "tilt": "neutral",
      "text": "Realized vol low (18%, 13th pct): cheap to own optionality into catalysts"
-    },
-    {
-     "tilt": "neutral",
-     "text": "Weather watch: Bah\u00eda Blanca, S Buenos Aires"
     }
    ],
    "event": "USDA WASDE",
@@ -448,9 +450,15 @@
    },
    "news": [
     {
+     "title": "Bulgaria rescues crew from capsized wheat ship in Black Sea, transport ministry says",
+     "source": "Reuters",
+     "time": "2026-11-16T14:03Z",
+     "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUUs2NE56Z2hUTXR1OHUtM3RLaUFRdkYzeS1IdkZaV1BfbkM2N29XamhOa2lhUkM2TUxNTkdNY0JyQWQ1LVJ1SlhnbEZHZ1RxSjZOeGp3WXljM0xkd3VyekJHUldSYmd2YlY3NUJjWHpFUkRDc3ZrRXpwN3hha1RrbFRVMjBMdHZVeVJVdzVUdWg4OThDWjJYSXFCUWdsclFLWHVCZFJTSnlEODg?oc=5"
+    },
+    {
      "title": "Wheat Falls on Optimism Trilateral Talks Will Free Up Black Sea",
-     "source": "Bloomberg.com",
-     "time": "2026-11-16T04:11Z",
+     "source": "Bloomberg",
+     "time": "2026-11-16T13:00Z",
      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPelFYbGZob1hJMXFjS2pkSk5namd5YW5WX3ZxcXk0MWJGZFd3WmJOVWRVM1FDMGdFZ29obzhuQm9QYXViaVM3Z1JSak45aE5Fd21fZ2RmXzJyVmNPNmpCbTEzV0x1Q0dCS1J3cEpyNkdkcmplczZjd2J2NS1Xbll3Y3lGNDVuVk9CVjFBU3dVZnJoRkRwd0M3cFMzeVYteEozcmlscjVtSV9iMmF6cjh1aUZ5dDU?oc=5"
     }
    ]
@@ -501,10 +509,6 @@
     {
      "tilt": "neutral",
      "text": "Realized vol low (16%, 3th pct): cheap to own optionality into catalysts"
-    },
-    {
-     "tilt": "neutral",
-     "text": "Weather watch: Bah\u00eda Blanca, S Buenos Aires"
     }
    ],
    "event": "USDA WASDE",
@@ -517,9 +521,15 @@
    },
    "news": [
     {
+     "title": "Bulgaria rescues crew from capsized wheat ship in Black Sea, transport ministry says",
+     "source": "Reuters",
+     "time": "2026-11-16T14:03Z",
+     "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUUs2NE56Z2hUTXR1OHUtM3RLaUFRdkYzeS1IdkZaV1BfbkM2N29XamhOa2lhUkM2TUxNTkdNY0JyQWQ1LVJ1SlhnbEZHZ1RxSjZOeGp3WXljM0xkd3VyekJHUldSYmd2YlY3NUJjWHpFUkRDc3ZrRXpwN3hha1RrbFRVMjBMdHZVeVJVdzVUdWg4OThDWjJYSXFCUWdsclFLWHVCZFJTSnlEODg?oc=5"
+    },
+    {
      "title": "Wheat Falls on Optimism Trilateral Talks Will Free Up Black Sea",
-     "source": "Bloomberg.com",
-     "time": "2026-11-16T04:11Z",
+     "source": "Bloomberg",
+     "time": "2026-11-16T13:00Z",
      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPelFYbGZob1hJMXFjS2pkSk5namd5YW5WX3ZxcXk0MWJGZFd3WmJOVWRVM1FDMGdFZ29obzhuQm9QYXViaVM3Z1JSak45aE5Fd21fZ2RmXzJyVmNPNmpCbTEzV0x1Q0dCS1J3cEpyNkdkcmplczZjd2J2NS1Xbll3Y3lGNDVuVk9CVjFBU3dVZnJoRkRwd0M3cFMzeVYteEozcmlscjVtSV9iMmF6cjh1aUZ5dDU?oc=5"
     }
    ]
@@ -558,7 +568,7 @@
    "esr_proj": 12.5437,
    "esr_usda": 12.3,
    "esr_unit": "m bales",
-   "view": "mildly bullish",
+   "view": "neutral",
    "conviction": "low",
    "technical": "Dec 26 trades at 77.40 \u00a2/lb (-1.8% on the week, -3.2% on the month), in a mixed trend: the daily rating is strong sell and the weekly sell. RSI is 37 and ADX 10 (range-bound). Nearest support 77.05, resistance 79.90; 52-week range 66.86\u201393.74.",
    "levels": "Levels to watch: a close above 78.90 (200-day average) would bring trend-follower buying; below 75.50 (100-day breakout low) adds selling; the 77.05\u201379.90 band is the immediate range. Next catalysts: USDA weekly export sales Nov 19; USDA weekly export sales Nov 27; USDA weekly export sales Dec 3.",
@@ -569,13 +579,19 @@
     },
     {
      "tilt": "neutral",
-     "text": "Weather watch: Sorriso, Mato Grosso; Lubbock, West Texas (cotton)"
+     "text": "Weather watch: Sorriso, Mato Grosso; Greenwood, Mississippi Delta (cotton)"
     }
    ],
    "event": "USDA WASDE",
    "event_date": "2026-12-10",
    "oi": null,
    "news": [
+    {
+     "title": "Candid about cotton: What 2026 taught, what 2027 demands",
+     "source": "Farm Progress",
+     "time": "2026-11-16T14:01Z",
+     "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQQVlibHFiNXQ3TDZYQmtyQlVhT2dPWXVDZjU3NFFsY1V4VEpMUE1yQVFxN1ZjbFJGX2liX0xwTEU3SHA0SDlHcVpRUmtsRXFXWHQ5am9xcVJfdkpqQ040aHRVWFFzWUVvSDk4T2c3amVSZ0hVMWhjb1ZWb1FyQ1JGY01sazR1MUlwTTd6RXF3WWpaV20x?oc=5"
+    },
     {
      "title": "Breakthrough cotton yields with higher ROI",
      "source": "Farm Progress",
@@ -646,6 +662,12 @@
    },
    "news": [
     {
+     "title": "Hogs Active as Open Interest is Large",
+     "source": "ADMIS",
+     "time": "2026-11-16T14:37Z",
+     "link": "https://www.admis.com/hogs-active-as-open-interest-is-large/"
+    },
+    {
      "title": "Europe\u2019s Top Pork Producer Ousts CEO Amid Slump, Restructuring",
      "source": "Bloomberg.com",
      "time": "2026-11-16T09:12Z",
@@ -700,7 +722,14 @@
     "vol": 69732,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Tyson Foods Guides for Sales Decline as Beef Business Remains Under Pressure",
+     "source": "WSJ",
+     "time": "2026-11-16T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQcFJ3Z2pBZjJvTG54TnFFeGZBWC1nTngteFhwa2ptZWJoa2N5TTJ5VWR6RkRJY25Sc18wSmFwbXdLMnBJLWZYRTRZcmlfWXRIRFkyRkNXOTZCdENsSE1RTl9sdGhjMW1GY3lLa0oxNUlBX2VjQzE5TlFtb0pqZEpubl9Ba3l5emN3S1FmWHR0Vk1wV2JsLUt1cWtmVEZ4NUtzZU50azZ2alBNZ1VBUEc4Nmw2Ukdidnd5ejJQbVdIc20?oc=5"
+    }
+   ]
   },
   {
    "sym": "GF",
@@ -749,7 +778,14 @@
     "vol": 21938,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Tyson Foods Guides for Sales Decline as Beef Business Remains Under Pressure",
+     "source": "WSJ",
+     "time": "2026-11-16T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQcFJ3Z2pBZjJvTG54TnFFeGZBWC1nTngteFhwa2ptZWJoa2N5TTJ5VWR6RkRJY25Sc18wSmFwbXdLMnBJLWZYRTRZcmlfWXRIRFkyRkNXOTZCdENsSE1RTl9sdGhjMW1GY3lLa0oxNUlBX2VjQzE5TlFtb0pqZEpubl9Ba3l5emN3S1FmWHR0Vk1wV2JsLUt1cWtmVEZ4NUtzZU50azZ2alBNZ1VBUEc4Nmw2Ukdidnd5ejJQbVdIc20?oc=5"
+    }
+   ]
   },
   {
    "sym": "DC",
@@ -966,37 +1002,37 @@
  "macro": {
   "view": "headwind",
   "score": -5,
-  "summary": "Macro backdrop for ags: headwind (score -5 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl \u2212; risk 0; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +3.5%; weakest: Sugar #11 -12.5%. Key releases ahead: US Fed Chairman Warsh Speaks (11-16 12:00 PM ET); US Core Retail Sales m/m (11-17 8:30 AM ET); US Retail Sales m/m (11-17 8:30 AM ET); US FOMC Meeting Minutes (11-18 2:00 PM ET).",
+  "summary": "Macro backdrop for ags: headwind (score -5 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl \u2212; risk 0; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +3.0%; weakest: Sugar #11 -12.6%. Key releases ahead: US Fed Chairman Warsh Speaks (11-16 12:00 PM ET); US Core Retail Sales m/m (11-17 8:30 AM ET); US Retail Sales m/m (11-17 8:30 AM ET); US FOMC Meeting Minutes (11-18 2:00 PM ET).",
   "sections": [
    {
     "title": "Rates",
     "score": 0,
-    "text": "US 10-year 5.15% (-4 bp in a month), 2-year 4.88% (+6 bp); 2s10s curve +27 bp (-10 bp in a month). Yields are little changed on the month. T-bill yield 4.12% sets the cost of carrying inventory."
+    "text": "US 10-year 5.15% (-4 bp in a month), 2-year 4.88% (+6 bp); 2s10s curve +27 bp (-10 bp in a month). Yields are little changed on the month. T-bill yield 4.13% sets the cost of carrying inventory."
    },
    {
     "title": "Dollar & farm currencies",
     "score": -2,
-    "text": "Dollar index 103.48 (+1.6% in a month, +5.3% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.686 (+11.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.655 (-0.5%); USD/MXN 18.57 (+0.7%)."
+    "text": "Dollar index 103.55 (+1.7% in a month, +5.4% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.767 (+13.2% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.664 (-0.4%); USD/MXN 18.58 (+0.7%)."
    },
    {
     "title": "Risk appetite",
     "score": 0,
-    "text": "S&P 500 -2.0% in a month (+10.5% YTD); VIX 20.7. Neutral risk backdrop. "
+    "text": "S&P 500 -2.3% in a month (+9.3% YTD); VIX 20.8. Neutral risk backdrop. "
    },
    {
     "title": "Energy",
     "score": -1,
-    "text": "WTI 87.88 $/bbl (-11.3% in a month), Brent 94.89, ULSD 4.210 $/gal (-10.9%), natural gas 3.16 (-6.6%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+    "text": "WTI 86.82 $/bbl (-12.3% in a month), Brent 93.67, ULSD 4.185 $/gal (-11.4%), natural gas 3.14 (-7.4%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -8.2% in a month, Shanghai Composite -3.1%, Hang Seng -1.8%, yuan +0.5% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -7.8% in a month, Shanghai Composite -3.1%, Hang Seng -1.8%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": -1,
-    "text": "8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -9.6% in a month; gold -7.4%. "
+    "text": "8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -10.0% in a month; gold -7.6%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1004,107 +1040,107 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7538.5,
-   "d1": -0.5868389819332687,
-   "m1": -2.1514099360742445,
+   "last": 7511.75,
+   "d1": -0.9396017407358515,
+   "m1": -2.4986208910666163,
    "kind": "price",
-   "time": "2026-11-16 12:42 UTC"
+   "time": "2026-11-16 15:58 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 7561.67,
-   "d1": -0.40474557108436393,
-   "m1": -2.0374551764888893,
+   "last": 7483.95,
+   "d1": -1.027814261637705,
+   "m1": -2.2911589195649618,
    "kind": "price",
-   "time": "2026-11-13 21:43 UTC"
+   "time": "2026-11-16 16:08 UTC"
   },
   {
    "name": "VIX",
-   "last": 20.73,
-   "d1": 7.409330670819481,
-   "m1": 3.7018521128299398,
+   "last": 20.81,
+   "d1": 7.823838459225918,
+   "m1": 4.10205221746216,
    "kind": "price",
-   "time": "2026-11-16 12:37 UTC"
+   "time": "2026-11-16 15:53 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 5.154,
-   "d1": 5.099983596801749,
-   "m1": -3.600005722045907,
+   "last": 5.1330004,
+   "d1": -2.0999405450439212,
+   "m1": 3.5000350408935788,
    "kind": "yield",
-   "time": "2026-11-13 19:59 UTC"
+   "time": "2026-11-16 15:53 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 103.485,
-   "d1": 0.07252329101126165,
-   "m1": 1.6152825228424872,
+   "last": 103.547,
+   "d1": 0.13247880576259252,
+   "m1": 1.6761623365006528,
    "kind": "price",
-   "time": "2026-11-16 12:42 UTC"
+   "time": "2026-11-16 15:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.1013,
-   "d1": -0.33675717696252105,
-   "m1": -1.7849684949607592,
+   "last": 1.1012,
+   "d1": -0.34580677678300864,
+   "m1": -1.7938865946161675,
    "kind": "price",
-   "time": "2026-11-16 12:51 UTC"
+   "time": "2026-11-16 16:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.6857,
-   "d1": 0.7977757664058283,
-   "m1": 11.55868496385548,
+   "last": 5.7672,
+   "d1": 2.242631936263906,
+   "m1": 13.15779023225765,
    "kind": "price",
-   "time": "2026-11-16 12:52 UTC"
+   "time": "2026-11-16 16:08 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6554,
-   "d1": -0.22487620455815538,
-   "m1": -0.530569127314362,
+   "last": 6.6637,
+   "d1": -0.10044588819818623,
+   "m1": -0.40652004292524024,
    "kind": "price",
-   "time": "2026-11-16 12:52 UTC"
+   "time": "2026-11-16 16:05 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 87.88,
-   "d1": -0.7678382761289626,
-   "m1": -11.250249465491635,
+   "last": 86.82,
+   "d1": -1.9647669450786998,
+   "m1": -12.320740311720346,
    "kind": "price",
-   "time": "2026-11-16 12:41 UTC"
+   "time": "2026-11-16 15:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 3.163,
-   "d1": -2.0743039838341915,
-   "m1": -6.585939851905875,
+   "last": 3.137,
+   "d1": -2.8792575394523734,
+   "m1": -7.3538075609954845,
    "kind": "price",
-   "time": "2026-11-16 12:41 UTC"
+   "time": "2026-11-16 15:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3871.6,
-   "d1": -0.37825305929627406,
-   "m1": -7.402360393852869,
+   "last": 3865.0,
+   "d1": -0.5480803993646255,
+   "m1": -7.560213586693187,
    "kind": "price",
-   "time": "2026-11-16 12:41 UTC"
+   "time": "2026-11-16 15:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 6.0375,
-   "d1": -0.8702057136844354,
-   "m1": -8.153953657101908,
+   "last": 6.0575,
+   "d1": -0.5418254427566715,
+   "m1": -7.849701743750681,
    "kind": "price",
-   "time": "2026-11-16 12:41 UTC"
+   "time": "2026-11-16 15:57 UTC"
   },
   {
    "name": "S&P GSCI",
-   "last": 680.076,
-   "d1": -0.9689369414464855,
-   "m1": -9.569169210406947,
+   "last": 677.1064,
+   "d1": -1.4013630891986262,
+   "m1": -9.964041835102977,
    "kind": "price",
-   "time": "2026-11-16 12:52 UTC"
+   "time": "2026-11-16 16:08 UTC"
   }
  ],
  "econ": [
@@ -1406,8 +1442,8 @@
   }
  },
  "track": {
-  "line": "Track record: 276 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
+  "line": "Track record: 288 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-11-16 02:17 UTC"
+  "generated": "2026-11-16 12:54 UTC"
  }
 }

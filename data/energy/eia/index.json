@@ -37,16 +37,16 @@
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SSO_R33_BCF",
 "how": "id found",
-"rows": 879,
-"last": "2026-10-30"
+"rows": 880,
+"last": "2026-11-06"
 },
 "storScNon": {
 "label": "Gas \u2014 South Central non-salt",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SNO_R33_BCF",
 "how": "id found",
-"rows": 879,
-"last": "2026-10-30"
+"rows": 880,
+"last": "2026-11-06"
 },
 "storMtn": {
 "label": "Gas \u2014 Mountain region",
@@ -465,5 +465,5 @@
 "last": "2026-11-06"
 }
 },
-"generated": "2026-11-14 03:07 UTC"
+"generated": "2026-11-16 23:41 UTC"
 }

@@ -1,6 +1,6 @@
-# Morning brief · Tue Nov 17, 2026 03:04 PM ET
+# Morning brief · Tue Nov 17, 2026 05:01 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-17 20:04 UTC). CME open interest from 20261116. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-17 22:01 UTC). CME open interest from 20261116. Research only, not investment advice.
 
 ## Key points
 
@@ -49,14 +49,14 @@ Growth: real GDP 3.4% annualized in 2026-Q3, consumer spending 3.8%. Policy: fed
 
 Macro backdrop for ags: headwind (score -6 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar −; brl −; risk −; energy −; china −; breadth −. Strongest ag/soft over the month: Rough rice +4.0%; weakest: Lean hogs -15.8%. Key releases ahead: US Core Retail Sales m/m (11-17 8:30 AM ET); US Retail Sales m/m (11-17 8:30 AM ET); US FOMC Meeting Minutes (11-18 2:00 PM ET).
 
-- **Rates**: US 10-year 5.12% (+3 bp in a month), 2-year 4.83% (+9 bp); 2s10s curve +29 bp (-6 bp in a month). Yields are little changed on the month. T-bill yield 4.14% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 103.47 (+1.6% in a month, +5.3% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.784 (+13.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.666 (-0.4%); USD/MXN 18.43 (-0.1%).
-- **Risk appetite**: S&P 500 -4.7% in a month (+6.6% YTD); VIX 26.3. Risk-off: funds tend to cut commodity length along with equities. 
-- **Energy**: WTI 85.49 $/bbl (-13.7% in a month), Brent 92.65, ULSD 4.050 $/gal (-14.3%), natural gas 3.19 (-5.9%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
-- **China & industrial demand**: Copper -9.0% in a month, Shanghai Composite -3.5%, Hang Seng -2.8%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. 
+- **Rates**: US 10-year 5.10% (+1 bp in a month), 2-year 4.80% (+6 bp); 2s10s curve +30 bp (-5 bp in a month). Yields are little changed on the month. T-bill yield 4.14% sets the cost of carrying inventory.
+- **Dollar & farm currencies**: Dollar index 103.50 (+1.6% in a month, +5.3% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.777 (+13.3% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.666 (-0.4%); USD/MXN 18.43 (-0.1%).
+- **Risk appetite**: S&P 500 -4.2% in a month (+7.2% YTD); VIX 26.2. Risk-off: funds tend to cut commodity length along with equities. 
+- **Energy**: WTI 85.72 $/bbl (-13.4% in a month), Brent 92.87, ULSD 4.051 $/gal (-14.2%), natural gas 3.19 (-5.8%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
+- **China & industrial demand**: Copper -9.2% in a month, Shanghai Composite -3.5%, Hang Seng -2.8%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. 
 - **Commodity breadth**: 7 of 33 commodities trade above their 50-day average (21%); S&P GSCI -10.9% in a month; gold -7.9%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,337.250 (-1.37% d/d); S&P 500 7,300.200 (-1.57% d/d); VIX 26.280 (+14.71% d/d); US 10-year 5.099 (-2 bp d/d); US dollar index 103.470 (-0.08% d/d); EUR/USD 1.101 (-0.12% d/d); USD/BRL 5.784 (+2.11% d/d); USD/CNY 6.666 (-0.08% d/d); WTI crude 85.490 (-0.27% d/d); Natural gas 3.185 (+2.02% d/d); Gold 3,851.200 (-0.05% d/d); Copper 5.980 (-0.46% d/d); S&P GSCI 670.107 (-0.29% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,348.250 (-1.22% d/d); S&P 500 7,340.530 (-1.03% d/d); VIX 26.200 (+14.36% d/d); US 10-year 5.103 (-2 bp d/d); US dollar index 103.503 (-0.05% d/d); EUR/USD 1.101 (-0.15% d/d); USD/BRL 5.777 (+1.97% d/d); USD/CNY 6.666 (-0.08% d/d); WTI crude 85.720 (-0.00% d/d); Natural gas 3.188 (+2.11% d/d); Gold 3,849.800 (-0.08% d/d); Copper 5.972 (-0.59% d/d); S&P GSCI 670.272 (-0.26% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -142,15 +142,15 @@ Research signals: trend short 1.6x for 40% vol (12m excess -32%); carry -57.7%/y
 
 **Live cattle** (Dec 26, neutral). Dec 26 trades at 218.700 ¢/lb (-0.2% on the week, -4.1% on the month), in a down trend: the daily rating is strong sell and the weekly sell. RSI is 43 and ADX 22 (weak trend). Nearest support 216.425, resistance 219.725; 52-week range 197.050–245.900. Levels to watch: a close above 222.720 (50-day average) would bring trend-follower buying; below 214.615 (60-day momentum flip) adds selling; the 216.425–219.725 band is the immediate range. Next catalysts: USDA weekly export sales Nov 19; USDA weekly export sales Nov 27; USDA weekly export sales Dec 3.
 Research signals: trend long 2.6x for 40% vol (12m excess +3%); carry -10.7%/yr (52nd percentile for the month); IV-RV -0.3. Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Fat left tail: options price a 7% drop 2.1x as likely as a lognormal at ATM vol.
+- [From Pasture to Feedbunk: Cargill Puts Cattle Performance First in 2026 Impact Report](https://news.google.com/rss/articles/CBMisAFBVV95cUxQcVJkME50SWREbXJadHpfaHRUUEV4aVo3Tk40TmFtRV9UcXloU2FjOFJYVUE1MjBHN2xoaDFZX3BoTUZFc3Z5RjdqRG5kLXhRVnlLMHRoVDFuOHEyVVdSalNkQzJSU0Y4WVpseFVVVVA4b050dFFkSWp2ZTZoWGFVaVdhbkZULWExZFhXSzFqS1hkdHdBS1oxcGFWWGYwNmJLbDFlcGRLUDJnWkN2bmVlUg?oc=5) · Drovers Magazine
+- [Cattle were lower Tuesday | Closing Market Minute](https://news.google.com/rss/articles/CBMijAFBVV95cUxPQjVrTUFadmJrOXlHWG5hQ0w1YlFKZVRBcUVEamlYeWVFbjUwdDF0SXNiOC1ycWl1QjVhOXFTeG1fR25SSDhzVVlFT0VsdDF4MEZuQk0xR2VKUkdlTUx6Ti0wM08wUGxkQmtUZ2d5Qk5zUnF2THNYMUNGUWREZjNDYklhUTBFSk8wVUx2Qw?oc=5) · Brownfield Ag News
 - [Profit Tracker: Beef Packer Margins Rebound as Feedlot Losses Eclipse $500 per Head](https://news.google.com/rss/articles/CBMivgFBVV95cUxNSERMQUtta3pNblRJODBGU2tXakgxUmhaNzZYLWZXQmIwR09GeFZ5bkNkOERTenZ1U1p2bkttWE4yQnY1Q3M4cXdteFhWcV9pQ3REa1prakY4Vjl0SFJJd1ZDSEdfc05IMURKUkZZaVQtMnJUdEprVTB1NVdtUHl2RDRBMElpU0ZBNzlxUjkxbXhxb0R4VF9UNTB0MGRLRFR3d2NzN2RTT2JPLVNoeUxseDljR01aVXQ4TGJsYmx3?oc=5) · Drovers Magazine
-- [With Harvest Almost Over, FC Demand Should Increase](https://www.admis.com/with-harvest-almost-over-fc-demand-should-increase/) · ADMIS
-- [Tyson boosts beef capacity in Texas with Allied Beef deal](https://news.google.com/rss/articles/CBMioAFBVV95cUxOOVhYenYxWlhKNHJDRHozb3M2QkQzRW9lT1A4MnFIWmFvRWZmUnVXT0JHb2ZjN1VfZi1qZjhHMm4wcktHRE16WlZxa21qVHBmdjZiWGF4OGJtbXNfdlhmWVpMUDhoLXVud0g4bnN1OVNBa0lkRXMwbkFuRmpFNFZvdnpRREFLOGF1Z1ItV3duMTFNVUhmZmk1TXYxTUNPcllJ?oc=5) · Farm Progress
 
 **Feeder cattle** (Jan 27, neutral). Jan 27 trades at 327.900 ¢/lb (+0.4% on the week, -3.5% on the month), in a down trend: the daily rating is sell and the weekly neutral. RSI is 46 and ADX 20 (range-bound). Nearest support 325.000, resistance 342.000; 52-week range 282.600–366.425. Levels to watch: a close above 334.909 (200-day average) would bring trend-follower buying; below 332.053 (120-day momentum flip) adds selling; the 325.000–342.000 band is the immediate range. Next catalysts: Feeder cattle Nov 26: last trading day (settles to CME Feeder Index) Nov 19; Feeder cattle Jan 27: last trading day (settles to CME Feeder Index) Jan 28.
 Research signals: trend long 2.3x for 40% vol (12m excess +13%); carry +6.5%/yr (74th percentile for the month); IV-RV -1.7. Choppy: 3-month variance ratio 0.75 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Fat left tail: options price a 16% drop 2.1x as likely as a lognormal at ATM vol.
+- [From Pasture to Feedbunk: Cargill Puts Cattle Performance First in 2026 Impact Report](https://news.google.com/rss/articles/CBMisAFBVV95cUxQcVJkME50SWREbXJadHpfaHRUUEV4aVo3Tk40TmFtRV9UcXloU2FjOFJYVUE1MjBHN2xoaDFZX3BoTUZFc3Z5RjdqRG5kLXhRVnlLMHRoVDFuOHEyVVdSalNkQzJSU0Y4WVpseFVVVVA4b050dFFkSWp2ZTZoWGFVaVdhbkZULWExZFhXSzFqS1hkdHdBS1oxcGFWWGYwNmJLbDFlcGRLUDJnWkN2bmVlUg?oc=5) · Drovers Magazine
+- [Cattle were lower Tuesday | Closing Market Minute](https://news.google.com/rss/articles/CBMijAFBVV95cUxPQjVrTUFadmJrOXlHWG5hQ0w1YlFKZVRBcUVEamlYeWVFbjUwdDF0SXNiOC1ycWl1QjVhOXFTeG1fR25SSDhzVVlFT0VsdDF4MEZuQk0xR2VKUkdlTUx6Ti0wM08wUGxkQmtUZ2d5Qk5zUnF2THNYMUNGUWREZjNDYklhUTBFSk8wVUx2Qw?oc=5) · Brownfield Ag News
 - [Profit Tracker: Beef Packer Margins Rebound as Feedlot Losses Eclipse $500 per Head](https://news.google.com/rss/articles/CBMivgFBVV95cUxNSERMQUtta3pNblRJODBGU2tXakgxUmhaNzZYLWZXQmIwR09GeFZ5bkNkOERTenZ1U1p2bkttWE4yQnY1Q3M4cXdteFhWcV9pQ3REa1prakY4Vjl0SFJJd1ZDSEdfc05IMURKUkZZaVQtMnJUdEprVTB1NVdtUHl2RDRBMElpU0ZBNzlxUjkxbXhxb0R4VF9UNTB0MGRLRFR3d2NzN2RTT2JPLVNoeUxseDljR01aVXQ4TGJsYmx3?oc=5) · Drovers Magazine
-- [With Harvest Almost Over, FC Demand Should Increase](https://www.admis.com/with-harvest-almost-over-fc-demand-should-increase/) · ADMIS
-- [Tyson boosts beef capacity in Texas with Allied Beef deal](https://news.google.com/rss/articles/CBMioAFBVV95cUxOOVhYenYxWlhKNHJDRHozb3M2QkQzRW9lT1A4MnFIWmFvRWZmUnVXT0JHb2ZjN1VfZi1qZjhHMm4wcktHRE16WlZxa21qVHBmdjZiWGF4OGJtbXNfdlhmWVpMUDhoLXVud0g4bnN1OVNBa0lkRXMwbkFuRmpFNFZvdnpRREFLOGF1Z1ItV3duMTFNVUhmZmk1TXYxTUNPcllJ?oc=5) · Farm Progress
 
 ### Dairy
 

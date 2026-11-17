@@ -1,11 +1,11 @@
 {
  "crop": "cotton",
  "crop_year": 2026,
- "built": "2026-11-14",
+ "built": "2026-11-17",
  "fsa_release": "2026-11-10",
  "inputs_through": {
   "fsa": "2026-11-10",
-  "crop_condition": "2026-11-08",
+  "crop_condition": "2026-11-15",
   "drought": "2026-11-10",
   "usda_month": 11
  },
@@ -371,46 +371,46 @@
   }
  ],
  "texas": {
-  "asof_monday": "2026-11-09",
+  "asof_monday": "2026-11-16",
   "abandonment_drought_ratings": {
-   "central": 0.51,
-   "lo95": 0.37,
-   "hi95": 0.649
+   "central": 0.512,
+   "lo95": 0.346,
+   "hi95": 0.677
   },
   "conditional_view": {
-   "ab": 0.4564,
-   "lo": 0.3397,
-   "hi": 0.5732,
-   "sd_pts": 0.051,
+   "ab": 0.4707,
+   "lo": 0.314,
+   "hi": 0.6274,
+   "sd_pts": 0.0684,
    "n": 12,
-   "ab_drought_ratings": 0.5098,
-   "ab_ratings_fsa": 0.4031
+   "ab_drought_ratings": 0.5119,
+   "ab_ratings_fsa": 0.4295
   },
   "conditional": {
    "tx_abandonment": {
-    "central": 0.456,
-    "lo95": 0.348,
-    "hi95": 0.594
+    "central": 0.471,
+    "lo95": 0.354,
+    "hi95": 0.654
    },
    "tx_harvested_acres": {
-    "central": 3.207,
-    "lo95": 2.398,
-    "hi95": 3.847
+    "central": 3.123,
+    "lo95": 2.044,
+    "hi95": 3.811
    },
    "tx_planted_acres": 5.9,
    "tx_yield": {
-    "central": 535,
-    "lo95": 447,
-    "hi95": 630
+    "central": 505,
+    "lo95": 414,
+    "hi95": 618
    },
    "texas": {
-    "central": 3.575,
-    "lo68": 2.612,
-    "hi68": 3.999,
-    "lo95": 2.374,
-    "hi95": 4.376,
-    "lo99": 2.264,
-    "hi99": 4.539
+    "central": 3.286,
+    "lo68": 2.302,
+    "hi68": 3.608,
+    "lo95": 2.084,
+    "hi95": 4.171,
+    "lo99": 1.971,
+    "hi99": 4.388
    },
    "analog": {
     "min": 0.415385,
@@ -444,41 +444,41 @@
    {
     "year": 2016,
     "fsa_fail_share": 0.0596,
-    "pvp": 19.0,
+    "pvp": 21.0,
     "d2": 0.1,
     "final_ab": 0.0796
    },
    {
     "year": 2017,
     "fsa_fail_share": 0.1442,
-    "pvp": 28.0,
+    "pvp": 8.0,
     "d2": 0.3,
     "final_ab": 0.2143
    },
    {
     "year": 2018,
     "fsa_fail_share": 0.2699,
-    "pvp": 46.0,
+    "pvp": 45.0,
     "d2": 43.0,
     "final_ab": 0.4581
    },
    {
     "year": 2019,
     "fsa_fail_share": 0.1182,
-    "pvp": 28.0,
+    "pvp": 32.0,
     "d2": 8.5,
     "final_ab": 0.2695
    },
    {
     "year": 2020,
     "fsa_fail_share": 0.3216,
-    "pvp": 50.0,
+    "pvp": 47.0,
     "d2": 29.6,
     "final_ab": 0.5368
    },
    {
     "year": 2021,
-    "fsa_fail_share": 0.0731,
+    "fsa_fail_share": 0.0779,
     "pvp": 5.0,
     "d2": 7.2,
     "final_ab": 0.126
@@ -493,7 +493,7 @@
    {
     "year": 2023,
     "fsa_fail_share": 0.205,
-    "pvp": 71.0,
+    "pvp": 66.0,
     "d2": 23.6,
     "final_ab": 0.6216
    },
@@ -513,7 +513,7 @@
    },
    {
     "year": 2026,
-    "fsa_fail_share": 0.0977,
+    "fsa_fail_share": 0.1465,
     "pvp": 52.0,
     "d2": 51.5,
     "final_ab": null

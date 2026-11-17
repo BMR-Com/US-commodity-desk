@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17 13:55 UTC",
+ "updated": "2026-11-17 17:44 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -63,9 +63,9 @@
    "score": 0.11
   },
   "palm": {
-   "view": "strongly bearish",
-   "shade": "bear3",
-   "score": -0.56
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.45
   },
   "natgas": {
    "view": "bearish",
@@ -89,7 +89,9 @@
   }
  },
  "alerts": {
-  "corn": [],
+  "corn": [
+   "Broke below S1 451.00"
+  ],
   "soybeans": [],
   "meal": [],
   "oil": [],
@@ -98,7 +100,9 @@
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [],
+  "feeders": [
+   "Broke below the fund sell trigger (120-day momentum flip) 332.053"
+  ],
   "class3": [],
   "class4": [],
   "palm": [],
@@ -122,6 +126,11 @@
   "2026-11-16 Cotton Dec settles 76.95, below 77.05 support",
   "2026-11-16 HPAI returns to Oklahoma dairy herds",
   "2026-11-17 Crude rebounds to ~87 on Middle East shipping risk; China restocking",
-  "2026-11-17 KC wheat view to mildly bearish; Chicago wheat +8 to ~595"
+  "2026-11-17 KC wheat view to mildly bearish; Chicago wheat +8 to ~595",
+  "2026-11-17 KC wheat Dec +17 to ~636 through 629.5/634.75; Chicago +10 to ~597.5",
+  "2026-11-17 Corn Dec ~450 back below 451 S1",
+  "2026-11-17 Feeders Jan -3.8 to ~329.3 below 332 momentum trigger; hogs Dec -1.4 near 53.18",
+  "2026-11-17 Iraq resumes Kirkuk-Turkey crude exports; WTI off 87.38 high",
+  "2026-11-17 Palm view to bearish from strongly bearish"
  ]
 }

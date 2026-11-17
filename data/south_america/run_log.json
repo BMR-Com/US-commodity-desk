@@ -1,13 +1,6 @@
 {
- "generated": "2026-11-16 23:32 UTC",
+ "generated": "2026-11-17 02:07 UTC",
  "conab": {
-  "history_rows": 257,
-  "products_seen": [
-   "MILHO",
-   "SOJA",
-   "TRIGO"
-  ],
-  "survey_rows": 515,
   "progress": "Acompanhamento das Lavouras - 09/11 a 15/11/26"
  },
  "psd": {
@@ -17,7 +10,7 @@
   "comex_rows": 852
  },
  "comex_by_country": {
-  "by_country_rows": 16665
+  "by_country": "skipped (weekly, Mondays)"
  },
  "magyp": {
   "magyp_file": "estimaciones-agricolas-2026-03.csv",

@@ -1,21 +1,6 @@
 {
-"generated": "2026-11-16 23:22 UTC",
+"generated": "2026-11-17 02:01 UTC",
 "events": [
-{
-"date": "2026-11-09",
-"time": "10:00 AM CT",
-"event": "USDA export inspections",
-"cat": "USDA",
-"markets": [
-"ZC",
-"ZS",
-"ZW",
-"KE"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-11-10",
 "time": "11:00 AM CT",
@@ -2766,6 +2751,18 @@
 "ALL"
 ],
 "importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-15",
+"time": "",
+"event": "US exchange holiday (CME ags closed)",
+"cat": "Holiday",
+"markets": [
+"ALL"
+],
+"importance": 2,
 "link": null,
 "estimated": false
 }

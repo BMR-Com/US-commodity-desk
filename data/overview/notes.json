@@ -4,203 +4,165 @@
   "markets": {
     "corn": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-13",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 1 up, 2 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Firm Mexican demand and a lagging harvest (88% done vs a faster average; Iowa 84% vs 95% normally) gave Dec corn a small gain to ~448.75 while the rest of the complex sold off. Inspections slipped on the week, so the export story is strong sales rather than shipments so far.",
       "events": [
-        "U.S. Corn, Soybean Export Inspections Slip (MarketWatch, 2026-11-16)",
-        "Ag Market View for Nov 13.2026 (ADMIS, 2026-11-13)",
-        "Ohio corn harvest reaches 80 percent complete, soybeans near the finish line (Brownfield Ag News, 2026-11-16)"
+        "Corn harvest 88% done, behind average; Iowa 84% vs 95% normal (USDA via Successful Farming, Brownfield)",
+        "Corn edges higher as soybeans and wheat fall on a strong dollar (AgWeb)",
+        "Corn and soybean export inspections slip (MarketWatch)"
       ]
     },
     "soybeans": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "6 headlines in the last 76 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 1 up, 1 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Record NOPA crush and faster-than-last-year inspections back demand, but beans eased to ~1229 as the dollar firmed and soyoil fell. The China tariff level is still the swing factor for export demand.",
       "events": [
-        "U.S. Corn, Soybean Export Inspections Slip (MarketWatch, 2026-11-16)",
-        "Soybeans Traded Both Sides of Unchanged (ADMIS, 2026-11-16)",
-        "Ohio corn harvest reaches 80 percent complete, soybeans near the finish line (Brownfield Ag News, 2026-11-16)"
+        "NOPA October crush a record (Barchart)",
+        "Soybean inspections running ahead of last year (Brownfield)",
+        "Trump–Xi summit puts the 10% China tariff in focus (AgroLatam)"
       ]
     },
     "meal": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-13",
-      "fundamental": "No new headlines for this market in the last 76 hours.",
+      "time": "18:20 CT",
+      "fundamental": "Meal gained (~332.4 Jan) as the record crush is being driven by oil-share weakness rather than meal demand; still, the crush-margin shift favours meal over oil short-term.",
       "events": [
-        "Soybean complex rallies on export sales (Barchart)",
-        "Dec meal ~330, at first resistance (desk quote)"
+        "Jan meal +4.6 to ~332.4 while soyoil falls (CBOT via TradingView)",
+        "Record NOPA crush (Barchart)"
       ]
     },
     "oil": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-13",
-      "fundamental": "2 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Soyoil fell ~2.5% with crude down 4%, which cuts biofuel margins. Chevron restarting an Iowa biodiesel plant on demand is a small offset.",
       "events": [
-        "Chevron to restart Iowa biodiesel plant as demand surges (Farm Progress, 2026-11-16)",
-        "John Deere Tests 100% Biodiesel on Midwest Freight Routes (AgWeb, 2026-11-13)"
+        "Jan soyoil -1.57 to ~62.48, tracking crude lower (CBOT via TradingView)",
+        "Chevron to restart an Iowa biodiesel plant (Farm Progress)",
+        "IEA sees a global oil surplus in Q4 (ADMIS)"
       ]
     },
     "wheat": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "4 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 2 up, 1 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Optimism that trilateral talks could free up Black Sea shipping took Dec Chicago down ~6 to 587, and winter wheat condition keeps improving. Both point to easier supply.",
       "events": [
-        "Bulgaria rescues crew from capsized wheat ship in Black Sea, transport ministry says (Reuters, 2026-11-16)",
-        "Wheat Falls on Optimism Trilateral Talks Will Free Up Black Sea (Bloomberg.com, 2026-11-16)",
-        "WPM Stock Price | Wheaton Precious Metals Corp. Stock Quote (U.S.: NYSE) (MarketWatch, 2026-11-14)"
+        "Wheat falls on hopes talks will free up Black Sea trade (Bloomberg)",
+        "US winter wheat conditions improve again (USDA via Farm Progress)",
+        "Bulgaria rescues crew from a capsized wheat ship in the Black Sea (Reuters)"
       ]
     },
     "kc": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "4 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 2 up, 1 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "HRW followed Chicago down (Dec ~619, -9.75): better winter wheat ratings in the Plains and the Black Sea peace trade both weigh.",
       "events": [
-        "Bulgaria rescues crew from capsized wheat ship in Black Sea, transport ministry says (Reuters, 2026-11-16)",
-        "Wheat Falls on Optimism Trilateral Talks Will Free Up Black Sea (Bloomberg.com, 2026-11-16)",
-        "WPM Stock Price | Wheaton Precious Metals Corp. Stock Quote (U.S.: NYSE) (MarketWatch, 2026-11-14)"
+        "Dec KC wheat -9.75 to ~619 (CBOT via TradingView)",
+        "Winter wheat conditions continue to improve (Farm Progress)"
       ]
     },
     "cotton": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "2 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Dec settled 76.95 on its low, through 77.05 support, on the dollar and broad commodity selling rather than new crop news. Old-crop Dec/Mar is where the risk is: funds remain long and certified stocks near delivery would not be benign for longs.",
       "events": [
-        "Candid about cotton: What 2026 taught, what 2027 demands (Farm Progress, 2026-11-16)",
-        "Breakthrough cotton yields with higher ROI (Farm Progress, 2026-11-15)"
+        "Dec cotton 76.95 (-1.83), Mar 80.88 (ICE via TradingView)",
+        "Broad risk-off: equities, metals and energy lower, dollar firm (Yahoo Finance)"
       ]
     },
     "hogs": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "4 headlines in the last 76 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 1 up, 1 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Hogs slipped (Feb ~60.7) despite better pork margins; winter PRRS pressure and large open interest keep the trade nervous near contract lows.",
       "events": [
-        "Europe’s Top Pork Producer Ousts CEO Amid Slump, Restructuring (Bloomberg.com, 2026-11-16)",
-        "Hogs Active as Open Interest is Large (ADMIS, 2026-11-16)",
-        "Minnesota Pork Producers see slim opportunity for Prop 12 action (Brownfield Ag News, 2026-11-16)"
+        "Lean hogs edge up from contract lows as pork margins improve, then fade Monday (The Pig Site, Barchart)",
+        "PRRS surge flagged for winter swine health (Pork Business)",
+        "Europe's top pork producer ousts CEO amid slump (Bloomberg)"
       ]
     },
     "cattle": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "The screwworm outbreak has widened, with infestations now reported past 100 across Texas, New Mexico and Arizona; that raises the odds of movement restrictions and a longer wait for Mexican feeder imports. Monday's cash was disappointing and futures corrected (Feb ~224.25), while Tyson flags its beef business still under pressure from tight supplies.",
       "events": [
-        "Tyson Foods shares climb on signs of improving US beef business (Reuters, 2026-11-16)",
-        "Tyson Foods Stock Surges After Earnings. Beef, Though, Remains a Problem. (Barron's, 2026-11-16)",
-        "Tyson Foods Guides for Sales Decline as Beef Business Remains Under Pressure (WSJ, 2026-11-16)"
+        "New World screwworm spreading quickly across southwestern states (Successful Farming, Drovers)",
+        "Cattle correct on disappointing fed cash (AgWeb)",
+        "Tyson guides lower sales as beef unit stays under pressure (WSJ, Reuters)"
       ]
     },
     "feeders": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-13",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Screwworm spread across the Southwest is the key new risk: it delays any reopening to Mexican feeders and could restrict movements within affected states. Futures eased (Jan ~333.1) with live cattle on a weak cash trade.",
       "events": [
-        "Tyson Foods shares climb on signs of improving US beef business (Reuters, 2026-11-16)",
-        "Tyson Foods Stock Surges After Earnings. Beef, Though, Remains a Problem. (Barron's, 2026-11-16)",
-        "Tyson Foods Guides for Sales Decline as Beef Business Remains Under Pressure (WSJ, 2026-11-16)"
+        "Screwworm infestations top 100 across TX, NM and AZ (Global Agriculture, Drovers)",
+        "Jan feeders -2.25 to ~333.1 (CME via TradingView)"
       ]
     },
     "class3": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "8 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (3 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "HPAI is back in Oklahoma dairy herds, a reminder that infections can cut local milk output, but more cheese and whey supply keeps pressure on Class III.",
       "events": [
-        "Global Food Prices Ease on Cheaper Grains, Dairy and Meat, UN Says (WSJ, 2026-11-14)",
-        "HPAI Returns to Oklahoma Dairy Herds After More Than Two Years (Dairy Herd, 2026-11-16)",
-        "Could Cover Crops Help Dairy Farms Reduce Alfalfa Costs? (Dairy Herd, 2026-11-16)"
+        "HPAI returns to Oklahoma dairy herds after two years (Dairy Herd)",
+        "More cheese and whey output weighs on milk prices (Farm Progress)",
+        "CME spot mixed, butter +2 cents (Brownfield)"
       ]
     },
     "class4": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "8 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (3 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Butter firmed on the spot market while NDM fell; HPAI in new herds is a small supply risk.",
       "events": [
-        "Global Food Prices Ease on Cheaper Grains, Dairy and Meat, UN Says (WSJ, 2026-11-14)",
-        "HPAI Returns to Oklahoma Dairy Herds After More Than Two Years (Dairy Herd, 2026-11-16)",
-        "Could Cover Crops Help Dairy Farms Reduce Alfalfa Costs? (Dairy Herd, 2026-11-16)"
+        "Butter +2 cents on CME spot Monday (Brownfield)",
+        "HPAI returns to Oklahoma dairy herds (Dairy Herd)"
       ]
     },
     "palm": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-12",
-      "fundamental": "No new headlines for this market in the last 76 hours.",
+      "time": "18:20 CT",
+      "fundamental": "Palm drifted lower (~4,516 front) with soyoil and crude; nothing new on supply beyond the heavy stocks already in the data.",
       "events": [
-        "Palm Oil Climbs as El Niño Threatens Indonesia’s 2027 Supplies (Bloomberg.com, 2026-11-12)"
-      ],
-      "claude_fund_score": 0.2
+        "Palm front month -31 to ~4,516 (Bursa via TradingView)",
+        "Soyoil and crude both sharply lower Monday (CBOT, NYMEX)"
+      ]
     },
     "natgas": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "8 headlines in the last 76 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported lower (0 supply-tight, 1 supply-loose, 1 up, 2 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Mild weather is outweighing record US LNG feedgas flows; Dec near 3.12 with the storage surplus over the 5-year average widening.",
       "events": [
-        "COMMENTARY: Europe draws LNG from Asia, but not fast enough (Reuters, 2026-11-16)",
-        "Maire bets on LNG projects with acquisition from Baker Hughes' unit (Reuters, 2026-11-16)",
-        "Record US LNG Exports May Bring Relief to War-Strained Markets (Bloomberg, 2026-11-16)"
+        "Weak weather outweighs record LNG as futures slip (Natural Gas Intelligence)",
+        "US LNG flows hit a record high (OilPrice.com, Bloomberg)",
+        "European gas slumps on milder weather (OilPrice.com)"
       ]
     },
     "crude": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "7 headlines in the last 76 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported lower (0 supply-tight, 4 supply-loose, 0 up, 3 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "WTI fell about 4% to ~85 as the IEA's Q4 surplus view and Iran/Ukraine peace hopes outweighed the Houthi threat to Saudi exports. It sits just under 85.63 resistance, with 77 the next support well below.",
       "events": [
-        "Oil prices fall on expectations of coming supply surplus (Reuters, 2026-11-16)",
-        "Oil prices set for second straight weekly drop on signs of growing supply surplus (Reuters, 2026-11-13)",
-        "CL00 | Crude Oil Continuous Contract Overview (MarketWatch, 2026-11-13)"
+        "Oil falls on expected supply surplus (Reuters)",
+        "IEA expects a global surplus in Q4 (ADMIS)",
+        "Houthi advance puts Saudi crude exports at risk (OilPrice.com)"
       ]
     },
     "ulsd": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "5 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 1 up, 3 down by keyword).",
+      "time": "18:20 CT",
+      "fundamental": "Diesel fell nearly 5% to ~4.06, below the 100-day fund trigger, as retail diesel dropped under $6 on easing tensions and softer demand. Distillate stocks are still below average, so this is a price-led unwind rather than a supply glut.",
       "events": [
-        "Diesel Falls Below $6 a Gallon, Easing Inflationary Pressure (Bloomberg.com, 2026-11-16)",
-        "Diesel Falls Below $6 a Gallon, Easing Key Inflationary Pressure (Bloomberg, 2026-11-16)",
-        "US diesel below $6 a gallon at 2-month low on easing tensions, weaker demand (Reuters, 2026-11-15)"
+        "US retail diesel below $6/gal at a two-month low (Reuters, Bloomberg)",
+        "ULSD Dec ~4.06, below the 100-day average (NYMEX)"
       ]
     },
     "rbob": {
       "date": "2026-11-16",
-      "by": "bot",
-      "time": "17:02 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "No new headlines for this market in the last 76 hours.",
+      "time": "18:20 CT",
+      "fundamental": "Gasoline slid ~3.7% with crude; nothing new on supply.",
       "events": [
-        "Oil prices fall on supply-surplus expectations (Reuters)",
-        "Oil set for second weekly drop (Reuters)"
+        "RBOB Jan ~2.49 (-3.7%) with crude (NYMEX)",
+        "Crude lower on surplus outlook (Reuters)"
       ]
     }
-  },
-  "bot_note": "Automatic backup read (GitHub Actions) at 2026-11-16 17:02 CT: Claude's desk read had not run for 5+ hours."
+  }
 }

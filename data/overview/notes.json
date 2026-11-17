@@ -1,15 +1,14 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
   "markets": {
     "corn": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "Firm Mexican demand and a lagging harvest (88% done vs a faster average; Iowa 84% vs 95% normally) gave Dec corn a small gain to ~448.75 while the rest of the complex sold off. Inspections slipped on the week, so the export story is strong sales rather than shipments so far.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "Dec extends Monday's gain to ~451 (+2.25) on the same lagging-harvest and firm Mexican-demand story; nothing new on supply overnight.",
       "events": [
-        "Corn harvest 88% done, behind average; Iowa 84% vs 95% normal (USDA via Successful Farming, Brownfield)",
-        "Corn edges higher as soybeans and wheat fall on a strong dollar (AgWeb)",
-        "Corn and soybean export inspections slip (MarketWatch)"
+        "Dec corn ~451 (+2.25), range 447.75-452.75 (CBOT via TradingView)",
+        "Iowa harvest 84% vs 95% normally (Brownfield)"
       ]
     },
     "soybeans": {
@@ -42,31 +41,31 @@
       ]
     },
     "wheat": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "Optimism that trilateral talks could free up Black Sea shipping took Dec Chicago down ~6 to 587, and winter wheat condition keeps improving. Both point to easier supply.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "Dec Chicago bounced ~8 to ~595 after Monday's Black Sea peace-trade drop, retaking 590; it reads as short covering, since better US winter wheat ratings and Black Sea talk still point to easier supply.",
       "events": [
-        "Wheat falls on hopes talks will free up Black Sea trade (Bloomberg)",
-        "US winter wheat conditions improve again (USDA via Farm Progress)",
-        "Bulgaria rescues crew from a capsized wheat ship in the Black Sea (Reuters)"
+        "Dec Chicago wheat ~595 (+8), high 597 (CBOT via TradingView)",
+        "Winter wheat condition keeps improving (Farm Progress)",
+        "Black Sea talks optimism still in the background (Bloomberg)"
       ]
     },
     "kc": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "HRW followed Chicago down (Dec ~619, -9.75): better winter wheat ratings in the Plains and the Black Sea peace trade both weigh.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "HRW is following Chicago higher in a technical bounce (Dec ~628.75 on the overnight build); Plains crop ratings keep improving, so the fundamental picture has not changed.",
       "events": [
-        "Dec KC wheat -9.75 to ~619 (CBOT via TradingView)",
-        "Winter wheat conditions continue to improve (Farm Progress)"
+        "Dec KC wheat ~628.75 overnight, back near 629.5 resistance (CBOT)",
+        "Winter wheat condition up again (USDA via Farm Progress)"
       ]
     },
     "cotton": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "Dec settled 76.95 on its low, through 77.05 support, on the dollar and broad commodity selling rather than new crop news. Old-crop Dec/Mar is where the risk is: funds remain long and certified stocks near delivery would not be benign for longs.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "Dec is steadying at ~77.06 overnight, sitting right on Monday's broken 77.05 level with Mar ~81.06; nothing new on supply, and a still-firm dollar (DXY ~103.6) keeps the bounce shallow. For old-crop Dec/Mar the issue is whether funds keep liquidating into first notice; high-grade certs heading into Dec delivery remain a risk for longs, not a comfort.",
       "events": [
-        "Dec cotton 76.95 (-1.83), Mar 80.88 (ICE via TradingView)",
-        "Broad risk-off: equities, metals and energy lower, dollar firm (Yahoo Finance)"
+        "Dec cotton ~77.06 early Tuesday, back at the 77.05 level after Monday's 76.95 settle; Mar ~81.06 (ICE via TradingView)",
+        "Dollar index holds near 103.6 after last week's jump (ICE via TradingView)"
       ]
     },
     "hogs": {
@@ -127,41 +126,39 @@
       ]
     },
     "natgas": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "Mild weather is outweighing record US LNG feedgas flows; Dec near 3.12 with the storage surplus over the 5-year average widening.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "Dec is flat near 3.12; record LNG feedgas still runs into mild US weather and a widening storage surplus, with nothing new overnight.",
       "events": [
-        "Weak weather outweighs record LNG as futures slip (Natural Gas Intelligence)",
-        "US LNG flows hit a record high (OilPrice.com, Bloomberg)",
-        "European gas slumps on milder weather (OilPrice.com)"
+        "Dec natgas ~3.121, range 3.08-3.176 (NYMEX via TradingView)",
+        "European gas slumps on milder weather and record US LNG flows (OilPrice)"
       ]
     },
     "crude": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "WTI fell about 4% to ~85 as the IEA's Q4 surplus view and Iran/Ukraine peace hopes outweighed the Houthi threat to Saudi exports. It sits just under 85.63 resistance, with 77 the next support well below.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "WTI rebounded ~1.5% to ~86.98 overnight as Middle East shipping risks (the Houthi threat to Saudi export routes) came back into focus and China resumed filling crude storage, which soaks up some of the surplus. The IEA/OPEC surplus outlook still caps rallies; price is back above 86.",
       "events": [
-        "Oil falls on expected supply surplus (Reuters)",
-        "IEA expects a global surplus in Q4 (ADMIS)",
-        "Houthi advance puts Saudi crude exports at risk (OilPrice.com)"
+        "Dec WTI ~86.98 (+1.26), range 84.68-86.99 (NYMEX via TradingView)",
+        "Oil rebounds on Middle East shipping risks (Dow Jones)",
+        "China resumes stockpiling crude (Reuters)"
       ]
     },
     "ulsd": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "Diesel fell nearly 5% to ~4.06, below the 100-day fund trigger, as retail diesel dropped under $6 on easing tensions and softer demand. Distillate stocks are still below average, so this is a price-led unwind rather than a supply glut.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "Diesel is steady near 4.08, just back above the 100-day trigger, with crude's rebound supporting it; distillate stocks remain below average, so the case for support is intact.",
       "events": [
-        "US retail diesel below $6/gal at a two-month low (Reuters, Bloomberg)",
-        "ULSD Dec ~4.06, below the 100-day average (NYMEX)"
+        "Dec ULSD ~4.077, flat overnight (NYMEX)",
+        "Crude rebounds on Middle East shipping risk (Dow Jones)"
       ]
     },
     "rbob": {
-      "date": "2026-11-16",
-      "time": "18:20 CT",
-      "fundamental": "Gasoline slid ~3.7% with crude; nothing new on supply.",
+      "date": "2026-11-17",
+      "time": "07:50 CT",
+      "fundamental": "Gasoline firms with crude (~2.55); no new supply news.",
       "events": [
-        "RBOB Jan ~2.49 (-3.7%) with crude (NYMEX)",
-        "Crude lower on surplus outlook (Reuters)"
+        "Dec RBOB ~2.55 overnight, up with crude (NYMEX)"
       ]
     }
   }

@@ -1,21 +1,21 @@
 {
- "updated": "2026-11-17 00:25 UTC",
+ "updated": "2026-11-17 13:55 UTC",
  "by": "claude",
  "views": {
   "corn": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.39
+   "score": -0.33
   },
   "soybeans": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.35
+   "score": 0.41
   },
   "meal": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.15
+   "score": 0.09
   },
   "oil": {
    "view": "bearish",
@@ -28,14 +28,14 @@
    "score": -0.52
   },
   "kc": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.29
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.18
   },
   "cotton": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.1
+   "score": 0.16
   },
   "hogs": {
    "view": "bearish",
@@ -50,7 +50,7 @@
   "feeders": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.27
+   "score": 0.21
   },
   "class3": {
    "view": "bearish",
@@ -65,7 +65,7 @@
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.48
+   "score": -0.56
   },
   "natgas": {
    "view": "bearish",
@@ -80,7 +80,7 @@
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.33
+   "score": 0.27
   },
   "rbob": {
    "view": "bearish",
@@ -104,15 +104,10 @@
   "palm": [],
   "natgas": [],
   "crude": [],
-  "ulsd": [
-   "Broke below the fund sell trigger (100-day average) 4.0666"
-  ],
+  "ulsd": [],
   "rbob": []
  },
  "news": [
-  "2026-11-12 Beef imports pressuring beef prices; feedlot losses widen",
-  "2026-11-12 Brent briefly hits $94 after Trump says US has no need for Iran deal; peace trade unwinds",
-  "2026-11-13 Iran says LNG tanker hit mine in Hormuz",
   "2026-11-13 Iraq Oct oil output highest since 2019 (IEA)",
   "2026-11-13 Corn export sales marketing-year high",
   "2026-11-13 Grains rally broadly Friday; cattle higher week confirms lows (AgWeb)",
@@ -125,6 +120,8 @@
   "2026-11-16 Screwworm infestations past 100 across TX/NM/AZ",
   "2026-11-16 Crude -4% to ~85 on IEA surplus/peace hopes; diesel < $6 retail",
   "2026-11-16 Cotton Dec settles 76.95, below 77.05 support",
-  "2026-11-16 HPAI returns to Oklahoma dairy herds"
+  "2026-11-16 HPAI returns to Oklahoma dairy herds",
+  "2026-11-17 Crude rebounds to ~87 on Middle East shipping risk; China restocking",
+  "2026-11-17 KC wheat view to mildly bearish; Chicago wheat +8 to ~595"
  ]
 }

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18 10:58 UTC",
+ "updated": "2026-11-18 13:43 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -13,9 +13,9 @@
    "score": 0.35
   },
   "meal": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.15
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.27
   },
   "oil": {
    "view": "bearish",
@@ -35,7 +35,7 @@
   "cotton": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.16
+   "score": 0.1
   },
   "hogs": {
    "view": "bearish",
@@ -55,7 +55,7 @@
   "class3": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.26
+   "score": -0.32
   },
   "class4": {
    "view": "mildly bearish",
@@ -83,16 +83,18 @@
    "score": 0.33
   },
   "rbob": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.17
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.23
   }
  },
  "alerts": {
   "corn": [],
   "soybeans": [],
   "meal": [],
-  "oil": [],
+  "oil": [
+   "Broke below S1 61.34"
+  ],
   "wheat": [],
   "kc": [],
   "cotton": [],
@@ -131,6 +133,8 @@
   "2026-11-18 Corn Dec ~443 below 443.5; wheat Dec ~585 below 590; KC ~624 below 626 as Black Sea premium fades",
   "2026-11-18 Soyoil Dec ~61.36 below 61.64; ULSD Dec ~4.00 on 3.9947 support",
   "2026-11-18 Hogs Dec new 52-week low 52.825 overnight",
-  "2026-11-18 Crude Dec -1.5 to ~84.5 after API crude/gasoline builds"
+  "2026-11-18 Crude Dec -1.5 to ~84.5 after API crude/gasoline builds",
+  "2026-11-18 Soyoil Dec ~61.18 below 61.34 S1; meal view to bullish as crush shifts to meal",
+  "2026-11-18 RBOB view to bearish; Feb WTI ~84 on surplus talk"
  ]
 }

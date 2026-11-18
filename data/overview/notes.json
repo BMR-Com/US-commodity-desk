@@ -29,36 +29,35 @@
   "meal": {
    "date": "2026-11-18",
    "by": "claude",
-   "time": "04:55 CT",
+   "time": "07:50 CT",
    "claude_date": "2026-11-18",
-   "fundamental": "Record crush keeps meal supply ample, but meal held firm overnight while soyoil fell, so crush value is shifting slightly toward meal.",
+   "fundamental": "Meal is gaining as soyoil sells off, so crush value is shifting toward meal; record crush means supply is ample, but board crush economics now favour meal.",
    "events": [
-    "Record NOPA crush (Barchart)",
-    "Dec meal ~334 (+0.8) overnight (CBOT via TradingView)"
+    "Dec ~337.9 (+2.7) while soyoil falls (CBOT via TradingView)",
+    "Record October NOPA crush (NOPA, Barchart)"
    ]
   },
   "oil": {
    "date": "2026-11-18",
    "by": "claude",
-   "time": "04:55 CT",
+   "time": "07:50 CT",
    "claude_date": "2026-11-18",
-   "fundamental": "Soyoil keeps following crude lower; Dec is under the 61.64 support and testing 61.34. Chevron restarting an Iowa biodiesel plant is a small plus for domestic use.",
+   "fundamental": "Soyoil keeps tracking crude lower and has broken the 61.34 support; nothing new on biofuel policy, so the move is energy-led rather than a change in soy demand.",
    "events": [
-    "API shows sizable crude and gasoline builds (OilPrice.com)",
-    "Dec soyoil ~61.36 (-0.77), under 61.64 support (CBOT via TradingView)",
-    "Chevron to restart an Iowa biodiesel plant (Farm Progress)"
+    "Dec ~61.18 (-0.95), below 61.34 support (CBOT via TradingView)",
+    "Crude lower again on surplus expectations and US stock builds (Dow Jones)",
+    "Record October NOPA crush keeps oil supply ample (NOPA, Barchart)"
    ]
   },
   "wheat": {
    "date": "2026-11-18",
    "by": "claude",
-   "time": "04:55 CT",
+   "time": "07:50 CT",
    "claude_date": "2026-11-18",
-   "fundamental": "Tuesday's Black Sea strike premium has faded overnight, and US winter wheat is nearly all planted with improving conditions, so supply comfort is unchanged.",
+   "fundamental": "The Black Sea strike premium has faded; US winter wheat is nearly all planted and rated well, so supply comfort is unchanged.",
    "events": [
-    "Wheat rallied Tuesday on Black Sea strikes (Barchart, AgWeb)",
-    "Winter wheat 92% planted, conditions improving (AgroLatam, Farm Progress)",
-    "Dec ~585.25 (-10), below 590 support (CBOT via TradingView)"
+    "Dec ~587.75 (-7.5), below 590 (CBOT via TradingView)",
+    "Winter wheat planting reaches 92% with four states finished (USDA, AgroLatam)"
    ]
   },
   "kc": {
@@ -76,13 +75,13 @@
   "cotton": {
    "date": "2026-11-18",
    "by": "claude",
-   "time": "04:55 CT",
+   "time": "07:50 CT",
    "claude_date": "2026-11-18",
-   "fundamental": "Nothing new on supply overnight; with Dec first notice next week the old-crop Dec/Mar spread and certificate flow matter more than headlines. Dec is sitting right on its 77.05 support, and high-grade certs remain a delivery risk for Dec longs rather than a comfort.",
+   "fundamental": "Nothing new on US or Brazil supply this morning; Dec has slipped back under the 77.05 support into first-notice week, so old-crop Dec/Mar spread and certificate flow drive price, and high-grade certs remain a delivery risk for Dec longs rather than a comfort.",
    "events": [
-    "Dec ~77.06 (-0.26) on the 77.05 support; Mar ~81.05 (ICE via TradingView)",
-    "Crude falls again after API stock builds, a soft lead for synthetics (OilPrice.com)",
-    "Real still weak after Lula fiscal worries (Bloomberg)"
+    "Dec ~76.95 (-0.37), below 77.05 support; low 76.84 (ICE via TradingView)",
+    "Crude slides again on surplus talk and inventory builds, a soft lead for polyester (Dow Jones, OilPrice.com)",
+    "Real still under pressure from fiscal worries (Bloomberg)"
    ]
   },
   "hogs": {
@@ -170,13 +169,13 @@
   "crude": {
    "date": "2026-11-18",
    "by": "claude",
-   "time": "04:55 CT",
+   "time": "07:50 CT",
    "claude_date": "2026-11-18",
-   "fundamental": "API reported sizable crude and gasoline builds and supply keeps rising (Iraq's Turkey pipeline restart, Russian exports at a four-month high), outweighing Hormuz tanker attacks; Dec is down ~1.5 overnight. EIA data later today.",
+   "fundamental": "Crude is down again as the market leans on a surplus outlook and US inventory builds, even with Iran-related Hormuz attacks; IEA warns shipping risk in Hormuz is lasting despite recovering Gulf exports. Weekly EIA stocks today are the next test.",
    "events": [
-    "API shows substantial crude and gasoline builds (OilPrice.com)",
-    "Iraq resumes exports via Turkey pipeline; Russian crude exports at four-month high (Reuters, OilPrice.com)",
-    "Brent holds near $93 as Hormuz attacks offset Gulf exports (OilPrice.com)"
+    "Feb WTI ~84.0 (-0.65), low 82.38 (NYMEX via TradingView)",
+    "IEA chief says Hormuz shipping risk will persist even as Gulf exports recover (Stocktwits)",
+    "Oil falls on surplus expectations and bearish US inventory data (Dow Jones, WSJ)"
    ]
   },
   "ulsd": {
@@ -193,12 +192,12 @@
   "rbob": {
    "date": "2026-11-18",
    "by": "claude",
-   "time": "04:55 CT",
+   "time": "07:50 CT",
    "claude_date": "2026-11-18",
-   "fundamental": "API's gasoline build adds to seasonal demand softness; Dec ~2.50, still above 2.42 support.",
+   "fundamental": "Gasoline extends lower with crude after the API build; seasonal demand softness and rising stocks keep pressure on, with Dec ~2.50 still above 2.42 support.",
    "events": [
-    "API shows a gasoline inventory build (OilPrice.com)",
-    "Dec RBOB ~2.495 (-0.04) (NYMEX via TradingView)"
+    "Dec ~2.505 (-0.03), low 2.479 (NYMEX via TradingView)",
+    "API reported a sizable gasoline stock build (OilPrice.com)"
    ]
   }
  }

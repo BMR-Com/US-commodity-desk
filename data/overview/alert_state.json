@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18 13:43 UTC",
+ "updated": "2026-11-18 17:55 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -63,14 +63,14 @@
    "score": -0.13
   },
   "palm": {
-   "view": "strongly bearish",
-   "shade": "bear3",
+   "view": "bearish",
+   "shade": "bear2",
    "score": -0.45
   },
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.34
+   "score": -0.35
   },
   "crude": {
    "view": "mildly bullish",
@@ -89,24 +89,48 @@
   }
  },
  "alerts": {
-  "corn": [],
+  "corn": [
+   "Broke below S1 443.50",
+   "Broke below S2 440.75",
+   "Broke below S2 440.75 (Dec ~437.5 intraday)"
+  ],
   "soybeans": [],
   "meal": [],
   "oil": [
-   "Broke below S1 61.34"
+   "Broke below S1 61.34",
+   "Broke below S2 60.54",
+   "Broke below S2 60.54 (Dec ~60.09 intraday)"
   ],
-  "wheat": [],
-  "kc": [],
-  "cotton": [],
+  "wheat": [
+   "Broke below S1 582.50",
+   "Broke below S2 581.25",
+   "Broke below the fund sell trigger (250-day momentum flip) 575.50",
+   "Broke below S2 581.25 (Dec ~573.75 intraday)"
+  ],
+  "kc": [
+   "Broke below S2 625.5 (Dec ~614.5 intraday)"
+  ],
+  "cotton": [
+   "Broke below S2 76.47 (Dec ~75.83 intraday)"
+  ],
   "hogs": [],
   "cattle": [],
-  "feeders": [],
+  "feeders": [
+   "Broke above the fund buy trigger (50-day average) 328.913"
+  ],
   "class3": [],
   "class4": [],
   "palm": [],
   "natgas": [],
-  "crude": [],
-  "ulsd": [],
+  "crude": [
+   "Broke below S1 83.88",
+   "Broke below S1 83.88 (Dec ~82.7 intraday)"
+  ],
+  "ulsd": [
+   "Broke below S1 3.9947",
+   "Broke below the fund sell trigger (55-day breakout low) 3.9777",
+   "Broke below S1 3.9947 (Dec ~3.953 intraday)"
+  ],
   "rbob": []
  },
  "news": [
@@ -135,6 +159,10 @@
   "2026-11-18 Hogs Dec new 52-week low 52.825 overnight",
   "2026-11-18 Crude Dec -1.5 to ~84.5 after API crude/gasoline builds",
   "2026-11-18 Soyoil Dec ~61.18 below 61.34 S1; meal view to bullish as crush shifts to meal",
-  "2026-11-18 RBOB view to bearish; Feb WTI ~84 on surplus talk"
+  "2026-11-18 RBOB view to bearish; Feb WTI ~84 on surplus talk",
+  "2026-11-18 Crude Dec ~82.7 (-4%) below 83.88 on US stock builds",
+  "2026-11-18 Wheat Dec ~574 (-3.6%) and KC ~614.5 below supports on Black Sea truce hopes",
+  "2026-11-18 Corn Dec ~437.5 and soyoil ~60.1 below S2",
+  "2026-11-18 Natgas Dec +4% to ~3.34"
  ]
 }

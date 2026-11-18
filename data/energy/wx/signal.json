@@ -1,25 +1,25 @@
 {
- "generated": "2026-11-18T08:29",
- "regime": "ELEVATED",
- "action": "Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold.",
- "cold_checks_on": 4,
+ "generated": "2026-11-18T18:24",
+ "regime": "HIGH",
+ "action": "Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls.",
+ "cold_checks_on": 5,
  "cold_checks": [
   {
    "key": "trend72",
-   "on": false,
-   "text": "15-day ensembles colder over 2-3 days: +5.5 HDD on matched dates (\u2248-9 Bcf)",
+   "on": true,
+   "text": "15-day ensembles colder over 2-3 days: +10.0 HDD on matched dates (\u2248-16 Bcf)",
    "role": "trigger"
   },
   {
    "key": "trend24",
    "on": true,
-   "text": "\u2026and over ~24h: +6.6 HDD",
+   "text": "\u2026and over ~24h: +12.0 HDD",
    "role": "trigger"
   },
   {
    "key": "back_end",
    "on": false,
-   "text": "back end of the 15-day window (last 5 days) -1.6 HDD/day vs normal",
+   "text": "back end of the 15-day window (last 5 days) -1.0 HDD/day vs normal",
    "role": "trigger"
   },
   {
@@ -31,13 +31,13 @@
   {
    "key": "ao",
    "on": true,
-   "text": "GEFS AO week 2 -1.28 (now +0.92)",
+   "text": "GEFS AO week 2 -1.20 (now +0.60)",
    "role": "pattern"
   },
   {
    "key": "pna",
    "on": true,
-   "text": "GEFS PNA week 2 +1.00 (western ridge / eastern trough)",
+   "text": "GEFS PNA week 2 +1.12 (western ridge / eastern trough)",
    "role": "pattern"
   },
   {
@@ -48,53 +48,53 @@
   }
  ],
  "trend_24h": {
-  "avg_hdd": 6.6,
-  "bcf": 11,
+  "avg_hdd": 12.0,
+  "bcf": 19,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": 10.6,
+    "hdd": 14.8,
     "days": 9,
-    "vs_run": "2026-11-17T08:37"
+    "vs_run": "2026-11-17T21:26"
    },
    "ECMWF ENS": {
-    "hdd": -0.7,
-    "days": 13,
-    "vs_run": "2026-11-17T08:37"
+    "hdd": 9.2,
+    "days": 14,
+    "vs_run": "2026-11-17T21:26"
    },
    "ECMWF AIFS ENS": {
-    "hdd": 9.8,
+    "hdd": 11.9,
     "days": 14,
-    "vs_run": "2026-11-17T08:37"
+    "vs_run": "2026-11-17T21:26"
    }
   }
  },
  "trend_72h": {
-  "avg_hdd": 5.5,
-  "bcf": 9,
+  "avg_hdd": 10.0,
+  "bcf": 16,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": 5.6,
+    "hdd": 12.3,
     "days": 8,
     "vs_run": "2026-11-16T07:20"
    },
    "ECMWF ENS": {
-    "hdd": 6.6,
+    "hdd": 10.3,
     "days": 10,
     "vs_run": "2026-11-16T07:20"
    },
    "ECMWF AIFS ENS": {
-    "hdd": 4.3,
+    "hdd": 7.5,
     "days": 12,
     "vs_run": "2026-11-16T07:20"
    }
   }
  },
  "back_end": {
-  "avg_per_day": -1.62,
+  "avg_per_day": -1.01,
   "by_model": {
-   "GEFS (GFS ensemble)": -1.29,
-   "ECMWF ENS": -1.51,
-   "ECMWF AIFS ENS": -2.07
+   "GEFS (GFS ensemble)": 0.15,
+   "ECMWF ENS": -1.45,
+   "ECMWF AIFS ENS": -1.73
   }
  },
  "extended": {
@@ -104,10 +104,10 @@
     "wk3": {
      "from": "2026-12-02",
      "to": "2026-12-08",
-     "mean": -19.4,
-     "p10": -47.1,
-     "p90": 6.9,
-     "share_cold": 0.226,
+     "mean": -19.5,
+     "p10": -45.1,
+     "p90": 7.4,
+     "share_cold": 0.129,
      "chg_24h": null
     },
     "wk4": {
@@ -182,19 +182,19 @@
  },
  "teleconnections": {
   "ao": {
-   "now": 0.92,
-   "wk2_mean": -1.28,
+   "now": 0.6,
+   "wk2_mean": -1.2,
    "min": -1.69
   },
   "nao": {
-   "now": 0.14,
+   "now": 0.43,
    "wk2_mean": -0.06,
-   "min": -0.29
+   "min": -0.52
   },
   "pna": {
-   "now": 0.87,
-   "wk2_mean": 1.0,
-   "min": 0.41
+   "now": 0.65,
+   "wk2_mean": 1.12,
+   "min": 0.44
   },
   "u10_min": -3.0,
   "ssw": true
@@ -208,10 +208,10 @@
   "pct_all": 2.3
  },
  "price": {
-  "date": "2026-11-17",
-  "last": 3.17,
-  "chg_5d_pct": -3.8,
-  "rsi14": 65.1
+  "date": "2026-11-18",
+  "last": 3.256,
+  "chg_5d_pct": 1.3,
+  "rsi14": 63.6
  },
  "exit_when": [
   "Two consecutive model cycles not colder on matched dates (24h trend \u2264 0) AND weeks 3-4 no longer colder than normal",
@@ -220,5 +220,5 @@
  ],
  "bcf_per_hdd": 1.6,
  "note": "Rules of thumb, not fitted. signal_hist.json keeps every reading so the rules can be scored against what price did next.",
- "read": "NG weather/positioning: squeeze risk ELEVATED (4 of 7 cold-risk checks on; managed money net -224,326 (1st pct of 3 yrs, -98,170 in 4 wks)). \u2026and over ~24h: +6.6 HDD; GEFS AO week 2 -1.28 (now +0.92); GEFS PNA week 2 +1.00 (western ridge / eastern trough); stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold."
+ "read": "NG weather/positioning: squeeze risk HIGH (5 of 7 cold-risk checks on; managed money net -224,326 (1st pct of 3 yrs, -98,170 in 4 wks)). 15-day ensembles colder over 2-3 days: +10.0 HDD on matched dates (\u2248-16 Bcf); \u2026and over ~24h: +12.0 HDD; GEFS AO week 2 -1.20 (now +0.60); GEFS PNA week 2 +1.12 (western ridge / eastern trough); stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls."
 }

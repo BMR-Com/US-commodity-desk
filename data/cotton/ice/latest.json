@@ -1,16 +1,16 @@
 {
  "stock": "data/cotton/ice/stock_2026-11-04.csv",
  "stock_date": "2026-11-04",
- "grade": "data/cotton/ice/grade_staple_2026-11-09.csv",
- "grade_date": "2026-11-09",
- "warehouse": "data/cotton/ice/warehouse_2026-11-09.csv",
- "warehouse_date": "2026-11-09",
- "strength": "data/cotton/ice/strength_2026-11-02.csv",
- "strength_date": "2026-11-02",
- "year_of_growth": "data/cotton/ice/year_of_growth_2026-11-09.csv",
- "year_of_growth_date": "2026-11-09",
- "warehouse_prev": "data/cotton/ice/warehouse_2026-11-02.csv",
- "warehouse_prev_date": "2026-11-02",
+ "grade": "data/cotton/ice/grade_staple_2026-11-16.csv",
+ "grade_date": "2026-11-16",
+ "warehouse": "data/cotton/ice/warehouse_2026-11-16.csv",
+ "warehouse_date": "2026-11-16",
+ "strength": "data/cotton/ice/strength_2026-11-16.csv",
+ "strength_date": "2026-11-16",
+ "year_of_growth": "data/cotton/ice/year_of_growth_2026-11-16.csv",
+ "year_of_growth_date": "2026-11-16",
+ "warehouse_prev": "data/cotton/ice/warehouse_2026-11-09.csv",
+ "warehouse_prev_date": "2026-11-09",
  "warehouse_history": [
   {
    "date": "2026-11-02",
@@ -19,6 +19,18 @@
   {
    "date": "2026-11-09",
    "path": "data/cotton/ice/warehouse_2026-11-09.csv"
+  },
+  {
+   "date": "2026-11-16",
+   "path": "data/cotton/ice/warehouse_2026-11-16.csv"
+  }
+ ],
+ "four_months_older": "data/cotton/ice/four_months_older_2026-11-02.csv",
+ "four_months_older_date": "2026-11-02",
+ "four_months_older_history": [
+  {
+   "date": "2026-11-02",
+   "path": "data/cotton/ice/four_months_older_2026-11-02.csv"
   }
  ]
 }

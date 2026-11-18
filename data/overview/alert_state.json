@@ -1,21 +1,21 @@
 {
- "updated": "2026-11-17 17:44 UTC",
- "by": "claude",
+ "updated": "2026-11-18 03:52 UTC",
+ "by": "bot",
  "views": {
   "corn": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.33
+   "score": -0.45
   },
   "soybeans": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.41
+   "score": 0.35
   },
   "meal": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.09
+   "score": 0.15
   },
   "oil": {
    "view": "bearish",
@@ -40,37 +40,37 @@
   "hogs": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.24
+   "score": -0.31
   },
   "cattle": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.12
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.06
   },
   "feeders": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.21
+   "view": "neutral",
+   "shade": "neutral",
+   "score": -0.0
   },
   "class3": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.32
+   "score": -0.26
   },
   "class4": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.11
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.13
   },
   "palm": {
-   "view": "bearish",
-   "shade": "bear2",
+   "view": "strongly bearish",
+   "shade": "bear3",
    "score": -0.45
   },
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.39
+   "score": -0.35
   },
   "crude": {
    "view": "mildly bullish",
@@ -80,18 +80,16 @@
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.27
+   "score": 0.33
   },
   "rbob": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.23
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.17
   }
  },
  "alerts": {
-  "corn": [
-   "Broke below S1 451.00"
-  ],
+  "corn": [],
   "soybeans": [],
   "meal": [],
   "oil": [],
@@ -100,9 +98,7 @@
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [
-   "Broke below the fund sell trigger (120-day momentum flip) 332.053"
-  ],
+  "feeders": [],
   "class3": [],
   "class4": [],
   "palm": [],

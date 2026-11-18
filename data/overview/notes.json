@@ -1,202 +1,205 @@
 {
-  "updated": "2026-11-17",
-  "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
-  "markets": {
-    "corn": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "8 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 2 up, 4 down by keyword).",
-      "events": [
-        "Ag Market View for Nov 17.2026 (ADMIS, 2026-11-17)",
-        "Wheat Adds War Premium: Corn, Soybeans and Livestock Slide (AgWeb, 2026-11-17)",
-        "Wheat Gains While Corn and Soybeans Unwind Bull Spreads, Livestock Trade Lower | Tuesday, Nov. 17, 2026 (Successful Farming, 2026-11-17)"
-      ]
-    },
-    "soybeans": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "5 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 2 up, 3 down by keyword).",
-      "events": [
-        "Wkly Futures Market Summary For 11.16.26 (ADMIS, 2026-11-17)",
-        "Wheat Adds War Premium: Corn, Soybeans and Livestock Slide (AgWeb, 2026-11-17)",
-        "Wheat Gains While Corn and Soybeans Unwind Bull Spreads, Livestock Trade Lower | Tuesday, Nov. 17, 2026 (Successful Farming, 2026-11-17)"
-      ]
-    },
-    "meal": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
-      "events": [
-        "5 Oil and Gas Stocks That Crushed Third-Quarter Earnings Estimates (Crude Oil Prices Today | OilPrice.com, 2026-11-18)"
-      ]
-    },
-    "oil": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "No new headlines for this market in the last 30 hours.",
-      "events": [
-        "Jan soyoil -1.57 to ~62.48, tracking crude lower (CBOT via TradingView)",
-        "Chevron to restart an Iowa biodiesel plant (Farm Progress)",
-        "IEA sees a global oil surplus in Q4 (ADMIS)"
-      ]
-    },
-    "wheat": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "8 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 2 up, 3 down by keyword).",
-      "events": [
-        "ADMISI London Wheat Report: ICE Feed Wheat 16 November 2026 (ADMIS, 2026-11-17)",
-        "Wheat Adds War Premium: Corn, Soybeans and Livestock Slide (AgWeb, 2026-11-17)",
-        "Wheat Gains While Corn and Soybeans Unwind Bull Spreads, Livestock Trade Lower | Tuesday, Nov. 17, 2026 (Successful Farming, 2026-11-17)"
-      ]
-    },
-    "kc": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "8 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 2 up, 3 down by keyword).",
-      "events": [
-        "ADMISI London Wheat Report: ICE Feed Wheat 16 November 2026 (ADMIS, 2026-11-17)",
-        "Wheat Adds War Premium: Corn, Soybeans and Livestock Slide (AgWeb, 2026-11-17)",
-        "Wheat Gains While Corn and Soybeans Unwind Bull Spreads, Livestock Trade Lower | Tuesday, Nov. 17, 2026 (Successful Farming, 2026-11-17)"
-      ]
-    },
-    "cotton": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "No new headlines for this market in the last 30 hours.",
-      "events": [
-        "Dec cotton ~77.62 (+0.62), range 76.82-77.70; Mar ~81.65 (ICE via TradingView)",
-        "Dollar index eases to ~103.4 (ICE via TradingView)"
-      ]
-    },
-    "hogs": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "3 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
-      "events": [
-        "Cattle, lean hog futures under pressure (Brownfield Ag News, 2026-11-17)",
-        "Considerations as swine producers enter a down market (National Hog Farmer, 2026-11-17)",
-        "Human Nutrition Committee elevates pork's role in consumer diets (National Hog Farmer, 2026-11-17)"
-      ]
-    },
-    "cattle": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "8 headlines in the last 30 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported higher (0 supply-tight, 1 supply-loose, 3 up, 2 down by keyword).",
-      "events": [
-        "USDA Projects Lower Beef and Higher Chicken Output for the Year Ahead – Company Announcement (Financial Times, 2026-11-16)",
-        "With Harvest Almost Over, FC Demand Should Increase (ADMIS, 2026-11-17)",
-        "Cattle, lean hog futures under pressure (Brownfield Ag News, 2026-11-17)"
-      ]
-    },
-    "feeders": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "8 headlines in the last 30 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported higher (0 supply-tight, 1 supply-loose, 3 up, 2 down by keyword).",
-      "events": [
-        "USDA Projects Lower Beef and Higher Chicken Output for the Year Ahead – Company Announcement (Financial Times, 2026-11-16)",
-        "With Harvest Almost Over, FC Demand Should Increase (ADMIS, 2026-11-17)",
-        "Cattle, lean hog futures under pressure (Brownfield Ag News, 2026-11-17)"
-      ]
-    },
-    "class3": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "4 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (2 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
-      "events": [
-        "Dairy Supplier Selects ReposiTrak's Touchless Retail™ for Weekday Merchandising Support (Financial Times, 2026-11-17)",
-        "CME dairy prices mixed Tuesday as butter, nonfat dry milk move higher (Brownfield Ag News, 2026-11-17)",
-        "Will U.S. dairy herd expansion continue? (Brownfield Ag News, 2026-11-17)"
-      ]
-    },
-    "class4": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-16",
-      "fundamental": "4 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (2 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
-      "events": [
-        "Dairy Supplier Selects ReposiTrak's Touchless Retail™ for Weekday Merchandising Support (Financial Times, 2026-11-17)",
-        "CME dairy prices mixed Tuesday as butter, nonfat dry milk move higher (Brownfield Ag News, 2026-11-17)",
-        "Will U.S. dairy herd expansion continue? (Brownfield Ag News, 2026-11-17)"
-      ]
-    },
-    "palm": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "No new headlines for this market in the last 30 hours.",
-      "events": [
-        "Jan palm ~4,352 (+4) (Bursa via TradingView)",
-        "Soyoil flat, crude pares gains (CBOT, NYMEX)"
-      ]
-    },
-    "natgas": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
-      "events": [
-        "Tables Turn on Natural Gas Futures Sellers (Natural Gas Intelligence, 2026-11-17)"
-      ]
-    },
-    "crude": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (3 supply-tight, 1 supply-loose, 2 up, 1 down by keyword).",
-      "events": [
-        "Iraq resumes crude oil pumping for export purposes via pipeline to Turkey, oil minister says (Reuters, 2026-11-17)",
-        "Oil prices caught between rising Mideast exports and tanker attacks (Reuters, 2026-11-17)",
-        "Oil prices caught between tanker attacks and rising Mideast exports (Reuters, 2026-11-17)"
-      ]
-    },
-    "ulsd": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "No new headlines for this market in the last 30 hours.",
-      "events": [
-        "Dec ULSD ~4.049 (-0.032) (NYMEX via TradingView)",
-        "Iraq pipeline restart weighs on crude (Reuters)"
-      ]
-    },
-    "rbob": {
-      "date": "2026-11-17",
-      "by": "bot",
-      "time": "21:52 CT",
-      "claude_date": "2026-11-17",
-      "fundamental": "1 headline in the last 30 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), price reports mixed (0 supply-tight, 1 supply-loose, 0 up, 0 down by keyword).",
-      "events": [
-        "API Shows Substantial Crude Oil, Gasoline Inventory Builds (Crude Oil Prices Today | OilPrice.com, 2026-11-17)"
-      ]
-    }
+ "updated": "2026-11-18",
+ "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
+ "markets": {
+  "corn": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "New: Iowa harvest still well behind normal after a frost ended the season, but the national harvest is near done. Dec gave back Tuesday's wheat-led gains overnight and sits just under 443.5 support.",
+   "events": [
+    "Iowa corn harvest 84% vs 95% normal (Brownfield)",
+    "Livestock expansion competing for 2027 corn acres (Brownfield)",
+    "Dec ~443 (-3.75), below 443.5 support (CBOT via TradingView)"
+   ]
   },
-  "bot_note": "Automatic backup read (GitHub Actions) at 2026-11-17 21:52 CT: Claude's desk read had not run for 5+ hours."
+  "soybeans": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Record October NOPA crush confirms strong domestic demand but did not lift futures; attention turns to whether China buying follows Trump's Asia talks.",
+   "events": [
+    "Record October NOPA crush (Barchart, American Ag Network)",
+    "Trump's Asia talks put China soybean purchases in focus (AgroLatam)",
+    "Jan ~1,219.25 (-6.25) overnight (CBOT via TradingView)"
+   ]
+  },
+  "meal": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Record crush keeps meal supply ample, but meal held firm overnight while soyoil fell, so crush value is shifting slightly toward meal.",
+   "events": [
+    "Record NOPA crush (Barchart)",
+    "Dec meal ~334 (+0.8) overnight (CBOT via TradingView)"
+   ]
+  },
+  "oil": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Soyoil keeps following crude lower; Dec is under the 61.64 support and testing 61.34. Chevron restarting an Iowa biodiesel plant is a small plus for domestic use.",
+   "events": [
+    "API shows sizable crude and gasoline builds (OilPrice.com)",
+    "Dec soyoil ~61.36 (-0.77), under 61.64 support (CBOT via TradingView)",
+    "Chevron to restart an Iowa biodiesel plant (Farm Progress)"
+   ]
+  },
+  "wheat": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Tuesday's Black Sea strike premium has faded overnight, and US winter wheat is nearly all planted with improving conditions, so supply comfort is unchanged.",
+   "events": [
+    "Wheat rallied Tuesday on Black Sea strikes (Barchart, AgWeb)",
+    "Winter wheat 92% planted, conditions improving (AgroLatam, Farm Progress)",
+    "Dec ~585.25 (-10), below 590 support (CBOT via TradingView)"
+   ]
+  },
+  "kc": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "HRW gives back the Black Sea premium too; the Plains crop is off to a strong start, which keeps the supply side heavy.",
+   "events": [
+    "Plains wheat crop off to a strong start (Brownfield)",
+    "Black Sea strike rally fades overnight (Barchart)",
+    "KC Dec ~624.25 (-8.75), below 626 support (CBOT via TradingView)"
+   ]
+  },
+  "cotton": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Nothing new on supply overnight; with Dec first notice next week the old-crop Dec/Mar spread and certificate flow matter more than headlines. Dec is sitting right on its 77.05 support, and high-grade certs remain a delivery risk for Dec longs rather than a comfort.",
+   "events": [
+    "Dec ~77.06 (-0.26) on the 77.05 support; Mar ~81.05 (ICE via TradingView)",
+    "Crude falls again after API stock builds, a soft lead for synthetics (OilPrice.com)",
+    "Real still weak after Lula fiscal worries (Bloomberg)"
+   ]
+  },
+  "hogs": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Weak cash and pork cutout keep pressure on; with packers still in the black, the weakness comes from ample hog supply. Dec traded a new 52-week low overnight.",
+   "events": [
+    "Hogs fall on weak cash and cutout (Barchart)",
+    "Swine producers entering a down market (National Hog Farmer)",
+    "Dec ~53.10 (-2.25), low 52.825, new 52-week low (CME via TradingView)"
+   ]
+  },
+  "cattle": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Feedlot losses above $500/head against rebounding packer margins and Tyson's added Texas capacity point to firmer packer demand; screwworm spreading in the Southwest is the supply wild card. Cattle on Feed due Friday.",
+   "events": [
+    "Feedlot losses top $500/head as packer margins rebound (Drovers)",
+    "Tyson adds Texas beef capacity via Allied Beef deal (Farm Progress)",
+    "New World screwworm spreading across southwestern states (Successful Farming)"
+   ]
+  },
+  "feeders": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Screwworm spread keeps feeder supply tight, but heavy feedlot losses cap what feeders can pay; Jan slipped overnight.",
+   "events": [
+    "Screwworm spreading across southwestern states (Successful Farming)",
+    "Feedlot losses top $500/head (Drovers)",
+    "Jan feeders ~328.2 (-4.9) (CME via TradingView)"
+   ]
+  },
+  "class3": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "HPAI has returned to an Oklahoma dairy herd for the first time in over two years, a milk-supply risk if it spreads; otherwise the herd-expansion story still dominates.",
+   "events": [
+    "HPAI detected in Oklahoma dairy herd (Dairy Herd, Successful Farming)",
+    "CME spot mixed; butter and NFDM firmer (Brownfield)",
+    "Debate over whether herd expansion continues (Brownfield)"
+   ]
+  },
+  "class4": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Firmer spot butter and NFDM Tuesday plus the HPAI return in Oklahoma lend modest support to Class IV components.",
+   "events": [
+    "CME spot butter and NFDM higher Tuesday (Brownfield)",
+    "HPAI detected in Oklahoma dairy herd (Dairy Herd)"
+   ]
+  },
+  "palm": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Malaysian futures follow crude and soyoil lower; nothing new on Malaysian output or exports.",
+   "events": [
+    "Jan palm ~4,387 (-49) (Bursa via TradingView)",
+    "Crude and soyoil lower overnight (OilPrice.com, CBOT)"
+   ]
+  },
+  "natgas": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "The curve is pricing a steep Northeast winter premium despite El Nino's mild-winter odds; LNG pull from Europe stays firm. Storage report Thursday.",
+   "events": [
+    "Traders price steep Northeast winter premium despite El Nino (NGI)",
+    "Europe drawing LNG from Asia (Reuters)",
+    "Dec ~3.193 (-0.015) (NYMEX via TradingView)"
+   ]
+  },
+  "crude": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "API reported sizable crude and gasoline builds and supply keeps rising (Iraq's Turkey pipeline restart, Russian exports at a four-month high), outweighing Hormuz tanker attacks; Dec is down ~1.5 overnight. EIA data later today.",
+   "events": [
+    "API shows substantial crude and gasoline builds (OilPrice.com)",
+    "Iraq resumes exports via Turkey pipeline; Russian crude exports at four-month high (Reuters, OilPrice.com)",
+    "Brent holds near $93 as Hormuz attacks offset Gulf exports (OilPrice.com)"
+   ]
+  },
+  "ulsd": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "Ukrainian drone strikes on Russian refineries support distillate cracks, but crude weakness has pulled Dec back to its ~3.99 support.",
+   "events": [
+    "Ukrainian drones hit two refineries deep inside Russia (Bloomberg)",
+    "Dec ULSD ~3.9997 (-0.048), on 3.9947 support (NYMEX via TradingView)"
+   ]
+  },
+  "rbob": {
+   "date": "2026-11-18",
+   "by": "claude",
+   "time": "04:55 CT",
+   "claude_date": "2026-11-18",
+   "fundamental": "API's gasoline build adds to seasonal demand softness; Dec ~2.50, still above 2.42 support.",
+   "events": [
+    "API shows a gasoline inventory build (OilPrice.com)",
+    "Dec RBOB ~2.495 (-0.04) (NYMEX via TradingView)"
+   ]
+  }
+ }
 }

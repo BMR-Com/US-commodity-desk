@@ -1,56 +1,6 @@
 {
-"generated": "2026-11-17 23:21 UTC",
+"generated": "2026-11-18 00:58 UTC",
 "events": [
-{
-"date": "2026-11-10",
-"time": "11:00 AM CT",
-"event": "USDA WASDE",
-"cat": "USDA",
-"markets": [
-"ZC",
-"ZS",
-"ZM",
-"ZL",
-"ZW",
-"KE",
-"HE",
-"LE",
-"DC",
-"CT"
-],
-"importance": 3,
-"link": "https://esmis.nal.usda.gov/publication/world-agricultural-supply-and-demand-estimates",
-"estimated": false
-},
-{
-"date": "2026-11-10",
-"time": "11:00 AM CT",
-"event": "EIA Short-Term Energy Outlook (date estimated)",
-"cat": "Energy",
-"markets": [
-"CL",
-"NG",
-"HO",
-"RB"
-],
-"importance": 2,
-"link": "https://www.eia.gov/outlooks/steo/",
-"estimated": true
-},
-{
-"date": "2026-11-10",
-"time": "3:30 PM CT",
-"event": "API weekly crude & product inventories (industry)",
-"cat": "Energy",
-"markets": [
-"CL",
-"HO",
-"RB"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-11-11",
 "time": "9:30 AM CT",
@@ -2763,6 +2713,49 @@
 "ALL"
 ],
 "importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-16",
+"time": "",
+"event": "IEA Oil Market Report (date estimated)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-16",
+"time": "10:00 AM CT",
+"event": "USDA export inspections (holiday-delayed)",
+"cat": "USDA",
+"markets": [
+"ZC",
+"ZS",
+"ZW",
+"KE"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-16",
+"time": "3:30 PM CT",
+"event": "API weekly crude & product inventories (industry)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 1,
 "link": null,
 "estimated": false
 }

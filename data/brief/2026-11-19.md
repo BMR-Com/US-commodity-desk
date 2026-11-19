@@ -1,6 +1,6 @@
-# Morning brief · Thu Nov 19, 2026 08:39 AM ET
+# Morning brief · Thu Nov 19, 2026 08:49 AM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-19 13:39 UTC). CME open interest from 20261117. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-19 13:49 UTC). CME open interest from 20261117. Research only, not investment advice.
 
 ## Key points
 
@@ -66,7 +66,7 @@ _Directional channels from macro to ag prices are standard relationships, not si
 | Soybean meal | Dec 26 | 334.5 | -1.4 (-0.4%) | +2.8% | -4.0% | Neutral | 49 | 316.2 | 336.0 | 72,001 (-39,667) | -1,943 | mildly bullish |
 | Soybean oil | Dec 26 | 60.24 | +0.36 (+0.6%) | -5.0% | -8.7% | Strong sell | 29 | 52.69 | 65.53 | 7,733 (-32,644) | -2,807 | bearish |
 | Chicago wheat | Dec 26 | 574.25 | +4.25 (+0.7%) | -1.7% | -8.6% | Strong sell | 32 | 574.00 | 578.00 | -81,367 (+7,359) | -5,954 | strongly bearish |
-| KC HRW wheat | Dec 26 | 615.00 | +5.75 (+0.9%) | -1.2% | -8.6% | Strong sell | 32 | 603.75 | 615.50 | -14,935 (-8,213) | -1,725 | mildly bearish |
+| KC HRW wheat | Dec 26 | 615.00 | +5.75 (+0.9%) | -1.2% | -8.6% | Strong sell | 32 | 603.75 | 615.50 | -14,935 (-8,213) | -1,725 | bearish |
 | Cotton | Dec 26 | 75.72 | +0.75 (+1.0%) | -3.7% | -7.5% | Sell | 34 | 75.50 | 79.90 | 55,382 (+2,234) | – | neutral |
 | Lean hogs | Dec 26 | 51.350 | -1.750 (-3.3%) | -8.3% | -23.5% | Strong sell | 22 | – | 71.200 | -51,084 (-592) | +1,535 | bearish |
 | Live cattle | Dec 26 | 219.775 | +1.000 (+0.5%) | +0.4% | -4.5% | Sell | 46 | 218.725 | 225.500 | 34,880 (-16,812) | -2,055 | mildly bullish |
@@ -110,7 +110,7 @@ Research signals: trend short 1.5x for 40% vol (12m excess -6%); carry -6.9%/yr 
 - [El Nino improving U.S. winter wheat outlook](https://news.google.com/rss/articles/CBMigwFBVV95cUxQbkRKTVk4Q2U1dmxHYW9pLUtQTWMwNWxieGtObW5TSWhmMXVHQ0VNZTRYM05wN2Y4XzdJZFZzS201ZWNGSFNodUdKVXdXUFVJdUc3UlNXa185WlFYVjdOeU9HbjRIeUpRWXlBOS1kUVBMVlJLWUQ0dzNfZ1hmNDE1OG1kZw?oc=5) · Brownfield Ag News
 - [Corn Falls to New Lows as Wheat Leads Grains Lower | Wednesday, Nov. 18, 2026.](https://news.google.com/rss/articles/CBMisgFBVV95cUxOY2hQMmluQTZtVDBqSURPbm81MFhib3M4Y00zVFo5NC0zQThRSkV2aUtOWTZXblptQnhST1FwOWZJeVhMQlRBZV9YMlM0RW83eHVKeUdacmoxN09uWkhibjBZczV6UjJpVzhCbHVwc3p0a29ObmxWSEZnTmYyQ0ZGRGttMG9tRGpWaEl4VFJtNkFvRngta3dCODl6bDBXZ3FMbFFaYjRRU1FoaXBqU1h2NDRn?oc=5) · Successful Farming
 
-**KC HRW wheat** (Dec 26, mildly bearish). Dec 26 trades at 615.00 ¢/bu (-1.2% on the week, -8.6% on the month), in a mixed trend: the daily rating is strong sell and the weekly strong sell. RSI is 32 and ADX 49 (trending). Nearest support 603.75, resistance 615.50; 52-week range 564.00–858.25. Levels to watch: a close above 666.57 (20-day momentum flip) would bring trend-follower buying; below 562.80 (250-day momentum flip) adds selling; the 603.75–615.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 19; USDA weekly export sales Nov 27; KC HRW wheat Dec 26: first notice day Nov 30.
+**KC HRW wheat** (Dec 26, bearish). Dec 26 trades at 615.00 ¢/bu (-1.2% on the week, -8.6% on the month), in a mixed trend: the daily rating is strong sell and the weekly strong sell. RSI is 32 and ADX 49 (trending). Nearest support 603.75, resistance 615.50; 52-week range 564.00–858.25. Levels to watch: a close above 666.57 (20-day momentum flip) would bring trend-follower buying; below 562.80 (250-day momentum flip) adds selling; the 603.75–615.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 19; USDA weekly export sales Nov 27; KC HRW wheat Dec 26: first notice day Nov 30.
 Research signals: trend long 1.5x for 40% vol (12m excess +4%); carry -4.3%/yr (69th percentile for the month); IV-RV +3.9. Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Fat right tail: options price a 29% rally 2.1x as likely as a lognormal at ATM vol.
 - [Wheat gains with mixed finishes for soybeans, corn](https://news.google.com/rss/articles/CBMijAFBVV95cUxPdXVlX3BvQ0h1YUlZT1UwOF9zSU9jR08wZ2JDYV9JU1ZjRnpIWGk2Q1pwVl9PSjBWV05TVkVsN21Rc1g4eUZlZlVqdEl5a2kyT0lqZDRfd25XeXo0NTBObGMtNENfU0xlc2E3WkNsNWw3dnU2aUlDd0ttRjBtLTVscU9tTFpQOVBvSGp4TQ?oc=5) · Brownfield Ag News
 - [El Nino improving U.S. winter wheat outlook](https://news.google.com/rss/articles/CBMigwFBVV95cUxQbkRKTVk4Q2U1dmxHYW9pLUtQTWMwNWxieGtObW5TSWhmMXVHQ0VNZTRYM05wN2Y4XzdJZFZzS201ZWNGSFNodUdKVXdXUFVJdUc3UlNXa185WlFYVjdOeU9HbjRIeUpRWXlBOS1kUVBMVlJLWUQ0dzNfZ1hmNDE1OG1kZw?oc=5) · Brownfield Ag News

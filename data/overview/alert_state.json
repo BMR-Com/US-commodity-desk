@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-19 04:47 UTC",
+ "updated": "2026-11-19 13:44 UTC",
  "by": "claude",
  "views": {
   "corn": {
-   "view": "strongly bearish",
-   "shade": "bear3",
-   "score": -0.49
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.43
   },
   "soybeans": {
    "view": "bullish",
@@ -20,22 +20,22 @@
   "oil": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.21
+   "score": -0.3
   },
   "wheat": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.63
+   "score": -0.67
   },
   "kc": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.29
+   "score": -0.43
   },
   "cotton": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.06
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.16
   },
   "hogs": {
    "view": "bearish",
@@ -80,7 +80,7 @@
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.27
+   "score": 0.21
   },
   "rbob": {
    "view": "bearish",
@@ -102,8 +102,28 @@
   "class3": [],
   "class4": [],
   "palm": [],
-  "natgas": [],
-  "crude": [],
+  "natgas": [
+   {
+    "kind": "break",
+    "side": "dn",
+    "text": "Broke below S1 3.342",
+    "new": true
+   }
+  ],
+  "crude": [
+   {
+    "kind": "break",
+    "side": "up",
+    "text": "Broke above R1 83.71",
+    "new": true
+   },
+   {
+    "kind": "break",
+    "side": "up",
+    "text": "Broke above R2 83.89",
+    "new": true
+   }
+  ],
   "ulsd": [],
   "rbob": []
  },
@@ -137,6 +157,10 @@
   "2026-11-18 Crude Dec ~82.7 (-4%) below 83.88 on US stock builds",
   "2026-11-18 Wheat Dec ~574 (-3.6%) and KC ~614.5 below supports on Black Sea truce hopes",
   "2026-11-18 Corn Dec ~437.5 and soyoil ~60.1 below S2",
-  "2026-11-18 Natgas Dec +4% to ~3.34"
+  "2026-11-18 Natgas Dec +4% to ~3.34",
+  "2026-11-19 Crude Dec ~84.2 (+1.2%) above 83.89 R2 on Hormuz tanker attacks",
+  "2026-11-19 Natgas Dec ~3.32 (-1.5%) below 3.342 S1",
+  "2026-11-19 Corn view to bearish; US-desk cotton view to mildly bullish",
+  "2026-11-19 China holding soybean imports at ports as domestic supplies swell (Bloomberg)"
  ]
 }

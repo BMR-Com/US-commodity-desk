@@ -5,64 +5,64 @@
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R48_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "storEast": {
 "label": "Gas \u2014 East region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R31_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "storMw": {
 "label": "Gas \u2014 Midwest region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R32_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "storSc": {
 "label": "Gas \u2014 South Central",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R33_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "storScSalt": {
 "label": "Gas \u2014 South Central salt",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SSO_R33_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "storScNon": {
 "label": "Gas \u2014 South Central non-salt",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SNO_R33_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "storMtn": {
 "label": "Gas \u2014 Mountain region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R34_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "storPac": {
 "label": "Gas \u2014 Pacific region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R35_BCF",
 "how": "id found",
-"rows": 880,
-"last": "2026-11-06"
+"rows": 881,
+"last": "2026-11-13"
 },
 "prodDry": {
 "label": "Gas \u2014 dry production",
@@ -465,5 +465,5 @@
 "last": "2026-11-13"
 }
 },
-"generated": "2026-11-19 15:42 UTC"
+"generated": "2026-11-19 22:30 UTC"
 }

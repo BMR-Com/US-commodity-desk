@@ -1,14 +1,7 @@
 inspections 2026 3653 weekly rows
-  HTTP 503 https://api.fas.usda.gov/api/esr/countries upstream connect error or disconnect/reset before headers. retried and the latest reset reason: connection timeout
-  HTTP 403 https://api.fas.usda.gov/api/esr/countries {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
-  HTTP 503 https://api.fas.usda.gov/api/esr/commodities upstream connect error or disconnect/reset before headers. retried and the latest reset reason: connection timeout
-  HTTP 403 https://api.fas.usda.gov/api/esr/commodities {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
-  HTTP 503 https://api.fas.usda.gov/api/esr/exports/commodityCode/401/allCountries/marketYear/2027 upstream connect error or disconnect/reset before headers. retried and the latest reset reason: connection timeout
-  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/401/allCountries/marketYear/2027 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
-  HTTP 503 https://api.fas.usda.gov/api/esr/exports/commodityCode/401/allCountries/marketYear/2026 upstream connect error or disconnect/reset before headers. reset reason: connection timeout
-  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/401/allCountries/marketYear/2026 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
-  err Response ended prematurely https://api.fas.usda.gov/api/esr/exports/commodityCode/401/allCountries/marketYear/2025
-  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/401/allCountries/marketYear/2025 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
+ESR corn 2027 435
+ESR corn 2026 2542
+ESR corn 2025 2518
 ESR soybeans 2027 421
 ESR soybeans 2026 2303
 ESR soybeans 2025 2637
@@ -32,14 +25,19 @@ ESR wheat_hrs 2026 1953
 ESR wheat_hrs 2025 2061
 ESR wheat_white 2027 475
 ESR wheat_white 2026 1119
-ESR wheat_white 2025 1064
-ESR wheat_durum 2027 162
-ESR wheat_durum 2026 573
-ESR wheat_durum 2025 597
+  err HTTPSConnectionPool(host='api.fas.usda.gov', port=443): Read timed out. (read timeout=180) https://api.fas.usda.gov/api/esr/exports/commodityCode/104/allCountries/marketYear/2025
+  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/104/allCountries/marketYear/2025 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
+  HTTP 503 https://api.fas.usda.gov/api/esr/exports/commodityCode/105/allCountries/marketYear/2027 upstream connect error or disconnect/reset before headers. reset reason: connection timeout
+  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/105/allCountries/marketYear/2027 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
+  HTTP 503 https://api.fas.usda.gov/api/esr/exports/commodityCode/105/allCountries/marketYear/2026 upstream connect error or disconnect/reset before headers. reset reason: connection timeout
+  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/105/allCountries/marketYear/2026 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
+  HTTP 503 https://api.fas.usda.gov/api/esr/exports/commodityCode/105/allCountries/marketYear/2025 upstream connect error or disconnect/reset before headers. reset reason: connection timeout
+  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/105/allCountries/marketYear/2025 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
 ESR sorghum 2027 77
 ESR sorghum 2026 553
 ESR sorghum 2025 375
-ESR cotton_upland 2027 427
+  HTTP 503 https://api.fas.usda.gov/api/esr/exports/commodityCode/1404/allCountries/marketYear/2027 upstream connect error or disconnect/reset before headers. retried and the latest reset reason: connection timeout
+  HTTP 403 https://api.fas.usda.gov/api/esr/exports/commodityCode/1404/allCountries/marketYear/2027 {   "error": {     "code": "API_KEY_MISSING",     "message": "No api_key was supplied. Get one at https://api.fas.usda.g
 ESR cotton_upland 2026 1587
 ESR cotton_upland 2025 1763
 ESR cotton_pima 2027 335

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-19T02:16+00:00",
+ "generated": "2026-11-19T22:01+00:00",
  "slaughter_backtest": {
   "2000-2026": {
    "0": {
@@ -10,9 +10,9 @@
    },
    "1": {
     "mape_hp": 3.65,
-    "mape_naive": 3.11,
-    "hp_beats_naive": 0.48,
-    "n": 86
+    "mape_naive": 3.1,
+    "hp_beats_naive": 0.47,
+    "n": 87
    },
    "2": {
     "mape_hp": 3.39,
@@ -28,9 +28,9 @@
    },
    "4": {
     "mape_hp": 3.53,
-    "mape_naive": 3.33,
+    "mape_naive": 3.31,
     "hp_beats_naive": 0.47,
-    "n": 85
+    "n": 86
    }
   },
   "2015-2026": {
@@ -41,10 +41,10 @@
     "n": 47
    },
    "1": {
-    "mape_hp": 3.64,
-    "mape_naive": 3.7,
-    "hp_beats_naive": 0.5,
-    "n": 46
+    "mape_hp": 3.66,
+    "mape_naive": 3.67,
+    "hp_beats_naive": 0.49,
+    "n": 47
    },
    "2": {
     "mape_hp": 2.82,
@@ -59,10 +59,10 @@
     "n": 46
    },
    "4": {
-    "mape_hp": 3.0,
-    "mape_naive": 3.31,
-    "hp_beats_naive": 0.53,
-    "n": 45
+    "mape_hp": 3.01,
+    "mape_naive": 3.28,
+    "hp_beats_naive": 0.52,
+    "n": 46
    }
   }
  },
@@ -116,14 +116,14 @@
     "group": "GE 180 LBS",
     "group_yoy_pct": -2.11,
     "forecast_per_day": 474476,
-    "actual_per_day": 469927
+    "actual_per_day": 469932
    },
    {
     "target": "2026-10",
     "group": "120 TO 179 LBS",
     "group_yoy_pct": -2.46,
     "forecast_per_day": 487324,
-    "actual_per_day": null
+    "actual_per_day": 508877
    },
    {
     "target": "2026-11",
@@ -150,7 +150,6 @@
  },
  "slaughter_monthly": {
   "month": [
-   "2016-10",
    "2016-11",
    "2016-12",
    "2017-01",
@@ -269,10 +268,10 @@
    "2026-06",
    "2026-07",
    "2026-08",
-   "2026-09"
+   "2026-09",
+   "2026-10"
   ],
   "per_day": [
-   480895,
    466386,
    460277,
    444914,
@@ -391,7 +390,8 @@
    462782,
    433052,
    458586,
-   469927
+   469932,
+   508877
   ]
  }
 }

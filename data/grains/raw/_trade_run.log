@@ -42,6 +42,8 @@ ESR beef 2026 3379
 ESR beef 2025 3600
 ESR pork 2026 2501
 ESR pork 2025 2870
-  HTTP 404 https://apps.fas.usda.gov/export-sales/dailyrep.htm 
+  err HTTPSConnectionPool(host='apps.fas.usda.gov', port=443): Max retries exceeded with url: /export-sales/dailyrep.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='apps.fas.usda.gov', port=443) at 0x7b35eae46750>, 'Connection to apps.fas.usda.gov timed out. (connect timeout=180)')) https://apps.fas.usda.gov/export-sales/dailyrep.htm
+  err HTTPSConnectionPool(host='apps.fas.usda.gov', port=443): Max retries exceeded with url: /export-sales/dailyrep.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='apps.fas.usda.gov', port=443) at 0x7b35eae45450>, 'Connection to apps.fas.usda.gov timed out. (connect timeout=180)')) https://apps.fas.usda.gov/export-sales/dailyrep.htm
+  err HTTPSConnectionPool(host='apps.fas.usda.gov', port=443): Max retries exceeded with url: /export-sales/dailyrep.htm (Caused by ConnectTimeoutError(<HTTPSConnection(host='apps.fas.usda.gov', port=443) at 0x7b35eac48fd0>, 'Connection to apps.fas.usda.gov timed out. (connect timeout=180)')) https://apps.fas.usda.gov/export-sales/dailyrep.htm
   HTTP 403 https://www.fas.usda.gov/programs/export-sales-reporting-program/daily-export-sales <HTML><HEAD> <TITLE>Access Denied</TITLE> </HEAD><BODY> <H1>Access Denied</H1>   You don't have permission to access "ht
   HTTP 404 https://apps.fas.usda.gov/export-sales/DailyReports.aspx <!DOCTYPE html> <html>     <head>         <title>The resource cannot be found.</title>         <meta name="viewport"

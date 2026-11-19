@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-19 21:06 UTC",
- "generated_et": "Thu Nov 19, 2026 04:06 PM ET",
+ "generated": "2026-11-19 21:35 UTC",
+ "generated_et": "Thu Nov 19, 2026 04:35 PM ET",
  "date": "2026-11-19",
- "prices_from": "2026-11-19 21:06 UTC",
+ "prices_from": "2026-11-19 21:35 UTC",
  "cme_oi_date": "20261117",
  "headlines": [
   "Biggest moves vs prior settle: KC HRW wheat +17.75 (+2.9%); Lean hogs +1.050 (+2.0%); Chicago wheat +9.00 (+1.6%).",
@@ -1039,32 +1039,32 @@
    {
     "title": "Rates",
     "score": 0,
-    "text": "US 10-year 5.07% (-8 bp in a month), 2-year 4.80% (+3 bp); 2s10s curve +27 bp (-11 bp in a month). Yields are little changed on the month. T-bill yield 4.15% sets the cost of carrying inventory."
+    "text": "US 10-year 5.04% (-8 bp in a month), 2-year 4.76% (-3 bp); 2s10s curve +28 bp (-5 bp in a month). Yields are little changed on the month. T-bill yield 4.15% sets the cost of carrying inventory."
    },
    {
     "title": "Dollar & farm currencies",
     "score": -2,
-    "text": "Dollar index 103.90 (+2.1% in a month, +5.7% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.935 (+17.8% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.683 (-0.1%); USD/MXN 19.10 (+3.7%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 103.88 (+2.1% in a month, +5.7% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.935 (+17.8% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.667 (-0.4%); USD/MXN 19.08 (+3.7%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
     "score": -1,
-    "text": "S&P 500 -6.8% in a month (+5.0% YTD); VIX 27.6. Risk-off: funds tend to cut commodity length along with equities. "
+    "text": "S&P 500 -7.0% in a month (+4.8% YTD); VIX 27.9. Risk-off: funds tend to cut commodity length along with equities. "
    },
    {
     "title": "Energy",
     "score": -1,
-    "text": "WTI 83.91 $/bbl (-14.2% in a month), Brent 89.77, ULSD 3.967 $/gal (-15.9%), natural gas 3.26 (-1.2%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+    "text": "WTI 83.94 $/bbl (-14.2% in a month), Brent 89.93, ULSD 3.977 $/gal (-15.6%), natural gas 3.25 (-1.6%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -14.8% in a month, Shanghai Composite -4.2%, Hang Seng -4.3%, yuan +0.1% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -15.1% in a month, Shanghai Composite -4.2%, Hang Seng -4.3%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": -1,
-    "text": "8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -11.9% in a month; gold -11.4%. "
+    "text": "8 of 33 commodities trade above their 50-day average (24%); S&P GSCI -12.0% in a month; gold -11.6%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1072,107 +1072,107 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7219.0,
-   "d1": -1.6552005994142083,
-   "m1": -6.914670706940463,
+   "last": 7200.0,
+   "d1": -1.914038553232067,
+   "m1": -7.159666032687539,
    "kind": "price",
-   "time": "2026-11-19 19:58 UTC"
+   "time": "2026-11-19 20:58 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 7185.87,
-   "d1": -1.881032835039942,
-   "m1": -6.829109314055415,
+   "last": 7175.83,
+   "d1": -2.018123323781895,
+   "m1": -6.959286417521926,
    "kind": "price",
-   "time": "2026-11-19 20:08 UTC"
+   "time": "2026-11-19 21:08 UTC"
   },
   {
    "name": "VIX",
-   "last": 27.64,
-   "d1": 12.540719059577699,
-   "m1": 59.6764925058606,
+   "last": 27.95,
+   "d1": 13.802934070737937,
+   "m1": 61.4673648892476,
    "kind": "price",
-   "time": "2026-11-19 19:53 UTC"
+   "time": "2026-11-19 20:53 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 5.06,
-   "d1": -0.5999984741211328,
-   "m1": -5.700010299682656,
+   "last": 5.052,
+   "d1": -1.3999984741211335,
+   "m1": -6.500010299682657,
    "kind": "yield",
-   "time": "2026-11-19 19:53 UTC"
+   "time": "2026-11-19 19:59 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 103.899,
-   "d1": 0.037549960927441006,
-   "m1": 2.1321110503222718,
+   "last": 103.88,
+   "d1": 0.01925610391959598,
+   "m1": 2.1134341611322327,
    "kind": "price",
-   "time": "2026-11-19 19:58 UTC"
+   "time": "2026-11-19 20:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.0979,
-   "d1": -0.1262298501988668,
-   "m1": -2.111234842410381,
+   "last": 1.0976,
+   "d1": -0.15352025100491273,
+   "m1": -2.1379828427267045,
    "kind": "price",
-   "time": "2026-11-19 20:07 UTC"
+   "time": "2026-11-19 21:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.9354,
-   "d1": 2.7454618489011873,
-   "m1": 17.836009305755596,
+   "last": 5.9346,
+   "d1": 2.7316133518362706,
+   "m1": 17.820126836596884,
    "kind": "price",
-   "time": "2026-11-19 20:08 UTC"
+   "time": "2026-11-19 21:08 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6828,
-   "d1": 0.2535256905765504,
-   "m1": -0.12105769210211115,
+   "last": 6.6665,
+   "d1": 0.008997578294822617,
+   "m1": -0.3646721590349511,
    "kind": "price",
-   "time": "2026-11-19 18:56 UTC"
+   "time": "2026-11-19 20:27 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 83.91,
-   "d1": 0.7806844187993045,
-   "m1": -14.2199956432429,
+   "last": 83.94,
+   "d1": 0.8167161257777833,
+   "m1": -14.189327068213665,
    "kind": "price",
-   "time": "2026-11-19 19:57 UTC"
+   "time": "2026-11-19 20:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 3.261,
-   "d1": -3.2918143448936843,
-   "m1": -1.2117575529428604,
+   "last": 3.248,
+   "d1": -3.677342223923541,
+   "m1": -1.6055775933635053,
    "kind": "price",
-   "time": "2026-11-19 19:57 UTC"
+   "time": "2026-11-19 20:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3669.5,
-   "d1": -1.9348433745756344,
-   "m1": -11.42036611074081,
+   "last": 3662.1,
+   "d1": -2.132603875741501,
+   "m1": -11.598997883674588,
    "kind": "price",
-   "time": "2026-11-19 19:57 UTC"
+   "time": "2026-11-19 20:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 5.6275,
-   "d1": -0.7232944690926835,
-   "m1": -14.780039459746774,
+   "last": 5.609,
+   "d1": -1.049659471726505,
+   "m1": -15.06019392798217,
    "kind": "price",
-   "time": "2026-11-19 19:57 UTC"
+   "time": "2026-11-19 20:57 UTC"
   },
   {
    "name": "S&P GSCI",
-   "last": 658.0866,
-   "d1": 0.2050445816683677,
-   "m1": -11.886215233471775,
+   "last": 657.4297,
+   "d1": 0.10502021741951584,
+   "m1": -11.97417013973051,
    "kind": "price",
-   "time": "2026-11-19 20:08 UTC"
+   "time": "2026-11-19 20:39 UTC"
   }
  ],
  "econ": [

@@ -1,51 +1,6 @@
 {
-"generated": "2026-11-18 23:21 UTC",
+"generated": "2026-11-19 02:01 UTC",
 "events": [
-{
-"date": "2026-11-11",
-"time": "9:30 AM CT",
-"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
-"cat": "Energy",
-"markets": [
-"CL",
-"HO",
-"RB"
-],
-"importance": 3,
-"link": "https://www.eia.gov/petroleum/supply/weekly/",
-"estimated": false
-},
-{
-"date": "2026-11-11",
-"time": "11:00 AM CT",
-"event": "USDA NDPSR dairy product prices (weekly)",
-"cat": "Dairy",
-"markets": [
-"DC",
-"GDK",
-"CSC",
-"CB",
-"GNF",
-"DY"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
-{
-"date": "2026-11-11",
-"time": "",
-"event": "OPEC Monthly Oil Market Report (date estimated)",
-"cat": "Energy",
-"markets": [
-"CL",
-"HO",
-"RB"
-],
-"importance": 2,
-"link": null,
-"estimated": true
-},
 {
 "date": "2026-11-12",
 "time": "9:30 AM CT",
@@ -2756,6 +2711,23 @@
 "RB"
 ],
 "importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-17",
+"time": "11:00 AM CT",
+"event": "USDA NDPSR dairy product prices (weekly)",
+"cat": "Dairy",
+"markets": [
+"DC",
+"GDK",
+"CSC",
+"CB",
+"GNF",
+"DY"
+],
+"importance": 2,
 "link": null,
 "estimated": false
 }

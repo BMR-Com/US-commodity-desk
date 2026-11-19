@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-18 17:55 UTC",
- "by": "claude",
+ "updated": "2026-11-19 02:50 UTC",
+ "by": "bot",
  "views": {
   "corn": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.45
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.49
   },
   "soybeans": {
    "view": "bullish",
@@ -15,7 +15,7 @@
   "meal": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.27
+   "score": 0.21
   },
   "oil": {
    "view": "bearish",
@@ -25,17 +25,17 @@
   "wheat": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.52
+   "score": -0.63
   },
   "kc": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.18
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.29
   },
   "cotton": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.1
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.06
   },
   "hogs": {
    "view": "bearish",
@@ -43,44 +43,44 @@
    "score": -0.31
   },
   "cattle": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.06
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.12
   },
   "feeders": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": -0.0
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.21
   },
   "class3": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.32
+   "score": -0.26
   },
   "class4": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.13
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.11
   },
   "palm": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.45
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.51
   },
   "natgas": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.35
+   "view": "neutral",
+   "shade": "neutral",
+   "score": -0.0
   },
   "crude": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.17
+   "score": 0.1
   },
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.33
+   "score": 0.27
   },
   "rbob": {
    "view": "bearish",
@@ -89,48 +89,22 @@
   }
  },
  "alerts": {
-  "corn": [
-   "Broke below S1 443.50",
-   "Broke below S2 440.75",
-   "Broke below S2 440.75 (Dec ~437.5 intraday)"
-  ],
+  "corn": [],
   "soybeans": [],
   "meal": [],
-  "oil": [
-   "Broke below S1 61.34",
-   "Broke below S2 60.54",
-   "Broke below S2 60.54 (Dec ~60.09 intraday)"
-  ],
-  "wheat": [
-   "Broke below S1 582.50",
-   "Broke below S2 581.25",
-   "Broke below the fund sell trigger (250-day momentum flip) 575.50",
-   "Broke below S2 581.25 (Dec ~573.75 intraday)"
-  ],
-  "kc": [
-   "Broke below S2 625.5 (Dec ~614.5 intraday)"
-  ],
-  "cotton": [
-   "Broke below S2 76.47 (Dec ~75.83 intraday)"
-  ],
+  "oil": [],
+  "wheat": [],
+  "kc": [],
+  "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [
-   "Broke above the fund buy trigger (50-day average) 328.913"
-  ],
+  "feeders": [],
   "class3": [],
   "class4": [],
   "palm": [],
   "natgas": [],
-  "crude": [
-   "Broke below S1 83.88",
-   "Broke below S1 83.88 (Dec ~82.7 intraday)"
-  ],
-  "ulsd": [
-   "Broke below S1 3.9947",
-   "Broke below the fund sell trigger (55-day breakout low) 3.9777",
-   "Broke below S1 3.9947 (Dec ~3.953 intraday)"
-  ],
+  "crude": [],
+  "ulsd": [],
   "rbob": []
  },
  "news": [

@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-19 15:08 UTC",
+"generated": "2026-11-19 16:08 UTC",
 "source": "Forex Factory weekly calendar export (forecast = consensus; no actuals in the export)",
 "events": [
 {
@@ -1494,16 +1494,6 @@
 },
 {
 "date": "2026-11-19",
-"time": "10:15 AM ET",
-"country": "US",
-"title": "Mortgage Delinquencies",
-"impact": "Low",
-"forecast": "",
-"previous": "4.37%",
-"why": ""
-},
-{
-"date": "2026-11-19",
 "time": "10:30 AM ET",
 "country": "US",
 "title": "Natural Gas Storage",
@@ -1511,6 +1501,16 @@
 "forecast": "25B",
 "previous": "61B",
 "why": "Energy prices: biofuel margins, freight and farm input costs"
+},
+{
+"date": "2026-11-19",
+"time": "11:30 AM ET",
+"country": "US",
+"title": "Mortgage Delinquencies",
+"impact": "Low",
+"forecast": "",
+"previous": "4.37%",
+"why": ""
 },
 {
 "date": "2026-11-19",

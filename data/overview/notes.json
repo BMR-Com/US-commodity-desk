@@ -12,18 +12,18 @@
    "date": "2026-11-19"
   },
   "soybeans": {
-   "fundamental": "Jan slips to ~1,210 (-0.5%) despite higher weekly export sales; reports of China holding imported beans at ports with swelling domestic stocks undercut hopes of bigger US buying before the trade talks.",
+   "fundamental": "Jan faded midday gains to ~1,207 (-0.8%); China holding imported beans at ports and swelling domestic stocks keep doubts about extra US buying alive, while late harvest progress in a few states adds little news.",
    "events": [
-    "US soybean export sales rise on the week (Dow Jones)",
-    "China holds soybean imports at ports as domestic supplies swell (Bloomberg, Farm Progress)",
-    "Strong crush demand supports basis (Brownfield)"
+    "Soybeans fade early gains to midday losses (Barchart)",
+    "China holds soybean imports at ports (Bloomberg)",
+    "States still harvesting soybeans (Successful Farming)"
    ],
    "date": "2026-11-19"
   },
   "meal": {
-   "fundamental": "Meal gives back a little (-0.4%) as soyoil firms with crude; heavy crush keeps meal supply ample, so its relative strength depends on oil staying weak.",
+   "fundamental": "Meal slips ~0.8% to ~331 with beans while oil holds up; heavy crush keeps meal supply ample.",
    "events": [
-    "Soymeal the outlier on Wednesday (ADMIS)",
+    "Soy complex fades midday (Barchart)",
     "Strong crush pace (Brownfield)"
    ],
    "date": "2026-11-19"
@@ -37,20 +37,19 @@
    "date": "2026-11-19"
   },
   "wheat": {
-   "fundamental": "A second day of short covering lifts Dec to ~578 (+1.4%), helped by better weekly export sales (~345k t); nothing changes the heavy supply backdrop of Black Sea truce hopes and improving US winter-wheat moisture.",
+   "fundamental": "Short covering continued with Dec ~579 (+1.6%), holding above the 578 R1 break; export sales helped, but Black Sea truce hopes and better US winter-wheat moisture leave the supply backdrop heavy.",
    "events": [
+    "Wheat rallying back on Thursday (Barchart)",
     "Wheat export sales 345k t for 26/27 (USDA via Dow Jones)",
-    "Grains recover ground after broad selloff (Dow Jones)",
-    "El Niño seen improving the US winter wheat outlook (Brownfield)"
+    "El Niño seen improving US winter wheat outlook (Brownfield)"
    ],
    "date": "2026-11-19"
   },
   "kc": {
-   "fundamental": "HRW leads again: Dec ~626 (+2.7%), back above 615.5 resistance. It reads as short covering out of oversold levels; Plains moisture is still a supply positive for the 2027 crop.",
+   "fundamental": "HRW leads the complex again (Mar ~641, +2.9%) in what still looks like short covering from oversold levels; Plains moisture remains a positive for 2027 supply.",
    "events": [
-    "KC Dec up ~16.75 to ~626 (CBOT via TradingView)",
-    "Wheat export sales improve (Dow Jones)",
-    "El Niño improving US winter wheat outlook (Brownfield)"
+    "KC wheat leads gains (CBOT via Yahoo)",
+    "Wheat rallying back on Thursday (Barchart)"
    ],
    "date": "2026-11-19"
   },
@@ -64,27 +63,28 @@
    "date": "2026-11-19"
   },
   "hogs": {
-   "fundamental": "Dec bounces ~1.6% to ~52.2 off contract lows; the Thailand deal's pork access and $2.6bn of ag purchases help sentiment, but they are small and slow against heavy current supplies.",
+   "fundamental": "Hogs extend the bounce off contract lows (Feb ~58.1, +1.7%), helped by the Thailand pork-access deal; current supplies are still heavy, so it reads as a relief rally.",
    "events": [
-    "Thailand trade deal to include $2.6bn of US ag purchases and pork access (Successful Farming)",
-    "Lean hogs set new contract lows this week (ADMIS, Barchart)"
+    "Lean hogs firm with cattle Thursday (Brownfield)",
+    "Thailand deal includes US ag purchases and pork access (Successful Farming)"
    ],
    "date": "2026-11-19"
   },
   "cattle": {
-   "fundamental": "Dec firms ~1.1% to ~222 while cash trade is awaited. Tyson adding Texas beef capacity through the Allied Beef deal points to more packer demand for scarce cattle; supply stays tight.",
+   "fundamental": "Cattle rallied (Feb ~227.3, +1.5%) ahead of Friday's Cattle on Feed, where another very low placements number would confirm the shrinking feeder supply. Packer capacity additions such as Tyson's Allied Beef deal add demand for scarce cattle.",
    "events": [
-    "Tyson boosts Texas beef capacity with Allied Beef deal (Farm Progress)",
-    "Tyson's beef segment still a drag on earnings (Barron's)",
-    "USDA restricts European ruminant germplasm as Shamonda virus spreads (Feedstuffs)"
+    "Cattle higher Thursday (Brownfield, Barchart)",
+    "Record-low placements possible in USDA Cattle on Feed (AgroLatam)",
+    "Tyson boosts Texas beef capacity (Farm Progress)"
    ],
    "date": "2026-11-19"
   },
   "feeders": {
-   "fundamental": "Feeders firmed (~+0.9%) with the cash index near 338 and corn at lows supporting feeding margins; smaller December daily limits are coming.",
+   "fundamental": "Feeders follow live cattle higher (Jan ~335.9, +1.5%); cheap corn supports feeding margins and a low placements figure on Friday would underline tight feeder supply.",
    "events": [
-    "CME to reduce feeder cattle daily limits in December (DTN)",
-    "Corn near new lows lowers feed costs (Successful Farming)"
+    "Cattle complex rallies (Barchart)",
+    "USDA Cattle on Feed due Friday (AgroLatam)",
+    "CME to cut feeder daily limits in December (DTN)"
    ],
    "date": "2026-11-19"
   },
@@ -113,20 +113,20 @@
    "date": "2026-11-19"
   },
   "natgas": {
-   "fundamental": "Dec extends losses to ~3.30 (-2.1%) and stays below 3.342 support; slower LNG flows through Hormuz support US cargo demand, but storage ending the season above normal limits the upside.",
+   "fundamental": "Dec slides to ~3.26 (-3.3%), extending below 3.342 support; storage ending the season above normal outweighs slower Gulf LNG flows that favour US cargoes.",
    "events": [
-    "Natgas Dec ~3.30, below 3.342 support (NYMEX via TradingView)",
-    "LNG exports through Hormuz slow after more attacks (Bloomberg)",
-    "US storage ended injection season above normal (EIA)"
+    "Natgas Dec ~3.26 (NYMEX via Yahoo)",
+    "LNG exports through Hormuz slow after attacks (Bloomberg)",
+    "US storage above normal (EIA)"
    ],
    "date": "2026-11-19"
   },
   "crude": {
-   "fundamental": "WTI holds ~84.4 (+1.3%): mine strikes and attacks around Hormuz plus Marathon's force majeure on North Dakota deliveries offset the surplus talk; the market still swings between Gulf shipping risk and ample supply.",
+   "fundamental": "WTI holds ~83.9 (+0.8%) even as equities drop ~2% and the dollar firms; Hormuz tanker attacks and Marathon's North Dakota force majeure offset ample Gulf and Russian exports, so supply risk is cushioning the risk-off tone.",
    "events": [
-    "Oil futures pick up as Middle East risks remain (Dow Jones)",
-    "Marathon declares force majeure on North Dakota oil deliveries (Seeking Alpha)",
-    "Brent holds on Hormuz mine strikes (Invezz)"
+    "Hormuz tanker attacks offset Gulf export surge (OilPrice.com)",
+    "Marathon force majeure on North Dakota deliveries (Seeking Alpha)",
+    "S&P 500 -1.9%, VIX ~28 (Yahoo)"
    ],
    "date": "2026-11-19"
   },

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19 17:43 UTC",
+ "updated": "2026-11-19 20:50 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -13,9 +13,9 @@
    "score": 0.35
   },
   "meal": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.21
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.15
   },
   "oil": {
    "view": "bearish",
@@ -30,7 +30,7 @@
   "kc": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.43
+   "score": -0.32
   },
   "cotton": {
    "view": "mildly bullish",
@@ -40,17 +40,17 @@
   "hogs": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.31
+   "score": -0.25
   },
   "cattle": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.12
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.38
   },
   "feeders": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.21
+   "score": 0.33
   },
   "class3": {
    "view": "bearish",
@@ -65,12 +65,12 @@
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.5
+   "score": -0.46
   },
   "natgas": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.0
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.09
   },
   "crude": {
    "view": "mildly bullish",
@@ -80,7 +80,7 @@
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.21
+   "score": 0.27
   },
   "rbob": {
    "view": "bearish",
@@ -90,33 +90,33 @@
  },
  "alerts": {
   "corn": [],
-  "soybeans": [],
-  "meal": [],
-  "oil": [],
-  "wheat": [
+  "soybeans": [
    {
     "kind": "break",
-    "side": "up",
-    "text": "Broke above R1 578.00",
-    "new": true
+    "side": "dn",
+    "text": "Holding below the fund sell trigger (120-day momentum flip) 1,209.72",
+    "new": false
    }
   ],
+  "meal": [],
+  "oil": [],
+  "wheat": [],
   "kc": [],
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [],
+  "feeders": [
+   {
+    "kind": "break",
+    "side": "up",
+    "text": "Holding above the fund buy trigger (200-day average) 334.767",
+    "new": false
+   }
+  ],
   "class3": [],
   "class4": [],
   "palm": [],
-  "natgas": [
-   {
-    "kind": "break",
-    "side": "dn",
-    "text": "Broke below S1 3.342",
-    "new": true
-   }
-  ],
+  "natgas": [],
   "crude": [
    {
     "kind": "break",
@@ -170,6 +170,8 @@
   "2026-11-19 Corn view to bearish; US-desk cotton view to mildly bullish",
   "2026-11-19 China holding soybean imports at ports as domestic supplies swell (Bloomberg)",
   "2026-11-19 Wheat Dec ~578.5 above 578 R1; KC Dec +2.7% to ~626 above 615.5",
-  "2026-11-19 Marathon force majeure on North Dakota crude deliveries; WTI ~84.4"
+  "2026-11-19 Marathon force majeure on North Dakota crude deliveries; WTI ~84.4",
+  "2026-11-19 Views: meal to mildly bullish, cattle to bullish (Feb ~227.3 +1.5% ahead of CoF), natgas to mildly bearish (~3.26 -3.3%)",
+  "2026-11-19 Risk-off close: S&P -1.9%, VIX ~28; crude holds ~83.9"
  ]
 }

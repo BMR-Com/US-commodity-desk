@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19 13:44 UTC",
+ "updated": "2026-11-19 17:43 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -65,12 +65,12 @@
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.51
+   "score": -0.5
   },
   "natgas": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.0
+   "score": 0.0
   },
   "crude": {
    "view": "mildly bullish",
@@ -93,7 +93,14 @@
   "soybeans": [],
   "meal": [],
   "oil": [],
-  "wheat": [],
+  "wheat": [
+   {
+    "kind": "break",
+    "side": "up",
+    "text": "Broke above R1 578.00",
+    "new": true
+   }
+  ],
   "kc": [],
   "cotton": [],
   "hogs": [],
@@ -161,6 +168,8 @@
   "2026-11-19 Crude Dec ~84.2 (+1.2%) above 83.89 R2 on Hormuz tanker attacks",
   "2026-11-19 Natgas Dec ~3.32 (-1.5%) below 3.342 S1",
   "2026-11-19 Corn view to bearish; US-desk cotton view to mildly bullish",
-  "2026-11-19 China holding soybean imports at ports as domestic supplies swell (Bloomberg)"
+  "2026-11-19 China holding soybean imports at ports as domestic supplies swell (Bloomberg)",
+  "2026-11-19 Wheat Dec ~578.5 above 578 R1; KC Dec +2.7% to ~626 above 615.5",
+  "2026-11-19 Marathon force majeure on North Dakota crude deliveries; WTI ~84.4"
  ]
 }

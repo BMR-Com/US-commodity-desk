@@ -3,20 +3,20 @@
  "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
  "markets": {
   "corn": {
-   "fundamental": "Flat near 436 after new lows. Brazil's fast-growing corn-ethanol sector is absorbing more of its own corn and feeding a feedlot expansion, a slow-moving offset to Brazilian export competition; near term, fund selling still drives price.",
+   "fundamental": "Dec recovers to ~439 (+0.8%) with a softer dollar and firmer crude, but weekly export sales fell from recent highs, so the demand story is cooling while fund selling has paused rather than reversed.",
    "events": [
-    "Brazil's corn ethanol boom is speeding feedlot beef growth (Reuters)",
-    "Funds keep selling as corn and soybean export stories diverge (American Ag Network)",
-    "Ethanol groups push for ethanol in maritime fuel (Ethanol Producer Magazine)"
+    "Weekly corn export sales decline (Dow Jones)",
+    "Chicago grains regain ground as dollar and oil ease pressure (Reuters)",
+    "Brazil's corn ethanol boom is speeding feedlot beef growth (Reuters)"
    ],
    "date": "2026-11-19"
   },
   "soybeans": {
-   "fundamental": "Crush demand stays strong, but China is reportedly holding imported beans at ports as its domestic stocks swell, a soft signal for further US purchases ahead of the trade talks. Jan is up ~0.5% early on a crude bounce.",
+   "fundamental": "Jan slips to ~1,210 (-0.5%) despite higher weekly export sales; reports of China holding imported beans at ports with swelling domestic stocks undercut hopes of bigger US buying before the trade talks.",
    "events": [
-    "China holds soybean imports at ports as domestic supplies swell (Bloomberg)",
-    "Strong crush demand supports basis (Brownfield)",
-    "Mixed overnight finish for soybeans (Brownfield)"
+    "US soybean export sales rise on the week (Dow Jones)",
+    "China holds soybean imports at ports as domestic supplies swell (Bloomberg, Farm Progress)",
+    "Strong crush demand supports basis (Brownfield)"
    ],
    "date": "2026-11-19"
   },
@@ -29,51 +29,54 @@
    "date": "2026-11-19"
   },
   "oil": {
-   "fundamental": "Soyoil firms ~0.75% with crude's Hormuz-driven rebound after Wednesday's slump; with crush running hard, supply is ample and the energy link remains the main driver.",
+   "fundamental": "Soyoil firms ~0.9% to ~60.4 with crude; supply from the heavy crush is ample, so the energy link remains the main driver.",
    "events": [
-    "Crude steadies as Hormuz tanker attacks offset glut fears (OilPrice.com)",
+    "Crude up on Middle East risk (Dow Jones)",
     "Soyoil fell below support Wednesday (Barchart)"
    ],
    "date": "2026-11-19"
   },
   "wheat": {
-   "fundamental": "A short-covering bounce (~+0.9%) after the lowest close since January; nothing new on supply, and Black Sea truce hopes plus improving El Niño moisture for US winter wheat keep the backdrop heavy.",
+   "fundamental": "A second day of short covering lifts Dec to ~578 (+1.4%), helped by better weekly export sales (~345k t); nothing changes the heavy supply backdrop of Black Sea truce hopes and improving US winter-wheat moisture.",
    "events": [
-    "Chicago wheat hit its lowest since January before bouncing (Investing.com, Brownfield)",
+    "Wheat export sales 345k t for 26/27 (USDA via Dow Jones)",
+    "Grains recover ground after broad selloff (Dow Jones)",
     "El Niño seen improving the US winter wheat outlook (Brownfield)"
    ],
    "date": "2026-11-19"
   },
   "kc": {
-   "fundamental": "HRW leads the bounce (~+1.9% in Mar); El Niño moisture for the Plains is still a supply positive for the 2027 crop, so this reads as short covering.",
+   "fundamental": "HRW leads again: Dec ~626 (+2.7%), back above 615.5 resistance. It reads as short covering out of oversold levels; Plains moisture is still a supply positive for the 2027 crop.",
    "events": [
-    "KC wheat rebounds overnight after breaking support (Yahoo Finance)",
+    "KC Dec up ~16.75 to ~626 (CBOT via TradingView)",
+    "Wheat export sales improve (Dow Jones)",
     "El Niño improving US winter wheat outlook (Brownfield)"
    ],
    "date": "2026-11-19"
   },
   "cotton": {
-   "fundamental": "No new supply news; prices steadied after Wednesday's macro-driven slide. Dec is in delivery, so cert flow and the high-grade share matter more than the crop story for old-crop longs until Mar takes over.",
+   "fundamental": "Old-crop has bounced with Dec back to ~76 (+1.4%) and Mar near 80 despite a firm dollar, a technical recovery rather than new supply news. Dec deliveries and the high-grade share of certificated stock still cap the comfort for longs until Mar is the lead month.",
    "events": [
-    "Dec cotton fell with outside pressure Wednesday (Barchart)",
-    "Texas yield cut again in USDA's November report (RFD-TV)"
+    "Strong dollar weighed on cotton early (ADMIS)",
+    "Dec ~76.0, Mar ~79.8 by midday (ICE via TradingView)",
+    "Texas yield trimmed again in USDA's November report (RFD-TV)"
    ],
    "date": "2026-11-19"
   },
   "hogs": {
-   "fundamental": "Feb fell ~2% Wednesday as the selloff to contract lows widened; Thailand access is a slow, small offset and nothing yet suggests cash is turning.",
+   "fundamental": "Dec bounces ~1.6% to ~52.2 off contract lows; the Thailand deal's pork access and $2.6bn of ag purchases help sentiment, but they are small and slow against heavy current supplies.",
    "events": [
-    "Lean hogs at new contract lows (ADMIS, Barchart)",
-    "Thailand deal includes US pork access (AgWeb)"
+    "Thailand trade deal to include $2.6bn of US ag purchases and pork access (Successful Farming)",
+    "Lean hogs set new contract lows this week (ADMIS, Barchart)"
    ],
    "date": "2026-11-19"
   },
   "cattle": {
-   "fundamental": "Tight supply backdrop unchanged and futures firmed while waiting on cash trade. Tyson's beef segment is still losing money on high cattle costs, a reminder of packer margin strain; USDA restricting European ruminant germplasm as Shamonda virus spreads is a precaution with no US herd impact so far.",
+   "fundamental": "Dec firms ~1.1% to ~222 while cash trade is awaited. Tyson adding Texas beef capacity through the Allied Beef deal points to more packer demand for scarce cattle; supply stays tight.",
    "events": [
-    "Cattle futures mostly higher awaiting direct trade (Brownfield)",
-    "Tyson beats on earnings but beef remains a drag (Barron's)",
-    "USDA restricts ruminant germplasm from Europe as Shamonda virus spreads (Feedstuffs)"
+    "Tyson boosts Texas beef capacity with Allied Beef deal (Farm Progress)",
+    "Tyson's beef segment still a drag on earnings (Barron's)",
+    "USDA restricts European ruminant germplasm as Shamonda virus spreads (Feedstuffs)"
    ],
    "date": "2026-11-19"
   },
@@ -86,56 +89,53 @@
    "date": "2026-11-19"
   },
   "class3": {
-   "fundamental": "Block-led spot cheese weakness pushed Dec Class III down ~1% to about 17.1; a2 Milk's China-label recovery is a minor export-demand positive.",
+   "fundamental": "Dec Class III steadies near 17.0 after the block-led drop; US dairy exports on track for another record year are a demand support, but cheese supply keeps spot prices heavy.",
    "events": [
-    "Dairy lower Wednesday, cheese blocks led losses (Brownfield)",
-    "a2 Milk's China-label offtake recovers (Reuters)"
+    "US dairy exports heading for another record year (Dairy Herd)",
+    "Cheese blocks led losses Wednesday (Brownfield)"
    ],
    "date": "2026-11-19"
   },
   "class4": {
-   "date": "2026-11-18",
-   "by": "claude",
-   "time": "22:50 CT",
-   "fundamental": "Spot dairy was lower across the board Wednesday; the Class IV nowcast still sits above futures on firm NDM.",
+   "fundamental": "Record-pace dairy exports support NDM and butter demand; the Class IV nowcast still sits above futures on firm powder.",
    "events": [
+    "US dairy exports heading for another record year (Dairy Herd)",
     "Dairy prices lower Wednesday (Brownfield)"
-   ]
+   ],
+   "date": "2026-11-19"
   },
   "palm": {
-   "date": "2026-11-18",
-   "by": "bot",
-   "time": "20:50 CT",
-   "claude_date": "2026-11-18",
-   "fundamental": "No new headlines for this market in the last 30 hours.",
+   "fundamental": "Jan rebounds ~0.8% to ~4,288 with firmer crude and soyoil; no new supply data, so it is following the vegoil complex.",
    "events": [
-    "Jan ~4,272 (-29) (Bursa via TradingView)",
-    "Soyoil and crude lower (TradingView)"
-   ]
+    "Jan ~4,288 (+35) (Bursa via TradingView)",
+    "Crude and soyoil higher (TradingView)"
+   ],
+   "date": "2026-11-19"
   },
   "natgas": {
-   "fundamental": "Dec gives back ~1.5% after Wednesday's rally. Further attacks appear to be slowing LNG exports through Hormuz, which tightens the global LNG market and supports demand for US cargoes, while storage still ends the season slightly above normal.",
+   "fundamental": "Dec extends losses to ~3.30 (-2.1%) and stays below 3.342 support; slower LNG flows through Hormuz support US cargo demand, but storage ending the season above normal limits the upside.",
    "events": [
-    "LNG exports through Hormuz appear to slow after more attacks (Bloomberg)",
-    "Orlen in talks with QatarEnergy on a new LNG deal (Reuters)",
+    "Natgas Dec ~3.30, below 3.342 support (NYMEX via TradingView)",
+    "LNG exports through Hormuz slow after more attacks (Bloomberg)",
     "US storage ended injection season above normal (EIA)"
    ],
    "date": "2026-11-19"
   },
   "crude": {
-   "fundamental": "WTI rebounds ~1% to about 84 as fresh Hormuz tanker attacks offset the surplus story from this week's US stock builds; the market keeps trading between ample supply and Gulf shipping risk.",
+   "fundamental": "WTI holds ~84.4 (+1.3%): mine strikes and attacks around Hormuz plus Marathon's force majeure on North Dakota deliveries offset the surplus talk; the market still swings between Gulf shipping risk and ample supply.",
    "events": [
-    "Oil steadies as Hormuz tanker threats offset glut fears (OilPrice.com, Reuters)",
-    "China's small refiners squeezed without Iranian crude (Reuters)",
-    "Explosion at an Indonesian refinery (Reuters)"
+    "Oil futures pick up as Middle East risks remain (Dow Jones)",
+    "Marathon declares force majeure on North Dakota oil deliveries (Seeking Alpha)",
+    "Brent holds on Hormuz mine strikes (Invezz)"
    ],
    "date": "2026-11-19"
   },
   "ulsd": {
-   "fundamental": "Diesel slips ~0.8% even as crude firms; stocks remain well below normal with wide cracks, and Bapco's return to full capacity is a gradual bearish factor.",
+   "fundamental": "Diesel slips ~0.5% to ~3.95 while crude firms; stocks are well below normal and cracks wide, but more barrels arriving, including a Russian-diesel tanker that briefly signalled a US port, and Bapco's restart lean bearish.",
    "events": [
-    "Distillate inventories built on the week but stay below normal (EIA)",
-    "Bapco refinery heading back to full capacity (Reuters)"
+    "Tanker carrying Russian diesel briefly signalled a US port (Dow Jones/Kpler)",
+    "Bapco refinery heading back to full capacity (Reuters)",
+    "Distillate stocks stay below normal (EIA)"
    ],
    "date": "2026-11-19"
   },

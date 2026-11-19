@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-19T18:41",
+ "generated": "2026-11-19T22:46",
  "regime": "HIGH",
  "action": "Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls.",
- "cold_checks_on": 3,
+ "cold_checks_on": 2,
  "cold_checks": [
   {
    "key": "trend72",
    "on": true,
-   "text": "15-day ensembles colder over 2-3 days: +11.0 HDD on matched dates (\u2248-18 Bcf)",
+   "text": "15-day ensembles colder over 2-3 days: +10.4 HDD on matched dates (\u2248-17 Bcf)",
    "role": "trigger"
   },
   {
    "key": "trend24",
    "on": false,
-   "text": "\u2026and over ~24h: -2.1 HDD",
+   "text": "\u2026and over ~24h: -2.7 HDD",
    "role": "trigger"
   },
   {
@@ -42,14 +42,14 @@
   },
   {
    "key": "ssw",
-   "on": true,
-   "text": "stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks)",
+   "on": false,
+   "text": "SSW: n/a",
    "role": "pattern"
   }
  ],
  "trend_24h": {
-  "avg_hdd": -2.1,
-  "bcf": -3,
+  "avg_hdd": -2.7,
+  "bcf": -4,
   "by_model": {
    "GEFS (GFS ensemble)": {
     "hdd": -6.7,
@@ -62,15 +62,15 @@
     "vs_run": "2026-11-18T21:04"
    },
    "ECMWF AIFS ENS": {
-    "hdd": -4.8,
+    "hdd": -6.8,
     "days": 14,
     "vs_run": "2026-11-18T21:04"
    }
   }
  },
  "trend_72h": {
-  "avg_hdd": 11.0,
-  "bcf": 18,
+  "avg_hdd": 10.4,
+  "bcf": 17,
   "by_model": {
    "GEFS (GFS ensemble)": {
     "hdd": 12.4,
@@ -83,18 +83,18 @@
     "vs_run": "2026-11-17T08:37"
    },
    "ECMWF AIFS ENS": {
-    "hdd": 9.8,
+    "hdd": 7.9,
     "days": 13,
     "vs_run": "2026-11-17T08:37"
    }
   }
  },
  "back_end": {
-  "avg_per_day": -2.1,
+  "avg_per_day": -2.06,
   "by_model": {
    "GEFS (GFS ensemble)": -0.09,
    "ECMWF ENS": -2.12,
-   "ECMWF AIFS ENS": -4.09
+   "ECMWF AIFS ENS": -3.96
   }
  },
  "extended": {
@@ -196,8 +196,8 @@
    "wk2_mean": 1.07,
    "min": 0.46
   },
-  "u10_min": -3.0,
-  "ssw": true
+  "u10_min": null,
+  "ssw": false
  },
  "positioning": {
   "date": "2026-11-10",
@@ -220,5 +220,5 @@
  ],
  "bcf_per_hdd": 1.6,
  "note": "Rules of thumb, not fitted. signal_hist.json keeps every reading so the rules can be scored against what price did next.",
- "read": "NG weather/positioning: squeeze risk HIGH (3 of 7 cold-risk checks on; managed money net -224,326 (1st pct of 3 yrs, -98,170 in 4 wks)). 15-day ensembles colder over 2-3 days: +11.0 HDD on matched dates (\u2248-18 Bcf); GEFS PNA week 2 +1.07 (western ridge / eastern trough); stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls."
+ "read": "NG weather/positioning: squeeze risk HIGH (2 of 7 cold-risk checks on; managed money net -224,326 (1st pct of 3 yrs, -98,170 in 4 wks)). 15-day ensembles colder over 2-3 days: +10.4 HDD on matched dates (\u2248-17 Bcf); GEFS PNA week 2 +1.07 (western ridge / eastern trough). Squeeze risk high: forecasts are turning colder into a crowded fund short. Do not sell rallies or add outright shorts; short ideas wait until the forecast trend stalls."
 }

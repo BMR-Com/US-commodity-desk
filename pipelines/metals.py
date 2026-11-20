@@ -158,7 +158,7 @@ def lme():
 # ───────── World Gold Council Gold Demand Trends (quarterly) ─────────
 # The Goldhub data API (fsv3.gold.org) is disallowed by its robots.txt and the full tables need a login, so the desk reads
 # the public summary of each Gold Demand Trends report on www.gold.org (allowed) and parses the headline tonnages.
-GDT_LINES = [("total", r"total (gold )?demand"), ("central_banks", r"central banks?"), ("etfs", r"\bETFs?\b"), ("bar_coin", r"bar and coin"),
+GDT_LINES = [("total", r"(total )?gold demand"), ("central_banks", r"central banks?"), ("etfs", r"\bETFs?\b"), ("bar_coin", r"bar and coin"),
              ("jewellery", r"jewel(le)?ry"), ("technology", r"technology"), ("mine", r"mine production"), ("recycling", r"recycl"), ("supply", r"total supply")]
 
 
@@ -172,11 +172,13 @@ def gdt_parse(desc):
             if not t:
                 continue
             v = float(t.group(1).replace(",", ""))
-            pc = re.search(r"(up|down|rose|fell|lower|higher|increased|declined|grew|dropped|gained)\D{0,20}?(\d+(?:\.\d+)?)%|(\d+(?:\.\d+)?)%\s+(lower|higher|up|down)", clause, re.I)
+            pc = re.search(r"(up|down|rose|fell|lower|higher|increased|declined|grew|dropped|gained|increase|decrease)\D{0,20}?(\d+(?:\.\d+)?)%|(\d+(?:\.\d+)?)%\s+(lower|higher|up|down)", clause, re.I)
             yoy = None
             if pc:
                 word = (pc.group(1) or pc.group(4) or "").lower()
-                yoy = float(pc.group(2) or pc.group(3)) * (-1 if word in ("down", "fell", "lower", "declined", "dropped") else 1)
+                yoy = float(pc.group(2) or pc.group(3)) * (-1 if word in ("down", "fell", "lower", "declined", "dropped", "decrease") else 1)
+            elif re.search(r"unchanged|flat", clause, re.I):
+                yoy = 0.0
             if key == "etfs" and re.search(r"outflow", clause, re.I):
                 v = -v
             out[key] = {"t": v, "yoy_pct": yoy}
@@ -194,6 +196,9 @@ def wgc():
     p = RAW / "wgc_gdt.json"
     have = json.loads(p.read_text()) if p.exists() else {}
     n = 0
+    for k, v in have.items():          # re-read stored summaries with the current parser (no refetch)
+        if v.get("summary"):
+            v["values"] = gdt_parse(v["summary"])
     for slug, q, y in slugs[-6:]:
         key = f"{y}-Q{q}"
         if key in have and have[key].get("values"):

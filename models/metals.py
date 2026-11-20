@@ -360,13 +360,15 @@ def usgs_block(commodities):
         last = yrs[-1]
         cur = prod[prod.Year == last].set_index("Country").v
         prv = prod[prod.Year == yrs[-2]].set_index("Country").v if len(yrs) > 1 else None
-        world = cur.get("World total (rounded)", cur.get("World total"))
+        wrows = x[x.Country.str.startswith("World", na=False) & x.Statistics_detail.str.lower().str.startswith(det.lower().split(":")[0].split(",")[0])]
+        wy = lambda yy: (lambda r: num(r.v.iloc[0]) if len(r) else None)(wrows[wrows.Year == yy])
+        world = cur.get("World total (rounded)", cur.get("World total")) if not len(wrows) else wy(last)
         rows = [{"country": k, "now": num(v), "before": num(prv.get(k)) if prv is not None else None} for k, v in cur.sort_values(ascending=False).items()
                 if not str(k).lower().startswith("world") and not str(k).lower().startswith("other")][:8]
         res = x[x.Statistics_detail.str.contains("Reserves", case=False, na=False)]
         resw = res[res.Country.str.startswith("World", na=False)].v
         out["items"][c] = {"what": det, "unit": prod.Unit.iloc[0], "year": last, "prev_year": yrs[-2] if len(yrs) > 1 else None, "world": num(world),
-                           "world_prev": num(prv.get("World total (rounded)", prv.get("World total"))) if prv is not None else None, "top": rows,
+                           "world_prev": (wy(yrs[-2]) if len(wrows) and len(yrs) > 1 else num(prv.get("World total (rounded)", prv.get("World total"))) if prv is not None else None), "top": rows,
                            "reserves_world": num(resw.iloc[0]) if len(resw) else None, "reserves_unit": res.Unit.iloc[0] if len(res) else None}
         us = d[(d.Commodity == c) & d.Section.str.contains("Salient", na=False)]
         if len(us):

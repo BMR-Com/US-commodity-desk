@@ -1,0 +1,28 @@
+# Raw-data folders left off the website by pipelines/build_site.py (they stay in the repo).
+# Each was checked on 2026-11-19: no page or script on the site references it, and a tab-by-tab crawl never requested it.
+# Delete a line to put that folder back on the site.
+data/livestock/raw/ct100_5area_daily
+data/grains/raw/export_sales
+data/esmis
+data/livestock/raw/nass
+data/livestock/raw/ers
+data/ams/illinois_bids
+data/livestock/raw/ct150_5area_weekly
+data/livestock/raw/hg201_slaughtered_swine
+data/ams/portland_bids
+data/ams/beef_drop_value
+data/price_archive
+data/grains/raw/inspections
+data/ams/gulf_export_bids
+data/ams/minneapolis_bids
+data/europe
+data/ams/mexico_feeder_imports
+data/grains/raw/crop_progress
+data/fiber
+data/ams/kc_wheat_bids
+data/geo/weather_hist
+data/ams/iowa_bids
+data/ams/ethanol_daily
+data/ams/ia_mn_barge_bids
+data/dairy/raw/ers
+data/dairy/raw/ndpsr

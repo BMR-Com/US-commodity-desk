@@ -1,0 +1,64 @@
+name: pages
+# Publishes the website from _site/ (pipelines/build_site.py): the repo minus code and the raw-data folders in
+# site_exclude.txt, which no page reads. Keeps the published site well under GitHub Pages' 1 GB limit and keeps model
+# code off the public page. Everything stays in the repo.
+# Runs after every data workflow (bot commits made with GITHUB_TOKEN do not trigger 'push'), on pushes, and every
+# 20 minutes as a catch-up; a run whose commit is already live does nothing.
+# Roll back: Settings -> Pages -> Source: "Deploy from a branch" (main, / root) — the old whole-repo site.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+  schedule:
+    - cron: '*/20 * * * *'
+  workflow_run:
+    workflows: ["ams-backfill", "backtest", "australia", "chat_proxy", "morning-brief", "clock", "china", "cme-dairy-history", "cot_full", "contracts", "cotton_loan", "cotton-certs-sync", "data", "cotton-review", "desk read backup", "energy", "europe (EU grains, oilseeds and sugar trade, TAXUD)", "energy_geo", "europe discover (TAXUD sectors/products, one-off)", "fiber", "fsa", "geo", "grains-core", "grains", "india", "grains-trade", "intel", "markets", "ng-weather-sync", "overview", "oilseeds monthly (NASS fats & oils, MAGyP crush/stocks)", "palm", "probe", "wx-ensemble", "price_backup", "wasde"]
+    types: [completed]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  deployments: read
+  actions: read
+concurrency: {group: pages, cancel-in-progress: false}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs: {skip: '${{ steps.live.outputs.skip }}'}
+    steps:
+      - name: already live?
+        id: live
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          head=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" -q .sha)
+          dep=$(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=1" -q '.[0] | "\(.sha) \(.statuses_url)"' 2>/dev/null || true)
+          last=${dep%% *}; st=""
+          [ -n "$last" ] && st=$(gh api "${dep#* }" -q '.[0].state' 2>/dev/null || true)
+          echo "main=$head live=$last state=$st"
+          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ] && [ "$head" = "$last" ] && [ "$st" = success ]; then echo skip=1 >> "$GITHUB_OUTPUT"; fi
+  deploy:
+    needs: check
+    if: needs.check.outputs.skip != '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: {name: github-pages, url: '${{ steps.dep.outputs.page_url }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python pipelines/build_site.py
+      - name: make sure Pages publishes from this workflow (one-time switch from "Deploy from a branch")
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          t=$(gh api "repos/$GITHUB_REPOSITORY/pages" -q .build_type 2>/dev/null || echo unknown)
+          echo "Pages source: $t"
+          if [ "$t" != workflow ]; then
+            gh api -X PUT "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow && echo "switched to GitHub Actions" || \
+              { echo "::error::Switch Settings -> Pages -> Source to 'GitHub Actions' (the token may not change it)"; exit 1; }
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: _site}
+      - id: dep
+        uses: actions/deploy-pages@v4

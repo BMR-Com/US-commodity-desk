@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20 19:44 UTC",
+ "generated": "2026-11-20 20:39 UTC",
  "today": "2026-11-20",
  "sources": [
   {
@@ -41,8 +41,8 @@
   {
    "group": "Positions",
    "source": "CFTC COT, positions date (gold, silver, copper, aluminum MWP)",
-   "latest": "2026-11-10",
-   "age": 10,
+   "latest": "2026-11-17",
+   "age": 3,
    "age_unit": "days",
    "limit": 10,
    "cadence": "weekly (Tue, out Fri)",
@@ -52,19 +52,19 @@
   },
   {
    "group": "Gold",
-   "source": "SPDR GLD holdings",
+   "source": "SPDR GLD holdings (daily to 2026-11-20; then SEC quarter ends: the sponsor's data host disallows automated access in robots.txt)",
    "latest": "2026-11-19",
    "age": 1,
-   "age_unit": "bd",
-   "limit": 3,
-   "cadence": "daily",
+   "age_unit": "days",
+   "limit": 140,
+   "cadence": "quarterly (~6 weeks after quarter end)",
    "manual": false,
    "state": "ok",
-   "used_in": "ETF flows"
+   "used_in": "ETF holdings"
   },
   {
    "group": "Gold",
-   "source": "iShares IAU holdings (daily snapshot)",
+   "source": "iShares IAU ounces in trust (product page, daily snapshot)",
    "latest": "2026-11-19",
    "age": 1,
    "age_unit": "bd",
@@ -72,7 +72,55 @@
    "cadence": "daily",
    "manual": false,
    "state": "ok",
-   "used_in": "ETF flows"
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Gold",
+   "source": "iShares IAU shares outstanding, daily history (product-page download)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Gold",
+   "source": "Sprott PHYS ounces held (fund page)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Gold",
+   "source": "abrdn SGOL shares and metal per basket (fund page, daily snapshot)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Gold",
+   "source": "GraniteShares BAR NAV, AUM, metal per basket (fund page history)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
   },
   {
    "group": "Gold",
@@ -112,7 +160,7 @@
   },
   {
    "group": "Silver",
-   "source": "iShares SLV holdings (daily snapshot)",
+   "source": "iShares SLV ounces in trust (product page, daily snapshot)",
    "latest": "2026-11-19",
    "age": 1,
    "age_unit": "bd",
@@ -120,7 +168,43 @@
    "cadence": "daily",
    "manual": false,
    "state": "ok",
-   "used_in": "silver ETF"
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Silver",
+   "source": "iShares SLV shares outstanding, daily history (product-page download)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Silver",
+   "source": "Sprott PSLV ounces held (fund page)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Silver",
+   "source": "abrdn SIVR shares and metal per basket (fund page, daily snapshot)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
   },
   {
    "group": "Silver",
@@ -209,8 +293,8 @@
   {
    "group": "Positions",
    "source": "CFTC COT, positions date (platinum, palladium)",
-   "latest": "2026-11-10",
-   "age": 10,
+   "latest": "2026-11-17",
+   "age": 3,
    "age_unit": "days",
    "limit": 10,
    "cadence": "weekly (Tue, out Fri)",
@@ -253,6 +337,54 @@
    "manual": false,
    "state": "ok",
    "used_in": "palladium ETF"
+  },
+  {
+   "group": "Platinum",
+   "source": "abrdn PPLT shares and metal per basket (fund page, daily snapshot)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Palladium",
+   "source": "abrdn PALL shares and metal per basket (fund page, daily snapshot)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Platinum and palladium",
+   "source": "Sprott SPPP platinum and palladium ounces held (fund page)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
+  },
+  {
+   "group": "Platinum",
+   "source": "GraniteShares PLTM NAV, AUM, metal per basket (fund page history)",
+   "latest": "2026-11-19",
+   "age": 1,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETF holdings"
   },
   {
    "group": "Platinum and palladium",

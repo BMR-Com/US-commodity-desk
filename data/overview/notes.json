@@ -5,36 +5,34 @@
   "corn": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Little new on balance: export sales dipped week on week, while Brazil's corn-ethanol expansion keeps lifting domestic demand there and trims export competition at the margin. Dec is holding just under 438 support.",
+   "fundamental": "Nothing new on supply or demand; Dec drifted back toward the 434 support area with no fresh buying, and the broader risk-off tone does not help. The model view slipped to strongly bearish on price action.",
    "events": [
-    "Weekly US corn export sales decline (MarketWatch)",
-    "Brazil's corn ethanol boom fuels feedlot growth (Reuters)",
-    "Analysts debate capitulation in corn (Barchart)"
+    "Corn slips lower on Friday (Barchart)",
+    "Brazil corn-ethanol growth trims export competition (news flow)"
    ]
   },
   "soybeans": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Demand signals are mixed: China is reportedly holding imported beans at ports as domestic stocks swell, which tempers hopes for heavier US buying, while weekly export sales improved. Jan is testing 1,211.75 resistance this morning.",
+   "fundamental": "Beans and especially meal rallied despite the reports that China is holding imported beans at ports; meal is leading, which points to product demand rather than a change in Chinese buying. South American planting is now past halfway, so the weather window is the next driver.",
    "events": [
-    "China slows soybean port releases as domestic supply builds (Farm Progress)",
-    "US soybean export sales rise (MarketWatch)",
-    "Soybeans fade gains on China demand worries (AgroLatam)"
+    "Soybeans rally with meal leading (Barchart)",
+    "South American planting passes halfway (ADMIS)"
    ]
   },
   "meal": {
-   "date": "2026-11-19",
-   "by": "bot",
-   "time": "21:44 CT",
-   "claude_date": "2026-11-19",
-   "fundamental": "No new headlines for this market in the last 30 hours.",
+   "date": "2026-11-20",
+   "by": "claude",
+   "time": "14:50 CT",
+   "claude_date": "2026-11-20",
+   "fundamental": "Meal led the soy complex up nearly 3% on Friday, pushing Dec toward 342 resistance; with soyoil weak on the palm news, the crush mix is shifting value toward meal.",
    "events": [
-    "Soy complex fades midday (Barchart)",
-    "Strong crush pace (Brownfield)"
+    "Meal leads soybeans higher (Barchart)",
+    "China halts palm buying, weighing on veg oils (Bloomberg)"
    ]
   },
   "oil": {
@@ -74,70 +72,66 @@
   "cotton": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Nothing new on supply; mixed US yields after weather extremes and a firm dollar. Focus is old-crop Dec/Mar/May/Jul; Dec delivery week near 76, and high-grade certs are a risk for longs.",
+   "fundamental": "Still no fresh supply news; mixed US yields and a demand-negative risk-off day in equities. Focus stays on old-crop Dec/Mar/May/Jul; Dec delivery near 75-76, and high-grade certs are a risk for longs. The tile has eased to neutral.",
    "events": [
-    "Weather extremes bring mixed US cotton yields (Farm Progress)",
-    "Cotton claws some gains back (Barchart)",
-    "Firm dollar weighs on cotton (ADMIS)"
+    "Mixed US cotton yields after weather extremes (Farm Progress)",
+    "AI-led equity rout, VIX near 35 (AP)"
    ]
   },
   "hogs": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Hogs are at contract lows into the short Thanksgiving week. The Thailand deal opening its market to US pork is a modest demand positive, but too small to change the near-term supply-heavy picture.",
+   "fundamental": "Hogs fell back toward contract lows into the holiday week; there is nothing new on supply, and the Thailand market access remains too small to matter near term.",
    "events": [
-    "Thailand opens its market to US pork (Bloomberg)",
-    "Lean hogs hit contract lows (The Pig Site)",
-    "Pork producers press USTR on trade barriers (National Hog Farmer)"
+    "Hogs fall back on Friday (Barchart)",
+    "Thailand opens to US pork (Bloomberg)"
    ]
   },
   "cattle": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Today's Cattle on Feed report (2pm CT) is the key event; another very low placements figure would reinforce tight fed supply. Cash trade is slow, and Tyson is adding Texas beef capacity.",
+   "fundamental": "Today's Cattle on Feed report (2pm CT) was expected to show record-low October placements and marketings, which would confirm tight fed supply. A new risk: New World screwworm cases are rising in the US, which keeps the Mexican feeder import border question and herd-health worries alive.",
    "events": [
-    "USDA Cattle on Feed report due today, placements in focus (AgroLatam)",
-    "Cattle rally Thursday while cash stays slow (Barchart)",
-    "Tyson adds Texas beef capacity with Allied Beef deal (Farm Progress)"
+    "COF expected to show record-low placements and marketings (Pro Farmer)",
+    "Screwworm cases surge in the US (Reuters)",
+    "Futures trade mixed ahead of USDA report (Barchart)"
    ]
   },
   "feeders": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Same driver as live cattle: today's Cattle on Feed placements will show how tight the feeder pipeline still is; firm futures go into the report.",
+   "fundamental": "Same driver as live cattle: the Cattle on Feed placements number sets the read on the feeder pipeline, and rising US screwworm cases make a reopening of Mexican feeder imports less likely, which is supportive for feeders.",
    "events": [
-    "Cattle on Feed report due today (AgroLatam)",
-    "Cattle futures higher ahead of the report (Brownfield)"
+    "Screwworm cases surge in the US (Reuters)",
+    "COF expected to show record-low placements (Pro Farmer)"
    ]
   },
   "class3": {
-   "date": "2026-11-19",
-   "by": "bot",
-   "time": "21:44 CT",
-   "claude_date": "2026-11-19",
-   "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+   "date": "2026-11-20",
+   "by": "claude",
+   "time": "14:50 CT",
+   "claude_date": "2026-11-20",
+   "fundamental": "Cheese blocks fell again at the CME spot session, the main pressure on Class III; there is no supply-side news.",
    "events": [
-    "a2 Milk says China-label offtake recovers to 50% of distribution levels (Reuters, 2026-11-19)",
-    "U.S. Dairy Exports Heading to Another Record Year (Dairy Herd, 2026-11-19)"
+    "Cheese blocks drop, NDM rises at CME spot (Brownfield)"
    ]
   },
   "class4": {
-   "date": "2026-11-19",
-   "by": "bot",
-   "time": "21:44 CT",
-   "claude_date": "2026-11-19",
-   "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+   "date": "2026-11-20",
+   "by": "claude",
+   "time": "14:50 CT",
+   "claude_date": "2026-11-20",
+   "fundamental": "Nonfat dry milk rose at the CME spot session, a modest support for Class IV; butter was little changed.",
    "events": [
-    "a2 Milk says China-label offtake recovers to 50% of distribution levels (Reuters, 2026-11-19)",
-    "U.S. Dairy Exports Heading to Another Record Year (Dairy Herd, 2026-11-19)"
+    "NDM increases at CME spot (Brownfield)"
    ]
   },
   "palm": {
@@ -155,33 +149,35 @@
   "natgas": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Longer-run export demand keeps building: FERC approved a large Sabine Pass LNG expansion. Near-term prices are still driven by weather.",
+   "fundamental": "Natgas bounced about 4% on the weather pattern; the longer-run LNG export build-out (Sabine Pass expansion approved) remains supportive. The tile has eased from bearish to mildly bearish.",
    "events": [
-    "FERC approves Sabine Pass LNG expansion (NGI)",
-    "Romania's Neptun Deep could curb LNG flows north (Reuters)"
+    "Natgas rebounds on weather (Yahoo Finance)",
+    "FERC approves Sabine Pass LNG expansion (news flow)"
    ]
   },
   "crude": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Geopolitical risk is back: fresh Houthi attacks have revived Middle East supply worries and lifted prices overnight, after the midweek drop on US stock builds.",
+   "fundamental": "Two-way risk: reports of Iranian attacks on tankers near Hormuz and renewed Houthi activity add supply risk, but strong Middle East export flows and a faster US rig count kept crude on course for a third weekly loss. The equity rout is a demand-sentiment negative.",
    "events": [
-    "Houthi attacks revive Middle East supply fears (OilPrice)",
-    "Crude fell midweek on US inventory builds (Khaleej Times)"
+    "Iran steps up Hormuz tanker attacks (OilPrice.com)",
+    "US drillers add rigs as prices fall (OilPrice.com)",
+    "Oil set for third weekly drop on strong Mideast flows (Reuters)"
    ]
   },
   "ulsd": {
    "date": "2026-11-20",
    "by": "claude",
-   "time": "07:50 CT",
+   "time": "14:50 CT",
    "claude_date": "2026-11-20",
-   "fundamental": "Middle distillates are leading the energy bounce on renewed Red Sea/Houthi risk to product shipping routes.",
+   "fundamental": "Diesel gave back part of its Red Sea premium today; shipping-route risk from the Houthis and Hormuz tanker attacks is still the main support for distillate cracks.",
    "events": [
-    "Houthi attacks revive Middle East supply fears (OilPrice)"
+    "Hormuz tanker attacks (OilPrice.com)",
+    "Houthi attacks revive product-shipping risk (OilPrice.com)"
    ]
   },
   "rbob": {

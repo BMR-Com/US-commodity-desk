@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-20 13:44 UTC",
+ "updated": "2026-11-20 20:55 UTC",
  "by": "claude",
  "views": {
   "corn": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.43
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.49
   },
   "soybeans": {
    "view": "bullish",
@@ -15,7 +15,7 @@
   "meal": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.21
+   "score": 0.27
   },
   "oil": {
    "view": "bearish",
@@ -33,9 +33,9 @@
    "score": -0.32
   },
   "cotton": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.17
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.06
   },
   "hogs": {
    "view": "bearish",
@@ -60,17 +60,17 @@
   "class4": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.1
+   "score": 0.16
   },
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.48
+   "score": -0.46
   },
   "natgas": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.38
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.17
   },
   "crude": {
    "view": "neutral",
@@ -86,13 +86,41 @@
    "view": "bearish",
    "shade": "bear2",
    "score": -0.23
+  },
+  "gold": {
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.66
+  },
+  "silver": {
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.62
+  },
+  "copper": {
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.51
+  },
+  "aluminum": {
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.06
+  },
+  "platinum": {
+   "view": "neutral",
+   "shade": "neutral",
+   "score": -0.02
+  },
+  "palladium": {
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.25
   }
  },
  "alerts": {
   "corn": [],
-  "soybeans": [
-   "Broke above R1 1,211.75"
-  ],
+  "soybeans": [],
   "meal": [],
   "oil": [],
   "wheat": [],
@@ -107,7 +135,17 @@
   "natgas": [],
   "crude": [],
   "ulsd": [],
-  "rbob": []
+  "rbob": [],
+  "gold": [],
+  "silver": [
+   "Broke above R1 40.961"
+  ],
+  "copper": [
+   "Broke above R1 5.4650"
+  ],
+  "aluminum": [],
+  "platinum": [],
+  "palladium": []
  },
  "news": [
   "2026-11-13 Iraq Oct oil output highest since 2019 (IEA)",
@@ -151,6 +189,8 @@
   "2026-11-20 Soybeans Jan ~1,212.5 above R1 1,211.75",
   "2026-11-20 Meal view to bullish; crude view to neutral",
   "2026-11-20 China halts palm oil purchases as storage fills (Bloomberg)",
-  "2026-11-20 Houthi attacks lift crude/ULSD overnight"
+  "2026-11-20 Houthi attacks lift crude/ULSD overnight",
+  "2026-11-20 Equity rout: Nasdaq ~-4.8%, S&P ~-3.3%, VIX ~35; gold -4%, silver -8%",
+  "2026-11-20 US screwworm cases surge (Reuters)"
  ]
 }

@@ -18,10 +18,10 @@
       rows.push({ code: c, exchange: 'NYMEX', name: m.name, period: m.period || m.startPeriod, maint: m.maintenanceRate || null, maint_long: m.maintenanceMarginLong || null, maint_short: m.maintenanceMarginShort || null });
   }
   // COMEX metals (metals desk); a failed request just returns no rows
-  for (const c of ['GC', 'MGC', 'SI', 'SIL', 'HG', 'MHG', 'ALI', 'AUP']) {
-    const r = await j(`/services/margins/OUTRIGHT?1=1&sortField=exchange&sortAsc=true&clearingCode=${c}&sector=METALS&exchange=CMX&pageSize=3&pageNumber=1&isProtected`);
+  for (const [c, ex] of [['GC', 'CMX'], ['MGC', 'CMX'], ['SI', 'CMX'], ['SIL', 'CMX'], ['HG', 'CMX'], ['MHG', 'CMX'], ['ALI', 'CMX'], ['AUP', 'CMX'], ['PL', 'NYM'], ['PA', 'NYM']]) {
+    const r = await j(`/services/margins/OUTRIGHT?1=1&sortField=exchange&sortAsc=true&clearingCode=${c}&sector=METALS&exchange=${ex}&pageSize=3&pageNumber=1&isProtected`);
     for (const m of (r?.marginRates || []).slice(0, 3))
-      rows.push({ code: c, exchange: 'COMEX', name: m.name, period: m.period || m.startPeriod, maint: m.maintenanceRate || null, maint_long: m.maintenanceMarginLong || null, maint_short: m.maintenanceMarginShort || null });
+      rows.push({ code: c, exchange: ex === 'NYM' ? 'NYMEX' : 'COMEX', name: m.name, period: m.period || m.startPeriod, maint: m.maintenanceRate || null, maint_long: m.maintenanceMarginLong || null, maint_short: m.maintenanceMarginShort || null });
   }
   return { asof: new Date().toISOString().slice(0, 10), rows };
 })()

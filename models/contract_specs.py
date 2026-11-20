@@ -71,6 +71,8 @@ C = {
         dict(sym="MHG", name="Micro copper", ex="COMEX", code="MHG", size="2,500 lb", quote="$/lb", tick="$0.0005 = $1.25", usd=2500, price="HG", months="as copper", settle="Cash-settled to HG", options="No"),
         dict(sym="ALI", name="Aluminum", ex="COMEX", code="ALI", size="25 metric tons", quote="$/t", tick="$0.25 = $6.25", usd=25, price="ALI", months="Every month", settle="Physical: P1020A primary aluminum on warrant in a COMEX-approved warehouse", options="Yes (thin)"),
         dict(sym="AUP", name="Aluminum Midwest premium (Platts)", ex="COMEX", code="AUP", size="25 metric tons (55,116 lb)", quote="$/lb", tick="$0.0025 = $137.79", usd=55116, price="AUP", months="Every month", settle="Cash-settled to the monthly average of the Platts US Midwest duty-paid premium", options="No"),
+        dict(sym="PL", name="Platinum", ex="NYMEX", code="PL", size="50 troy oz", quote="$/oz", tick="$0.10 = $5", usd=50, price="PL", months="Jan, Apr, Jul, Oct active (plus three nearby months)", settle="Physical: 50-oz plate or ingot, 99.95% pure, from an approved refiner, on warrant in a NYMEX-approved vault", options="Yes"),
+        dict(sym="PA", name="Palladium", ex="NYMEX", code="PA", size="100 troy oz", quote="$/oz", tick="$0.50 = $50", usd=100, price="PA", months="Mar, Jun, Sep, Dec active (plus three nearby months)", settle="Physical: 100-oz plate or ingot, 99.95% pure, from an approved refiner, on warrant in a NYMEX-approved vault", options="Yes (thin)"),
     ],
 }
 # quoted unit -> dollars per quoted unit (¢ quotes need /100)

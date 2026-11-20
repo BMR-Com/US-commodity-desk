@@ -36,6 +36,7 @@ SPEC = {
     "HO": ("ULSD (heating oil)", "Energy", "$/gal", 42000, 0.01, 4, "pr"), "RB": ("RBOB gasoline", "Energy", "$/gal", 42000, 0.01, 4, "pr"),
     "GC": ("Gold", "Metals", "$/oz", 100, 10, 1, "comex"), "SI": ("Silver", "Metals", "$/oz", 5000, 0.25, 3, "comex"),
     "HG": ("Copper", "Metals", "$/lb", 25000, 0.05, 4, "comex"),
+    "PL": ("Platinum", "Metals", "$/oz", 50, 10, 1, "comex"), "PA": ("Palladium", "Metals", "$/oz", 100, 10, 1, "comex"),
 }
 RULE_TEXT = {"grain": "last Friday at least 2 business days before the last business day of the month before the contract month",
              "cotton": "last Friday with at least 5 business days before first notice day (FND: 5 business days before the first business day of the contract month)",
@@ -45,7 +46,7 @@ RULE_TEXT = {"grain": "last Friday at least 2 business days before the last busi
              "ng": "business day before the futures expire (futures: 3 business days before the first day of the contract month)",
              "cl": "about 4 business days before the 25th of the month before the contract month (futures expire 3 business days before the 25th)",
              "pr": "about 3 business days before the last business day of the month before the contract month",
-             "comex": "4th last business day of the month before the contract month (COMEX gold, silver, copper monthly options)"}
+             "comex": "4th last business day of the month before the contract month (COMEX gold, silver, copper and NYMEX platinum, palladium monthly options; approximate)"}
 
 
 def bdays_back(d, n):

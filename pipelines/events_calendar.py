@@ -235,7 +235,7 @@ def contract_events(start, end):
                     d -= pd.Timedelta(days=1)
                     n += bday(d)
                 out = [(d, "last trading day")]
-            elif sym in ("GC", "SI", "HG", "ALI"):   # COMEX metals: FND last business day of the prior month, LTD 3rd-last business day
+            elif sym in ("GC", "SI", "HG", "ALI", "PL", "PA"):   # COMEX/NYMEX metals: FND last business day of the prior month, LTD 3rd-last business day
                 fnd = mstart - pd.Timedelta(days=1)
                 while not bday(fnd):
                     fnd -= pd.Timedelta(days=1)
@@ -251,7 +251,7 @@ def contract_events(start, end):
                 out = [(d, "last trading day")]
             for d, what in out:
                 if start <= d <= end:
-                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "ICE contract" if sym == "CT" else "NYMEX contract" if sym in ("NG", "CL", "HO", "RB") else "COMEX contract" if sym in ("GC", "SI", "HG", "ALI") else "CME contract", "markets": [sym],
+                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "ICE contract" if sym == "CT" else "NYMEX contract" if sym in ("NG", "CL", "HO", "RB", "PL", "PA") else "COMEX contract" if sym in ("GC", "SI", "HG", "ALI") else "CME contract", "markets": [sym],
                                "importance": 2 if "first notice" in what or "settles" in what else 1, "estimated": True})
     return ev
 

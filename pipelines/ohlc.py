@@ -17,7 +17,7 @@ from contracts import SPEC, CODES  # noqa: E402
 OUT = Path(__file__).resolve().parent.parent / "data" / "ohlc"
 N_ACTIVE = {"DC": 6, "GDK": 6, "CSC": 6, "CB": 6, "GNF": 6, "DY": 6, "HE": 5, "LE": 5, "GF": 5,
             "ZC": 5, "ZS": 6, "ZM": 6, "ZL": 6, "ZW": 5, "KE": 5, "CT": 5, "NG": 8, "CL": 8, "HO": 6, "RB": 6, "FCPO": 6,
-            "GC": 6, "SI": 5, "HG": 5, "ALI": 8, "AUP": 8}
+            "GC": 6, "SI": 5, "HG": 5, "ALI": 8, "AUP": 8, "PL": 4, "PA": 4}
 
 
 def last_trade_guess(sym, y, m):
@@ -30,7 +30,7 @@ def last_trade_guess(sym, y, m):
         return pd.Timestamp(y, m, 15)       # Bursa: noon on the 15th of the delivery month
     if sym == "HE":
         return pd.Timestamp(y, m, 14)
-    if sym in ("GC", "SI", "HG", "ALI"):     # COMEX metals: last trade 3rd-last business day of the delivery month
+    if sym in ("GC", "SI", "HG", "ALI", "PL", "PA"):   # COMEX/NYMEX metals: last trade 3rd-last business day of the delivery month
         return pd.Timestamp(y, m, 1) + pd.offsets.MonthEnd(0) - pd.Timedelta(days=4)
     if sym in ("NG", "CL", "HO", "RB"):      # NYMEX energy stops trading in the month before delivery
         return pd.Timestamp(y, m, 1) - pd.Timedelta(days={"NG": 4, "CL": 10}.get(sym, 1))

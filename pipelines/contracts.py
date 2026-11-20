@@ -39,6 +39,8 @@ SPEC = {  # sym: (exchange, TV root, months, first year)
     # premium (AUP, cash-settled; the aluminum contract with continuous CFTC COT) every month
     "GC": ("COMEX", "GC", "GJMQVZ", 2010), "SI": ("COMEX", "SI", "HKNUZ", 2010), "HG": ("COMEX", "HG", "HKNUZ", 2010),
     "ALI": ("COMEX", "ALI", CODES, 2020), "AUP": ("COMEX", "AUP", CODES, 2018),
+    # NYMEX platinum (Jan, Apr, Jul, Oct) and palladium (Mar, Jun, Sep, Dec) in their active delivery months
+    "PL": ("NYMEX", "PL", "FJNV", 2010), "PA": ("NYMEX", "PA", "HMUZ", 2010),
 }
 
 

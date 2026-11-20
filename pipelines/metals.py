@@ -1,7 +1,7 @@
 """Metals desk raw data (runs in GitHub Actions; no keys). Each source is independent: a failure in one is reported and
 the others still run. Old data is kept; only new data is fetched where the source allows it.
 
-Usage: python pipelines/metals.py [step ...]      steps: etf lme wgc icsg iai usgs silver rates comex   (default: all)
+Usage: python pipelines/metals.py [step ...]      steps: etf lme wgc icsg iai usgs silver rates comex wpic jm pgm_etf   (default: all)
 
   etf     SPDR GLD daily history (spdrgoldshares.com archive), iShares IAU and SLV tonnes in trust (product pages, daily
           snapshot appended)                                                       -> raw/etf_gld.csv, raw/etf_ishares.csv
@@ -17,7 +17,15 @@ Usage: python pipelines/metals.py [step ...]      steps: etf lme wgc icsg iai us
   silver  Silver Institute supply-and-demand page (World Silver Survey key numbers) -> raw/silver_institute.json
   rates   US Treasury 10-year real yield (TIPS) and the US dollar index (Yahoo)   -> raw/real_yields.csv, raw/dxy.csv
   comex   COMEX warehouse stocks: parses CME's daily stock reports (Gold_Stocks.xls etc.) that the Mac collector or a
-          manual upload drops in raw/comex_stocks/ (cmegroup.com blocks GitHub's servers)  -> raw/comex_stocks.csv
+          manual upload drops in raw/comex_stocks/ (cmegroup.com blocks GitHub's servers); NYMEX platinum and palladium
+          from the combined PA-PL report                                                  -> raw/comex_stocks.csv
+  wpic    World Platinum Investment Council Platinum Quarterly: the free tables workbook (Table 1, platinum balance by year
+          and quarter) and the key points on the public page; each release kept, revisions vs the previous release
+                                                                                   -> raw/wpic/<Qn_YYYY>.json
+  jm      Johnson Matthey PGM market report (annual, May): the free supply-and-demand history workbook, platinum and
+          palladium; each edition kept, revisions vs the previous edition        -> raw/jm/<edition>.json
+  pgm_etf abrdn platinum and palladium ETF trusts (PPLT, PALL): ounces held, from the trusts' SEC filings (quarterly; the
+          fund pages render their figures in the browser only)                     -> raw/etf_pgm.csv
 Writes data/metals/raw/fetch_log.json (last result per step).
 """
 import datetime as dt, hashlib, html, io, json, re, sys, time, traceback
@@ -440,7 +448,30 @@ def rates():
 
 
 # ───────── COMEX warehouse stocks (files dropped by the Mac collector or uploaded) ─────────
-COMEX_FILES = {"Gold_Stocks": "gold", "Silver_stocks": "silver", "Copper_Stocks": "copper", "Aluminum_Stocks": "aluminum"}
+COMEX_FILES = {"Gold_Stocks": "gold", "Silver_stocks": "silver", "Copper_Stocks": "copper", "Aluminum_Stocks": "aluminum", "PA-PL_Stck_Rprt": "pgm"}
+
+
+def pgm_stock_parse(path):
+    """NYMEX platinum and palladium share one CME report: split it at each metal's heading and read its totals."""
+    x = pd.read_excel(path, header=None, engine="xlrd" if path.suffix == ".xls" else None)
+    cells = x.astype(str).values
+    flat = " ".join(" ".join(r) for r in cells)
+    m = re.search(r"Activity Date:?\s*(\d{1,2}/\d{1,2}/\d{4})", flat) or re.search(r"Report Date:?\s*(\d{1,2}/\d{1,2}/\d{4})", flat)
+    date = pd.to_datetime(m.group(1)).strftime("%Y-%m-%d") if m else None
+    out, cur = {}, None
+    for r in cells:
+        lab = " ".join(v for v in r if v != "nan").upper()
+        if re.fullmatch(r"\s*(PLATINUM|PALLADIUM)\b.*", lab) and not re.search(r"\d", lab):
+            cur = "platinum" if "PLATINUM" in lab else "palladium"
+            out.setdefault(cur, {"date": date, "metal": cur})
+            continue
+        if not cur:
+            continue
+        nums = [float(v.replace(",", "")) for v in r if re.fullmatch(r"-?[\d,]+\.?\d*", v.replace("nan", "x"))]
+        for key, rx in (("registered", r"TOTAL REGISTERED"), ("eligible", r"TOTAL ELIGIBLE"), ("total", r"COMBINED TOTAL|GRAND TOTAL")):
+            if re.search(rx, lab) and nums and key not in out[cur]:
+                out[cur][key] = nums[-1]
+    return [v for v in out.values() if date and "total" in v]
 
 
 def comex_parse(path, metal):
@@ -468,6 +499,12 @@ def comex():
         if not metal:
             continue
         try:
+            if metal == "pgm":
+                got = pgm_stock_parse(f)
+                rows += got
+                if not got:
+                    print("COMEX", f.name, "not parsed")
+                continue
             r = comex_parse(f, metal)
             if r:
                 rows.append(r)
@@ -486,7 +523,247 @@ def comex():
     return n
 
 
-STEPS = {"etf": etf, "lme": lme, "wgc": wgc, "icsg": icsg, "iai": iai, "usgs": usgs, "silver": silver, "rates": rates, "comex": comex}
+# ───────── World Platinum Investment Council: Platinum Quarterly (free tables workbook + public key points) ─────────
+WPIC = "https://platinuminvestment.com"
+WPIC_PAGE = WPIC + "/supply-and-demand/platinum-quarterly"
+
+
+def wpic_table1(content, q, y):
+    """Table 1 of a Platinum Quarterly tables workbook: platinum balance (koz) by year and by quarter. Lines are keyed
+    'Parent' or 'Parent: child' (e.g. 'Recycling: Autocatalyst', 'Investment: Change in ETF Holdings')."""
+    import openpyxl
+    wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+    want = f"Q{q}'{str(y)[2:]}"
+    names = [n for n in wb.sheetnames if re.fullmatch(r"Table 1\s*\(" + re.escape(want) + r"\)", n.strip())]
+    if not names:
+        raise RuntimeError(f"WPIC workbook has no Table 1 for {want}")
+    rows = [list(r) for r in wb[names[0]].iter_rows(values_only=True)]
+    hdr_i = next(i for i, r in enumerate(rows) if any(isinstance(c, str) and "Supply-demand Balance" in c for c in r))
+    hdr = rows[hdr_i]
+    lab_col = next(j for j, c in enumerate(hdr) if isinstance(c, str) and "Supply-demand Balance" in c)
+    cols = {}
+    for j, c in enumerate(hdr):
+        s = str(c).strip() if c is not None else ""
+        if re.fullmatch(r"\d{4}f?", s) or re.fullmatch(r"Q[1-4] \d{4}", s):
+            cols[j] = s
+    table, parent = {}, None
+    for r in rows[hdr_i + 1:]:
+        labs = [(j, str(c).strip()) for j, c in enumerate(r[:lab_col + 2]) if isinstance(c, str) and c.strip()]
+        if not labs:
+            continue
+        j, lab = labs[0]
+        if lab.startswith("Source") or lab.startswith("Notes") or re.match(r"^\d\.", lab):
+            break
+        if lab in ("SUPPLY", "DEMAND"):
+            parent = None
+            continue
+        vals = {cols[k]: (float(v) if isinstance(v, (int, float)) else float(v.replace(",", "").rstrip("*")) if isinstance(v, str) and re.fullmatch(r"[\d,\.]+\*?", v) else None)
+                for k, v in enumerate(r) if k in cols}
+        if not any(v is not None for v in vals.values()):
+            continue
+        if j == lab_col:
+            parent, key = lab, lab
+        else:
+            key = f"{parent}: {lab}" if parent else lab
+        table[key] = {k: (round(v, 1) if v is not None else None) for k, v in vals.items()}
+    annual = [c for c in cols.values() if re.fullmatch(r"\d{4}f?", c)]
+    quarters = [c for c in cols.values() if c.startswith("Q")]
+    keep = annual + quarters[-8:]
+    return {"columns": annual, "quarters": quarters[-8:], "table": {k: {c: v.get(c) for c in keep} for k, v in table.items()}}
+
+
+def wpic_points(page):
+    """Key points WPIC lists on the public Platinum Quarterly page (the 'overview of key data' bullets)."""
+    i = page.find("Overview of key data")
+    seg = page[i:i + 20000] if i >= 0 else ""
+    seg = seg[:seg.find("Disclaimer")] if "Disclaimer" in seg else seg
+    pts = [html.unescape(re.sub(r"<[^>]+>", " ", x)) for x in re.findall(r"<li[^>]*>(.*?)</li>", seg, re.S)]
+    pts = [re.sub(r"\s+", " ", x).strip() for x in pts if len(x.strip()) > 20]
+    heads = [re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", x))).strip() for x in re.findall(r"<(?:h\d|strong|b)[^>]*>(.*?)</(?:h\d|strong|b)>", seg, re.S)]
+    return pts[:14], [h for h in heads if re.search(r"\d{4}", h)][:4]
+
+
+def wpic():
+    if not robots_ok(WPIC, "/supply-and-demand/platinum-quarterly") or not robots_ok(WPIC, "/files/"):
+        raise RuntimeError("platinuminvestment.com robots.txt disallows the Platinum Quarterly pages")
+    r = get(WPIC_PAGE)
+    if r is None or r.status_code != 200:
+        raise RuntimeError("WPIC Platinum Quarterly page not available")
+    m = re.search(r'href="(/files/\d+/WPIC_PQ_tables_Q([1-4])_(\d{4})\.xlsx)"', r.text)
+    if not m:
+        raise RuntimeError("WPIC tables workbook link not found on the Platinum Quarterly page")
+    link, q, y = m.group(1), int(m.group(2)), int(m.group(3))
+    d = RAW / "wpic"
+    d.mkdir(parents=True, exist_ok=True)
+    key = f"Q{q}_{y}"
+    pts, heads = wpic_points(r.text)
+    nxt = re.search(r"next Platinum Quarterly will be published on (\d{1,2} \w+ \d{4})", re.sub(r"<[^>]+>", " ", r.text))
+    meta_p = d / "meta.json"
+    meta = json.loads(meta_p.read_text()) if meta_p.exists() else {}
+    meta.update({"checked": str(TODAY), "latest": key, "next_release": pd.to_datetime(nxt.group(1)).strftime("%Y-%m-%d") if nxt else meta.get("next_release")})
+    n = 0
+    if not (d / f"{key}.json").exists():
+        time.sleep(3)
+        x = get(WPIC + link)
+        if x is None or x.status_code != 200 or x.content[:2] != b"PK":
+            raise RuntimeError("WPIC tables workbook download failed")
+        rec = wpic_table1(x.content, q, y)
+        pdf = re.search(r'href="(/files/\d+/WPIC_Platinum_Quarterly_Q%d_%d\.pdf)"' % (q, y), r.text)
+        rec.update(release=f"Q{q} {y}", key=key, fetched=str(TODAY), points=pts, heads=heads, url=WPIC + link, report=WPIC + pdf.group(1) if pdf else WPIC_PAGE)
+        (d / f"{key}.json").write_text(json.dumps(rec, indent=0))
+        n += 1
+        print("WPIC", key, len(rec["table"]), "lines", rec["columns"][-4:])
+    else:                                    # refresh the key points if WPIC edits the page text
+        rec = json.loads((d / f"{key}.json").read_text())
+        if pts and pts != rec.get("points"):
+            rec["points"], rec["heads"] = pts, heads
+            (d / f"{key}.json").write_text(json.dumps(rec, indent=0))
+    pq, py = (q - 1, y) if q > 1 else (4, y - 1)          # seed the previous release once, so revisions show from the start
+    pkey = f"Q{pq}_{py}"
+    if not (d / f"{pkey}.json").exists() and not meta.get(f"seed_failed_{pkey}"):
+        a = get(WPIC_PAGE + "/archive")
+        pm = re.search(r'/files/(\d+)/WPIC_Platinum_Quarterly_Q%d_%d\.pdf' % (pq, py), a.text) if a is not None and a.status_code == 200 else None
+        ok = False
+        if pm:
+            time.sleep(3)
+            x = get(f"{WPIC}/files/{pm.group(1)}/WPIC_PQ_tables_Q{pq}_{py}.xlsx", tries=1)
+            if x is not None and x.status_code == 200 and x.content[:2] == b"PK":
+                try:
+                    prev = wpic_table1(x.content, pq, py)
+                    prev.update(release=f"Q{pq} {py}", key=pkey, fetched=str(TODAY), points=[], url=f"{WPIC}/files/{pm.group(1)}/WPIC_PQ_tables_Q{pq}_{py}.xlsx", seeded=True)
+                    (d / f"{pkey}.json").write_text(json.dumps(prev, indent=0))
+                    ok = True
+                    print("WPIC seeded previous release", pkey)
+                except Exception as e:
+                    print("WPIC previous release not parsed:", str(e)[:120])
+        if not ok:
+            meta[f"seed_failed_{pkey}"] = str(TODAY)
+            print("WPIC previous release", pkey, "not available as a workbook; revisions start with the next release")
+    meta_p.write_text(json.dumps(meta, indent=0))
+    return n
+
+
+# ───────── Johnson Matthey PGM market report (annual, May): free supply-and-demand history workbook ─────────
+JM = "https://matthey.com"
+JM_PAGE = JM + "/products-and-markets/pgms-and-circularity/pgm-market-data"
+
+
+def jm_sheet(ws):
+    """First block of a JM metal sheet (supply, recycling, demand by application, movements in stocks), '000 oz by year."""
+    rows = [list(r) for r in ws.iter_rows(values_only=True)]
+    hdr_i = next(i for i, r in enumerate(rows) if r and isinstance(r[0], str) and r[0].strip().startswith("'000 oz"))
+    years = {j: int(c) for j, c in enumerate(rows[hdr_i]) if isinstance(c, (int, float)) and 1970 < c < 2100}
+    keep = sorted(years.items(), key=lambda x: x[1])[-10:]
+    out, sec, parent = {}, None, None
+    body = rows[hdr_i + 1:]
+    for i, r in enumerate(body):
+        if not r or not isinstance(r[0], str) or not r[0].strip():
+            continue
+        raw = r[0]
+        lab = re.sub(r"\s*\(\d+\)|\*", "", raw).strip()
+        vals = {str(y): (float(r[j]) if j < len(r) and isinstance(r[j], (int, float)) else None) for j, y in keep}
+        if not any(v is not None for v in vals.values()):
+            if out and lab.lower().startswith(("notes", "(1)")):
+                break
+            if raw.startswith(" "):          # an empty sub-line (e.g. Russian state stock sales, no longer reported)
+                continue
+            nxt = next((x[0] for x in body[i + 1:] if x and isinstance(x[0], str) and x[0].strip()), "")
+            if nxt.startswith(" "):          # a parent line with no figures of its own (e.g. Russia: Primary only)
+                parent = lab
+            else:
+                sec = lab
+            continue
+        if raw.startswith(" ") and parent:
+            key = f"{parent}: {lab}"
+        else:
+            parent = lab
+            key = lab if (sec is None or lab.lower().startswith(("total", "demand", "movements", "western"))) else f"{sec}: {lab}"
+        if key not in out:
+            out[key] = vals
+        if lab.lower().startswith("movements in stocks"):
+            break
+    return {"years": [str(y) for _, y in keep], "table": out}
+
+
+def jm_parse(content, edition):
+    import openpyxl
+    wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+    rec = {"edition": edition, "fetched": str(TODAY)}
+    for metal in ("Platinum", "Palladium"):
+        if metal in wb.sheetnames:
+            rec[metal.lower()] = jm_sheet(wb[metal])
+    return rec
+
+
+def jm():
+    if not robots_ok(JM, "/products-and-markets/pgms-and-circularity/pgm-market-data") or not robots_ok(JM, "/documents/"):
+        raise RuntimeError("matthey.com robots.txt disallows the PGM market data pages")
+    r = get(JM_PAGE)
+    if r is None or r.status_code != 200:
+        raise RuntimeError("Johnson Matthey PGM market data page not available")
+    links = re.findall(r'href="([^"]*pgm-supply-demand-history-([a-z]+)-(\d{4})-final[^"]*)"', r.text, re.I) \
+        or re.findall(r'href="([^"]*PGM\+supply\+demand\+history\+([A-Za-z]+)\+(\d{4})\+final\.xlsx[^"]*)"', r.text)
+    if not links:
+        raise RuntimeError("JM supply-and-demand workbook link not found")
+    u, mon, y = links[0]
+    u = u if u.startswith("http") else JM + u
+    edition = f"{mon.capitalize()} {y}"
+    d = RAW / "jm"
+    d.mkdir(parents=True, exist_ok=True)
+    slug = f"{y}-{mon.lower()[:3]}"
+    n = 0
+    if not (d / f"{slug}.json").exists():
+        time.sleep(3)
+        x = get(u)
+        if x is None or x.status_code != 200 or x.content[:2] != b"PK":
+            raise RuntimeError("JM workbook download failed")
+        rec = jm_parse(x.content, edition)
+        rp = re.search(r'href="([^"]*pgm-market-report-%s\.pdf[^"]*)"' % str(y)[2:], get(JM + "/products-and-markets/pgms-and-circularity/pgm-markets/pgm-market-reports").text or "")
+        rec.update(url=u.split("?")[0], page=JM_PAGE, report=(rp.group(1) if rp else None))
+        (d / f"{slug}.json").write_text(json.dumps(rec, indent=0))
+        n += 1
+        print("JM", edition, {k: len(v["table"]) for k, v in rec.items() if isinstance(v, dict) and "table" in v})
+    py = int(y) - 1                                       # the previous edition, once, for revisions
+    if not list(d.glob(f"{py}-*.json")):
+        time.sleep(3)
+        x = get(f"{JM}/documents/d/guest/pgm-supply-demand-history-{mon.lower()}-{py}-final", tries=1)
+        if x is not None and x.status_code == 200 and x.content[:2] == b"PK":
+            rec = jm_parse(x.content, f"{mon.capitalize()} {py}")
+            rec.update(url=f"{JM}/documents/d/guest/pgm-supply-demand-history-{mon.lower()}-{py}-final", seeded=True)
+            (d / f"{py}-{mon.lower()[:3]}.json").write_text(json.dumps(rec, indent=0))
+            print("JM seeded previous edition", py)
+        else:
+            print("JM previous edition", py, "not available")
+    return n
+
+
+# ───────── abrdn platinum and palladium ETF trusts: ounces held (SEC filings) ─────────
+PGM_ETF = {"PPLT": ("0001460235", "platinum"), "PALL": ("0001459862", "palladium")}
+
+
+def pgm_etf():
+    rows = []
+    for fund, (cik, metal) in PGM_ETF.items():
+        r = get(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json", headers={"User-Agent": "research-desk admin@example.com"})
+        if r is None or r.status_code != 200:
+            print(fund, "SEC data not available"); continue
+        facts = (r.json().get("facts") or {}).get("us-gaap", {}).get("InvestmentOwnedBalanceOtherMeasure", {}).get("units", {})
+        for unit, vals in facts.items():
+            if unit.lower() not in ("oz", "ounce", "ounces", "troyounce"):
+                continue
+            for v in vals:
+                rows.append({"fund": fund, "metal": metal, "date": v["end"], "ounces": round(float(v["val"]), 1), "form": v.get("form"), "filed": v.get("filed")})
+        time.sleep(1)
+    if not rows:
+        raise RuntimeError("no PPLT/PALL ounces in SEC data")
+    df = pd.DataFrame(rows).sort_values(["fund", "date", "filed"]).drop_duplicates(["fund", "date"], keep="last")
+    n = merge_csv(RAW / "etf_pgm.csv", df, ["fund", "date"])
+    for f, g in df.groupby("fund"):
+        print(f, "last", g.date.iloc[-1], g.ounces.iloc[-1], "oz")
+    return n
+
+
+STEPS = {"etf": etf, "lme": lme, "wgc": wgc, "icsg": icsg, "iai": iai, "usgs": usgs, "silver": silver, "rates": rates, "comex": comex, "wpic": wpic, "jm": jm, "pgm_etf": pgm_etf}
 
 
 def main():

@@ -152,7 +152,7 @@ def nymex_products(m):
 
 
 def comex_metal(m):
-    """COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of
+    """COMEX gold, silver, copper, aluminum and NYMEX platinum, palladium: LTD = third-last business day of the delivery month; FND = last business day of
     the month before; first position (intention) day the business day before FND. Longs exit before the first position day."""
     fnd = last_bd(m - 1)
     fpd = prev_bd(fnd)
@@ -195,6 +195,8 @@ MKT = {
     "HG": ("Copper (COMEX)", comex_metal, "HKNUZ", "physical", "As gold; every month is listed but liquidity sits in Mar, May, Jul, Sep, Dec."),
     "ALI": ("Aluminum (COMEX)", comex_metal, None, "physical", "As gold; thinly traded, so most aluminum risk is held at the LME."),
     "AUP": ("Aluminum Midwest premium (COMEX AUP)", comex_aup, None, "cash", "No delivery: settles to the monthly average of the Platts US Midwest premium; can be held to settlement."),
+    "PL": ("Platinum (NYMEX)", comex_metal, "FJNV", "physical", "As gold (same first notice and last trade rules); active months Jan, Apr, Jul, Oct. Open interest moves to the next active month in the last two weeks of the month before."),
+    "PA": ("Palladium (NYMEX)", comex_metal, "HMUZ", "physical", "As platinum; active months Mar, Jun, Sep, Dec."),
 }
 EXPLAIN = {
     "fpd": "First position day: the first day a short can declare intent to deliver (CBOT). Longs still holding can be assigned delivery after it.",

@@ -18,11 +18,11 @@ MN = dict(zip(CODES, ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "S
 SYMS = {"ZC": "Corn", "ZS": "Soybeans", "ZM": "Soybean meal", "ZL": "Soybean oil", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "CT": "Cotton",
         "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle",
         "NG": "Natural gas", "CL": "WTI crude oil", "HO": "ULSD (heating oil)", "RB": "RBOB gasoline",
-        "GC": "Gold", "SI": "Silver", "HG": "Copper", "ALI": "Aluminum"}
+        "GC": "Gold", "SI": "Silver", "HG": "Copper", "ALI": "Aluminum", "PL": "Platinum", "PA": "Palladium"}
 UNIT = {"ZC": "¢/bu", "ZS": "¢/bu", "ZW": "¢/bu", "KE": "¢/bu", "ZM": "$/st", "ZL": "¢/lb", "CT": "¢/lb", "HE": "¢/lb", "LE": "¢/lb", "GF": "¢/lb",
-        "NG": "$/MMBtu", "CL": "$/bbl", "HO": "$/gal", "RB": "$/gal", "GC": "$/oz", "SI": "$/oz", "HG": "$/lb", "ALI": "$/t"}
+        "NG": "$/MMBtu", "CL": "$/bbl", "HO": "$/gal", "RB": "$/gal", "GC": "$/oz", "SI": "$/oz", "HG": "$/lb", "ALI": "$/t", "PL": "$/oz", "PA": "$/oz"}
 USD = {"ZC": 50, "ZS": 50, "ZW": 50, "KE": 50, "ZM": 100, "ZL": 600, "CT": 500, "HE": 400, "LE": 400, "GF": 500,
-       "NG": 10000, "CL": 1000, "HO": 42000, "RB": 42000, "GC": 100, "SI": 5000, "HG": 25000, "ALI": 25}   # $ per 1.00 of quote
+       "NG": 10000, "CL": 1000, "HO": 42000, "RB": 42000, "GC": 100, "SI": 5000, "HG": 25000, "ALI": 25, "PL": 50, "PA": 100}   # $ per 1.00 of quote
 STORAGE = {"ZC": 0.165, "ZS": 0.165, "ZW": 0.165, "KE": 0.165}      # ¢/bu/day: CBOT tariff (SRW/HRW at the variable-rate floor)
 CASH = {"HE", "GF"}
 CROSS = {"ZC": {("N", "U"), ("N", "Z"), ("U", "Z")}, "ZS": {("Q", "U"), ("U", "X"), ("N", "X"), ("Q", "X")}, "ZW": {("K", "N")}, "KE": {("K", "N")},
@@ -45,7 +45,7 @@ def ltd(sym, code):
         return pd.Timestamp(y, m, 8)
     if sym == "HE":
         return pd.Timestamp(y, m, 14)
-    if sym in ("GC", "SI", "HG", "ALI"):   # COMEX metals: positions are rolled before first notice at the end of the prior month
+    if sym in ("GC", "SI", "HG", "ALI", "PL", "PA"):   # COMEX/NYMEX metals: positions are rolled before first notice at the end of the prior month
         return pd.Timestamp(y, m, 1) - pd.Timedelta(days=3)
     return pd.Timestamp(y, m, 1) + pd.offsets.MonthEnd(0)
 

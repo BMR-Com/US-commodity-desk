@@ -1,4 +1,4 @@
-"""Metals desk model: gold, silver, copper, aluminum. Reads only what the metals workflow and the shared price/COT
+"""Metals desk model: gold, silver, copper, aluminum, platinum, palladium. Reads only what the metals workflow and the shared price/COT
 pipelines wrote (data/technicals, data/cot_desk, data/metals/raw, data/markets) and writes data/metals/metals.json.
 
 Per metal: front price and curve with calendar spreads and annualised carry, the drivers that matter for that metal,
@@ -18,7 +18,8 @@ OUT = D / "metals" / "metals.json"
 LB_PER_T = 2204.62
 MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 METALS = {"gold": ("GC", "GC", "Gold", "$/oz"), "silver": ("SI", "SI", "Silver", "$/oz"),
-          "copper": ("HG", "HG", "Copper", "$/lb"), "aluminum": ("ALI", "AUP", "Aluminum", "$/t")}
+          "copper": ("HG", "HG", "Copper", "$/lb"), "aluminum": ("ALI", "AUP", "Aluminum", "$/t"),
+          "platinum": ("PL", "PL", "Platinum", "$/oz"), "palladium": ("PA", "PA", "Palladium", "$/oz")}
 
 
 def J(p):
@@ -472,6 +473,171 @@ def aluminum(pb):
     return o, fs
 
 
+# ───────── platinum and palladium ─────────
+def ratio_block(a, b, lo, hi, years=10):
+    """a / b on common dates (continuous front months), with its 10-year percentile and median."""
+    if a is None or b is None or not len(a) or not len(b):
+        return None
+    r = (a / b).dropna()
+    r = r[(r > lo) & (r < hi)]
+    if not len(r):
+        return None
+    rw = r[r.index >= r.index[-1] - pd.DateOffset(years=years)]
+    return {"asof": r.index[-1].strftime("%Y-%m-%d"), "last": float(r.iloc[-1]), "pct10": pct_rank(rw, float(r.iloc[-1])), "med10": float(rw.median()),
+            "chg_1m": chg(r, 30), "chg_1y": chg(r, 365), "weekly": weekly(r, years)}
+
+
+def revisions(cur, prev, cols):
+    out = []
+    for k, v in cur.items():
+        b = prev.get(k) or {}
+        for c in cols:
+            pc = c if c in b else (c.rstrip("f") if c.rstrip("f") in b else c + "f" if c + "f" in b else None)
+            if pc and v.get(c) is not None and b.get(pc) is not None and abs(v[c] - b[pc]) >= 0.5:
+                out.append({"line": k, "period": c, "now": v[c], "before": b[pc], "chg": round(v[c] - b[pc], 1)})
+    return out
+
+
+WPIC_LINES = ["Total Mining Supply", "Refined Production: South Africa", "Refined Production: Russia", "Refined Production: Zimbabwe", "Refined Production: North America",
+              "Recycling", "Total Supply", "Automotive", "Jewellery", "Industrial", "Industrial: Chemical", "Industrial: Glass", "Industrial: Hydrogen Stationary and Other",
+              "Investment", "Investment: Change in Bars, Coins", "Investment: Change in ETF Holdings", "Investment: Change in Stocks Held by Exchanges", "Total Demand", "Balance", "Above Ground Stocks"]
+
+
+def wpic_block():
+    """WPIC Platinum Quarterly (Metals Focus research): platinum balance by year and quarter, with revisions vs the previous release."""
+    d = RAW / "wpic"
+    recs = sorted((p for p in d.glob("Q*_*.json")), key=lambda p: (p.stem[3:], p.stem[1])) if d.exists() else []
+    if not recs:
+        return None
+    cur = json.loads(recs[-1].read_text())
+    cols = cur["columns"][-4:]
+    qs = cur["quarters"][-4:]
+    tab = cur["table"]
+    out = {"release": cur["release"], "fetched": cur.get("fetched"), "url": cur.get("url"), "report": cur.get("report"), "points": cur.get("points"), "heads": cur.get("heads"),
+           "columns": cols, "quarters": qs, "rows": [{"line": k, **{c: (tab.get(k) or {}).get(c) for c in cols + qs}} for k in WPIC_LINES if k in tab],
+           "source": "World Platinum Investment Council, Platinum Quarterly (research by Metals Focus); free tables workbook"}
+    meta = RAW / "wpic" / "meta.json"
+    if meta.exists():
+        out["next_release"] = json.loads(meta.read_text()).get("next_release")
+    if len(recs) > 1:
+        prev = json.loads(recs[-2].read_text())
+        out["prev_release"] = prev["release"]
+        out["revisions"] = [r for r in revisions({k: tab[k] for k in WPIC_LINES if k in tab}, prev["table"], cols[-3:]) if r["period"] in cols]
+    return out
+
+
+JM_KEEP = {"platinum": ["Total primary supply", "Primary supply: South Africa", "Primary supply: Russia", "Primary supply: Zimbabwe", "Primary supply: North America",
+                        "Total secondary supply", "Total combined supply", "Demand by application: Auto", "Demand by application: Jewellery", "Demand by application: Chemical",
+                        "Demand by application: Glass", "Demand by application: Investment", "Total Demand", "Movements in stocks"],
+           "palladium": ["Total Supply", "Supply: South Africa", "Russia: Primary", "Supply: North America", "Supply: Zimbabwe", "Total secondary supply",
+                         "Secondary supply: Automotive", "Total combined supply", "Demand by Application: Auto", "Demand by Application: Electrical & Electronics",
+                         "Demand by Application: Chemical", "Demand by Application: Investment", "Total Demand", "Movements in stocks"]}
+
+
+def jm_block(metal):
+    """Johnson Matthey PGM market report (annual, May): supply, recycling, demand and the balance (movements in stocks),
+    with revisions vs the previous edition."""
+    d = RAW / "jm"
+    recs = sorted(d.glob("*.json")) if d.exists() else []
+    recs = [p for p in recs if metal in json.loads(p.read_text())]
+    if not recs:
+        return None
+    cur = json.loads(recs[-1].read_text())
+    m = cur[metal]
+    yrs = m["years"][-4:]
+    tab = m["table"]
+    keep = [k for k in JM_KEEP[metal] if k in tab]
+    out = {"edition": cur["edition"], "url": cur.get("url"), "report": cur.get("report"), "years": yrs,
+           "rows": [{"line": k.split(": ", 1)[-1] if not k.startswith("Russia") else "Russia (primary)", "key": k, **{y: tab[k].get(y) for y in yrs}} for k in keep],
+           "source": "Johnson Matthey, PGM market report; free supply-and-demand history workbook"}
+    if len(recs) > 1:
+        prev = json.loads(recs[-2].read_text())
+        out["prev_edition"] = prev["edition"]
+        out["revisions"] = revisions({k: tab[k] for k in keep}, prev[metal]["table"], yrs[-3:-1])
+    return out
+
+
+def pgm_etf_block(fund):
+    d = C("etf_pgm.csv", parse_dates=["date"])
+    if d is None:
+        return None
+    x = d[d.fund == fund].set_index("date").sort_index()
+    if not len(x):
+        return None
+    oz = x.ounces.astype(float)
+    prev = oz.iloc[-2] if len(oz) > 1 else None
+    ya = oz[oz.index <= oz.index[-1] - pd.Timedelta(days=360)]
+    return {"fund": fund, "asof": oz.index[-1].strftime("%Y-%m-%d"), "koz": float(oz.iloc[-1]) / 1000, "chg_q_pct": 100 * (oz.iloc[-1] / prev - 1) if prev else None,
+            "chg_y_pct": 100 * (oz.iloc[-1] / ya.iloc[-1] - 1) if len(ya) else None, "filed": x.filed.iloc[-1],
+            "series": {"date": [i.strftime("%Y-%m-%d") for i in oz.index[-24:]], "v": [round(float(v) / 1000, 1) for v in oz.values[-24:]]},
+            "source": f"abrdn {'Platinum' if fund == 'PPLT' else 'Palladium'} ETF Trust ({fund}), quarterly SEC filings (10-Q/10-K)"}
+
+
+def jm_line(J, key, yr):
+    r = next((x for x in (J or {}).get("rows", []) if x["key"] == key), None)
+    return r and r.get(yr)
+
+
+def pgm(key, pb, s, gold_s, other_s):
+    o = {}
+    if key == "platinum":
+        o["ratio_pd"] = ratio_block(s, other_s, 0.1, 10)
+        o["ratio_gold"] = ratio_block(s, gold_s, 0.05, 2)
+        o["wpic"] = wpic_block()
+    else:
+        o["ratio_pd"] = ratio_block(other_s, s, 0.1, 10)          # always platinum / palladium
+        o["ratio_gold"] = ratio_block(s, gold_s, 0.05, 3)
+    o["jm"] = jm_block(key)
+    o["etf"] = pgm_etf_block("PPLT" if key == "platinum" else "PALL")
+    o["comex_stocks"] = comex_stocks(key)
+    fs = []
+    W = o.get("wpic")
+    if W:
+        bal = next((r for r in W["rows"] if r["line"] == "Balance"), None)
+        if bal:
+            fy = W["columns"][-1]
+            cy = W["columns"][-2]
+            v = bal.get(fy)
+            rv = next((r for r in W.get("revisions", []) if r["line"] == "Balance" and r["period"] == cy), None)
+            if v is not None:
+                fs.append(fac("WPIC balance", 1 if v < 0 else -1 if v > 250 else 0,
+                              f"WPIC sees {fy.rstrip('f')} in {'deficit' if v < 0 else 'surplus'} {abs(v):,.0f} koz; {cy.rstrip('f')} {'deficit' if (bal.get(cy) or 0) < 0 else 'surplus'} {abs(bal.get(cy) or 0):,.0f} koz"
+                              + (f" (revised {sg(rv['chg'], 0)} koz vs the {W['prev_release']} release)" if rv else "") + f"; Platinum Quarterly {W['release']}."))
+    J = o.get("jm")
+    if J:
+        y = J["years"][-1]
+        b = jm_line(J, "Movements in stocks", y)
+        if b is not None:
+            fs.append(fac("JM balance", 1 if b < 0 else -1 if b > 150 else 0, f"Johnson Matthey ({J['edition']}) puts {y} in {'deficit' if b < 0 else 'surplus'} {abs(b):,.0f} koz."))
+        if key == "palladium":
+            a1, a0 = jm_line(J, "Demand by Application: Auto", y), jm_line(J, "Demand by Application: Auto", J["years"][-2])
+            if a1 and a0:
+                pc = 100 * (a1 / a0 - 1)
+                fs.append(fac("Autocatalyst demand", 1 if pc >= 2 else -1 if pc <= -2 else 0, f"JM autocatalyst demand {y} {a1:,.0f} koz ({sg(pc, 1, '%')} y/y; electrified and battery vehicles erode gasoline-car loadings)."))
+    sp = pb.get("spreads") or []
+    if sp and sp[0].get("lease_pct") is not None:
+        lr = sp[0]["lease_pct"]
+        fs.append(fac("Curve / lease rate", 1 if lr >= 1 else -1 if sp[0]["ann_pct"] > 0 and lr <= -1 else 0,
+                      f"Front spread pays {sp[0]['ann_pct']:.2f}% a year: implied lease rate {lr:.2f}%{' (metal tight to borrow)' if lr >= 1 else ''}."))
+    E = o.get("etf")
+    if E and E.get("chg_q_pct") is not None:
+        fs.append(fac("ETF holdings", 1 if E["chg_q_pct"] >= 3 else -1 if E["chg_q_pct"] <= -3 else 0,
+                      f"{E['fund']} held {E['koz']:,.0f} koz on {E['asof']} ({sg(E['chg_q_pct'], 1, '%')} on the quarter{', ' + sg(E['chg_y_pct'], 1, '%') + ' on the year' if E.get('chg_y_pct') is not None else ''})."))
+    R = o.get("ratio_gold")
+    if R and R.get("pct10") is not None and key == "platinum":
+        fs.append(fac("Platinum vs gold", 1 if R["pct10"] <= 20 else -1 if R["pct10"] >= 80 else 0,
+                      f"Platinum/gold ratio {R['last']:.2f} ({int(R['pct10'])}th percentile of 10 years); {'platinum cheap to gold' if R['pct10'] <= 20 else 'platinum rich to gold' if R['pct10'] >= 80 else 'mid-range'}."))
+    P = o.get("ratio_pd")
+    if P and P.get("pct10") is not None and key == "palladium":
+        fs.append(fac("Palladium vs platinum", -1 if P["pct10"] <= 20 else 1 if P["pct10"] >= 80 else 0,
+                      f"Platinum/palladium ratio {P['last']:.2f} ({int(P['pct10'])}th percentile of 10 years); {'palladium rich to platinum (substitution risk)' if P['pct10'] <= 20 else 'palladium cheap to platinum' if P['pct10'] >= 80 else 'mid-range'}."))
+    cx = o.get("comex_stocks")
+    if cx and cx.get("chg_1m") is not None and cx["total"]:
+        pc = 100 * cx["chg_1m"] / max(1.0, cx["total"] - cx["chg_1m"])
+        fs.append(fac("NYMEX stocks", 1 if pc <= -10 else -1 if pc >= 10 else 0, f"NYMEX {key} stocks {cx['total']:,.0f} oz ({sg(cx['chg_1m'], 0)} oz in a month)."))
+    return o, fs
+
+
 def brief(name, pb, fs, extra):
     b = []
     if pb:
@@ -487,6 +653,8 @@ def main():
     rate = tbill()
     out = {"generated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "rate": rate, "metals": {}}
     gold_s = None
+    _, pl_s = tech("PL")
+    _, pa_s = tech("PA")
     for key, (sym, csym, name, unit) in METALS.items():
         try:
             pb, s = price_block(sym)
@@ -503,7 +671,9 @@ def main():
                 o, fs = copper(pb or {}, rate)
             elif key == "aluminum":
                 o, fs = aluminum(pb or {})
-            o["usgs"] = (usgs_block({"gold": ["Gold"], "silver": ["Silver"], "copper": ["Copper"], "aluminum": ["Aluminum", "Bauxite"]}[key]) or None)
+            elif key in ("platinum", "palladium"):
+                o, fs = pgm(key, pb or {}, s if s is not None else pd.Series(dtype=float), gold_s, pa_s if key == "platinum" else pl_s)
+            o["usgs"] = (usgs_block({"gold": ["Gold"], "silver": ["Silver"], "copper": ["Copper"], "aluminum": ["Aluminum", "Bauxite"], "platinum": ["Platinum"], "palladium": ["Palladium"]}[key]) or None)
             c = cot(csym)
             score, v = view(fs)
             extra = []

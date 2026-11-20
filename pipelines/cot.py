@@ -18,6 +18,8 @@ CODES = {  # CFTC contract market codes
     # metals desk: COMEX gold, silver, copper, aluminum Midwest premium (AUP; COMEX aluminum ALI 191691 is reported
     # only in weeks with enough traders, so the desk uses AUP for aluminum positioning)
     "GC": "088691", "SI": "084691", "HG": "085692", "AUP": "191693",
+    # NYMEX platinum and palladium (weekly, continuous)
+    "PL": "076651", "PA": "075651",
 }
 SETS = {"fo": "kh3c-gbw2", "fut": "72hh-3qpy"}
 

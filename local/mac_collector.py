@@ -61,7 +61,7 @@ async def collect():
             log("CME margins failed:", str(e)[:300])
         try:   # COMEX warehouse stocks for the metals desk (daily XLS reports; parsed by pipelines/metals.py comex)
             out["comex_stocks"] = await page.evaluate("""async () => {
-              const names = ['Gold_Stocks', 'Silver_stocks', 'Copper_Stocks', 'Aluminum_Stocks'], res = {};
+              const names = ['Gold_Stocks', 'Silver_stocks', 'Copper_Stocks', 'Aluminum_Stocks', 'PA-PL_Stck_Rprt'], res = {};
               for (const n of names) {
                 try { const r = await fetch('/delivery_reports/' + n + '.xls', { credentials: 'include' });
                   if (!r.ok) continue; const b = new Uint8Array(await r.arrayBuffer()); let s = '';

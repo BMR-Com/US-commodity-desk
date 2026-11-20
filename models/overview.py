@@ -34,11 +34,12 @@ else:
               ("Dairy", [("class3", "DC", "Class III milk"), ("class4", "GDK", "Class IV milk")]),
               ("Vegetable oils", [("palm", "FCPO", "Palm oil (Bursa)")]),
               ("Energy", [("natgas", "NG", "Natural gas"), ("crude", "CL", "WTI crude"), ("ulsd", "HO", "ULSD (heating oil)"), ("rbob", "RB", "RBOB gasoline")]),
-              ("Metals", [("gold", "GC", "Gold"), ("silver", "SI", "Silver"), ("copper", "HG", "Copper"), ("aluminum", "ALI", "Aluminum")])]
+              ("Metals", [("gold", "GC", "Gold"), ("silver", "SI", "Silver"), ("copper", "HG", "Copper"), ("aluminum", "ALI", "Aluminum"),
+                          ("platinum", "PL", "Platinum"), ("palladium", "PA", "Palladium")])]
 NEWS_TAG = {"corn": "corn", "soybeans": "soybeans", "meal": "meal", "oil": "oil", "wheat": "wheat", "kc": "wheat", "cotton": "cotton", "hogs": "hogs",
             "cattle": "cattle", "feeders": "cattle", "class3": "dairy", "class4": "dairy", "palm": "oil", "natgas": "natgas", "crude": "crude",
             "ulsd": "products", "rbob": "products", "sugar": "sugar", "coffee": "coffee", "cocoa": "cocoa",
-            "gold": "gold", "silver": "silver", "copper": "copper", "aluminum": "aluminum"}
+            "gold": "gold", "silver": "silver", "copper": "copper", "aluminum": "aluminum", "platinum": "platinum", "palladium": "palladium"}
 COT_SYM = {"ALI": "AUP"}   # aluminum positioning: COMEX aluminum Midwest premium (the aluminum contract with continuous COT)
 NEWS_RX = {"palm": r"palm", "cocoa": r"cocoa|cacao", "ulsd": r"diesel|heating oil|distillate", "rbob": r"gasoline|RBOB", "kc": r"wheat"}
 W = {"fundamental": 0.4, "technical": 0.3, "cot": 0.2, "seasonal": 0.1}
@@ -444,7 +445,7 @@ def fundamental(key, sym, T):
         score, txt, fair = energy_fund(key)
     elif key == "palm":
         score, txt, fair = palm_fund()
-    elif key in ("gold", "silver", "copper", "aluminum"):
+    elif key in ("gold", "silver", "copper", "aluminum", "platinum", "palladium"):
         score, txt, fair = metals_fund(key)
     elif key == "sugar":
         score, txt, fair = sugar_fund()

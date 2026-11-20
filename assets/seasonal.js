@@ -250,7 +250,7 @@ function TechStudyView(root, p) {
 const MktStudy = (() => {
   let uid = 0;
   const NAMES = { ZC: 'Corn', ZS: 'Soybeans', ZM: 'Meal', ZL: 'Soy oil', ZW: 'Chicago wheat', KE: 'KC wheat', CT: 'Cotton', LE: 'Live cattle', GF: 'Feeder cattle', HE: 'Lean hogs',
-    DC: 'Class III', GDK: 'Class IV', CSC: 'Cheese', CB: 'Butter', GNF: 'NFDM', DY: 'Dry whey', CL: 'WTI crude', NG: 'Natural gas', HO: 'ULSD', RB: 'RBOB', FCPO: 'Palm oil', GC: 'Gold', SI: 'Silver', HG: 'Copper', ALI: 'Aluminum' };
+    DC: 'Class III', GDK: 'Class IV', CSC: 'Cheese', CB: 'Butter', GNF: 'NFDM', DY: 'Dry whey', CL: 'WTI crude', NG: 'Natural gas', HO: 'ULSD', RB: 'RBOB', FCPO: 'Palm oil', GC: 'Gold', SI: 'Silver', HG: 'Copper', ALI: 'Aluminum', PL: 'Platinum', PA: 'Palladium' };
   // Full sub-tab: picker (several symbols) → seasonality + technical studies.
   function mount(el, syms) {
     const p = 'ms' + (++uid);

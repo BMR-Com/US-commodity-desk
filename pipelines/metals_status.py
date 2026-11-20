@@ -58,6 +58,29 @@ def iai_month():
     return month_end(max_csv("iai_primary.csv", "month"))
 
 
+def wpic_release():
+    """Quarter end of the latest stored Platinum Quarterly (e.g. Q3_2026 -> 2026-09-30)."""
+    ks = sorted((p.stem for p in (RAW / "wpic").glob("Q*_*.json")), key=lambda k: (k[3:], k[1]))
+    return month_end(f"{ks[-1][3:]}-{3 * int(ks[-1][1]):02d}") if ks else None
+
+
+def wpic_due():
+    """Next Platinum Quarterly date as WPIC states it on its page (exact), else an estimate."""
+    try:
+        return json.loads((RAW / "wpic" / "meta.json").read_text()).get("next_release")
+    except Exception:
+        return None
+
+
+def jm_edition():
+    fs = sorted((RAW / "jm").glob("*.json"))
+    return f"{fs[-1].stem[:4]}-05-15" if fs else None
+
+
+def pgm_etf_last(fund):
+    return max_csv("etf_pgm.csv", where=lambda r: r["fund"] == fund)
+
+
 def usgs_year():
     fs = sorted(RAW.glob("usgs_mcs*.csv"))
     return f"{fs[-1].stem[-4:]}-01-31" if fs else None
@@ -81,9 +104,44 @@ SOURCES = [
     ("Copper", "ICSG monthly press release (issue date)", "monthly (3rd-4th week)", 40, C, False, icsg_issued, "copper balance"),
     ("Aluminum", "LME aluminium cash, 3-month, stocks (westmetall.com)", "daily", 3, B, False, lambda: max_csv("lme_al.csv"), "aluminum desk"),
     ("Aluminum", "IAI primary aluminium production (data month)", "monthly (~20th of next month)", 55, C, False, iai_month, "aluminum supply"),
+    ("Prices", "NYMEX platinum and palladium futures (Yahoo, TradingView fallback)", "daily", 2, B, False, lambda: min(tech_last(s) for s in ("PL", "PA")), "platinum, palladium desks"),
+    ("Prices", "Per-contract history, platinum and palladium (TradingView)", "daily", 3, B, False, lambda: min(contracts_last(s) for s in ("PL", "PA")), "seasonality, spreads"),
+    ("Positions", "CFTC COT, positions date (platinum, palladium)", "weekly (Tue, out Fri)", 10, C, False, lambda: min(J(f"cot_desk/{s}.json")["date"] for s in ("PL", "PA")), "COT panels, overview"),
+    ("Platinum", "WPIC Platinum Quarterly (quarter covered)", "quarterly (Mar, May, Sep, Nov)", 150, C, False, wpic_release, "platinum S&D"),
+    ("Platinum", "abrdn PPLT ounces held (SEC 10-Q/10-K, quarter end)", "quarterly (~6 weeks after quarter end)", 140, C, False, lambda: pgm_etf_last("PPLT"), "platinum ETF"),
+    ("Palladium", "abrdn PALL ounces held (SEC 10-Q/10-K, quarter end)", "quarterly (~6 weeks after quarter end)", 140, C, False, lambda: pgm_etf_last("PALL"), "palladium ETF"),
+    ("Platinum and palladium", "Johnson Matthey PGM market report (edition)", "annual (May)", 400, C, False, jm_edition, "platinum and palladium S&D"),
+    ("Platinum and palladium", "NYMEX platinum and palladium warehouse stocks (via Mac collector)", "daily", 3, B, True, lambda: max_csv("comex_stocks.csv", where=lambda r: r["metal"] in ("platinum", "palladium")), "exchange stocks"),
     ("All metals", "USGS Mineral Commodity Summaries (edition)", "annual (late January)", 400, C, False, usgs_year, "world production and reserves"),
     ("All metals", "COMEX warehouse stocks (CME daily reports; via Mac collector)", "daily", 3, B, True, lambda: max_csv("comex_stocks.csv"), "exchange stocks"),
 ]
+
+
+def _wpic_due():
+    """(release date, grace days, whether the stored release is newer than that date's quarter)."""
+    dd = wpic_due()
+    if not dd:
+        return None, 0, None
+    # the release on dd covers the quarter before it: stored quarter end must be within ~100 days of dd
+    return dd, 1, (date.fromisoformat(dd) - date.fromisoformat(wpic_release())).days < 100
+
+
+def _jm_due():
+    y = TODAY.year
+    dd = str(nth_weekday(y, 5, 1, 3))           # JM usually publishes mid-May (estimate)
+    return dd, 21, (jm_edition() or "")[:4] == str(y)
+
+
+def _sec_due(fund):
+    def f():
+        q_end = month_end(f"{TODAY.year}-{(TODAY.month - 1) // 3 * 3:02d}") if TODAY.month > 3 else f"{TODAY.year - 1}-12-31"
+        dd = str(date.fromisoformat(q_end) + timedelta(days=50 if not q_end.endswith("12-31") else 70))
+        return dd, 5, (pgm_etf_last(fund) or "") >= q_end
+    return f
+
+
+DUE = {"WPIC Platinum Quarterly (quarter covered)": _wpic_due, "Johnson Matthey PGM market report (edition)": _jm_due,
+       "abrdn PPLT ounces held (SEC 10-Q/10-K, quarter end)": _sec_due("PPLT"), "abrdn PALL ounces held (SEC 10-Q/10-K, quarter end)": _sec_due("PALL")}
 
 
 def bd_between(a, b):
@@ -102,6 +160,14 @@ def status():
             d0 = date.fromisoformat(latest[:10])
             age = bd_between(d0, TODAY) if unit == B else (TODAY - d0).days
         st = "missing" if latest is None else "late" if age > lim else "ok"
+        due = DUE.get(name)
+        if st == "ok" and due:
+            try:
+                dd, grace, newer = due()
+                if dd and newer is not None and not newer and (TODAY - date.fromisoformat(dd)).days > grace:
+                    st = "late"
+            except Exception:
+                pass
         if manual and st != "ok":
             st = "needs Mac"
         rows.append({"group": g, "source": name, "latest": latest, "age": age, "age_unit": "bd" if unit == B else "days", "limit": lim, "cadence": cad, "manual": manual, "state": st, "used_in": used})
@@ -127,7 +193,7 @@ def calendar(rows):
     d = TODAY
     while d <= end:
         if d.weekday() == 4:
-            up.append({"date": str(d), "time_ct": "2:30 PM CT", "event": "CFTC Commitments of Traders (metals)", "markets": ["GC", "SI", "HG", "ALI"], "importance": 1, "calendar": False, "estimated": False})
+            up.append({"date": str(d), "time_ct": "2:30 PM CT", "event": "CFTC Commitments of Traders (metals)", "markets": ["GC", "SI", "HG", "ALI", "PL", "PA"], "importance": 1, "calendar": False, "estimated": False})
         d += timedelta(days=1)
     for k in range(0, 5):
         y, m = (TODAY.year + (TODAY.month - 1 + k) // 12), (TODAY.month - 1 + k) % 12 + 1
@@ -147,6 +213,21 @@ def calendar(rows):
         if m == 11:
             up.append({"date": str(nth_weekday(y, m, 2, 3)), "time_ct": "", "event": "Silver Institute interim silver market review", "markets": ["SI"], "importance": 1, "estimated": True,
                        "link": "https://silverinstitute.org/"})
+    nx = wpic_due()
+    if nx:
+        up.append({"date": nx, "time_ct": "", "event": "WPIC Platinum Quarterly", "markets": ["PL", "PA"], "importance": 2, "estimated": False,
+                   "link": "https://platinuminvestment.com/supply-and-demand/platinum-quarterly"})
+    for k in range(0, 5):
+        y, m = (TODAY.year + (TODAY.month - 1 + k) // 12), (TODAY.month - 1 + k) % 12 + 1
+        if m in (3, 5, 9, 11) and not (nx and nx[:7] == f"{y}-{m:02d}"):
+            up.append({"date": str(bday(date(y, m, 10 if m != 5 else 20))), "time_ct": "", "event": "WPIC Platinum Quarterly", "markets": ["PL", "PA"], "importance": 2, "estimated": True,
+                       "link": "https://platinuminvestment.com/supply-and-demand/platinum-quarterly"})
+        if m == 5:
+            up.append({"date": str(nth_weekday(y, 5, 1, 3)), "time_ct": "", "event": "Johnson Matthey PGM market report (annual)", "markets": ["PL", "PA"], "importance": 2, "estimated": True,
+                       "link": "https://matthey.com/products-and-markets/pgms-and-circularity/pgm-markets/pgm-market-reports"})
+        if m in (2, 5, 8, 11):
+            up.append({"date": str(bday(date(y, m, 8))), "time_ct": "", "event": "PPLT / PALL quarterly filings (ETF ounces held)", "markets": ["PL", "PA"], "importance": 1, "estimated": True,
+                       "link": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001460235&type=10-&dateb=&owner=include&count=40"})
     up = sorted([u for u in up if str(TODAY - timedelta(days=3)) <= u["date"] <= str(end)], key=lambda u: u["date"])
     timing = [
         {"report": "COMEX futures settlement", "when": "Daily, 1:30 pm ET (gold, silver), 1:00 pm ET (copper)", "desk": "metals workflow 5:50 pm ET weekdays (clock), 9:10 am ET refresh"},
@@ -159,6 +240,10 @@ def calendar(rows):
         {"report": "World Gold Council Gold Demand Trends", "when": "Quarterly, about 4-5 weeks after quarter end", "desk": "checked every metals run; catch-up job daily"},
         {"report": "Silver Institute World Silver Survey", "when": "Annual (April), interim review (November)", "desk": "page checked every run"},
         {"report": "USGS Mineral Commodity Summaries", "when": "Annual (late January)", "desk": "checked every run until the new edition is stored"},
+        {"report": "NYMEX platinum and palladium settlement", "when": "Daily, 1:05 pm ET", "desk": "metals workflow 5:50 pm ET weekdays (clock), 9:10 am ET refresh"},
+        {"report": "WPIC Platinum Quarterly", "when": "Quarterly (early Mar, mid-May, early Sep, mid-Nov); WPIC states the next date on its page", "desk": "checked every metals run; catch-up reruns if the stated date passes without it"},
+        {"report": "Johnson Matthey PGM market report", "when": "Annual, mid-May", "desk": "checked every metals run; catch-up reruns if not stored three weeks after mid-May"},
+        {"report": "PPLT / PALL ounces held (SEC 10-Q/10-K)", "when": "About 5-6 weeks after each quarter end (10-K about 8-9 weeks)", "desk": "checked every metals run; catch-up reruns if overdue"},
     ]
     return {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "upcoming": up, "timing": timing}
 

@@ -43,6 +43,8 @@ QUERIES = {  # topic: search terms
     "silver": "silver prices OR silver futures OR silver demand OR silver ETF OR silver supply",
     "copper": "copper prices OR copper futures OR copper mine OR copper smelter OR copper tariff OR LME copper OR copper inventories OR treatment charges",
     "aluminum": "aluminum prices OR aluminium prices OR aluminum tariff OR Midwest premium OR aluminium smelter OR LME aluminium OR alumina",
+    "platinum": "platinum prices OR platinum futures OR platinum deficit OR platinum mine OR platinum supply OR platinum ETF OR Sibanye OR Amplats OR Implats OR WPIC",
+    "palladium": "palladium prices OR palladium futures OR palladium supply OR Nornickel palladium OR palladium tariff OR palladium autocatalyst",
 }
 TAGS = {
     "corn": r"\bcorn\b|maize|safrinha|ethanol",
@@ -63,6 +65,8 @@ TAGS = {
     "silver": r"\bsilver\b",
     "copper": r"\bcopper\b",
     "aluminum": r"alumin(i)?um|alumina|bauxite|Midwest premium",
+    "platinum": r"\bplatinum\b|\bPGMs?\b|platinum group|Sibanye|Amplats|Valterra|Implats|Northam|\bWPIC\b",
+    "palladium": r"\bpalladium\b|\bPGMs?\b|platinum group|Nornickel|Norilsk",
 }
 
 
@@ -75,7 +79,7 @@ TIER_RX = [
     (2, r"usda|foreign agricultural service|\bnass\b|\bams\b|\bers\b|cftc|^ice\b|intercontinental exchange|cme group|\beia\b|energy information|"
         r"\biea\b|international energy agency|opec|icco|international cocoa|international coffee org|\bico\b|icac|international cotton advisory|"
         r"international sugar org|unica|conab|cocobod|conseil caf|cecaf|national cotton council|cotton incorporated|cotlook|mpob|malaysian palm|"
-        r"comtrade|census bureau|customs|secex|mdic|admis|rabobank|czapp|czarnikow|farmdoc|world gold council|silver institute|"
+        r"comtrade|census bureau|customs|secex|mdic|admis|rabobank|czapp|czarnikow|farmdoc|world gold council|silver institute|world platinum investment council|wpic|johnson matthey|"
         r"international copper study|icsg|international aluminium|london metal exchange|\blme\b|usgs"),
     (3, r"dtn|progressive farmer|brownfield|farm progress|successful farming|agweb|pro farmer|farm journal|feedstuffs|national hog farmer|drovers|"
         r"dairy herd|hoard|natural gas intelligence|rigzone|oilprice|barchart|daily coffee news|cotton grower|farm press|ethanol producer|"
@@ -103,6 +107,8 @@ NEG = {
     "silver": r"silver (medal|medalist|lining|screen|alert|lake|spoon|jubilee|surfer|bells?)|quicksilver|silverware|sterling silver jewel|olympic",
     "copper": r"copper (mountain|canyon|state|kettle|pot|cookware|bracelet|wire theft)|copperhead",
     "aluminum": r"aluminum (foil|can recycling drive|bat)",
+    "platinum": r"platinum (album|single|certified|certification|card|member|status|blonde|jubilee|edition|tier|club|plan|partner)|(went|goes|double|triple|multi)[- ]platinum|platinum equity|olympic",
+    "palladium": r"palladium (theat|theatre|theater|boots|books|london)",
 }
 
 

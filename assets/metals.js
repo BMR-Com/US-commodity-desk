@@ -1,12 +1,13 @@
-// Metals section: one menu with four sub-desks (gold, silver, copper, aluminum), numbered sub-tabs like Energy and Cotton.
+// Metals section: one menu with six sub-desks (gold, silver, copper, aluminum, platinum, palladium), numbered sub-tabs like Energy and Cotton.
 // Data: data/metals/metals.json (models/metals.py), data/metals/status.json + release_calendar.json (pipelines/metals_status.py),
 // and the shared desk files (technicals, COT desk, seasonality, spreads, specs, news, calendar). Built by its own workflow
-// (metals.yml), so a failure there cannot affect the rest of the desk. Deep links: #metals/<gc|si|hg|ali>/<tab>.
+// (metals.yml), so a failure there cannot affect the rest of the desk. Deep links: #metals/<gc|si|hg|ali|pl|pa>/<tab>.
 const Metals = (() => {
   let built = false, mk = 'GC', tab = 'outlook', D = null, ST = null, CAL = null;
-  const KEY = { GC: 'gold', SI: 'silver', HG: 'copper', ALI: 'aluminum' };
-  const DESKS = { GC: 'Gold', SI: 'Silver', HG: 'Copper', ALI: 'Aluminum' };
-  const COT = { GC: 'GC', SI: 'SI', HG: 'HG', ALI: 'AUP' };
+  const KEY = { GC: 'gold', SI: 'silver', HG: 'copper', ALI: 'aluminum', PL: 'platinum', PA: 'palladium' };
+  const DESKS = { GC: 'Gold', SI: 'Silver', HG: 'Copper', ALI: 'Aluminum', PL: 'Platinum', PA: 'Palladium' };
+  const COT = { GC: 'GC', SI: 'SI', HG: 'HG', ALI: 'AUP', PL: 'PL', PA: 'PA' };
+  const PREC = k => ['GC', 'SI', 'PL', 'PA'].includes(k);   // precious metals: curve carry vs T-bills gives an implied lease rate
   const TABS = [['primer', 'Primer'], ['px', 'Prices &amp; curve'], ['flows', 'Futures &amp; COT'], ['sd', 'Supply &amp; demand'], ['seas', 'Seasonality &amp; technicals'],
     ['outlook', 'Outlook'], ['news', 'News &amp; calendar'], ['status', 'Data status']];
   const esc = x => String(x == null ? '' : x).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -69,15 +70,46 @@ const Metals = (() => {
       cot: 'AUP positions are mostly physical-market hedgers (producers, traders, consumers) with a modest managed-money share; fund length in the premium usually reflects a tariff view. The outright aluminum price is set at the LME, whose own Commitments of Traders report is not freely downloadable.',
       season: 'Chinese output dips in winter heating-season curbs in some years; demand builds in spring. The Midwest premium is driven by trade policy more than seasons.',
       links: ['Energy: aluminum is "solid electricity"; gas and power prices set the marginal smelter cost.', 'Copper/aluminum substitution in cables and air-conditioning when copper is expensive.'] },
+    PL: { spec: [['Contract', 'NYMEX Platinum (PL)'], ['Size / tick', '50 troy oz; $0.10/oz = $5 per lot'], ['Active months', 'Jan, Apr, Jul, Oct (the next three calendar months also list)'],
+        ['First notice / last trade', 'As COMEX gold: first notice on the last business day of the month before delivery (longs out before first position day); last trade third-last business day of the delivery month'],
+        ['Delivery', 'A 50-oz plate or ingot, at least 99.95% pure, made by an exchange-approved refiner, on warrant in a NYMEX-approved vault. Longs receive a warrant, not metal in hand'],
+        ['Options', 'Monthly options on the futures (thin next to gold)'],
+        ['Other markets', 'London/Zurich OTC market (LPPM; LBMA Platinum Price set twice a day; spot and forwards for loco London/Zurich metal), Japan (Osaka Exchange platinum futures in yen per gram; Japanese investors buy bars on dips), China (Shanghai Gold Exchange spot; Guangzhou Futures Exchange platinum futures since late 2024). Price gaps between New York, London and Shanghai show where metal is being pulled']],
+      drivers: [['Mine supply concentration', 'South Africa (Bushveld) mines about 70% of the world\'s platinum, Zimbabwe about 9%, Russia about 12% and North America the rest. Output has gone sideways for a decade: power cuts, deep and ageing shafts, processing outages and shaft closures when the PGM basket price is low. Supply responds to price only over years.', 'WPIC/JM supply, South African mining output (Stats SA), producer results'],
+        ['Autocatalyst demand and the EV mix', 'About a third of demand is catalytic converters, above all diesel cars and heavy trucks. Hybrids carry more PGM per vehicle than plain combustion cars; battery-electric cars carry none. A slower EV roll-out and more hybrids support demand; tighter emissions rules (Euro 7, China 6b, US 2027 truck rules) raise loadings.', 'Light-vehicle production, EV/hybrid share, WPIC automotive demand'],
+        ['Platinum-for-palladium substitution', 'Gasoline catalysts can swap palladium for platinum. Automakers did this heavily when palladium traded far above platinum (2019-2022); the switch is slow (re-certification) and reverses only if platinum becomes the dearer metal.', 'Platinum/palladium ratio, WPIC substitution estimates'],
+        ['Jewellery and China', 'Jewellery is about a quarter of demand, led by China (falling), India and Japan; it is price-sensitive. China also drives industrial use (glass, chemicals) and investment bars. China imports, the Shanghai premium over London and Guangzhou futures show the pull.', 'WPIC jewellery, China imports, Shanghai premium'],
+        ['Industrial and hydrogen', 'Chemical catalysts (paraxylene, silicones), glass fibre and LCD glass, petroleum refining, medical, and hydrogen (PEM electrolysers and fuel cells). Lumpy: capacity build-outs in China swing it.', 'WPIC industrial demand'],
+        ['Investment, ETFs and above-ground stocks', 'Bar and coin buying (Japan, China, US), ETF flows and exchange stocks swing the balance. WPIC expresses above-ground stocks as months of demand cover; a falling cover after years of deficits means less free metal to absorb shocks.', 'PPLT and other ETF holdings, NYMEX stocks, WPIC above-ground stocks'],
+        ['Lease rates and the forward curve', 'Precious metals normally trade in carry (forward above spot by about the interest rate). When free metal is scarce, lenders demand a lease rate, the forward discount narrows or flips to backwardation, and New York trades a premium to London. In 2025 US tariff risk pulled metal into NYMEX vaults and lease rates spiked.', 'Implied lease rate from the curve, NYMEX stocks, EFP (New York vs London)']],
+      cot: 'Managed money drives short-term moves and swings from net short to large net long within months; platinum\'s open interest is small, so fund flows move price hard. Producers/merchants include refiners, fabricators and miners hedging; swap dealers carry the banks\' OTC and ETF-related books. Read managed money against its own 3-year range.',
+      season: 'Weak seasonal pattern. Chinese buying ahead of Lunar New Year and Japanese bar buying on dips have given some support in Dec-Feb; South African mining outages (power, safety stoppages) are not seasonal. Seasonals matter far less than supply news and fund flows.',
+      links: ['Palladium: the two share mines (one ore body), autocatalysts and substitution, so read them together through the platinum/palladium ratio.', 'Gold: platinum trades as a precious metal on dollar and real-rate moves; the platinum/gold ratio is on the Prices & curve tab.', 'Diesel and heavy-truck markets (see Energy) link to platinum autocatalyst demand.', 'South African rand: a weaker rand lifts producers\' local-currency margins and slows closures.'] },
+    PA: { spec: [['Contract', 'NYMEX Palladium (PA)'], ['Size / tick', '100 troy oz; $0.50/oz = $50 per lot'], ['Active months', 'Mar, Jun, Sep, Dec (the next three calendar months also list)'],
+        ['First notice / last trade', 'As platinum and gold: first notice on the last business day of the month before delivery; last trade third-last business day of the delivery month'],
+        ['Delivery', 'A 100-oz plate or ingot, at least 99.95% pure, from an exchange-approved refiner, on warrant in a NYMEX-approved vault'], ['Options', 'Monthly options on the futures (very thin)'],
+        ['Other markets', 'London/Zurich OTC (LPPM; LBMA Palladium Price twice a day). Russian refiners lost London good-delivery status in 2022, so Russian metal moves mostly to China and other Asian buyers. Guangzhou Futures Exchange lists palladium futures (since late 2024); Osaka lists palladium too']],
+      drivers: [['Russia and South Africa', 'Russia (Nornickel) mines about 45% of the world\'s palladium and South Africa about 35%, with North America (Stillwater, cut back in 2024) and Zimbabwe the rest. Sanctions, trade cases and tariff risk on Russian metal (a US anti-dumping case on Russian palladium was opened in 2025) can split the market by origin.', 'JM supply by region, Nornickel guidance, trade-case rulings'],
+        ['Autocatalyst demand (about 80% of use)', 'Palladium is the main metal in gasoline-car and hybrid catalysts. Battery-electric cars use none, so EV share (above all in China) erodes demand year after year; hybrids and stricter emission rules slow the decline.', 'Light-vehicle production, EV/hybrid share, JM autocatalyst demand'],
+        ['Substitution and thrifting', 'Expensive palladium pushed automakers to swap in platinum and use less metal per catalyst; that demand does not come back quickly even when palladium cheapens.', 'Platinum/palladium ratio'],
+        ['Recycling', 'Recovery from scrapped catalysts is about a third of supply and rising as older gasoline cars are scrapped; collection slows when prices are low or scrap-car supply dips.', 'JM secondary supply'],
+        ['Industrial and investment', 'Electronics, dental, chemical catalysts. Investment is small; ETF holdings (PALL) are modest, so flows matter less than in platinum.', 'PALL holdings, JM investment demand'],
+        ['Lease rates and the curve', 'In 2019-2021 palladium ran a deep deficit with backwardation and very high lease rates; a market moving into surplus usually returns to carry. The curve and NYMEX stocks show how tight free metal is.', 'Implied lease rate from the curve, NYMEX stocks']],
+      cot: 'Palladium open interest is small and managed money has been net short for long stretches since 2022, so short-covering rallies can be violent. Producers/merchants (refiners, fabricators) hedge; swap dealers carry OTC books. Read managed money against its own range rather than the absolute level.',
+      season: 'No reliable seasonal: price follows auto production, Russian supply news and substitution. Chinese restocking before Lunar New Year has occasionally given a Dec-Jan lift.',
+      links: ['Platinum: shared mines and the substitution trade (platinum/palladium ratio).', 'Car production and the EV share link palladium to industrial and energy-transition markets.', 'Russia sanctions and trade policy (see News).'] },
   };
-  const REPORTS = [['CFTC Commitments of Traders', 'Fri 3:30 pm ET', 'Positions as of Tuesday (gold, silver, copper, aluminum Midwest premium)'],
-    ['COMEX warehouse stocks', 'Daily, evening', 'Registered (deliverable) and eligible metal in COMEX warehouses'],
+  const REPORTS = [['CFTC Commitments of Traders', 'Fri 3:30 pm ET', 'Positions as of Tuesday (gold, silver, copper, aluminum Midwest premium, platinum, palladium)'],
+    ['COMEX / NYMEX warehouse stocks', 'Daily, evening', 'Registered (deliverable) and eligible metal in exchange warehouses and vaults'],
     ['LME official prices and stocks', 'Daily, London', 'Cash, 3-month, warehouse stocks, cancelled warrants'],
     ['ETF holdings (GLD, IAU, SLV)', 'Daily', 'Metal held by the large US ETFs'],
     ['World Gold Council Gold Demand Trends', 'Quarterly (~5 weeks after quarter end)', 'Jewellery, technology, bar/coin, ETFs, central banks, supply'],
     ['ICSG monthly press release', 'Monthly (3rd–4th week)', 'World copper mine/refined production, usage, balance'],
     ['IAI primary aluminium production', 'Monthly (~20th)', 'Output by region incl. China'],
     ['Silver Institute World Silver Survey', 'Annual (April), interim (November)', 'Silver supply, demand, deficit'],
+    ['WPIC Platinum Quarterly', 'Quarterly (early Mar, mid-May, early Sep, mid-Nov)', 'Platinum balance by year and quarter (research by Metals Focus), above-ground stocks'],
+    ['Johnson Matthey PGM market report', 'Annual (mid-May)', 'Platinum and palladium supply, recycling, demand, balance'],
+    ['PPLT / PALL quarterly filings', 'About 5-6 weeks after quarter end', 'Ounces held by the abrdn platinum and palladium ETFs'],
     ['USGS Mineral Commodity Summaries', 'Annual (late January)', 'World mine production and reserves by country; US statistics'],
     ['US CPI, jobs, FOMC', 'Monthly / 8 meetings a year', 'Real rates and the dollar (see Markets & macro)']];
 
@@ -122,17 +154,17 @@ const Metals = (() => {
     const m = M();
     if (!m || !m.price) { body().innerHTML = none('Price data'); return; }
     const p = m.price, dp = p.dp, sp = p.spreads || [];
-    const extra = { GC: goldDrivers, SI: silverRatio, HG: copperArb, ALI: aluminumPrem }[mk];
+    const extra = { GC: goldDrivers, SI: silverRatio, HG: copperArb, ALI: aluminumPrem, PL: pgmRatios, PA: pgmRatios }[mk];
     body().innerHTML = `<div class="grid g4">
         ${kpi(`${DESKS[mk]} · ${esc(p.contract)}`, `${fmt(p.last, dp)}`, `${p.unit} · ${p.date} · ${sgn(p.chg_1w, 1, '%')} wk · ${sgn(p.chg_1m, 1, '%')} mo`)}
         ${kpi('Year to date', sgn(p.chg_ytd, 1, '%'), `52-wk range ${fmt(p.lo52, dp)}–${fmt(p.hi52, dp)}`)}
         ${sp[0] ? kpi('Front spread', `${sgn(sp[0].spread, dp)}`, `${esc(sp[0].pair)} · ${fmt(sp[0].ann_pct, 2)}% a year carry`) : ''}
-        ${sp[0] && sp[0].lease_pct != null && (mk === 'GC' || mk === 'SI') ? kpi('Implied lease rate', `${fmt(sp[0].lease_pct, 2)}%`, `T-bill ${fmt(D.rate, 2)}% minus the carry the spread pays`) : ''}</div>
+        ${sp[0] && sp[0].lease_pct != null && PREC(mk) ? kpi('Implied lease rate', `${fmt(sp[0].lease_pct, 2)}%`, `T-bill ${fmt(D.rate, 2)}% minus the carry the spread pays`) : ''}</div>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>Forward curve <span class="note">${p.unit}, last close of each listed contract</span></h2><div class="chart short"><canvas id="mtCurve"></canvas></div>
-          <div class="tbl"><table><tr><th class="l">Spread</th><th>Later − earlier</th><th>Carry, % a year</th>${mk === 'GC' || mk === 'SI' ? '<th>Implied lease rate</th>' : ''}</tr>
-          ${sp.map(s => `<tr><td class="l">${esc(s.pair)}</td><td>${sgn(s.spread, dp)}</td><td>${fmt(s.ann_pct, 2)}%</td>${mk === 'GC' || mk === 'SI' ? `<td>${fmt(s.lease_pct, 2)}%</td>` : ''}</tr>`).join('')}</table></div>
-          <p class="note">${mk === 'GC' || mk === 'SI' ? 'Precious metals normally sit in full carry (later months higher by about the interest rate). Carry below the T-bill rate means an implied lease rate above zero: metal is tight to borrow. Backwardation is rare and a strong squeeze signal.' : 'Base metals swing between contango (ample stocks) and backwardation (nearby metal tight). Compare with the LME cash–3-month spread on the Supply & demand tab.'}</p></div>
+          <div class="tbl"><table><tr><th class="l">Spread</th><th>Later − earlier</th><th>Carry, % a year</th>${PREC(mk) ? '<th>Implied lease rate</th>' : ''}</tr>
+          ${sp.map(s => `<tr><td class="l">${esc(s.pair)}</td><td>${sgn(s.spread, dp)}</td><td>${fmt(s.ann_pct, 2)}%</td>${PREC(mk) ? `<td>${fmt(s.lease_pct, 2)}%</td>` : ''}</tr>`).join('')}</table></div>
+          <p class="note">${PREC(mk) ? 'Precious metals normally sit in full carry (later months higher by about the interest rate). Carry below the T-bill rate means an implied lease rate above zero: metal is tight to borrow. Backwardation is rare and a strong squeeze signal.' : 'Base metals swing between contango (ample stocks) and backwardation (nearby metal tight). Compare with the LME cash–3-month spread on the Supply & demand tab.'}</p></div>
         <div class="card"><h2>${DESKS[mk]} front month, weekly <span class="note">${p.unit}, continuous (rolls not adjusted)</span></h2><div class="chart short"><canvas id="mtLong"></canvas></div></div>
       </div><div id="mtExtra"></div><div id="mtRv" style="margin-top:12px"></div>`;
     chart('mtCurve', { type: 'line', data: { labels: p.curve.map(c => c.label), datasets: [ln(p.curve.map(c => c.last), DESKS[mk], PAL[0], { pointRadius: 3 })] }, options: { plugins: { legend: { display: false } } } });
@@ -179,6 +211,17 @@ const Metals = (() => {
     if (L) chart('mtLmeAl', { type: 'line', data: { labels: L.series.date, datasets: [ln(L.series.cash, 'Cash', PAL[0]), ln(L.series.m3, '3-month', PAL[2])] } });
   }
 
+  function pgmRatios(m) {
+    const r = m.ratio_pd, g = m.ratio_gold, gl = mk === 'PL' ? 'Platinum/gold' : 'Palladium/gold';
+    $('#mtExtra').innerHTML = `<div class="grid g2" style="margin-top:12px">
+      <div class="card"><h2>Platinum/palladium ratio <span class="note">platinum price ÷ palladium price, weekly, 10 years</span></h2>${r ? `<div class="chart"><canvas id="mtPtPd"></canvas></div>
+        <p class="note">${fmt(r.last, 2)} on ${r.asof} (${r.pct10 == null ? '–' : r.pct10 + 'th'} percentile of 10 years; median ${fmt(r.med10, 2)}; ${sgn(r.chg_1m, 2)} in a month, ${sgn(r.chg_1y, 2)} in a year). Below 1 palladium is the dearer metal, which pushes automakers to substitute platinum into gasoline catalysts; well above 1 the incentive fades. NYMEX front months.</p>` : '<p class="note">Needs platinum and palladium prices.</p>'}</div>
+      <div class="card"><h2>${gl} ratio <span class="note">weekly, 10 years</span></h2>${g ? `<div class="chart"><canvas id="mtPgmAu"></canvas></div>
+        <p class="note">${fmt(g.last, 3)} on ${g.asof} (${g.pct10 == null ? '–' : g.pct10 + 'th'} percentile of 10 years; median ${fmt(g.med10, 3)}; ${sgn(g.chg_1y, 3)} in a year). NYMEX ${DESKS[mk].toLowerCase()} and COMEX gold front months.</p>` : '<p class="note">Needs gold prices.</p>'}</div></div>`;
+    if (r) chart('mtPtPd', { type: 'line', data: { labels: r.weekly.date, datasets: [ln(r.weekly.v, 'Pt/Pd', PAL[4]), ln(r.weekly.v.map(() => 1), 'Parity', '#999', { borderDash: [4, 3] })] } });
+    if (g) chart('mtPgmAu', { type: 'line', data: { labels: g.weekly.date, datasets: [ln(g.weekly.v, gl, PAL[3]), ln(g.weekly.v.map(() => g.med10), '10-yr median', '#999', { borderDash: [4, 3] })] } });
+  }
+
   // ───────── 3 · Futures & COT ─────────
   function flows() {
     const cs = COT[mk];
@@ -215,7 +258,7 @@ const Metals = (() => {
   function sd() {
     const m = M();
     if (!m) { body().innerHTML = none('Supply and demand'); return; }
-    ({ GC: sdGold, SI: sdSilver, HG: sdCopper, ALI: sdAluminum }[mk])(m);
+    ({ GC: sdGold, SI: sdSilver, HG: sdCopper, ALI: sdAluminum, PL: sdPgm, PA: sdPgm }[mk])(m);
   }
   function sdGold(m) {
     const w = m.wgc, e = m.etf;
@@ -277,6 +320,39 @@ const Metals = (() => {
     if (m.comex_stocks) chart('mtCx', { type: 'line', data: { labels: m.comex_stocks.series.date, datasets: [ln(m.comex_stocks.series.v, 'COMEX stocks', PAL[1])] }, options: { plugins: { legend: { display: false } } } });
   }
 
+  function revTable(rv, unit) {
+    return `<div class="tbl"><table><tr><th class="l">Line</th><th class="l">Year</th><th>Now</th><th>Before</th><th>Revision</th></tr>
+      ${rv.map(r => `<tr><td class="l">${esc(r.line)}</td><td class="l">${esc(String(r.period).replace(/f$/, ' (forecast)'))}</td><td>${fmt(r.now, 0)}</td><td>${fmt(r.before, 0)}</td><td><b>${sgn(r.chg, 0)}</b></td></tr>`).join('')}</table></div><p class="note">${unit}</p>`;
+  }
+  function sdPgm(m) {
+    const W = m.wpic, J = m.jm, E = m.etf, metal = DESKS[mk].toLowerCase();
+    const bal = W && W.rows.find(r => r.line === 'Balance'), ags = W && W.rows.find(r => r.line === 'Above Ground Stocks');
+    const wcols = W ? W.columns : [], lab = c => String(c).replace(/f$/, 'f');
+    body().innerHTML = `${W ? `<div class="grid g4">${wcols.slice(-3).map(c => kpi(`WPIC balance ${lab(c)}`, `${sgn(bal && bal[c], 0)} koz`, (bal && bal[c] < 0 ? 'deficit' : 'surplus') + (ags && ags[c] != null ? ` · above-ground stocks ${fmt(ags[c], 0)} koz` : ''))).join('')}
+        ${kpi('Latest Platinum Quarterly', esc(W.release), W.next_release ? `next release ${esc(W.next_release)}` : esc(W.fetched || ''))}</div>
+      <div class="card" style="margin-top:12px"><h2>World platinum balance (WPIC) <span class="note">thousand oz; ${esc(W.release)}; f = forecast</span></h2>
+        <div class="tbl"><table><tr><th class="l">Line</th>${wcols.map(c => `<th>${esc(lab(c))}</th>`).join('')}${W.quarters.map(q => `<th>${esc(q)}</th>`).join('')}</tr>
+        ${W.rows.map(r => `<tr><td class="l">${/: /.test(r.line) ? '&nbsp;&nbsp;' + esc(r.line.split(': ')[1]) : `<b>${esc(r.line)}</b>`}</td>${wcols.concat(W.quarters).map(c => `<td>${r[c] == null ? '' : /Balance|Investment|Change/.test(r.line) ? sgn(r[c], 0) : fmt(r[c], 0)}</td>`).join('')}</tr>`).join('')}</table></div>
+        <h3>Revisions vs the previous release${W.prev_release ? ` (${esc(W.prev_release)})` : ''}</h3>
+        ${W.revisions && W.revisions.length ? revTable(W.revisions, 'Thousand oz. A deficit revised deeper, or demand revised up, is the change that matters more than the level: agencies differ widely on levels.') : `<p class="note">${W.prev_release ? 'No line changed by more than 0.5 koz.' : 'The desk stores every release from the first one it read; revisions to the same years show from the next release.'}</p>`}
+        <h3>What WPIC says</h3><ul class="read">${(W.points || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+        <p class="note">Positive balance = surplus. ${esc(W.source)}. <a href="${W.report}" target="_blank" rel="noopener">Report</a> · <a href="${W.url}" target="_blank" rel="noopener">Tables</a>.</p></div>` : mk === 'PL' ? none('WPIC data') : ''}
+      ${J ? `<div class="card" style="margin-top:12px"><h2>${DESKS[mk]} supply and demand (Johnson Matthey) <span class="note">thousand oz; ${esc(J.edition)} edition; latest year is JM's forecast</span></h2>
+        <div class="tbl"><table><tr><th class="l">Line</th>${J.years.map(y => `<th>${y}</th>`).join('')}</tr>
+        ${J.rows.map(r => `<tr><td class="l">${/^Total|Movements/.test(r.line) ? `<b>${esc(r.line === 'Movements in stocks' ? 'Balance (movements in stocks)' : r.line)}</b>` : esc(r.line)}</td>${J.years.map(y => `<td>${r[y] == null ? '' : /Movements|Investment/.test(r.line) ? sgn(r[y], 0) : fmt(r[y], 0)}</td>`).join('')}</tr>`).join('')}</table></div>
+        <h3>Revisions vs the ${esc(J.prev_edition || 'previous')} edition</h3>
+        ${J.revisions && J.revisions.length ? revTable(J.revisions, 'Thousand oz; same years in both editions.') : '<p class="note">Revisions show once two editions are stored.</p>'}
+        <p class="note">Balance = supply minus demand (negative = deficit). ${esc(J.source)}. ${J.report ? `<a href="${J.report}" target="_blank" rel="noopener">Report</a> · ` : ''}<a href="${J.url}" target="_blank" rel="noopener">Data</a>. Annual (May).${mk === 'PA' ? ' WPIC covers platinum only, so Johnson Matthey is the free public palladium balance.' : ''}</p></div>` : none('Johnson Matthey data')}
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>${E ? esc(E.fund) : (mk === 'PL' ? 'PPLT' : 'PALL')} ounces held <span class="note">thousand oz, quarter ends</span></h2>${E ? `<div class="chart short"><canvas id="mtPgmEtf"></canvas></div>
+          <p class="note">${fmt(E.koz, 0)} koz on ${E.asof} (${sgn(E.chg_q_pct, 1, '%')} on the quarter${E.chg_y_pct != null ? `, ${sgn(E.chg_y_pct, 1, '%')} on the year` : ''}; filed ${esc(E.filed)}). ${esc(E.source)}. The fund's own page shows a daily figure only in the browser, so the desk uses the quarterly filings.</p>` : '<p class="note">Not built yet.</p>'}</div>
+        ${comexCard(m.comex_stocks, metal).replace('COMEX ' + metal, 'NYMEX ' + metal)}</div>
+      <div class="card" style="margin-top:12px"><h2>Not on this desk (no free automated source)</h2><p class="note">London lease rates and LBMA ${metal} prices (licensed data; the desk shows the lease rate implied by the NYMEX curve instead), Swiss and UK customs flows, Chinese import premiums, Osaka and Guangzhou futures, ${mk === 'PA' ? 'Nornickel production guidance (company reports), ' : 'South African mining output by company (quarterly results), '}and WPIC's ${mk === 'PA' ? 'platinum-only coverage (no palladium quarterly).' : 'full report text (PDF): the desk reads the tables and the public key points.'}</p></div>
+      ${usgsCard(m.usgs)}`;
+    if (E) chart('mtPgmEtf', { type: 'bar', data: { labels: E.series.date, datasets: [{ label: E.fund + ' (koz)', data: E.series.v, backgroundColor: PAL[mk === 'PL' ? 2 : 5] }] }, options: { plugins: { legend: { display: false } } } });
+    if (m.comex_stocks) chart('mtCx', { type: 'line', data: { labels: m.comex_stocks.series.date, datasets: [ln(m.comex_stocks.series.v, 'NYMEX stocks', PAL[1])] }, options: { plugins: { legend: { display: false } } } });
+  }
+
   // ───────── 6 · Outlook ─────────
   function outlook() {
     const m = M();
@@ -316,7 +392,9 @@ const Metals = (() => {
         ${CAL.upcoming.filter(u => !/Commitments/.test(u.event)).slice(0, 14).map(u => `<tr><td class="l">${u.date}</td><td class="l">${u.link ? `<a href="${u.link}" target="_blank" rel="noopener">${esc(u.event)}</a>` : esc(u.event)}${u.estimated ? ' <span class="note">(estimated)</span>' : ''}</td></tr>`).join('')}</table></div>
         <p class="note">Plus the CFTC report every Friday at 3:30 pm ET.</p></div></div>` : ''}
       <div class="card" style="margin-top:12px"><h2>What could not be automated</h2><ul class="read">
-        <li><b>COMEX warehouse stocks</b>: cmegroup.com blocks GitHub's servers; the desk's Mac collector downloads the daily reports.</li>
+        <li><b>COMEX and NYMEX warehouse stocks</b> (incl. platinum and palladium): cmegroup.com blocks GitHub's servers; the desk's Mac collector downloads the daily reports.</li>
+        <li><b>Daily PPLT/PALL holdings</b>: the fund pages render their figures only in a browser; the desk reads the ounces from the trusts' quarterly SEC filings.</li>
+        <li><b>London platinum/palladium lease rates and LBMA prices</b>: licensed data; the desk shows the lease rate implied by the NYMEX curve.</li>
         <li><b>LME positions (COTR), SHFE stocks, Chinese premiums, treatment charges, Platts/Fastmarkets premiums</b>: no free automated source (paid, or blocked).</li>
         <li><b>World Gold Council full data tables and revisions</b>: the tables need a Goldhub login and its data service disallows automated access, so the desk parses the public summary of each quarterly report.</li>
         <li><b>Silver Institute survey tables</b> are a PDF: the desk stores the key numbers from the public page.</li>
@@ -326,7 +404,7 @@ const Metals = (() => {
   async function show() {
     if (!built) { shell(); built = true; }
     if (!D) D = await getJSON('data/metals/metals.json').catch(() => null);
-    const m = location.hash.match(/^#metals\/(gc|si|hg|ali)(?:\/(\w+))?/i);
+    const m = location.hash.match(/^#metals\/(gc|si|hg|ali|pl|pa)(?:\/(\w+))?/i);
     if (m) { mk = m[1].toUpperCase(); if (TABS.some(t => t[0] === m[2])) tab = m[2]; }
     render(); window.scrollTo(0, 0);
   }

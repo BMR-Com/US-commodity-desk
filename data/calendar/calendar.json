@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-20 19:12 UTC",
+"generated": "2026-11-20 20:22 UTC",
 "events": [
 {
 "date": "2026-11-13",
@@ -2717,6 +2717,19 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-02-08",
+"time": "",
+"event": "PPLT / PALL quarterly filings (ETF ounces held) (date estimated)",
+"cat": "Metals",
+"markets": [
+"PL",
+"PA"
+],
+"importance": 1,
+"link": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001460235&type=10-&dateb=&owner=include&count=40",
+"estimated": true
 },
 {
 "date": "2027-02-09",

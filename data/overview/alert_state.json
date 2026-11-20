@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-20 03:44 UTC",
- "by": "bot",
+ "updated": "2026-11-20 13:44 UTC",
+ "by": "claude",
  "views": {
   "corn": {
    "view": "bearish",
@@ -10,12 +10,12 @@
   "soybeans": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.29
+   "score": 0.35
   },
   "meal": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.15
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.21
   },
   "oil": {
    "view": "bearish",
@@ -60,22 +60,22 @@
   "class4": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.11
+   "score": 0.1
   },
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.5
+   "score": -0.48
   },
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.31
+   "score": -0.38
   },
   "crude": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.1
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.04
   },
   "ulsd": {
    "view": "bullish",
@@ -89,16 +89,13 @@
   }
  },
  "alerts": {
-  "corn": [
-   "Broke below S1 438.00"
+  "corn": [],
+  "soybeans": [
+   "Broke above R1 1,211.75"
   ],
-  "soybeans": [],
   "meal": [],
   "oil": [],
-  "wheat": [
-   "Broke below S1 577.75",
-   "Broke below the fund sell trigger (250-day momentum flip) 577.60"
-  ],
+  "wheat": [],
   "kc": [],
   "cotton": [],
   "hogs": [],
@@ -150,6 +147,10 @@
   "2026-11-19 Wheat Dec ~578.5 above 578 R1; KC Dec +2.7% to ~626 above 615.5",
   "2026-11-19 Marathon force majeure on North Dakota crude deliveries; WTI ~84.4",
   "2026-11-19 Views: meal to mildly bullish, cattle to bullish (Feb ~227.3 +1.5% ahead of CoF), natgas to mildly bearish (~3.26 -3.3%)",
-  "2026-11-19 Risk-off close: S&P -1.9%, VIX ~28; crude holds ~83.9"
+  "2026-11-19 Risk-off close: S&P -1.9%, VIX ~28; crude holds ~83.9",
+  "2026-11-20 Soybeans Jan ~1,212.5 above R1 1,211.75",
+  "2026-11-20 Meal view to bullish; crude view to neutral",
+  "2026-11-20 China halts palm oil purchases as storage fills (Bloomberg)",
+  "2026-11-20 Houthi attacks lift crude/ULSD overnight"
  ]
 }

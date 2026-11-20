@@ -1,0 +1,1 @@
+import{r as a}from"./index-BqkNX_XC.js";import{u as o}from"./useProductData-D250PMWu-Cy6brgls.js";const e="/product-data/api",u=r=>{const{services:{apiHost:t}}=o(),s=a.useMemo(()=>{try{return`${new URL(t).origin}${e}`}catch{return null}},[t]);return!!r&&!!s&&r.startsWith(s)};export{u};

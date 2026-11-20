@@ -1,0 +1,31 @@
+status 200
+User-agent: Brightbot 1.0
+Disallow: /
+
+User-agent: *
+
+Disallow: /*?truepdf*
+Disallow: /*?norepdf*
+
+Disallow: /*.dl$
+Disallow: /*sign-on.oauth
+Disallow: /*sign-on.saml
+Disallow: /*sign-on-popup.saml
+
+Disallow: /search/
+
+Disallow: /us/MYCATEGORYURL
+
+SITEMAP: https://www.ishares.com/529/sitemap.xml
+SITEMAP: https://www.ishares.com/ch/sitemap.xml
+SITEMAP: https://www.ishares.com/ch/product-sitemap.xml
+SITEMAP: https://www.ishares.com/de/sitemap.xml
+SITEMAP: https://www.ishares.com/de/product-sitemap.xml
+SITEMAP: https://www.ishares.com/it/sitemap.xml
+SITEMAP: https://www.ishares.com/it/product-sitemap.xml
+SITEMAP: https://www.ishares.com/nl/sitemap.xml
+SITEMAP: https://www.ishares.com/nl/product-sitemap.xml
+SITEMAP: https://www.ishares.com/us/sitemap.xml
+SITEMAP: https://www.ishares.com/us/product-sitemap.xml
+SITEMAP: https://www.ishares.com/uk/sitemap.xml
+SITEMAP: https://www.ishares.com/uk/product-sitemap.xml

@@ -1,0 +1,406 @@
+{
+ "iau_err": "Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://www.ishares.com/us/products/239561/ishares-gold-trust-fund\", waiting until \"networkidle\"\n",
+ "iau": [
+  {
+   "url": "https://services.sdiapi.com/bolt/1.0.3.3/bolt.js",
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 64267,
+   "file": "iau_000"
+  },
+  {
+   "url": "https://www.blackrock.com/varnish-api/marketing-service/font-awesome/000000/sharp-solid/arrow-down",
+   "status": 200,
+   "ct": "image/svg+xml; charset=utf-8",
+   "len": 421,
+   "file": "iau_001"
+  },
+  {
+   "url": "https://www.blackrock.com/varnish-api/marketing-service/font-awesome/000000/sharp-solid/file-excel",
+   "status": 200,
+   "ct": "image/svg+xml; charset=utf-8",
+   "len": 444,
+   "file": "iau_002"
+  },
+  {
+   "url": "https://www.blackrock.com/varnish-api/marketing-service/font-awesome/000000/sharp-solid/check",
+   "status": 200,
+   "ct": "image/svg+xml; charset=utf-8",
+   "len": 381,
+   "file": "iau_003"
+  },
+  {
+   "url": "https://www.blackrock.com/varnish-api/marketing-service/font-awesome/AEABA7/sharp-solid/chevron-down",
+   "status": 200,
+   "ct": "image/svg+xml; charset=utf-8",
+   "len": 390,
+   "file": "iau_004"
+  },
+  {
+   "url": "https://www.blackrock.com/varnish-api/marketing-service/font-awesome/000000/sharp-solid/file-pdf",
+   "status": 200,
+   "ct": "image/svg+xml; charset=utf-8",
+   "len": 760,
+   "file": "iau_005"
+  },
+  {
+   "url": "https://www.blackrock.com/varnish-api/marketing-service/font-awesome/000000/sharp-solid/arrow-up-right-from-square",
+   "status": 200,
+   "ct": "image/svg+xml; charset=utf-8",
+   "len": 504,
+   "file": "iau_006"
+  },
+  {
+   "url": "https://cdn.cookielaw.org/consent/33b411af-181e-4070-8e57-d9cf1908e0bd/33b411af-181e-4070-8e57-d9cf1908e0bd.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 6095,
+   "file": "iau_007"
+  },
+  {
+   "url": "https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location",
+   "status": 200,
+   "ct": "application/json",
+   "len": 71,
+   "file": "iau_008"
+  },
+  {
+   "url": "https://www.ishares.com/_astro/_mode-injectable/apiHost-T9mGKQJp-DTR2Z1wC.js",
+   "status": 200,
+   "ct": "application/javascript; charset=utf-8",
+   "len": 112,
+   "file": "iau_009"
+  },
+  {
+   "url": "https://www.ishares.com/_astro/_mode-injectable/ProductPageAjaxUtils-BfsG17Sv-1mFm3q85.js",
+   "status": 200,
+   "ct": "application/javascript; charset=utf-8",
+   "len": 850,
+   "file": "iau_010"
+  },
+  {
+   "url": "https://www.ishares.com/_astro/_mode-injectable/ApiResponseParse-DwBoDtIt-CVrJQI6a.js",
+   "status": 200,
+   "ct": "application/javascript; charset=utf-8",
+   "len": 11047,
+   "file": "iau_011"
+  },
+  {
+   "url": "https://dpm.demdex.net/id?d_visid_ver=3.3.0&d_fieldgroup=MC&d_rtbd=json&d_ver=2&d_orgid=631FF31455E575197F000101%40AdobeOrg&d_nsid=0&ts=1795205072321",
+   "status": 200,
+   "ct": "application/json;charset=utf-8",
+   "len": 218,
+   "file": "iau_012"
+  },
+  {
+   "url": "https://cdn.cookielaw.org/consent/33b411af-181e-4070-8e57-d9cf1908e0bd/01a17861-9998-72fc-ab38-ba064e533387/en.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 97805,
+   "file": "iau_013"
+  },
+  {
+   "url": "https://www.ishares.com/_astro/_mode-injectable/useIsProductPagesApiUrl-97EIqgBa-Bfeh9UjE.js",
+   "status": 200,
+   "ct": "application/javascript; charset=utf-8",
+   "len": 287,
+   "file": "iau_014"
+  },
+  {
+   "url": "https://cdn.cookielaw.org/scripttemplates/202610.1.0/assets/otFlat.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 20721,
+   "file": "iau_015"
+  },
+  {
+   "url": "https://cdn.cookielaw.org/scripttemplates/202610.1.0/assets/v2/otPcCenter.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 74496,
+   "file": "iau_016"
+  },
+  {
+   "url": "https://api.company-target.com/api/v3/ip.json?referrer=&page=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&page_title=iShares%20Gold%20Trust%20%7C%20IAU",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 562,
+   "file": "iau_017"
+  },
+  {
+   "url": "https://adobedc.demdex.net/ee/v1/interact?configId=175dbcf4-f683-4dc1-875e-45103fcc9e7b&requestId=1b1aba91-62de-4146-901a-0986f2f5d75a",
+   "status": 200,
+   "ct": "application/json;charset=utf-8",
+   "len": 50861,
+   "file": "iau_018"
+  },
+  {
+   "url": "https://websdkmetrics.blackrock.com/ee/or2/v1/interact?configId=175dbcf4-f683-4dc1-875e-45103fcc9e7b&requestId=d16cf14d-d6cc-4579-96ea-85b168364cdc",
+   "status": 200,
+   "ct": "application/json;charset=utf-8",
+   "len": 629,
+   "file": "iau_019"
+  },
+  {
+   "url": "https://websdkmetrics.blackrock.com/ee/or2/v1/interact?configId=175dbcf4-f683-4dc1-875e-45103fcc9e7b&requestId=c8e2abf8-6110-49fc-b437-b90f5c20c639",
+   "status": 200,
+   "ct": "application/json;charset=utf-8",
+   "len": 629,
+   "file": "iau_020"
+  },
+  {
+   "url": "https://websdkmetrics.blackrock.com/ee/or2/v1/interact?configId=175dbcf4-f683-4dc1-875e-45103fcc9e7b&requestId=3c748879-278d-4580-af33-606539a41508",
+   "status": 200,
+   "ct": "application/json;charset=utf-8",
+   "len": 50604,
+   "file": "iau_021"
+  },
+  {
+   "url": "https://tag-logger.demandbase.com/bg9s?x-amz-cf-id=P55zV7YKMP9LuGoq3uaxUd8zpD0gT46BQ5vR8DA_OpxWe6snWb7R-w==&api-version=v3",
+   "status": 200,
+   "ct": "text/html",
+   "len": 0,
+   "file": "iau_022"
+  },
+  {
+   "url": "https://www.blackrock.com/varnish-api/marketing-service/font-awesome/9b9b91/sharp-solid/calendar",
+   "status": 200,
+   "ct": "image/svg+xml; charset=utf-8",
+   "len": 366,
+   "file": "iau_023"
+  },
+  {
+   "url": "https://pixel-config.reddit.com/pixels/t2_bnudolhl/config",
+   "status": 200,
+   "ct": "application/json",
+   "len": 53,
+   "file": "iau_024"
+  },
+  {
+   "url": "https://www.google.com/measurement/conversion?random=1795205072882&cv=11&tid=G-ZR0G26NX64&fst=1795205072882&fmt=8&en=page_view&gtm=45je6bh1v867729661za200zd867729661xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~120213116~120385422~120469145~120469153~121246026~121246034&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&gacid=610193931.1795205073&hn=www.googleadservices.com&frm=0&tiba=iShares%20Gold%20Trust%20%7C%20IAU&gdid=dYmQxMT&npa=0&pscdl=noapi&auid=1923113848.1795205073&gtm_ee=1&uaa=x86&uab=64&uafvl=HeadlessChrome%3B159.0.8154.6%7CNot%252FA)Brand%3B8.0.0.0%7CChromium%3B159.0.8154.6&uamb=0&uam=&uap=Windows&uapv=&uaw=0&rcb=17",
+   "status": 200,
+   "ct": "",
+   "len": 0,
+   "file": "iau_025"
+  },
+  {
+   "url": "https://www.google.com/measurement/conversion?random=1795205072882&cv=11&tid=G-ZR0G26NX64&fst=1795205072882&fmt=8&en=first_visit&gtm=45je6bh1v867729661za200zd867729661xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~120213116~120385422~120469145~120469153~121246026~121246034&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&gacid=610193931.1795205073&hn=www.googleadservices.com&frm=0&tiba=iShares%20Gold%20Trust%20%7C%20IAU&gdid=dYmQxMT&npa=0&pscdl=noapi&auid=1923113848.1795205073&gtm_ee=1&uaa=x86&uab=64&uafvl=HeadlessChrome%3B159.0.8154.6%7CNot%252FA)Brand%3B8.0.0.0%7CChromium%3B159.0.8154.6&uamb=0&uam=&uap=Windows&uapv=&uaw=0&rcb=17",
+   "status": 200,
+   "ct": "",
+   "len": 0,
+   "file": "iau_026"
+  },
+  {
+   "url": "https://www.google.com/measurement/conversion?random=1795205072882&cv=11&tid=G-ZR0G26NX64&fst=1795205072882&fmt=8&en=session_start&gtm=45je6bh1v867729661za200zd867729661xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~120213116~120385422~120469145~120469153~121246026~121246034&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&gacid=610193931.1795205073&hn=www.googleadservices.com&frm=0&tiba=iShares%20Gold%20Trust%20%7C%20IAU&gdid=dYmQxMT&npa=0&pscdl=noapi&auid=1923113848.1795205073&gtm_ee=1&uaa=x86&uab=64&uafvl=HeadlessChrome%3B159.0.8154.6%7CNot%252FA)Brand%3B8.0.0.0%7CChromium%3B159.0.8154.6&uamb=0&uam=&uap=Windows&uapv=&uaw=0&rcb=17",
+   "status": 200,
+   "ct": "",
+   "len": 0,
+   "file": "iau_027"
+  },
+  {
+   "url": "https://analytics.google.com/g/collect?v=2&tid=G-ZR0G26NX64&gtm=45je6bh1v867729661za200zd867729661xf1&_p=1795205072341&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&gdid=dYmQxMT&_eu=AAAAAGAC&_prs=ok&cid=610193931.1795205073&frm=0&pscdl=noapi&rcb=17&sr=1280x720&uaa=x86&uab=64&uafvl=HeadlessChrome%3B159.0.8154.6%7CNot%252FA)Brand%3B8.0.0.0%7CChromium%3B159.0.8154.6&uam=&uamb=0&uap=Windows&uapv=&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=115616985~115938466~115938468~120213116~120385422~120469145~120469153~121246026~121246034&sid=1795205072&sct=1&seg=0&dl=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&dt=iShares%20Gold%20Trust%20%7C%20IAU&en=page_view&_fv=2&_nsi=1&_ss=2&_c=1&_ee=1&tfd=2283",
+   "status": 204,
+   "ct": "text/plain",
+   "len": 0,
+   "file": "iau_028"
+  },
+  {
+   "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1068847637/?random=1795205072977&cv=11&fst=1795205072977&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6bh1v9169258753za208zb867729661zd867729661xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938469~120213116~120385422~120469145~120469153~121246026~121246034~123785233~124411063&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&rcb=2&frm=0&tiba=iShares%20Gold%20Trust%20%7C%20IAU&did=dYmQxMT&gdid=dYmQxMT&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1923113848.1795205073&uaa=x86&uab=64&uafvl=HeadlessChrome%3B159.0.8154.6%7CNot%252FA)Brand%3B8.0.0.0%7CChromium%3B159.0.8154.6&uamb=0&uam=&uap=Windows&uapv=&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=4",
+   "status": 200,
+   "ct": "text/javascript; charset=ISO-8859-1",
+   "len": 6656,
+   "file": "iau_029"
+  },
+  {
+   "url": "https://www.google.com/rmkt/collect/1068847637/?random=1795205072977&cv=11&fst=1795205072977&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6bh1v9169258753za208zb867729661zd867729661xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938469~120213116~120385422~120469145~120469153~121246026~121246034~123785233~124411063&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&rcb=2&frm=0&tiba=iShares%20Gold%20Trust%20%7C%20IAU&did=dYmQxMT&gdid=dYmQxMT&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1923113848.1795205073&uaa=x86&uab=64&uafvl=HeadlessChrome%3B159.0.8154.6%7CNot%252FA)Brand%3B8.0.0.0%7CChromium%3B159.0.8154.6&uamb=0&uam=&uap=Windows&uapv=&uaw=0&data=event%3Dgtag.config&ept=68&gcp=5",
+   "status": 200,
+   "ct": "",
+   "len": 0,
+   "file": "iau_030"
+  },
+  {
+   "url": "https://www.google.com/pagead/1p-user-list/1068847637/?random=1795205072977&cv=11&fst=1795204800000&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6bh1v9169258753za208zb867729661zd867729661xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938469~120213116~120385422~120469145~120469153~121246026~121246034~123785233~124411063&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.ishares.com%2Fus%2Fproducts%2F239561%2Fishares-gold-trust-fund&rcb=2&frm=0&tiba=iShares%20Gold%20Trust%20%7C%20IAU&did=dYmQxMT&gdid=dYmQxMT&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1923113848.1795205073&uaa=x86&uab=64&uafvl=HeadlessChrome%3B159.0.8154.6%7CNot%252FA)Brand%3B8.0.0.0%7CChromium%3B159.0.8154.6&uamb=0&uam=&uap=Windows&uapv=&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=3&is_vtc=1&cid=CAQS0wEAogo4deXqA7yGAb00nNaVDYGAlSKAmJ8ODaQFZTSb4v7Yedji68tEW6CgAokoh03mNB_5jNItxmHfWhxf8ncOlz4aCfSUF91I-KcTnXMScAB_e1L2kOR49D9dpbdOuKfE5OtzV71zWUrnd9Wt70LOHMCr7ghdFlH6Y5-6WYSbdCPmdJ_N41_lnRBh1RCOkDh52dIcG_wwp7i-TYDiUAmBKFaBF5IAF05UYvS0RqojjTNFocC3zYJizQF7sna6pStetmyGNUSZ9fItf4V6gcn_jsN5&random=2774856262&rmt_tld=0&ipr=y",
+   "status": 200,
+   "ct": "image/gif",
+   "len": 42,
+   "file": "iau_031"
+  },
+  {
+   "url": "https://services.sdiapi.com/reporter/1.1.0.1/reporter.js",
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 2714,
+   "file": "iau_032"
+  },
+  {
+   "url": "https://services.sdiapi.com/reporter/1.1.0.1/reporter.html",
+   "status": 200,
+   "ct": "text/html",
+   "len": 468,
+   "file": "iau_033"
+  },
+  {
+   "url": "https://services.sdiapi.com/reporter/1.1.0.1/receiver.js",
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 96367,
+   "file": "iau_034"
+  },
+  {
+   "url": "https://reports.sdiapi.com/service/viceEvent",
+   "status": 200,
+   "ct": "text/plain; charset=utf-8",
+   "len": 2,
+   "file": "iau_035"
+  }
+ ],
+ "pplt": [
+  {
+   "url": "https://www.aberdeeninvestments.com/api/error-layout?locale=en-us&path=%2Finvestor%2Ffund-details%2F-us0032601066",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 33520,
+   "file": "pplt_000"
+  }
+ ],
+ "abrdn_list": [
+  {
+   "url": "https://www.aberdeeninvestments.com/api/error-layout?locale=en-us&path=%2Finvestor%2Fetfs",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 33520,
+   "file": "abrdn_list_000"
+  }
+ ],
+ "sprott_silver": [
+  {
+   "url": "https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700;900&display=swap",
+   "status": 200,
+   "ct": "text/css; charset=utf-8",
+   "len": 1340,
+   "file": "sprott_silver_000"
+  },
+  {
+   "url": "https://sprott.com/api/FinancialData/v1/BullionCalculatorData",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 1539,
+   "file": "sprott_silver_001"
+  },
+  {
+   "url": "https://consentcdn.cookiebot.com/consentconfig/edebc0da-6283-4651-8061-1f7e51e5059f/settings.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 619,
+   "file": "sprott_silver_002"
+  },
+  {
+   "url": "https://api.userway.org/api/v1/tunings/xkVzxFMnKk",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 1028,
+   "file": "sprott_silver_003"
+  },
+  {
+   "url": "https://cdn.userway.org/widgetapp/2026-11-13-10-20-20/locales/en-US.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 674,
+   "file": "sprott_silver_004"
+  },
+  {
+   "url": "https://cdn.userway.org/remediations/consolidated/3637177/w2I45VmGLt8Bvaed.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 128061,
+   "file": "sprott_silver_005"
+  },
+  {
+   "url": "https://api.userway.org/api/br-links/v0/links/3637177",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 6762,
+   "file": "sprott_silver_006"
+  },
+  {
+   "url": "https://api.userway.org/api/a11y-data/v0/page/https%3A%2F%2Fsprott.com%2Finvestment-strategies%2Fexchange-listed-products%2Fphysical-bullion-funds%2Fsilver%2F/DESKTOP/WIDGET_ON/status",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 77,
+   "file": "sprott_silver_007"
+  },
+  {
+   "url": "https://cdn77.api.userway.org/api/img-dscr/v2/xkVzxFMnKk/3637177/Vo36Cyoa10jVyLVO/alts.json?dto=%7B%22sorted%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fsprott.com%2FThemes%2FSprott_Main_2024%2FAssets%2Fimages%2Flogo.svg%22%2C%22alt%22%3A%22Sprott%20Logo%22%2C%22dir%22%3A%22RO%22%7D%5D%2C%22tier%22%3A%22PAID_QUOTA_TIER%22%2C%22pageUrl%22%3A%22https%3A%2F%2Fsprott.com%2Finvestment-strategies%2Fexchange-listed-products%2Fphysical-bullion-funds%2Fsilver%2F%22%7D",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 249,
+   "file": "sprott_silver_008"
+  }
+ ],
+ "sprott_pp": [
+  {
+   "url": "https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700;900&display=swap",
+   "status": 200,
+   "ct": "text/css; charset=utf-8",
+   "len": 1340,
+   "file": "sprott_pp_000"
+  },
+  {
+   "url": "https://sprott.com/api/FinancialData/v1/BullionCalculatorData",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 1539,
+   "file": "sprott_pp_001"
+  },
+  {
+   "url": "https://api.userway.org/api/v1/tunings/xkVzxFMnKk",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 1028,
+   "file": "sprott_pp_002"
+  },
+  {
+   "url": "https://cdn.userway.org/widgetapp/2026-11-13-10-20-20/locales/en-US.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 674,
+   "file": "sprott_pp_003"
+  },
+  {
+   "url": "https://consentcdn.cookiebot.com/consentconfig/edebc0da-6283-4651-8061-1f7e51e5059f/settings.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 619,
+   "file": "sprott_pp_004"
+  },
+  {
+   "url": "https://cdn.userway.org/remediations/consolidated/3637177/w2I45VmGLt8Bvaed.json",
+   "status": 200,
+   "ct": "application/json",
+   "len": 128061,
+   "file": "sprott_pp_005"
+  },
+  {
+   "url": "https://api.userway.org/api/br-links/v0/links/3637177",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 6762,
+   "file": "sprott_pp_006"
+  },
+  {
+   "url": "https://api.userway.org/api/a11y-data/v0/page/https%3A%2F%2Fsprott.com%2Finvestment-strategies%2Fexchange-listed-products%2Fphysical-bullion-funds%2Fplatinum-and-palladium%2F/DESKTOP/WIDGET_ON/status",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 77,
+   "file": "sprott_pp_007"
+  },
+  {
+   "url": "https://cdn77.api.userway.org/api/img-dscr/v2/xkVzxFMnKk/3637177/Vo36Cyoa10jVyLVO/alts.json?dto=%7B%22sorted%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fsprott.com%2FThemes%2FSprott_Main_2024%2FAssets%2Fimages%2Flogo.svg%22%2C%22alt%22%3A%22Sprott%20Logo%22%2C%22dir%22%3A%22RO%22%7D%5D%2C%22tier%22%3A%22PAID_QUOTA_TIER%22%2C%22pageUrl%22%3A%22https%3A%2F%2Fsprott.com%2Finvestment-strategies%2Fexchange-listed-products%2Fphysical-bullion-funds%2Fplatinum-and-palladium%2F%22%7D",
+   "status": 200,
+   "ct": "application/json; charset=utf-8",
+   "len": 249,
+   "file": "sprott_pp_008"
+  }
+ ],
+ "gs_pltm": []
+}

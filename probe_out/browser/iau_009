@@ -1,0 +1,1 @@
+const r=(e,t)=>t==="fund-document"?e?.replace("v2/get-product-data?","v1/get-fund-document?"):e;export{r as g};

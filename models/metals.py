@@ -580,6 +580,250 @@ def pgm_etf_block(fund):
             "source": f"abrdn {'Platinum' if fund == 'PPLT' else 'Palladium'} ETF Trust ({fund}), quarterly SEC filings (10-Q/10-K)"}
 
 
+# ───────── daily ETF metal holdings, per fund, from the sponsors' own sites ─────────
+OZ_PER_T = 32150.7466
+# sponsor fee a year: only used to carry metal-per-share between and beyond the published anchors (the fee is paid in metal)
+FEES = {"IAU": [("2010-07-01", 0.0040), ("2100-01-01", 0.0025)], "SLV": [("2100-01-01", 0.0050)], "PLTM": [("2100-01-01", 0.0050)],
+        "BAR": [("2100-01-01", 0.0020)], "PPLT": [("2100-01-01", 0.0060)], "PALL": [("2100-01-01", 0.0060)], "SGOL": [("2100-01-01", 0.0017)],
+        "SIVR": [("2100-01-01", 0.0030)]}
+ETF_FUNDS = {"gold": [("GLD", "SPDR Gold Shares"), ("IAU", "iShares Gold Trust"), ("PHYS", "Sprott Physical Gold Trust"), ("SGOL", "abrdn Physical Gold Shares"), ("BAR", "GraniteShares Gold Trust")],
+             "silver": [("SLV", "iShares Silver Trust"), ("PSLV", "Sprott Physical Silver Trust"), ("SIVR", "abrdn Physical Silver Shares")],
+             "platinum": [("PPLT", "abrdn Physical Platinum Shares"), ("SPPP", "Sprott Physical Platinum and Palladium Trust"), ("PLTM", "GraniteShares Platinum Trust")],
+             "palladium": [("PALL", "abrdn Physical Palladium Shares"), ("SPPP", "Sprott Physical Platinum and Palladium Trust")]}
+ETF_UNIT = {"gold": ("t", OZ_PER_T, 1), "silver": ("Moz", 1e6, 1), "platinum": ("koz", 1e3, 1), "palladium": ("koz", 1e3, 1)}
+
+
+def _fee(fund, d):
+    for until, f in FEES.get(fund, [("2100-01-01", 0.0)]):
+        if str(d)[:10] < until:
+            return f
+    return 0.0
+
+
+def ops_at(fund, dates, anchors):
+    """Metal per share on `dates`: log-linear between anchor dates, carried by the sponsor fee before the first / after the last."""
+    a = anchors.dropna().sort_index()
+    a = a[~a.index.duplicated(keep="last")]
+    if not len(a):
+        return pd.Series(np.nan, index=dates)
+    t = np.array([d.toordinal() for d in a.index], dtype=float)
+    la = np.log(a.values.astype(float))
+    out = []
+    for d in dates:
+        x = d.toordinal()
+        if x <= t[0]:
+            out.append(la[0] + _fee(fund, d) * (t[0] - x) / 365.25)
+        elif x >= t[-1]:
+            out.append(la[-1] - _fee(fund, d) * (x - t[-1]) / 365.25)
+        else:
+            out.append(np.interp(x, t, la))
+    return pd.Series(np.exp(out), index=dates)
+
+
+def _sec(fund):
+    d = C("etf_sec.csv", parse_dates=["date"])
+    if d is None:
+        return None
+    x = d[d.fund == fund].set_index("date").sort_index()
+    return x if len(x) else None
+
+
+def _at_or_before(s, d, days=6):
+    b = s[(s.index <= d) & (s.index >= d - pd.Timedelta(days=days))]
+    return float(b.iloc[-1]) if len(b) else None
+
+
+def from_shares(fund, shares, snap_oz=None):
+    """Daily ounces = shares outstanding x metal per share, anchored on the sponsor's own ounce figures (page snapshot)
+    and the trust's quarter-end ounces in its SEC filings."""
+    anc = {}
+    sec = _sec(fund)
+    if sec is not None:
+        for d, r in sec.iterrows():
+            sh = _at_or_before(shares, d) or num(r.get("shares"))
+            if sh:
+                anc[d] = float(r.ounces) / sh
+    if snap_oz is not None:
+        for d, oz in snap_oz.items():
+            sh = _at_or_before(shares, d, 0)
+            if sh:
+                anc[d] = float(oz) / sh
+    if not anc:
+        return None, 0
+    ops = ops_at(fund, shares.index, pd.Series(anc))
+    return (shares * ops).dropna(), len(anc)
+
+
+def fund_series(fund, metal):
+    """(dated ounces series, meta) for one fund; None when the desk has no data for it."""
+    if fund == "GLD":
+        g = C("etf_gld.csv", parse_dates=["date"])
+        if g is None:
+            return None
+        s = g.set_index("date").sort_index()
+        oz = s.ounces.astype(float).where(s.ounces.astype(float) > 0, s.tonnes.astype(float) * OZ_PER_T)
+        sec = _sec("GLD")                                       # after the stored daily history ends: quarter ends from SEC filings
+        if sec is not None:
+            q = sec[sec.index > oz.index[-1]].ounces.astype(float)
+            oz = pd.concat([oz, q]).sort_index()
+        return oz, {"how": "ounces in the trust, daily to 20 Nov 2026 (sponsor's history file); after that quarter ends from SEC filings, because the sponsor's data host now closes automated access in robots.txt",
+                    "daily": True, "ffill": 5, "url": "https://www.spdrgoldshares.com/usa/historical-data/"}
+    if fund in ("IAU", "SLV"):
+        h = C("etf_ishares_hist.csv", parse_dates=["date"])
+        sn = C("etf_ishares.csv", parse_dates=["date"])
+        if h is None or not len(h[h.fund == fund]):
+            if sn is None:
+                return None
+            x = sn[sn.fund == fund].set_index("date").sort_index()
+            return x.ounces.astype(float), {"how": "ounces in trust, daily snapshot of the product page", "daily": True, "ffill": 5,
+                                            "url": "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund" if fund == "IAU" else "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund"}
+        sh = h[h.fund == fund].set_index("date").sort_index().shares.astype(float)
+        snap = sn[sn.fund == fund].set_index("date").ounces.astype(float) if sn is not None else None
+        oz, na = from_shares(fund, sh, snap)
+        if oz is None:
+            return None
+        if snap is not None:                                    # the sponsor's own figure wins on the days it was read
+            for d, v in snap.items():
+                if d in oz.index:
+                    oz.loc[d] = v
+        return oz, {"how": f"daily shares outstanding (product-page download) x metal per share; metal per share from the sponsor's ounces-in-trust figure and {na} quarter-end SEC anchors",
+                    "daily": True, "ffill": 5, "derived": True,
+                    "url": "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund" if fund == "IAU" else "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund"}
+    if fund in ("PHYS", "PSLV", "SPPP"):
+        d = C("etf_sprott.csv", parse_dates=["date"])
+        if d is None:
+            return None
+        x = d[(d.fund == fund) & (d.metal == metal)].set_index("date").sort_index()
+        if not len(x):
+            return None
+        page = {"PHYS": "gold", "PSLV": "silver", "SPPP": "platinum-and-palladium"}[fund]
+        return x.ounces.astype(float), {"how": "ounces held after each change, since inception (fund page's holdings chart) plus the page's daily figure",
+                                        "daily": True, "ffill": None, "url": f"https://sprott.com/investment-strategies/exchange-listed-products/physical-bullion-funds/{page}/"}
+    if fund in ("PLTM", "BAR"):
+        d = C("etf_granite.csv", parse_dates=["date"])
+        if d is None:
+            return None
+        x = d[d.fund == fund].set_index("date").sort_index()
+        if not len(x):
+            return None
+        oz, na = from_shares(fund, x.shares.astype(float))
+        if oz is None:
+            return None
+        return oz, {"how": f"daily shares outstanding (fund page's NAV/AUM history) x metal per share from {na} quarter-end SEC anchors",
+                    "daily": True, "ffill": 5, "derived": True, "url": f"https://graniteshares.com/etfs/{fund.lower()}/"}
+    if fund in ("PPLT", "PALL", "SGOL", "SIVR"):
+        sec = _sec(fund)
+        ab = C("etf_abrdn.csv", parse_dates=["date"])
+        ab = ab[ab.fund == fund].set_index("date").sort_index() if ab is not None else None
+        pts = {}
+        if sec is not None:
+            for d, r in sec.iterrows():
+                pts[d] = float(r.ounces)
+        if ab is not None and len(ab) and sec is not None:
+            anc = {d: float(r.ounces) / num(r.shares) for d, r in sec.iterrows() if num(r.get("shares"))}
+            if anc:
+                ops = ops_at(fund, ab.index, pd.Series(anc))
+                for d, r in ab.iterrows():
+                    # creation basket size in shares, from the metal per basket and the filed metal per share (rounded to 2,500 shares)
+                    bsh = round(float(r.basket_oz) / ops.loc[d] / 2500) * 2500 if num(r.basket_oz) else None
+                    pts[d] = float(r.shares) * (float(r.basket_oz) / bsh if bsh else ops.loc[d])
+        if not pts:
+            return None
+        s = pd.Series(pts).sort_index()
+        return s, {"how": "quarter ends from the trust's SEC filings; from Nov 2026 daily: shares outstanding x metal per creation basket (fund page's data service, one reading a day)",
+                   "daily": ab is not None and len(ab) > 0, "ffill": 5, "quarterly_before": ab.index[0].strftime("%Y-%m-%d") if ab is not None and len(ab) else None,
+                   "url": "https://www.aberdeeninvestments.com/en-us/institutional/funds/view-all-funds/" + {"PPLT": "abrdn-physical-platinum-shares-etf-us0032601066",
+                          "PALL": "abrdn-physical-palladium-shares-etf-us0032621023", "SGOL": "abrdn-physical-gold-shares-etf-us00326a1043", "SIVR": "abrdn-physical-silver-shares-etf-us0032641088"}[fund]}
+    return None
+
+
+def etf_factor(metal, E):
+    """Month's net flow across the funds with a current daily reading (thresholds: gold 10 t, silver 10 Moz, PGMs 2% of holdings)."""
+    if not E:
+        return None
+    a = pd.Timestamp(E["asof"])
+    fr = [f for f in E["funds"] if f.get("chg_1m") is not None and pd.Timestamp(f["asof"]) >= a - pd.Timedelta(days=5)]
+    if not fr:
+        return None
+    c, v, u = sum(f["chg_1m"] for f in fr), sum(f["v"] for f in fr), E["unit"]
+    lim = {"gold": 10, "silver": 10}.get(metal, 0.02 * v)
+    dp = 0 if u == "koz" else 1
+    return fac("ETF flows", 1 if c >= lim else -1 if c <= -lim else 0,
+               f"{', '.join(f['fund'] for f in fr)} hold{'s' if len(fr) == 1 else ''} {v:,.{dp}f} {u} ({sg(c, dp)} {u} in a month; daily, from the sponsors' sites, as of {E['asof']}).")
+
+
+def _daily(s, meta, idx):
+    s = s[~s.index.duplicated(keep="last")].sort_index()
+    if meta.get("ffill") is None:                                 # event series: holdings unchanged between listed dates
+        return s.reindex(s.index.union(idx)).ffill().reindex(idx).where(idx >= s.index[0])
+    q = meta.get("quarterly_before")
+    d = s.reindex(s.index.union(idx)).ffill(limit=meta["ffill"]).reindex(idx)
+    if q:                                                         # quarter-end points stay points before daily readings start
+        d[idx < pd.Timestamp(q)] = s.reindex(idx)[idx < pd.Timestamp(q)]
+    return d.where(idx <= s.index[-1] + pd.Timedelta(days=4))
+
+
+def etf_daily(metal):
+    unit, div, dp = ETF_UNIT[metal]
+    funds, cols = [], {}
+    for fund, name in ETF_FUNDS[metal]:
+        try:
+            r = fund_series(fund, metal)
+        except Exception:
+            import traceback; traceback.print_exc(); r = None
+        if r is None or not len(r[0].dropna()):
+            continue
+        s, meta = r
+        s = s.dropna().sort_index()
+        cols[fund] = (s, meta)
+    if not cols:
+        return None
+    last = max(s.index[-1] for s, _ in cols.values())
+    idx = pd.bdate_range(min(s.index[0] for s, _ in cols.values()), last)
+    D_ = {f: _daily(s, m, idx) / div for f, (s, m) in cols.items()}
+    ys = pd.Timestamp(last.year, 1, 1) - pd.Timedelta(days=1)
+
+    def change(d, cut, tol=6):
+        d = d.dropna()
+        if not len(d):
+            return None
+        b = d[(d.index <= cut) & (d.index >= cut - pd.Timedelta(days=tol))]
+        return None if not len(b) else float(d.iloc[-1] - b.iloc[-1])
+    for fund, name in ETF_FUNDS[metal]:
+        if fund not in cols:
+            continue
+        s, meta = cols[fund]
+        d = D_[fund].dropna()
+        if not len(d):
+            continue
+        a = d.index[-1]
+        daily_since = meta.get("quarterly_before") or s.index[0].strftime("%Y-%m-%d")
+        funds.append({"fund": fund, "name": name, "asof": a.strftime("%Y-%m-%d"), "v": round(float(d.iloc[-1]), dp + 1),
+                      "chg_1w": change(d, a - pd.Timedelta(days=7)), "chg_1m": change(d, a - pd.Timedelta(days=30)), "chg_ytd": change(d, ys, 10),
+                      "since": s.index[0].strftime("%Y-%m-%d"), "daily_since": daily_since if meta.get("daily") else None,
+                      "how": meta["how"], "derived": bool(meta.get("derived")), "url": meta["url"]})
+    tot = {"v": sum(f["v"] for f in funds)}
+    for k in ("chg_1w", "chg_1m", "chg_ytd"):
+        tot[k] = None if any(f[k] is None for f in funds) else sum(f[k] for f in funds)
+    d3 = idx[idx >= last - pd.DateOffset(years=3)]
+    wk = pd.date_range(idx[0], last, freq="W-FRI")
+    rnd = lambda v: None if v is None or v != v else round(float(v), dp + 1)
+    weekly_ = {f: D_[f].reindex(D_[f].index.union(wk)).ffill(limit=5 if cols[f][1].get("ffill") else None).reindex(wk) for f in D_}
+    for f in D_:                                                  # quarterly-only stretches: show the quarter-end point in its week, nothing in between
+        q = cols[f][1].get("quarterly_before")
+        if q:
+            pts = cols[f][0] / div
+            w = pd.Series(np.nan, index=wk)
+            for d, v in pts[pts.index < pd.Timestamp(q)].items():
+                k = wk[wk >= d]
+                if len(k):
+                    w.loc[k[0]] = v
+            weekly_[f] = weekly_[f].where(wk >= pd.Timestamp(q), w)
+    return {"unit": unit, "asof": last.strftime("%Y-%m-%d"), "funds": funds, "total": tot,
+            "daily": {"date": [d.strftime("%Y-%m-%d") for d in d3], **{f: [rnd(v) for v in D_[f].reindex(d3).values] for f in D_}},
+            "weekly": {"date": [d.strftime("%Y-%m-%d") for d in wk], **{f: [rnd(v) for v in weekly_[f].values] for f in D_}}}
+
+
 def jm_line(J, key, yr):
     r = next((x for x in (J or {}).get("rows", []) if x["key"] == key), None)
     return r and r.get(yr)
@@ -680,6 +924,14 @@ def main():
                 o, fs = aluminum(pb or {})
             elif key in ("platinum", "palladium"):
                 o, fs = pgm(key, pb or {}, s if s is not None else pd.Series(dtype=float), gold_s, pa_s if key == "platinum" else pl_s)
+            if key in ETF_FUNDS:
+                try:
+                    o["etf_daily"] = etf_daily(key)
+                    nf = etf_factor(key, o["etf_daily"])
+                    if nf:
+                        fs = [f for f in fs if f["name"] != "ETF flows"] + [nf]      # PGMs keep the quarterly "ETF holdings" read too
+                except Exception:
+                    import traceback; traceback.print_exc()
             o["usgs"] = (usgs_block({"gold": ["Gold"], "silver": ["Silver"], "copper": ["Copper"], "aluminum": ["Aluminum", "Bauxite"], "platinum": ["Platinum"], "palladium": ["Palladium"]}[key]) or None)
             c = cot(csym)
             score, v = view(fs)

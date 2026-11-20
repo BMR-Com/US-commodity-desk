@@ -102,14 +102,14 @@ const Metals = (() => {
   const REPORTS = [['CFTC Commitments of Traders', 'Fri 3:30 pm ET', 'Positions as of Tuesday (gold, silver, copper, aluminum Midwest premium, platinum, palladium)'],
     ['COMEX / NYMEX warehouse stocks', 'Daily, evening', 'Registered (deliverable) and eligible metal in exchange warehouses and vaults'],
     ['LME official prices and stocks', 'Daily, London', 'Cash, 3-month, warehouse stocks, cancelled warrants'],
-    ['ETF holdings (GLD, IAU, SLV)', 'Daily', 'Metal held by the large US ETFs'],
+    ['ETF holdings (GLD, IAU, SLV, Sprott, abrdn, GraniteShares)', 'Daily', 'Metal held by the US-listed physical ETFs, from each sponsor\'s site (Supply &amp; demand tab)'],
     ['World Gold Council Gold Demand Trends', 'Quarterly (~5 weeks after quarter end)', 'Jewellery, technology, bar/coin, ETFs, central banks, supply'],
     ['ICSG monthly press release', 'Monthly (3rd–4th week)', 'World copper mine/refined production, usage, balance'],
     ['IAI primary aluminium production', 'Monthly (~20th)', 'Output by region incl. China'],
     ['Silver Institute World Silver Survey', 'Annual (April), interim (November)', 'Silver supply, demand, deficit'],
     ['WPIC Platinum Quarterly', 'Quarterly (early Mar, mid-May, early Sep, mid-Nov)', 'Platinum balance by year and quarter (research by Metals Focus), above-ground stocks'],
     ['Johnson Matthey PGM market report', 'Annual (mid-May)', 'Platinum and palladium supply, recycling, demand, balance'],
-    ['PPLT / PALL quarterly filings', 'About 5-6 weeks after quarter end', 'Ounces held by the abrdn platinum and palladium ETFs'],
+    ['ETF quarterly filings (SEC 10-Q/10-K)', 'About 5-6 weeks after quarter end', 'Ounces held at quarter end; anchor the daily ounces-per-share'],
     ['USGS Mineral Commodity Summaries', 'Annual (late January)', 'World mine production and reserves by country; US statistics'],
     ['US CPI, jobs, FOMC', 'Monthly / 8 meetings a year', 'Real rates and the dollar (see Markets & macro)']];
 
@@ -255,6 +255,38 @@ const Metals = (() => {
     return `<div class="card" style="margin-top:12px"><h2>COMEX ${metal} warehouse stocks</h2>${c ? `<div class="chart short"><canvas id="mtCx"></canvas></div><p class="note">${fmt(c.total, 0)} on ${c.asof} (${sgn(c.chg_1w, 0)} in a week, ${sgn(c.chg_1m, 0)} in a month)${c.registered != null ? `; registered (deliverable) ${fmt(c.registered, 0)}` : ''}. CME daily stock report.</p>`
       : '<p class="note">Not collected yet. CME blocks GitHub\'s servers, so the daily COMEX stock reports are downloaded by the desk\'s Mac collector (local/mac_collector.py) and parsed here on the next metals run.</p>'}</div>`;
   }
+
+  // daily ETF holdings, all tracked funds of one metal (models/metals.py etf_daily)
+  let etfView = { r: '1y', m: 'lvl' };
+  function etfCard(E, metal) {
+    if (!E || !E.funds || !E.funds.length) return `<div class="card" style="margin-top:12px"><p class="note">${metal} ETF holdings not built yet.</p></div>`;
+    const u = E.unit, dp = u === 't' || u === 'Moz' ? 1 : 0;
+    const row = f => `<tr><td class="l"><b>${esc(f.fund)}</b> <span class="note">${esc(f.name)}</span></td><td>${fmt(f.v, dp)}</td><td>${sgn(f.chg_1w, dp)}</td><td>${sgn(f.chg_1m, dp)}</td><td>${sgn(f.chg_ytd, dp)}</td>
+      <td class="l note">${f.daily_since ? (f.daily_since > f.since ? `quarterly from ${esc(f.since.slice(0, 4))}, daily from ${esc(f.daily_since)}` : `daily from ${esc(f.since.slice(0, 4))}`) : `quarterly from ${esc(f.since.slice(0, 4))}`}</td><td class="l note">${esc(f.asof)}</td></tr>`;
+    const T = E.total;
+    return `<div class="card" style="margin-top:12px"><h2>${metal} ETF holdings, by fund <span class="note">${u === 't' ? 'tonnes' : u === 'Moz' ? 'million oz' : 'thousand oz'} of metal in trust; latest ${esc(E.asof)}</span></h2>
+      <div class="tbl"><table><tr><th class="l">Fund</th><th>Holds</th><th>1 week</th><th>1 month</th><th>Year to date</th><th class="l">History</th><th class="l">As of</th></tr>
+      ${E.funds.map(row).join('')}<tr><td class="l"><b>Total, these funds</b></td><td><b>${fmt(T.v, dp)}</b></td><td>${sgn(T.chg_1w, dp)}</td><td>${sgn(T.chg_1m, dp)}</td><td>${sgn(T.chg_ytd, dp)}</td><td class="l note" colspan="2">${T.chg_1w == null || T.chg_1m == null ? 'a change shows once every fund has a reading that far back' : ''}</td></tr></table></div>
+      <div class="ctl" style="margin:8px 0"><span class="seg" id="mtEtfR">${[['1y', '1 year'], ['3y', '3 years'], ['all', 'All (weekly)']].map(([k, l]) => `<button data-r="${k}" class="${etfView.r === k ? 'on' : ''}">${l}</button>`).join('')}</span>
+        <span class="seg" id="mtEtfM" style="margin-left:8px">${[['lvl', 'Holdings'], ['chg', 'Change over the period']].map(([k, l]) => `<button data-m="${k}" class="${etfView.m === k ? 'on' : ''}">${l}</button>`).join('')}</span></div>
+      <div class="chart"><canvas id="mtEtfAll"></canvas></div>
+      <p class="note">Straight from each sponsor's own site. ${E.funds.map(f => `<b>${esc(f.fund)}</b>: ${esc(f.how)} (<a href="${f.url}" target="_blank" rel="noopener">source</a>)`).join('; ')}.
+        Funds marked as derived multiply the sponsor's daily shares outstanding by the metal each share holds; checked against the sponsor's own ounces figures and the trusts' filings, the level is within about half a percent, and day-to-day changes are the creations and redemptions themselves.</p></div>`;
+  }
+  function etfChart(E) {
+    if (!E || !E.funds || !E.funds.length || !document.getElementById('mtEtfAll')) return;
+    const src = etfView.r === 'all' ? E.weekly : E.daily;
+    let n = src.date.length, i0 = etfView.r === '1y' ? Math.max(0, n - 261) : 0;
+    const lab = src.date.slice(i0);
+    const ds = E.funds.map((f, i) => {
+      let v = (src[f.fund] || []).slice(i0);
+      if (etfView.m === 'chg') { const b = v.find(x => x != null); v = v.map(x => x == null || b == null ? null : x - b); }
+      return ln(v, f.fund, PAL[i % PAL.length], { pointRadius: f.daily_since && f.daily_since <= lab[0] ? 0 : 1.5 });
+    });
+    chart('mtEtfAll', { type: 'line', data: { labels: lab, datasets: ds }, options: { scales: { y: { title: { display: true, text: E.unit + (etfView.m === 'chg' ? ' change since ' + lab[0] : '') } } } } });
+    $$('#mtEtfR button').forEach(b => b.onclick = () => { etfView.r = b.dataset.r; $$('#mtEtfR button').forEach(x => x.classList.toggle('on', x === b)); etfChart(E); });
+    $$('#mtEtfM button').forEach(b => b.onclick = () => { etfView.m = b.dataset.m; $$('#mtEtfM button').forEach(x => x.classList.toggle('on', x === b)); etfChart(E); });
+  }
   function sd() {
     const m = M();
     if (!m) { body().innerHTML = none('Supply and demand'); return; }
@@ -267,25 +299,24 @@ const Metals = (() => {
         ${w.table.map(r => `<tr><td class="l">${r.line}</td><td><b>${fmt(r.now, 0)}</b></td><td>${sgn(r.yoy_pct, 0, '%')}</td>${r.hist.slice(0, -1).slice(-4).map(v => `<td>${fmt(v, 0)}</td>`).join('')}</tr>`).join('')}</table></div>
         ${w.quarters.length > 1 ? '<div class="chart short"><canvas id="mtWgc"></canvas></div>' : ''}
         <p class="note">${esc(w.summary)} <a href="${w.url}" target="_blank" rel="noopener">Report</a>. The desk reads the public summary of each quarterly report (the full Goldhub tables need a login and its data service is closed to automated access), so earlier quarters keep the figures first published; WGC's later revisions are not captured.</p></div>` : none('World Gold Council data')}
-      <div class="grid g2" style="margin-top:12px">
-        <div class="card"><h2>Gold ETF holdings: SPDR GLD <span class="note">tonnes, weekly</span></h2>${e ? `<div class="chart short"><canvas id="mtEtf"></canvas></div>
-          <p class="note">GLD ${fmt(e.gld.tonnes, 1)} t on ${e.gld.asof}: ${sgn(e.gld.chg_1w, 1)} t in a week, ${sgn(e.gld.chg_1m, 1)} t in a month, ${sgn(e.gld.chg_ytd, 0)} t this year (${e.gld.pct5y == null ? '–' : e.gld.pct5y + 'th'} percentile of 5 years).
-          ${e.iau ? ` iShares IAU ${fmt(e.iau.tonnes, 1)} t on ${e.iau.asof} (${sgn(e.iau.chg_1m, 1)} t in a month; iShares shows only the current figure, so history builds from when the desk started).` : ''} Sources: SPDR Gold Shares archive; iShares product page.</p>` : '<p class="note">ETF data not built yet.</p>'}</div>
+      ${etfCard(m.etf_daily, 'Gold')}
+      <div style="margin-top:12px">
         <div class="card"><h2>Central banks</h2>${w ? (() => { const cb = w.table.find(r => r.key === 'central_banks'); return cb ? `<p>Central banks bought <b>${fmt(cb.now, 0)} t</b> in ${esc(w.quarter)} (${sgn(cb.yoy_pct, 0, '%')} vs a year ago, World Gold Council).</p><p class="note">Since 2022 central banks have bought around 1,000 t a year, about a fifth of demand; WGC's estimate includes unreported buying, so it runs above IMF-reported reserve changes.</p>` : '<p class="note">Not in the latest summary.</p>'; })() : '<p class="note">No WGC data yet.</p>'}</div></div>
       ${usgsCard(m.usgs)}`;
     if (w && w.quarters.length > 1) {
       const sel = w.table.filter(r => ['jewellery', 'technology', 'bar_coin', 'etfs', 'central_banks'].includes(r.key));
       chart('mtWgc', { type: 'bar', data: { labels: w.quarters, datasets: sel.map((r, i) => ({ label: r.line, data: r.hist, backgroundColor: PAL[i] })) } });
     }
-    if (e) chart('mtEtf', { type: 'line', data: { labels: e.gld.weekly.date, datasets: [ln(e.gld.weekly.v, 'GLD (t)', PAL[3])] }, options: { plugins: { legend: { display: false } } } });
+    etfChart(m.etf_daily);
   }
   function sdSilver(m) {
     const s = m.survey, e = m.etf;
-    body().innerHTML = `<div class="grid g2"><div class="card"><h2>Silver Institute: supply and demand <span class="note">${esc(s ? s.survey || '' : '')}</span></h2>${s ? `<ul class="read">${s.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    body().innerHTML = `<div><div class="card"><h2>Silver Institute: supply and demand <span class="note">${esc(s ? s.survey || '' : '')}</span></h2>${s ? `<ul class="read">${s.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
         <p class="note">Key numbers as published on the Silver Institute's supply-and-demand page (prepared with Metals Focus); checked daily, stored when they change${s.history && s.history.length ? `; previous version from ${s.history.at(-1).fetched}` : ''}. <a href="${s.url}" target="_blank" rel="noopener">Source</a>. The full survey tables are a PDF and are not parsed.</p>` : '<p class="note">Not built yet.</p>'}</div>
-      <div class="card"><h2>iShares SLV holdings <span class="note">million oz</span></h2>${e ? `${e.n_days > 5 ? '<div class="chart short"><canvas id="mtSlv"></canvas></div>' : ''}<p class="note">${fmt(e.moz, 1)} Moz (${fmt(e.tonnes, 0)} t) on ${e.asof}; ${sgn(e.chg_1w, 1)} Moz in a week, ${sgn(e.chg_1m, 1)} Moz in a month. iShares publishes only the current figure, so the desk stores one snapshot a day (history from when collection started).</p>` : '<p class="note">Not built yet.</p>'}</div></div>
+</div>
+      ${etfCard(m.etf_daily, 'Silver')}
       ${usgsCard(m.usgs)}`;
-    if (e && e.n_days > 5) chart('mtSlv', { type: 'line', data: { labels: e.series.date, datasets: [ln(e.series.v, 'SLV (Moz)', PAL[6])] }, options: { plugins: { legend: { display: false } } } });
+    etfChart(m.etf_daily);
   }
   function sdCopper(m) {
     const ic = m.icsg, L = m.lme;
@@ -343,13 +374,11 @@ const Metals = (() => {
         <h3>Revisions vs the ${esc(J.prev_edition || 'previous')} edition</h3>
         ${J.revisions && J.revisions.length ? revTable(J.revisions, 'Thousand oz; same years in both editions.') : '<p class="note">Revisions show once two editions are stored.</p>'}
         <p class="note">Balance = supply minus demand (negative = deficit). ${esc(J.source)}. ${J.report ? `<a href="${J.report}" target="_blank" rel="noopener">Report</a> · ` : ''}<a href="${J.url}" target="_blank" rel="noopener">Data</a>. Annual (May).${mk === 'PA' ? ' WPIC covers platinum only, so Johnson Matthey is the free public palladium balance.' : ''}</p></div>` : none('Johnson Matthey data')}
-      <div class="grid g2" style="margin-top:12px">
-        <div class="card"><h2>${E ? esc(E.fund) : (mk === 'PL' ? 'PPLT' : 'PALL')} ounces held <span class="note">thousand oz, quarter ends</span></h2>${E ? `<div class="chart short"><canvas id="mtPgmEtf"></canvas></div>
-          <p class="note">${fmt(E.koz, 0)} koz on ${E.asof} (${sgn(E.chg_q_pct, 1, '%')} on the quarter${E.chg_y_pct != null ? `, ${sgn(E.chg_y_pct, 1, '%')} on the year` : ''}; filed ${esc(E.filed)}). ${esc(E.source)}. The fund's own page shows a daily figure only in the browser, so the desk uses the quarterly filings.</p>` : '<p class="note">Not built yet.</p>'}</div>
-        ${comexCard(m.comex_stocks, metal).replace('COMEX ' + metal, 'NYMEX ' + metal)}</div>
+      ${etfCard(m.etf_daily, DESKS[mk])}
+      ${comexCard(m.comex_stocks, metal).replace('COMEX ' + metal, 'NYMEX ' + metal)}
       <div class="card" style="margin-top:12px"><h2>Not on this desk (no free automated source)</h2><p class="note">London lease rates and LBMA ${metal} prices (licensed data; the desk shows the lease rate implied by the NYMEX curve instead), Swiss and UK customs flows, Chinese import premiums, Osaka and Guangzhou futures, ${mk === 'PA' ? 'Nornickel production guidance (company reports), ' : 'South African mining output by company (quarterly results), '}and WPIC's ${mk === 'PA' ? 'platinum-only coverage (no palladium quarterly).' : 'full report text (PDF): the desk reads the tables and the public key points.'}</p></div>
       ${usgsCard(m.usgs)}`;
-    if (E) chart('mtPgmEtf', { type: 'bar', data: { labels: E.series.date, datasets: [{ label: E.fund + ' (koz)', data: E.series.v, backgroundColor: PAL[mk === 'PL' ? 2 : 5] }] }, options: { plugins: { legend: { display: false } } } });
+    etfChart(m.etf_daily);
     if (m.comex_stocks) chart('mtCx', { type: 'line', data: { labels: m.comex_stocks.series.date, datasets: [ln(m.comex_stocks.series.v, 'NYMEX stocks', PAL[1])] }, options: { plugins: { legend: { display: false } } } });
   }
 

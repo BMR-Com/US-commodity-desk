@@ -1,10 +1,17 @@
 """Metals desk raw data (runs in GitHub Actions; no keys). Each source is independent: a failure in one is reported and
 the others still run. Old data is kept; only new data is fetched where the source allows it.
 
-Usage: python pipelines/metals.py [step ...]      steps: etf lme wgc icsg iai usgs silver rates comex wpic jm pgm_etf   (default: all)
+Usage: python pipelines/metals.py [step ...]      steps: etf etf_more lme wgc icsg iai usgs silver rates comex wpic jm pgm_etf   (default: all)
 
-  etf     SPDR GLD daily history (spdrgoldshares.com archive), iShares IAU and SLV tonnes in trust (product pages, daily
-          snapshot appended)                                                       -> raw/etf_gld.csv, raw/etf_ishares.csv
+  etf     iShares IAU and SLV tonnes in trust (product pages, daily snapshot appended) and their full daily NAV /
+          shares-outstanding history (the product page's data-download
+          file, Historical sheet)                    -> raw/etf_ishares.csv, raw/etf_ishares_hist.csv
+          SPDR GLD: raw/etf_gld.csv keeps the daily history to 2026-11-20; api.spdrgoldshares.com (the only host serving it)
+          disallows automated access in robots.txt, so it is no longer downloaded; GLD continues quarterly from SEC filings
+  etf_more other sponsors' own sites: Sprott PHYS / PSLV / SPPP ounces (fund-page holdings charts since inception plus
+          the daily figure the pages load), abrdn PPLT / PALL / SGOL / SIVR shares outstanding and metal per basket
+          (daily snapshot from the fund page's data service), GraniteShares PLTM / BAR daily NAV, AUM and metal per
+          basket since 2020 (fund page's NAV-history feed)   -> raw/etf_sprott.csv, raw/etf_abrdn.csv, raw/etf_granite.csv
   lme     LME copper and aluminium cash, 3-month and LME stocks (westmetall.com daily tables; current year each run,
           earlier years once)                                                      -> raw/lme_cu.csv, raw/lme_al.csv
   wgc     World Gold Council Gold Demand Trends (quarterly): headline tonnages from the public report summary on gold.org
@@ -24,8 +31,9 @@ Usage: python pipelines/metals.py [step ...]      steps: etf lme wgc icsg iai us
                                                                                    -> raw/wpic/<Qn_YYYY>.json
   jm      Johnson Matthey PGM market report (annual, May): the free supply-and-demand history workbook, platinum and
           palladium; each edition kept, revisions vs the previous edition        -> raw/jm/<edition>.json
-  pgm_etf abrdn platinum and palladium ETF trusts (PPLT, PALL): ounces held, from the trusts' SEC filings (quarterly; the
-          fund pages render their figures in the browser only)                     -> raw/etf_pgm.csv
+  pgm_etf ounces held and shares outstanding at each quarter end from the trusts' SEC filings (10-Q/10-K XBRL): abrdn
+          PPLT, PALL, SGOL, SIVR; iShares IAU, SLV; GraniteShares PLTM, BAR; SPDR GLD. Anchors the ounces-per-share used to turn
+          daily shares outstanding into daily ounces       -> raw/etf_sec.csv (all), raw/etf_pgm.csv (PPLT, PALL)
 Writes data/metals/raw/fetch_log.json (last result per step).
 """
 import datetime as dt, hashlib, html, io, json, re, sys, time, traceback
@@ -38,6 +46,46 @@ RAW = ROOT / "data" / "metals" / "raw"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"}
 TODAY = dt.date.today()
 LOG = {}
+ETF_UA = {"User-Agent": "BMR-Com-research-desk/1.0 (ETF metal holdings research; GitHub Actions)"}
+_ROBOTS = {}
+
+
+def robots_allows(url):
+    """Python's standard robots.txt check for the ETF sponsor sites (cached per host; unreachable robots.txt = allowed)."""
+    import urllib.robotparser
+    from urllib.parse import urlparse
+    u = urlparse(url)
+    base = f"{u.scheme}://{u.netloc}"
+    if base not in _ROBOTS:
+        rp = urllib.robotparser.RobotFileParser()
+        try:
+            r = requests.get(base + "/robots.txt", headers=ETF_UA, timeout=30)
+            rp.parse(r.text.splitlines() if r.status_code == 200 else [])
+        except Exception:
+            rp.parse([])
+        _ROBOTS[base] = rp
+    ok = _ROBOTS[base].can_fetch(ETF_UA["User-Agent"], url)
+    if not ok:
+        print("   robots.txt disallows", url[:120])
+    return ok
+
+
+def eget(url, tries=3, method="GET", **kw):
+    """Request to an ETF sponsor site: honest User-Agent, robots.txt respected."""
+    if not robots_allows(url):
+        return None
+    for i in range(tries):
+        try:
+            r = requests.request(method, url, headers={**ETF_UA, **kw.pop("headers", {})}, timeout=90, **kw)
+            if r.status_code == 200:
+                return r
+            print("  ", r.status_code, url[:120])
+            if r.status_code in (401, 403, 404):
+                return r
+        except Exception as e:
+            print("  err", str(e)[:120], url[:120])
+        time.sleep(4 + 4 * i)
+    return None
 
 
 def get(url, tries=3, **kw):
@@ -85,24 +133,28 @@ def merge_csv(p, new, keys):
 # ───────── ETF holdings ─────────
 def etf():
     n = 0
-    r = get("https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en")
-    if r is not None and r.status_code == 200 and r.content[:2] == b"PK":
-        d = pd.read_excel(io.BytesIO(r.content), sheet_name="US GLD Historical Archive")
-        d.columns = [str(c).strip() for c in d.columns]
-        d["date"] = pd.to_datetime(d["Date"], format="%d-%b-%Y", errors="coerce")
-        d["tonnes"] = pd.to_numeric(d["Tonnes of Gold"], errors="coerce")
-        d["ounces"] = pd.to_numeric(d["Total Ounces of Gold in the Trust"], errors="coerce")
-        d = d.dropna(subset=["date", "tonnes"])
-        d = d[d.tonnes > 0]
-        out = pd.DataFrame({"date": d.date.dt.strftime("%Y-%m-%d"), "tonnes": d.tonnes.round(2), "ounces": d.ounces.round(0)})
-        n += merge_csv(RAW / "etf_gld.csv", out, ["date"])
-        print("GLD", len(out), "days, last", out.date.iloc[-1], out.tonnes.iloc[-1])
+    # SPDR GLD: the sponsor's history file and daily figures are served from api.spdrgoldshares.com, whose robots.txt
+    # disallows all automated access (checked 2026-11-20), so the desk no longer downloads them. The history already
+    # stored (Nov 2004 - Nov 2026) is kept; GLD continues from its quarterly SEC filings (pgm_etf step).
+    if robots_allows("https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en"):
+        r = eget("https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en")
+        if r is not None and r.status_code == 200 and r.content[:2] == b"PK":
+            d = pd.read_excel(io.BytesIO(r.content), sheet_name="US GLD Historical Archive")
+            d.columns = [str(c).strip() for c in d.columns]
+            d["date"] = pd.to_datetime(d["Date"], format="%d-%b-%Y", errors="coerce")
+            d["tonnes"] = pd.to_numeric(d["Tonnes of Gold"], errors="coerce")
+            d["ounces"] = pd.to_numeric(d["Total Ounces of Gold in the Trust"], errors="coerce")
+            d = d.dropna(subset=["date", "tonnes"])
+            d = d[d.tonnes > 0]
+            out = pd.DataFrame({"date": d.date.dt.strftime("%Y-%m-%d"), "tonnes": d.tonnes.round(2), "ounces": d.ounces.round(0)})
+            n += merge_csv(RAW / "etf_gld.csv", out, ["date"])
+            print("GLD", len(out), "days, last", out.date.iloc[-1], out.tonnes.iloc[-1])
     else:
-        print("GLD archive not available")
-    rows = []
-    for fund, url in [("IAU", "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund"),
-                      ("SLV", "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund")]:
-        r = get(url)
+        print("GLD: sponsor data host closed to automated access by robots.txt; stored history kept, quarterly SEC figures continue it")
+    rows, hist = [], []
+    for fund, pid, url in [("IAU", 239561, "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund"),
+                           ("SLV", 239855, "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund")]:
+        r = eget(url)
         if r is None or r.status_code != 200:
             print(fund, "page not available"); continue
         t = html.unescape(r.text)
@@ -117,11 +169,37 @@ def etf():
         if tonnes and asof:
             rows.append({"fund": fund, "date": pd.to_datetime(asof).strftime("%Y-%m-%d"), "tonnes": tonnes, "ounces": ounces})
             print(fund, asof, tonnes, "t")
+        # the page's "Download" button: SpreadsheetML workbook whose Historical sheet has daily NAV and shares outstanding
+        m = re.search(r'href="([^"]*get-fund-document\?[^"]*portfolioId=%d[^"]*component=fundDownload[^"]*)"' % pid, r.text)
+        dl = html.unescape(m.group(1)) if m else ("https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appType=PRODUCT_PAGE"
+                                                   f"&appSubType=ISHARES&targetSite=us-ishares&locale=en_US&portfolioId={pid}&component=fundDownload&userType=individual")
+        time.sleep(2)
+        x = eget(dl)
+        if x is not None and x.status_code == 200 and b"Historical" in x.content[:400000]:
+            xt = x.content.decode("utf-8", "replace")
+            sh = re.search(r'ss:Name="Historical"(.*?)</ss:Worksheet>', xt, re.S)
+            cells = [re.findall(r"<ss:Data[^>]*>([^<]*)</ss:Data>", row) for row in re.findall(r"<ss:Row>(.*?)</ss:Row>", sh.group(1) if sh else "", re.S)]
+            if cells and cells[0][:1] == ["As Of"]:
+                hd = cells[0]
+                iN, iS = hd.index("NAV per Share"), hd.index("Shares Outstanding")
+                n0 = len(hist)
+                for c in cells[1:]:
+                    try:
+                        hist.append({"fund": fund, "date": pd.to_datetime(c[0], format="%b %d, %Y").strftime("%Y-%m-%d"), "nav": float(c[iN]), "shares": float(c[iS])})
+                    except Exception:
+                        pass
+                print(fund, "history", len(hist) - n0, "days")
+            else:
+                print(fund, "download has no Historical sheet")
+        else:
+            print(fund, "download not available")
         time.sleep(2)
     if rows:
         n += merge_csv(RAW / "etf_ishares.csv", pd.DataFrame(rows), ["fund", "date"])
-    if not rows and not (RAW / "etf_gld.csv").exists():
-        raise RuntimeError("no ETF data")
+    if hist:
+        n += merge_csv(RAW / "etf_ishares_hist.csv", pd.DataFrame(hist), ["fund", "date"])
+    if not rows and not hist:
+        raise RuntimeError("no iShares data")
     return n
 
 
@@ -737,33 +815,187 @@ def jm():
     return n
 
 
-# ───────── abrdn platinum and palladium ETF trusts: ounces held (SEC filings) ─────────
-PGM_ETF = {"PPLT": ("0001460235", "platinum"), "PALL": ("0001459862", "palladium")}
+# ───────── other ETF sponsors (Sprott, abrdn, GraniteShares), from their own fund pages ─────────
+SPROTT = {"PHYS": ("gold", "https://sprott.com/investment-strategies/exchange-listed-products/physical-bullion-funds/gold/"),
+          "PSLV": ("silver", "https://sprott.com/investment-strategies/exchange-listed-products/physical-bullion-funds/silver/"),
+          "SPPP": ("platinum,palladium", "https://sprott.com/investment-strategies/exchange-listed-products/physical-bullion-funds/platinum-and-palladium/")}
+ABRDN = {"PPLT": ("platinum", "abrdn-physical-platinum-shares-etf-us0032601066"), "PALL": ("palladium", "abrdn-physical-palladium-shares-etf-us0032621023"),
+         "SGOL": ("gold", "abrdn-physical-gold-shares-etf-us00326a1043"), "SIVR": ("silver", "abrdn-physical-silver-shares-etf-us0032641088")}
+GRANITE = {"PLTM": ("platinum", 60, "pltm"), "BAR": ("gold", 59, "bar")}
+GRANITE_NAV = ("https://knockoutv2.azurewebsites.net/api/ProductNavHistory/triggers/When_a_HTTP_request_is_received/invoke/{pid}?api-version=2022-05-01"
+               "&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=bH7VS-AEVsHFaoHEdwodgWM-T_MUr8kOaZi9St7whis")
+
+
+def sprott_charts(page):
+    """{metal: [(date, ounces)]} from the 'Cumulative Oz. of <metal> Acquired by Trust' charts (holdings after each change)."""
+    out = {}
+    for m in re.finditer(r"<h3>\s*Cumulative Oz\. of (\w+) Acquired by Trust\s*</h3>", page):
+        seg = page[m.end():m.end() + 600000]
+        nxt = re.search(r"<h3>", seg)
+        seg = seg[:nxt.start()] if nxt else seg
+        c0 = seg.find("categories:")
+        d0 = seg.find("data:", c0)
+        if c0 < 0 or d0 < 0:
+            continue
+        dates = [dt.date(int(y), int(mo) + 1, int(d)) for y, mo, d in re.findall(r"Date\.UTC\((\d{4}),\s*(\d{1,2}),\s*(\d{1,2})\)", seg[c0:d0])]
+        vals = re.match(r"data:\s*\[([^\]]*)\]", seg[d0:])
+        vals = [float(v) for v in vals.group(1).split(",") if v.strip()] if vals else []
+        if dates and len(dates) == len(vals):
+            out[m.group(1).lower()] = list(zip(dates, vals))
+        else:
+            print("   Sprott chart", m.group(1), "dates/values do not line up", len(dates), len(vals))
+    return out
+
+
+def sprott():
+    rows = []
+    api = eget("https://sprott.com/api/FinancialData/v1/BullionCalculatorData")
+    snap = api.json() if api is not None and api.status_code == 200 else []
+    snap = [x for x in snap if isinstance(x, dict) and "totalOunces1" in x]
+    for i, (fund, (metals, url)) in enumerate(SPROTT.items()):
+        r = eget(url)
+        ch = sprott_charts(r.text) if r is not None and r.status_code == 200 else {}
+        for k, metal in enumerate(metals.split(",")):
+            pts = ch.get(metal, [])
+            rows += [{"fund": fund, "metal": metal, "date": d.isoformat(), "ounces": v, "src": "fund page holdings chart"} for d, v in pts]
+            # the page's live figure: PHYS, PSLV, SPPP are the first three rows of the calculator feed (checked against the chart)
+            x = snap[i] if i < len(snap) else None
+            if x is not None:
+                oz = float(x["totalOunces1" if k == 0 else "totalOunces2"] or 0)
+                if oz > 0 and (not pts or abs(oz / pts[-1][1] - 1) < 0.05):
+                    rows.append({"fund": fund, "metal": metal, "date": x["dateTimeStamp"][:10], "ounces": oz, "src": "fund page daily figure"})
+                elif oz > 0:
+                    print("   Sprott feed row", i, "does not match", fund, metal, oz, pts[-1][1])
+            print(fund, metal, len(pts), "chart points", (pts[-1] if pts else ""))
+        time.sleep(2)
+    if not rows:
+        raise RuntimeError("no Sprott data")
+    df = pd.DataFrame(rows).sort_values(["fund", "metal", "date", "src"]).drop_duplicates(["fund", "metal", "date"], keep="first")
+    return merge_csv(RAW / "etf_sprott.csv", df, ["fund", "metal", "date"])
+
+
+def abrdn():
+    rows = []
+    base = "https://www.aberdeeninvestments.com"
+    for fund, (metal, slug) in ABRDN.items():
+        r = eget(f"{base}/en-us/institutional/funds/view-all-funds/{slug}")
+        if r is None or r.status_code != 200:
+            print(fund, "page not available"); continue
+        t = r.text
+        isin = slug[-12:].upper()
+        sc = re.search(r'"id":"([0-9a-f\-]{36})","name":"[^"]*","isin":"%s"' % isin, t)
+        fid = re.search(r'data-fund_id="([0-9a-f\-]{36})"', t)
+        cr = re.search(r'"correlationFundRangeID":"([0-9a-f\-]{36})"', t)
+        nm = re.search(r'"pageTitle":"([^"|]+?) \|', t)
+        if not (sc and fid and cr):
+            print(fund, "fund ids not found on the page"); continue
+        name = nm.group(1).strip() if nm else ""
+        body = {"countryCode": "USA", "language": "en-US", "shareClass": sc.group(1), "assetClassId": "Alternatives", "fund": fid.group(1),
+                "correlationFundRangeId": cr.group(1), "fundRangeName": "Exchange Traded Fund", "fundName": name, "fundNameId": name, "shareClassNameId": "Share",
+                "literatureAuthorizations": ["2"], "sfdrClassificationId": "N/A", "countryInvestors": {"countryCode": "USA", "investorType": "4,2", "jurisdiction": "Live"},
+                "site": "Institutional"}
+        time.sleep(2)
+        x = eget(f"{base}/api/gateway/funds/fundDetailsKeyInformation", method="POST", json=body, headers={"Referer": r.url})
+        if x is None or x.status_code != 200:
+            print(fund, "data service not available"); continue
+        c = (x.json() or {}).get("content") or {}
+        ent = (c.get("metalEntitlement") or {})
+        bk = next((v for k, v in ent.items() if k.lower().startswith("basketsize")), None)
+        so = num(c.get("shareClass", {}).get("sharesOutstanding"))
+        fs = (c.get("fund") or {}).get("fundSizeWithDate") or {}
+        if not (bk and so):
+            print(fund, "no shares/basket in the data service", list(ent)); continue
+        d = (bk.get("date") or fs.get("date") or "")[:10]
+        rows.append({"fund": fund, "metal": metal, "date": d, "shares": so, "basket_oz": num(bk.get("value")), "aum": num(fs.get("value"))})
+        print(fund, d, so, "shares,", bk.get("value"), "oz per basket")
+        time.sleep(2)
+    if not rows:
+        raise RuntimeError("no abrdn data")
+    return merge_csv(RAW / "etf_abrdn.csv", pd.DataFrame(rows), ["fund", "date"])
+
+
+def granite():
+    rows = []
+    for fund, (metal, pid, slug) in GRANITE.items():
+        url = GRANITE_NAV.format(pid=pid)
+        pg = eget(f"https://graniteshares.com/etfs/{slug}/")                         # the fund page that loads the feed
+        if pg is not None and pg.status_code == 200:
+            m = re.search(r"https://knockoutv2\.azurewebsites\.net/api/ProductNavHistory/[^\"'\s]+", pg.text)
+            if m:
+                url = html.unescape(m.group(0)).replace("{0}", str(pid))
+        r = eget(url)
+        if r is None or r.status_code != 200:
+            print(fund, "NAV history not available"); continue
+        d = pd.DataFrame(r.json())
+        d = d[(d.ProductId == pid) & d.AUM.notna() & d.Price.notna()]
+        for _, x in d.iterrows():
+            rows.append({"fund": fund, "metal": metal, "date": str(x.PriceDate)[:10], "nav": float(x.Price), "aum": float(x.AUM),
+                         "shares": round(float(x.AUM) / float(x.Price), -2), "basket_oz": num(x.Ounces)})
+        print(fund, len(d), "days from", d.PriceDate.min(), "to", d.PriceDate.max())
+        time.sleep(2)
+    if not rows:
+        raise RuntimeError("no GraniteShares data")
+    return merge_csv(RAW / "etf_granite.csv", pd.DataFrame(rows), ["fund", "date"])
+
+
+def num(v):
+    try:
+        f = float(v)
+        return None if f != f else f
+    except Exception:
+        return None
+
+
+def etf_more():
+    n, bad = 0, []
+    for nm, f in (("Sprott", sprott), ("abrdn", abrdn), ("GraniteShares", granite)):
+        print("-", nm)
+        try:
+            n += f()
+        except Exception as e:
+            traceback.print_exc()
+            bad.append(nm)
+    if bad:
+        raise RuntimeError("ETF sources failed: " + ", ".join(bad))
+    return n
+
+
+# ───────── ETF trusts: ounces held and shares outstanding at quarter ends (SEC filings) ─────────
+SEC_ETF = {"GLD": ("0001222333", "gold"), "PPLT": ("0001460235", "platinum"), "PALL": ("0001459862", "palladium"), "SGOL": ("0001450923", "gold"), "SIVR": ("0001450922", "silver"),
+           "IAU": ("0001278680", "gold"), "SLV": ("0001330568", "silver"), "PLTM": ("0001690842", "platinum"), "BAR": ("0001690437", "gold")}
+SHARE_FACTS = ("SharesOutstanding", "CommonStockSharesOutstanding", "TemporaryEquitySharesOutstanding")
 
 
 def pgm_etf():
     rows = []
-    for fund, (cik, metal) in PGM_ETF.items():
+    for fund, (cik, metal) in SEC_ETF.items():
         r = get(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json", headers={"User-Agent": "research-desk admin@example.com"})
         if r is None or r.status_code != 200:
             print(fund, "SEC data not available"); continue
-        facts = (r.json().get("facts") or {}).get("us-gaap", {}).get("InvestmentOwnedBalanceOtherMeasure", {}).get("units", {})
-        for unit, vals in facts.items():
+        g = (r.json().get("facts") or {}).get("us-gaap", {})
+        sh = {}
+        for f in SHARE_FACTS:
+            for v in (g.get(f, {}).get("units", {}).get("shares") or []):
+                sh.setdefault(v["end"], v["val"])
+        for unit, vals in g.get("InvestmentOwnedBalanceOtherMeasure", {}).get("units", {}).items():
             if unit.lower() not in ("oz", "ounce", "ounces", "troyounce"):
                 continue
             for v in vals:
-                rows.append({"fund": fund, "metal": metal, "date": v["end"], "ounces": round(float(v["val"]), 1), "form": v.get("form"), "filed": v.get("filed")})
+                rows.append({"fund": fund, "metal": metal, "date": v["end"], "ounces": round(float(v["val"]), 1), "form": v.get("form"), "filed": v.get("filed"),
+                             "shares": sh.get(v["end"])})
         time.sleep(1)
     if not rows:
-        raise RuntimeError("no PPLT/PALL ounces in SEC data")
+        raise RuntimeError("no ETF ounces in SEC data")
     df = pd.DataFrame(rows).sort_values(["fund", "date", "filed"]).drop_duplicates(["fund", "date"], keep="last")
-    n = merge_csv(RAW / "etf_pgm.csv", df, ["fund", "date"])
+    n = merge_csv(RAW / "etf_sec.csv", df, ["fund", "date"])
+    pg = df[df.fund.isin(["PPLT", "PALL"])][["fund", "metal", "date", "ounces", "form", "filed"]]
+    n += merge_csv(RAW / "etf_pgm.csv", pg, ["fund", "date"])
     for f, g in df.groupby("fund"):
-        print(f, "last", g.date.iloc[-1], g.ounces.iloc[-1], "oz")
+        print(f, len(g), "quarters, last", g.date.iloc[-1], g.ounces.iloc[-1], "oz")
     return n
 
 
-STEPS = {"etf": etf, "lme": lme, "wgc": wgc, "icsg": icsg, "iai": iai, "usgs": usgs, "silver": silver, "rates": rates, "comex": comex, "wpic": wpic, "jm": jm, "pgm_etf": pgm_etf}
+STEPS = {"etf": etf, "etf_more": etf_more, "lme": lme, "wgc": wgc, "icsg": icsg, "iai": iai, "usgs": usgs, "silver": silver, "rates": rates, "comex": comex, "wpic": wpic, "jm": jm, "pgm_etf": pgm_etf}
 
 
 def main():

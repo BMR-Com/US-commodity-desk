@@ -194,3 +194,5 @@ nav.comm a.navlink{color:#cfe3d2;padding:.55rem .9rem;font-size:13px;text-decora
 
 .bt-t td,.bt-t th{white-space:nowrap}.bt-row{cursor:pointer}.bt-row:hover td{background:#f7faf7}.bt-row.on td{background:#e8f2ea}
 .warn{color:var(--warn);font-weight:600}
+#mtBody .seg{display:inline-flex;gap:4px;flex-wrap:wrap}#mtBody .seg button{font:inherit;font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#444;cursor:pointer}
+#mtBody .seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}

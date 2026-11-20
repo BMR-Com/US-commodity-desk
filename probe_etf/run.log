@@ -1,0 +1,30 @@
+── etf
+   robots.txt disallows https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en
+GLD archive not available
+IAU Nov 19, 2026 460.11 t
+IAU history 5491 days
+SLV Nov 19, 2026 15589.09 t
+SLV history 5180 days
+── etf_more
+- Sprott
+PHYS gold 690 chart points (datetime.date(2026, 11, 18), 3804356.0)
+PSLV silver 644 chart points (datetime.date(2026, 11, 12), 204597678.0)
+SPPP platinum 312 chart points (datetime.date(2026, 11, 9), 196182.0)
+SPPP palladium 277 chart points (datetime.date(2026, 11, 18), 154363.0)
+- abrdn
+PPLT 2026-11-19 126950000.0 shares, 452.1 oz per basket
+PALL 2026-11-19 28425000.0 shares, 226.05 oz per basket
+SGOL 2026-11-19 179200000.0 shares, 951.8 oz per basket
+SIVR 2026-11-19 72300000.0 shares, 47482.9 oz per basket
+- GraniteShares
+PLTM 1651 days from 2020-05-06 to 2026-11-19
+BAR 1651 days from 2020-05-06 to 2026-11-19
+── pgm_etf
+BAR 39 quarters, last 2026-09-30 320863.4 oz
+IAU 8 quarters, last 2026-09-30 14901766.0 oz
+PALL 54 quarters, last 2026-09-30 521775.4 oz
+PLTM 36 quarters, last 2026-09-30 103945.8 oz
+PPLT 54 quarters, last 2026-09-30 1212717.9 oz
+SGOL 54 quarters, last 2026-09-30 1716361.6 oz
+SIVR 54 quarters, last 2026-09-30 70150099.1 oz
+SLV 8 quarters, last 2026-09-30 493578376.0 oz

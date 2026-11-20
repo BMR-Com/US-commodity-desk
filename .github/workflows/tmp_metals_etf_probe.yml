@@ -9,9 +9,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install -q requests pandas openpyxl xlrd lxml playwright && python -m playwright install --with-deps chromium > /dev/null
-      - run: timeout 1000 python probe_etf/probe3.py || true
+      - run: pip install -q requests pandas openpyxl xlrd lxml
+      - run: |
+          git fetch -q origin main && git checkout origin/main -- data/metals/raw
+          cp probe_etf/metals_pipe.py pipelines/metals.py
+          python -u pipelines/metals.py etf etf_more pgm_etf 2>&1 | tee probe_etf/run.log || true
+          mkdir -p probe_out4 && cp data/metals/raw/etf_*.csv data/metals/raw/fetch_log.json probe_out4/
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@users.noreply.github.com
-          find probe_out3 -size +3M -delete; git add -f probe_out3; git commit -qm "probe output [skip ci]" || true; git push || true
+          git add -f probe_out4 probe_etf/run.log; git commit -qm "probe output [skip ci]" || true; git push || true

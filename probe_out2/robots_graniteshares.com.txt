@@ -1,0 +1,52 @@
+status 200
+User-agent: *
+Allow: /
+Disallow: /umbraco
+
+User-agent: GPTBot
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: /umbraco
+ 
+User-agent: ClaudeBot
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: /umbraco
+ 
+User-agent: PerplexityBot
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: /umbraco
+ 
+User-agent: Google-Extended
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: /umbraco
+ 
+User-agent: anthropic-ai
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: /umbraco
+ 
+User-agent: Applebot-Extended
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: /umbraco
+ 
+User-agent: ChatGPT-User
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: /umbraco
+
+Sitemap: https://graniteshares.com/sitemap.xml
+Sitemap: https://graniteshares.com/uk/sitemap.xml
+Sitemap: https://graniteshares.com/de/sitemap.xml
+Sitemap: https://graniteshares.com/fr/sitemap.xml
+Sitemap: https://graniteshares.com/it/sitemap.xml

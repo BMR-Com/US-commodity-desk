@@ -1350,6 +1350,347 @@
 "days_to_out": 129
 }
 ]
+},
+"GC": {
+"name": "Gold (COMEX)",
+"settle": "physical",
+"roll": "Roll or exit before first position day (two business days before the delivery month); open interest moves to the next active month (Feb, Apr, Jun, Aug, Oct, Dec) during the last week of the month before.",
+"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"contracts": [
+{
+"contract": "GCZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-29",
+"out_by": "2026-11-25",
+"days_to_out": 3
+},
+{
+"contract": "GCG2027",
+"month": "2027-02",
+"fpd": "2027-01-28",
+"fnd": "2027-01-29",
+"ltd": "2027-02-24",
+"out_by": "2027-01-27",
+"days_to_out": 44
+},
+{
+"contract": "GCJ2027",
+"month": "2027-04",
+"fpd": "2027-03-30",
+"fnd": "2027-03-31",
+"ltd": "2027-04-28",
+"out_by": "2027-03-29",
+"days_to_out": 85
+},
+{
+"contract": "GCM2027",
+"month": "2027-06",
+"fpd": "2027-05-27",
+"fnd": "2027-05-28",
+"ltd": "2027-06-28",
+"out_by": "2027-05-26",
+"days_to_out": 127
+},
+{
+"contract": "GCQ2027",
+"month": "2027-08",
+"fpd": "2027-07-29",
+"fnd": "2027-07-30",
+"ltd": "2027-08-27",
+"out_by": "2027-07-28",
+"days_to_out": 169
+},
+{
+"contract": "GCV2027",
+"month": "2027-10",
+"fpd": "2027-09-29",
+"fnd": "2027-09-30",
+"ltd": "2027-10-27",
+"out_by": "2027-09-28",
+"days_to_out": 212
+},
+{
+"contract": "GCZ2027",
+"month": "2027-12",
+"fpd": "2027-11-29",
+"fnd": "2027-11-30",
+"ltd": "2027-12-28",
+"out_by": "2027-11-26",
+"days_to_out": 254
+}
+]
+},
+"SI": {
+"name": "Silver (COMEX)",
+"settle": "physical",
+"roll": "As gold; active months Mar, May, Jul, Sep, Dec.",
+"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"contracts": [
+{
+"contract": "SIZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-29",
+"out_by": "2026-11-25",
+"days_to_out": 3
+},
+{
+"contract": "SIH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-29",
+"out_by": "2027-02-24",
+"days_to_out": 63
+},
+{
+"contract": "SIK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-26",
+"out_by": "2027-04-28",
+"days_to_out": 107
+},
+{
+"contract": "SIN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-28",
+"out_by": "2027-06-28",
+"days_to_out": 148
+},
+{
+"contract": "SIU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-28",
+"out_by": "2027-08-27",
+"days_to_out": 191
+},
+{
+"contract": "SIZ2027",
+"month": "2027-12",
+"fpd": "2027-11-29",
+"fnd": "2027-11-30",
+"ltd": "2027-12-28",
+"out_by": "2027-11-26",
+"days_to_out": 254
+},
+{
+"contract": "SIH2028",
+"month": "2028-03",
+"fpd": "2028-02-28",
+"fnd": "2028-02-29",
+"ltd": "2028-03-29",
+"out_by": "2028-02-25",
+"days_to_out": 315
+}
+]
+},
+"HG": {
+"name": "Copper (COMEX)",
+"settle": "physical",
+"roll": "As gold; every month is listed but liquidity sits in Mar, May, Jul, Sep, Dec.",
+"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"contracts": [
+{
+"contract": "HGZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-29",
+"out_by": "2026-11-25",
+"days_to_out": 3
+},
+{
+"contract": "HGH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-29",
+"out_by": "2027-02-24",
+"days_to_out": 63
+},
+{
+"contract": "HGK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-26",
+"out_by": "2027-04-28",
+"days_to_out": 107
+},
+{
+"contract": "HGN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-28",
+"out_by": "2027-06-28",
+"days_to_out": 148
+},
+{
+"contract": "HGU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-28",
+"out_by": "2027-08-27",
+"days_to_out": 191
+},
+{
+"contract": "HGZ2027",
+"month": "2027-12",
+"fpd": "2027-11-29",
+"fnd": "2027-11-30",
+"ltd": "2027-12-28",
+"out_by": "2027-11-26",
+"days_to_out": 254
+},
+{
+"contract": "HGH2028",
+"month": "2028-03",
+"fpd": "2028-02-28",
+"fnd": "2028-02-29",
+"ltd": "2028-03-29",
+"out_by": "2028-02-25",
+"days_to_out": 315
+}
+]
+},
+"ALI": {
+"name": "Aluminum (COMEX)",
+"settle": "physical",
+"roll": "As gold; thinly traded, so most aluminum risk is held at the LME.",
+"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"contracts": [
+{
+"contract": "ALIX2026",
+"month": "2026-11",
+"fpd": "2026-10-29",
+"fnd": "2026-10-30",
+"ltd": "2026-11-25",
+"out_by": "2026-10-28",
+"days_to_out": 0
+},
+{
+"contract": "ALIZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-29",
+"out_by": "2026-11-25",
+"days_to_out": 3
+},
+{
+"contract": "ALIF2027",
+"month": "2027-01",
+"fpd": "2026-12-30",
+"fnd": "2026-12-31",
+"ltd": "2027-01-27",
+"out_by": "2026-12-29",
+"days_to_out": 25
+},
+{
+"contract": "ALIG2027",
+"month": "2027-02",
+"fpd": "2027-01-28",
+"fnd": "2027-01-29",
+"ltd": "2027-02-24",
+"out_by": "2027-01-27",
+"days_to_out": 44
+},
+{
+"contract": "ALIH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-29",
+"out_by": "2027-02-24",
+"days_to_out": 63
+},
+{
+"contract": "ALIJ2027",
+"month": "2027-04",
+"fpd": "2027-03-30",
+"fnd": "2027-03-31",
+"ltd": "2027-04-28",
+"out_by": "2027-03-29",
+"days_to_out": 85
+},
+{
+"contract": "ALIK2027",
+"month": "2027-05",
+"fpd": "2027-04-29",
+"fnd": "2027-04-30",
+"ltd": "2027-05-26",
+"out_by": "2027-04-28",
+"days_to_out": 107
+}
+]
+},
+"AUP": {
+"name": "Aluminum Midwest premium (COMEX AUP)",
+"settle": "cash",
+"roll": "No delivery: settles to the monthly average of the Platts US Midwest premium; can be held to settlement.",
+"rule": "COMEX aluminum Midwest premium (AUP, Platts): cash-settled on the monthly average of the Platts Midwest premium; LTD = last business day of the contract month.",
+"contracts": [
+{
+"contract": "AUPX2026",
+"month": "2026-11",
+"ltd": "2026-11-30",
+"out_by": "2026-11-30",
+"days_to_out": 5
+},
+{
+"contract": "AUPZ2026",
+"month": "2026-12",
+"ltd": "2026-12-31",
+"out_by": "2026-12-31",
+"days_to_out": 27
+},
+{
+"contract": "AUPF2027",
+"month": "2027-01",
+"ltd": "2027-01-29",
+"out_by": "2027-01-29",
+"days_to_out": 46
+},
+{
+"contract": "AUPG2027",
+"month": "2027-02",
+"ltd": "2027-02-26",
+"out_by": "2027-02-26",
+"days_to_out": 65
+},
+{
+"contract": "AUPH2027",
+"month": "2027-03",
+"ltd": "2027-03-31",
+"out_by": "2027-03-31",
+"days_to_out": 87
+},
+{
+"contract": "AUPJ2027",
+"month": "2027-04",
+"ltd": "2027-04-30",
+"out_by": "2027-04-30",
+"days_to_out": 109
+},
+{
+"contract": "AUPK2027",
+"month": "2027-05",
+"ltd": "2027-05-28",
+"out_by": "2027-05-28",
+"days_to_out": 129
+}
+]
 }
 },
 "check": {

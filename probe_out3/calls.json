@@ -1,0 +1,290 @@
+{
+ "pplt_Performance_err": "Locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"Performance\", exact=True).first\n    - locator resolved to <button class",
+ "pplt_Premium/Discount_err": "Locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"Premium/Discount\", exact=True).first\n    - locator resolved to <button ",
+ "pplt_Literature_err": "Locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"Literature\", exact=True).first\n    - locator resolved to <button class=",
+ "pplt": [
+  {
+   "url": "https://www.aberdeeninvestments.com/_next/data/9A7Osn3E10-yRu474McVw/en-us/institutional/legal-and-regulatory.json?path=institutional&path=legal-and-regulatory",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 71346,
+   "file": "pplt_000"
+  },
+  {
+   "url": "https://www.aberdeeninvestments.com/_next/data/9A7Osn3E10-yRu474McVw/en-us/institutional/cookie-policy.json?path=institutional&path=cookie-policy",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 137266,
+   "file": "pplt_001"
+  },
+  {
+   "url": "https://www.aberdeeninvestments.com/_next/data/9A7Osn3E10-yRu474McVw/en-us/institutional/privacy.json?path=institutional&path=privacy",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 74067,
+   "file": "pplt_002"
+  },
+  {
+   "url": "https://www.aberdeeninvestments.com/api/gateway/funds/text/importantInfo",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"shareClass\":\"8474fed3-0313-8d09-83a0-3f452ba4a985\",\"language\":\"en-US\",\"countryCode\":\"USA\",\"correlationFundRangeId\":\"490e0dc7-c056-1ea5-6242-b256d7f40d94\",\"site\":\"Institutional\"}",
+   "ct": "application/json; charset=utf-8",
+   "len": 27,
+   "file": "pplt_003"
+  },
+  {
+   "url": "https://c.az.contentsquare.net/pageview?ex=&dt=33&pvt=n&cvars=%7B%221%22%3A%5B%22Vector%22%2C%22investments%22%5D%2C%222%22%3A%5B%22Investor%20Type%22%2C%22institutional%22%5D%7D&cvarp=%7B%221%22%3A%5B%22Vector%22%2C%22investments%22%5D%2C%222%22%3A%5B%22Investor%20Type%22%2C%22institutional%22%5D%7D&la=en-US&uc=1&url=https%3A%2F%2Fwww.aberdeeninvestments.com%2Fen-us%2Finstitutional%2Ffunds%2Fview-all-funds%2Fabrdn-physical-platinum-shares-etf-us0032601066%3FsubTab%3DkeyInformationTab&dr=&dw=1280&dh=3027&ww=1280&wh=720&sw=1280&sh=720&uu=c17d1436-8bb0-ab3b-c910-38650f40caeb&sn=1&hd=1795205657&v=15.285.0&pid=37872&pn=1&ct=0",
+   "status": 204,
+   "method": "POST",
+   "post": "",
+   "ct": "",
+   "len": 0,
+   "file": "pplt_004"
+  },
+  {
+   "url": "https://www.aberdeeninvestments.com/api/gateway/funds/text/keyInfoDisclaimer",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"countryCode\":\"USA\",\"language\":\"en-US\",\"shareClass\":\"8474fed3-0313-8d09-83a0-3f452ba4a985\",\"assetClassId\":\"Alternatives\",\"fund\":\"777cfbac-4a9a-be05-0f14-00cb935e1fa5\",\"correlationFundRangeId\":\"490e0dc7-c056-1ea5-6242-b256d7f40d94\",\"fundRangeName\":\"Exchange Traded Fund\",\"fundName\":\"abrdn Physical Platinum Shares ETF\",\"fundNameId\":\"abrdn Physical Platinum Shares ETF\",\"shareClassNameId\":\"Share\",\"literatureAuthorizations\":[\"2\"],\"sfdrClassificationId\":\"N/A\",\"countryInvestors\":{\"countryCode\":\"USA\",\"investorType\":\"4,2\",\"jurisdiction\":\"Live\"},\"site\":\"Institutional\"}",
+   "ct": "application/json; charset=utf-8",
+   "len": 2,
+   "file": "pplt_005"
+  },
+  {
+   "url": "https://www.aberdeeninvestments.com/api/gateway/funds/text/fundObjectives",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"countryCode\":\"USA\",\"language\":\"en-US\",\"shareClass\":\"8474fed3-0313-8d09-83a0-3f452ba4a985\",\"assetClassId\":\"Alternatives\",\"fund\":\"777cfbac-4a9a-be05-0f14-00cb935e1fa5\",\"correlationFundRangeId\":\"490e0dc7-c056-1ea5-6242-b256d7f40d94\",\"fundRangeName\":\"Exchange Traded Fund\",\"fundName\":\"abrdn Physical Platinum Shares ETF\",\"fundNameId\":\"abrdn Physical Platinum Shares ETF\",\"shareClassNameId\":\"Share\",\"literatureAuthorizations\":[\"2\"],\"sfdrClassificationId\":\"N/A\",\"countryInvestors\":{\"countryCode\":\"USA\",\"investorType\":\"4,2\",\"jurisdiction\":\"Live\"},\"site\":\"Institutional\"}",
+   "ct": "application/json; charset=utf-8",
+   "len": 188,
+   "file": "pplt_006"
+  },
+  {
+   "url": "https://c556855555593w4pk3n3n3p081551310.germany-2.evergage.com/api2/event/investments_prod?event=eyJzb3VyY2UiOnsicGFnZVR5cGUiOiJhbnlQYWdlIiwibG9jYWxlIjoiZW5fVVMiLCJ1cmwiOiJodHRwczovL3d3dy5hYmVyZGVlbmludmVzdG1lbnRzLmNvbS9lbi11cy9pbnN0aXR1dGlvbmFsL2Z1bmRzL3ZpZXctYWxsLWZ1bmRzL2FicmRuLXBoeXNpY2FsLXBsYXRpbnVtLXNoYXJlcy1ldGYtdXMwMDMyNjAxMDY2P3N1YlRhYj1rZXlJbmZvcm1hdGlvblRhYiIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiOTMiLCJjb250ZW50Wm9uZXMiOltdfSwidXNlciI6eyJhbm9ueW1vdXNJZCI6IjM2MjBjNmY1OGY4MDE2ZTEiLCJhdHRyaWJ1dGVzIjp7ImxvY2FsZSI6ImVuX1VTIiwiY291bnRyeSI6IlVTIn0sImlkZW50aXRpZXMiOnt9fSwiaW50ZXJhY3Rpb24iOnsibmFtZSI6IlZpZXcgQ2F0YWxvZyBPYmplY3QiLCJjYXRhbG9nT2JqZWN0Ijp7InR5cGUiOiJBcnRpY2xlIiwiaWQiOiJhYnJkbiBQaHlzaWNhbCBQbGF0aW51bSBTaGFyZXMgRVRGIHwgQWJlcmRlZW4gSW52ZXN0bWVudHMiLCJyZWxhdGVkQ2F0YWxvZ09iamVjdHMiOnsiQ2F0ZWdvcnkiOlsiaW5zdGl0dXRpb25hbCJdLCJJdGVtQ2xhc3MiOlsiQWx0ZXJuYXRpdmVzIl0sIkJyYW5kIjpbIkFsdGVybmF0aXZlcyJdLCJTdHlsZSI6WyJBbHRlcm5hdGl2ZSBJbnZlc3RtZW50IFNvbHV0aW9ucyJdLCJGdW5kQ29kZSI6WyJVUzAwMzI2MDEwNjYiXX19fSwicGFnZVZpZXciOnRydWUsImNvbnNlbnRzIjpbeyJwdXJwb3NlIjoiUGVyc29uYWxpemF0aW9uIiwicHJvdmlkZXIiOiJBQkQgQ29uc2VudCBNYW5hZ2VyIiwic3RhdHVzIjoiT3B0IEluIn1dLCJhY2NvdW50Ijp7fSwiX3Rvb2xzRXZlbnRMaW5rSWQiOiIwMzkwNzMzNzM5NDQyOTMiLCJleHBsYWluIjp0cnVlfQ%3D%3D",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json;charset=UTF-8",
+   "len": 70,
+   "file": "pplt_007"
+  },
+  {
+   "url": "https://c556855555593w4pk3n3n3p081551310.germany-2.evergage.com/api2/event/investments_prod?event=eyJpbnRlcmFjdGlvbiI6eyJuYW1lIjoiVmlld1BhZ2V8fGFicmRuIFBoeXNpY2FsIFBsYXRpbnVtIFNoYXJlcyBFVEYgfCBBYmVyZGVlbiBJbnZlc3RtZW50c3x8aW5zdGl0dXRpb25hbHx8X3x8VVMwMDMyNjAxMDY2fHxBbHRlcm5hdGl2ZXN8fEFsdGVybmF0aXZlIEludmVzdG1lbnQgU29sdXRpb25zIn0sInNvdXJjZSI6eyJsb2NhbGUiOiJlbl9VUyIsInBhZ2VUeXBlIjoiYW55UGFnZSIsInVybCI6Imh0dHBzOi8vd3d3LmFiZXJkZWVuaW52ZXN0bWVudHMuY29tL2VuLXVzL2luc3RpdHV0aW9uYWwvZnVuZHMvdmlldy1hbGwtZnVuZHMvYWJyZG4tcGh5c2ljYWwtcGxhdGludW0tc2hhcmVzLWV0Zi11czAwMzI2MDEwNjY%2Fc3ViVGFiPWtleUluZm9ybWF0aW9uVGFiIiwidXJsUmVmZXJyZXIiOiIiLCJjaGFubmVsIjoiV2ViIiwiYmVhY29uVmVyc2lvbiI6MTYsImNvbmZpZ1ZlcnNpb24iOiI5MyIsImNvbnRlbnRab25lcyI6W119LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsibG9jYWxlIjoiZW5fVVMiLCJjb3VudHJ5IjoiVVMifSwiaWRlbnRpdGllcyI6e30sImFub255bW91c0lkIjoiMzYyMGM2ZjU4ZjgwMTZlMSJ9LCJjb25zZW50cyI6W10sImFjY291bnQiOnt9LCJwZXJmb3JtYW5jZSI6eyJkb21Mb2FkVGltZSI6OTQ4LCJwYWdlTG9hZFRpbWUiOjk1MSwic2RrUGFyc2VUaW1lIjoyLCJzZGtMb2FkVGltZSI6MzksInNka0Ruc1RpbWUiOjF9LCJfdG9vbHNFdmVudExpbmtJZCI6IjAyODc4MzUxNDQ1NzM2ODkzIiwiZXhwbGFpbiI6dHJ1ZX0%3D",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json;charset=UTF-8",
+   "len": 70,
+   "file": "pplt_008"
+  },
+  {
+   "url": "https://www.aberdeeninvestments.com/api/gateway/library/fundHero",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"countryCode\":\"USA\",\"language\":\"en-US\",\"shareClass\":\"8474fed3-0313-8d09-83a0-3f452ba4a985\",\"correlationFundRangeId\":\"490e0dc7-c056-1ea5-6242-b256d7f40d94\",\"fundRangeName\":\"Exchange Traded Fund\",\"literatureAuthorizations\":[\"2\"],\"fundName\":\"abrdn Physical Platinum Shares ETF\",\"fund\":\"777cfbac-4a9a-be05-0f14-00cb935e1fa5\",\"fundNameId\":\"abrdn Physical Platinum Shares ETF\",\"shareClassNameId\":\"Share\",\"sfdrClassificationId\":\"N/A\",\"site\":\"Institutional\"}",
+   "ct": "application/json; charset=utf-8",
+   "len": 408,
+   "file": "pplt_009"
+  },
+  {
+   "url": "https://srm.aa.contentsquare.net/exist?v=15.285.0&pid=37872&pn=1&sn=1&uu=c17d1436-8bb0-ab3b-c910-38650f40caeb",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"projectId\":\"37872\",\"filter\":2,\"hashes\":[\"c7ec56fe5ca6976cd2f5b83cd171b979d432b121f2bd03177b31c99100a3195b\"],\"touch\":true}",
+   "ct": "application/json",
+   "len": 2,
+   "file": "pplt_010"
+  },
+  {
+   "url": "https://k-eu1.az.contentsquare.net/v2/recording?rt=5&v=15.285.0&pid=37872&pn=1&sn=1&uu=c17d1436-8bb0-ab3b-c910-38650f40caeb&let=1795205657986&rst=1795205657984&ri=1&ct=2",
+   "status": 200,
+   "method": "POST",
+   "post": "\u001f\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\u0003\ufffd\ufffd\ufffdH\ufffd%\ufffd*a\ufffd\ufffd\ufffd\u0019[\u0002\ufffd\b\u0004\ufffdR\ufffd\u06eb\ufffdJ]\ufffdVUiJ\ufffd\ufffd\ufffd\u001d\ufffd\u0442@\ufffdD%\b\ufffd\u00000?jn\ufffd\ufffd\u0003\u0707\ufffd6?\ufffd\ufffdG\ufffd'\ufffd\ufffd\u001e \t\u0002\u0001\ufffd\ufffd2\ufffd\ufffdZ\ufffd\ufffdJ\"\ufffd@ \u0010\ufffd\ufffdp?\ufffd\ufffd\ufffd\ufffd\ufffd(\u0012\ufffd\u001c]P/p\ufffd\u5e0e\u0017\ufffd|<*\ufffdVrt\ufffd\ufffdH\ufffd\ufffdbt\ufffdo\ufffdR\u030dk\ufffd\u0017q\ufffd\ufffd\ufffd#\ufffd\ufffdwLk\ufffd\uffcd\ufffdnb%\ufffd\ufffd(J8y<\ufffd\ufffd\ufffdx\ufffdH\u0540:\ufffdZl\ufffdi\ufffd\u0776\ufffd\u001f#:\ufffd\u061c\u001d\ufffdGSQ\ufffd\u001f\u007fx9\ufffd\u0018-\ufffdrU\\\ufffd\ufffd\ufffd\ufffd\u0718b*\ufffdH\ufffd4N\ufffdeQ.eZ\u0016f\ufffd-\ufffdej\ufffd\ufffd\ufffd8-\u02b8\\\ufffdq\ufffd\ufffd\ufffd|\ufffdN\ufffd\ufffd\ufffd:\ufffd7\ufffdH\u0012C}\u0014\ufffd<J\ufffd\ufffd\u2b88C\ufffd\u0018\ufffdD\ufffdq\ufffd^\u001a\ufffdB\ufffd0d93\u0585e\ufffd\u0335\ufffd\ufffd\u007f(\ufffd\u04f7bzy%\ufffd^\ufffd\ufffd,_\nh\ufffd\ufffd\ufffd\ufffd\ufffd#\u0011\ufffd\ufffd|\u0019\ufffd.\ufffdx\ufffd\u022ee.#\ufffdd\ufffdGj .\ufffdcT\ufffdy\ufffd$\u007f\u0019]X\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd8Bq\u0012\ufffdw\ufffd\ufffd\ufffdp\ufffd\u0006\ufffd\ufffd\ufffd*\ufffdK\ufffd\ufffdM\u001c\ufffd\ufffd\ufffd\u0005e\ufffd5\u001e-d<_\ufffd0\ufffd\u0612H` \u01e3l6+d\ufffdJ\ufffdJlV}|\ufffd\ufffd\ufffdS\"\ufffdu\ufffdS\ufffd\u0019u\ufffd]c\ufffda\ufffd\ufffdL\ufffd\ufffd\ufffd\ufffdx4\ufffd\ufffd|\ufffd\ufffd\ufffdht\ufffd\u01e3p]\ufffd\ufffd\ufffd\ufffdD\ufffd#\ufffd\ufffdN\ufffd\ufffd\ufffd\ufffd<.\ufffd\u001c\u0007itA\u007f\ufffdm<b\ufffd\ufffdJ\u01e3$\u000bE\ufffdX\ufffd\ufffd\ufffdH\ufffd\u0018\ufffde\u001eO\u05e5\ufffd6\u0016\ufffd\ufffd\ufffd.F\u06a7\ufffd\ufffd\ufffdk\u0011\ufffd\ufffd \ufffd\ufffd|\u0013O\ufffd8\ufffd\ufffd.\ufffd\ufffd\u001a\ufffd\ufffd\ufffdo\ufffd\ufffdy\ufffd(\ufffdn]\ufffd\u0014\ufffd8\ufffd\ufffd\ufffd\ufffdbd\ufffd\u01a3<K\u0519\"\ufffd\ufffdpr\u001e\u000bc\ufffdE\"\u0019]\ufffd\ufffd|-7\ufffd\u00121\ufffdp\ufffd[\ufffd\u001b\ufffd\ufffd\ufffd(\ufffd\u0019\ufffdGa\"\ufffdbsx\ufffd_\ufffdLf\ufffd\ufffdY\ufffd'\ufffd\u000e\ufffdD$\r\ufffd\ufffd27\ufffd,\ufffdL\ufffd\u007f\ufffd\ufffd\ufffd\ufffd\ufffdH\ufffd\ufffd\ufffd\ufffdn\ufffd\u001a\ufffdRu\u001b\ufffdr\ufffd\ufffd\u01a3\ufffdz\ufffd\ufffd!L\ufffd\ufffdh<*\ufffdR.7\ufffd\ufffd\ufffd\ufffd\ufffdm<r:\u0007\ufffdjm\u007fT\u0012\u0001_\u001c\ufffd\u04c0\ufffd\ufffd;\u001c\u0016\ufffd\ufffd$\ufffd\ufffd \ufffd8\ufffdd\ufffd\ufffd\ufffdk\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0014Q\ufffds\ufffd~\u0003\ufffdo\ufffd\ufffd\ufffd\ufffdR\ufffd\ufffd\ufffd\u0013.D^\ufffdrt1Z\ufffd3\ufffd\u001f\ufffd\ufffd\u0011\u0006\\\ufffd\ufffd+^\ufffdZS'\ufffdm<\ufffd;/3\u0362\ufffdf?)\ufffd\ufffd(\ufffdW#8\ufffd\ufffd\ufffd\ufffd\u06fe\ufffd\ufffdQ\ufffd\ufffd\ufffdL\ufffd\ufffd\ufffd\u0002^F\ufffd:\u000e\ufffd\ufffd\ufffd\ufffdcn\ufffd\ufffd4\ufffd\ufffdIS>\ufffd\ufffd&\u0013h\ufffd\ufffd\u001eo\u0726\r\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdH\u0005Lcc\ufffd\ufffd\ufffd4\u0016Y\u0012\u027c\ufffdz\ufffdt\ufffd\u001b\ufffd\ufffd\ufffd-C\u07f8\ufffd7qY\ufffd\ufffd\ufffd\ufffd\ufffdD\ufffd\r\u001e\ufffdv\ufffd2\ufffd\ufffdue\ufffd\ufffd\u001b4\ufffd\ufffd\ufffd/\ufffd\ufffdE\ufffdV\u000b\by\ufffd[AFc5\u001a\u0366\ufffd\u0018xx\ufffd\ufffdi\ufffdfc\u001c&\ufffdk\ufffd!\ufffdDN\"\ufffd\ufffdT\ufffd\ufffd\u0011!\ufffd\u0015\ufffdY\ufffd\ufffdF\ufffdee\ufffd\u0015\ufffd\ufffd\ufffdQ\ufffdy\ufffd\"\ufffd\ufffdU\ufffd\ufffd\u043f\ufffd\ufffd/o'\u03df\ufffd}:\ufffd\ufffd6\ufffd\ufffdH\ufffdVI\u001c\ufffd\ufffd>\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd6\ufffdR\n\ufffd)\ufffd\ufffd)\ufffd<\ufffd\".\ufffd\u001f\ufffd\ufffdn>\ufffd\ufffd#\ufffd\u0005\ufffd\u03b4\ufffd\ufffd\u0017\ufffd\u0593\u0256\ufffd,U\u000b\ufffd\ufffd\ufffd\ufffd\ufffd\u001dv\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdM\\\ufffd0\ufffd\ufffd,_\ufffd\u001b\ufffd\u07cd\ufffdp!\ufffd\ufffd\ufffd\ufffd\ufffd?\ufffd\ufffd\ufffd\ufffdl\ufffd\ufffd\fK\ufffd\ufffd*\ufffdV2/cY\ufffds\ufffdux\u00195\ufffd/\ufffd<N\ufffdx>N9<\b\ufffd p\ufffdo\ufffd\ufffd\u07cdr\ufffd\ufffd:\ufffd%|\ufffd\ufffd\ufffd}\ufffdn\u0014I\ufffdd\ufffd,\u0173\ufffd\ufffd-e\ufffd\ufffd\ufffdl\ufffd\ufffdhn\ufffds\ufffd\ufffd\u000em\ufffd\ufffd7\ufffd\ufffd\ufffdz\ufffd\u0017,\u0017\ufffd\ufffd4\u0015q\ufffd\ufffd\u07b8^3)D\u0001NM\u001c\ufffd\ufffd$\ufffd\ufffd\u0424\ufffd\u05bb\ufffdLey.\ufffdB\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd9\ufffd\ufffdY\\\ufffd\ufffd\ufffd\ufffd\ufffdz\ufffdM>\ufffd3\ufffdNJ\u0012fI\"Cu#\ufffdw\ufffd\ufffd\ufffd\u0006\ufffd\u00fb\ufffd\u0005,\ufffdp$\ufffd\u000f=\u0304\"[\ufffd|\u0019\u0015\ufffdqI\ufffd\ufffd\ufffd\u001a\ufffdy\\.\ufffd\u04fd\ufffdC\ufffd(n\ufffd3^??/\ufffd\ufffd\ufffd0\ufffd\ufffdQ\u0011]\ufffd\ufffd\u0019p^\ufffdR\ufffd/EQ\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdj\ufffd\ufffd8\ufffd\ufffd\ufffdj\ufffd\ufffdrDW\"\ufffd\u0012sy\ufffd\ufffd7\ufffd\ufffd\ufffd\ufffdT7\u001aV\ufffd\u000e\ufffd\ufffd\"^\ufffd\ufffd\ufffd\ufffd\ufffd\u007f\ufffd.\ufffd\ufffd\u001d\u0016\ufffd\ufffd3f\ufffdu\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdY\ufffd\u0011\ufffd|\ufffdu\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0019\ufffd\ufffd\ufffd\ufffd\ufffd\u000f\ufffd\ufffd,N\ufffd\ufffd\u07e7Y*\ufffd\ufffd\ufffd2I\ufffd\ufffd\ufffdC?\ufffdn\ufffd\ufffdf\ufffd\ufffd\u03d9eYp\ufffd\u07df\ufffd\ufffd\ufffd\u000e\ufffdqt\ufffd{\ufffd\u00e2:\ufffd\u02f0\ufffd\u000e\ufffd \ufffdR\ufffd\ufffdD\ufffd1\ufffd\ufffdv/\u007f\ufffd\ufffd\u07fb\ufffd\ufffd\ufffdU7\ufffd\ufffd\ufffd\ufffd\ufffdC\u000e\ufffd4\ufffd]\ufffd\u0398\ufffd\ufffd\ufffdS\ufffd\ufffd\ufffd\u07df\ufffd^'h\\\ufffd2\ufffdJu)\u028e\ufffd\ufffd\ufffdp\ufffdy\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0017\ufffd\u0616\ufffd]\u0000\u001b\ufffds\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\ufffdi\ufffd\ufffd\ufffd\ufffd[\ufffd\u0007\ufffddZs[l\ufffd\ufffd\ufffdV\ufffdnO\ufffd\ufffdX\ufffd\ufffd\ufffd\u001b\ufffd\ufffd\ufffd\u01f7\ufffd\u001a?\ufffd\ufffd\ufffdo\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0017#1+e\ufffd\u0012\u001cJ\ufffdO\ufffd{\ufffd\ufffd\u00198\ufffdt\ufffd\ufffd1\u0361\u0223=\ufffd]\ufffd\ufffdK\ufffd\ufffd5Mxu\ufffda\u0013\ufffd\ufffd\ufffd`\ufffd~L\ufffd\ufffd\rU58\ufffd)\ufffd\ufffd\ufffd\ufffd\u0000p\ufffd\u0016\ufffdz\\\ufffd\ufffd;\ufffd[\u0233u)\r\ufffd\ufffd\ufffd:\r\ufffd\ufffd\u067f\ufffd\u05f8\u001a\ufffd\u05ec\ufffdQ\ufffd\u000ew\ufffd\ufffd\ufffd\u00161\ufffd?\ufffd\ufffdSk\ufffd\ufffd\ufffd\ufffd\ufffd-p\u0740\ufffd\ufffd\u0018\ufffd>R\ufffd\ufffd\ufffda\ufffdg\ufffd<\ufffd\ufffd\ufffd/E*\ufffd2G\u001b\ufffd\u0016&\ufffd7\ufffd\u0010G\ufffd\ufffdI\ufffdn\ufffd.%\ufffd\u007f\ufffdW\ufffd\ufffd\ufffdz7\"\ufffdW\ufffd\ufffd\u001e\ufffd\ufffd\ufffd(\ufffd\ufffdU\"\ufffd.\ufffd\ufffd=\ufffdm\ufffd/\u0016\ufffd\"\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdQM\ufffd\ufffdn\u0019\ufffd*\ufffd\ufffd\ufffdL$\ufffd\ufffd\u001b\ufffd\ufffd[:\ufffd\ufffdj\ufffdC\ufffd\ufffd\ufffd=\ufffdq\ufffd\ufffd\ufffdJ\ufffdd\u0017\ufffdh:m\f<\u0014\ufffd\ufffd\ufffd\ufffdZ\ufffdU\ufffdLx\ufffd/F\ufffd\ufffd\ufffd\ufffdn\ufffd\ufffd\ufffd{s&\ufffdKWm`E\"q\ufffd\ufffd\u0679M\ufffd<\ufffd\ufffd\u0005\ufffdV\ufffdOH\ufffd\u012b\u000b\u0002\u0006\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd'\ufffd3\ufffd \u0014N^\ufffd|\u001e\ufffd\u0017\ufffd\ufffdO\ufffd\u001d Y\ufffd(\ufffd\ufffdy\ufffd\ufffd*+bX\ufffd/\ufffd\ufffd\u0016Y\ufffd.\ufffd\u0013Rf\ufffd\ufffd\ufffd<\ufffdvo\u0016q)\ufffdb%ByA\ufffd\f\ufffdp\ufffd<\u000e)\u001c\u0397\"y\ufffd\ufffd\u0006\u05bd-\ufffd0\r\ufffdw[\ufffd\ufffd\ufffd\ufffdgq-\ufffd\ufffd\u0015y\b\ufffd\ufffd\ufffd0JMy=Oe\ufffd\ufffds*E\ufffd\ufffd\ufffd\u3e3e\ufffd\ufffd\t\ufffd\u001b\ufffd\ufffd\ufffdS;\ufffdW\ufffdO\u001d\ufffd\ufffd\ufffd:\ufffdE\ufffd&\ufffd<\ufffd\ufffdU\ufffd\u0179\ufffd\ufffd\ufffd\\\u0325\ufffd\ufffdS\ufffd\ufffd\ufffd\b[\ufffd\ufffdJ\u066a\ufffd\ufffdj\ufffd\ufffd\ufffd\ufffd,\ufffd3\ufffdY\ufffde\ufffdONZo\ufffd\r+\u000e\ufffd^W\ufffd0*5\u007f\ufffd",
+   "ct": "",
+   "len": 0,
+   "file": "pplt_011"
+  },
+  {
+   "url": "https://www.aberdeeninvestments.com/api/gateway/funds/fundDetailsKeyInformation",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"countryCode\":\"USA\",\"language\":\"en-US\",\"shareClass\":\"8474fed3-0313-8d09-83a0-3f452ba4a985\",\"assetClassId\":\"Alternatives\",\"fund\":\"777cfbac-4a9a-be05-0f14-00cb935e1fa5\",\"correlationFundRangeId\":\"490e0dc7-c056-1ea5-6242-b256d7f40d94\",\"fundRangeName\":\"Exchange Traded Fund\",\"fundName\":\"abrdn Physical Platinum Shares ETF\",\"fundNameId\":\"abrdn Physical Platinum Shares ETF\",\"shareClassNameId\":\"Share\",\"literatureAuthorizations\":[\"2\"],\"sfdrClassificationId\":\"N/A\",\"countryInvestors\":{\"countryCode\":\"USA\",\"investorType\":\"4,2\",\"jurisdiction\":\"Live\"},\"site\":\"Institutional\"}",
+   "ct": "application/json; charset=utf-8",
+   "len": 700,
+   "file": "pplt_012"
+  }
+ ],
+ "gs_pltm_Holdings_err": "Locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"Holdings\", exact=True).first\n    - locator resolved to <span class=\"Tit",
+ "gs_pltm": [
+  {
+   "url": "https://widget-sheriff.tradingview-widget.com/sheriff/api/v1/rules/search?origin=https%3A%2F%2Fgraniteshares.com",
+   "status": 204,
+   "method": "GET",
+   "post": "",
+   "ct": "",
+   "len": 0,
+   "file": "gs_pltm_000"
+  },
+  {
+   "url": "https://graniteshares.com/product/60/en-us/",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 3304,
+   "file": "gs_pltm_001"
+  },
+  {
+   "url": "https://knockoutv2.azurewebsites.net/api/ProductDistribution/triggers/When_a_HTTP_request_is_received/invoke/60?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=4ceS-QWicTOGl-cIb8IBf-T_V8n_hQf_SVDydfaKZsU",
+   "status": 502,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 163,
+   "file": "gs_pltm_002"
+  },
+  {
+   "url": "https://u07za62gjv-dsn.algolia.net/1/indexes/*/recommendations?x-algolia-agent=Algolia%20for%20JavaScript%20(5.28.0)%3B%20Recommend%20(5.28.0)%3B%20Browser&x-algolia-api-key=49b68a444f6bfc720b60977866e73f45&x-algolia-application-id=U07ZA62GJV",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"requests\":[{\"indexName\":\"Products\",\"objectID\":\"c19396f0-b0a7-4c62-ad42-127cb7a170a4\",\"model\":\"related-products\",\"threshold\":0,\"maxRecommendations\":4,\"queryParameters\":{\"filters\":\"data.locales:en-us\"}}]}",
+   "ct": "application/json; charset=UTF-8",
+   "len": 5739,
+   "file": "gs_pltm_003"
+  },
+  {
+   "url": "https://knockoutv2.azurewebsites.net/api/ProductHoldings/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=HVz3V8DcFoMg1DMwf2gc_2e24Bg_4xZD3abCZiBly6M",
+   "status": 502,
+   "method": "POST",
+   "post": "{\"ticker\":\"PLTM\",\"dataDate\":\"2026-11-19\"}",
+   "ct": "application/json; charset=utf-8",
+   "len": 163,
+   "file": "gs_pltm_004"
+  },
+  {
+   "url": "https://knockoutv2.azurewebsites.net/api/ProductNavHistory/triggers/When_a_HTTP_request_is_received/invoke/60?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=bH7VS-AEVsHFaoHEdwodgWM-T_MUr8kOaZi9St7whis",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 758183,
+   "file": "gs_pltm_005"
+  },
+  {
+   "url": "https://rn7ojhuq2qa445vszv7zi52ybe0ykrab.lambda-url.us-east-1.on.aws/",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"pixelId\":\"VobhQw\",\"campaignId\":null,\"referrer\":\"\",\"url\":\"https://graniteshares.com/etfs/pltm/\",\"sessionId\":null,\"persistentId\":null}",
+   "ct": "application/json",
+   "len": 234,
+   "file": "gs_pltm_006"
+  },
+  {
+   "url": "https://graniteshares.com/productPerformance/60/2026-10-31/",
+   "status": 301,
+   "method": "GET",
+   "post": "",
+   "ct": "",
+   "err": "Response.body: Response body is unavailable for redirect responses"
+  },
+  {
+   "url": "https://graniteshares.com/productperformance/60/2026-10-31/",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 1109,
+   "file": "gs_pltm_008"
+  }
+ ],
+ "gs_bar_Holdings_err": "Locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"Holdings\", exact=True).first\n    - locator resolved to <span class=\"Tit",
+ "gs_bar": [
+  {
+   "url": "https://widget-sheriff.tradingview-widget.com/sheriff/api/v1/rules/search?origin=https%3A%2F%2Fgraniteshares.com",
+   "status": 204,
+   "method": "GET",
+   "post": "",
+   "ct": "",
+   "len": 0,
+   "file": "gs_bar_000"
+  },
+  {
+   "url": "https://graniteshares.com/product/59/en-us/",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 3293,
+   "file": "gs_bar_001"
+  },
+  {
+   "url": "https://knockoutv2.azurewebsites.net/api/ProductDistribution/triggers/When_a_HTTP_request_is_received/invoke/59?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=4ceS-QWicTOGl-cIb8IBf-T_V8n_hQf_SVDydfaKZsU",
+   "status": 502,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 163,
+   "file": "gs_bar_002"
+  },
+  {
+   "url": "https://u07za62gjv-dsn.algolia.net/1/indexes/*/recommendations?x-algolia-agent=Algolia%20for%20JavaScript%20(5.28.0)%3B%20Recommend%20(5.28.0)%3B%20Browser&x-algolia-api-key=49b68a444f6bfc720b60977866e73f45&x-algolia-application-id=U07ZA62GJV",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"requests\":[{\"indexName\":\"Products\",\"objectID\":\"81f8231e-56f8-4562-a9e9-36128b0214c7\",\"model\":\"related-products\",\"threshold\":0,\"maxRecommendations\":4,\"queryParameters\":{\"filters\":\"data.locales:en-us\"}}]}",
+   "ct": "application/json; charset=UTF-8",
+   "len": 5688,
+   "file": "gs_bar_003"
+  },
+  {
+   "url": "https://knockoutv2.azurewebsites.net/api/ProductHoldings/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=HVz3V8DcFoMg1DMwf2gc_2e24Bg_4xZD3abCZiBly6M",
+   "status": 502,
+   "method": "POST",
+   "post": "{\"ticker\":\"BAR\",\"dataDate\":\"2026-11-19\"}",
+   "ct": "application/json; charset=utf-8",
+   "len": 163,
+   "file": "gs_bar_004"
+  },
+  {
+   "url": "https://knockoutv2.azurewebsites.net/api/ProductNavHistory/triggers/When_a_HTTP_request_is_received/invoke/59?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=bH7VS-AEVsHFaoHEdwodgWM-T_MUr8kOaZi9St7whis",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 793792,
+   "file": "gs_bar_005"
+  },
+  {
+   "url": "https://graniteshares.com/productPerformance/59/2026-10-31/",
+   "status": 301,
+   "method": "GET",
+   "post": "",
+   "ct": "",
+   "err": "Response.body: Response body is unavailable for redirect responses"
+  },
+  {
+   "url": "https://rn7ojhuq2qa445vszv7zi52ybe0ykrab.lambda-url.us-east-1.on.aws/",
+   "status": 200,
+   "method": "POST",
+   "post": "{\"pixelId\":\"VobhQw\",\"campaignId\":null,\"referrer\":\"\",\"url\":\"https://graniteshares.com/etfs/bar/\",\"sessionId\":null,\"persistentId\":null}",
+   "ct": "application/json",
+   "len": 234,
+   "file": "gs_bar_007"
+  },
+  {
+   "url": "https://graniteshares.com/productperformance/59/2026-10-31/",
+   "status": 200,
+   "method": "GET",
+   "post": "",
+   "ct": "application/json; charset=utf-8",
+   "len": 1114,
+   "file": "gs_bar_008"
+  }
+ ]
+}

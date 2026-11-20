@@ -977,8 +977,14 @@ def pgm_etf():
         for f in SHARE_FACTS:
             for v in (g.get(f, {}).get("units", {}).get("shares") or []):
                 sh.setdefault(v["end"], v["val"])
-        for unit, vals in g.get("InvestmentOwnedBalanceOtherMeasure", {}).get("units", {}).items():
-            if unit.lower() not in ("oz", "ounce", "ounces", "troyounce"):
+        allf = r.json().get("facts") or {}
+        cands = [g.get("InvestmentOwnedBalanceOtherMeasure", {})]
+        if not any(cands[0].get("units", {})):            # e.g. SPDR GLD tags its ounces under its own taxonomy
+            cands = [c for ns, cs in allf.items() for k, c in cs.items() if re.search(r"ounce|InvestmentOwnedBalance", k, re.I) and not re.search(r"PerShare|Price|Value", k)]
+        for unit, vals in [(u, v) for c in cands for u, v in c.get("units", {}).items()]:
+            if unit.lower() not in ("oz", "ounce", "ounces", "troyounce", "troy_oz", "pure"):
+                continue
+            if unit.lower() == "pure" and not any(float(v["val"]) > 1e5 for v in vals):
                 continue
             for v in vals:
                 rows.append({"fund": fund, "metal": metal, "date": v["end"], "ounces": round(float(v["val"]), 1), "form": v.get("form"), "filed": v.get("filed"),

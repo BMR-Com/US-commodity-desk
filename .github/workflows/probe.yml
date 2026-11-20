@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install requests pandas git+https://github.com/rongardF/tvdatafeed.git
+      - run: pip install requests pandas pypdf playwright git+https://github.com/rongardF/tvdatafeed.git && python -m playwright install --with-deps chromium
       - run: python probe/metals.py || true
       - if: always()
         run: |

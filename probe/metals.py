@@ -1,45 +1,64 @@
-"""Probe 2: save raw responses for parsing work."""
-import json, re, time, os, requests
+"""Probe 3: network capture of JS-driven data pages + downloads."""
+import json, re, time, os, io, requests
 HB = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"}
-os.makedirs("probe/m", exist_ok=True)
+os.makedirs("probe/m3", exist_ok=True)
 out = {}
-def save(nm, url, fn, hdr=HB, **kw):
+def save(nm, url, fn, **kw):
     try:
-        r = requests.get(url, headers=hdr, timeout=90, **kw)
-        out[nm] = {"url": url, "status": r.status_code, "ct": r.headers.get("content-type"), "len": len(r.content), "final": r.url}
+        r = requests.get(url, headers=HB, timeout=90, **kw)
+        out[nm] = {"url": url, "status": r.status_code, "ct": r.headers.get("content-type"), "len": len(r.content), "final": r.url, "cd": r.headers.get("content-disposition")}
         if r.status_code == 200:
-            open("probe/m/" + fn, "wb").write(r.content)
+            open("probe/m3/" + fn, "wb").write(r.content)
         return r
     except Exception as e:
         out[nm] = {"url": url, "err": str(e)[:300]}
-save("cftc", "https://publicreporting.cftc.gov/resource/kh3c-gbw2.json?$select=market_and_exchange_names,cftc_contract_market_code,max(report_date_as_yyyy_mm_dd) as last,max(open_interest_all) as oi&$where=report_date_as_yyyy_mm_dd>'2026-01-01' AND (commodity_subgroup_name='PRECIOUS METALS' OR commodity_subgroup_name='BASE METALS')&$group=market_and_exchange_names,cftc_contract_market_code&$limit=500", "cftc.json")
-save("cftc_al_hist", "https://publicreporting.cftc.gov/resource/kh3c-gbw2.json?$select=market_and_exchange_names,cftc_contract_market_code,min(report_date_as_yyyy_mm_dd) as first,max(report_date_as_yyyy_mm_dd) as last,count(*) as n&$where=upper(market_and_exchange_names) like '%25ALUMIN%25'&$group=market_and_exchange_names,cftc_contract_market_code&$limit=500", "cftc_al.json")
-save("wgc_robots", "https://www.gold.org/robots.txt", "wgc_robots.txt")
-save("wgc_gdt_xlsx", "https://www.gold.org/download/file/21333/GDT%20Tables_Q326_EN.xlsx", "gdt_q326.xlsx")
-r = save("wgc_gdt_index", "https://www.gold.org/goldhub/research/gold-demand-trends", "gdt_index.html")
-save("wgc_cb_page", "https://www.gold.org/goldhub/data/gold-reserves-by-country", "wgc_cb.html")
-save("wgc_monthly_cb", "https://www.gold.org/goldhub/data/monthly-central-bank-statistics", "wgc_cbm.html")
-save("wgc_etf_page", "https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows", "wgc_etf.html")
-save("iai_page", "https://international-aluminium.org/statistics/primary-aluminium-production/", "iai.html")
-for p in ["", "/statistics", "/statistics/1", "/v1/statistics", "/datasets"]:
-    save("alvis" + p, "https://alvis.international-aluminium.org/api" + p, "alvis" + p.replace("/", "_") + ".txt")
-save("icsg_press", "https://icsg.org/press-releases/", "icsg_press.html")
-save("icsg_sitemap", "https://icsg.org/sitemap.xml", "icsg_sitemap.xml")
-time.sleep(20)
-save("icsg_wp_pages", "https://icsg.org/wp-json/wp/v2/pages?per_page=20&orderby=modified&_fields=id,date,modified,link,title", "icsg_pages.json")
-save("silver_sd", "https://silverinstitute.org/silver-supply-demand/", "silver_sd.html")
-save("usgs_sb_item", "https://www.sciencebase.gov/catalog/item/696a75d5d4be0228872d3bf8?format=json", "usgs_sb_item.json")
-save("usgs_sb_q", "https://www.sciencebase.gov/catalog/items?q=Mineral%20Commodity%20Summaries%202026&format=json&max=10&fields=title,link,files", "usgs_sb_q.json")
-save("usgs_mcs_cu", "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf", "mcs2026_cu.pdf")
-save("wm_cu", "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash", "wm_cu.html")
-save("wm_list", "https://www.westmetall.com/en/markdaten.php", "wm_list.html")
-save("wm_cu_stock", "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_stock", "wm_cu_stock.html")
-save("gld_page", "https://www.spdrgoldshares.com/usa/", "gld.html")
-save("gld_hist", "https://www.spdrgoldshares.com/usa/historical-data/", "gld_hist.html")
-save("gld_xlsx", "https://www.spdrgoldshares.com/assets/dynamic/GLD/GLD_US_archive_EN.xlsx", "gld_archive.xlsx")
-save("slv_page", "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund", "slv.html")
-save("iau_page", "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund", "iau.html")
-save("slv_json", "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund/1467271812596.ajax?tab=all&fileType=json", "slv_ajax.json")
-save("cme_fedwatch", "https://www.cmegroup.com/ftp/", "x")
-json.dump(out, open("probe/m/out.json", "w"), indent=1)
-print(json.dumps(out, indent=0))
+save("gld_api", "https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en", "gld_api.bin")
+save("wm_cu_2025", "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash&year=2025", "wm_cu_2025.html")
+save("wm_al", "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Al_cash", "wm_al.html")
+save("wgc_gdt_q3", "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q3-2026", "gdt_q3.html")
+r = save("icsg_press", "https://icsg.org/press-releases/", "icsg.html")
+time.sleep(21)
+if r is not None and r.status_code == 200:
+    u = re.search(r'data-downloadurl="(https://icsg.org/download/[^"]*monthly-press-release[^"]*)"', r.text)
+    if u:
+        save("icsg_monthly_pdf", u.group(1).replace("&#038;", "&"), "icsg_monthly.pdf")
+        try:
+            from pypdf import PdfReader
+            t = "\n".join(p.extract_text() or "" for p in PdfReader("probe/m3/icsg_monthly.pdf").pages)
+            open("probe/m3/icsg_monthly.txt", "w").write(t)
+        except Exception as e:
+            out["icsg_pdf_text_err"] = str(e)
+save("usgs_data", "https://www.sciencebase.gov/catalog/file/get/696a75d5d4be0228872d3bf8?f=__disk__eb%2F4d%2Fd1%2Feb4dd129d4f08cfba010a8b11", "mcs2026_data.csv")
+# headless browser network capture
+try:
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        for nm, url in [("iai", "https://international-aluminium.org/statistics/primary-aluminium-production/"),
+                        ("wgc_cb", "https://www.gold.org/goldhub/data/gold-reserves-by-country"),
+                        ("wgc_etf", "https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows")]:
+            pg = b.new_page(user_agent=HB["User-Agent"])
+            reqs = []
+            def onresp(resp, reqs=reqs, nm=nm):
+                u = resp.url
+                if any(k in u for k in ("alvis", "api", "json", "ajax", "data", "csv", "xls")) and not u.endswith((".js", ".css", ".woff2", ".png", ".svg")):
+                    try:
+                        body = resp.body()
+                    except Exception:
+                        body = b""
+                    reqs.append({"url": u, "status": resp.status, "method": resp.request.method, "post": (resp.request.post_data or "")[:500], "ct": resp.headers.get("content-type"), "len": len(body)})
+                    if len(body) < 3_000_000 and len(reqs) < 40:
+                        open(f"probe/m3/{nm}_{len(reqs)}.bin", "wb").write(body)
+            pg.on("response", onresp)
+            try:
+                pg.goto(url, wait_until="networkidle", timeout=90000)
+                pg.wait_for_timeout(6000)
+            except Exception as e:
+                reqs.append({"err": str(e)[:200]})
+            out["net_" + nm] = reqs
+            pg.close()
+        b.close()
+except Exception as e:
+    out["playwright_err"] = str(e)[:500]
+json.dump(out, open("probe/m3/out.json", "w"), indent=1)
+print(json.dumps(out, indent=0)[:20000])

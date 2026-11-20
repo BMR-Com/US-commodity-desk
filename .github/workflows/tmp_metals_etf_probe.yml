@@ -13,7 +13,7 @@ jobs:
       - run: |
           git fetch -q origin main && git checkout origin/main -- data/metals/raw
           cp probe_etf/metals_pipe.py pipelines/metals.py
-          python -u pipelines/metals.py etf etf_more pgm_etf 2>&1 | tee probe_etf/run.log || true
+          python -u probe_etf/gld.py 2>&1 | tee probe_etf/run.log || true
           mkdir -p probe_out4 && cp data/metals/raw/etf_*.csv data/metals/raw/fetch_log.json probe_out4/
       - if: always()
         run: |

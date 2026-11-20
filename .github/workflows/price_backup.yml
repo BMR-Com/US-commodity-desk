@@ -1,0 +1,31 @@
+name: price_backup
+# Weekly copy of all stored price history (contracts, OHLC, archive, CME/ICE settlements and OI, physical prices)
+# as a dated GitHub release asset (tag prices-YYYY-MM-DD), outside the git tree. Keeps the newest 12 (about 3 months).
+# The Mac collector downloads the newest one to ~/BMR-Com-backups/. Restore: download the .tar.gz and untar at repo root.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '17 15 * * 6'   # Saturday, after the week's settlements and Friday's COT
+permissions: {contents: write}
+concurrency: {group: price_backup, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: pack price history
+        run: python pipelines/price_backup.py "${GITHUB_REPOSITORY#*/}"
+      - name: publish release and prune old ones
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          tag="prices-$(date -u +%F)"
+          f=$(ls backup/prices_*.tar.gz)
+          gh release delete "$tag" -y --cleanup-tag 2>/dev/null || true
+          gh release create "$tag" "$f" backup/manifest.csv --title "Price history backup $(date -u +%F)" \
+            --notes "Weekly price-history snapshot. Restore: download the .tar.gz and run 'tar xzf <file>' at the repo root. manifest.csv lists each file's rows and date range." \
+            --latest=false
+          gh release list --limit 200 --json tagName -q '.[].tagName' | grep '^prices-' | sort -r | tail -n +13 | \
+            while read t; do gh release delete "$t" -y --cleanup-tag; done

@@ -94,6 +94,19 @@ def get(tv, symbol, ex, n):
         time.sleep(4)
     return None
 
+ARCHIVE = Path(__file__).resolve().parent.parent / "data" / "price_archive" / "ohlc"
+
+
+def archive(sym, out):
+    """Keep every bar ever fetched, in case Yahoo/TradingView stop working. data/ohlc/<SYM>.csv holds only the
+    rolling window (front ~10 years + live contracts) that the models read; data/price_archive/ohlc/<SYM>.csv adds
+    each run's bars to what is stored and never drops rows (a re-fetched bar replaces the stored one)."""
+    ARCHIVE.mkdir(parents=True, exist_ok=True)
+    p = ARCHIVE / f"{sym}.csv"
+    a = pd.concat([pd.read_csv(p, dtype={"date": str}), out]) if p.exists() else out
+    a = a.drop_duplicates(["series", "date"], keep="last").sort_values(["series", "date"])
+    a.to_csv(p, index=False)
+
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
@@ -131,6 +144,7 @@ def main():
         for c in ("open", "high", "low", "close"):
             out[c] = out[c].round(4)
         out.to_csv(OUT / f"{sym}.csv", index=False)
+        archive(sym, out)
         print(sym, out.series.nunique(), "series", len(out), "rows")
     print("sources", src)
 

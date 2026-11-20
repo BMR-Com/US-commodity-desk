@@ -9,6 +9,8 @@ ingest scripts, and pushes to GitHub. GitHub Actions then rebuilds every model a
 Install once:  bash local/install_mac.sh      (creates a venv, installs Playwright, schedules this script)
 Run by hand:   ~/.ags-desk/venv/bin/python local/mac_collector.py
 Log:           ~/.ags-desk/collector.log
+Backups:       each night it also downloads the newest weekly price-history backup of the com desk and the softs
+               desk (GitHub releases prices-YYYY-MM-DD) to ~/BMR-Com-backups/<repo>/ (newest 12 kept).
 """
 import asyncio, base64, datetime as dt, json, subprocess, sys, tempfile
 from pathlib import Path
@@ -108,5 +110,43 @@ def main():
     log("push failed")
 
 
+BACKUP = Path.home() / "BMR-Com-backups"
+BACKUP_REPOS = ["BMR-Com/US-commodity-desk", "BMR-Com/Brazil--trade"]   # com desk, softs desk
+
+
+def mac_backup(keep=12):
+    """Download each desk's newest weekly price-history backup (GitHub release prices-YYYY-MM-DD, made by
+    .github/workflows/price_backup.yml) to ~/BMR-Com-backups/<repo>/, if not already there; keep the newest `keep`.
+    Never stops the collector: any failure is only logged."""
+    import urllib.request
+    for repo in BACKUP_REPOS:
+        try:
+            req = urllib.request.Request(f"https://api.github.com/repos/{repo}/releases?per_page=50",
+                                         headers={"Accept": "application/vnd.github+json", "User-Agent": "bmr-mac-collector"})
+            rel = [r for r in json.load(urllib.request.urlopen(req, timeout=60)) if r["tag_name"].startswith("prices-")]
+            if not rel:
+                log("backup", repo, "no release yet")
+                continue
+            new = max(rel, key=lambda r: r["tag_name"])
+            d = BACKUP / repo.split("/")[1]
+            d.mkdir(parents=True, exist_ok=True)
+            for a in new["assets"]:
+                if not a["name"].endswith(".tar.gz") or (d / a["name"]).exists():
+                    continue
+                tmp = d / (a["name"] + ".part")
+                with urllib.request.urlopen(urllib.request.Request(a["browser_download_url"], headers={"User-Agent": "bmr-mac-collector"}), timeout=600) as r, tmp.open("wb") as f:
+                    while chunk := r.read(1 << 20):
+                        f.write(chunk)
+                tmp.rename(d / a["name"])
+                log("backup saved", d / a["name"], f"{(d / a['name']).stat().st_size / 1e6:.1f} MB")
+            for old in sorted(d.glob("prices_*.tar.gz"))[:-keep]:
+                old.unlink()
+        except Exception as e:
+            log("backup", repo, "failed:", str(e)[:200])
+
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        mac_backup()

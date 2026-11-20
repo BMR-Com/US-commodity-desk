@@ -1,6 +1,6 @@
 name: cot_full
 # CFTC COT positioning desk (port of BMR-Com/cftc-cot-full), served at /cot/ and shown as the "COT (full)" tab.
-# Large working CSVs (master, CIT, prices) stay in the Actions cache, not in git; only the browser JSON is committed.
+# Large working CSVs (COT master, CIT) stay in the Actions cache; the price history (cot/data/prices) and the browser JSON are committed.
 on:
   workflow_dispatch: {}
   push:
@@ -30,7 +30,6 @@ jobs:
           path: |
             cot/data/bcom_cot_master.csv
             cot/data/cit_master.csv
-            cot/data/prices
           key: cot-work-${{ github.run_id }}
           restore-keys: cot-work-
       - name: prices (Yahoo)
@@ -48,12 +47,11 @@ jobs:
           path: |
             cot/data/bcom_cot_master.csv
             cot/data/cit_master.csv
-            cot/data/prices
           key: cot-work-${{ github.run_id }}
       - name: commit
         run: |
           git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
-          git add cot/data/web cot/data/latest_summary.json
+          git add cot/data/web cot/data/latest_summary.json cot/data/prices
           git diff --cached --quiet && exit 0
           git commit -q -m "cot: CFTC positioning desk $(date -u +%F' '%H:%M)"
           for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

@@ -1,0 +1,56 @@
+{
+ "2026-Q1": {
+  "quarter": "2026-Q1",
+  "published": "2026-04-29",
+  "summary": "Gold demand saw a modest y/y increase in Q1 to 1,231t, while value surged to a record US$193bn. Bar and coin investment drove gains, while ETF buying slowed in Q1. Central banks continued to buy in healthy size. Jewellery demand volumes remained under pressure amid record high prices.",
+  "values": {},
+  "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q1-2026",
+  "fetched": "2026-11-20"
+ },
+ "2026-Q2": {
+  "quarter": "2026-Q2",
+  "published": "2026-07-30",
+  "summary": "Total gold demand, including OTC, was unchanged y/y at 1,269t in Q2. This took demand for the first half year to 2,522t (+2% y/y), with a record value of US$380bn.",
+  "values": {
+   "total": {
+    "t": 1269.0,
+    "yoy_pct": null
+   }
+  },
+  "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026",
+  "fetched": "2026-11-20"
+ },
+ "2026-Q3": {
+  "quarter": "2026-Q3",
+  "published": "2026-11-03",
+  "summary": "Q3 total gold demand was broadly steady - 1% lower y/y at 1,369t, while the value of demand rose 22% to US$188bn. Institutional and strategic buyers stepped up: central banks added 321t, up 42% year-on-year, and gold ETFs returned to strong inflows of 211t, lifting holdings to a record 4,256t. By contrast, bar and coin demand fell 19% to 268t given the lack of a clear trend in the gold price, while jewellery demand fell 17% to 313t as gold prices remained high. Technology demand rose 3% to 85t, its highest level since Q4 2021, supported by AI-related manufacturing.",
+  "values": {
+   "total": {
+    "t": 1369.0,
+    "yoy_pct": -1.0
+   },
+   "central_banks": {
+    "t": 321.0,
+    "yoy_pct": 42.0
+   },
+   "etfs": {
+    "t": 211.0,
+    "yoy_pct": null
+   },
+   "bar_coin": {
+    "t": 268.0,
+    "yoy_pct": -19.0
+   },
+   "jewellery": {
+    "t": 313.0,
+    "yoy_pct": -17.0
+   },
+   "technology": {
+    "t": 85.0,
+    "yoy_pct": 3.0
+   }
+  },
+  "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q3-2026",
+  "fetched": "2026-11-20"
+ }
+}

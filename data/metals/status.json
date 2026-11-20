@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20 16:10 UTC",
+ "generated": "2026-11-20 16:20 UTC",
  "today": "2026-11-20",
  "sources": [
   {
@@ -101,13 +101,13 @@
   {
    "group": "Gold",
    "source": "World Gold Council supply and demand (quarter end)",
-   "latest": null,
-   "age": null,
+   "latest": "2026-09-30",
+   "age": 51,
    "age_unit": "days",
    "limit": 135,
    "cadence": "quarterly (~5 weeks after quarter end)",
    "manual": false,
-   "state": "missing",
+   "state": "ok",
    "used_in": "gold S&D"
   },
   {

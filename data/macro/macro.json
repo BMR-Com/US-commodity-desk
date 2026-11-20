@@ -1,9 +1,9 @@
 {
- "generated": "2026-11-20 20:09 UTC",
+ "generated": "2026-11-20 21:09 UTC",
  "view": "headwind",
- "score": -7,
+ "score": -6,
  "components": {
-  "rates": 0,
+  "rates": 1,
   "dollar": -1,
   "brl": -1,
   "mxn": -1,
@@ -12,37 +12,37 @@
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -7 across rates, dollar, Brazil real, risk, energy, China, breadth). rates 0; dollar \u2212; brl \u2212; mxn \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +4.4%; weakest: Sugar #11 -16.5%. ",
+ "summary": "Macro backdrop for ags: headwind (score -6 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar \u2212; brl \u2212; mxn \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +4.4%; weakest: Sugar #11 -16.5%. ",
  "sections": [
   {
    "title": "Rates",
-   "score": 0,
-   "text": "US 10-year 5.04% (-8 bp in a month), 2-year 4.76% (-3 bp); 2s10s curve +28 bp (-5 bp in a month). Yields are little changed on the month. T-bill yield 4.12% sets the cost of carrying inventory."
+   "score": 1,
+   "text": "US 10-year 4.92% (-21 bp in a month), 2-year 4.63% (-18 bp); 2s10s curve +29 bp (-3 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.12% sets the cost of carrying inventory."
   },
   {
    "title": "Dollar & farm currencies",
    "score": -2,
-   "text": "Dollar index 103.82 (+2.0% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.949 (+18.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.676 (-0.0%); USD/MXN 19.17 (+4.0%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 103.86 (+2.0% in a month, +5.7% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.949 (+18.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.676 (-0.0%); USD/MXN 19.18 (+4.1%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
   },
   {
    "title": "Risk appetite",
    "score": -1,
-   "text": "S&P 500 -10.5% in a month (+1.4% YTD); VIX 34.5. Risk-off: funds tend to cut commodity length along with equities. "
+   "text": "S&P 500 -10.9% in a month (+0.9% YTD); VIX 38.8. Risk-off: funds tend to cut commodity length along with equities. "
   },
   {
    "title": "Energy",
    "score": -1,
-   "text": "WTI 84.09 $/bbl (-13.4% in a month), Brent 89.61, ULSD 3.918 $/gal (-14.4%), natural gas 3.42 (+7.3%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+   "text": "WTI 84.09 $/bbl (-13.4% in a month), Brent 90.15, ULSD 3.943 $/gal (-13.8%), natural gas 3.44 (+8.3%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -16.9% in a month, Shanghai Composite -4.8%, Hang Seng -5.2%, yuan +0.0% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -17.1% in a month, Shanghai Composite -4.8%, Hang Seng -5.2%, yuan +0.0% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "10 of 33 commodities trade above their 50-day average (30%); S&P GSCI -11.9% in a month; gold -15.1%. "
+   "text": "10 of 33 commodities trade above their 50-day average (30%); S&P GSCI -11.8% in a month; gold -15.2%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",

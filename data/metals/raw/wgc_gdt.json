@@ -3,7 +3,12 @@
   "quarter": "2026-Q1",
   "published": "2026-04-29",
   "summary": "Gold demand saw a modest y/y increase in Q1 to 1,231t, while value surged to a record US$193bn. Bar and coin investment drove gains, while ETF buying slowed in Q1. Central banks continued to buy in healthy size. Jewellery demand volumes remained under pressure amid record high prices.",
-  "values": {},
+  "values": {
+   "total": {
+    "t": 1231.0,
+    "yoy_pct": null
+   }
+  },
   "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q1-2026",
   "fetched": "2026-11-20"
  },
@@ -14,7 +19,7 @@
   "values": {
    "total": {
     "t": 1269.0,
-    "yoy_pct": null
+    "yoy_pct": 0.0
    }
   },
   "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026",

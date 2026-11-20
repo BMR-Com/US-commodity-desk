@@ -1,5 +1,5 @@
 name: probe
-on: {workflow_dispatch: {}, push: {branches: [probe]}}
+on: {workflow_dispatch: {}, push: {branches: [probe, probe-metals]}}
 permissions: {contents: write}
 jobs:
   run:
@@ -10,11 +10,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install requests pandas git+https://github.com/rongardF/tvdatafeed.git
-      - run: python probe/sources.py || true
-        env:
-          AMS_API_KEY: ${{ secrets.AMS_API_KEY }}
-          NASS_API_KEY: ${{ secrets.NASS_API_KEY }}
-          USDA_API_KEY: ${{ secrets.USDA_API_KEY }}
+      - run: python probe/metals.py || true
       - if: always()
         run: |
           git config user.name bot; git config user.email bot@users.noreply.github.com

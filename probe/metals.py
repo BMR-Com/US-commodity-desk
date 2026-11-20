@@ -28,7 +28,10 @@ if r is not None and r.status_code == 200:
             open("probe/m3/icsg_monthly.txt", "w").write(t)
         except Exception as e:
             out["icsg_pdf_text_err"] = str(e)
-save("usgs_data", "https://www.sciencebase.gov/catalog/file/get/696a75d5d4be0228872d3bf8?f=__disk__eb%2F4d%2Fd1%2Feb4dd129d4f08cfba010a8b11", "mcs2026_data.csv")
+it = requests.get("https://www.sciencebase.gov/catalog/item/696a75d5d4be0228872d3bf8?format=json", headers=HB, timeout=60).json()
+for f in it.get("files", []):
+    if f["name"] in ("MCS2026_Commodities_Data.csv", "MCS2026_Mineral_Industry_Trends_and_Salient_Statistics.zip"):
+        save("usgs_" + f["name"], f["url"], f["name"])
 # headless browser network capture
 try:
     from playwright.sync_api import sync_playwright
@@ -36,7 +39,7 @@ try:
         b = p.chromium.launch()
         for nm, url in [("iai", "https://international-aluminium.org/statistics/primary-aluminium-production/"),
                         ("wgc_cb", "https://www.gold.org/goldhub/data/gold-reserves-by-country"),
-                        ("wgc_etf", "https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows")]:
+                        ("wgc_etf", "https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows"), ("wgc_demand", "https://www.gold.org/goldhub/data/gold-demand-by-country")]:
             pg = b.new_page(user_agent=HB["User-Agent"])
             reqs = []
             def onresp(resp, reqs=reqs, nm=nm):

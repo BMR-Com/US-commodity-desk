@@ -1,0 +1,219 @@
+{
+ "cftc": {
+  "url": "https://publicreporting.cftc.gov/resource/kh3c-gbw2.json?$select=market_and_exchange_names,cftc_contract_market_code,max(report_date_as_yyyy_mm_dd) as last,max(open_interest_all) as oi&$where=report_date_as_yyyy_mm_dd>'2026-01-01' AND (commodity_subgroup_name='PRECIOUS METALS' OR commodity_subgroup_name='BASE METALS')&$group=market_and_exchange_names,cftc_contract_market_code&$limit=500",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 2506,
+  "final": "https://publicreporting.cftc.gov/resource/kh3c-gbw2.json?$select=market_and_exchange_names,cftc_contract_market_code,max(report_date_as_yyyy_mm_dd)%20as%20last,max(open_interest_all)%20as%20oi&$where=report_date_as_yyyy_mm_dd%3E'2026-01-01'%20AND%20(commodity_subgroup_name='PRECIOUS%20METALS'%20OR%20commodity_subgroup_name='BASE%20METALS')&$group=market_and_exchange_names,cftc_contract_market_code&$limit=500"
+ },
+ "cftc_al_hist": {
+  "url": "https://publicreporting.cftc.gov/resource/kh3c-gbw2.json?$select=market_and_exchange_names,cftc_contract_market_code,min(report_date_as_yyyy_mm_dd) as first,max(report_date_as_yyyy_mm_dd) as last,count(*) as n&$where=upper(market_and_exchange_names) like '%25ALUMIN%25'&$group=market_and_exchange_names,cftc_contract_market_code&$limit=500",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1176,
+  "final": "https://publicreporting.cftc.gov/resource/kh3c-gbw2.json?$select=market_and_exchange_names,cftc_contract_market_code,min(report_date_as_yyyy_mm_dd)%20as%20first,max(report_date_as_yyyy_mm_dd)%20as%20last,count(*)%20as%20n&$where=upper(market_and_exchange_names)%20like%20'%25ALUMIN%25'&$group=market_and_exchange_names,cftc_contract_market_code&$limit=500"
+ },
+ "wgc_robots": {
+  "url": "https://www.gold.org/robots.txt",
+  "status": 200,
+  "ct": "text/plain",
+  "len": 2005,
+  "final": "https://www.gold.org/robots.txt"
+ },
+ "wgc_gdt_xlsx": {
+  "url": "https://www.gold.org/download/file/21333/GDT%20Tables_Q326_EN.xlsx",
+  "status": 403,
+  "ct": "text/html; charset=UTF-8",
+  "len": 54801,
+  "final": "https://www.gold.org/download/file/21333/GDT%20Tables_Q326_EN.xlsx"
+ },
+ "wgc_gdt_index": {
+  "url": "https://www.gold.org/goldhub/research/gold-demand-trends",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 78884,
+  "final": "https://www.gold.org/goldhub/research/gold-demand-trends"
+ },
+ "wgc_cb_page": {
+  "url": "https://www.gold.org/goldhub/data/gold-reserves-by-country",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 68756,
+  "final": "https://www.gold.org/goldhub/data/gold-reserves-by-country"
+ },
+ "wgc_monthly_cb": {
+  "url": "https://www.gold.org/goldhub/data/monthly-central-bank-statistics",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 68756,
+  "final": "https://www.gold.org/goldhub/data/gold-reserves-by-country"
+ },
+ "wgc_etf_page": {
+  "url": "https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 66000,
+  "final": "https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows"
+ },
+ "iai_page": {
+  "url": "https://international-aluminium.org/statistics/primary-aluminium-production/",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 471122,
+  "final": "https://international-aluminium.org/statistics/primary-aluminium-production/"
+ },
+ "alvis": {
+  "url": "https://alvis.international-aluminium.org/api",
+  "status": 404,
+  "ct": "text/html; charset=UTF-8",
+  "len": 993,
+  "final": "https://alvis.international-aluminium.org/api"
+ },
+ "alvis/statistics": {
+  "url": "https://alvis.international-aluminium.org/api/statistics",
+  "status": 404,
+  "ct": "text/html; charset=UTF-8",
+  "len": 993,
+  "final": "https://alvis.international-aluminium.org/api/statistics"
+ },
+ "alvis/statistics/1": {
+  "url": "https://alvis.international-aluminium.org/api/statistics/1",
+  "status": 404,
+  "ct": "text/html; charset=UTF-8",
+  "len": 993,
+  "final": "https://alvis.international-aluminium.org/api/statistics/1"
+ },
+ "alvis/v1/statistics": {
+  "url": "https://alvis.international-aluminium.org/api/v1/statistics",
+  "status": 404,
+  "ct": "text/html; charset=UTF-8",
+  "len": 993,
+  "final": "https://alvis.international-aluminium.org/api/v1/statistics"
+ },
+ "alvis/datasets": {
+  "url": "https://alvis.international-aluminium.org/api/datasets",
+  "status": 404,
+  "ct": "text/html; charset=UTF-8",
+  "len": 993,
+  "final": "https://alvis.international-aluminium.org/api/datasets"
+ },
+ "icsg_press": {
+  "url": "https://icsg.org/press-releases/",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 109431,
+  "final": "https://icsg.org/press-releases/"
+ },
+ "icsg_sitemap": {
+  "url": "https://icsg.org/sitemap.xml",
+  "status": 200,
+  "ct": "text/xml; charset=utf-8",
+  "len": 949,
+  "final": "https://icsg.org/sitemap.xml"
+ },
+ "icsg_wp_pages": {
+  "url": "https://icsg.org/wp-json/wp/v2/pages?per_page=20&orderby=modified&_fields=id,date,modified,link,title",
+  "status": 403,
+  "ct": "application/json; charset=UTF-8",
+  "len": 60,
+  "final": "https://icsg.org/wp-json/wp/v2/pages?per_page=20&orderby=modified&_fields=id,date,modified,link,title"
+ },
+ "silver_sd": {
+  "url": "https://silverinstitute.org/silver-supply-demand/",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 129846,
+  "final": "https://silverinstitute.org/silver-supply-demand/"
+ },
+ "usgs_sb_item": {
+  "url": "https://www.sciencebase.gov/catalog/item/696a75d5d4be0228872d3bf8?format=json",
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 27330,
+  "final": "https://www.sciencebase.gov/catalog/item/696a75d5d4be0228872d3bf8?format=json"
+ },
+ "usgs_sb_q": {
+  "url": "https://www.sciencebase.gov/catalog/items?q=Mineral%20Commodity%20Summaries%202026&format=json&max=10&fields=title,link,files",
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 28351,
+  "final": "https://www.sciencebase.gov/catalog/items?q=Mineral%20Commodity%20Summaries%202026&format=json&max=10&fields=title,link,files"
+ },
+ "usgs_mcs_cu": {
+  "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf",
+  "status": 200,
+  "ct": "application/pdf",
+  "len": 141602,
+  "final": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+ },
+ "wm_cu": {
+  "url": "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 31925,
+  "final": "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash"
+ },
+ "wm_list": {
+  "url": "https://www.westmetall.com/en/markdaten.php",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 39566,
+  "final": "https://www.westmetall.com/en/markdaten.php"
+ },
+ "wm_cu_stock": {
+  "url": "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_stock",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 31947,
+  "final": "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_stock"
+ },
+ "gld_page": {
+  "url": "https://www.spdrgoldshares.com/usa/",
+  "status": 200,
+  "ct": "text/html; charset=utf-8",
+  "len": 57877,
+  "final": "https://www.spdrgoldshares.com/usa/"
+ },
+ "gld_hist": {
+  "url": "https://www.spdrgoldshares.com/usa/historical-data/",
+  "status": 200,
+  "ct": "text/html; charset=utf-8",
+  "len": 249334,
+  "final": "https://www.spdrgoldshares.com/usa/gld/"
+ },
+ "gld_xlsx": {
+  "url": "https://www.spdrgoldshares.com/assets/dynamic/GLD/GLD_US_archive_EN.xlsx",
+  "status": 404,
+  "ct": "text/html; charset=utf-8",
+  "len": 14314,
+  "final": "https://www.spdrgoldshares.com/assets/dynamic/GLD/GLD_US_archive_EN.xlsx"
+ },
+ "slv_page": {
+  "url": "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund",
+  "status": 200,
+  "ct": "text/html;charset=UTF-8",
+  "len": 1701416,
+  "final": "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund"
+ },
+ "iau_page": {
+  "url": "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund",
+  "status": 200,
+  "ct": "text/html;charset=UTF-8",
+  "len": 1700130,
+  "final": "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund"
+ },
+ "slv_json": {
+  "url": "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund/1467271812596.ajax?tab=all&fileType=json",
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 1447749,
+  "final": "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund/1467271812596.ajax?tab=all&fileType=json"
+ },
+ "cme_fedwatch": {
+  "url": "https://www.cmegroup.com/ftp/",
+  "status": 403,
+  "ct": "application/json",
+  "len": 602,
+  "final": "https://www.cmegroup.com/ftp/"
+ }
+}

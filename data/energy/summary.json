@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20 19:20 UTC",
+ "generated": "2026-11-20 23:42 UTC",
  "inventories": {
   "storL48": {
    "date": "2026-11-13",
@@ -83,45 +83,45 @@
  },
  "prices": {
   "NG": {
-   "date": "2026-11-19",
-   "last": 3.253,
-   "d1": -3.529062870699873,
-   "w1": -2.6047904191616733,
-   "m1": 16.59498207885306
+   "date": "2026-11-20",
+   "last": 3.791,
+   "d1": 16.003671970624247,
+   "w1": 17.368421052631568,
+   "m1": 35.5865522174535
   },
   "CL": {
-   "date": "2026-11-19",
-   "last": 82.68,
-   "d1": -0.6966154048374751,
-   "w1": -6.82893637207429,
-   "m1": -14.894494804024806
+   "date": "2026-11-20",
+   "last": 83.620003,
+   "d1": 0.4927340523102286,
+   "w1": -5.578133594808799,
+   "m1": -15.934450427923485
   },
   "HO": {
-   "date": "2026-11-19",
-   "last": 3.8792,
-   "d1": -2.343730332552929,
-   "w1": -9.50192464714803,
-   "m1": -18.560661726114247
+   "date": "2026-11-20",
+   "last": 3.8668,
+   "d1": -2.141013311737616,
+   "w1": -9.198074439356574,
+   "m1": -21.599318748606077
   },
   "RB": {
-   "date": "2026-11-19",
-   "last": 2.4734,
-   "d1": -0.3424795519561652,
-   "w1": -7.391043881982928,
-   "m1": -20.73706136837046
+   "date": "2026-11-20",
+   "last": 2.4813,
+   "d1": -0.5530840447276586,
+   "w1": -5.344472419317913,
+   "m1": -21.885723280339995
   },
   "BZ": {
-   "date": "2026-11-19",
-   "last": 89.769997,
-   "d1": -2.3708538022029435,
-   "w1": -6.3139250678355126,
-   "m1": -17.50597592354346
+   "date": "2026-11-20",
+   "last": 89.870003,
+   "d1": -2.2939768766913393,
+   "w1": -6.229124842617906,
+   "m1": -20.58849112995479
   }
  },
  "cracks": {
-  "321": 40.88399999999999,
-  "ho": 80.2464,
-  "rb": 21.202799999999982
+  "321": 39.99159699999999,
+  "ho": 78.785597,
+  "rb": 20.594597000000007
  },
  "vol": {
   "NG": {
@@ -134,13 +134,13 @@
    "atm": 44.65,
    "label": "Jan 2027",
    "rr25": 2.38,
-   "rv20": 49.5
+   "rv20": 49.7
   },
   "HO": {
    "atm": 50.39,
    "label": "Jan 2027",
    "rr25": -1.03,
-   "rv20": 47.2
+   "rv20": 46.9
   },
   "RB": {
    "atm": 44.4,
@@ -150,10 +150,10 @@
   }
  },
  "ng_signal": {
-  "generated": "2026-11-20T18:02",
+  "generated": "2026-11-20T22:22",
   "regime": "ELEVATED",
   "cold_checks_on": 3,
   "action": "Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold."
  },
- "read": "Gas storage 3,882 Bcf (week to 2026-11-13), +20 Bcf vs a 5-year average -25 for the week; +98 Bcf (+2.6%) vs the 5-year average, -54 vs last year. Crude stocks 417.8 mb (+3.4 mb on the week, -3.7% vs 5-yr avg); gasoline +5.2 mb, distillate +1.6 mb; refinery utilization 95.7%. 3-2-1 crack $40.88/bbl (ULSD $80.25, gasoline $21.20). NG weather/positioning: squeeze risk ELEVATED (3 of 7 cold-risk checks on; managed money net -224,326 (1st pct of 3 yrs, -98,170 in 4 wks)). GEFS AO week 2 -1.01 (now +0.51); GEFS PNA week 2 +1.02 (western ridge / eastern trough); stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold. Options: NG IV 84% vs RV 51%; CL IV 45% vs RV 50%; HO IV 50% vs RV 47%; RB IV 44% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
+ "read": "Gas storage 3,882 Bcf (week to 2026-11-13), +20 Bcf vs a 5-year average -25 for the week; +98 Bcf (+2.6%) vs the 5-year average, -54 vs last year. Crude stocks 417.8 mb (+3.4 mb on the week, -3.7% vs 5-yr avg); gasoline +5.2 mb, distillate +1.6 mb; refinery utilization 95.7%. 3-2-1 crack $39.99/bbl (ULSD $78.79, gasoline $20.59). NG weather/positioning: squeeze risk ELEVATED (3 of 7 cold-risk checks on; managed money net -211,476 (2nd pct of 3 yrs, -54,628 in 4 wks)). GEFS AO week 2 -1.60 (now +0.37); GEFS PNA week 2 +1.01 (western ridge / eastern trough); stratospheric wind at 60N -3.0 m/s (below 0 = SSW; surface effect lags 2-8 weeks). Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold. Options: NG IV 84% vs RV 51%; CL IV 45% vs RV 50%; HO IV 50% vs RV 47%; RB IV 44% vs RV 41%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil)."
 }

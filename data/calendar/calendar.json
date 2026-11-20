@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-20 15:49 UTC",
+"generated": "2026-11-20 17:22 UTC",
 "events": [
 {
 "date": "2026-11-13",
@@ -101,6 +101,18 @@
 "estimated": false
 },
 {
+"date": "2026-11-18",
+"time": "",
+"event": "Silver Institute interim silver market review (date estimated)",
+"cat": "Metals",
+"markets": [
+"SI"
+],
+"importance": 1,
+"link": "https://silverinstitute.org/",
+"estimated": true
+},
+{
 "date": "2026-11-19",
 "time": "9:30 AM CT",
 "event": "EIA Weekly Natural Gas Storage Report",
@@ -185,6 +197,18 @@
 },
 {
 "date": "2026-11-20",
+"time": "",
+"event": "IAI primary aluminium production (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": "https://international-aluminium.org/statistics/primary-aluminium-production/",
+"estimated": true
+},
+{
+"date": "2026-11-20",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -205,6 +229,18 @@
 ],
 "importance": 1,
 "link": null,
+"estimated": true
+},
+{
+"date": "2026-11-23",
+"time": "",
+"event": "ICSG copper market press release (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"HG"
+],
+"importance": 2,
+"link": "https://icsg.org/press-releases/",
 "estimated": true
 },
 {
@@ -278,6 +314,18 @@
 "importance": 2,
 "link": null,
 "estimated": false
+},
+{
+"date": "2026-11-25",
+"time": "",
+"event": "Aluminum Nov 26: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 },
 {
 "date": "2026-11-25",
@@ -377,10 +425,58 @@
 {
 "date": "2026-11-30",
 "time": "",
+"event": "Aluminum Dec 26: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-30",
+"time": "",
+"event": "Gold Dec 26: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"GC"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-30",
+"time": "",
+"event": "Copper Dec 26: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"HG"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-30",
+"time": "",
 "event": "KC HRW wheat Dec 26: first notice day",
 "cat": "CME contract",
 "markets": [
 "KE"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-30",
+"time": "",
+"event": "Silver Dec 26: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"SI"
 ],
 "importance": 2,
 "link": null,
@@ -1075,6 +1171,18 @@
 },
 {
 "date": "2026-12-21",
+"time": "",
+"event": "IAI primary aluminium production (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": "https://international-aluminium.org/statistics/primary-aluminium-production/",
+"estimated": true
+},
+{
+"date": "2026-12-21",
 "time": "10:00 AM CT",
 "event": "USDA export inspections",
 "cat": "USDA",
@@ -1098,6 +1206,18 @@
 ],
 "importance": 1,
 "link": null,
+"estimated": true
+},
+{
+"date": "2026-12-22",
+"time": "",
+"event": "ICSG copper market press release (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"HG"
+],
+"importance": 2,
+"link": "https://icsg.org/press-releases/",
 "estimated": true
 },
 {
@@ -1259,10 +1379,58 @@
 {
 "date": "2026-12-29",
 "time": "",
+"event": "Aluminum Dec 26: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-29",
+"time": "",
+"event": "Gold Dec 26: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"GC"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-29",
+"time": "",
+"event": "Copper Dec 26: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"HG"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-29",
+"time": "",
 "event": "Natural gas Jan 27: last trading day",
 "cat": "NYMEX contract",
 "markets": [
 "NG"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-29",
+"time": "",
+"event": "Silver Dec 26: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"SI"
 ],
 "importance": 1,
 "link": null,
@@ -1342,6 +1510,18 @@
 "importance": 2,
 "link": null,
 "estimated": false
+},
+{
+"date": "2026-12-31",
+"time": "",
+"event": "Aluminum Jan 27: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": null,
+"estimated": true
 },
 {
 "date": "2026-12-31",
@@ -1922,6 +2102,18 @@
 {
 "date": "2027-01-20",
 "time": "",
+"event": "IAI primary aluminium production (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": "https://international-aluminium.org/statistics/primary-aluminium-production/",
+"estimated": true
+},
+{
+"date": "2027-01-20",
+"time": "",
 "event": "WTI crude Feb 27: last trading day",
 "cat": "NYMEX contract",
 "markets": [
@@ -2018,6 +2210,18 @@
 },
 {
 "date": "2027-01-22",
+"time": "",
+"event": "ICSG copper market press release (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"HG"
+],
+"importance": 2,
+"link": "https://icsg.org/press-releases/",
+"estimated": true
+},
+{
+"date": "2027-01-22",
 "time": "2:30 PM CT",
 "event": "CFTC Commitments of Traders",
 "cat": "CFTC",
@@ -2091,6 +2295,18 @@
 {
 "date": "2027-01-27",
 "time": "",
+"event": "Aluminum Jan 27: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-01-27",
+"time": "",
 "event": "Natural gas Feb 27: last trading day",
 "cat": "NYMEX contract",
 "markets": [
@@ -2147,6 +2363,19 @@
 {
 "date": "2027-01-28",
 "time": "",
+"event": "World Gold Council Gold Demand Trends (quarterly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"GC",
+"SI"
+],
+"importance": 2,
+"link": "https://www.gold.org/goldhub/research/gold-demand-trends",
+"estimated": true
+},
+{
+"date": "2027-01-28",
+"time": "",
 "event": "Feeder cattle Jan 27: last trading day (settles to CME Feeder Index)",
 "cat": "CME contract",
 "markets": [
@@ -2182,6 +2411,30 @@
 "importance": 2,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-01-29",
+"time": "",
+"event": "Aluminum Feb 27: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-01-29",
+"time": "",
+"event": "Gold Feb 27: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"GC"
+],
+"importance": 2,
+"link": null,
+"estimated": true
 },
 {
 "date": "2027-01-29",
@@ -2233,6 +2486,21 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-02-01",
+"time": "",
+"event": "USGS Mineral Commodity Summaries (annual) (date estimated)",
+"cat": "Metals",
+"markets": [
+"GC",
+"SI",
+"HG",
+"ALI"
+],
+"importance": 1,
+"link": "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries",
+"estimated": true
 },
 {
 "date": "2027-02-01",

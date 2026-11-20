@@ -40,9 +40,8 @@ def tech_last(sym):
 
 
 def wgc_quarter_end():
-    snaps = sorted((RAW / "wgc").glob("sd_*.json"))
-    q = json.loads(snaps[-1].read_text())["data"]["Demand_Quarterly"]["categories"][-1]   # e.g. "Q3 '26"
-    return month_end(f"{2000 + int(q[-2:])}-{3 * int(q[1]):02d}")
+    q = sorted(json.loads((RAW / "wgc_gdt.json").read_text()))[-1]          # e.g. "2026-Q3"
+    return month_end(f"{q[:4]}-{3 * int(q[-1]):02d}")
 
 
 def month_end(ym):

@@ -219,23 +219,20 @@ const Metals = (() => {
   }
   function sdGold(m) {
     const w = m.wgc, e = m.etf;
-    body().innerHTML = `${w ? `<div class="card"><h2>Gold supply and demand, ${esc(w.quarter)} <span class="note">tonnes; ${esc(w.source)}; fetched ${w.asof}</span></h2>
-        <div class="tbl"><table><tr><th class="l">Line</th><th>${esc(w.quarter)}</th><th>Year ago</th><th>y/y</th><th>Last 4 quarters avg</th></tr>
-        ${w.table.map(r => `<tr><td class="l">${r.line}</td><td><b>${fmt(r.now, 0)}</b></td><td>${fmt(r.yago, 0)}</td><td>${sgn(r.yoy, 0)}</td><td>${fmt(r.avg4, 0)}</td></tr>`).join('')}</table></div>
-        <div class="chart short"><canvas id="mtWgc"></canvas></div>
-        <h3>Revisions</h3>${w.revisions && w.revisions.length ? `<div class="tbl"><table><tr><th class="l">Line</th><th class="l">Quarter</th><th>Now</th><th>Before</th><th>Change</th></tr>
-          ${w.revisions.map(r => `<tr><td class="l">${r.line}</td><td class="l">${esc(r.quarter)}</td><td>${fmt(r.now, 0)}</td><td>${fmt(r.before, 0)}</td><td>${sgn(r.chg, 0)}</td></tr>`).join('')}</table></div><p class="note">Changes since the WGC data stored on ${w.prev_snapshot}.</p>`
-          : `<p class="note">The desk keeps every WGC release from ${w.asof}; revisions to earlier quarters show here after the next quarterly update.</p>`}</div>` : none('World Gold Council data')}
+    body().innerHTML = `${w ? `<div class="card"><h2>Gold demand, ${esc(w.quarter)} <span class="note">tonnes; ${esc(w.source)}, published ${esc(w.published)}</span></h2>
+        <div class="tbl"><table><tr><th class="l">Line</th><th>${esc(w.quarter)}</th><th>y/y (WGC)</th>${w.quarters.slice(0, -1).slice(-4).map(q => `<th>${esc(q)}</th>`).join('')}</tr>
+        ${w.table.map(r => `<tr><td class="l">${r.line}</td><td><b>${fmt(r.now, 0)}</b></td><td>${sgn(r.yoy_pct, 0, '%')}</td>${r.hist.slice(0, -1).slice(-4).map(v => `<td>${fmt(v, 0)}</td>`).join('')}</tr>`).join('')}</table></div>
+        ${w.quarters.length > 1 ? '<div class="chart short"><canvas id="mtWgc"></canvas></div>' : ''}
+        <p class="note">${esc(w.summary)} <a href="${w.url}" target="_blank" rel="noopener">Report</a>. The desk reads the public summary of each quarterly report (the full Goldhub tables need a login and its data service is closed to automated access), so earlier quarters keep the figures first published; WGC's later revisions are not captured.</p></div>` : none('World Gold Council data')}
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h2>Gold ETF holdings: SPDR GLD <span class="note">tonnes, weekly</span></h2>${e ? `<div class="chart short"><canvas id="mtEtf"></canvas></div>
           <p class="note">GLD ${fmt(e.gld.tonnes, 1)} t on ${e.gld.asof}: ${sgn(e.gld.chg_1w, 1)} t in a week, ${sgn(e.gld.chg_1m, 1)} t in a month, ${sgn(e.gld.chg_ytd, 0)} t this year (${e.gld.pct5y == null ? '–' : e.gld.pct5y + 'th'} percentile of 5 years).
-          ${e.iau ? ` iShares IAU ${fmt(e.iau.tonnes, 1)} t on ${e.iau.asof} (${sgn(e.iau.chg_1m, 1)} t in a month; daily history kept from ${e.iau.n_days > 1 ? 'when the desk started' : 'today'}).` : ''} Sources: SPDR Gold Shares archive; iShares product page.</p>` : '<p class="note">ETF data not built yet.</p>'}</div>
-        <div class="card"><h2>Central banks</h2>${w ? (() => { const cb = w.table.find(r => r.line === 'Central banks'); return cb ? `<p>Central banks bought <b>${fmt(cb.now, 0)} t</b> in ${esc(w.quarter)} (${sgn(cb.yoy, 0)} t vs a year ago; ${fmt(cb.avg4, 0)} t a quarter on average over the last four).</p><div class="chart short"><canvas id="mtCb"></canvas></div><p class="note">World Gold Council estimates, which include unreported buying; IMF-reported reserve changes are a subset.</p>` : ''; })() : '<p class="note">No WGC data yet.</p>'}</div></div>
+          ${e.iau ? ` iShares IAU ${fmt(e.iau.tonnes, 1)} t on ${e.iau.asof} (${sgn(e.iau.chg_1m, 1)} t in a month; iShares shows only the current figure, so history builds from when the desk started).` : ''} Sources: SPDR Gold Shares archive; iShares product page.</p>` : '<p class="note">ETF data not built yet.</p>'}</div>
+        <div class="card"><h2>Central banks</h2>${w ? (() => { const cb = w.table.find(r => r.key === 'central_banks'); return cb ? `<p>Central banks bought <b>${fmt(cb.now, 0)} t</b> in ${esc(w.quarter)} (${sgn(cb.yoy_pct, 0, '%')} vs a year ago, World Gold Council).</p><p class="note">Since 2022 central banks have bought around 1,000 t a year, about a fifth of demand; WGC's estimate includes unreported buying, so it runs above IMF-reported reserve changes.</p>` : '<p class="note">Not in the latest summary.</p>'; })() : '<p class="note">No WGC data yet.</p>'}</div></div>
       ${usgsCard(m.usgs)}`;
-    if (w) {
-      const sel = w.table.filter(r => ['Jewellery', 'Technology', 'Bar and coin', 'Gold ETFs', 'Central banks'].includes(r.line));
-      chart('mtWgc', { type: 'bar', data: { labels: w.quarters, datasets: sel.map((r, i) => ({ label: r.line, data: r.hist, backgroundColor: PAL[i] })) }, options: { scales: { x: { stacked: true }, y: { stacked: true } } } });
-      const cb = w.table.find(r => r.line === 'Central banks'); if (cb && $('#mtCb')) chart('mtCb', { type: 'bar', data: { labels: w.quarters, datasets: [{ label: 'Central banks (t)', data: cb.hist, backgroundColor: PAL[3] }] }, options: { plugins: { legend: { display: false } } } });
+    if (w && w.quarters.length > 1) {
+      const sel = w.table.filter(r => ['jewellery', 'technology', 'bar_coin', 'etfs', 'central_banks'].includes(r.key));
+      chart('mtWgc', { type: 'bar', data: { labels: w.quarters, datasets: sel.map((r, i) => ({ label: r.line, data: r.hist, backgroundColor: PAL[i] })) } });
     }
     if (e) chart('mtEtf', { type: 'line', data: { labels: e.gld.weekly.date, datasets: [ln(e.gld.weekly.v, 'GLD (t)', PAL[3])] }, options: { plugins: { legend: { display: false } } } });
   }
@@ -321,7 +318,7 @@ const Metals = (() => {
       <div class="card" style="margin-top:12px"><h2>What could not be automated</h2><ul class="read">
         <li><b>COMEX warehouse stocks</b>: cmegroup.com blocks GitHub's servers; the desk's Mac collector downloads the daily reports.</li>
         <li><b>LME positions (COTR), SHFE stocks, Chinese premiums, treatment charges, Platts/Fastmarkets premiums</b>: no free automated source (paid, or blocked).</li>
-        <li><b>World Gold Council full data tables</b> need a Goldhub login; the desk uses the public chart data (world totals by category).</li>
+        <li><b>World Gold Council full data tables and revisions</b>: the tables need a Goldhub login and its data service disallows automated access, so the desk parses the public summary of each quarterly report.</li>
         <li><b>Silver Institute survey tables</b> are a PDF: the desk stores the key numbers from the public page.</li>
         <li><b>Free implied volatility for COMEX options</b>: not published; the options pricer uses realized volatility.</li></ul></div>`;
   }

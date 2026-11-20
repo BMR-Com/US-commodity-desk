@@ -7,8 +7,8 @@ Usage: python pipelines/metals.py [step ...]      steps: etf lme wgc icsg iai us
           snapshot appended)                                                       -> raw/etf_gld.csv, raw/etf_ishares.csv
   lme     LME copper and aluminium cash, 3-month and LME stocks (westmetall.com daily tables; current year each run,
           earlier years once)                                                      -> raw/lme_cu.csv, raw/lme_al.csv
-  wgc     World Gold Council quarterly supply and demand (the public Goldhub chart data; a snapshot is kept whenever it
-          changes, so revisions can be read)                                      -> raw/wgc/sd_<date>.json
+  wgc     World Gold Council Gold Demand Trends (quarterly): headline tonnages from the public report summary on gold.org
+          (the Goldhub data API is disallowed by robots.txt; full tables need a login)      -> raw/wgc_gdt.json
   icsg    ICSG monthly press release (PDF): world refined copper balance table and text -> raw/icsg/<release>.json
   iai     International Aluminium Institute monthly primary aluminium production by region (public statistics page)
                                                                                    -> raw/iai_primary.csv, raw/iai/snap_<month>.json
@@ -155,24 +155,67 @@ def lme():
     return n
 
 
-# ───────── World Gold Council quarterly supply and demand ─────────
+# ───────── World Gold Council Gold Demand Trends (quarterly) ─────────
+# The Goldhub data API (fsv3.gold.org) is disallowed by its robots.txt and the full tables need a login, so the desk reads
+# the public summary of each Gold Demand Trends report on www.gold.org (allowed) and parses the headline tonnages.
+GDT_LINES = [("total", r"total (gold )?demand"), ("central_banks", r"central banks?"), ("etfs", r"\bETFs?\b"), ("bar_coin", r"bar and coin"),
+             ("jewellery", r"jewel(le)?ry"), ("technology", r"technology"), ("mine", r"mine production"), ("recycling", r"recycl"), ("supply", r"total supply")]
+
+
+def gdt_parse(desc):
+    out = {}
+    for clause in re.split(r"(?<=[.;])\s+|,\s+(?:while|and|lifting)\s+|\s+By contrast,\s+", desc):
+        for key, rx in GDT_LINES:
+            if key in out or not re.search(rx, clause, re.I):
+                continue
+            t = re.search(r"([\d,]+(?:\.\d+)?)\s?t\b", clause)
+            if not t:
+                continue
+            v = float(t.group(1).replace(",", ""))
+            pc = re.search(r"(up|down|rose|fell|lower|higher|increased|declined|grew|dropped|gained)\D{0,20}?(\d+(?:\.\d+)?)%|(\d+(?:\.\d+)?)%\s+(lower|higher|up|down)", clause, re.I)
+            yoy = None
+            if pc:
+                word = (pc.group(1) or pc.group(4) or "").lower()
+                yoy = float(pc.group(2) or pc.group(3)) * (-1 if word in ("down", "fell", "lower", "declined", "dropped") else 1)
+            if key == "etfs" and re.search(r"outflow", clause, re.I):
+                v = -v
+            out[key] = {"t": v, "yoy_pct": yoy}
+            break
+    return out
+
+
 def wgc():
-    if not robots_ok("https://fsv3.gold.org", "/api/"):
-        raise RuntimeError("fsv3.gold.org robots.txt disallows /api/")
-    r = get("https://fsv3.gold.org/api/v11/charts/supply-and-demand/44", headers={"Referer": "https://www.gold.org/goldhub/data/gold-demand-by-country", "Accept": "application/json"})
+    if not robots_ok("https://www.gold.org", "/goldhub/research/gold-demand-trends"):
+        raise RuntimeError("gold.org robots.txt disallows the Gold Demand Trends pages")
+    r = get("https://www.gold.org/goldhub/research/gold-demand-trends")
     if r is None or r.status_code != 200:
-        raise RuntimeError("WGC supply-demand data not available")
-    cd = r.json()["chartData"]
-    keep = {k: v for k, v in cd.items() if k in ("Supply_Quarterly", "Demand_Quarterly", "Supply_Annually", "Demand_Annually")}
-    body = json.dumps(keep, sort_keys=True)
-    d = RAW / "wgc"
-    d.mkdir(parents=True, exist_ok=True)
-    snaps = sorted(d.glob("sd_*.json"))
-    if snaps and json.dumps(json.loads(snaps[-1].read_text())["data"], sort_keys=True) == body:
-        print("WGC unchanged, latest quarter", keep["Demand_Quarterly"]["categories"][-1]); return 0
-    (d / f"sd_{TODAY}.json").write_text(json.dumps({"fetched": str(TODAY), "source": "World Gold Council, Goldhub supply and demand (world)", "data": keep}))
-    print("WGC new snapshot, latest quarter", keep["Demand_Quarterly"]["categories"][-1])
-    return 1
+        raise RuntimeError("WGC Gold Demand Trends page not available")
+    slugs = sorted(set(re.findall(r'href="/goldhub/research/gold-demand-trends/(gold-demand-trends-q([1-4])-(\d{4}))"', r.text)), key=lambda x: (x[2], x[1]))
+    p = RAW / "wgc_gdt.json"
+    have = json.loads(p.read_text()) if p.exists() else {}
+    n = 0
+    for slug, q, y in slugs[-6:]:
+        key = f"{y}-Q{q}"
+        if key in have and have[key].get("values"):
+            continue
+        time.sleep(3)
+        pg = get(f"https://www.gold.org/goldhub/research/gold-demand-trends/{slug}")
+        if pg is None or pg.status_code != 200:
+            continue
+        m = re.findall(r'"description":"([^"]{80,})"', pg.text)
+        desc = html.unescape(m[0].replace("\\/", "/")) if m else None
+        if not desc:
+            print("WGC", key, "no summary found"); continue
+        vals = gdt_parse(desc)
+        pub = re.search(r'"datePublished":"(\d{4}-\d{2}-\d{2})', pg.text)
+        have[key] = {"quarter": key, "published": pub.group(1) if pub else str(TODAY), "summary": desc, "values": vals,
+                     "url": f"https://www.gold.org/goldhub/research/gold-demand-trends/{slug}", "fetched": str(TODAY)}
+        n += 1
+        print("WGC", key, {k: v["t"] for k, v in vals.items()})
+    if not have:
+        raise RuntimeError("no WGC quarter parsed")
+    p.write_text(json.dumps(dict(sorted(have.items())), indent=1))
+    return n
 
 
 # ───────── ICSG monthly press release ─────────

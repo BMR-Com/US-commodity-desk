@@ -168,41 +168,22 @@ def sg(v, d=1, suf=""):
 
 # ───────── gold ─────────
 def wgc_block():
-    snaps = sorted((RAW / "wgc").glob("sd_*.json")) if (RAW / "wgc").exists() else []
-    if not snaps:
+    """World Gold Council Gold Demand Trends headline tonnages by quarter (pipelines/metals.py wgc). Year-on-year changes
+    are WGC's own; the desk keeps each quarter's first published summary, so later revisions are not captured."""
+    p = RAW / "wgc_gdt.json"
+    if not p.exists():
         return None
-    cur = json.loads(snaps[-1].read_text())
-    q = cur["data"]["Demand_Quarterly"]
-    sq = cur["data"]["Supply_Quarterly"]
-    cats = q["categories"]
-    ser = {s["name"]: s["data"] for s in q["series"]}
-    sup = {s["name"]: s["data"] for s in sq["series"]}
-    rows = [("Jewellery consumption", ser), ("Technology", ser), ("Total bc", ser), ("Etfs", ser), ("Central banks", ser), ("Mine production", sup), ("Recycled gold", sup)]
-    nice = {"Total bc": "Bar and coin", "Etfs": "Gold ETFs", "Jewellery consumption": "Jewellery", "Recycled gold": "Recycling"}
-    i = len(cats) - 1
-    table = []
-    for name, src in rows:
-        v = src.get(name)
-        if not v:
-            continue
-        table.append({"line": nice.get(name, name), "now": v[i], "yago": v[i - 4] if i >= 4 else None, "yoy": (v[i] - v[i - 4]) if i >= 4 and v[i - 4] is not None else None,
-                      "avg4": float(np.mean([x for x in v[i - 3:i + 1] if x is not None])), "hist": v[-12:]})
-    lbma = ser.get("LBMA") or sup.get("LBMA")
-    rev = []
-    if len(snaps) > 1:
-        prev = json.loads(snaps[-2].read_text())
-        pq = prev["data"]["Demand_Quarterly"]
-        pser = {s["name"]: s["data"] for s in pq["series"]}
-        pc = pq["categories"]
-        for name in ("Jewellery consumption", "Technology", "Total bc", "Etfs", "Central banks"):
-            for k, c in enumerate(cats):
-                if c in pc and name in pser and name in ser:
-                    a, b = ser[name][k], pser[name][pc.index(c)]
-                    if a is not None and b is not None and abs(a - b) >= 1:
-                        rev.append({"line": nice.get(name, name), "quarter": c, "now": a, "before": b, "chg": a - b})
-        rev = sorted(rev, key=lambda r: -abs(r["chg"]))[:10]
-    return {"asof": cur["fetched"], "quarter": cats[i], "quarters": cats[-12:], "table": table, "lbma": lbma[-12:] if lbma else None,
-            "revisions": rev, "prev_snapshot": snaps[-2].stem[3:] if len(snaps) > 1 else None, "source": "World Gold Council, Gold Demand Trends (Goldhub data)"}
+    q = json.loads(p.read_text())
+    keys = sorted(q)
+    cur = q[keys[-1]]
+    nice = {"total": "Total demand", "jewellery": "Jewellery", "technology": "Technology", "bar_coin": "Bar and coin", "etfs": "Gold ETFs (net flow)",
+            "central_banks": "Central banks", "mine": "Mine production", "recycling": "Recycling", "supply": "Total supply"}
+    table = [{"key": k, "line": nice.get(k, k), "now": v["t"], "yoy_pct": v.get("yoy_pct"), "hist": [((q[x].get("values") or {}).get(k) or {}).get("t") for x in keys]}
+             for k, v in cur["values"].items()]
+    order = list(nice)
+    table.sort(key=lambda r: order.index(r["key"]) if r["key"] in order else 99)
+    return {"quarter": cur["quarter"], "published": cur.get("published"), "summary": cur.get("summary"), "url": cur.get("url"), "quarters": keys, "table": table,
+            "source": "World Gold Council, Gold Demand Trends (public report summary)"}
 
 
 def etf_gold():
@@ -258,10 +239,10 @@ def gold(pb, s, rate):
     if e and e.get("chg_1m") is not None:
         fs.append(fac("ETF flows", 1 if e["chg_1m"] >= 10 else -1 if e["chg_1m"] <= -10 else 0, f"GLD holds {e['tonnes']:,.0f} t ({sg(e['chg_1m'], 0)} t in a month, {sg(e['chg_ytd'], 0)} t this year)."))
     wg = o.get("wgc")
-    cb = next((r for r in (wg or {}).get("table", []) if r["line"] == "Central banks"), None)
-    if cb:
-        fs.append(fac("Central banks", 1 if cb["now"] >= 1.1 * cb["avg4"] else -1 if cb["now"] <= 0.8 * cb["avg4"] else 0,
-                      f"Central banks bought {cb['now']:,.0f} t in {wg['quarter']} (4-quarter average {cb['avg4']:,.0f} t; {sg(cb['yoy'], 0)} t y/y)."))
+    cb = next((r for r in (wg or {}).get("table", []) if r["key"] == "central_banks"), None)
+    if cb and cb.get("yoy_pct") is not None:
+        fs.append(fac("Central banks", 1 if cb["yoy_pct"] >= 10 else -1 if cb["yoy_pct"] <= -20 else 0,
+                      f"Central banks bought {cb['now']:,.0f} t in {wg['quarter']} ({sg(cb['yoy_pct'], 0, '%')} y/y; World Gold Council, published {wg['published']})."))
     sp = pb.get("spreads") or []
     if sp and sp[0].get("lease_pct") is not None:
         lr = sp[0]["lease_pct"]

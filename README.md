@@ -1,6 +1,6 @@
 # US Commodity Desk
 
-BMR-Com research desk for US commodity futures: grains and oilseeds, cotton, lean hogs, live and feeder cattle, dairy, and energy (natural gas, WTI crude, ULSD heating oil, RBOB gasoline). Softs, metals and other BCOM markets are covered in the COT desk and the backtests.
+BMR-Com research desk for US commodity futures: grains and oilseeds, cotton, lean hogs, live and feeder cattle, dairy, energy (natural gas, WTI crude, ULSD heating oil, RBOB gasoline) and metals (gold, silver, copper, aluminum). Softs and other BCOM markets are covered in the COT desk and the backtests.
 
 Site: https://bmr-com.github.io/US-commodity-desk/
 
@@ -18,6 +18,7 @@ Research use only; not investment advice.
 | Dairy, Grains & oilseeds, Cotton, Lean hogs, Live & feeder cattle | Per market: contract primer, supply and demand, futures / options / COT flows, outlook |
 | COT (full) | CFTC Commitments of Traders desk (summary and trade ideas, analyzer, scatter, index traders, triggers and flows, seasonality, custom formula) |
 | Energy | Primers, supply and demand with storage and stocks-to-use fair-value models, production / trade-flow / LNG-terminal maps, price charts, COT, news and calendar |
+| Metals | Gold, silver, copper, aluminum: primers, prices and curves (carry, lease rate, gold/silver ratio, COMEX–LME copper, Midwest aluminum premium), COT, supply and demand (World Gold Council, ICSG, IAI, USGS, Silver Institute, LME and ETF stocks), seasonality, outlook, news and calendar, data status |
 
 ## Data
 
@@ -30,6 +31,7 @@ USDA (AMS mandatory price reporting and Market News, NASS, ERS, ESMIS, FGIS expo
 | USDA (AMS datamart & Market News, NASS, ERS, ESMIS, FGIS, FAS export sales), CFTC COT, WASDE, TradingView prices | GitHub Actions on a schedule (free for public repos) | repo secrets `NASS_API_KEY`, `AMS_API_KEY`, `FAS_API_KEY` |
 | Energy: EIA weekly storage and petroleum stocks, daily prices, ETF options (`energy`); EIA monthly/annual, OWID, Comtrade maps (`energy_geo`, Mondays) | GitHub Actions | repo secret `EIA_API_KEY` |
 | COT (full) desk: all BCOM markets, index traders (`cot_full`, Friday after the release, retries Sat/Mon) | GitHub Actions | — |
+| Metals: COMEX prices, COT, ETF holdings, LME prices and stocks, WGC / ICSG / IAI / USGS / Silver Institute (`metals`, 9:10 am and 5:50 pm ET weekdays, Friday 3:45 pm ET for COT; `metals-catchup` nightly and next morning) | GitHub Actions | — |
 | Markets & macro snapshot (`markets`, hourly on weekdays), news (`intel`, every 3 h), weather and drought (`geo`, daily) | GitHub Actions | — |
 | Every model, the summary page, the technicals and COT desks | GitHub Actions after each data run | — |
 | Backtests: rules, baskets, technical patterns, regime check (`backtest`) | GitHub Actions, Saturdays | — |

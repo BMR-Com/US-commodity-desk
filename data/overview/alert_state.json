@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-19 20:50 UTC",
- "by": "claude",
+ "updated": "2026-11-20 03:44 UTC",
+ "by": "bot",
  "views": {
   "corn": {
    "view": "bearish",
@@ -10,7 +10,7 @@
   "soybeans": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.35
+   "score": 0.29
   },
   "meal": {
    "view": "mildly bullish",
@@ -25,7 +25,7 @@
   "wheat": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.67
+   "score": -0.61
   },
   "kc": {
    "view": "bearish",
@@ -35,7 +35,7 @@
   "cotton": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.16
+   "score": 0.17
   },
   "hogs": {
    "view": "bearish",
@@ -65,12 +65,12 @@
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.46
+   "score": -0.5
   },
   "natgas": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.09
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.31
   },
   "crude": {
    "view": "mildly bullish",
@@ -89,48 +89,26 @@
   }
  },
  "alerts": {
-  "corn": [],
-  "soybeans": [
-   {
-    "kind": "break",
-    "side": "dn",
-    "text": "Holding below the fund sell trigger (120-day momentum flip) 1,209.72",
-    "new": false
-   }
+  "corn": [
+   "Broke below S1 438.00"
   ],
+  "soybeans": [],
   "meal": [],
   "oil": [],
-  "wheat": [],
+  "wheat": [
+   "Broke below S1 577.75",
+   "Broke below the fund sell trigger (250-day momentum flip) 577.60"
+  ],
   "kc": [],
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [
-   {
-    "kind": "break",
-    "side": "up",
-    "text": "Holding above the fund buy trigger (200-day average) 334.767",
-    "new": false
-   }
-  ],
+  "feeders": [],
   "class3": [],
   "class4": [],
   "palm": [],
   "natgas": [],
-  "crude": [
-   {
-    "kind": "break",
-    "side": "up",
-    "text": "Broke above R1 83.71",
-    "new": true
-   },
-   {
-    "kind": "break",
-    "side": "up",
-    "text": "Broke above R2 83.89",
-    "new": true
-   }
-  ],
+  "crude": [],
   "ulsd": [],
   "rbob": []
  },

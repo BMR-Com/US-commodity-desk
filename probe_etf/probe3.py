@@ -82,7 +82,7 @@ with sync_playwright() as p:
                 loc = pg.get_by_text(tab, exact=True)
                 if loc.count():
                     loc.first.click(timeout=5000); pg.wait_for_timeout(5000)
-                    (OUT / f"{k}_tab_{re.sub(r'\W','',tab)}.txt").write_text(pg.inner_text("body"))
+                    (OUT / (k + '_tab_' + re.sub(r'\W', '', tab) + '.txt')).write_text(pg.inner_text("body"))
             except Exception as e: summary[f"{k}_{tab}_err"] = str(e)[:150]
         try:
             (OUT / f"{k}_text.txt").write_text(pg.inner_text("body"))

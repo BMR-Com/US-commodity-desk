@@ -12,5 +12,7 @@ jobs:
       - run: pip install requests pandas pypdf playwright git+https://github.com/rongardF/tvdatafeed.git && python -m playwright install --with-deps chromium
       - run: python probe/metals.py || true
       - if: always()
-        uses: actions/upload-artifact@v4
-        with: {name: probe, path: probe/, retention-days: 3}
+        run: |
+          tar czf probe_out.tgz probe/m3; mkdir -p out; mv probe_out.tgz out/
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add -f out/probe_out.tgz; git commit -qm "probe output"; git push 2>&1 | tail -5

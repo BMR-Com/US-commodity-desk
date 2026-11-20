@@ -1,0 +1,16 @@
+name: tmp-metals-etf-probe
+on: {push: {branches: [tmp/metals-etf-probe]}, workflow_dispatch: {}}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests pandas openpyxl xlrd lxml playwright && python -m playwright install --with-deps chromium > /dev/null
+      - run: python probe_etf/probe.py || true
+      - run: timeout 900 python probe_etf/browser.py || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: probe_out, path: probe_out}

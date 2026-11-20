@@ -1,0 +1,63 @@
+{
+ "etf": {
+  "ok": true,
+  "at": "2026-11-20 16:08 UTC",
+  "new": 5537,
+  "secs": 6,
+  "last_new": "2026-11-20 16:08 UTC"
+ },
+ "lme": {
+  "ok": true,
+  "at": "2026-11-20 16:08 UTC",
+  "new": 3486,
+  "secs": 39,
+  "last_new": "2026-11-20 16:08 UTC"
+ },
+ "wgc": {
+  "ok": false,
+  "at": "2026-11-20 16:08 UTC",
+  "error": "fsv3.gold.org robots.txt disallows /api/"
+ },
+ "icsg": {
+  "ok": true,
+  "at": "2026-11-20 16:09 UTC",
+  "new": 1,
+  "secs": 31,
+  "last_new": "2026-11-20 16:09 UTC"
+ },
+ "iai": {
+  "ok": true,
+  "at": "2026-11-20 16:09 UTC",
+  "new": 1,
+  "secs": 20,
+  "last_new": "2026-11-20 16:09 UTC"
+ },
+ "usgs": {
+  "ok": true,
+  "at": "2026-11-20 16:09 UTC",
+  "new": 1,
+  "secs": 1,
+  "last_new": "2026-11-20 16:09 UTC"
+ },
+ "silver": {
+  "ok": true,
+  "at": "2026-11-20 16:09 UTC",
+  "new": 1,
+  "secs": 1,
+  "last_new": "2026-11-20 16:09 UTC"
+ },
+ "rates": {
+  "ok": true,
+  "at": "2026-11-20 16:10 UTC",
+  "new": 5488,
+  "secs": 15,
+  "last_new": "2026-11-20 16:10 UTC"
+ },
+ "comex": {
+  "ok": true,
+  "at": "2026-11-20 16:10 UTC",
+  "new": 0,
+  "secs": 0,
+  "last_new": null
+ }
+}

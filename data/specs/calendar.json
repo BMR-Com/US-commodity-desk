@@ -1355,7 +1355,7 @@
 "name": "Gold (COMEX)",
 "settle": "physical",
 "roll": "Roll or exit before first position day (two business days before the delivery month); open interest moves to the next active month (Feb, Apr, Jun, Aug, Oct, Dec) during the last week of the month before.",
-"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"rule": "COMEX gold, silver, copper, aluminum and NYMEX platinum, palladium: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
 "contracts": [
 {
 "contract": "GCZ2026",
@@ -1426,7 +1426,7 @@
 "name": "Silver (COMEX)",
 "settle": "physical",
 "roll": "As gold; active months Mar, May, Jul, Sep, Dec.",
-"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"rule": "COMEX gold, silver, copper, aluminum and NYMEX platinum, palladium: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
 "contracts": [
 {
 "contract": "SIZ2026",
@@ -1497,7 +1497,7 @@
 "name": "Copper (COMEX)",
 "settle": "physical",
 "roll": "As gold; every month is listed but liquidity sits in Mar, May, Jul, Sep, Dec.",
-"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"rule": "COMEX gold, silver, copper, aluminum and NYMEX platinum, palladium: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
 "contracts": [
 {
 "contract": "HGZ2026",
@@ -1568,7 +1568,7 @@
 "name": "Aluminum (COMEX)",
 "settle": "physical",
 "roll": "As gold; thinly traded, so most aluminum risk is held at the LME.",
-"rule": "COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"rule": "COMEX gold, silver, copper, aluminum and NYMEX platinum, palladium: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
 "contracts": [
 {
 "contract": "ALIX2026",
@@ -1689,6 +1689,148 @@
 "ltd": "2027-05-28",
 "out_by": "2027-05-28",
 "days_to_out": 129
+}
+]
+},
+"PL": {
+"name": "Platinum (NYMEX)",
+"settle": "physical",
+"roll": "As gold (same first notice and last trade rules); active months Jan, Apr, Jul, Oct. Open interest moves to the next active month in the last two weeks of the month before.",
+"rule": "COMEX gold, silver, copper, aluminum and NYMEX platinum, palladium: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"contracts": [
+{
+"contract": "PLF2027",
+"month": "2027-01",
+"fpd": "2026-12-30",
+"fnd": "2026-12-31",
+"ltd": "2027-01-27",
+"out_by": "2026-12-29",
+"days_to_out": 25
+},
+{
+"contract": "PLJ2027",
+"month": "2027-04",
+"fpd": "2027-03-30",
+"fnd": "2027-03-31",
+"ltd": "2027-04-28",
+"out_by": "2027-03-29",
+"days_to_out": 85
+},
+{
+"contract": "PLN2027",
+"month": "2027-07",
+"fpd": "2027-06-29",
+"fnd": "2027-06-30",
+"ltd": "2027-07-28",
+"out_by": "2027-06-28",
+"days_to_out": 148
+},
+{
+"contract": "PLV2027",
+"month": "2027-10",
+"fpd": "2027-09-29",
+"fnd": "2027-09-30",
+"ltd": "2027-10-27",
+"out_by": "2027-09-28",
+"days_to_out": 212
+},
+{
+"contract": "PLF2028",
+"month": "2028-01",
+"fpd": "2027-12-29",
+"fnd": "2027-12-30",
+"ltd": "2028-01-27",
+"out_by": "2027-12-28",
+"days_to_out": 275
+},
+{
+"contract": "PLJ2028",
+"month": "2028-04",
+"fpd": "2028-03-30",
+"fnd": "2028-03-31",
+"ltd": "2028-04-26",
+"out_by": "2028-03-29",
+"days_to_out": 338
+},
+{
+"contract": "PLN2028",
+"month": "2028-07",
+"fpd": "2028-06-29",
+"fnd": "2028-06-30",
+"ltd": "2028-07-27",
+"out_by": "2028-06-28",
+"days_to_out": 400
+}
+]
+},
+"PA": {
+"name": "Palladium (NYMEX)",
+"settle": "physical",
+"roll": "As platinum; active months Mar, Jun, Sep, Dec.",
+"rule": "COMEX gold, silver, copper, aluminum and NYMEX platinum, palladium: LTD = third-last business day of the delivery month; FND = last business day of the month before; first position (intention) day the business day before FND. Longs exit before the first position day.",
+"contracts": [
+{
+"contract": "PAZ2026",
+"month": "2026-12",
+"fpd": "2026-11-27",
+"fnd": "2026-11-30",
+"ltd": "2026-12-29",
+"out_by": "2026-11-25",
+"days_to_out": 3
+},
+{
+"contract": "PAH2027",
+"month": "2027-03",
+"fpd": "2027-02-25",
+"fnd": "2027-02-26",
+"ltd": "2027-03-29",
+"out_by": "2027-02-24",
+"days_to_out": 63
+},
+{
+"contract": "PAM2027",
+"month": "2027-06",
+"fpd": "2027-05-27",
+"fnd": "2027-05-28",
+"ltd": "2027-06-28",
+"out_by": "2027-05-26",
+"days_to_out": 127
+},
+{
+"contract": "PAU2027",
+"month": "2027-09",
+"fpd": "2027-08-30",
+"fnd": "2027-08-31",
+"ltd": "2027-09-28",
+"out_by": "2027-08-27",
+"days_to_out": 191
+},
+{
+"contract": "PAZ2027",
+"month": "2027-12",
+"fpd": "2027-11-29",
+"fnd": "2027-11-30",
+"ltd": "2027-12-28",
+"out_by": "2027-11-26",
+"days_to_out": 254
+},
+{
+"contract": "PAH2028",
+"month": "2028-03",
+"fpd": "2028-02-28",
+"fnd": "2028-02-29",
+"ltd": "2028-03-29",
+"out_by": "2028-02-25",
+"days_to_out": 315
+},
+{
+"contract": "PAM2028",
+"month": "2028-06",
+"fpd": "2028-05-30",
+"fnd": "2028-05-31",
+"ltd": "2028-06-28",
+"out_by": "2028-05-26",
+"days_to_out": 379
 }
 ]
 }

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20 16:30 UTC",
+ "generated": "2026-11-20 19:23 UTC",
  "today": "2026-11-20",
  "sources": [
   {
@@ -181,6 +181,102 @@
    "manual": false,
    "state": "ok",
    "used_in": "aluminum supply"
+  },
+  {
+   "group": "Prices",
+   "source": "NYMEX platinum and palladium futures (Yahoo, TradingView fallback)",
+   "latest": "2026-11-20",
+   "age": 0,
+   "age_unit": "bd",
+   "limit": 2,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "platinum, palladium desks"
+  },
+  {
+   "group": "Prices",
+   "source": "Per-contract history, platinum and palladium (TradingView)",
+   "latest": "2026-11-20",
+   "age": 0,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "seasonality, spreads"
+  },
+  {
+   "group": "Positions",
+   "source": "CFTC COT, positions date (platinum, palladium)",
+   "latest": "2026-11-10",
+   "age": 10,
+   "age_unit": "days",
+   "limit": 10,
+   "cadence": "weekly (Tue, out Fri)",
+   "manual": false,
+   "state": "ok",
+   "used_in": "COT panels, overview"
+  },
+  {
+   "group": "Platinum",
+   "source": "WPIC Platinum Quarterly (quarter covered)",
+   "latest": "2026-09-30",
+   "age": 51,
+   "age_unit": "days",
+   "limit": 150,
+   "cadence": "quarterly (Mar, May, Sep, Nov)",
+   "manual": false,
+   "state": "ok",
+   "used_in": "platinum S&D"
+  },
+  {
+   "group": "Platinum",
+   "source": "abrdn PPLT ounces held (SEC 10-Q/10-K, quarter end)",
+   "latest": "2026-09-30",
+   "age": 51,
+   "age_unit": "days",
+   "limit": 140,
+   "cadence": "quarterly (~6 weeks after quarter end)",
+   "manual": false,
+   "state": "ok",
+   "used_in": "platinum ETF"
+  },
+  {
+   "group": "Palladium",
+   "source": "abrdn PALL ounces held (SEC 10-Q/10-K, quarter end)",
+   "latest": "2026-09-30",
+   "age": 51,
+   "age_unit": "days",
+   "limit": 140,
+   "cadence": "quarterly (~6 weeks after quarter end)",
+   "manual": false,
+   "state": "ok",
+   "used_in": "palladium ETF"
+  },
+  {
+   "group": "Platinum and palladium",
+   "source": "Johnson Matthey PGM market report (edition)",
+   "latest": "2026-05-15",
+   "age": 189,
+   "age_unit": "days",
+   "limit": 400,
+   "cadence": "annual (May)",
+   "manual": false,
+   "state": "ok",
+   "used_in": "platinum and palladium S&D"
+  },
+  {
+   "group": "Platinum and palladium",
+   "source": "NYMEX platinum and palladium warehouse stocks (via Mac collector)",
+   "latest": null,
+   "age": null,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
+   "manual": true,
+   "state": "needs Mac",
+   "used_in": "exchange stocks"
   },
   {
    "group": "All metals",

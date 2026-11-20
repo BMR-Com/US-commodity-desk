@@ -1,65 +1,86 @@
 {
  "etf": {
   "ok": true,
-  "at": "2026-11-20 16:29 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
-  "secs": 5,
+  "secs": 6,
   "last_new": null
  },
  "lme": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
-  "new": 1014,
-  "secs": 21,
-  "last_new": "2026-11-20 16:30 UTC"
+  "at": "2026-11-20 19:22 UTC",
+  "new": 0,
+  "secs": 7,
+  "last_new": null
  },
  "wgc": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
-  "secs": 0,
+  "secs": 1,
   "last_new": null
  },
  "icsg": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
-  "secs": 23,
+  "secs": 7,
   "last_new": null
  },
  "iai": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
-  "secs": 23,
+  "secs": 20,
   "last_new": null
  },
  "usgs": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
  },
  "silver": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
   "secs": 1,
   "last_new": null
  },
  "rates": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
-  "secs": 4,
+  "secs": 2,
   "last_new": null
  },
  "comex": {
   "ok": true,
-  "at": "2026-11-20 16:30 UTC",
+  "at": "2026-11-20 19:22 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
+ },
+ "wpic": {
+  "ok": true,
+  "at": "2026-11-20 19:22 UTC",
+  "new": 1,
+  "secs": 9,
+  "last_new": "2026-11-20 19:22 UTC"
+ },
+ "jm": {
+  "ok": true,
+  "at": "2026-11-20 19:22 UTC",
+  "new": 1,
+  "secs": 9,
+  "last_new": "2026-11-20 19:22 UTC"
+ },
+ "pgm_etf": {
+  "ok": true,
+  "at": "2026-11-20 19:23 UTC",
+  "new": 108,
+  "secs": 2,
+  "last_new": "2026-11-20 19:23 UTC"
  }
 }

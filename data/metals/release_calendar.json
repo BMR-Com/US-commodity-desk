@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20 16:30 UTC",
+ "generated": "2026-11-20 19:23 UTC",
  "upcoming": [
   {
    "date": "2026-11-18",
@@ -20,7 +20,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -56,7 +58,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -70,7 +74,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -84,7 +90,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -98,7 +106,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -134,7 +144,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -148,7 +160,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -162,7 +176,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -176,7 +192,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -201,7 +219,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -238,7 +258,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -266,11 +288,25 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
    "estimated": false
+  },
+  {
+   "date": "2027-02-08",
+   "time_ct": "",
+   "event": "PPLT / PALL quarterly filings (ETF ounces held)",
+   "markets": [
+    "PL",
+    "PA"
+   ],
+   "importance": 1,
+   "estimated": true,
+   "link": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001460235&type=10-&dateb=&owner=include&count=40"
   },
   {
    "date": "2027-02-12",
@@ -280,7 +316,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -294,7 +332,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -330,7 +370,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -344,11 +386,25 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
    "estimated": false
+  },
+  {
+   "date": "2027-03-10",
+   "time_ct": "",
+   "event": "WPIC Platinum Quarterly",
+   "markets": [
+    "PL",
+    "PA"
+   ],
+   "importance": 2,
+   "estimated": true,
+   "link": "https://platinuminvestment.com/supply-and-demand/platinum-quarterly"
   },
   {
    "date": "2027-03-12",
@@ -358,7 +414,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -372,7 +430,9 @@
     "GC",
     "SI",
     "HG",
-    "ALI"
+    "ALI",
+    "PL",
+    "PA"
    ],
    "importance": 1,
    "calendar": false,
@@ -429,6 +489,26 @@
    "report": "USGS Mineral Commodity Summaries",
    "when": "Annual (late January)",
    "desk": "checked every run until the new edition is stored"
+  },
+  {
+   "report": "NYMEX platinum and palladium settlement",
+   "when": "Daily, 1:05 pm ET",
+   "desk": "metals workflow 5:50 pm ET weekdays (clock), 9:10 am ET refresh"
+  },
+  {
+   "report": "WPIC Platinum Quarterly",
+   "when": "Quarterly (early Mar, mid-May, early Sep, mid-Nov); WPIC states the next date on its page",
+   "desk": "checked every metals run; catch-up reruns if the stated date passes without it"
+  },
+  {
+   "report": "Johnson Matthey PGM market report",
+   "when": "Annual, mid-May",
+   "desk": "checked every metals run; catch-up reruns if not stored three weeks after mid-May"
+  },
+  {
+   "report": "PPLT / PALL ounces held (SEC 10-Q/10-K)",
+   "when": "About 5-6 weeks after each quarter end (10-K about 8-9 weeks)",
+   "desk": "checked every metals run; catch-up reruns if overdue"
   }
  ]
 }

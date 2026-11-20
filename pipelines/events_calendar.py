@@ -149,6 +149,22 @@ def rules(start, end):
                 d += pd.Timedelta(days=1)
             if start <= d <= end:
                 ev.append({"date": str(d.date()), "time": "", "event": what, "cat": "Energy", "markets": ["CL", "HO", "RB"], "importance": 2, "estimated": True})
+    ev += metals_events(start, end)
+    return ev
+
+
+def metals_events(start, end):
+    """Metals desk reports: dates estimated from each publisher's usual pattern unless data/metals/release_calendar.json
+    (pipelines/metals_status.py) lists the exact next date."""
+    ev = []
+    try:
+        cal = json.loads((ROOT / "data" / "metals" / "release_calendar.json").read_text())
+        for r in cal.get("upcoming", []):
+            if str(start.date()) <= r["date"] <= str(end.date()) and r.get("calendar", True):
+                ev.append({"date": r["date"], "time": r.get("time_ct", ""), "event": r["event"] + (" (date estimated)" if r.get("estimated") else ""), "cat": "Metals",
+                           "markets": r["markets"], "importance": r.get("importance", 2), "estimated": bool(r.get("estimated")), "link": r.get("link")})
+    except Exception as e:
+        print("metals calendar skipped:", e)
     return ev
 
 
@@ -219,6 +235,15 @@ def contract_events(start, end):
                     d -= pd.Timedelta(days=1)
                     n += bday(d)
                 out = [(d, "last trading day")]
+            elif sym in ("GC", "SI", "HG", "ALI"):   # COMEX metals: FND last business day of the prior month, LTD 3rd-last business day
+                fnd = mstart - pd.Timedelta(days=1)
+                while not bday(fnd):
+                    fnd -= pd.Timedelta(days=1)
+                ltd, n = mstart + pd.offsets.MonthEnd(0) + pd.Timedelta(days=1), 0
+                while n < 3:
+                    ltd -= pd.Timedelta(days=1)
+                    n += bday(ltd)
+                out = [(fnd, "first notice day"), (ltd, "last trading day")]
             elif sym in ("HO", "RB"):    # last business day of the month before the contract month
                 d = mstart - pd.Timedelta(days=1)
                 while not bday(d):
@@ -226,7 +251,7 @@ def contract_events(start, end):
                 out = [(d, "last trading day")]
             for d, what in out:
                 if start <= d <= end:
-                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "ICE contract" if sym == "CT" else "NYMEX contract" if sym in ("NG", "CL", "HO", "RB") else "CME contract", "markets": [sym],
+                    ev.append({"date": str(d.date()), "time": "", "event": f"{t['name']} {s['label']}: {what}", "cat": "ICE contract" if sym == "CT" else "NYMEX contract" if sym in ("NG", "CL", "HO", "RB") else "COMEX contract" if sym in ("GC", "SI", "HG", "ALI") else "CME contract", "markets": [sym],
                                "importance": 2 if "first notice" in what or "settles" in what else 1, "estimated": True})
     return ev
 

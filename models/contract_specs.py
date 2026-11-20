@@ -62,6 +62,16 @@ C = {
         dict(sym="RB", name="RBOB gasoline", ex="NYMEX", code="RB", size="42,000 gal (1,000 bbl)", quote="$/gal", tick="$0.0001 = $4.20", usd=42000, price="RB", months="Every month", settle="Physical delivery in New York Harbor", options="Yes"),
         dict(sym="MRB", name="Micro RBOB gasoline", ex="NYMEX", code="MRB", size="4,200 gal", quote="$/gal", tick="$0.0001 = $0.42", usd=4200, price="RB", months="Every month", settle="Cash-settled to RB", options="No"),
     ],
+    "metals": [
+        dict(sym="GC", name="Gold", ex="COMEX", code="GC", size="100 troy oz", quote="$/oz", tick="$0.10 = $10", usd=100, price="GC", months="Feb, Apr, Jun, Aug, Oct, Dec active (plus nearby months)", settle="Physical: 100-oz bar (or 1-kg bars) on warrant in a COMEX-approved vault, 995 fineness", options="Yes, incl. weeklies"),
+        dict(sym="MGC", name="Micro gold", ex="COMEX", code="MGC", size="10 troy oz", quote="$/oz", tick="$0.10 = $1", usd=10, price="GC", months="as gold", settle="Physical (10-oz) via exchange for physical rules; most close out", options="Yes"),
+        dict(sym="SI", name="Silver", ex="COMEX", code="SI", size="5,000 troy oz", quote="$/oz", tick="$0.005 = $25", usd=5000, price="SI", months="Mar, May, Jul, Sep, Dec active", settle="Physical: 1,000- or 1,100-oz bars on warrant in a COMEX vault, 999 fineness", options="Yes"),
+        dict(sym="SIL", name="Silver 1,000 oz", ex="COMEX", code="SIL", size="1,000 troy oz", quote="$/oz", tick="$0.005 = $5", usd=1000, price="SI", months="as silver", settle="Physical", options="No"),
+        dict(sym="HG", name="Copper", ex="COMEX", code="HG", size="25,000 lb", quote="$/lb", tick="$0.0005 = $12.50", usd=25000, price="HG", months="Every month; Mar, May, Jul, Sep, Dec active", settle="Physical: grade 1 cathode on warrant in a COMEX-approved US warehouse", options="Yes"),
+        dict(sym="MHG", name="Micro copper", ex="COMEX", code="MHG", size="2,500 lb", quote="$/lb", tick="$0.0005 = $1.25", usd=2500, price="HG", months="as copper", settle="Cash-settled to HG", options="No"),
+        dict(sym="ALI", name="Aluminum", ex="COMEX", code="ALI", size="25 metric tons", quote="$/t", tick="$0.25 = $6.25", usd=25, price="ALI", months="Every month", settle="Physical: P1020A primary aluminum on warrant in a COMEX-approved warehouse", options="Yes (thin)"),
+        dict(sym="AUP", name="Aluminum Midwest premium (Platts)", ex="COMEX", code="AUP", size="25 metric tons (55,116 lb)", quote="$/lb", tick="$0.0025 = $137.79", usd=55116, price="AUP", months="Every month", settle="Cash-settled to the monthly average of the Platts US Midwest duty-paid premium", options="No"),
+    ],
 }
 # quoted unit -> dollars per quoted unit (¢ quotes need /100)
 CENTS = {"¢/bu", "¢/lb"}

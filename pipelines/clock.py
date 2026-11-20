@@ -46,6 +46,8 @@ TABLE = [
     ("cot_full.yml", {MON, TUE, WED, THU}, "18:20"),
     ("data.yml", WEEKDAYS, "16:20"), ("data.yml", {FRI}, "17:40"),     # USDA dairy/livestock, CME, NDPSR (Wed)
     ("contracts.yml", WEEKDAYS, "19:10"),                              # settlements, labs, playbooks, calendar
+    ("metals.yml", WEEKDAYS, "09:10"), ("metals.yml", WEEKDAYS, "17:50"),   # metals: ETFs/LME/monthly sources; after the COMEX settle
+    ("metals.yml", {FRI}, "15:45"),                                    # metals COT, 3:30 pm ET Friday
 ]
 
 

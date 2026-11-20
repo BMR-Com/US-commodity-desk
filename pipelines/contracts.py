@@ -35,6 +35,10 @@ SPEC = {  # sym: (exchange, TV root, months, first year)
     "HO": ("NYMEX", "HO", CODES, 2015), "RB": ("NYMEX", "RB", CODES, 2015),
     # Bursa Malaysia crude palm oil (ringgit), every month
     "FCPO": ("MYX", "FCPO", CODES, 2014),
+    # metals desk (COMEX): gold, silver, copper in their active delivery months; aluminum and the aluminum Midwest
+    # premium (AUP, cash-settled; the aluminum contract with continuous CFTC COT) every month
+    "GC": ("COMEX", "GC", "GJMQVZ", 2010), "SI": ("COMEX", "SI", "HKNUZ", 2010), "HG": ("COMEX", "HG", "HKNUZ", 2010),
+    "ALI": ("COMEX", "ALI", CODES, 2020), "AUP": ("COMEX", "AUP", CODES, 2018),
 }
 
 

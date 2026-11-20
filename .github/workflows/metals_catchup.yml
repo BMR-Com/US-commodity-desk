@@ -1,0 +1,34 @@
+name: metals-catchup
+# Catch-up job for the metals desk (pipelines/metals_catchup.py): once a day after the US releases, and again the next
+# morning, it checks every metals source's latest date (pipelines/metals_status.py) and the last metals run. If an
+# automatic source is late or the last run failed, it reruns the metals workflow, waits, and rechecks. Ends red if a
+# source is still late or the rerun failed. Log: data/metals/catchup.json (kept in the repo, not shown on the site).
+on:
+  schedule:
+    - cron: '43 3 * * *'    # 10:43 pm EST / 11:43 pm EDT, after the day's releases (same-day catch-up)
+    - cron: '23 13 * * *'   # 8:23 am EST, next-morning retry
+  workflow_dispatch: {}
+permissions: {contents: write, actions: write}
+concurrency: {group: metals-catchup, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q requests numpy
+      - name: check, rerun, wait, recheck
+        env: {GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}', REPO: '${{ github.repository }}'}
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          python -u pipelines/metals_catchup.py
+      - name: commit log
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/metals/catchup.json data/metals/status.json 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -q -m "metals catch-up: check $(date -u +%F' '%H:%M)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }

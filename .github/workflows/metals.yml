@@ -1,0 +1,73 @@
+name: metals
+# Metals desk (gold, silver, copper, aluminum): own workflow and data folder (data/metals) so a failure here cannot
+# affect the rest of the desk. Started by the desk clock (pipelines/clock.py) at the release times below; the crons are
+# a backstop. The catch-up job (metals_catchup.yml) reruns it when a source is late or a run failed.
+#   weekdays 9:10 am ET  ETF holdings, LME prices/stocks, monthly/quarterly sources
+#   weekdays 5:50 pm ET  after the COMEX settle: prices, curve, technicals, everything above
+#   Friday   3:45 pm ET  CFTC COT (3:30 pm ET release)
+on:
+  workflow_dispatch:
+    inputs:
+      steps: {description: 'pipelines/metals.py steps (blank = all)', required: false, default: ''}
+  push:
+    branches: [main]
+    paths: ['pipelines/metals.py', 'models/metals.py', 'pipelines/metals_status.py', '.github/workflows/metals.yml']
+  schedule:
+    - cron: '50 22 * * 1-5'   # 5:50 pm EST (6:50 pm EDT)
+    - cron: '10 14 * * 1-5'   # 9:10 am EST
+    - cron: '45 20 * * 5'     # COT, 3:45 pm EST
+    - cron: '45 19 * * 5'     # COT, 3:45 pm EDT
+permissions: {contents: write}
+concurrency: {group: metals, cancel-in-progress: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q pandas numpy requests lxml openpyxl xlrd pypdf playwright git+https://github.com/rongardF/tvdatafeed.git
+      - name: browser for the IAI fallback
+        continue-on-error: true
+        run: python -m playwright install --with-deps chromium > /dev/null
+      - name: prices (per-contract history, front and live contracts), technicals, seasonality, contract calendar, spreads
+        continue-on-error: true
+        timeout-minutes: 45
+        run: |
+          python pipelines/contracts.py GC SI HG ALI AUP || echo contracts >> "$RUNNER_TEMP/failed"
+          python pipelines/ohlc.py GC SI HG ALI AUP || echo ohlc >> "$RUNNER_TEMP/failed"
+          python -W ignore models/technicals.py GC SI HG ALI AUP || echo technicals >> "$RUNNER_TEMP/failed"
+          python -W ignore models/seasonal_desk.py GC SI HG ALI || echo seasonal >> "$RUNNER_TEMP/failed"
+          python -W ignore models/contract_calendar.py || echo contract_calendar >> "$RUNNER_TEMP/failed"
+          python -W ignore models/grains_rv.py || echo spreads_rv >> "$RUNNER_TEMP/failed"
+      - name: CFTC COT (gold, silver, copper, aluminum Midwest premium) and the COT desk
+        continue-on-error: true
+        run: |
+          python pipelines/cot.py GC SI HG AUP || echo cot >> "$RUNNER_TEMP/failed"
+          python -W ignore models/cot_desk.py GC SI HG AUP || echo cot_desk >> "$RUNNER_TEMP/failed"
+      - name: metals sources (ETFs, LME, WGC, ICSG, IAI, USGS, Silver Institute, rates, COMEX stocks)
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python -u pipelines/metals.py ${{ github.event.inputs.steps }} || echo metals_sources >> "$RUNNER_TEMP/failed"
+      - name: model, contract specs, data status
+        continue-on-error: true
+        run: |
+          python -W ignore models/metals.py || echo metals_model >> "$RUNNER_TEMP/failed"
+          python models/contract_specs.py || echo contract_specs >> "$RUNNER_TEMP/failed"
+          python models/vol.py || echo vol >> "$RUNNER_TEMP/failed"
+          python pipelines/metals_status.py || echo metals_status >> "$RUNNER_TEMP/failed"
+      - name: commit
+        if: always()
+        run: |
+          git config user.name "bmr-data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add data/metals
+          for s in GC SI HG ALI AUP; do for f in data/contracts/$s.csv data/ohlc/$s.csv data/price_archive/ohlc/$s.csv data/technicals/$s.json data/seasonal/$s.json data/cot/${s}_fo.csv data/cot/${s}_fut.csv data/cot_desk/$s.json; do [ -e "$f" ] && git add "$f"; done; done
+          for f in data/seasonal/summary.json data/specs/calendar.json data/specs/specs.json data/grains/derived/rv.json data/vol/vol.json; do [ -e "$f" ] && git add "$f"; done
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data: metals $(date -u +%F' '%H:%M)"
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+      - name: report failures (data above is committed either way; this turns the run red)
+        if: always()
+        run: |
+          if [ -s "$RUNNER_TEMP/failed" ]; then echo "::error::metals steps failed: $(sort -u "$RUNNER_TEMP/failed" | tr '\n' ' ')"; exit 1; fi

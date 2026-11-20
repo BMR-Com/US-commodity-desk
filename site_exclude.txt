@@ -26,3 +26,6 @@ data/ams/ethanol_daily
 data/ams/ia_mn_barge_bids
 data/dairy/raw/ers
 data/dairy/raw/ndpsr
+# metals desk: raw downloads and the catch-up log stay in the repo only (the site reads data/metals/*.json)
+data/metals/raw
+data/metals/catchup.json

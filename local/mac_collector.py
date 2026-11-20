@@ -59,6 +59,20 @@ async def collect():
             log("CME margins rows", len(out["margins"].get("rows") or []))
         except Exception as e:
             log("CME margins failed:", str(e)[:300])
+        try:   # COMEX warehouse stocks for the metals desk (daily XLS reports; parsed by pipelines/metals.py comex)
+            out["comex_stocks"] = await page.evaluate("""async () => {
+              const names = ['Gold_Stocks', 'Silver_stocks', 'Copper_Stocks', 'Aluminum_Stocks'], res = {};
+              for (const n of names) {
+                try { const r = await fetch('/delivery_reports/' + n + '.xls', { credentials: 'include' });
+                  if (!r.ok) continue; const b = new Uint8Array(await r.arrayBuffer()); let s = '';
+                  for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000));
+                  res[n] = btoa(s); } catch (e) {}
+                await new Promise(r => setTimeout(r, 1500));
+              }
+              return res; }""")
+            log("COMEX stocks files", list(out["comex_stocks"]))
+        except Exception as e:
+            log("COMEX stocks failed:", str(e)[:300])
         try:   # option settlements, all desk markets (nearest 10 expiries; requests spaced out because CME's edge
             # blocks a burst of a few hundred), for the options desk and pricer
             out["options"] = await page.evaluate((REPO / "cme" / "collect_options.js").read_text())
@@ -94,11 +108,16 @@ def main():
         r = sh(sys.executable, "cme/ingest_options.py", str(tmp / "options.b64"))
         log(r.stdout.strip()[-300:])
         sh(sys.executable, "models/options_desk.py")
+    if res.get("comex_stocks"):
+        d = REPO / "data" / "metals" / "raw" / "comex_stocks"
+        d.mkdir(parents=True, exist_ok=True)
+        for n, b64 in res["comex_stocks"].items():
+            (d / f"{n}_{dt.date.today():%Y%m%d}.xls").write_bytes(base64.b64decode(b64))
     if res.get("flash"):
         (tmp / "flash.b64").write_text(res["flash"])
         r = sh(sys.executable, "pipelines/flash.py", str(tmp / "flash.b64"))
         log(r.stdout.strip()[:300])
-    sh("git", "add", "data/cme", "data/grains/raw/flash", "data/specs", "data/options")
+    sh("git", "add", "data/cme", "data/grains/raw/flash", "data/specs", "data/options", "data/metals/raw/comex_stocks")
     if sh("git", "diff", "--cached", "--quiet").returncode == 0:
         log("nothing new")
         return

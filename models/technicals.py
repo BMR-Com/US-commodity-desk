@@ -19,11 +19,13 @@ MNAME = dict(zip(CODES, ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
 UNITS = {"CT": ("¢/lb", 2), "ZC": ("¢/bu", 2), "ZS": ("¢/bu", 2), "ZW": ("¢/bu", 2), "KE": ("¢/bu", 2), "ZM": ("$/st", 1), "ZL": ("¢/lb", 2),
          "HE": ("¢/lb", 3), "LE": ("¢/lb", 3), "GF": ("¢/lb", 3), "DC": ("$/cwt", 2), "GDK": ("$/cwt", 2),
          "CSC": ("$/lb", 3), "CB": ("¢/lb", 3), "GNF": ("¢/lb", 3), "DY": ("¢/lb", 3),
-         "NG": ("$/MMBtu", 3), "CL": ("$/bbl", 2), "HO": ("$/gal", 4), "RB": ("$/gal", 4), "FCPO": ("RM/t", 0)}
+         "NG": ("$/MMBtu", 3), "CL": ("$/bbl", 2), "HO": ("$/gal", 4), "RB": ("$/gal", 4), "FCPO": ("RM/t", 0),
+         "GC": ("$/oz", 1), "SI": ("$/oz", 3), "HG": ("$/lb", 4), "ALI": ("$/t", 1), "AUP": ("$/lb", 4)}
 NAMES = {"CT": "Cotton", "ZC": "Corn", "ZS": "Soybeans", "ZW": "Chicago wheat", "KE": "KC HRW wheat", "ZM": "Soybean meal", "ZL": "Soybean oil",
          "HE": "Lean hogs", "LE": "Live cattle", "GF": "Feeder cattle", "DC": "Class III milk", "GDK": "Class IV milk",
          "CSC": "Cheese", "CB": "Butter", "GNF": "Nonfat dry milk", "DY": "Dry whey",
-         "NG": "Natural gas", "CL": "WTI crude", "HO": "ULSD (heating oil)", "RB": "RBOB gasoline", "FCPO": "Palm oil (Bursa FCPO)"}
+         "NG": "Natural gas", "CL": "WTI crude", "HO": "ULSD (heating oil)", "RB": "RBOB gasoline", "FCPO": "Palm oil (Bursa FCPO)",
+         "GC": "Gold", "SI": "Silver", "HG": "Copper", "ALI": "Aluminum", "AUP": "Aluminum Midwest premium"}
 
 
 def ordinal(v):

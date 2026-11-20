@@ -15,6 +15,9 @@ CODES = {  # CFTC contract market codes
     "ZC": "002602", "ZS": "005602", "ZM": "026603", "ZL": "007601", "ZW": "001602", "KE": "001612",
     "CT": "033661",
     "NG": "023651", "CL": "067651", "HO": "022651", "RB": "111659",
+    # metals desk: COMEX gold, silver, copper, aluminum Midwest premium (AUP; COMEX aluminum ALI 191691 is reported
+    # only in weeks with enough traders, so the desk uses AUP for aluminum positioning)
+    "GC": "088691", "SI": "084691", "HG": "085692", "AUP": "191693",
 }
 SETS = {"fo": "kh3c-gbw2", "fut": "72hh-3qpy"}
 
@@ -43,7 +46,10 @@ def fetch(ds, code):
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
+    import sys
     for sym, code in CODES.items():
+        if sys.argv[1:] and sym not in sys.argv[1:]:
+            continue
         for tag, ds in SETS.items():
             rows = fetch(ds, code)
             if not rows:

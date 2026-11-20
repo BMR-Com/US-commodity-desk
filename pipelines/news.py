@@ -38,6 +38,11 @@ QUERIES = {  # topic: search terms
     "natgas": "natural gas futures OR natural gas prices OR Henry Hub OR LNG exports OR gas storage OR LNG terminal",
     "crude": "oil prices OR crude oil futures OR OPEC OR WTI crude OR Brent crude OR crude inventories OR shale output",
     "products": "diesel prices OR gasoline prices OR refinery outage OR crack spread OR heating oil futures OR distillate stocks",
+    # metals desk (price/production-relevant only: prices, central banks, ETFs, mines, smelters, tariffs, exchange stocks)
+    "gold": "gold prices OR gold futures OR bullion OR central bank gold OR gold ETF OR gold demand",
+    "silver": "silver prices OR silver futures OR silver demand OR silver ETF OR silver supply",
+    "copper": "copper prices OR copper futures OR copper mine OR copper smelter OR copper tariff OR LME copper OR copper inventories OR treatment charges",
+    "aluminum": "aluminum prices OR aluminium prices OR aluminum tariff OR Midwest premium OR aluminium smelter OR LME aluminium OR alumina",
 }
 TAGS = {
     "corn": r"\bcorn\b|maize|safrinha|ethanol",
@@ -54,6 +59,10 @@ TAGS = {
     "natgas": r"natural gas|\bnat ?gas\b|\bLNG\b|Henry Hub|gas storage|liquefaction",
     "crude": r"\bcrude\b|\boil price|\bOPEC|\bWTI\b|\bBrent\b|shale|oil output|oil futures|barrel",
     "products": r"diesel|gasoline|refiner|crack spread|heating oil|distillate|jet fuel|\bRBOB\b",
+    "gold": r"\bgold\b|bullion|\bComex\b.*\bgold|\bGLD\b",
+    "silver": r"\bsilver\b",
+    "copper": r"\bcopper\b",
+    "aluminum": r"alumin(i)?um|alumina|bauxite|Midwest premium",
 }
 
 
@@ -66,11 +75,12 @@ TIER_RX = [
     (2, r"usda|foreign agricultural service|\bnass\b|\bams\b|\bers\b|cftc|^ice\b|intercontinental exchange|cme group|\beia\b|energy information|"
         r"\biea\b|international energy agency|opec|icco|international cocoa|international coffee org|\bico\b|icac|international cotton advisory|"
         r"international sugar org|unica|conab|cocobod|conseil caf|cecaf|national cotton council|cotton incorporated|cotlook|mpob|malaysian palm|"
-        r"comtrade|census bureau|customs|secex|mdic|admis|rabobank|czapp|czarnikow|farmdoc"),
+        r"comtrade|census bureau|customs|secex|mdic|admis|rabobank|czapp|czarnikow|farmdoc|world gold council|silver institute|"
+        r"international copper study|icsg|international aluminium|london metal exchange|\blme\b|usgs"),
     (3, r"dtn|progressive farmer|brownfield|farm progress|successful farming|agweb|pro farmer|farm journal|feedstuffs|national hog farmer|drovers|"
         r"dairy herd|hoard|natural gas intelligence|rigzone|oilprice|barchart|daily coffee news|cotton grower|farm press|ethanol producer|"
         r"pork business|the pig site|farms\.com|world.grain|sosland|food business news|agrimoney|nasdaq|investing\.com|kitco|fastmarkets|"
-        r"agricensus|spglobal|commodity|ag web|agri-pulse|agripulse|american ag network|rfd-tv|kfgo|farm news|country journal|agrolatam|notícias agrícolas|noticias agricolas"),
+        r"agricensus|spglobal|commodity|mining\.com|mining weekly|metal bulletin|argus metals|ag web|agri-pulse|agripulse|american ag network|rfd-tv|kfgo|farm news|country journal|agrolatam|notícias agrícolas|noticias agricolas"),
 ]
 CONTEXT = (r"price|futures|market|crop|harvest|plant|acre|yield|export|import|shipment|sales|production|output|supply|demand|stock|inventor|"
            r"usda|wasde|\bice\b|cbot|nymex|tariff|\btrade|\bmills?\b|\bgin|bale|weather|drought|\brain|frost|\bheat\b|flood|forecast|deficit|surplus|grind|"
@@ -89,6 +99,10 @@ NEG = {
     "dairy": r"dairy queen|dairy[- ]free",
     "hogs": r"road hog|hog wild|harley|groundhog|hedgehog",
     "crude": r"crude (joke|humor|remark|language)",
+    "gold": r"gold (medal|medalist|cup|card|coast|star|rush (movie|film)|glove|standard of care)|golden (state|globe|knights|retriever|visa)|olympic|heart of gold|gold record",
+    "silver": r"silver (medal|medalist|lining|screen|alert|lake|spoon|jubilee|surfer|bells?)|quicksilver|silverware|sterling silver jewel|olympic",
+    "copper": r"copper (mountain|canyon|state|kettle|pot|cookware|bracelet|wire theft)|copperhead",
+    "aluminum": r"aluminum (foil|can recycling drive|bat)",
 }
 
 
@@ -162,7 +176,7 @@ def main():
             items += got
             print(topic, len(got))
         time.sleep(1.5)
-    broad = "cotton OR corn OR soybeans OR soybean OR wheat OR grain OR cattle OR hogs OR pork OR beef OR dairy OR milk OR cheese OR soymeal OR soyoil OR USDA"
+    broad = "cotton OR corn OR soybeans OR soybean OR wheat OR grain OR cattle OR hogs OR pork OR beef OR dairy OR milk OR cheese OR soymeal OR soyoil OR USDA OR gold OR silver OR copper OR aluminum"
     for site in ["reuters.com", "bloomberg.com", "wsj.com", "marketwatch.com", "barrons.com", "ft.com", "agriculture.com", "farmprogress.com",
                  "brownfieldagnews.com", "nationalhogfarmer.com", "dairyherd.com", "drovers.com", "hoards.com", "feedstuffs.com", "agweb.com"]:
         url = f"https://news.google.com/rss/search?q={quote(f'({broad}) site:{site} when:7d')}&hl=en-US&gl=US&ceid=US:en"
@@ -174,7 +188,8 @@ def main():
         time.sleep(1.2)
     # commodity boards, exchanges, official statistics and trade data
     boards = ["usda.gov", "fas.usda.gov", "cftc.gov", "eia.gov", "theice.com", "ice.com", "cmegroup.com", "icco.org", "ico.org", "icac.org", "isosugar.org",
-              "unica.com.br", "conab.gov.br", "cocobod.gh", "conseilcafecacao.ci", "cotton.org", "cottoninc.com", "opec.org", "iea.org", "mpob.gov.my"]
+              "unica.com.br", "conab.gov.br", "cocobod.gh", "conseilcafecacao.ci", "cotton.org", "cottoninc.com", "opec.org", "iea.org", "mpob.gov.my",
+              "gold.org", "silverinstitute.org", "icsg.org", "international-aluminium.org", "lme.com"]
     bq = " OR ".join(f"site:{b}" for b in boards)
     url = f"https://news.google.com/rss/search?q={quote(f'({bq}) when:14d')}&hl=en-US&gl=US&ceid=US:en"
     x = fetch(url)

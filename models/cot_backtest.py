@@ -16,7 +16,7 @@ SYMS = ["DC", "GDK", "CSC", "CB", "GNF", "DY", "HE", "LE", "GF"]
 
 
 MCODE = {c: i for i, c in enumerate("FGHJKMNQUVXZ", 1)}
-CASH_SETTLED = {"HE", "GF", "DC", "GDK", "CSC", "CB", "GNF", "DY"}
+CASH_SETTLED = {"HE", "GF", "DC", "GDK", "CSC", "CB", "GNF", "DY", "AUP"}
 
 
 def roll_adjusted_index(sym):

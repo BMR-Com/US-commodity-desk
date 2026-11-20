@@ -151,6 +151,22 @@ def nymex_products(m):
     return {"ltd": ltd, "out_by": prev_bd(ltd, 2)}
 
 
+def comex_metal(m):
+    """COMEX gold, silver, copper, aluminum: LTD = third-last business day of the delivery month; FND = last business day of
+    the month before; first position (intention) day the business day before FND. Longs exit before the first position day."""
+    fnd = last_bd(m - 1)
+    fpd = prev_bd(fnd)
+    ltd = bdays(m.start_time, m.end_time.normalize())[-3]
+    return {"fpd": fpd, "fnd": fnd, "ltd": ltd, "out_by": prev_bd(fpd)}
+
+
+def comex_aup(m):
+    """COMEX aluminum Midwest premium (AUP, Platts): cash-settled on the monthly average of the Platts Midwest premium;
+    LTD = last business day of the contract month."""
+    ltd = last_bd(m)
+    return {"ltd": ltd, "out_by": ltd}
+
+
 MKT = {
     # sym: (name, rule, listed month letters or None for every month, settle type, roll guidance)
     "ZC": ("Corn", cbot_grain, "HKNUZ", "physical", "Roll or exit before first position day; most volume rolls 5-15 days before it (index funds roll on the 5th-9th business day of the month before)."),
@@ -174,6 +190,11 @@ MKT = {
     "HO": ("NY Harbor ULSD", nymex_products, None, "physical", "Roll before the last business day of the month before delivery."),
     "RB": ("RBOB gasoline", nymex_products, None, "physical", "As ULSD."),
     "FCPO": ("Crude palm oil (Bursa Malaysia)", bursa_cpo, None, "physical", "Liquidity sits in the third month; roll before the contract month, when tendering starts on the 1st. Malaysian public holidays are not in this calendar."),
+    "GC": ("Gold (COMEX)", comex_metal, "GJMQVZ", "physical", "Roll or exit before first position day (two business days before the delivery month); open interest moves to the next active month (Feb, Apr, Jun, Aug, Oct, Dec) during the last week of the month before."),
+    "SI": ("Silver (COMEX)", comex_metal, "HKNUZ", "physical", "As gold; active months Mar, May, Jul, Sep, Dec."),
+    "HG": ("Copper (COMEX)", comex_metal, "HKNUZ", "physical", "As gold; every month is listed but liquidity sits in Mar, May, Jul, Sep, Dec."),
+    "ALI": ("Aluminum (COMEX)", comex_metal, None, "physical", "As gold; thinly traded, so most aluminum risk is held at the LME."),
+    "AUP": ("Aluminum Midwest premium (COMEX AUP)", comex_aup, None, "cash", "No delivery: settles to the monthly average of the Platts US Midwest premium; can be held to settlement."),
 }
 EXPLAIN = {
     "fpd": "First position day: the first day a short can declare intent to deliver (CBOT). Longs still holding can be assigned delivery after it.",

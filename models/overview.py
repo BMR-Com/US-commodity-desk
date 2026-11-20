@@ -33,10 +33,13 @@ else:
               ("Livestock", [("hogs", "HE", "Lean hogs"), ("cattle", "LE", "Live cattle"), ("feeders", "GF", "Feeder cattle")]),
               ("Dairy", [("class3", "DC", "Class III milk"), ("class4", "GDK", "Class IV milk")]),
               ("Vegetable oils", [("palm", "FCPO", "Palm oil (Bursa)")]),
-              ("Energy", [("natgas", "NG", "Natural gas"), ("crude", "CL", "WTI crude"), ("ulsd", "HO", "ULSD (heating oil)"), ("rbob", "RB", "RBOB gasoline")])]
+              ("Energy", [("natgas", "NG", "Natural gas"), ("crude", "CL", "WTI crude"), ("ulsd", "HO", "ULSD (heating oil)"), ("rbob", "RB", "RBOB gasoline")]),
+              ("Metals", [("gold", "GC", "Gold"), ("silver", "SI", "Silver"), ("copper", "HG", "Copper"), ("aluminum", "ALI", "Aluminum")])]
 NEWS_TAG = {"corn": "corn", "soybeans": "soybeans", "meal": "meal", "oil": "oil", "wheat": "wheat", "kc": "wheat", "cotton": "cotton", "hogs": "hogs",
             "cattle": "cattle", "feeders": "cattle", "class3": "dairy", "class4": "dairy", "palm": "oil", "natgas": "natgas", "crude": "crude",
-            "ulsd": "products", "rbob": "products", "sugar": "sugar", "coffee": "coffee", "cocoa": "cocoa"}
+            "ulsd": "products", "rbob": "products", "sugar": "sugar", "coffee": "coffee", "cocoa": "cocoa",
+            "gold": "gold", "silver": "silver", "copper": "copper", "aluminum": "aluminum"}
+COT_SYM = {"ALI": "AUP"}   # aluminum positioning: COMEX aluminum Midwest premium (the aluminum contract with continuous COT)
 NEWS_RX = {"palm": r"palm", "cocoa": r"cocoa|cacao", "ulsd": r"diesel|heating oil|distillate", "rbob": r"gasoline|RBOB", "kc": r"wheat"}
 W = {"fundamental": 0.4, "technical": 0.3, "cot": 0.2, "seasonal": 0.1}
 
@@ -419,6 +422,20 @@ def coffee_fund():
     return (clip(sc) if bits else None), " ".join(bits) or None, None
 
 
+def metals_fund(key):
+    m = ((J("metals/metals.json") or {}).get("metals") or {}).get(key)
+    if not m or m.get("error"):
+        return None, None, None
+    fs = m.get("factors") or []
+    txt = " ".join(f["txt"] for f in fs[:4]) or None
+    fit = None
+    g = m.get("fit")
+    if g and g.get("fair"):
+        fit = {"value": round(g["fair"], 1), "unit": "$/oz", "gap_pct": round(-g["gap_pct"], 1), "score": None,
+               "text": f"Driver fit on the 10-yr real yield and the dollar index (weekly, 3 years) puts gold at ${g['fair']:,.0f} vs the market ({g['gap_pct']:+.0f}% from it). Context only."}
+    return (clip(m["score"] * 1.5) if m.get("score") is not None else None), txt, fit
+
+
 def fundamental(key, sym, T):
     n = NOTES.get(key) or {}
     sm = SUMMARY.get(key)
@@ -427,6 +444,8 @@ def fundamental(key, sym, T):
         score, txt, fair = energy_fund(key)
     elif key == "palm":
         score, txt, fair = palm_fund()
+    elif key in ("gold", "silver", "copper", "aluminum"):
+        score, txt, fair = metals_fund(key)
     elif key == "sugar":
         score, txt, fair = sugar_fund()
     elif key == "coffee":
@@ -458,7 +477,7 @@ def fundamental(key, sym, T):
 def build(key, sym, name, group):
     T = tech(sym)
     F, fair = fundamental(key, sym, T)
-    C = cot(sym, group)
+    C = cot(COT_SYM.get(sym, sym), group)
     S = seasonal(sym)
     V = vol(sym)
     parts = {"fundamental": F.get("score"), "technical": (T or {}).get("score"), "cot": (C or {}).get("score"), "seasonal": (S or {}).get("score")}

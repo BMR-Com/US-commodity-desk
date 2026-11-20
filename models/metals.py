@@ -163,6 +163,13 @@ def view(fs):
     return round(sc, 2), ("bullish" if sc >= 0.34 else "mildly bullish" if sc >= 0.15 else "bearish" if sc <= -0.34 else "mildly bearish" if sc <= -0.15 else "neutral")
 
 
+def ordn(v):
+    if v is None:
+        return "–"
+    n = int(round(v))
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
 def sg(v, d=1, suf=""):
     return "–" if v is None else f"{'+' if v > 0 else ''}{v:,.{d}f}{suf}"
 
@@ -274,7 +281,7 @@ def silver(pb, s, gold_s):
     if o.get("ratio"):
         p = o["ratio"]["pct10"]
         fs.append(fac("Gold/silver ratio", 1 if p is not None and p >= 75 else -1 if p is not None and p <= 25 else 0,
-                      f"Gold/silver ratio {o['ratio']['last']:.1f} ({int(p) if p is not None else '–'}th percentile of 10 years, median {o['ratio']['med10']:.1f}); {'silver cheap to gold' if (p or 50) >= 75 else 'silver rich to gold' if (p or 50) <= 25 else 'mid-range'}."))
+                      f"Gold/silver ratio {o['ratio']['last']:.1f} ({ordn(p)} percentile of 10 years, median {o['ratio']['med10']:.1f}); {'silver cheap to gold' if (p or 50) >= 75 else 'silver rich to gold' if (p or 50) <= 25 else 'mid-range'}."))
     if o.get("etf") and o["etf"]["n_days"] >= 20 and o["etf"].get("chg_1m") is not None:
         c = o["etf"]["chg_1m"]
         fs.append(fac("ETF flows", 1 if c >= 10 else -1 if c <= -10 else 0, f"SLV holds {o['etf']['moz']:,.0f} Moz ({sg(c, 1)} Moz in a month)."))
@@ -400,7 +407,7 @@ def copper(pb, rate):
     if L:
         if L.get("stock_chg_1m") is not None:
             pc = 100 * L["stock_chg_1m"] / max(1.0, L["stock"] - L["stock_chg_1m"])
-            fs.append(fac("LME stocks", 1 if pc <= -10 else -1 if pc >= 10 else 0, f"LME copper stocks {L['stock']:,.0f} t ({sg(L['stock_chg_1m'], 0)} t in a month; {int(L['stock_pct5'] or 0)}th percentile of 5 years)."))
+            fs.append(fac("LME stocks", 1 if pc <= -10 else -1 if pc >= 10 else 0, f"LME copper stocks {L['stock']:,.0f} t ({sg(L['stock_chg_1m'], 0)} t in a month; {ordn(L['stock_pct5'])} percentile of 5 years)."))
         if L.get("cash_3m") is not None:
             fs.append(fac("LME spread", 1 if L["cash_3m"] >= 20 else -1 if L["cash_3m"] <= -60 else 0, f"LME cash–3M {sg(L['cash_3m'], 0)} $/t ({'backwardation: nearby metal tight' if L['cash_3m'] > 0 else 'contango'})."))
     ic = o.get("icsg")
@@ -626,11 +633,11 @@ def pgm(key, pb, s, gold_s, other_s):
     R = o.get("ratio_gold")
     if R and R.get("pct10") is not None and key == "platinum":
         fs.append(fac("Platinum vs gold", 1 if R["pct10"] <= 20 else -1 if R["pct10"] >= 80 else 0,
-                      f"Platinum/gold ratio {R['last']:.2f} ({int(R['pct10'])}th percentile of 10 years); {'platinum cheap to gold' if R['pct10'] <= 20 else 'platinum rich to gold' if R['pct10'] >= 80 else 'mid-range'}."))
+                      f"Platinum/gold ratio {R['last']:.2f} ({ordn(R['pct10'])} percentile of 10 years); {'platinum cheap to gold' if R['pct10'] <= 20 else 'platinum rich to gold' if R['pct10'] >= 80 else 'mid-range'}."))
     P = o.get("ratio_pd")
     if P and P.get("pct10") is not None and key == "palladium":
         fs.append(fac("Palladium vs platinum", -1 if P["pct10"] <= 20 else 1 if P["pct10"] >= 80 else 0,
-                      f"Platinum/palladium ratio {P['last']:.2f} ({int(P['pct10'])}th percentile of 10 years); {'palladium rich to platinum (substitution risk)' if P['pct10'] <= 20 else 'palladium cheap to platinum' if P['pct10'] >= 80 else 'mid-range'}."))
+                      f"Platinum/palladium ratio {P['last']:.2f} ({ordn(P['pct10'])} percentile of 10 years); {'palladium rich to platinum (substitution risk)' if P['pct10'] <= 20 else 'palladium cheap to platinum' if P['pct10'] >= 80 else 'mid-range'}."))
     cx = o.get("comex_stocks")
     if cx and cx.get("chg_1m") is not None and cx["total"]:
         pc = 100 * cx["chg_1m"] / max(1.0, cx["total"] - cx["chg_1m"])
@@ -679,7 +686,7 @@ def main():
             extra = []
             if c:
                 extra.append({"h": "Positioning", "t": f"Managed money {'long' if c['net'] >= 0 else 'short'} {abs(c['net']):,.0f} lots in {csym} ({sg(c['chg'], 0)} on the week, "
-                                                       f"{int(c['pct3']) if c['pct3'] is not None else '–'}th percentile of 3 years; CFTC, positions of {c['date']})."})
+                                                       f"{ordn(c['pct3'])} percentile of 3 years; CFTC, positions of {c['date']})."})
             out["metals"][key] = {"key": key, "sym": sym, "cot_sym": csym, "name": name, "unit": unit, "price": pb, "cot": c, "factors": fs, "score": score, "view": v,
                                   "brief": brief(name, pb, fs, extra), **o}
             print(key, v, score, [(f["name"], f["s"]) for f in fs])

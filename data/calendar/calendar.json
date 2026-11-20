@@ -1,5 +1,5 @@
 {
-"generated": "2026-11-20 18:52 UTC",
+"generated": "2026-11-20 19:20 UTC",
 "events": [
 {
 "date": "2026-11-13",
@@ -465,6 +465,18 @@
 "cat": "CME contract",
 "markets": [
 "KE"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-11-30",
+"time": "",
+"event": "Palladium Dec 26: first notice day",
+"cat": "NYMEX contract",
+"markets": [
+"PA"
 ],
 "importance": 2,
 "link": null,
@@ -1427,6 +1439,18 @@
 {
 "date": "2026-12-29",
 "time": "",
+"event": "Palladium Dec 26: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"PA"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-29",
+"time": "",
 "event": "Silver Dec 26: last trading day",
 "cat": "COMEX contract",
 "markets": [
@@ -1518,6 +1542,18 @@
 "cat": "COMEX contract",
 "markets": [
 "ALI"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2026-12-31",
+"time": "",
+"event": "Platinum Jan 27: first notice day",
+"cat": "NYMEX contract",
+"markets": [
+"PL"
 ],
 "importance": 2,
 "link": null,
@@ -2311,6 +2347,18 @@
 "cat": "NYMEX contract",
 "markets": [
 "NG"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-01-27",
+"time": "",
+"event": "Platinum Jan 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"PL"
 ],
 "importance": 1,
 "link": null,

@@ -1,0 +1,562 @@
+{
+ "cftc_metals": {
+  "url": "https://publicreporting.cftc.gov/resource/kh3c-gbw2.json?$select=market_and_exchange_names,cftc_contract_market_code,commodity_subgroup_name,max(report_date_as_yyyy_mm_dd) as last,max(open_interest_all) as oi&$where=report_date_as_yyyy_mm_dd>'2025-06-01' AND (commodity_group_name='NATURAL RESOURCES')&$group=market_and_exchange_names,cftc_contract_market_code,commodity_subgroup_name&$limit=500",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 71324,
+  "head": "[{\"market_and_exchange_names\":\"AECO FIN BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"023396\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"1060348\"}\n,{\"market_and_exchange_names\":\"AEP DAYTON HUB DA PEAK DAILY - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439E\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-03T00:00:00.000\",\"oi\":\"16959\"}\n,{\"market_and_exchange_names\":\"ALGONQUIN CITYGATES BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"02339E\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"138152\"}\n,{\"market_and_exchange_names\":\"ALGONQUIN CITYGATES INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AW\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-03T00:00:00.000\",\"oi\":\"36183\"}\n,{\"market_and_exchange_names\":\"ALUMINIUM EURO PREM DUTY-PAID - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"191696\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"32646\"}\n,{\"market_and_exchange_names\":\"ALUMINUM - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"191691\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-06-09T00:00:00.000\",\"oi\":\"2754\"}\n,{\"market_and_exchange_names\":\"ALUMINUM MWP - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"191693\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"31487\"}\n,{\"market_and_exchange_names\":\"ARGUS CIF ARA Lg Finl Propane - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"066411\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"4887\"}\n,{\"market_and_exchange_names\":\"ARGUS FAR EAST PROPANE - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"066413\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"17900\"}\n,{\"market_and_exchange_names\":\"ARGUS PROPANE FAR EAST INDEX - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"06665B\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"6122\"}\n,{\"market_and_exchange_names\":\"BRENT LAST DAY - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"06765T\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"508945\"}\n,{\"market_and_exchange_names\":\"BUTANE ARGUS SAUDI CP  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06641M\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2025-07-01T00:00:00.000\",\"oi\":\"1115\"}\n,{\"market_and_exchange_names\":\"BUTANE OPIS MT BELV NONTET FP  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06641D\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"70841\"}\n,{\"market_and_exchange_names\":\"BUTANE,OPIS MT B, NONTET FIX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"066397\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-10-27T00:00:00.000\",\"oi\":\"3221\"}\n,{\"market_and_exchange_names\":\"CAISO NP-15 DA OFF-PK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BR\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"53053\"}\n,{\"market_and_exchange_names\":\"CAISO NP-15 PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BM\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"54206\"}\n,{\"market_and_exchange_names\":\"CAISO SP-15 DA OFF-PK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064396\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"90374\"}\n,{\"market_and_exchange_names\":\"CAISO SP-15 PEAK 0900-1600 HE - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643HS\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"21316\"}\n,{\"market_and_exchange_names\":\"CALIF CARBON ALLOWANCE V2025 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NGR\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2025-12-09T00:00:00.000\",\"oi\":\"15941\"}\n,{\"market_and_exchange_names\":\"CALIF CARBON ALLOWANCE V2026 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"0063EL\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"14609\"}\n,{\"market_and_exchange_names\":\"CALIF CARBON ALL VINTAGE 2025 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063E5\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2025-12-23T00:00:00.000\",\"oi\":\"288108\"}\n,{\"market_and_exchange_names\":\"CALIF CARBON ALL VINTAGE 2026 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063EE\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"259764\"}\n,{\"market_and_exchange_names\":\"CALIF CARBON ALL VINTAGE 2027 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063EI\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"125689\"}\n,{\"market_and_exchange_names\":\"CALIF CARBON CURRENT AUCTION - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DB\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"72364\"}\n,{\"market_and_exchange_names\":\"CALIF CARBON VINTAGE SPEC 2028 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"006WBY\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2025-12-23T00:00:00.000\",\"oi\":\"13045\"}\n,{\"market_and_exchange_names\":\"CALIF LOW CARBON FSC-OPIS  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063CU\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"186326\"}\n,{\"market_and_exchange_names\":\"CALIF LOW CARBON FUEL STANDARD - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NGF\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2025-11-10T00:00:00.000\",\"oi\":\"41212\"}\n,{\"market_and_exchange_names\":\"CG Mainline Basis - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"02339Y\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"388622\"}\n,{\"market_and_exchange_names\":\"CG-MAINLINE FINANCIAL INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"02339P\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"50726\"}\n,{\"market_and_exchange_names\":\"CHICAGO BUSHELING FERROUS  - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"257690\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2025-12-09T00:00:00.000\",\"oi\":\"4287\"}\n,{\"market_and_exchange_names\":\"CHICAGO CITYGATE (INDEX) - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"02339Q\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"117239\"}\n,{\"market_and_exchange_names\":\"CHICAGO FIN BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"023397\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"387549\"}\n,{\"market_and_exchange_names\":\"CIG ROCKIES BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"02339U\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"507047\"}\n,{\"market_and_exchange_names\":\"CIG ROCKIES FINANCIAL INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"02339S\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"60489\"}\n,{\"market_and_exchange_names\":\"COBALT - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"188691\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"17071\"}\n,{\"market_and_exchange_names\":\"CONDENSATE DIF-TMX C5 1A INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06743A\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"19400\"}\n,{\"market_and_exchange_names\":\"CONWAY PROPANE (OPIS) - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"06665T\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"31560\"}\n,{\"market_and_exchange_names\":\"COPPER- #1 - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"085692\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"350126\"}\n,{\"market_and_exchange_names\":\"CRUDE DIFF-TMX SW 1A INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06742T\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"28529\"}\n,{\"market_and_exchange_names\":\"CRUDE DIFF-TMX WCS 1A INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06742G\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"80970\"}\n,{\"market_and_exchange_names\":\"CRUDE DIFF-WCS HOUSTON/WTI 1ST - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06739C\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"90760\"}\n,{\"market_and_exchange_names\":\"CRUDE OIL AVG PRICE OPTIONS - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"06765C\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"189632\"}\n,{\"market_and_exchange_names\":\"CRUDE OIL CAL SPREAD OPT FIN  - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"067A28\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"378540\"}\n,{\"market_and_exchange_names\":\"CRUDE OIL CAL SPREAD OPTIONS - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"067657\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"119933\"}\n,{\"market_and_exchange_names\":\"CRUDE OIL, LIGHT SWEET-WTI - ICE FUTURES EUROPE\",\"cftc_contract_market_code\":\"067411\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"1223451\"}\n,{\"market_and_exchange_names\":\"CT RECs CLASS 1  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DK\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"12495\"}\n,{\"market_and_exchange_names\":\"D4 BIODIESEL RINs OPIS CURR YR - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DG\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"20703\"}\n,{\"market_and_exchange_names\":\"D6 RINs OPIS CURRENT YEAR - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063CW\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"62915\"}\n,{\"market_and_exchange_names\":\"DC SOLAR RECS V2026 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NP1\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-10-20T00:00:00.000\",\"oi\":\"6219\"}\n,{\"market_and_exchange_names\":\"DC SOLAR RECS V2027 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NOI\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"11050\"}\n,{\"market_and_exchange_names\":\"DOMINION - SOUTH POINT (BASIS) - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233A3\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"844530\"}\n,{\"market_and_exchange_names\":\"DOMINION - SOUTH POINT - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233A2\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"101909\"}\n,{\"market_and_exchange_names\":\"EP SAN JUAN BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233A8\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"289667\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_HOUSTON_month_on_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FOI\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-06-16T00:00:00.000\",\"oi\":\"46750\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_NORTH_month_2x16_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064GBC\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-10-06T00:00:00.000\",\"oi\":\"16204\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_NORTH_month_7x8_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064GBD\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"39795\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_NORTH_month_off_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FOL\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"85043\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_NORTH_month_on_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FOK\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"89759\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_SOUTH_month_off_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FON\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"33190\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_SOUTH_month_on_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FOM\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"33190\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_WEST_month_off_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FOP\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"26154\"}\n,{\"market_and_exchange_names\":\"ERCOT.HB_WEST_month_on_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FOO\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"26274\"}\n,{\"market_and_exchange_names\":\"ERCOT Houston 345KV Hub RT 7x8 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643IL\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"17770\"}\n,{\"market_and_exchange_names\":\"ERCOT Houston 345KV RT OFF FIX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439Q\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"43027\"}\n,{\"market_and_exchange_names\":\"ERCOT HOUSTON 345KV RT PK FIX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439N\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"45297\"}\n,{\"market_and_exchange_names\":\"ERCOT N 345KV REAL T PK 2x16 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643ID\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"136939\"}\n,{\"market_and_exchange_names\":\"ERCOT N 345KV REAL T PK DALY M - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643IB\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"31945\"}\n,{\"market_and_exchange_names\":\"ERCOT N 345KV RT OFF-PEAK MINI - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064IBJ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-02-03T00:00:00.000\",\"oi\":\"11560\"}\n,{\"market_and_exchange_names\":\"ERCOT NORTH 345K RT OFFPK DLY  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643A7\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"8136\"}\n,{\"market_and_exchange_names\":\"ERCOT NORTH 345KV DA PK DLY FI - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643A5\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"28060\"}\n,{\"market_and_exchange_names\":\"ERCOT NORTH 345KV DAY AHEAD 80 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064IAQ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"20722\"}\n,{\"market_and_exchange_names\":\"ERCOT North 345KV Hub RT 10x17 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064ED7\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-09-08T00:00:00.000\",\"oi\":\"7435\"}\n,{\"market_and_exchange_names\":\"ERCOT North 345KV Hub RT 7x16 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064IBM\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"21487\"}\n,{\"market_and_exchange_names\":\"ERCOT North 345KV Hub RT 7x8 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643IK\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"292677\"}\n,{\"market_and_exchange_names\":\"ERCOT NORTH 345KV RT PK FIX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439R\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"300513\"}\n,{\"market_and_exchange_names\":\"ERCOT - NORTH MONTHLY OFF-PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643A8\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"129330\"}\n,{\"market_and_exchange_names\":\"ERCOT SOUTH 345 KV RT PEAK FIX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439S\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"33059\"}\n,{\"market_and_exchange_names\":\"ERCOT-SOUTH MONTHLY OFFPEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439U\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"31325\"}\n,{\"market_and_exchange_names\":\"ERCOT WEST 345K RT OFF-PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439W\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"34059\"}\n,{\"market_and_exchange_names\":\"ERCOT WEST 345KV RT PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439V\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"34165\"}\n,{\"market_and_exchange_names\":\"ETHANE, MT. BELV-ENTERPRISE - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"066416\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"96315\"}\n,{\"market_and_exchange_names\":\"ETHANOL - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"025651\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"59557\"}\n,{\"market_and_exchange_names\":\"ETHANOL T2 FOB INCL DUTY - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"025608\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"6590\"}\n,{\"market_and_exchange_names\":\"EUROPEAN PROPANE CIF ARA - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"066652\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2025-09-30T00:00:00.000\",\"oi\":\"1936\"}\n,{\"market_and_exchange_names\":\"EUR STYLE NATURAL GAS OPTIONS - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"02365U\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"1060071\"}\n,{\"market_and_exchange_names\":\"FLORIDA GAS-ZONE 3 BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233A9\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-09-29T00:00:00.000\",\"oi\":\"28622\"}\n,{\"market_and_exchange_names\":\"FUEL OIL-3% USGC/3.5% FOB RDAM - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"02141C\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"22609\"}\n,{\"market_and_exchange_names\":\"GASOLINE CRK-RBOB/BRENT 1st - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"111415\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-08-25T00:00:00.000\",\"oi\":\"19623\"}\n,{\"market_and_exchange_names\":\"GASOLINE RBOB - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"111659\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"470819\"}\n,{\"market_and_exchange_names\":\"GOLD -1 TROY OUNCE  - COINBASE DERIVATIVES, LLC\",\"cftc_contract_market_code\":\"088LM1\",\"commodity_subgroup_name\":\"PRECIOUS METALS\",\"last\":\"2026-09-08T00:00:00.000\",\"oi\":\"12246\"}\n,{\"market_and_exchange_names\":\"GOLD - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"088691\",\"commodity_subgroup_name\":\"PRECIOUS METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"926098\"}\n,{\"market_and_exchange_names\":\"GRP 3 SOC GAS VS RBOB SPR - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"111A08\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-03-03T00:00:00.000\",\"oi\":\"10814\"}\n,{\"market_and_exchange_names\":\"GULF # 6 FUEL 3.0% SULFUR - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"02165A\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-04-28T00:00:00.000\",\"oi\":\"5884\"}\n,{\"market_and_exchange_names\":\"GULF # 6 FUEL OIL CRACK - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"86565A\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"16986\"}\n,{\"market_and_exchange_names\":\"GULF COAST CBOB GAS A2 PL RBOB - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"111A34\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"36935\"}\n,{\"market_and_exchange_names\":\"GULF JET NY HEAT OIL SPR - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"86465A\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"23205\"}\n,{\"market_and_exchange_names\":\"HENRY HUB BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AG\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"187833\"}\n,{\"market_and_exchange_names\":\"HENRY HUB INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AH\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"261026\"}\n,{\"market_and_exchange_names\":\"HENRY HUB LAST DAY FIN - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"023A55\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"534222\"}\n,{\"market_and_exchange_names\":\"HENRY HUB - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"03565B\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"409461\"}\n,{\"market_and_exchange_names\":\"HENRY HUB PENULTIMATE FIN - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"023A56\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"312915\"}\n,{\"market_and_exchange_names\":\"HENRY HUB PENULTIMATE NAT GAS - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"03565C\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"199838\"}\n,{\"market_and_exchange_names\":\"HOUSTON SHIP CHANNEL (INDEX) - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AM\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"557547\"}\n,{\"market_and_exchange_names\":\"HSC FIN BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"023398\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"977295\"}\n,{\"market_and_exchange_names\":\"ISOBUTANE OPIS MT BELV NONTET - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"066418\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"10325\"}\n,{\"market_and_exchange_names\":\"ISONE.H.INTERNAL_HB_mo_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064AAB\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"92572\"}\n,{\"market_and_exchange_names\":\"ISONE.H.INTERNAL_HUB_mo_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064AAA\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"103871\"}\n,{\"market_and_exchange_names\":\"ISO NE MASS HUB DA OFF-PK FIXD - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BF\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"73922\"}\n,{\"market_and_exchange_names\":\"ISO NE MASS HUB DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BG\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"104322\"}\n,{\"market_and_exchange_names\":\"JET UP-DOWN BALMO - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"86465K\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-03-31T00:00:00.000\",\"oi\":\"2563\"}\n,{\"market_and_exchange_names\":\"LITHIUM HYDROXIDE  - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"189691\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"39428\"}\n,{\"market_and_exchange_names\":\"LUMBER - CHICAGO MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"058644\",\"commodity_subgroup_name\":\"WOOD PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"11364\"}\n,{\"market_and_exchange_names\":\"MALIN (BASIS) - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BH\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"145636\"}\n,{\"market_and_exchange_names\":\"MARINE .5% FOB USGC/BRENT 1st - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"865392\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-07-28T00:00:00.000\",\"oi\":\"2915\"}\n,{\"market_and_exchange_names\":\"MARINE FUEL OIL 0.5% FOB USGC - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"021397\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-05-26T00:00:00.000\",\"oi\":\"3100\"}\n,{\"market_and_exchange_names\":\"MARYLAND COMPLIANCE REC TIER1 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DM\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"13463\"}\n,{\"market_and_exchange_names\":\"MARYLAND SOLAR REC - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DN\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"81431\"}\n,{\"market_and_exchange_names\":\"MASS COMPLIANCE RECs CLASS 1  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DL\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"23287\"}\n,{\"market_and_exchange_names\":\"MICHCON BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AQ\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"251468\"}\n,{\"market_and_exchange_names\":\"MICHCON FINANCIAL INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AN\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"36955\"}\n,{\"market_and_exchange_names\":\"MICRO COPPER - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"085699\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-05-12T00:00:00.000\",\"oi\":\"18012\"}\n,{\"market_and_exchange_names\":\"MICRO GOLD - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"088695\",\"commodity_subgroup_name\":\"PRECIOUS METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"116157\"}\n,{\"market_and_exchange_names\":\"MICRO SILVER - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"084694\",\"commodity_subgroup_name\":\"PRECIOUS METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"36204\"}\n,{\"market_and_exchange_names\":\"Micro WTI CRUDE OIL FINANCIAL - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"067A55\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-09-15T00:00:00.000\",\"oi\":\"83529\"}\n,{\"market_and_exchange_names\":\"MID-C DAY-AHEAD OFF-PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064392\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"32464\"}\n,{\"market_and_exchange_names\":\"MID-C DAY-AHEAD PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064391\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"48363\"}\n,{\"market_and_exchange_names\":\"MISO ARKANSAS DA PEAK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643F9\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-10-06T00:00:00.000\",\"oi\":\"10430\"}\n,{\"market_and_exchange_names\":\"MISO IN. DAY-AHEAD PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643AZ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"24526\"}\n,{\"market_and_exchange_names\":\"MISO.INDIANA.HUB_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064BFJ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"28287\"}\n,{\"market_and_exchange_names\":\"MISO.INDIANA.HUB_month_off_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FJZ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"35249\"}\n,{\"market_and_exchange_names\":\"MISO.INDIANA.HUB_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064BFI\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"30789\"}\n,{\"market_and_exchange_names\":\"MISO.INDIANA.HUB_month_on_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FJY\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"34785\"}\n,{\"market_and_exchange_names\":\"MISO INDIANA HUB RT PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643B3\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"46543\"}\n,{\"market_and_exchange_names\":\"MISO INDIANA  OFF-PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439K\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"43498\"}\n,{\"market_and_exchange_names\":\"MISO IN. REAL-TIME OFF-PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439L\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"36812\"}\n,{\"market_and_exchange_names\":\"MONT BELVIEU ETHYLENE FIN - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"405652\",\"commodity_subgroup_name\":\"CHEMICALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"6707\"}\n,{\"market_and_exchange_names\":\"MT BELVIEU ETHANE OPIS - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"06665P\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"56025\"}\n,{\"market_and_exchange_names\":\"MT BELV NAT GASOLINE OPIS - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"06665R\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"56411\"}\n,{\"market_and_exchange_names\":\"MT BELV NORM BUTANE OPIS - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"06665Q\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"65461\"}\n,{\"market_and_exchange_names\":\"NAT GAS ICE LD1 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"023391\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"8202205\"}\n,{\"market_and_exchange_names\":\"NAT GAS ICE PEN - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"023392\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"4652992\"}\n,{\"market_and_exchange_names\":\"NAT GAS LD1 for GDD -TEXOK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AT\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"170562\"}\n,{\"market_and_exchange_names\":\"NAT GASLNE OPIS MT B NONTET FP - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06641A\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"25420\"}\n,{\"market_and_exchange_names\":\"NAT GAS NYME - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"023651\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"1853483\"}\n,{\"market_and_exchange_names\":\"NAT GAS OPT ON CALENDAR STRIP - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"023B41\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2025-12-09T00:00:00.000\",\"oi\":\"7369\"}\n,{\"market_and_exchange_names\":\"NAT GAS TETCO-WLA INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233EP\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-03T00:00:00.000\",\"oi\":\"36562\"}\n,{\"market_and_exchange_names\":\"NATURAL GAS CAL SPREAD OPT FIN - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"023A84\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"173504\"}\n,{\"market_and_exchange_names\":\"NATURAL GAS INDEX: EP SAN JUAN - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AX\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-03T00:00:00.000\",\"oi\":\"20448\"}\n,{\"market_and_exchange_names\":\"NEPOOL DUAL RECs CLASS 1  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DQ\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"14135\"}\n,{\"market_and_exchange_names\":\"NEW JERSEY RECs CLASS 2 V2025 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NKV\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2025-07-22T00:00:00.000\",\"oi\":\"9934\"}\n,{\"market_and_exchange_names\":\"NEW JERSEY RECs CLASS 2 V2026 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NLD\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-07-28T00:00:00.000\",\"oi\":\"9960\"}\n,{\"market_and_exchange_names\":\"NEW JERSEY RECs CLASS 2 V2027 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NMM\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"10806\"}\n,{\"market_and_exchange_names\":\"NEW JERSEY RECs CLASS 2 V2028 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NMW\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"5261\"}\n,{\"market_and_exchange_names\":\"NGPL MIDCONT BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233AY\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"114533\"}\n,{\"market_and_exchange_names\":\"NGPL TXOK BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233B1\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"698054\"}\n,{\"market_and_exchange_names\":\"NJ COMPLIANCE RECs CLASS 1 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DR\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"29270\"}\n,{\"market_and_exchange_names\":\"NJ SRECS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063CC\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"164735\"}\n,{\"market_and_exchange_names\":\"NNG VENTURA BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BB\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"168946\"}\n,{\"market_and_exchange_names\":\"NNG VENTURA FINANCIAL INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233B7\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-01-27T00:00:00.000\",\"oi\":\"14856\"}\n,{\"market_and_exchange_names\":\"NORTH EURO HOT-ROLL COIL STEEL - COMMODITY EXCHANGE INC.\",\"cftc_contract_market_code\":\"192691\",\"commodity_subgroup_name\":\"BASE METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"13368\"}\n,{\"market_and_exchange_names\":\"NWP ROCKIES FIN BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"023395\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"431948\"}\n,{\"market_and_exchange_names\":\"NWP Rockies Index - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BD\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"36144\"}\n,{\"market_and_exchange_names\":\"NWP SUMAS BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BC\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-09-01T00:00:00.000\",\"oi\":\"76097\"}\n,{\"market_and_exchange_names\":\"NY HARBOR ULSD - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"022651\",\"commodity_subgroup_name\":\"PETROLEUM AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"425591\"}\n,{\"market_and_exchange_names\":\"NYISO.CENTRL_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064CTR\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"37584\"}\n,{\"market_and_exchange_names\":\"NYISO.CENTRL_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064CTQ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"39759\"}\n,{\"market_and_exchange_names\":\"NYISO.HUD VL_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064CXP\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"41307\"}\n,{\"market_and_exchange_names\":\"NYISO.HUD VL_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064CXO\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"43709\"}\n,{\"market_and_exchange_names\":\"NYISO.N.Y.C._month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064CZT\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"29634\"}\n,{\"market_and_exchange_names\":\"NYISO.N.Y.C._month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064CZS\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"30279\"}\n,{\"market_and_exchange_names\":\"NYISO.WEST_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DEV\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"38375\"}\n,{\"market_and_exchange_names\":\"NYISO.WEST_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DEU\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"38168\"}\n,{\"market_and_exchange_names\":\"NYISO ZONE A DA OFF-PK FIX PR - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BZ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"34423\"}\n,{\"market_and_exchange_names\":\"NYISO ZONE A DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BY\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"39815\"}\n,{\"market_and_exchange_names\":\"NYISO ZONE G DA OFF-PK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643C4\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"23546\"}\n,{\"market_and_exchange_names\":\"NYISO ZONE G DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643C3\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"29656\"}\n,{\"market_and_exchange_names\":\"NYISO ZONE J DA OFF-PK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BX\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"9636\"}\n,{\"market_and_exchange_names\":\"NYISO ZONE J DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BW\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"11256\"}\n,{\"market_and_exchange_names\":\"ONEOK GAS TRANSPORTATION BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BF\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-10-27T00:00:00.000\",\"oi\":\"70243\"}\n,{\"market_and_exchange_names\":\"PA COMPLIANCE AECs TIER1 - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DT\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"68455\"}\n,{\"market_and_exchange_names\":\"PALLADIUM - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"075651\",\"commodity_subgroup_name\":\"PRECIOUS METALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"31525\"}\n,{\"market_and_exchange_names\":\"PALO VERDE DA OFF-PK FiXED PR - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643CC\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"21042\"}\n,{\"market_and_exchange_names\":\"PALO VERDE DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643CB\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"26608\"}\n,{\"market_and_exchange_names\":\"PANHANDLE BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BL\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"211988\"}\n,{\"market_and_exchange_names\":\"PANHANDLE INDEX - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BM\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-03T00:00:00.000\",\"oi\":\"17219\"}\n,{\"market_and_exchange_names\":\"PA SOLAR ALTER ENERGY CREDIT - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0063DA\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"33070\"}\n,{\"market_and_exchange_names\":\"PENNSYLVANIA AEC TIER 2-V2025 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NH2\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2025-07-22T00:00:00.000\",\"oi\":\"23454\"}\n,{\"market_and_exchange_names\":\"PENNSYLVANIA AEC TIER 2-V2026 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NLV\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-07-28T00:00:00.000\",\"oi\":\"28686\"}\n,{\"market_and_exchange_names\":\"PENNSYLVANIA AEC TIER 2-V2027 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NMT\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"31229\"}\n,{\"market_and_exchange_names\":\"PENNSYLVANIA AEC TIER 2-V2028 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NMX\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"27438\"}\n,{\"market_and_exchange_names\":\"PENNSYLVANIA AEC TIER 2-V2029 - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"006NNO\",\"commodity_subgroup_name\":\"EMISSIONS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"12854\"}\n,{\"market_and_exchange_names\":\"PG&E CITYGATE FIN BASIS - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"023394\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"197063\"}\n,{\"market_and_exchange_names\":\"PG&E - CITYGATE (INDEX) - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0233BQ\",\"commodity_subgroup_name\":\"NATURAL GAS AND PRODUCTS\",\"last\":\"2026-11-03T00:00:00.000\",\"oi\":\"38430\"}\n,{\"market_and_exchange_names\":\"PGP PROPYLENE (PCW) CAL - NEW YORK MERCANTILE EXCHANGE\",\"cftc_contract_market_code\":\"406651\",\"commodity_subgroup_name\":\"CHEMICALS\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"10458\"}\n,{\"market_and_exchange_names\":\"PJM AEP DAYTON DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439F\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"74532\"}\n,{\"market_and_exchange_names\":\"PJM AEP DAYTON HUB DA OFF-PK  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439C\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"66260\"}\n,{\"market_and_exchange_names\":\"PJM.AEP-DAYTON HUB_mo_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DLX\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"113733\"}\n,{\"market_and_exchange_names\":\"PJM.AEP-DAYTON HUB_mo_off_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FKB\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"92451\"}\n,{\"market_and_exchange_names\":\"PJM.AEP-DAYTON HUB_mo_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DLW\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"116926\"}\n,{\"market_and_exchange_names\":\"PJM.AEP-DAYTON HUB_mo_on_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FKA\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"92526\"}\n,{\"market_and_exchange_names\":\"PJM AEP DAYTON RT OFF-PK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439A\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"70643\"}\n,{\"market_and_exchange_names\":\"PJM AEP DAYTON RT PEAK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"06439B\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"84701\"}\n,{\"market_and_exchange_names\":\"PJM.AEP_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DLR\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"41877\"}\n,{\"market_and_exchange_names\":\"PJM.AEP_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DLQ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"41937\"}\n,{\"market_and_exchange_names\":\"PJM.APS_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DMZ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"14940\"}\n,{\"market_and_exchange_names\":\"PJM.APS_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DMY\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"15272\"}\n,{\"market_and_exchange_names\":\"PJM.ATSI_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FZB\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"32076\"}\n,{\"market_and_exchange_names\":\"PJM.ATSI_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FZA\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"32086\"}\n,{\"market_and_exchange_names\":\"PJM.BGE_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DPR\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"32645\"}\n,{\"market_and_exchange_names\":\"PJM.BGE_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DPQ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"34268\"}\n,{\"market_and_exchange_names\":\"PJM.DOM_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DZT\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"16910\"}\n,{\"market_and_exchange_names\":\"PJM.DOM_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064DZS\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"16740\"}\n,{\"market_and_exchange_names\":\"PJM DOM ZONE DAY AHEAD OFFPEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064IBA\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2025-12-30T00:00:00.000\",\"oi\":\"8462\"}\n,{\"market_and_exchange_names\":\"PJM DOM ZONE DAY AHEAD PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"064IAZ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2025-12-30T00:00:00.000\",\"oi\":\"6367\"}\n,{\"market_and_exchange_names\":\"PJM.FE OHIO_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FWW\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-10-27T00:00:00.000\",\"oi\":\"21970\"}\n,{\"market_and_exchange_names\":\"PJM.JCPL_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064EJJ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"55310\"}\n,{\"market_and_exchange_names\":\"PJM.JCPL_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064EJI\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"57607\"}\n,{\"market_and_exchange_names\":\"PJM.METED_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064EOX\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"26731\"}\n,{\"market_and_exchange_names\":\"PJM.METED_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064EOW\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"26944\"}\n,{\"market_and_exchange_names\":\"PJM NI HUB DA PEAK DAILY FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BD\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2025-06-24T00:00:00.000\",\"oi\":\"8050\"}\n,{\"market_and_exchange_names\":\"PJM NI HUB RT OFF-PK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BS\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"91814\"}\n,{\"market_and_exchange_names\":\"PJM N. IL HUB DA OFF-PK  - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BC\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"28425\"}\n,{\"market_and_exchange_names\":\"PJM N. IL HUB DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BE\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"27956\"}\n,{\"market_and_exchange_names\":\"PJM N. IL HUB RT PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643BT\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"75126\"}\n,{\"market_and_exchange_names\":\"PJM.N ILLINOIS HUB_mo_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064ERN\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"98420\"}\n,{\"market_and_exchange_names\":\"PJM.N ILLINOIS HUB_mo_off_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FKD\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"74170\"}\n,{\"market_and_exchange_names\":\"PJM.N ILLINOIS HUB_mo_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064ERM\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"99267\"}\n,{\"market_and_exchange_names\":\"PJM.N ILLINOIS HUB_mo_on_rtp - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064FKC\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"76215\"}\n,{\"market_and_exchange_names\":\"PJM PECO DA OFFPK FIXED - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643D1\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2025-11-04T00:00:00.000\",\"oi\":\"7835\"}\n,{\"market_and_exchange_names\":\"PJM.PECO_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064EUZ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"154836\"}\n,{\"market_and_exchange_names\":\"PJM.PECO_month_on_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064EUY\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-11-10T00:00:00.000\",\"oi\":\"152581\"}\n,{\"market_and_exchange_names\":\"PJM PECO ZONE DA PEAK - ICE FUTURES ENERGY DIV\",\"cftc_contract_market_code\":\"0643CZ\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2025-11-04T00:00:00.000\",\"oi\":\"7835\"}\n,{\"market_and_exchange_names\":\"PJM.PENELEC_month_off_dap - NODAL EXCHANGE\",\"cftc_contract_market_code\":\"064EVB\",\"commodity_subgroup_name\":\"ELECTRICITY AND SOURCES\",\"last\":\"2026-10-27T00:00:00.000\",\"oi\":\"32634\"}\n,{\"market_and_exchange_names\":\"PJM.PENELEC_month_on_dap - NODAL "
+ },
+ "yahoo_GC=F": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/GC=F?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1609,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"GC=F\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":967608000,\"regularMarketTime\":1795187356,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\""
+ },
+ "yahoo_SI=F": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/SI=F?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1678,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"SI=F\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":967608000,\"regularMarketTime\":1795187356,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\""
+ },
+ "yahoo_HG=F": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/HG=F?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1660,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"HG=F\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":967608000,\"regularMarketTime\":1795187356,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\""
+ },
+ "yahoo_ALI=F": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/ALI=F?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1421,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"ALI=F\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":1399348800,\"regularMarketTime\":1795186556,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_Yor"
+ },
+ "yahoo_PL=F": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/PL=F?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1647,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"PL=F\",\"exchangeName\":\"NYM\",\"fullExchangeName\":\"NY Mercantile\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":878101200,\"regularMarketTime\":1795187345,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/N"
+ },
+ "yahoo_PA=F": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/PA=F?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1627,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"PA=F\",\"exchangeName\":\"NYM\",\"fullExchangeName\":\"NY Mercantile\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":906955200,\"regularMarketTime\":1795187312,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/N"
+ },
+ "yahoo_AUP=F": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/AUP=F?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1646,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"AUP=F\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":1355461200,\"regularMarketTime\":1795137442,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_Yor"
+ },
+ "yahoo_GCG27.CMX": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/GCG27.CMX?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1620,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"GCG27.CMX\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":1740632400,\"regularMarketTime\":1795187359,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New"
+ },
+ "yahoo_SIH27.CMX": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/SIH27.CMX?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1677,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"SIH27.CMX\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":1743048000,\"regularMarketTime\":1795187341,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New"
+ },
+ "yahoo_HGH27.CMX": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/HGH27.CMX?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1723,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"HGH27.CMX\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":1640840400,\"regularMarketTime\":1795187356,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New"
+ },
+ "yahoo_ALIF27.CMX": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/ALIF27.CMX?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1473,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"ALIF27.CMX\",\"exchangeName\":\"CMX\",\"fullExchangeName\":\"COMEX\",\"instrumentType\":\"FUTURE\",\"firstTradeDate\":1665460800,\"regularMarketTime\":1795186492,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/Ne"
+ },
+ "yahoo_GLD": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/GLD?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1750,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"GLD\",\"exchangeName\":\"PCX\",\"fullExchangeName\":\"NYSEArca\",\"instrumentType\":\"ETF\",\"firstTradeDate\":1100788200,\"regularMarketTime\":1795187959,\"hasPrePostMarketData\":true,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\","
+ },
+ "yahoo_SLV": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/SLV?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1745,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"SLV\",\"exchangeName\":\"PCX\",\"fullExchangeName\":\"NYSEArca\",\"instrumentType\":\"ETF\",\"firstTradeDate\":1146231000,\"regularMarketTime\":1795187960,\"hasPrePostMarketData\":true,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\","
+ },
+ "yahoo_IAU": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/IAU?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1748,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"IAU\",\"exchangeName\":\"PCX\",\"fullExchangeName\":\"NYSEArca\",\"instrumentType\":\"ETF\",\"firstTradeDate\":1106922600,\"regularMarketTime\":1795187960,\"hasPrePostMarketData\":true,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\","
+ },
+ "yahoo_COPX": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/COPX?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1763,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"COPX\",\"exchangeName\":\"PCX\",\"fullExchangeName\":\"NYSEArca\",\"instrumentType\":\"ETF\",\"firstTradeDate\":1271770200,\"regularMarketTime\":1795187956,\"hasPrePostMarketData\":true,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\""
+ },
+ "yahoo_DX-Y.NYB": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1730,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"DX-Y.NYB\",\"exchangeName\":\"NYB\",\"fullExchangeName\":\"ICE Futures\",\"instrumentType\":\"INDEX\",\"firstTradeDate\":31813200,\"regularMarketTime\":1795187360,\"hasPrePostMarketData\":false,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/N"
+ },
+ "yahoo_^TNX": {
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/^TNX?range=5d&interval=1d",
+  "status": 200,
+  "ct": "application/json;charset=utf-8",
+  "len": 1703,
+  "head": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"^TNX\",\"exchangeName\":\"CGI\",\"fullExchangeName\":\"Cboe Indices\",\"instrumentType\":\"INDEX\",\"firstTradeDate\":-252326400,\"regularMarketTime\":1795187055,\"hasPrePostMarketData\":false,\"gmtoffset\":-21600,\"timezone\":\"CST\",\"exchangeTimezoneName\":\"America/Ch"
+ },
+ "yahoo_qs_GLD": {
+  "url": "https://query1.finance.yahoo.com/v7/finance/quote?symbols=GLD,SLV,IAU",
+  "status": 401,
+  "ct": "application/json;charset=utf-8",
+  "len": 157,
+  "head": "{\"finance\":{\"result\":null,\"error\":{\"code\":\"Unauthorized\",\"description\":\"User is unable to access this feature - https://bit.ly/yahoo-finance-api-feedback\"}}}"
+ },
+ "tv_COMEX_GC1!": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 3571.7
+ },
+ "tv_COMEX_SI1!": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 42.135
+ },
+ "tv_COMEX_HG1!": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 5.56
+ },
+ "tv_COMEX_ALI1!": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 2815.0
+ },
+ "tv_COMEX_AUP1!": {
+  "n": 10,
+  "last": "2026-11-18 23:00:00",
+  "close": 1.075
+ },
+ "tv_COMEX_ALIG2027": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 2815.0
+ },
+ "tv_COMEX_GCG2027": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 3600.1
+ },
+ "tv_COMEX_GCZ2020": {
+  "n": 10,
+  "last": "2020-12-28 23:00:00",
+  "close": 1879.7
+ },
+ "tv_COMEX_ALIZ2022": {
+  "n": 10,
+  "last": "2022-12-26 23:00:00",
+  "close": 2411.25
+ },
+ "tv_LME_CA1!": null,
+ "tv_LME_MCU1!": null,
+ "tv_LME_CA3M": null,
+ "tv_LME_AH1!": null,
+ "tv_LME_MAL1!": null,
+ "tv_TVC_GOLD": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 3539.881
+ },
+ "tv_TVC_SILVER": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 41.5522
+ },
+ "tv_SHFE_CU1!": null,
+ "tv_SHFE_AL1!": null,
+ "tv_COMEX_HGH2027": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 5.6345
+ },
+ "tv_ECONOMICS_USGDP": {
+  "n": 10,
+  "last": "2025-12-31 00:00:00",
+  "close": 30769700000000.0
+ },
+ "tv_NYMEX_PL1!": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 1307.7
+ },
+ "tv_NYMEX_PA1!": {
+  "n": 10,
+  "last": "2026-11-19 23:00:00",
+  "close": 898.0
+ },
+ "tv_FX_IDC_USDCNY": {
+  "n": 10,
+  "last": "2026-11-19 22:00:00",
+  "close": 6.6765
+ },
+ "tv_COMEX_MUP1!": null,
+ "tv_COMEX_EDP1!": {
+  "n": 10,
+  "last": "2026-11-18 23:00:00",
+  "close": 527.75
+ },
+ "tv_CME_CUP1!": null,
+ "cme_Gold_Stocks.xls": {
+  "url": "https://www.cmegroup.com/delivery_reports/Gold_Stocks.xls",
+  "status": 403,
+  "ct": "application/json",
+  "len": 602,
+  "head": "{\"message\": \"This IP address is blocked due to suspected web scraping activity associated with it on this CMEgroup.com page. Use of scripts, software, spiders, robots, avatars, agents, tools or other "
+ },
+ "cme_Silver_stocks.xls": {
+  "url": "https://www.cmegroup.com/delivery_reports/Silver_stocks.xls",
+  "status": 403,
+  "ct": "application/json",
+  "len": 602,
+  "head": "{\"message\": \"This IP address is blocked due to suspected web scraping activity associated with it on this CMEgroup.com page. Use of scripts, software, spiders, robots, avatars, agents, tools or other "
+ },
+ "cme_Copper_Stocks.xls": {
+  "url": "https://www.cmegroup.com/delivery_reports/Copper_Stocks.xls",
+  "status": 403,
+  "ct": "application/json",
+  "len": 602,
+  "head": "{\"message\": \"This IP address is blocked due to suspected web scraping activity associated with it on this CMEgroup.com page. Use of scripts, software, spiders, robots, avatars, agents, tools or other "
+ },
+ "cme_Aluminum_Stocks.xls": {
+  "url": "https://www.cmegroup.com/delivery_reports/Aluminum_Stocks.xls",
+  "status": 403,
+  "ct": "application/json",
+  "len": 602,
+  "head": "{\"message\": \"This IP address is blocked due to suspected web scraping activity associated with it on this CMEgroup.com page. Use of scripts, software, spiders, robots, avatars, agents, tools or other "
+ },
+ "cme_Platinum_Palladium_Stocks.xls": {
+  "url": "https://www.cmegroup.com/delivery_reports/Platinum_Palladium_Stocks.xls",
+  "status": 403,
+  "ct": "application/json",
+  "len": 602,
+  "head": "{\"message\": \"This IP address is blocked due to suspected web scraping activity associated with it on this CMEgroup.com page. Use of scripts, software, spiders, robots, avatars, agents, tools or other "
+ },
+ "cme_robots": {
+  "url": "https://www.cmegroup.com/robots.txt",
+  "status": 403,
+  "ct": "application/json",
+  "len": 602,
+  "head": "{\"message\": \"This IP address is blocked due to suspected web scraping activity associated with it on this CMEgroup.com page. Use of scripts, software, spiders, robots, avatars, agents, tools or other scraping mechanisms is strictly prohibited by CME Group\u2019s website Data Terms of Use. If you are attempting to access data or content from the website via automated means or for commercial purposes, CME has numerous other methods to deliver the content you require. Please contact CME Group's Global Command Center (GCC) at gcc@cmegroup.com and your inquiry will be directed to the appropriate team.\"}"
+ },
+ "spdr_gld_archive": {
+  "url": "https://www.spdrgoldshares.com/assets/dynamic/GLD/GLD_US_archive_EN.csv",
+  "status": 200,
+  "ct": "application/pdf",
+  "len": 697562,
+  "head": "b'%PDF-1.5\\r\\n%\\xe2\\xe3\\xcf\\xd3\\r\\n2 0 obj\\r\\n<<\\r\\n/Type /XObject\\r\\n/Subtype /Image\\r\\n/Width 1489\\r\\n/Height 680\\r\\n/ColorSpace /DeviceGray\\r\\n/BitsPerComponent 8\\r\\n/Interpolate false\\r\\n/Filter /FlateDecode\\r\\n/Length 15691\\r\\n>>\\r\\nstre'"
+ },
+ "spdr_robots": {
+  "url": "https://www.spdrgoldshares.com/robots.txt",
+  "status": 200,
+  "ct": "text/plain; charset=utf-8",
+  "len": 22,
+  "head": "User-agent: *\nAllow: /"
+ },
+ "ishares_slv": {
+  "url": "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund/1467271812596.ajax?fileType=csv&fileName=SLV_holdings&dataType=fund",
+  "status": 200,
+  "ct": "text/csv;charset=UTF-8",
+  "len": 1447776,
+  "head": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" prefix=\"og: http://ogp.me/ns#\" lang=\"en-US\" xml:lang=\"en-US\">\n<head>\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-d95c2bb628ac90bc6b3d75673416fe7.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-7fdd45b901e2ace8c21c3cb8480bb230.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-f56c95ca95db4bac72f76e8b308dac8f.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-331cdf0a472dcf9d4ed558bd5112dc1.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-9ca12b65b053df826653b53b433e4cc3.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-15b6d27696012f00e5015e05edd77056.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-6d2d4759ff056d96d39714b48d271efb.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-bcc17d66ca66b2742f8c240497925528.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-6010b9c10b0db72c24c796f2d8b97db7.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-9fb887fc1c8d6d80c9bd598f01a0b44c.css\" as=\"style\" />\n<script nonce=\"rbP8O7RGsuchRdjvGzr/mQ==\">\n//<![CDATA[\nvar vice= { config: { viceAccountId: 'blackrock', viceSiteId: 'isharesprod', viceZoneId: '"
+ },
+ "ishares_iau": {
+  "url": "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund/1467271812596.ajax?fileType=csv&fileName=IAU_holdings&dataType=fund",
+  "status": 200,
+  "ct": "text/csv;charset=UTF-8",
+  "len": 1446320,
+  "head": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" prefix=\"og: http://ogp.me/ns#\" lang=\"en-US\" xml:lang=\"en-US\">\n<head>\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-d95c2bb628ac90bc6b3d75673416fe7.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-7fdd45b901e2ace8c21c3cb8480bb230.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-f56c95ca95db4bac72f76e8b308dac8f.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-331cdf0a472dcf9d4ed558bd5112dc1.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-9ca12b65b053df826653b53b433e4cc3.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-15b6d27696012f00e5015e05edd77056.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-6d2d4759ff056d96d39714b48d271efb.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-bcc17d66ca66b2742f8c240497925528.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-6010b9c10b0db72c24c796f2d8b97db7.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-9fb887fc1c8d6d80c9bd598f01a0b44c.css\" as=\"style\" />\n<script nonce=\"cUEeVfeWbsypH0V046D6yg==\">\n//<![CDATA[\nvar vice= { config: { viceAccountId: 'blackrock', viceSiteId: 'isharesprod', viceZoneId: '"
+ },
+ "ishares_slv_page": {
+  "url": "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund",
+  "status": 200,
+  "ct": "text/html;charset=UTF-8",
+  "len": 1701416,
+  "head": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" prefix=\"og: http://ogp.me/ns#\" lang=\"en-US\" xml:lang=\"en-US\">\n<head>\n<link rel=\"preload\" href=\"/blk-one02-c-assets/include/bundles/minified-d95c2bb628ac90bc6b3d75673416fe7.css\" as=\"style\" />\n<link rel=\"preload\" href=\"/blk-one02-c-assets/incl"
+ },
+ "ishares_robots": {
+  "url": "https://www.ishares.com/robots.txt",
+  "status": 200,
+  "ct": "text/plain; charset=utf-8",
+  "len": 920,
+  "head": "User-agent: Brightbot 1.0\nDisallow: /\n\nUser-agent: *\n\nDisallow: /*?truepdf*\nDisallow: /*?norepdf*\n\nDisallow: /*.dl$\nDisallow: /*sign-on.oauth\nDisallow: /*sign-on.saml\nDisallow: /*sign-on-popup.saml\n\nDisallow: /search/\n\nDisallow: /us/MYCATEGORYURL\n\nSITEMAP: https://www.ishares.com/529/sitemap.xml\nSITEMAP: https://www.ishares.com/ch/sitemap.xml\nSITEMAP: https://www.ishares.com/ch/product-sitemap.xml\nSITEMAP: https://www.ishares.com/de/sitemap.xml\nSITEMAP: https://www.ishares.com/de/product-sitemap.xml\nSITEMAP: https://www.ishares.com/it/sitemap.xml\nSITEMAP: https://www.ishares.com/it/product-sitemap.xml\nSITEMAP: https://www.ishares.com/nl/sitemap.xml\nSITEMAP: https://www.ishares.com/nl/product-sitemap.xml\nSITEMAP: https://www.ishares.com/us/sitemap.xml\nSITEMAP: https://www.ishares.com/us/product-sitemap.xml\nSITEMAP: https://www.ishares.com/uk/sitemap.xml\nSITEMAP: https://www.ishares.com/uk/product-sitemap.xml"
+ },
+ "wgc_robots": {
+  "url": "https://www.gold.org/robots.txt",
+  "status": 200,
+  "ct": "text/plain",
+  "len": 2005,
+  "head": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n"
+ },
+ "wgc_gdt": {
+  "url": "https://www.gold.org/goldhub/research/gold-demand-trends",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 78884,
+  "head": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# \" >\n  <head>\n    <meta charset=\"utf-8\" />\n<link rel=\"canonical\" href=\"https://www.gold."
+ },
+ "wgc_gdt_latest": {
+  "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q3-2026",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 87367,
+  "head": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# \" >\n  <head>\n    <meta charset=\"utf-8\" />\n<link rel=\"canonical\" href=\"https://www.gold.",
+  "links": [
+   "/download/file/21258/Gold-Demand-Trends-Q3-2026.pdf",
+   "/download/file/21333/GDT Tables_Q326_EN.xlsx",
+   "/download/file/21334/GDT Tables_Q326_CN.xlsx",
+   "/download/file/21335/GDT Tables_Q326_JP.xlsx",
+   "/download/file/21338/Executive-summary.pdf"
+  ],
+  "tonnes": [
+   "3 2026\",\n            \"about\": [],\n            \"description\": \"Q3 total gold demand was broadly steady - 1% lower y/y at 1,369t, while the value of demand rose 22% to US$188bn",
+   " Institutional and strategic buyers stepped up: central banks added 321t, up 42% year-on-year, and gold ETFs returned to strong inflows of 211t, lifting",
+   " holdings to a record 4,256t",
+   " By contrast, bar and coin demand fell 19% to 268t given the lack of a clear trend in the gold price, while jewellery demand fell ",
+   "17% to 313t as gold prices remained high",
+   " Technology demand rose 3% to 85t, its highest level since Q4 2021, supported by AI-related manufacturing",
+   "0\",\"dateModified\":\"2026-11-03T08:00:00+00:00\",\"description\":\"Q3 total gold demand was broadly steady - 1% lower y\\/y at 1,369t, while the value of demand rose 22% to US$188bn",
+   " Institutional and strategic buyers stepped up: central banks added 321t, up 42% year-on-year, and gold ETFs returned to strong inflows of 211t, lifting",
+   " holdings to a record 4,256t",
+   " By contrast, bar and coin demand fell 19% to 268t given the lack of a clear trend in the gold price, while jewellery demand fell ",
+   "17% to 313t as gold prices remained high",
+   " Technology demand rose 3% to 85t, its highest level since Q4 2021, supported by AI-related manufacturing",
+   " surface--secondary surface--light\">\n  <div class=\"block block-spotprice\">\n    <div class=\"display\">\n      <h2 class=\"t-7 t-weight-bold\">\n        <a href=\"https://www",
+   "webp?itok=g99TluTE\"\n        imageAlt=\"Louise Street\"\n          >\n      <h3 class=\"t-7 t-semi\">\n  Louise Street\n</h3>\n              <span>\n         Senior Markets Analy",
+   "webp?itok=JCiorJoa\"\n        imageAlt=\"Krishan Gopaul\"\n          >\n      <h3 class=\"t-7 t-semi\">\n  Krishan Gopaul\n</h3>\n              <span>\n         Senior Analyst, EME"
+  ]
+ },
+ "wgc_cb": {
+  "url": "https://www.gold.org/goldhub/data/gold-reserves-by-country",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 68756,
+  "head": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# \" >\n  <head>\n    <meta charset=\"utf-8\" />\n<meta name=\"description\" content=\"Explore the"
+ },
+ "wgc_cb_monthly": {
+  "url": "https://www.gold.org/goldhub/gold-focus",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 126942,
+  "head": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct:"
+ },
+ "silver_robots": {
+  "url": "https://www.silverinstitute.org/robots.txt",
+  "status": 200,
+  "ct": "text/plain",
+  "len": 307,
+  "head": "User-agent: ChatGPT-User\nDisallow: /wp-content/uploads/\n\nUser-agent: Baiduspider\nDisallow: /wp-content/uploads/\n\nUser-agent: TikTokSpider\nDisallow: /\n\nUser-agent: PetalBot\nDisallow: /wp-content/uploads/\n\nUser-agent: Sogou\nDisallow: /\n\nUser-agent: *\nAllow: /\nSitemap: https://silverinstitute.org/sitemap.xml\n"
+ },
+ "silver_sd": {
+  "url": "https://silverinstitute.org/silver-supply-demand/",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 129846,
+  "head": "<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n\t<meta charset=\"UTF-8\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n\t<link rel=\"pingback\" href=\"https://silverinstitute.org/xmlrpc.php\" />\n\n\t<script type=\"text/javascript\">\n\t\tdocument.documentElement.className = 'js';\n\t</script>\n\n\t<title>SILVER "
+ },
+ "icsg_robots": {
+  "url": "https://icsg.org/robots.txt",
+  "status": 200,
+  "ct": "text/plain",
+  "len": 31,
+  "head": "User-agent: * \nCrawl-Delay: 20\n"
+ },
+ "icsg_press": {
+  "url": "https://icsg.org/press-releases/",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 109431,
+  "head": "<!DOCTYPE html>\n<html class=\"avada-html-layout-boxed avada-html-header-position-top\" lang=\"en-US\" prefix=\"og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#\">\n<head>\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n\t<meta name",
+  "links": [
+   "https://icsg.org/author/icsg/",
+   "https://icsg.org/comments/feed/",
+   "https://icsg.org/commitiees/",
+   "https://icsg.org/contact-us/",
+   "https://icsg.org/copper-factbook/",
+   "https://icsg.org/copper-recycling/",
+   "https://icsg.org/data-protection-policy/",
+   "https://icsg.org/environmental-and-economic/",
+   "https://icsg.org/feed/",
+   "https://icsg.org/how-to-order/",
+   "https://icsg.org/iap-industry-advisory-panel/",
+   "https://icsg.org/index.php/copyright/",
+   "https://icsg.org/index.php/disclaimer/",
+   "https://icsg.org/insights/",
+   "https://icsg.org/login/",
+   "https://icsg.org/long-term-availability-of-copper/",
+   "https://icsg.org/map-mines-smelters-refineries/",
+   "https://icsg.org/meetings-and-events/",
+   "https://icsg.org/member-countries/",
+   "https://icsg.org/membership/",
+   "https://icsg.org/other-reports/",
+   "https://icsg.org/presentations/",
+   "https://icsg.org/press-releases/",
+   "https://icsg.org/publications-list/",
+   "https://icsg.org/recruitment/",
+   "https://icsg.org/secretariat/",
+   "https://icsg.org/selected-copper-statistics/",
+   "https://icsg.org/statistical/",
+   "https://icsg.org/the-study-group/",
+   "https://icsg.org/what-is-copper/",
+   "https://icsg.org/wp-content/plugins/wpdm-extended-shortcodes/css/jqueryFileTree.css?ver=4.0.0",
+   "https://icsg.org/wp-json/",
+   "https://icsg.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ficsg.org%2Fpress-releases%2F",
+   "https://icsg.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ficsg.org%2Fpress-releases%2F&#038;format=xml",
+   "https://icsg.org/wp-json/wp/v2/pages/27"
+  ]
+ },
+ "icsg_wp": {
+  "url": "https://icsg.org/wp-json/wp/v2/posts?per_page=10&_fields=id,date,link,title",
+  "status": 200,
+  "ct": "application/json; charset=UTF-8",
+  "len": 2,
+  "head": "[]"
+ },
+ "iai_robots": {
+  "url": "https://international-aluminium.org/robots.txt",
+  "status": 200,
+  "ct": "text/plain; charset=utf-8",
+  "len": 321,
+  "head": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nUser-agent: AdsBot\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nSitemap: https://international-aluminium.org/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
+ },
+ "iai_primary": {
+  "url": "https://international-aluminium.org/statistics/primary-aluminium-production/",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 471161,
+  "head": "<!doctype html>\n<html lang=\"en-US\">\n<head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\t<link rel=\"profile\" href=\"https://gmpg.org/xfn/11\">\n\t\t\t\t<script type=\"text/javascript\" class=\"_iub_cs_skip\">\n\t\t\t\tvar _iub = _iub || {};\n\t\t\t\t_iub.csConfiguration =",
+  "api": [
+   "https://alvis.international-aluminium.org/api",
+   "https://international-aluminium.org/wp-json/jet-elements-api/v1/elementor-template",
+   "https://international-aluminium.org/wp-json/jet-menu-api/v2/get-blocks-template-content",
+   "https://international-aluminium.org/wp-json/jet-menu-api/v2/get-elementor-template-content",
+   "https://international-aluminium.org/wp-json/jet-menu-api/v2/get-menu-items",
+   "https://international-aluminium.org/wp-json/jet-search/v1/form-add-suggestion",
+   "https://international-aluminium.org/wp-json/jet-search/v1/get-suggestions",
+   "https://international-aluminium.org/wp-json/jet-search/v1/search-posts",
+   "https://international-aluminium.org/wp-json/jet-tabs-api/v1/elementor-template",
+   "https://international-aluminium.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Finternational-aluminium.org%2Fstatistics%2Fprimary-aluminium-production%2F",
+   "https://international-aluminium.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Finternational-aluminium.org%2Fstatistics%2Fprimary-aluminium-production%2F&#038;format=xml"
+  ]
+ },
+ "usgs_mcs": {
+  "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf",
+  "status": 200,
+  "ct": "application/pdf",
+  "len": 141602,
+  "head": "b'%PDF-1.7\\r%\\xe2\\xe3\\xcf\\xd3\\r\\n1 0 obj\\r<</AcroForm 5 0 R/MarkInfo<</Marked true>>/Metadata 2 0 R/OCProperties<</D<</OFF[]>>>>/Outlines 6 0 R/Pages 3 0 R/StructTreeRoot 7 0 R/Type/Catalog>>\\rendobj\\r5 0 obj\\r<</DA(/Helv'"
+ },
+ "usgs_mcs25": {
+  "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-copper.pdf",
+  "status": 200,
+  "ct": "application/pdf",
+  "len": 746302,
+  "head": "b'%PDF-1.7\\r%\\xe2\\xe3\\xcf\\xd3\\r\\n1 0 obj\\r<</AcroForm 5 0 R/MarkInfo<</Marked true>>/Metadata 2 0 R/OCProperties<</D<</OFF[]/Order[]/RBGroups[]>>/OCGs[6 0 R]>>/Outlines 7 0 R/Pages 3 0 R/StructTreeRoot 8 0 R/Type/Catal'"
+ },
+ "usgs_sb": {
+  "url": "https://www.sciencebase.gov/catalog/items?q=Mineral%20Commodity%20Summaries%202026&format=json&max=10&fields=title,link",
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 1225,
+  "head": "{\"total\":3,\"took\":\"3ms\",\"selflink\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/items/get?q=Mineral+Commodity+Summaries+2026&format=json&max=10&fields=title%2Clink\"},\"items\":[{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/696a75d5d4be0228872d3bf8\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=696a75d5d4be0228872d3bf8\",\"rel\":\"related\"}},\"id\":\"696a75d5d4be0228872d3bf8\",\"title\":\"Mineral Commodity Summaries 2026 Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/69837e43b66b01367d7ec7c7\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=69837e43b66b01367d7ec7c7\",\"rel\":\"related\"}},\"id\":\"69837e43b66b01367d7ec7c7\",\"title\":\"Mineral Commodity Summaries 2026 Data Release - Commodity Salient U.S. and World Statistics\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/69837ec8b66b01367d7ec7d9\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=69837ec8b66b01367d7ec7d9\",\"rel\":\"related\"}},\"id\":\"69837ec8b66b01367d7ec7d9\",\"title\":\"Mineral Commodity Summaries 2026 Data Release - Mineral Industry Trends and Salient Statistics\"}]}"
+ },
+ "usgs_sb25": {
+  "url": "https://www.sciencebase.gov/catalog/items?q=Mineral%20Commodity%20Summaries%202025%20data%20release&format=json&max=10&fields=title,link",
+  "status": 200,
+  "ct": "application/json;charset=UTF-8",
+  "len": 3626,
+  "head": "{\"total\":88,\"took\":\"4ms\",\"selflink\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/items/get?q=Mineral+Commodity+Summaries+2025+data+release&format=json&max=10&fields=title%2Clink\"},\"nextlink\":{\"rel\":\"next\",\"url\":\"https://www.sciencebase.gov/catalog/items/get?q=Mineral+Commodity+Summaries+2025+data+release&format=json&max=10&fields=title%2Clink&offset=10\"},\"items\":[{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6798004ed34ea8c18376e1ef\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6798004ed34ea8c18376e1ef\",\"rel\":\"related\"}},\"id\":\"6798004ed34ea8c18376e1ef\",\"title\":\"Mineral Commodity Summaries 2025 - NICKEL Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6798f0a3d34ea8c18376e7ff\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6798f0a3d34ea8c18376e7ff\",\"rel\":\"related\"}},\"id\":\"6798f0a3d34ea8c18376e7ff\",\"title\":\"Mineral Commodity Summaries 2025 - RHENIUM Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6797faa3d34ea8c18376e145\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6797faa3d34ea8c18376e145\",\"rel\":\"related\"}},\"id\":\"6797faa3d34ea8c18376e145\",\"title\":\"Mineral Commodity Summaries 2025 - CADMIUM Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6797fb00d34ea8c18376e159\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6797fb00d34ea8c18376e159\",\"rel\":\"related\"}},\"id\":\"6797fb00d34ea8c18376e159\",\"title\":\"Mineral Commodity Summaries 2025 - COBALT Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6797ff7fd34ea8c18376e1ce\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6797ff7fd34ea8c18376e1ce\",\"rel\":\"related\"}},\"id\":\"6797ff7fd34ea8c18376e1ce\",\"title\":\"Mineral Commodity Summaries 2025 - MANGANESE Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6797fd60d34ea8c18376e18b\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6797fd60d34ea8c18376e18b\",\"rel\":\"related\"}},\"id\":\"6797fd60d34ea8c18376e18b\",\"title\":\"Mineral Commodity Summaries 2025 - GALLIUM Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6798f26fd34ea8c18376e84b\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6798f26fd34ea8c18376e84b\",\"rel\":\"related\"}},\"id\":\"6798f26fd34ea8c18376e84b\",\"title\":\"Mineral Commodity Summaries 2025 - STRONTIUM Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6798f60fd34ea8c18376e896\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6798f60fd34ea8c18376e896\",\"rel\":\"related\"}},\"id\":\"6798f60fd34ea8c18376e896\",\"title\":\"Mineral Commodity Summaries 2025 - VERMICULITE Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6797fab8d34ea8c18376e148\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6797fab8d34ea8c18376e148\",\"rel\":\"related\"}},\"id\":\"6797fab8d34ea8c18376e148\",\"title\":\"Mineral Commodity Summaries 2025 - CEMENT Data Release\"},{\"link\":{\"rel\":\"self\",\"url\":\"https://www.sciencebase.gov/catalog/item/6797fbdcd34ea8c18376e169\"},\"relatedItems\":{\"link\":{\"url\":\"https://www.sciencebase.gov/catalog/itemLinks?itemId=6797fbdcd34ea8c18376e169\",\"rel\":\"related\"}},\"id\":\"6797fbdcd34ea8c18376e169\",\"title\":\"Mineral Commodity Summaries 2025 - DIATOMITE Data Release\"}]}"
+ },
+ "usgs_robots": {
+  "url": "https://pubs.usgs.gov/robots.txt",
+  "status": 200,
+  "ct": "text/plain",
+  "len": 34,
+  "head": "User-agent: *\nDisallow: /archive/\n"
+ },
+ "lme_robots": {
+  "url": "https://www.lme.com/robots.txt",
+  "status": 200,
+  "ct": "text/plain; charset=utf-8",
+  "len": 66,
+  "head": "User-agent: *\r\nAllow : /\r\nSitemap: https://www.lme.com/sitemap.xml"
+ },
+ "lme_copper": {
+  "url": "https://www.lme.com/en/metals/non-ferrous/lme-copper",
+  "status": 403,
+  "ct": "text/html; charset=UTF-8",
+  "len": 5721,
+  "head": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scal"
+ },
+ "westmetall_robots": {
+  "url": "https://www.westmetall.com/robots.txt",
+  "status": 200,
+  "ct": "text/plain",
+  "len": 47,
+  "head": "Sitemap: http://www.westmetall.com/sitemap.xml\n"
+ },
+ "westmetall_cu": {
+  "url": "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 31925,
+  "head": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n<meta name=\"verify-v1\" content=\"NbzPFLmaYuwVem/ymz4x/gnsDk2Lc+BC9g6BYOIw/Ek=\">\n<meta name=\"author\" content=\"Westmetall GmbH &amp; Co. KG\">\n<meta name=\"generator\" content=\"depage-cms v2.7.1\">\n<"
+ },
+ "westmetall_al_stock": {
+  "url": "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Al_stock",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "len": 31599,
+  "head": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n<meta name=\"verify-v1\" content=\"NbzPFLmaYuwVem/ymz4x/gnsDk2Lc+BC9g6BYOIw/Ek=\">\n<meta name=\"author\" content=\"Westmetall GmbH &amp; Co. KG\">\n<meta name=\"generator\" content=\"depage-cms v2.7.1\">\n<"
+ },
+ "shfe_robots": {
+  "url": "https://www.shfe.com.cn/robots.txt",
+  "status": 404,
+  "ct": "text/html; charset=utf-8",
+  "len": 4832,
+  "head": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n  <meta name=\"renderer\" content=\"webkit\">\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\" />\r\n  <meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\">\r\n  <meta http-equiv=\"Pragma\" content=\"no-cache\">\r\n  <meta http-equiv=\"Expires\" content=\"0\">\r\n  <meta name=\"format-detection\" content=\"telephone=no\" />\r\n  <link rel=\"shortcut icon\" href=\"favicon.ico\">\r\n  <title>404</title>\r\n  <style>\r\n    html,\r\n    body {\r\n      height: 100%;\r\n      padding: 0;\r\n      margin: 0;\r\n    }\r\n    .outer_no_page {\r\n      height: 100%;\r\n      position: relative;\r\n    }\r\n    .inc-header {\r\n      width: 100%;\r\n      height: 0.5rem;\r\n      position: absolute;\r\n      top: 0;\r\n      left: 0;\r\n    }\r\n    .inc-header .header-box {\r\n      width: 100%;\r\n      "
+ },
+ "shfe_week": {
+  "url": "https://www.shfe.com.cn/data/tradedata/future/weeklydata/20261114weeklystock.dat",
+  "status": 404,
+  "ct": "text/html; charset=utf-8",
+  "len": 4832,
+  "head": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n  <meta name=\"renderer\" content=\"webkit\">\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\" />\r\n  <meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\">\r\n  <meta http-equiv=\"Pragma\" content=\"no-cache\">\r\n  <meta http-equiv=\"Expires\" cont"
+ },
+ "gnews_metals": {
+  "url": "https://news.google.com/rss/search?q=gold+prices+site:reuters.com&hl=en-US&gl=US&ceid=US:en",
+  "status": 200,
+  "ct": "application/xml; charset=utf-8",
+  "len": 128892,
+  "head": "b'<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><rss version=\"2.0\" xmlns:media=\"http://search.yahoo.com/mrss/\"><channel><generator>NFE/5.0</generator><title>\"gold prices site:reuters.com\" - Goo'"
+ }
+}

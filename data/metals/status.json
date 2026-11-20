@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20 21:02 UTC",
+ "generated": "2026-11-20 22:59 UTC",
  "today": "2026-11-20",
  "sources": [
   {
@@ -65,8 +65,8 @@
   {
    "group": "Gold",
    "source": "iShares IAU ounces in trust (product page, daily snapshot)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -77,8 +77,8 @@
   {
    "group": "Gold",
    "source": "iShares IAU shares outstanding, daily history (product-page download)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -161,8 +161,8 @@
   {
    "group": "Silver",
    "source": "iShares SLV ounces in trust (product page, daily snapshot)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -173,8 +173,8 @@
   {
    "group": "Silver",
    "source": "iShares SLV shares outstanding, daily history (product-page download)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

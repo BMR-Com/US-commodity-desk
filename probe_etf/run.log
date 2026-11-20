@@ -1,30 +1,17 @@
-── etf
-   robots.txt disallows https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en
-GLD archive not available
-IAU Nov 19, 2026 460.11 t
-IAU history 5491 days
-SLV Nov 19, 2026 15589.09 t
-SLV history 5180 days
-── etf_more
-- Sprott
-PHYS gold 690 chart points (datetime.date(2026, 11, 18), 3804356.0)
-PSLV silver 644 chart points (datetime.date(2026, 11, 12), 204597678.0)
-SPPP platinum 312 chart points (datetime.date(2026, 11, 9), 196182.0)
-SPPP palladium 277 chart points (datetime.date(2026, 11, 18), 154363.0)
-- abrdn
-PPLT 2026-11-19 126950000.0 shares, 452.1 oz per basket
-PALL 2026-11-19 28425000.0 shares, 226.05 oz per basket
-SGOL 2026-11-19 179200000.0 shares, 951.8 oz per basket
-SIVR 2026-11-19 72300000.0 shares, 47482.9 oz per basket
-- GraniteShares
-PLTM 1651 days from 2020-05-06 to 2026-11-19
-BAR 1651 days from 2020-05-06 to 2026-11-19
-── pgm_etf
-BAR 39 quarters, last 2026-09-30 320863.4 oz
-IAU 8 quarters, last 2026-09-30 14901766.0 oz
-PALL 54 quarters, last 2026-09-30 521775.4 oz
-PLTM 36 quarters, last 2026-09-30 103945.8 oz
-PPLT 54 quarters, last 2026-09-30 1212717.9 oz
-SGOL 54 quarters, last 2026-09-30 1716361.6 oz
-SIVR 54 quarters, last 2026-09-30 70150099.1 oz
-SLV 8 quarters, last 2026-09-30 493578376.0 oz
+== https://api.spdrgoldshares.com 200
+User-agent: *
+Disallow: /
+
+== https://www.spdrgoldshares.com 200
+User-agent: *
+Allow: /
+== https://spdrgoldshares.com 200
+User-agent: *
+Allow: /
+-- https://www.spdrgoldshares.com/assets/dynamic/GLD/GLD_US_archive_EN.csv 200 application/pdf 697562
+b'%PDF-1.5\r\n%\xe2\xe3\xcf\xd3\r\n2 0 obj\r\n<<\r\n/Type /XObject\r\n/Subtype /Image\r\n/Width 1489\r\n/Height 680\r\n/ColorSpace /DeviceGray\r\n/BitsPerComponent 8\r\n/Interpolate false\r\n/Filter /FlateDecode\r\n/Length 15691\r\n>>\r\nstream\r\nx\xda\xed\xddw@\x94\xf5\x03\xc7\xf1\x0e\x8e=\x05\xd9\xb8\x11\x04\xf7\xc8=\xc0\x95\x99\x96\xe6\xca\xb2\xe1\xde\xb3\xac\xac,We\xe5(+\xf7^\xfdJM\xcd\x1cT\x9a\x86{oe(\xca\x10\x04d\xef\xe5\x8fCQ\xb8\xe7\xe1\xb8\xc9|\xbf\xfe\xe9\x8f\xee\x1e\x9e{\x9e\xf3s\xcf}\xef\xf3|\xbf/\xbc\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+-- https://www.spdrgoldshares.com/usa/historical-data/ 200 text/html; charset=utf-8 249334
+b'<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width, initial-scale=1" data-next-head=""/><link rel="canonical" href="https://www.spdrgoldshares.com/usa/gld/" data-next-head=""/><title data-next-head="">SPDR\xc2\xae Gold Shares (Ticker: GLD, New York Stock Exchange) | Charts, data and downloads | World Gold Trust Services</title>'
+['https://api.spdrgoldshares.com/api/v1/barlist?underlying=gld', 'https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&amp;exchange=NYSE&amp;lang=en']
+-- https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en 200 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 544423
+b'PK\x03\x04\x14\x00\x00\x08\x08\x00\x82\x1at]\xb0\xa2\xac\xa8w\x01\x00\x00"\x06\x00\x00\x13\x00\x04\x00[Content_Types].xmlSV\x00\x00\xc5\x94\xcbN\xc30\x10E\xf7|E\xe4-J\xdcv\x81\x10j\xda\x05\x85%T\xa2|\x80\x89\'\x8dU\xbf\xe4q_\x7f\xcf$i\x81"\x11\xa8R\x89M\x9c(\xb9\xf7L\xae=3\x9e\xee\x8cN6\x10P9\x9b\xb3a6`\t\xd8\xc2Ie\x979{]<\xa6\xb7,\xc1(\xac\x14\xdaY\xc8\xd9\x1e\x90M\'W\xe3\xc5\xde\x03&$\xb6\x98\xb3*F\x7f\xc79\x16\x15\x18\x81\x99\xf3`\xe9M\xe9\x82\x11\x91\x1e\xc3\x92{Q\xac\xc4\x12\xf8h0\xb8\xe1\x85\xb3\x11lLc\xed\xc1&\xe3g\xe2\x07%!\x99\x8b\x10\x9f\x84!\x0c\xdfi\x1e\xc9\r\xda\xeb0#?\x96\xdc\xb7\xc2\x9a\x9d3\xe1\xbdV\x85\x88T8\xdfX\xf9\x8d\x9a\xba\xb2T\x05HW\xac\rI\xb2\xc6\xe6\xbav\xe1?\x021\xee5`o\x14\xfa\x00Bb\x05\x10\x8d\xceZ\xd3#y\x06\xa5X\xeb\x98<\xec\xc8\xbd\xcd<\x80\xc6\xf3x\x8703R6\xdf`\xa5|\x17\xa1\xfb\x87~\xd6mz\x06A\xfaY\x10[:J\x1d\xa1o]X\xbd9\xb7\xbat\xec\xf5\x9a\x19\xa1l\xd7\xa6\x93x\x1e\x9cGN\xa8\xde\x05@\x9d\x9c\x04\x99z\xb2\x84\x10\xd5\xe7\xb6w\xb2\x0b\x17\xe0|\xf8\xf1\x10\xd4\xea?\x12\x0fi7\xd1 o\x96\xfe\x8du\x1a\xfb\x87\xff\x99u\x8c\xfe\xa9\x0e\xacD\x00\xf9\x12\x03\x1d\xd2\x8bw\xfeW\xef_\xea\x90'

@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-20 20:55 UTC",
- "by": "claude",
+ "updated": "2026-11-21 02:51 UTC",
+ "by": "bot",
  "views": {
   "corn": {
    "view": "strongly bearish",
@@ -45,12 +45,12 @@
   "cattle": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.38
+   "score": 0.32
   },
   "feeders": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.33
+   "score": 0.34
   },
   "class3": {
    "view": "bearish",
@@ -60,7 +60,7 @@
   "class4": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.16
+   "score": 0.17
   },
   "palm": {
    "view": "strongly bearish",
@@ -68,14 +68,14 @@
    "score": -0.46
   },
   "natgas": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.17
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.24
   },
   "crude": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.04
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.1
   },
   "ulsd": {
    "view": "bullish",
@@ -83,14 +83,14 @@
    "score": 0.27
   },
   "rbob": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.23
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.17
   },
   "gold": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.66
+   "score": -0.54
   },
   "silver": {
    "view": "strongly bearish",
@@ -103,9 +103,9 @@
    "score": -0.51
   },
   "aluminum": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.06
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.18
   },
   "platinum": {
    "view": "neutral",
@@ -137,12 +137,8 @@
   "ulsd": [],
   "rbob": [],
   "gold": [],
-  "silver": [
-   "Broke above R1 40.961"
-  ],
-  "copper": [
-   "Broke above R1 5.4650"
-  ],
+  "silver": [],
+  "copper": [],
   "aluminum": [],
   "platinum": [],
   "palladium": []

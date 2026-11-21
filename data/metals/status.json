@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20 22:59 UTC",
+ "generated": "2026-11-21 00:15 UTC",
  "today": "2026-11-20",
  "sources": [
   {
@@ -89,8 +89,8 @@
   {
    "group": "Gold",
    "source": "Sprott PHYS ounces held (fund page)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -185,8 +185,8 @@
   {
    "group": "Silver",
    "source": "Sprott PSLV ounces held (fund page)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -221,8 +221,8 @@
   {
    "group": "Copper",
    "source": "LME copper cash, 3-month, stocks (westmetall.com)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -245,8 +245,8 @@
   {
    "group": "Aluminum",
    "source": "LME aluminium cash, 3-month, stocks (westmetall.com)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -365,8 +365,8 @@
   {
    "group": "Platinum and palladium",
    "source": "Sprott SPPP platinum and palladium ounces held (fund page)",
-   "latest": "2026-11-19",
-   "age": 1,
+   "latest": "2026-11-20",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

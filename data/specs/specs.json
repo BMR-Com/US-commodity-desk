@@ -796,16 +796,16 @@
 "quote": "$/cwt",
 "tick": "$0.01 = $20",
 "usd": 2000,
-"price": 19.01,
+"price": 19.71,
 "months": "24 consecutive months",
 "settle": "Cash-settled to USDA Class IV price",
 "options": "Yes",
 "of": "GDK",
-"front_contract": "Jan 27",
+"front_contract": "Dec 26",
 "price_date": "2026-11-20",
-"notional": 38020,
-"day_move": 478,
-"hv20": 20.0,
+"notional": 39420,
+"day_move": 382,
+"hv20": 15.4,
 "margin_period": "12/2026-02/2027",
 "maint": 1800,
 "initial": 1980,
@@ -825,9 +825,9 @@
 "maint": 1800
 }
 ],
-"margin_pct": 4.7,
-"leverage": 21.1,
-"days_covered": 3.8
+"margin_pct": 4.6,
+"leverage": 21.9,
+"days_covered": 4.7
 },
 {
 "sym": "CSC",

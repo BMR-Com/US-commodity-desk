@@ -1,0 +1,44 @@
+{
+ "overlap": [
+  "2004-11-18",
+  "2026-11-19",
+  5534
+ ],
+ "daily_ops_jump_gt_0.1pct_share": 0.004,
+ "1w": {
+  "median_abs_pct": 0.015,
+  "p95_abs_pct": 0.02,
+  "max_abs_pct": 0.861,
+  "flow_err_t_median": 0.13,
+  "flow_err_t_p95": 0.21,
+  "n": 1104,
+  "median_abs_pct_since_2021": 0.015
+ },
+ "1m": {
+  "median_abs_pct": 0.008,
+  "p95_abs_pct": 0.025,
+  "max_abs_pct": 0.171,
+  "flow_err_t_median": 0.07,
+  "flow_err_t_p95": 0.24,
+  "n": 1101,
+  "median_abs_pct_since_2021": 0.008
+ },
+ "3m": {
+  "median_abs_pct": 0.009,
+  "p95_abs_pct": 0.025,
+  "max_abs_pct": 0.314,
+  "flow_err_t_median": 0.07,
+  "flow_err_t_p95": 0.23,
+  "n": 1093,
+  "median_abs_pct_since_2021": 0.009
+ },
+ "1y": {
+  "median_abs_pct": 0.011,
+  "p95_abs_pct": 0.027,
+  "max_abs_pct": 0.617,
+  "flow_err_t_median": 0.1,
+  "flow_err_t_p95": 0.27,
+  "n": 1055,
+  "median_abs_pct_since_2021": 0.012
+ }
+}

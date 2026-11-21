@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-21 00:15 UTC",
+ "generated": "2026-11-21 00:27 UTC",
  "upcoming": [
   {
    "date": "2026-11-18",
@@ -454,6 +454,11 @@
    "report": "ETF holdings (GLD, IAU, SLV, Sprott, abrdn, GraniteShares)",
    "when": "Each trading day, evening / next morning",
    "desk": "9:10 am and 5:50 pm ET weekdays"
+  },
+  {
+   "report": "GLD and SLV prices and option chains (Yahoo)",
+   "when": "Each trading day after the 4 pm ET close (open interest updates the next morning)",
+   "desk": "5:50 pm ET weekdays; 9:10 am ET re-read before the open refreshes open interest"
   },
   {
    "report": "LME official prices and stocks",

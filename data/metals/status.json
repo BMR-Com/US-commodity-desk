@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-21 00:15 UTC",
+ "generated": "2026-11-21 00:27 UTC",
  "today": "2026-11-20",
  "sources": [
   {
@@ -52,15 +52,63 @@
   },
   {
    "group": "Gold",
-   "source": "SPDR GLD holdings (daily to 2026-11-20; then SEC quarter ends: the sponsor's data host disallows automated access in robots.txt)",
-   "latest": "2026-11-19",
-   "age": 1,
-   "age_unit": "days",
-   "limit": 140,
-   "cadence": "quarterly (~6 weeks after quarter end)",
+   "source": "SPDR GLD shares outstanding, daily (State Street NAV-history file on ssga.com); ounces derived",
+   "latest": "2026-11-20",
+   "age": 0,
+   "age_unit": "bd",
+   "limit": 3,
+   "cadence": "daily",
    "manual": false,
    "state": "ok",
-   "used_in": "ETF holdings"
+   "used_in": "ETF holdings, gold ETF-flows read"
+  },
+  {
+   "group": "Gold",
+   "source": "GLD price and volume (Yahoo)",
+   "latest": "2026-11-20",
+   "age": 0,
+   "age_unit": "bd",
+   "limit": 2,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETFs & options tab"
+  },
+  {
+   "group": "Gold",
+   "source": "GLD option chain (Yahoo; archived each evening)",
+   "latest": "2026-11-20",
+   "age": 0,
+   "age_unit": "bd",
+   "limit": 1,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETFs & options tab"
+  },
+  {
+   "group": "Silver",
+   "source": "SLV price and volume (Yahoo)",
+   "latest": "2026-11-20",
+   "age": 0,
+   "age_unit": "bd",
+   "limit": 2,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETFs & options tab"
+  },
+  {
+   "group": "Silver",
+   "source": "SLV option chain (Yahoo; archived each evening)",
+   "latest": "2026-11-20",
+   "age": 0,
+   "age_unit": "bd",
+   "limit": 1,
+   "cadence": "daily",
+   "manual": false,
+   "state": "ok",
+   "used_in": "ETFs & options tab"
   },
   {
    "group": "Gold",

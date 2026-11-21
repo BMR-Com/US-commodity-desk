@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-21T16:57",
+ "generated": "2026-11-21T21:13",
  "regime": "ELEVATED",
  "action": "Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold.",
  "cold_checks_on": 3,
@@ -7,19 +7,19 @@
   {
    "key": "trend72",
    "on": false,
-   "text": "15-day ensembles colder over 2-3 days: -14.7 HDD on matched dates (\u2248+24 Bcf)",
+   "text": "15-day ensembles colder over 2-3 days: -10.7 HDD on matched dates (\u2248+17 Bcf)",
    "role": "trigger"
   },
   {
    "key": "trend24",
    "on": false,
-   "text": "\u2026and over ~24h: -5.3 HDD",
+   "text": "\u2026and over ~24h: -1.2 HDD",
    "role": "trigger"
   },
   {
    "key": "back_end",
    "on": false,
-   "text": "back end of the 15-day window (last 5 days) -4.1 HDD/day vs normal",
+   "text": "back end of the 15-day window (last 5 days) -3.6 HDD/day vs normal",
    "role": "trigger"
   },
   {
@@ -48,53 +48,53 @@
   }
  ],
  "trend_24h": {
-  "avg_hdd": -5.3,
-  "bcf": -8,
+  "avg_hdd": -1.2,
+  "bcf": -2,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": -0.8,
+    "hdd": 4.7,
     "days": 9,
-    "vs_run": "2026-11-20T07:54"
+    "vs_run": "2026-11-20T22:20"
    },
    "ECMWF ENS": {
-    "hdd": -10.9,
-    "days": 13,
-    "vs_run": "2026-11-20T07:54"
+    "hdd": -4.4,
+    "days": 14,
+    "vs_run": "2026-11-20T22:20"
    },
    "ECMWF AIFS ENS": {
-    "hdd": -4.2,
+    "hdd": -4.0,
     "days": 14,
-    "vs_run": "2026-11-20T07:54"
+    "vs_run": "2026-11-20T22:20"
    }
   }
  },
  "trend_72h": {
-  "avg_hdd": -14.7,
-  "bcf": -24,
+  "avg_hdd": -10.7,
+  "bcf": -17,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": -10.4,
+    "hdd": -1.5,
     "days": 8,
-    "vs_run": "2026-11-19T08:05"
+    "vs_run": "2026-11-19T18:22"
    },
    "ECMWF ENS": {
-    "hdd": -14.6,
-    "days": 12,
-    "vs_run": "2026-11-19T08:05"
+    "hdd": -19.4,
+    "days": 13,
+    "vs_run": "2026-11-19T18:22"
    },
    "ECMWF AIFS ENS": {
-    "hdd": -19.1,
-    "days": 12,
-    "vs_run": "2026-11-19T08:05"
+    "hdd": -11.2,
+    "days": 13,
+    "vs_run": "2026-11-19T18:22"
    }
   }
  },
  "back_end": {
-  "avg_per_day": -4.06,
+  "avg_per_day": -3.61,
   "by_model": {
-   "GEFS (GFS ensemble)": -3.71,
+   "GEFS (GFS ensemble)": -3.08,
    "ECMWF ENS": -3.24,
-   "ECMWF AIFS ENS": -5.24
+   "ECMWF AIFS ENS": -4.5
   }
  },
  "extended": {

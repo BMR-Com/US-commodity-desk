@@ -3,7 +3,7 @@ name: metals
 # affect the rest of the desk. Started by the desk clock (pipelines/clock.py) at the release times below; the crons are
 # a backstop. The catch-up job (metals_catchup.yml) reruns it when a source is late or a run failed.
 #   weekdays 9:10 am ET  ETF holdings, LME prices/stocks, monthly/quarterly sources
-#   weekdays 5:50 pm ET  after the COMEX/NYMEX settle: prices, curve, technicals, everything above
+#   weekdays 5:50 pm ET  after the COMEX/NYMEX settle: prices, curve, technicals, GLD/SLV option chains, everything above
 #   Friday   3:45 pm ET  CFTC COT (3:30 pm ET release)
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
       steps: {description: 'pipelines/metals.py steps (blank = all)', required: false, default: ''}
   push:
     branches: [main]
-    paths: ['pipelines/metals.py', 'models/metals.py', 'pipelines/metals_status.py', '.github/workflows/metals.yml']
+    paths: ['pipelines/metals.py', 'pipelines/metals_etf.py', 'models/metals.py', 'pipelines/metals_status.py', '.github/workflows/metals.yml']
   schedule:
     - cron: '50 22 * * 1-5'   # 5:50 pm EST (6:50 pm EDT)
     - cron: '10 14 * * 1-5'   # 9:10 am EST
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: pip install -q pandas numpy requests lxml openpyxl xlrd pypdf playwright git+https://github.com/rongardF/tvdatafeed.git
+      - run: pip install -q pandas numpy requests lxml openpyxl xlrd pypdf playwright yfinance git+https://github.com/rongardF/tvdatafeed.git
       - name: browser for the IAI fallback
         continue-on-error: true
         run: python -m playwright install --with-deps chromium > /dev/null
@@ -50,6 +50,10 @@ jobs:
         continue-on-error: true
         timeout-minutes: 20
         run: python -u pipelines/metals.py ${{ github.event.inputs.steps }} || echo metals_sources >> "$RUNNER_TEMP/failed"
+      - name: GLD and SLV prices and option chains (Yahoo; chains read after the close and before the open, archived daily)
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python -u pipelines/metals_etf.py || echo etf_options >> "$RUNNER_TEMP/failed"
       - name: model, contract specs, data status
         continue-on-error: true
         run: |

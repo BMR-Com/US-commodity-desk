@@ -3,12 +3,14 @@
 // and the shared desk files (technicals, COT desk, seasonality, spreads, specs, news, calendar). Built by its own workflow
 // (metals.yml), so a failure there cannot affect the rest of the desk. Deep links: #metals/<gc|si|hg|ali|pl|pa>/<tab>.
 const Metals = (() => {
-  let built = false, mk = 'GC', tab = 'outlook', D = null, ST = null, CAL = null;
+  let built = false, mk = 'GC', tab = 'outlook', D = null, ST = null, CAL = null, EO = null;
+  const ETF = { GC: 'GLD', SI: 'SLV' };                     // gold and silver desks only: ETF price, volume and options tab
+  const tabs = () => TABS.filter(t => t[0] !== 'etf' || ETF[mk]);
   const KEY = { GC: 'gold', SI: 'silver', HG: 'copper', ALI: 'aluminum', PL: 'platinum', PA: 'palladium' };
   const DESKS = { GC: 'Gold', SI: 'Silver', HG: 'Copper', ALI: 'Aluminum', PL: 'Platinum', PA: 'Palladium' };
   const COT = { GC: 'GC', SI: 'SI', HG: 'HG', ALI: 'AUP', PL: 'PL', PA: 'PA' };
   const PREC = k => ['GC', 'SI', 'PL', 'PA'].includes(k);   // precious metals: curve carry vs T-bills gives an implied lease rate
-  const TABS = [['primer', 'Primer'], ['px', 'Prices &amp; curve'], ['flows', 'Futures &amp; COT'], ['sd', 'Supply &amp; demand'], ['seas', 'Seasonality &amp; technicals'],
+  const TABS = [['primer', 'Primer'], ['px', 'Prices &amp; curve'], ['etf', 'ETFs &amp; options'], ['flows', 'Futures &amp; COT'], ['sd', 'Supply &amp; demand'], ['seas', 'Seasonality &amp; technicals'],
     ['outlook', 'Outlook'], ['news', 'News &amp; calendar'], ['status', 'Data status']];
   const esc = x => String(x == null ? '' : x).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const tr = (a, b) => `<tr><td class="l"><b>${a}</b></td><td class="l">${b}</td></tr>`;
@@ -120,7 +122,8 @@ const Metals = (() => {
   }
   function nav() {
     $$('#mtDesks button').forEach(x => x.classList.toggle('on', x.dataset.m === mk));
-    $('#mtTabs').innerHTML = TABS.map(([k, l], i) => `<button data-t="${k}" class="${k === tab ? 'on' : ''}">${i + 1} · ${l}</button>`).join('');
+    if (!tabs().some(t => t[0] === tab)) tab = 'px';
+    $('#mtTabs').innerHTML = tabs().map(([k, l], i) => `<button data-t="${k}" class="${k === tab ? 'on' : ''}">${i + 1} · ${l}</button>`).join('');
     $$('#mtTabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; render(); });
   }
   const safe = fn => { try { const r = fn(); if (r && r.catch) r.catch(e => fail(e)); } catch (e) { fail(e); } };
@@ -131,7 +134,7 @@ const Metals = (() => {
     nav();
     history.replaceState(null, '', '#metals/' + mk.toLowerCase() + '/' + tab);
     body().innerHTML = '';
-    ({ primer, px, flows, sd, outlook, news, status, seas: () => MktStudy.mount(body(), [mk]) }[tab] || outlook)();
+    ({ primer, px, etf, flows, sd, outlook, news, status, seas: () => MktStudy.mount(body(), [mk]) }[tab] || outlook)();
   }
 
   // ───────── 1 · Primer ─────────
@@ -171,6 +174,60 @@ const Metals = (() => {
     chart('mtLong', { type: 'line', data: { labels: p.weekly.date, datasets: [ln(p.weekly.v, DESKS[mk], PAL[2])] }, options: { plugins: { legend: { display: false } } } });
     if (extra) safe(() => extra(m));
     if (typeof RVView !== 'undefined') safe(() => Promise.resolve(RVView.mount($('#mtRv'), mk)).then(() => $$('#mtRv .card').forEach(c => { if (/Report-day playbook/.test(c.querySelector('h2')?.textContent || '')) c.remove(); })));
+  }
+  // ───────── 3 · ETFs & options (GLD for gold, SLV for silver; data/metals/etf/etf.json from pipelines/metals_etf.py) ─────────
+  let eoView = { r: '1y' };
+  async function etf() {
+    if (!EO) EO = await getJSON('data/metals/etf/etf.json').catch(() => null);
+    const t = ETF[mk], f = EO && EO.funds && EO.funds[t];
+    if (!f) { body().innerHTML = none(`${t} price and options data`); return; }
+    const o = f.opt, pct = (v, d = 1) => v == null ? '–' : fmt(v * 100, d) + '%', pts = v => v == null ? '–' : sgn(v * 100, 1, ' pts');
+    const term = (f.term || []), tiv = term.filter(e => e.dte >= EO.min_dte && e.atm_iv != null);
+    body().innerHTML = `<div class="grid g4">
+        ${kpi(`${t} · ${esc(f.name)}`, `$${fmt(f.close, 2)}`, `${esc(f.asof)} · ${sgn(f.chg_1d, 2, '%')} day · ${sgn(f.chg_1w, 1, '%')} wk · ${sgn(f.chg_1m, 1, '%')} mo`)}
+        ${kpi('Volume', fmt(f.volume / 1e6, 1) + ' M shares', `20-day average ${fmt(f.vol_avg20 / 1e6, 1)} M (${fmt(f.volume / f.vol_avg20, 1)}x)`)}
+        ${kpi('52-week range', `$${fmt(f.lo52, 2)}–${fmt(f.hi52, 2)}`, `1 year ${sgn(f.chg_1y, 1, '%')}`)}
+        ${kpi('Realized vol, 1 month', pct(o ? o.rv21 : f.px.rv21.at(-1)), `3 months ${pct(o && o.rv63)}`)}</div>
+      <div class="card" style="margin-top:12px"><h2>${t} daily price and volume <span class="note">$ per share (close) and shares traded; Yahoo</span></h2>
+        <div class="ctl" style="margin:4px 0 8px"><span class="seg" id="mtEoR">${[['6m', '6 months'], ['1y', '1 year'], ['2y', '2 years']].map(([k, l]) => `<button data-r="${k}" class="${eoView.r === k ? 'on' : ''}">${l}</button>`).join('')}</span></div>
+        <div class="chart"><canvas id="mtEoPx"></canvas></div></div>
+      ${o ? `<div class="grid g4" style="margin-top:12px">
+        ${kpi('Implied vol, 30 days (ATM)', pct(o.iv30), `60 days ${pct(o.iv60)} · 90 days ${pct(o.iv90)}`)}
+        ${kpi('Implied minus realized', pts(o.gap30), `30-day IV ${pct(o.iv30)} vs 1-month realized ${pct(o.rv21)}`)}
+        ${kpi('25-delta skew (put − call)', pts(o.skew25_30), `30 days; 90 days ${pts(o.skew25_90)}`)}
+        ${kpi('Put/call ratio', `${fmt(o.pc_oi, 2)} OI`, `volume ${fmt(o.pc_vol, 2)} · calls ${fmt(o.call_oi / 1e3, 0)}k / puts ${fmt(o.put_oi / 1e3, 0)}k OI`)}</div>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>Implied vol term structure <span class="note">${esc(o.date)}; expiries ${EO.min_dte}+ days</span></h2><div class="chart short"><canvas id="mtEoTerm"></canvas></div>
+          <p class="note">ATM: at the forward. 25-delta put and call vols show the skew; put minus call above zero means downside protection costs more than upside.</p></div>
+        <div class="card"><h2>Implied vs realized vol <span class="note">30-day ATM IV (archived daily from ${esc(f.opt_hist.date[0])}) and 1-month realized</span></h2><div class="chart short"><canvas id="mtEoIvRv"></canvas></div></div></div>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h2>By expiry <span class="note">vols in %; open interest and volume in contracts</span></h2><div class="tbl"><table><tr><th class="l">Expiry</th><th>Days</th><th>ATM IV</th><th>25Δ put</th><th>25Δ call</th><th>Skew</th><th>Call OI</th><th>Put OI</th><th>P/C OI</th><th>P/C vol</th></tr>
+          ${term.map(e => { const nv = e.dte < EO.min_dte; return `<tr><td class="l">${esc(e.expiry)}</td><td>${e.dte}</td><td>${nv ? '<span class="note">–</span>' : pct(e.atm_iv)}</td><td>${nv ? '' : pct(e.iv25p)}</td><td>${nv ? '' : pct(e.iv25c)}</td><td>${nv ? '' : e.skew25 == null ? '–' : fmt(e.skew25 * 100, 1)}</td>
+            <td>${fmt(e.call_oi, 0)}</td><td>${fmt(e.put_oi, 0)}</td><td>${e.call_oi ? fmt(e.put_oi / e.call_oi, 2) : '–'}</td><td>${e.call_vol ? fmt(e.put_vol / e.call_vol, 2) : '–'}</td></tr>`; }).join('')}</table></div>
+          <p class="note">Implied vols leave out options expiring in under ${EO.min_dte} days (shown with –); their open interest and volume still count in the totals.</p></div>
+        <div class="card"><h2>Biggest open-interest strikes <span class="note">top three calls and puts per expiry</span></h2><div class="tbl"><table><tr><th class="l">Expiry</th><th class="l">Calls: strike (OI)</th><th class="l">Puts: strike (OI)</th></tr>
+          ${(f.strikes || []).map(x => `<tr><td class="l">${esc(x.expiry)}${x.dte < EO.min_dte ? ' <span class="note">(&lt;' + EO.min_dte + 'd)</span>' : ''}</td><td class="l">${x.calls.map(c => `$${fmt(c.k, c.k % 1 ? 1 : 0)} (${fmt(c.oi / 1e3, 1)}k)`).join(', ')}</td><td class="l">${x.puts.map(c => `$${fmt(c.k, c.k % 1 ? 1 : 0)} (${fmt(c.oi / 1e3, 1)}k)`).join(', ')}</td></tr>`).join('')}</table></div>
+          <p class="note">Open interest is the exchange's count at the previous close (it updates overnight). Spot $${fmt(o.spot, 2)}.</p></div></div>
+      <p class="note" style="margin:8px 12px">Yahoo option chains for ${t}, read after the US close and again before the next open, and archived every day so the history builds. Implied vols are worked out from bid/ask mids of out-of-the-money options. Read ${esc(o.fetched)}.</p>`
+      : `<div class="card" style="margin-top:12px"><p class="note">Options panel appears after the first archived option chain.</p></div>`}`;
+    eoPx(f);
+    if (o) {
+      chart('mtEoTerm', { type: 'line', data: { labels: tiv.map(e => e.expiry.slice(2) + ' (' + e.dte + 'd)'), datasets: [ln(tiv.map(e => e.atm_iv * 100), 'ATM', PAL[0], { pointRadius: 3 }),
+        ln(tiv.map(e => e.iv25p == null ? null : e.iv25p * 100), '25Δ put', PAL[1], { pointRadius: 2 }), ln(tiv.map(e => e.iv25c == null ? null : e.iv25c * 100), '25Δ call', PAL[2], { pointRadius: 2 })] },
+        options: { scales: { y: { title: { display: true, text: 'implied vol, %' } } } } });
+      const P = f.px, hi = {}; f.opt_hist.date.forEach((d, i) => hi[d] = f.opt_hist.iv30[i]);
+      const n = P.date.length, i0 = Math.max(0, n - 261), lab = P.date.slice(i0);
+      chart('mtEoIvRv', { type: 'line', data: { labels: lab, datasets: [ln(P.rv21.slice(i0).map(v => v == null ? null : v * 100), '1-month realized', PAL[6]),
+        ln(lab.map(d => hi[d] == null ? null : hi[d] * 100), '30-day implied', PAL[0], { pointRadius: 2.5, showLine: true })] }, options: { scales: { y: { title: { display: true, text: '%' } } } } });
+    }
+  }
+  function eoPx(f) {
+    const P = f.px, n = P.date.length, i0 = Math.max(0, n - ({ '6m': 130, '1y': 261, '2y': n }[eoView.r]));
+    chart('mtEoPx', { type: 'bar', data: { labels: P.date.slice(i0), datasets: [
+      { type: 'line', ...ln(P.close.slice(i0), 'Close', PAL[0]), yAxisID: 'y' },
+      { type: 'bar', label: 'Volume (M shares)', data: P.volume.slice(i0).map(v => v / 1e6), backgroundColor: 'rgba(127,140,141,.35)', yAxisID: 'y1' }] },
+      options: { scales: { y: { position: 'left', title: { display: true, text: '$ per share' } }, y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 10 } }, title: { display: true, text: 'M shares' } } } } });
+    $$('#mtEoR button').forEach(b => b.onclick = () => { eoView.r = b.dataset.r; $$('#mtEoR button').forEach(x => x.classList.toggle('on', x === b)); eoPx(f); });
   }
   function goldDrivers(m) {
     const r = (m.drivers || {}).real10, d = (m.drivers || {}).dxy, f = m.fit;

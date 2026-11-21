@@ -200,6 +200,13 @@ def etf_gold():
     if g is None:
         return None
     gs = g.set_index("date").tonnes.astype(float).sort_index()
+    try:                                                          # continued daily by the derived series (State Street shares x gold per share)
+        fsr = fund_series("GLD", "gold")
+        if fsr and fsr[1].get("derived"):
+            gs = (fsr[0] / OZ_PER_T).sort_index()
+            gs = gs[~gs.index.duplicated(keep="last")]
+    except Exception:
+        import traceback; traceback.print_exc()
     out = {"gld": {"asof": gs.index[-1].strftime("%Y-%m-%d"), "tonnes": float(gs.iloc[-1]), "chg_1w": chg(gs, 7), "chg_1m": chg(gs, 30), "chg_3m": chg(gs, 91),
                    "chg_ytd": float(gs.iloc[-1] - gs[gs.index < pd.Timestamp(gs.index[-1].year, 1, 1)].iloc[-1]) if (gs.index < pd.Timestamp(gs.index[-1].year, 1, 1)).any() else None,
                    "pct5y": pct_rank(gs[gs.index >= gs.index[-1] - pd.DateOffset(years=5)], float(gs.iloc[-1])), "weekly": weekly(gs, 5)}}
@@ -583,7 +590,7 @@ def pgm_etf_block(fund):
 # ───────── daily ETF metal holdings, per fund, from the sponsors' own sites ─────────
 OZ_PER_T = 32150.7466
 # sponsor fee a year: only used to carry metal-per-share between and beyond the published anchors (the fee is paid in metal)
-FEES = {"IAU": [("2010-07-01", 0.0040), ("2100-01-01", 0.0025)], "SLV": [("2100-01-01", 0.0050)], "PLTM": [("2100-01-01", 0.0050)],
+FEES = {"GLD": [("2100-01-01", 0.0040)], "IAU": [("2010-07-01", 0.0040), ("2100-01-01", 0.0025)], "SLV": [("2100-01-01", 0.0050)], "PLTM": [("2100-01-01", 0.0050)],
         "BAR": [("2100-01-01", 0.0020)], "PPLT": [("2100-01-01", 0.0060)], "PALL": [("2100-01-01", 0.0060)], "SGOL": [("2100-01-01", 0.0017)],
         "SIVR": [("2100-01-01", 0.0030)]}
 ETF_FUNDS = {"gold": [("GLD", "SPDR Gold Shares"), ("IAU", "iShares Gold Trust"), ("PHYS", "Sprott Physical Gold Trust"), ("SGOL", "abrdn Physical Gold Shares"), ("BAR", "GraniteShares Gold Trust")],
@@ -654,6 +661,85 @@ def from_shares(fund, shares, snap_oz=None):
     return (shares * ops).dropna(), len(anc)
 
 
+def gld_ops_anchor(oz, sh, at, n=10):
+    """Gold per share at date `at` from the last n days where the sponsor's ounces and State Street's shares both exist
+    (median, each carried to `at` by the fee), so one mismatched day cannot shift the level."""
+    both = pd.concat([oz.rename("oz"), sh.rename("sh")], axis=1).dropna()
+    both = both[both.index <= at].tail(n)
+    if not len(both):
+        return None
+    f = _fee("GLD", at)
+    v = (both.oz / both.sh) * np.exp(-f * np.array([(at - d).days for d in both.index]) / 365.25)
+    return float(np.median(v))
+
+
+def gld_derived(oz):
+    """GLD ounces after the sponsor's stored daily history: daily shares outstanding (State Street NAV-history file) x gold
+    per share. Gold per share is anchored on the sponsor's last daily figures and on any later SEC quarter-end ounces;
+    between anchors log-interpolated, after the last one carried down by the 0.40% fee. Returns (series, n SEC anchors)."""
+    g = C("etf_gld_ssga.csv", parse_dates=["date"])
+    if g is None or not len(oz):
+        return None
+    sh = g.set_index("date").sort_index().shares.astype(float)
+    sh = sh[sh > 0]
+    last = oz.index[-1]
+    a0 = gld_ops_anchor(oz, sh, last)
+    if a0 is None:
+        return None
+    anc = {last: a0}
+    sec = _sec("GLD")
+    na = 0
+    if sec is not None:
+        for d, r in sec[sec.index > last].iterrows():
+            s_ = _at_or_before(sh, d) or num(r.get("shares"))
+            if s_:
+                anc[d] = float(r.ounces) / s_; na += 1
+    after = sh[sh.index > last]
+    if not len(after):
+        return after, na
+    return (after * ops_at("GLD", after.index, pd.Series(anc))).dropna(), na
+
+
+def gld_check():
+    """Back-test of the derivation where the sponsor's ounces and State Street's shares overlap: anchor on a day, carry gold
+    per share by the fee, compare with the sponsor's figure 1 week / 1 month / 3 months / 1 year later. Written to
+    raw/gld_derivation_check.json (repo only, not shown on the page)."""
+    g, h = C("etf_gld.csv", parse_dates=["date"]), C("etf_gld_ssga.csv", parse_dates=["date"])
+    if g is None or h is None:
+        return None
+    oz = g.set_index("date").sort_index().ounces.astype(float)
+    sh = h.set_index("date").sort_index().shares.astype(float)
+    b = pd.concat([oz.rename("oz"), sh.rename("sh")], axis=1).dropna()
+    b = b[(b.oz > 0) & (b.sh > 0)]
+    if len(b) < 300:
+        return None
+    ops = b.oz / b.sh
+    out = {"overlap": [b.index[0].strftime("%Y-%m-%d"), b.index[-1].strftime("%Y-%m-%d"), len(b)]}
+    same = pd.Series(np.log(ops.values), index=ops.index)
+    # same-day consistency: daily change of gold per share should be the fee only (big jumps = timing mismatch between files)
+    dj = same.diff().dropna()
+    out["daily_ops_jump_gt_0.1pct_share"] = round(float((dj.abs() > 0.001).mean()), 4)
+    for lag, lab in ((5, "1w"), (21, "1m"), (63, "3m"), (252, "1y")):
+        errs, chg_err = [], []
+        idx = b.index
+        for i in range(10, len(idx) - lag, 5):
+            a, t = idx[i], idx[i + lag]
+            o0 = gld_ops_anchor(b.oz, b.sh, a)
+            est = b.sh.iloc[i + lag] * o0 * np.exp(-0.004 * (t - a).days / 365.25)
+            errs.append(est / b.oz.iloc[i + lag] - 1)
+            chg_err.append((est - b.oz.iloc[i]) - (b.oz.iloc[i + lag] - b.oz.iloc[i]))
+        e = np.abs(np.array(errs)) * 100
+        ce = np.abs(np.array(chg_err)) / OZ_PER_T
+        rec = {"median_abs_pct": round(float(np.median(e)), 3), "p95_abs_pct": round(float(np.percentile(e, 95)), 3), "max_abs_pct": round(float(e.max()), 3),
+               "flow_err_t_median": round(float(np.median(ce)), 2), "flow_err_t_p95": round(float(np.percentile(ce, 95)), 2), "n": len(e)}
+        rs = [x for x, d in zip(np.abs(errs), idx[10:len(idx) - lag:5]) if d >= pd.Timestamp("2021-01-01")]
+        rec["median_abs_pct_since_2021"] = round(float(np.median(rs) * 100), 3) if rs else None
+        out[lab] = rec
+    (RAW / "gld_derivation_check.json").write_text(json.dumps(out, indent=1))
+    print("GLD derivation check:", json.dumps(out))
+    return out
+
+
 def fund_series(fund, metal):
     """(dated ounces series, meta) for one fund; None when the desk has no data for it."""
     if fund == "GLD":
@@ -662,11 +748,18 @@ def fund_series(fund, metal):
             return None
         s = g.set_index("date").sort_index()
         oz = s.ounces.astype(float).where(s.ounces.astype(float) > 0, s.tonnes.astype(float) * OZ_PER_T)
-        sec = _sec("GLD")                                       # after the stored daily history ends: quarter ends from SEC filings
+        der = gld_derived(oz)
+        if der is not None and len(der[0]):
+            d, na = der
+            return pd.concat([oz, d]).sort_index(), {
+                "how": f"ounces in the trust: the sponsor's daily figures to {oz.index[-1]:%d %b %Y}; after that, derived each day as State Street's daily shares outstanding x gold per share "
+                       f"(gold per share from the sponsor's last figures, falling by the 0.40% a year fee, recalibrated on {na} later quarter-end SEC filing{'s' if na != 1 else ''})",
+                "daily": True, "ffill": 5, "derived": True, "url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-gold-shares-gld"}
+        sec = _sec("GLD")                                       # no State Street file: quarter ends from SEC filings
         if sec is not None:
             q = sec[sec.index > oz.index[-1]].ounces.astype(float)
             oz = pd.concat([oz, q]).sort_index()
-        return oz, {"how": "ounces in the trust, daily to 19 Nov 2026 (sponsor's history file); not updated after that, because the sponsor's data host closes automated access in robots.txt",
+        return oz, {"how": f"ounces in the trust, daily to {oz.index[-1]:%d %b %Y} (sponsor's history file); the sponsor's data host closes automated access in robots.txt",
                     "daily": True, "ffill": 5, "url": "https://www.spdrgoldshares.com/usa/historical-data/"}
     if fund in ("IAU", "SLV"):
         h = C("etf_ishares_hist.csv", parse_dates=["date"])
@@ -924,6 +1017,11 @@ def main():
                 o, fs = aluminum(pb or {})
             elif key in ("platinum", "palladium"):
                 o, fs = pgm(key, pb or {}, s if s is not None else pd.Series(dtype=float), gold_s, pa_s if key == "platinum" else pl_s)
+            if key == "gold":
+                try:
+                    gld_check()
+                except Exception:
+                    import traceback; traceback.print_exc()
             if key in ETF_FUNDS:
                 try:
                     o["etf_daily"] = etf_daily(key)

@@ -5,7 +5,8 @@ on:
     branches: [main]
     paths: ['pipelines/news.py', 'pipelines/research_sources.py', 'pipelines/weather.py', 'pipelines/events_calendar.py', 'pipelines/south_america.py', 'models/south_america.py', '.github/workflows/intel.yml']
   schedule:
-    - cron: '17 */3 * * *'     # news every 3 hours
+    - cron: '17 12,16,20,23 * * 1-5'   # news on weekdays
+    - cron: '17 15 * * 0,6'     # weekends once
 permissions: {contents: write}
 concurrency: {group: intel, cancel-in-progress: false}
 jobs:
@@ -37,7 +38,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -q -m "intel: news, weather, calendar $(date -u +%F' '%H:%M)"
           for i in 1 2 3 4; do
-            if ! git pull -q --rebase -X theirs origin main; then
+            if ! git pull -q --rebase --autostash -X theirs origin main; then
               # a file deleted on main but rewritten here (modify/delete) cannot be auto-merged: follow main's deletion
               git status --porcelain | awk '/^(UD|DU) /{print $2}' | xargs -r git rm -q
               GIT_EDITOR=true git rebase --continue 2>/dev/null || { git rebase --abort 2>/dev/null || true; sleep 8; continue; }

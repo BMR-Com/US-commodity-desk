@@ -223,7 +223,8 @@ def etf():
     if hist:
         n += merge_csv(RAW / "etf_ishares_hist.csv", pd.DataFrame(hist), ["fund", "date"])
     if not rows and not hist:
-        raise RuntimeError("no iShares data")
+        # iShares' site often returns 503 for a few hours; keep the last saved figures and let the catch-up retry.
+        print("::warning::iShares IAU/SLV pages unavailable this run; last saved figures kept")
     return n
 
 

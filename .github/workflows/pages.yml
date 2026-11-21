@@ -10,10 +10,10 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '*/20 * * * *'
-  workflow_run:
-    workflows: ["ams-backfill", "backtest", "australia", "chat_proxy", "morning-brief", "clock", "china", "cme-dairy-history", "cot_full", "contracts", "cotton_loan", "cotton-certs-sync", "data", "cotton-review", "desk read backup", "energy", "europe (EU grains, oilseeds and sugar trade, TAXUD)", "energy_geo", "europe discover (TAXUD sectors/products, one-off)", "fiber", "fsa", "geo", "grains-core", "grains", "india", "grains-trade", "intel", "markets", "ng-weather-sync", "overview", "oilseeds monthly (NASS fats & oils, MAGyP crush/stocks)", "palm", "probe", "wx-ensemble", "price_backup", "wasde"]
-    types: [completed]
+    - cron: '50 12,15,18,21,23 * * 1-5'   # weekdays ~7am, 10am, 1pm, 4pm, 6pm CT
+    - cron: '50 3 * * 2-6'                # late evening, after the night data runs
+    - cron: '50 16 * * 6'                 # Saturday once (Friday COT, weekly reports)
+    - cron: '50 23 * * 0'                 # Sunday evening once
 permissions:
   contents: read
   pages: write
@@ -57,4 +57,10 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with: {path: _site}
       - id: dep
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - if: steps.dep.outcome == 'failure'
+        run: sleep 90
+      - id: dep2
+        if: steps.dep.outcome == 'failure'
         uses: actions/deploy-pages@v4

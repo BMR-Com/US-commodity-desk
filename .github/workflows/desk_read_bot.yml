@@ -42,7 +42,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -q -m "Overview backup read $(TZ=America/Chicago date +'%F %H:%M') CT (bot)"
           B="${GITHUB_REF_NAME}"
-          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin "$B" && git push -q origin "HEAD:$B" && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+          for i in 1 2 3 4 5; do git pull -q --rebase --autostash -X theirs origin "$B" && git push -q origin "HEAD:$B" && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
       - if: steps.chk.outputs.mode == 'backup' && hashFiles('data/overview/bot_alert.md') != ''
         name: alert issue
         env: {GH_TOKEN: "${{ github.token }}"}

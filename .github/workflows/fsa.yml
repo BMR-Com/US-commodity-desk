@@ -8,7 +8,7 @@ name: fsa
 on:
   schedule:
     - cron: '35 17 * * *'     # daily, after the noon-ET USDA releases
-    - cron: '50 */3 * * *'    # backfill stages (skipped when nothing is pending)
+    - cron: '50 13 * * 1-5'    # backfill stages, once on weekdays (skipped when nothing is pending)
   workflow_dispatch:
     inputs:
       budget: {description: 'collector time budget, minutes', default: '40'}
@@ -66,7 +66,7 @@ jobs:
           git add data/fsa
           git diff --cached --quiet && exit 0
           git commit -q -m "data: FSA crop acreage $(date -u +%F)"
-          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+          for i in 1 2 3 4 5; do git pull -q --rebase --autostash -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
       - name: report failed builds
         if: always() && steps.need.outputs.go == '1'
         run: '[ -f "$RUNNER_TEMP/failed" ] && { echo "::error::failed: $(tr "\n" " " < "$RUNNER_TEMP/failed")"; exit 1; } || true'

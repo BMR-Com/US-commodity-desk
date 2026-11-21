@@ -56,7 +56,7 @@ jobs:
           git add data/grains data/summary data/brief data/derived/balance_sheets.json data/derived/outlook_brief.json data/derived/ct_price_outlook.json data/derived/ct_price_outlook_eval.json
           git diff --cached --quiet && exit 0
           git commit -q -m "data: grains trade $(date -u +%F)"
-          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
+          for i in 1 2 3 4 5; do git pull -q --rebase --autostash -X theirs origin main && git push -q && ok=1 && break; git rebase --abort 2>/dev/null || true; sleep 8; done; [ -n "$ok" ] || { echo "::error::push failed"; exit 1; }
       - name: report failed models (their data above is committed either way; this only turns the run red)
         if: always()
         run: |

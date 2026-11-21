@@ -666,7 +666,7 @@ def fund_series(fund, metal):
         if sec is not None:
             q = sec[sec.index > oz.index[-1]].ounces.astype(float)
             oz = pd.concat([oz, q]).sort_index()
-        return oz, {"how": "ounces in the trust, daily to 20 Nov 2026 (sponsor's history file); after that quarter ends from SEC filings, because the sponsor's data host now closes automated access in robots.txt",
+        return oz, {"how": "ounces in the trust, daily to 19 Nov 2026 (sponsor's history file); not updated after that, because the sponsor's data host closes automated access in robots.txt",
                     "daily": True, "ffill": 5, "url": "https://www.spdrgoldshares.com/usa/historical-data/"}
     if fund in ("IAU", "SLV"):
         h = C("etf_ishares_hist.csv", parse_dates=["date"])

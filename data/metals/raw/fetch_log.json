@@ -1,92 +1,91 @@
 {
  "etf": {
-  "ok": false,
-  "at": "2026-11-21 01:05 UTC",
-  "new": 4,
-  "secs": 14,
-  "last_new": "2026-11-20 22:57 UTC",
-  "error": "no iShares data"
+  "ok": true,
+  "at": "2026-11-21 01:52 UTC",
+  "new": 0,
+  "secs": 13,
+  "last_new": null
  },
  "lme": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
-  "secs": 5,
+  "secs": 6,
   "last_new": null
  },
  "wgc": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
  },
  "icsg": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
-  "secs": 6,
+  "secs": 7,
   "last_new": null
  },
  "iai": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
-  "secs": 19,
+  "secs": 16,
   "last_new": null
  },
  "usgs": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
  },
  "silver": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 1,
   "last_new": null
  },
  "rates": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 1,
   "last_new": null
  },
  "comex": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
  },
  "wpic": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
  },
  "jm": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 1,
   "last_new": null
  },
  "pgm_etf": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:54 UTC",
   "new": 0,
   "secs": 11,
   "last_new": null
  },
  "etf_more": {
   "ok": true,
-  "at": "2026-11-21 01:06 UTC",
+  "at": "2026-11-21 01:53 UTC",
   "new": 0,
   "secs": 42,
   "last_new": null

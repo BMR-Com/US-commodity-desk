@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-20 21:15 UTC",
+ "fetched_at": "2026-11-21 00:57 UTC",
  "source": "Yahoo Finance via yfinance (front-month continuous)",
  "markets": {
   "CO": {
@@ -134,41 +134,41 @@
   "CO": {
    "front": "F27",
    "deferred": "F28",
-   "p_front": 92.81,
+   "p_front": 92.56,
    "p_deferred": 76.22,
-   "carry_ann": 0.1969,
+   "carry_ann": 0.1942,
    "date": "2026-11-20"
   },
   "NG": {
    "front": "F27",
    "deferred": "F28",
-   "p_front": 3.772,
-   "p_deferred": 4.42,
-   "carry_ann": -0.1585,
+   "p_front": 3.791,
+   "p_deferred": 4.424,
+   "carry_ann": -0.1544,
    "date": "2026-11-20"
   },
   "CL": {
    "front": "F27",
    "deferred": "F28",
-   "p_front": 83.9,
+   "p_front": 83.62,
    "p_deferred": 71.96,
-   "carry_ann": 0.1535,
+   "carry_ann": 0.1502,
    "date": "2026-11-20"
   },
   "HO": {
    "front": "F27",
    "deferred": "F28",
-   "p_front": 3.8693,
+   "p_front": 3.8668,
    "p_deferred": 3.113,
-   "carry_ann": 0.2175,
+   "carry_ann": 0.2168,
    "date": "2026-11-20"
   },
   "XB": {
    "front": "F27",
    "deferred": "F28",
-   "p_front": 2.4837,
+   "p_front": 2.4813,
    "p_deferred": 2.2204,
-   "carry_ann": 0.1121,
+   "carry_ann": 0.1111,
    "date": "2026-11-20"
   },
   "C": {
@@ -222,9 +222,9 @@
   "HG": {
    "front": "Z26",
    "deferred": "Z27",
-   "p_front": 5.4615,
+   "p_front": 5.465,
    "p_deferred": 5.7665,
-   "carry_ann": -0.0543,
+   "carry_ann": -0.0537,
    "date": "2026-11-20"
   },
   "ALI": {
@@ -236,17 +236,17 @@
   "GC": {
    "front": "Z26",
    "deferred": "Z27",
-   "p_front": 3524.3,
+   "p_front": 3539.0,
    "p_deferred": 3700.0,
-   "carry_ann": -0.0487,
+   "carry_ann": -0.0445,
    "date": "2026-11-20"
   },
   "SI": {
    "front": "Z26",
    "deferred": "Z27",
-   "p_front": 40.86,
-   "p_deferred": 42.88,
-   "carry_ann": -0.0483,
+   "p_front": 41.08,
+   "p_deferred": 42.93,
+   "carry_ann": -0.044,
    "date": "2026-11-20"
   },
   "SB": {
@@ -302,7 +302,7 @@
   "spx": 6910.39,
   "spx_200d": 7348.58,
   "spx_above_200d": false,
-  "vix": 39.53,
+  "vix": 35.89,
   "date": "2026-11-20",
   "risk_off": true
  },

@@ -6,8 +6,9 @@ Usage: python pipelines/metals.py [step ...]      steps: etf etf_more lme wgc ic
   etf     iShares IAU and SLV tonnes in trust (product pages, daily snapshot appended) and their full daily NAV /
           shares-outstanding history (the product page's data-download
           file, Historical sheet)                    -> raw/etf_ishares.csv, raw/etf_ishares_hist.csv
-          SPDR GLD: raw/etf_gld.csv keeps the daily history to 2026-11-20; api.spdrgoldshares.com (the only host serving it)
-          disallows automated access in robots.txt, so it is no longer downloaded; GLD continues quarterly from SEC filings
+          SPDR GLD: raw/etf_gld.csv keeps the sponsor's daily ounces to 2026-11-19 (api.spdrgoldshares.com disallows
+          automated access in robots.txt, so it is no longer downloaded); daily shares outstanding / NAV since 2004 from
+          State Street's NAV-history workbook on ssga.com (allowed) -> raw/etf_gld_ssga.csv (model derives the ounces)
   etf_more other sponsors' own sites: Sprott PHYS / PSLV / SPPP ounces (fund-page holdings charts since inception plus
           the daily figure the pages load), abrdn PPLT / PALL / SGOL / SIVR shares outstanding and metal per basket
           (daily snapshot from the fund page's data service), GraniteShares PLTM / BAR daily NAV, AUM and metal per
@@ -150,7 +151,30 @@ def etf():
             n += merge_csv(RAW / "etf_gld.csv", out, ["date"])
             print("GLD", len(out), "days, last", out.date.iloc[-1], out.tonnes.iloc[-1])
     else:
-        print("GLD: sponsor data host closed to automated access by robots.txt; stored history kept, quarterly SEC figures continue it")
+        print("GLD: sponsor data host closed to automated access by robots.txt; stored history kept, continued from State Street's NAV-history file below")
+    # GLD daily shares outstanding, NAV and net assets since 2004: State Street's NAV-history workbook for the fund
+    # (the "NAV history" download on ssga.com's GLD page; robots.txt allows /library-content/products/fund-data/).
+    # The model multiplies the shares by the gold each share holds (models/metals.py, fund_series "GLD").
+    u = "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-gld.xlsx"
+    if robots_allows(u):
+        r = eget(u)
+        if r is not None and r.status_code == 200 and r.content[:2] == b"PK":
+            x = pd.read_excel(io.BytesIO(r.content), header=None)
+            hr = next(i for i in range(min(20, len(x))) if str(x.iat[i, 0]).strip() == "Date")
+            d = x.iloc[hr + 1:, :4].copy()
+            d.columns = ["date", "nav", "shares", "tna"]
+            d["date"] = pd.to_datetime(d["date"], format="%d-%b-%Y", errors="coerce")
+            for c in ("nav", "shares", "tna"):
+                d[c] = pd.to_numeric(d[c], errors="coerce")
+            d = d.dropna(subset=["date", "shares"])
+            d = d[d.shares > 0].sort_values("date")
+            out = pd.DataFrame({"date": d.date.dt.strftime("%Y-%m-%d"), "nav": d.nav.round(6), "shares": d.shares.round(0), "tna": d.tna.round(0)})
+            n += merge_csv(RAW / "etf_gld_ssga.csv", out, ["date"])
+            print("GLD shares (State Street NAV history)", len(out), "days, last", out.date.iloc[-1], int(out.shares.iloc[-1]))
+        else:
+            print("GLD: State Street NAV-history file not available", None if r is None else r.status_code)
+    else:
+        print("GLD: State Street NAV-history file disallowed by robots.txt")
     rows, hist = [], []
     for fund, pid, url in [("IAU", 239561, "https://www.ishares.com/us/products/239561/ishares-gold-trust-fund"),
                            ("SLV", 239855, "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund")]:

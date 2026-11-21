@@ -181,7 +181,7 @@ const Metals = (() => {
     if (!EO) EO = await getJSON('data/metals/etf/etf.json').catch(() => null);
     const t = ETF[mk], f = EO && EO.funds && EO.funds[t];
     if (!f) { body().innerHTML = none(`${t} price and options data`); return; }
-    const o = f.opt, pct = (v, d = 1) => v == null ? '–' : fmt(v * 100, d) + '%', pts = v => v == null ? '–' : sgn(v * 100, 1, ' pts');
+    const o = f.opt, pct = (v, d = 1) => v == null ? '–' : fmt(v * 100, d) + '%', pts = v => v == null ? '–' : (v > 0 ? '+' : '') + fmt(v * 100, 1) + ' pts';
     const term = (f.term || []), tiv = term.filter(e => e.dte >= EO.min_dte && e.atm_iv != null);
     body().innerHTML = `<div class="grid g4">
         ${kpi(`${t} · ${esc(f.name)}`, `$${fmt(f.close, 2)}`, `${esc(f.asof)} · ${sgn(f.chg_1d, 2, '%')} day · ${sgn(f.chg_1w, 1, '%')} wk · ${sgn(f.chg_1m, 1, '%')} mo`)}

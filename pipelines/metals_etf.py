@@ -272,7 +272,8 @@ def build_json(P):
             f["term"] = [{k: nz(x[k]) for k in ["expiry", "dte", "atm_iv", "iv25p", "iv25c", "skew25", "call_oi", "put_oi", "call_vol", "put_vol"] if k in x} for _, x in e.iterrows()]
             s = os_[(os_.fund == t) & (os_.date == L.date)] if len(os_) else os_
             f["strikes"] = []
-            for ex in e.expiry.tolist()[:10]:
+            short, longer = e[e.dte < MIN_DTE].expiry.tolist(), e[e.dte >= MIN_DTE].expiry.tolist()
+            for ex in short[:2] + longer[:8]:                    # the two nearest expiries, then eight from 15 days out
                 ss = s[s.expiry == ex]
                 f["strikes"].append({"expiry": ex, "dte": int(e[e.expiry == ex].dte.iloc[0]),
                                      "calls": [{"k": float(x.strike), "oi": int(x.oi)} for _, x in ss[ss.type == "call"].sort_values("rank").iterrows()],

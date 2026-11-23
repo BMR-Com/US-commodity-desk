@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-23 22:18 UTC",
- "generated_et": "Mon Nov 23, 2026 05:18 PM ET",
+ "generated": "2026-11-23 23:00 UTC",
+ "generated_et": "Mon Nov 23, 2026 06:00 PM ET",
  "date": "2026-11-23",
- "prices_from": "2026-11-23 22:18 UTC",
+ "prices_from": "2026-11-23 23:00 UTC",
  "cme_oi_date": "20261119",
  "headlines": [
   "Biggest moves vs prior settle: Cotton +3.48 (+4.6%); Soybean meal +4.1 (+1.2%); Class IV milk +0.22 (+1.2%).",
   "Today: ICSG copper market press release (monthly) (date estimated); Cotton Dec 26: first notice day; USDA export inspections 11:00 AM ET.",
-  "Strongest desk views: Chicago wheat strongly bearish.",
+  "Strongest desk views: Corn strongly bearish; Chicago wheat strongly bearish.",
   "Through a trend-follower trigger: Soybean meal above 344.2; Feeder cattle below 334.692; Class IV milk below 19.33.",
   "Macro backdrop for ags: headwind (-6)."
  ],
@@ -187,7 +187,7 @@
    "esr_proj": 2835.984,
    "esr_usda": 3275.0,
    "esr_unit": "m bu",
-   "view": "bearish",
+   "view": "strongly bearish",
    "conviction": "high",
    "technical": "Dec 26 trades at 433.25 \u00a2/bu (-3.5% on the week, -5.0% on the month), in a down trend: the daily rating is sell and the weekly strong sell. RSI is 32 and ADX 41 (trending). Nearest support 425.75, resistance 449.50; 52-week range 425.75\u2013549.75.",
    "levels": "Levels to watch: a close above 455.00 (20-day momentum flip) would bring trend-follower buying; below 432.25 (100-day breakout low) adds selling; the 425.75\u2013449.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Corn Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.",
@@ -490,22 +490,22 @@
    },
    "news": [
     {
+     "title": "Winter Wheat Conditions Improve for Third Straight Week as USDA Reports Stronger Crop Ratings",
+     "source": "AgroLatam",
+     "time": "2026-11-23T22:54Z",
+     "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQm5lSFhJQm5aT0luR3BXT0FwSUZadFNvZWpGbk9VUDdDSWRSNkthaUhZRExmcFR5TEp1Y2lNcmJUakx1R1pWVE1KV1M5SW5jZ2ktbVl3bnp4ZmhtbkpPWHZqTDJTMm5DS0h4VjgtR1BBYVpibzJIeFNRZFphMnRuUTFjazRKdU4xUGZKcUxzdEhCUmRjTG5jcHQ1Vm1tN0pMampLb3Blc0xURmFTUVp1dEJxMFVTME1NeWFKSkJ0TlZPUURHbTViYjFB?oc=5"
+    },
+    {
+     "title": "Wheat Posts Mixed Trade on Monday",
+     "source": "Barchart.com",
+     "time": "2026-11-23T22:27Z",
+     "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPdG5NcXhqRFBjVkRPeG1qWTM2NkR2eXRsSEFNaDhPMVdhOFFRNVBFM3p4aEhvZW4tMWZtT0JDb2sxQVdSaEhseUVSdi0yeWhHWnZnSUREVV9KREdRWVhFU3prdFg1QVZvNURtelRfdERhaHozQzQ0NmRBdnNxU0ZRamV3Yw?oc=5"
+    },
+    {
      "title": "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong",
      "source": "Ohio's Country Journal",
      "time": "2026-11-23T21:47Z",
      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQYzhZZElLMzdVbTktUTdCSkwxSmpMM2kyUkh4WTlOUVJEcE0zT1VLejR4Q281dzdyeVYyQUtIWW1aQmtOT3lwZDhkaXMtZ3MxNkJtVG5XdFJaYUh4aGxFeE1QeVJ0M2F2RHFlWFZmbUhWSW5NRGd3Sm4zX1hPNmE4N0pPRG04MnY4TkNaYkR6eU1LUjg?oc=5"
-    },
-    {
-     "title": "After the Bell | Winter wheat futures mixed in face of firming U.S. dollar",
-     "source": "Pro Farmer",
-     "time": "2026-11-23T19:56Z",
-     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdWdsb3J0U3RNTkk1aXBaOXFIWV85dmQzbFBxSkwtal84b2VURF85OXZNSVdtUUNsdGU2b1BNZHhxVHhoSG5KVGlwMFotb09NVTRRVjNrb1h4THB5QjhnMWVNa29kQmxsV2FLX0JlQl9UamhTUkRaVGRkYUtkOUhleXVkSExaSE81bHpyTlVaeFEzWWhpZkVfeWtRdUNsdGNrOWpJSXlB?oc=5"
-    },
-    {
-     "title": "Wheat Fading Back From Early Gains on Monday",
-     "source": "Barchart.com",
-     "time": "2026-11-23T17:23Z",
-     "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxONE83TTl6ZDRvNDN5eFN1VlRLaFpjNGxZUHV4b0EwYzRneW1YRmxGcGpxNWdCTWFObmRJV1lQWXJZRGZGRllybEdRLTdvcUlTZnJPSUhlTGtnUHZscDR0OHptZXFnV3hnWUI5NG5qdVEyamF2OE5xZFlnQldhTHhuUnZzNGRubHRjQklaMmNjTXlrZw?oc=5"
     }
    ]
   },
@@ -544,7 +544,7 @@
    "esr_usda": 165.0,
    "esr_unit": "m bu",
    "view": "bearish",
-   "conviction": "medium",
+   "conviction": "high",
    "technical": "Dec 26 trades at 620.50 \u00a2/bu (+0.2% on the week, -6.6% on the month), in a down trend: the daily rating is strong sell and the weekly sell. RSI is 36 and ADX 49 (trending). Nearest support 617.00, resistance 629.50; 52-week range 564.00\u2013858.25.",
    "levels": "Levels to watch: a close above 642.19 (120-day momentum flip) would bring trend-follower buying; below 560.77 (250-day momentum flip) adds selling; the 617.00\u2013629.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; KC HRW wheat Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.",
    "flags": [],
@@ -558,22 +558,22 @@
    },
    "news": [
     {
+     "title": "Winter Wheat Conditions Improve for Third Straight Week as USDA Reports Stronger Crop Ratings",
+     "source": "AgroLatam",
+     "time": "2026-11-23T22:54Z",
+     "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQm5lSFhJQm5aT0luR3BXT0FwSUZadFNvZWpGbk9VUDdDSWRSNkthaUhZRExmcFR5TEp1Y2lNcmJUakx1R1pWVE1KV1M5SW5jZ2ktbVl3bnp4ZmhtbkpPWHZqTDJTMm5DS0h4VjgtR1BBYVpibzJIeFNRZFphMnRuUTFjazRKdU4xUGZKcUxzdEhCUmRjTG5jcHQ1Vm1tN0pMampLb3Blc0xURmFTUVp1dEJxMFVTME1NeWFKSkJ0TlZPUURHbTViYjFB?oc=5"
+    },
+    {
+     "title": "Wheat Posts Mixed Trade on Monday",
+     "source": "Barchart.com",
+     "time": "2026-11-23T22:27Z",
+     "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPdG5NcXhqRFBjVkRPeG1qWTM2NkR2eXRsSEFNaDhPMVdhOFFRNVBFM3p4aEhvZW4tMWZtT0JDb2sxQVdSaEhseUVSdi0yeWhHWnZnSUREVV9KREdRWVhFU3prdFg1QVZvNURtelRfdERhaHozQzQ0NmRBdnNxU0ZRamV3Yw?oc=5"
+    },
+    {
      "title": "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong",
      "source": "Ohio's Country Journal",
      "time": "2026-11-23T21:47Z",
      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQYzhZZElLMzdVbTktUTdCSkwxSmpMM2kyUkh4WTlOUVJEcE0zT1VLejR4Q281dzdyeVYyQUtIWW1aQmtOT3lwZDhkaXMtZ3MxNkJtVG5XdFJaYUh4aGxFeE1QeVJ0M2F2RHFlWFZmbUhWSW5NRGd3Sm4zX1hPNmE4N0pPRG04MnY4TkNaYkR6eU1LUjg?oc=5"
-    },
-    {
-     "title": "After the Bell | Winter wheat futures mixed in face of firming U.S. dollar",
-     "source": "Pro Farmer",
-     "time": "2026-11-23T19:56Z",
-     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdWdsb3J0U3RNTkk1aXBaOXFIWV85dmQzbFBxSkwtal84b2VURF85OXZNSVdtUUNsdGU2b1BNZHhxVHhoSG5KVGlwMFotb09NVTRRVjNrb1h4THB5QjhnMWVNa29kQmxsV2FLX0JlQl9UamhTUkRaVGRkYUtkOUhleXVkSExaSE81bHpyTlVaeFEzWWhpZkVfeWtRdUNsdGNrOWpJSXlB?oc=5"
-    },
-    {
-     "title": "Wheat Fading Back From Early Gains on Monday",
-     "source": "Barchart.com",
-     "time": "2026-11-23T17:23Z",
-     "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxONE83TTl6ZDRvNDN5eFN1VlRLaFpjNGxZUHV4b0EwYzRneW1YRmxGcGpxNWdCTWFObmRJV1lQWXJZRGZGRllybEdRLTdvcUlTZnJPSUhlTGtnUHZscDR0OHptZXFnV3hnWUI5NG5qdVEyamF2OE5xZFlnQldhTHhuUnZzNGRubHRjQklaMmNjTXlrZw?oc=5"
     }
    ]
   },
@@ -741,7 +741,7 @@
    "cta_dn": 222.8175,
    "hi52": 245.9,
    "lo52": 197.05,
-   "atr": 2.9657,
+   "atr": 2.9621,
    "mm_net": 43321.0,
    "mm_chg": 8441.0,
    "mm_pct3": 15.7,
@@ -809,7 +809,7 @@
    "cta_dn": 334.6916,
    "hi52": 366.425,
    "lo52": 282.6,
-   "atr": 5.6576,
+   "atr": 5.654,
    "mm_net": 9673.0,
    "mm_chg": 1087.0,
    "mm_pct3": 38.1,
@@ -922,10 +922,10 @@
      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxONWJWNDNMeDdIUTZ4VHp2TnJnMW16bkV3NWxhME16bEFHYzlNOXZtUDhIN2pEdVgxX3AtMFR1em5pejV3eXh1N1lEQzVYclRyMHZFQ2hYNWE0Q1U4RWgyT3Y1TkxDNGZhZDFRd1BraWVfUVVVZ29BMDNlcFdpbVVvcU9DdjZIQ3hEZHAwdk5kRVMwbktVa0dSZVpnekhuS0t0M0hYUFFmdHl0UUFfN3RPa2RMWDRoaUdLNVVmdHVMTHY5cDQ?oc=5"
     },
     {
-     "title": "Texas A&M Study Confirms that EU One-Way Trade Costs U.S. Dairy Farmers Billions",
-     "source": "American Ag Network",
-     "time": "2026-11-23T17:15Z",
-     "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPX1liVi1GN2hzdXJ1cTM1MXJnX21JTEotVlB6em11Y1VEcW9lZW45U0NSbV9QZUU4N1Q2SVZ6SmI1bERmbWh5cVkxOXJYUEFZa1N1dzc4MEVTelREa1pIS05SWW1pRWlpVFNtelo3UEduUzhaeG80UVo3eVlsdGFsV2VVTkpxSGtNWmZzUDdoRzN5QW1EcEhiTmgxT2Z4bzR0X1pRN1pJT0tfdU1lM2pacGRxQ2xSVWgzUzNFanVPV1d1QQ?oc=5"
+     "title": "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools",
+     "source": "USDA Food and Nutrition (.gov)",
+     "time": "2026-11-23T12:00Z",
+     "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBGNlBIb1BqWjRmMklfb0Z2dm56WXdZajZiamRuR18zbmZfai1SbVhsN0tpV2tPRUdvVmlCT285MmRVelNJWVI1TG5VUGV3VjFoaEQtQ05KOG5uUQ?oc=5"
     }
    ]
   },
@@ -995,10 +995,10 @@
      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxONWJWNDNMeDdIUTZ4VHp2TnJnMW16bkV3NWxhME16bEFHYzlNOXZtUDhIN2pEdVgxX3AtMFR1em5pejV3eXh1N1lEQzVYclRyMHZFQ2hYNWE0Q1U4RWgyT3Y1TkxDNGZhZDFRd1BraWVfUVVVZ29BMDNlcFdpbVVvcU9DdjZIQ3hEZHAwdk5kRVMwbktVa0dSZVpnekhuS0t0M0hYUFFmdHl0UUFfN3RPa2RMWDRoaUdLNVVmdHVMTHY5cDQ?oc=5"
     },
     {
-     "title": "Texas A&M Study Confirms that EU One-Way Trade Costs U.S. Dairy Farmers Billions",
-     "source": "American Ag Network",
-     "time": "2026-11-23T17:15Z",
-     "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPX1liVi1GN2hzdXJ1cTM1MXJnX21JTEotVlB6em11Y1VEcW9lZW45U0NSbV9QZUU4N1Q2SVZ6SmI1bERmbWh5cVkxOXJYUEFZa1N1dzc4MEVTelREa1pIS05SWW1pRWlpVFNtelo3UEduUzhaeG80UVo3eVlsdGFsV2VVTkpxSGtNWmZzUDdoRzN5QW1EcEhiTmgxT2Z4bzR0X1pRN1pJT0tfdU1lM2pacGRxQ2xSVWgzUzNFanVPV1d1QQ?oc=5"
+     "title": "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools",
+     "source": "USDA Food and Nutrition (.gov)",
+     "time": "2026-11-23T12:00Z",
+     "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBGNlBIb1BqWjRmMklfb0Z2dm56WXdZajZiamRuR18zbmZfai1SbVhsN0tpV2tPRUdvVmlCT285MmRVelNJWVI1TG5VUGV3VjFoaEQtQ05KOG5uUQ?oc=5"
     }
    ]
   }
@@ -1089,7 +1089,7 @@
    {
     "title": "Dollar & farm currencies",
     "score": -2,
-    "text": "Dollar index 104.34 (+2.5% in a month, +6.2% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.930 (+17.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.664 (-0.2%); USD/MXN 19.15 (+2.3%)."
+    "text": "Dollar index 104.34 (+2.5% in a month, +6.2% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.929 (+17.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.655 (-0.3%); USD/MXN 19.16 (+2.3%)."
    },
    {
     "title": "Risk appetite",
@@ -1104,7 +1104,7 @@
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -13.8% in a month, Shanghai Composite -4.1%, Hang Seng -3.1%, yuan +0.2% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -13.8% in a month, Shanghai Composite -4.1%, Hang Seng -3.1%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
@@ -1149,35 +1149,35 @@
   },
   {
    "name": "US dollar index",
-   "last": 104.339,
-   "d1": 0.5095871822053288,
-   "m1": 2.484041353552491,
+   "last": 104.34,
+   "d1": 0.510550480561478,
+   "m1": 2.4850235753617334,
    "kind": "price",
-   "time": "2026-11-23 22:06 UTC"
+   "time": "2026-11-23 22:48 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.0905,
-   "d1": -0.5900190946146799,
-   "m1": -2.8200917452536722,
+   "last": 1.0906,
+   "d1": -0.5809030945316485,
+   "m1": -2.8111802451844636,
    "kind": "price",
-   "time": "2026-11-23 22:16 UTC"
+   "time": "2026-11-23 22:57 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.93,
-   "d1": -0.058983958710490114,
-   "m1": 17.42806660517706,
+   "last": 5.9293,
+   "d1": -0.0707813805028934,
+   "m1": 17.414204944700895,
    "kind": "price",
-   "time": "2026-11-23 22:07 UTC"
+   "time": "2026-11-23 22:49 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6638,
-   "d1": -0.04050238529442751,
-   "m1": -0.21114179363295182,
+   "last": 6.6548,
+   "d1": -0.17550575852477435,
+   "m1": -0.3459147045632438,
    "kind": "price",
-   "time": "2026-11-23 22:01 UTC"
+   "time": "2026-11-23 22:44 UTC"
   },
   {
    "name": "WTI crude",
@@ -1553,6 +1553,6 @@
  "track": {
   "line": "Track record: 372 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-11-23 11:40 UTC"
+  "generated": "2026-11-23 22:18 UTC"
  }
 }

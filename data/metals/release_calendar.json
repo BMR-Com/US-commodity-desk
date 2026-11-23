@@ -1,17 +1,6 @@
 {
- "generated": "2026-11-21 09:06 UTC",
+ "generated": "2026-11-23 14:25 UTC",
  "upcoming": [
-  {
-   "date": "2026-11-18",
-   "time_ct": "",
-   "event": "Silver Institute interim silver market review",
-   "markets": [
-    "SI"
-   ],
-   "importance": 1,
-   "estimated": true,
-   "link": "https://silverinstitute.org/"
-  },
   {
    "date": "2026-11-20",
    "time_ct": "",
@@ -421,6 +410,28 @@
    "importance": 1,
    "calendar": false,
    "estimated": false
+  },
+  {
+   "date": "2027-03-22",
+   "time_ct": "",
+   "event": "IAI primary aluminium production (monthly)",
+   "markets": [
+    "ALI"
+   ],
+   "importance": 2,
+   "estimated": true,
+   "link": "https://international-aluminium.org/statistics/primary-aluminium-production/"
+  },
+  {
+   "date": "2027-03-22",
+   "time_ct": "",
+   "event": "ICSG copper market press release (monthly)",
+   "markets": [
+    "HG"
+   ],
+   "importance": 2,
+   "estimated": true,
+   "link": "https://icsg.org/press-releases/"
   }
  ],
  "timing": [

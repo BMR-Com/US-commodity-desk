@@ -1,13 +1,13 @@
 {
- "generated": "2026-11-23 11:40 UTC",
- "generated_et": "Mon Nov 23, 2026 06:40 AM ET",
+ "generated": "2026-11-23 16:19 UTC",
+ "generated_et": "Mon Nov 23, 2026 11:19 AM ET",
  "date": "2026-11-23",
- "prices_from": "2026-11-23 11:40 UTC",
+ "prices_from": "2026-11-23 16:19 UTC",
  "cme_oi_date": "20261119",
  "headlines": [
   "Biggest moves vs prior settle: Cotton +3.04 (+4.0%); Soybean oil -0.72 (-1.2%); KC HRW wheat +4.25 (+0.7%).",
   "Today: ICSG copper market press release (monthly) (date estimated); Cotton Dec 26: first notice day; USDA export inspections 11:00 AM ET.",
-  "Strongest desk views: Corn strongly bearish; Chicago wheat strongly bearish.",
+  "Strongest desk views: Chicago wheat strongly bearish.",
   "Macro backdrop for ags: headwind (-5)."
  ],
  "events_today": [
@@ -186,7 +186,7 @@
    "esr_proj": 2835.984,
    "esr_usda": 3275.0,
    "esr_unit": "m bu",
-   "view": "strongly bearish",
+   "view": "bearish",
    "conviction": "high",
    "technical": "Dec 26 trades at 437.25 \u00a2/bu (-2.6% on the week, -4.1% on the month), in a down trend: the daily rating is sell and the weekly sell. RSI is 36 and ADX 41 (trending). Nearest support 434.25, resistance 449.50; 52-week range 425.75\u2013549.75.",
    "levels": "Levels to watch: a close above 455.00 (20-day momentum flip) would bring trend-follower buying; below 432.25 (100-day breakout low) adds selling; the 434.25\u2013449.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Corn Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.",
@@ -209,6 +209,18 @@
     "report": "PRELIMINARY"
    },
    "news": [
+    {
+     "title": "India reaches ethanol blending milestone",
+     "source": "World Grain",
+     "time": "2026-11-23T13:50Z",
+     "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQT0tZTHljdVAtZ3ZqVWtwMzdMS2JRUzVDLUZvNFg0Z3VERTYwNy11dGJmSjdmMU9aN1hHUnVHZDBsUmtObmVOeV9NdUlSMGZfN3B5R2taa25KWEFzdEQ5OHZZam1vRVNFaGphQVJ1R1lEOFFZUF9URGJNOWdJTkRoTE9vblBTbWlXZzRV?oc=5"
+    },
+    {
+     "title": "Corn Starting Thanksgiving Week with Gains",
+     "source": "Barchart.com",
+     "time": "2026-11-23T13:33Z",
+     "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQSURmamZaQ2xjS2xINm9MbFMyMmNfSXJWbzFjeUZBOFZTRGtVOGtNY1JHVlZvQlFQVEZoZHJOQjBCTl9LR2tZMHVXT0dKYjdzYlhtSFh1MUtwZkk3QkRxQlJ4WDZiY252MVZNZlNxU1A4Vk5vU2tsMmRRcDl4UmJWZmsxZFJFaG50M3JTTGRUVQ?oc=5"
+    },
     {
      "title": "Why Global Buyers Are Choosing U.S. Corn on Value, Not Just Price",
      "source": "Farms.com",
@@ -262,7 +274,7 @@
     },
     {
      "tilt": "neutral",
-     "text": "Weather watch: LEM, western Bahia; Pergamino, N Buenos Aires"
+     "text": "Weather watch: Pergamino, N Buenos Aires; LEM, western Bahia"
     }
    ],
    "event": "USDA WASDE",
@@ -275,10 +287,22 @@
    },
    "news": [
     {
-     "title": "Storm Devastates Rural Brazilian Town in Threat to Crops, Lives",
-     "source": "Bloomberg.com",
-     "time": "2026-11-22T14:41Z",
-     "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOV09EQmh3cjJmSW8wd2xwNll6UnUtMXBEbTRuZjVVMHV1bHcwUzlmWTN6UmdpOFpsUE93M0IwU01wbGtjWkNGTGpCM1k5V2hKSndibmlVVDlMVGRfRXE3aTZSMnlKcXBsLW9NTFRtR2lDWGMtSzgwZldCTlpKc1hkQkxxOVdpWXF3UFhaeklKZEVmYlRKNHFNVXQ5anFSNVJtWFRhNU9sc0tmay00QVczTGZPZw?oc=5"
+     "title": "Coffee Rebounds as Brazil Real Recovers",
+     "source": "ADMIS",
+     "time": "2026-11-23T13:51Z",
+     "link": "https://www.admis.com/coffee-rebounds-as-brazil-real-recovers/"
+    },
+    {
+     "title": "Higher Trade With Soybean Oil The Outlier",
+     "source": "ADMIS",
+     "time": "2026-11-23T13:45Z",
+     "link": "https://www.admis.com/higher-trade-with-soybean-oil-the-outlier/"
+    },
+    {
+     "title": "Soybeans Extending Gains Out of the Weekend Early on Monday",
+     "source": "Barchart.com",
+     "time": "2026-11-23T13:33Z",
+     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOWXZOMmxidUtnMUMwc2lvZjg0RVZobmYxeExCNDBmQVZxSHNOTFA1ekJ4Q2w4bFNkdEZqRnAzbnhKMFhqMkxDeXdtQVlaWTZRMFdhVVFnUUdzbmQxT3V6WlAxYWQ0TWtOSThkUmw4UXZDUGV0X3BiVGpBTkhJd0E3UFFxRzVqWU1TU0NWV21BM1lCdzl1bTRfS0tuWjk2TFNaNFMyZ2Rn?oc=5"
     }
    ]
   },
@@ -397,6 +421,12 @@
     "report": "PRELIMINARY"
    },
    "news": [
+    {
+     "title": "Higher Trade With Soybean Oil The Outlier",
+     "source": "ADMIS",
+     "time": "2026-11-23T13:45Z",
+     "link": "https://www.admis.com/higher-trade-with-soybean-oil-the-outlier/"
+    },
     {
      "title": "Crop Trader\u2019s Amazon Barges Swap Diesel for Biofuel to Cut Costs",
      "source": "Bloomberg.com",
@@ -568,20 +598,33 @@
    "esr_proj": 12.4288,
    "esr_usda": 12.3,
    "esr_unit": "m bales",
-   "view": "neutral",
+   "view": "mildly bullish",
    "conviction": "low",
    "technical": "Dec 26 trades at 78.51 \u00a2/lb (+2.0% on the week, -2.1% on the month), in a mixed trend: the daily rating is neutral and the weekly neutral. RSI is 51 and ADX 15 (range-bound). Nearest support 77.73, resistance 79.90; 52-week range 66.86\u201393.74.",
    "levels": "Levels to watch: a close above 79.06 (20-day momentum flip) would bring trend-follower buying; below 72.57 (250-day momentum flip) adds selling; the 77.73\u201379.90 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; USDA weekly export sales Dec 3; USDA WASDE Dec 10.",
    "flags": [
     {
      "tilt": "neutral",
-     "text": "Weather watch: Greenwood, Mississippi Delta (cotton); Sorriso, Mato Grosso"
+     "text": "Weather watch: Sorriso, Mato Grosso"
     }
    ],
    "event": "USDA WASDE",
    "event_date": "2026-12-10",
    "oi": null,
-   "news": []
+   "news": [
+    {
+     "title": "Floyd County Leads Nation in Upland Cotton Production",
+     "source": "RFD-TV",
+     "time": "2026-11-23T14:05Z",
+     "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQdlN0Z1pjV2JhSGJaYWdmSlVNQ01qNnRRWlZ1TWxEM21FcGUyekoyTVVERG1YbGRSckxBVVFIU1Bpc0E2eE50UURrQmh2Z2xNSzd6dzJfWWU2Y0NzLXZCeUpfcXcwNEFZcXU3cXlyVXQ1V3ZwZl9JVUpmNVJsMU5uSg?oc=5"
+    },
+    {
+     "title": "Cotton Rallying on Monday Morning",
+     "source": "Barchart.com",
+     "time": "2026-11-23T13:33Z",
+     "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOWVkxNERndXh5WWMwbTFleHhKWXBlTHFEV2ljc1lKczZyMDJfYXJZLVpsSzZJckc1Szg4UVp1MExVZDE3RGE2bThhZ2xobFlnQjVlaTZHME50WGwtS3Zzd3hZQlIyS1hoNUt0SVd1Um5oLXZkNmpWRnhsd3JkTFgtY0Zyaw?oc=5"
+    }
+   ]
   },
   {
    "sym": "HE",
@@ -645,6 +688,18 @@
    },
    "news": [
     {
+     "title": "U.S. pork, beef exports avoid disruption as port strike averted",
+     "source": "National Hog Farmer",
+     "time": "2026-11-23T13:56Z",
+     "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNzV4MDRQVWh0NzZzUkJEY3RaRW8wQXg5WlpXajlXWC1aTlRGNE1SaFNxVXVsLTdGMUExeGxheW4wcjh3MVFHaGY0aWZGNy0yTE9qaERUd1BNTnhES3AtcUVWSExNVXN3b2ZYaEdacjNUUThtNUFXVzVHMlRJRTRIc1d1U1pFd2Y4UC1UNTl5Y1NKSXMzSzRJSGZFM1Z0UWdLWnFXYV9GT0hvSE0?oc=5"
+    },
+    {
+     "title": "Hogs Look to Monday Trade as Pork Hits 6 Year Low",
+     "source": "Barchart.com",
+     "time": "2026-11-23T13:33Z",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPbEtCX0llcFFNVmxYTzdTZVN2bm1zT1J4NmtJS29KbUhjWHJXNno3dW1sQThieF9lbC1FUFpoaFN4ZUlEQmw3eTdSOXh1bnhDcDMzSzJwUlg1SlhmaE9XdTlFRkhzcUlJSWJUdGN2ZlFWNnl1Y3o0QzZfTU5oQVV6QS1xY252ckhnaUxPVm9JcDR0NVpYeUEyOA?oc=5"
+    },
+    {
      "title": "Indiana farmers add hogs to cut crop inputs, diversify operations",
      "source": "Farm Progress",
      "time": "2026-11-23T07:41Z",
@@ -699,7 +754,26 @@
     "vol": 62203,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "U.S. pork, beef exports avoid disruption as port strike averted",
+     "source": "National Hog Farmer",
+     "time": "2026-11-23T13:56Z",
+     "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNzV4MDRQVWh0NzZzUkJEY3RaRW8wQXg5WlpXajlXWC1aTlRGNE1SaFNxVXVsLTdGMUExeGxheW4wcjh3MVFHaGY0aWZGNy0yTE9qaERUd1BNTnhES3AtcUVWSExNVXN3b2ZYaEdacjNUUThtNUFXVzVHMlRJRTRIc1d1U1pFd2Y4UC1UNTl5Y1NKSXMzSzRJSGZFM1Z0UWdLWnFXYV9GT0hvSE0?oc=5"
+    },
+    {
+     "title": "Cattle Traders Look to React to Bullish Cattle on Feed Report",
+     "source": "Barchart.com",
+     "time": "2026-11-23T13:33Z",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOUllpTmtTYzRQdTcxNmpTYzdwRXNEQU9pUkR1MnZOS19yTVVYMFA3Z1E4R1BtME5wTjRQRFh0Z21YOVEwR3dzQTZ2Ty03UkdfSUNPWE5OMGdPZkNvNXlFX2FKeTJIZmNFa0F6YkVwY3E2MHhTODJrNzFiRlQ1NWROUVdHU3dGT1NBR2lNQ0t4MmpNMVZ5Zm9lcHdhektqb0ZULTlidE1nZHk?oc=5"
+    },
+    {
+     "title": "Trump\u2019s Plan Sparked Anger, but Beef Imports Had Already Been Rising as U.S. Cattle Numbers Fell",
+     "source": "Successful Farming",
+     "time": "2026-11-23T12:03Z",
+     "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOWFZldUZUblZ0cnNTT0diN29WT2NqWWtId01UT1FWSlRYMzFRbDF1dVJESmZyLWYxV2REalctbXZ6Ukl3UXBic01EcG1QNG1IREdYOUZvNG90Xy11Sm52NDl6MWhBQVpITzAxZVVrTzR5TG9oQmEyWlRYYzEtVUwwZk5GbFJoOXVCWlNfQ0I4akQtSWFncXBYXzdQbDZCZlVqOTcyZUdWOHdrRTd2UWFLQk8zNUVNZXdWWldhVjk5cGl1SUQ0QU9XQ3M1amRrSDRNbzd6VWRIdw?oc=5"
+    }
+   ]
   },
   {
    "sym": "GF",
@@ -748,7 +822,26 @@
     "vol": 21984,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "U.S. pork, beef exports avoid disruption as port strike averted",
+     "source": "National Hog Farmer",
+     "time": "2026-11-23T13:56Z",
+     "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNNzV4MDRQVWh0NzZzUkJEY3RaRW8wQXg5WlpXajlXWC1aTlRGNE1SaFNxVXVsLTdGMUExeGxheW4wcjh3MVFHaGY0aWZGNy0yTE9qaERUd1BNTnhES3AtcUVWSExNVXN3b2ZYaEdacjNUUThtNUFXVzVHMlRJRTRIc1d1U1pFd2Y4UC1UNTl5Y1NKSXMzSzRJSGZFM1Z0UWdLWnFXYV9GT0hvSE0?oc=5"
+    },
+    {
+     "title": "Cattle Traders Look to React to Bullish Cattle on Feed Report",
+     "source": "Barchart.com",
+     "time": "2026-11-23T13:33Z",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOUllpTmtTYzRQdTcxNmpTYzdwRXNEQU9pUkR1MnZOS19yTVVYMFA3Z1E4R1BtME5wTjRQRFh0Z21YOVEwR3dzQTZ2Ty03UkdfSUNPWE5OMGdPZkNvNXlFX2FKeTJIZmNFa0F6YkVwY3E2MHhTODJrNzFiRlQ1NWROUVdHU3dGT1NBR2lNQ0t4MmpNMVZ5Zm9lcHdhektqb0ZULTlidE1nZHk?oc=5"
+    },
+    {
+     "title": "Trump\u2019s Plan Sparked Anger, but Beef Imports Had Already Been Rising as U.S. Cattle Numbers Fell",
+     "source": "Successful Farming",
+     "time": "2026-11-23T12:03Z",
+     "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOWFZldUZUblZ0cnNTT0diN29WT2NqWWtId01UT1FWSlRYMzFRbDF1dVJESmZyLWYxV2REalctbXZ6Ukl3UXBic01EcG1QNG1IREdYOUZvNG90Xy11Sm52NDl6MWhBQVpITzAxZVVrTzR5TG9oQmEyWlRYYzEtVUwwZk5GbFJoOXVCWlNfQ0I4akQtSWFncXBYXzdQbDZCZlVqOTcyZUdWOHdrRTd2UWFLQk8zNUVNZXdWWldhVjk5cGl1SUQ0QU9XQ3M1amRrSDRNbzd6VWRIdw?oc=5"
+    }
+   ]
   },
   {
    "sym": "DC",
@@ -802,7 +895,14 @@
     "vol": 1601,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools",
+     "source": "USDA Food and Nutrition (.gov)",
+     "time": "2026-11-23T12:00Z",
+     "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBGNlBIb1BqWjRmMklfb0Z2dm56WXdZajZiamRuR18zbmZfai1SbVhsN0tpV2tPRUdvVmlCT285MmRVelNJWVI1TG5VUGV3VjFoaEQtQ05KOG5uUQ?oc=5"
+    }
+   ]
   },
   {
    "sym": "GDK",
@@ -856,7 +956,14 @@
     "vol": 409,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools",
+     "source": "USDA Food and Nutrition (.gov)",
+     "time": "2026-11-23T12:00Z",
+     "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBGNlBIb1BqWjRmMklfb0Z2dm56WXdZajZiamRuR18zbmZfai1SbVhsN0tpV2tPRUdvVmlCT285MmRVelNJWVI1TG5VUGV3VjFoaEQtQ05KOG5uUQ?oc=5"
+    }
+   ]
   }
  ],
  "crush": {
@@ -935,37 +1042,37 @@
  "macro": {
   "view": "headwind",
   "score": -5,
-  "summary": "Macro backdrop for ags: headwind (score -5 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar \u2212; brl \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +3.1%; weakest: Lean hogs -16.1%. Key releases ahead: US Core PCE Price Index m/m (11-25 8:30 AM ET); US Prelim GDP q/q (11-25 8:30 AM ET).",
+  "summary": "Macro backdrop for ags: headwind (score -5 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar \u2212; brl \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +4.7%; weakest: Lean hogs -16.6%. Key releases ahead: US Core PCE Price Index m/m (11-25 8:30 AM ET); US Prelim GDP q/q (11-25 8:30 AM ET).",
   "sections": [
    {
     "title": "Rates",
     "score": 1,
-    "text": "US 10-year 4.92% (-21 bp in a month), 2-year 4.63% (-18 bp); 2s10s curve +29 bp (-3 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.12% sets the cost of carrying inventory."
+    "text": "US 10-year 4.92% (-21 bp in a month), 2-year 4.63% (-18 bp); 2s10s curve +29 bp (-3 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.15% sets the cost of carrying inventory."
    },
    {
     "title": "Dollar & farm currencies",
     "score": -2,
-    "text": "Dollar index 103.89 (+2.0% in a month, +5.7% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.907 (+17.0% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.653 (-0.4%); USD/MXN 19.19 (+2.5%)."
+    "text": "Dollar index 104.45 (+2.6% in a month, +6.3% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.986 (+18.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.664 (-0.2%); USD/MXN 19.16 (+2.4%)."
    },
    {
     "title": "Risk appetite",
     "score": -1,
-    "text": "S&P 500 -10.9% in a month (+0.9% YTD); VIX 30.0. Risk-off: funds tend to cut commodity length along with equities. "
+    "text": "S&P 500 -4.8% in a month (+6.0% YTD); VIX 27.4. Risk-off: funds tend to cut commodity length along with equities. "
    },
    {
     "title": "Energy",
     "score": -1,
-    "text": "WTI 82.11 $/bbl (-18.7% in a month), Brent 88.37, ULSD 3.796 $/gal (-18.8%), natural gas 3.51 (+0.1%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+    "text": "WTI 80.02 $/bbl (-20.7% in a month), Brent 86.25, ULSD 3.674 $/gal (-21.4%), natural gas 3.46 (-1.2%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -15.2% in a month, Shanghai Composite -4.1%, Hang Seng -3.1%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -13.1% in a month, Shanghai Composite -4.1%, Hang Seng -3.1%, yuan +0.2% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": -1,
-    "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -14.6% in a month; gold -9.7%. "
+    "text": "6 of 33 commodities trade above their 50-day average (18%); S&P GSCI -15.5% in a month; gold -8.5%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -973,107 +1080,107 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7129.5,
-   "d1": 2.804614275414563,
-   "m1": -6.922549691569568,
+   "last": 7267.5,
+   "d1": 4.794520547945202,
+   "m1": -5.1209243121511765,
    "kind": "price",
-   "time": "2026-11-23 11:28 UTC"
+   "time": "2026-11-23 15:58 UTC"
   },
   {
    "name": "S&P 500",
-   "last": 6910.39,
-   "d1": -3.699085335565211,
-   "m1": -10.916093503213132,
+   "last": 7254.67,
+   "d1": 4.982061163984053,
+   "m1": -4.8403155336121495,
    "kind": "price",
-   "time": "2026-11-20 21:35 UTC"
+   "time": "2026-11-23 16:08 UTC"
   },
   {
    "name": "VIX",
-   "last": 30.01,
-   "d1": -16.3833922809828,
-   "m1": 54.29305307371428,
+   "last": 27.36,
+   "d1": -23.76706473867676,
+   "m1": 40.66837494491244,
    "kind": "price",
-   "time": "2026-11-23 11:23 UTC"
+   "time": "2026-11-23 15:53 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 4.912,
-   "d1": -14.000004577636727,
-   "m1": -23.39999084472657,
+   "last": 4.94,
+   "d1": 2.7999820709228906,
+   "m1": -4.7999916076659765,
    "kind": "yield",
-   "time": "2026-11-20 19:59 UTC"
+   "time": "2026-11-23 15:53 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 103.89,
-   "d1": 0.07706622029453047,
-   "m1": 2.043023761206908,
+   "last": 104.45,
+   "d1": 0.616513299737842,
+   "m1": 2.59306797437735,
    "kind": "price",
-   "time": "2026-11-23 11:28 UTC"
+   "time": "2026-11-23 15:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.0966,
-   "d1": -0.033943089550170225,
-   "m1": -2.2764902410318033,
+   "last": 1.0899,
+   "d1": -0.6447150951128244,
+   "m1": -2.873560745668935,
    "kind": "price",
-   "time": "2026-11-23 11:38 UTC"
+   "time": "2026-11-23 16:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.9074,
-   "d1": -0.4398721480078138,
-   "m1": 16.980532995518203,
+   "last": 5.986,
+   "d1": 0.8848097846811065,
+   "m1": 18.536999443269785,
    "kind": "price",
-   "time": "2026-11-23 10:00 UTC"
+   "time": "2026-11-23 16:08 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6534,
-   "d1": -0.19650628324948682,
-   "m1": -0.3668793795968406,
+   "last": 6.6638,
+   "d1": -0.04050238529442751,
+   "m1": -0.21114179363295182,
    "kind": "price",
-   "time": "2026-11-23 11:32 UTC"
+   "time": "2026-11-23 16:07 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 82.11,
-   "d1": -1.5585704412334533,
-   "m1": -18.654648292025467,
+   "last": 80.02,
+   "d1": -4.064265092041175,
+   "m1": -20.725185194591134,
    "kind": "price",
-   "time": "2026-11-23 11:28 UTC"
+   "time": "2026-11-23 15:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 3.508,
-   "d1": -6.403412820825826,
-   "m1": 0.05704386806599793,
+   "last": 3.463,
+   "d1": -7.604053192280446,
+   "m1": -1.2264700926133076,
    "kind": "price",
-   "time": "2026-11-23 11:28 UTC"
+   "time": "2026-11-23 15:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3620.8,
-   "d1": 2.9982391928149887,
-   "m1": -9.65842241013506,
+   "last": 3668.5,
+   "d1": 4.355126071266513,
+   "m1": -8.46827292630923,
    "kind": "price",
-   "time": "2026-11-23 11:27 UTC"
+   "time": "2026-11-23 15:57 UTC"
   },
   {
    "name": "Copper",
-   "last": 5.518,
-   "d1": 0.6016383898326705,
-   "m1": -15.20553431516477,
+   "last": 5.655,
+   "d1": 3.099359386463174,
+   "m1": -13.10027121280477,
    "kind": "price",
-   "time": "2026-11-23 11:27 UTC"
+   "time": "2026-11-23 15:57 UTC"
   },
   {
    "name": "S&P GSCI",
-   "last": 650.463,
-   "d1": -0.7351100417395284,
-   "m1": -14.644122236584556,
+   "last": 643.6933,
+   "d1": -1.7682103495978208,
+   "m1": -15.532464364722498,
    "kind": "price",
-   "time": "2026-11-23 11:38 UTC"
+   "time": "2026-11-23 16:08 UTC"
   }
  ],
  "econ": [
@@ -1407,8 +1514,8 @@
   }
  },
  "track": {
-  "line": "Track record: 360 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
+  "line": "Track record: 372 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-11-23 00:19 UTC"
+  "generated": "2026-11-23 11:40 UTC"
  }
 }

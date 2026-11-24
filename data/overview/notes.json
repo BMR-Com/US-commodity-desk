@@ -1,204 +1,187 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
   "markets": {
     "corn": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 4 up, 0 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Harvest is nearly done (Iowa 92%, South Dakota lagging), so harvest pressure is fading into Dec first notice; new demand is modest, with India's ethanol blending milestone a small positive for global corn use. Drought disaster designations in western Minnesota matter more for next year's soil moisture than this balance sheet.",
       "events": [
-        "Ag Market View for Nov 23.2026 (ADMIS, 2026-11-23)",
-        "Corn harvest continues to lag in South Dakota (Brownfield Ag News, 2026-11-23)",
-        "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong (Ohio's Country Journal, 2026-11-23)"
+        "Iowa soybean harvest wraps up, corn 92% done; SD lags (Brownfield)",
+        "India reaches ethanol blending milestone (World Grain)",
+        "Corn steady as first notice day approaches (Successful Farming)"
       ]
     },
     "soybeans": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 5 up, 0 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Beans rallied with the equity rebound; harvest is complete in Iowa and some yields are record-high, so US supply is not the story. Chinese buying of US soybeans remains the main swing factor, while China's soyoil stockpiling at low domestic prices points to ample crush there.",
       "events": [
-        "Wkly Futures Market Summary For 11.23.26 (ADMIS, 2026-11-23)",
-        "Higher Trade With Soybean Oil The Outlier (ADMIS, 2026-11-23)",
-        "Soybeans Rally With Equities, Grains Try to Follow: Cattle Disappoint (AgWeb, 2026-11-23)"
+        "Soybeans rally with equities, grains follow (AgWeb)",
+        "Record soybean yields in northeastern Illinois (Brownfield)",
+        "China stockpiles soyoil as domestic prices hit 3-month low (Bloomberg)"
       ]
     },
     "meal": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "No new headlines for this market in the last 76 hours.",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "No meal-specific news; crush margins lean on meal as soyoil weakens with crude, which keeps meal relatively supported versus oil.",
       "events": [
-        "Skepticism About AI Is Crushing Stock Prices Around the World (Bloomberg.com, 2026-11-20)"
+        "Soybean oil the outlier in higher soy trade (ADMIS)",
+        "What moves soybean prices: diesel and the oil share (Farm Progress)"
       ]
     },
     "oil": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "2 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Soyoil faces two headwinds: crude at three-month lows erodes biofuel blending economics, and China is building soyoil reserves with domestic prices at a three-month low, signalling surplus there rather than import need.",
       "events": [
-        "Crop Trader’s Amazon Barges Swap Diesel for Biofuel to Cut Costs (Bloomberg.com, 2026-11-23)",
-        "Higher Trade With Soybean Oil The Outlier (ADMIS, 2026-11-23)"
+        "China stockpiles soyoil as domestic prices hit 3-month low (Bloomberg)",
+        "Soybean oil lags the soy complex (ADMIS)",
+        "Brent below $90, WTI near 3-month lows (OilPrice.com, WSJ)"
       ]
     },
     "wheat": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "7 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "US winter wheat ratings improved for a third week, trimming crop risk for 2027, but Black Sea tensions and firmer export demand gave futures a lift overnight. Net: ample US supply vs episodic geopolitical support.",
       "events": [
-        "Winter Wheat Conditions Improve for Third Straight Week as USDA Reports Stronger Crop Ratings (AgroLatam, 2026-11-23)",
-        "Wheat Posts Mixed Trade on Monday (Barchart.com, 2026-11-23)",
-        "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong (Ohio's Country Journal, 2026-11-23)"
+        "Winter wheat conditions improve for third straight week (USDA via AgroLatam)",
+        "Wheat futures rise on Black Sea tensions and export demand (Fastmarkets)",
+        "Wheat mixed Monday as dollar firms (Barchart, Pro Farmer)"
       ]
     },
     "kc": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "7 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "HRW condition gains on the Plains reduce winterkill and drought worries for the 2027 crop; overnight strength comes from Black Sea headlines rather than US fundamentals.",
       "events": [
-        "Winter Wheat Conditions Improve for Third Straight Week as USDA Reports Stronger Crop Ratings (AgroLatam, 2026-11-23)",
-        "Wheat Posts Mixed Trade on Monday (Barchart.com, 2026-11-23)",
-        "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong (Ohio's Country Journal, 2026-11-23)"
+        "Winter wheat ratings up a third week (USDA via AgroLatam)",
+        "Black Sea tensions lift wheat overnight (Fastmarkets)",
+        "KC wheat mixed against a firmer dollar (Pro Farmer)"
       ]
     },
     "cotton": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Texas Plains drought losses are confirmed in fresh field reports, supporting the desk's below-USDA crop view; demand news is thin and the strong dollar/weak real remain export headwinds. Focus on old-crop Mar/May.",
       "events": [
-        "UPDATE - MAR-MAY COTTON #2 SPREAD (ECTH27:K27) (Barchart.com, 2026-11-23)",
-        "Floyd County Leads Nation in Upland Cotton Production (RFD-TV, 2026-11-23)",
-        "Cotton Rallying on Monday Morning (Barchart.com, 2026-11-23)"
+        "Drought decimates cotton yields on the Texas Plains (Farm Progress)",
+        "Mar/May cotton spread update (Barchart)",
+        "Cotton rallies Monday morning (Barchart)"
       ]
     },
     "hogs": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), price reports mixed (2 supply-tight, 0 supply-loose, 3 up, 3 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Demand is the problem: pork values hit a six-year low and lean hogs sit near contract lows even as cash and the cutout bounced Monday. The averted port strike removes one export risk.",
       "events": [
-        "Senators Warn China Stands to Gain From Farm Bill Pork Measure (Bloomberg Government News, 2026-11-21)",
-        "National Pork Board reports highlights ongoing demand challenges (Brownfield Ag News, 2026-11-23)",
-        "As Cattle Prices Bounce, Lean Hogs Could Fall as Low as $40 Before Support Kicks In (Barchart.com, 2026-11-23)"
+        "Lean hogs near contract lows on weak pork demand (The Pig Site)",
+        "Pork Board highlights ongoing demand challenges (Brownfield)",
+        "Pork and beef exports avoid disruption as port strike averted (National Hog Farmer)"
       ]
     },
     "cattle": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 4 up, 2 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Friday's Cattle on Feed was friendly (placements -7.3%), and higher cash backs it; tight supply remains the core. Watch two-sided policy risk: rising beef imports and USDA's herd-rebuilding programme on one side, screwworm cases keeping the Mexican border closed on the other.",
       "events": [
-        "Trump’s plan sparked anger, but beef imports had already been rising as US cattle numbers fell (Argus Leader, 2026-11-23)",
-        "COF is a Friendly Report (ADMIS, 2026-11-23)",
-        "Soybeans Rally With Equities, Grains Try to Follow: Cattle Disappoint (AgWeb, 2026-11-23)"
+        "Live cattle rally on bullish COF and higher cash (AgWeb, ADMIS)",
+        "USDA approves BRAND programme for herd growth (Farms.com)",
+        "US screwworm cases surge (Reuters)"
       ]
     },
     "feeders": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 4 up, 2 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Lower placements and the closed Mexican border keep feeder supply tight, but cheaper corn helps feedlot demand; screwworm spread is the key tail risk for both supply and sentiment.",
       "events": [
-        "Trump’s plan sparked anger, but beef imports had already been rising as US cattle numbers fell (Argus Leader, 2026-11-23)",
-        "COF is a Friendly Report (ADMIS, 2026-11-23)",
-        "Soybeans Rally With Equities, Grains Try to Follow: Cattle Disappoint (AgWeb, 2026-11-23)"
+        "Bullish COF lifts cattle complex (Barchart, ADMIS)",
+        "Screwworm cases surge, border cattle remain on hold (Reuters, RFD-TV)",
+        "USDA announces new tools for beef industry (Michigan Farm News)"
       ]
     },
     "class3": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Milk output still up about 2.4% y/y with cheese weak; reports of falling milk prices squeezing farm margins suggest supply growth may slow only with a lag.",
       "events": [
-        "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools (USDA Food and Nutrition (.gov), 2026-11-23)",
-        "Rising Costs And Falling Milk Prices Squeeze Dairy Farmers (RFD-TV, 2026-11-23)",
-        "Study confirms EU trade barriers cost U.S. dairy farmers billions (Feedstuffs, 2026-11-23)"
+        "Rising costs and falling milk prices squeeze dairy farmers (RFD-TV)",
+        "USDA cyberattack disrupts some farm payment systems (Brownfield)"
       ]
     },
     "class4": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "No new butter/powder news; the export side gets attention from a study on EU trade barriers costing US dairy, but nothing changes near-term NDM demand.",
       "events": [
-        "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools (USDA Food and Nutrition (.gov), 2026-11-23)",
-        "Rising Costs And Falling Milk Prices Squeeze Dairy Farmers (RFD-TV, 2026-11-23)",
-        "Study confirms EU trade barriers cost U.S. dairy farmers billions (Feedstuffs, 2026-11-23)"
+        "Study says EU trade barriers cost US dairy billions (Feedstuffs)",
+        "Milk prices falling as costs rise (RFD-TV)"
       ]
     },
     "palm": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "No new headlines for this market in the last 76 hours.",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "China halting palm buying as storage fills hits demand just as Malaysian stocks are well above average; crude at three-month lows also narrows the biodiesel incentive.",
       "events": [
-        "China Axes Palm Oil Purchases With Storage Space Running Out (Bloomberg.com, 2026-11-20)"
-      ],
-      "claude_fund_score": -0.35
+        "China halts palm oil purchases as storage fills (Bloomberg)",
+        "China stockpiles soyoil at 3-month-low prices (Bloomberg)",
+        "Crude near 3-month lows (WSJ)"
+      ]
     },
     "natgas": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 1 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Milder US weather erased heating demand over the weekend; the support comes from LNG pull as Europe turns cold, though Altamira's restart slipped into December.",
       "events": [
-        "Alberta bill would allow province to fund, construct natural gas pipelines if industry does not meet demand (Reuters, 2026-11-23)",
-        "U.S. Natural Gas Futures Sink on Milder Weather Outlook (WSJ, 2026-11-23)",
-        "U.S. Natural Gas Futures Hand Back Last Week’s Gains (WSJ, 2026-11-23)"
+        "Weekend weather wipeout and HDD losses sink natgas (NGI, WSJ)",
+        "Cold Europe favours transatlantic US LNG trade (NGI)",
+        "Altamira LNG turbine repair pushed to December (NGI)"
       ]
     },
     "crude": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 76 hours; the news flow is mixed on supply and demand, prices mostly reported lower (1 supply-tight, 1 supply-loose, 0 up, 5 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Middle East crude keeps flowing despite Gulf attacks and Hormuz mine claims, so the risk premium is draining; with OPEC+ holding December targets, the market is trading surplus talk into 2027. WTI is near three-month lows around $80.",
       "events": [
-        "Oil Futures Extend Decline as Middle East Crude Continues to Flow (WSJ, 2026-11-23)",
-        "Oil Prices Fall as Traders Weigh Supply Surplus, Gulf Attacks (WSJ, 2026-11-23)",
-        "Oil Futures Start Week Lower as Middle East Flows Continue (WSJ, 2026-11-23)"
+        "Oil holds near three-month lows despite Hormuz mine claims (OilPrice.com)",
+        "Brent below $90 as banks split on 2027 outlook (OilPrice.com)",
+        "Oil falls as Middle East flows continue (WSJ)"
       ]
     },
     "ulsd": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-20",
-      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "Distillate stocks remain below average, keeping cracks wide even as crude falls; Red Sea/Houthi risk is the main upside driver for diesel.",
       "events": [
-        "Crop Trader’s Amazon Barges Swap Diesel for Biofuel to Cut Costs (Bloomberg.com, 2026-11-23)",
-        "What moves soybean prices? Diesel holds the answer (Farm Progress, 2026-11-23)",
-        "Wheat market wild cards include China, Black Sea and diesel prices (Farm Progress, 2026-11-23)"
+        "Oil falls on supply outlook and shipping risks (WSJ)",
+        "Dangote refinery IPO plan approved (Reuters)"
       ]
     },
     "rbob": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": "2026-11-19",
-      "fundamental": "No new headlines for this market in the last 76 hours.",
+      "date": "2026-11-24",
+      "by": "claude",
+      "time": "07:55 CT",
+      "fundamental": "US refiners ran hard and rebuilt gasoline stocks above average, compressing margins into the low-demand season; Germany's planned price cap is a small demand-side footnote.",
       "events": [
-        "Gasoline stocks rose 5.2 mb, above the 5-year norm (EIA)",
-        "Crude rebounds on Hormuz attacks (OilPrice.com)"
+        "America's refiners drowned their own gasoline windfall (OilPrice.com)",
+        "Germany to press ahead with gasoline price cap from 2027 (Bloomberg)"
       ]
     },
     "gold": {
@@ -261,6 +244,5 @@
       "fundamental": "No new headlines for this market in the last 76 hours.",
       "events": []
     }
-  },
-  "bot_note": "Automatic backup read (GitHub Actions) at 2026-11-23 19:14 CT: Claude's desk read had not run for 5+ hours."
+  }
 }

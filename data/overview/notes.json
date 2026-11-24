@@ -1,261 +1,266 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-23",
   "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
   "markets": {
     "corn": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "7 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 2 up, 3 down by keyword).",
+      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 4 up, 0 down by keyword).",
       "events": [
-        "Ag Market View for Nov 19.2026 (ADMIS, 2026-11-19)",
-        "USDA: Corn use for fuel ethanol at 438 million bushels in September (Ethanol Producer Magazine, 2026-11-21)",
-        "Chicago Grain Markets: Corn and Wheat Fall as Soybeans Gain (AgroLatam, 2026-11-20)"
+        "Ag Market View for Nov 23.2026 (ADMIS, 2026-11-23)",
+        "Corn harvest continues to lag in South Dakota (Brownfield Ag News, 2026-11-23)",
+        "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong (Ohio's Country Journal, 2026-11-23)"
       ]
     },
     "soybeans": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "7 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 2 down by keyword).",
+      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 5 up, 0 down by keyword).",
       "events": [
-        "South American Planting Passes Halfway (ADMIS, 2026-11-20)",
-        "Double Digit Gains in Soybeans, Livestock Mixed | Friday, Nov. 20, 2026 (Successful Farming, 2026-11-20)",
-        "Grain Spreads: Bullish Inputs for Soybeans (Barchart.com, 2026-11-20)"
+        "Wkly Futures Market Summary For 11.23.26 (ADMIS, 2026-11-23)",
+        "Higher Trade With Soybean Oil The Outlier (ADMIS, 2026-11-23)",
+        "Soybeans Rally With Equities, Grains Try to Follow: Cattle Disappoint (AgWeb, 2026-11-23)"
       ]
     },
     "meal": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "fundamental": "No new headlines for this market in the last 76 hours.",
       "events": [
         "Skepticism About AI Is Crushing Stock Prices Around the World (Bloomberg.com, 2026-11-20)"
       ]
     },
     "oil": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "fundamental": "2 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
       "events": [
-        "China Axes Palm Oil Purchases With Storage Space Running Out (Bloomberg.com, 2026-11-20)"
+        "Crop Trader’s Amazon Barges Swap Diesel for Biofuel to Cut Costs (Bloomberg.com, 2026-11-23)",
+        "Higher Trade With Soybean Oil The Outlier (ADMIS, 2026-11-23)"
       ]
     },
     "wheat": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "7 headlines in the last 30 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), price reports mixed (0 supply-tight, 1 supply-loose, 3 up, 3 down by keyword).",
+      "fundamental": "7 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
       "events": [
-        "India's wheat area set for biggest drop in 26 years as farmers switch crops (Reuters, 2026-11-20)",
-        "Chicago Grain Markets: Corn and Wheat Fall as Soybeans Gain (AgroLatam, 2026-11-20)",
-        "Wheat Posting Mixed Friday Trade (Barchart.com, 2026-11-20)"
+        "Winter Wheat Conditions Improve for Third Straight Week as USDA Reports Stronger Crop Ratings (AgroLatam, 2026-11-23)",
+        "Wheat Posts Mixed Trade on Monday (Barchart.com, 2026-11-23)",
+        "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong (Ohio's Country Journal, 2026-11-23)"
       ]
     },
     "kc": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "7 headlines in the last 30 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), price reports mixed (0 supply-tight, 1 supply-loose, 3 up, 3 down by keyword).",
+      "fundamental": "7 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
       "events": [
-        "India's wheat area set for biggest drop in 26 years as farmers switch crops (Reuters, 2026-11-20)",
-        "Chicago Grain Markets: Corn and Wheat Fall as Soybeans Gain (AgroLatam, 2026-11-20)",
-        "Wheat Posting Mixed Friday Trade (Barchart.com, 2026-11-20)"
+        "Winter Wheat Conditions Improve for Third Straight Week as USDA Reports Stronger Crop Ratings (AgroLatam, 2026-11-23)",
+        "Wheat Posts Mixed Trade on Monday (Barchart.com, 2026-11-23)",
+        "Corn Harvest Nears Finish Line as Wheat Conditions Remain Strong (Ohio's Country Journal, 2026-11-23)"
       ]
     },
     "cotton": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 0 down by keyword).",
       "events": [
-        "Greaves Cotton Accelerates Global Marine Business Expansion Through Multiflex Marine; Targets Europe as a Key Growth Market – Company Announcement - FT.com (Financial Times, 2026-11-20)",
-        "Weather extremes bring mixed cotton yields (Farm Progress, 2026-11-20)"
+        "UPDATE - MAR-MAY COTTON #2 SPREAD (ECTH27:K27) (Barchart.com, 2026-11-23)",
+        "Floyd County Leads Nation in Upland Cotton Production (RFD-TV, 2026-11-23)",
+        "Cotton Rallying on Monday Morning (Barchart.com, 2026-11-23)"
       ]
     },
     "hogs": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "4 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 0 up, 2 down by keyword).",
+      "fundamental": "8 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), price reports mixed (2 supply-tight, 0 supply-loose, 3 up, 3 down by keyword).",
       "events": [
-        "Thailand Opens Door to US Pork, Raising Risks for Farmers (Bloomberg.com, 2026-11-20)",
-        "Hogs Falls Lower on Friday as Pork Hits 6+ Year Low (Barchart.com, 2026-11-20)",
-        "Hogs Falling Back on Friday (Barchart.com, 2026-11-20)"
+        "Senators Warn China Stands to Gain From Farm Bill Pork Measure (Bloomberg Government News, 2026-11-21)",
+        "National Pork Board reports highlights ongoing demand challenges (Brownfield Ag News, 2026-11-23)",
+        "As Cattle Prices Bounce, Lean Hogs Could Fall as Low as $40 Before Support Kicks In (Barchart.com, 2026-11-23)"
       ]
     },
     "cattle": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), price reports mixed (3 supply-tight, 1 supply-loose, 1 up, 1 down by keyword).",
+      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 4 up, 2 down by keyword).",
       "events": [
-        "Flesh-eating screwworm cases surge in US, keeping ranchers on alert (Reuters, 2026-11-20)",
-        "Traders Pushing Futures Above All Moving Averages (ADMIS, 2026-11-20)",
-        "Cattle Post Mixed Trade Heading into Another Bullish Cattle on Feed Report (Barchart.com, 2026-11-20)"
+        "Trump’s plan sparked anger, but beef imports had already been rising as US cattle numbers fell (Argus Leader, 2026-11-23)",
+        "COF is a Friendly Report (ADMIS, 2026-11-23)",
+        "Soybeans Rally With Equities, Grains Try to Follow: Cattle Disappoint (AgWeb, 2026-11-23)"
       ]
     },
     "feeders": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), price reports mixed (3 supply-tight, 1 supply-loose, 1 up, 1 down by keyword).",
+      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 4 up, 2 down by keyword).",
       "events": [
-        "Flesh-eating screwworm cases surge in US, keeping ranchers on alert (Reuters, 2026-11-20)",
-        "Traders Pushing Futures Above All Moving Averages (ADMIS, 2026-11-20)",
-        "Cattle Post Mixed Trade Heading into Another Bullish Cattle on Feed Report (Barchart.com, 2026-11-20)"
+        "Trump’s plan sparked anger, but beef imports had already been rising as US cattle numbers fell (Argus Leader, 2026-11-23)",
+        "COF is a Friendly Report (ADMIS, 2026-11-23)",
+        "Soybeans Rally With Equities, Grains Try to Follow: Cattle Disappoint (AgWeb, 2026-11-23)"
       ]
     },
     "class3": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "3 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
+      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
       "events": [
-        "Verlinvest to buy China Resources' stake in oat milk maker Oatly (Reuters, 2026-11-20)",
-        "Nonfat dry milk increases, cheese blocks drop Friday at CME (Brownfield Ag News, 2026-11-20)",
-        "Trust But Verify: How the FARM Program Became Dairy's Shield Against Activists and a Key to Global Markets (Dairy Herd, 2026-11-20)"
+        "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools (USDA Food and Nutrition (.gov), 2026-11-23)",
+        "Rising Costs And Falling Milk Prices Squeeze Dairy Farmers (RFD-TV, 2026-11-23)",
+        "Study confirms EU trade barriers cost U.S. dairy farmers billions (Feedstuffs, 2026-11-23)"
       ]
     },
     "class4": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "3 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
+      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
       "events": [
-        "Verlinvest to buy China Resources' stake in oat milk maker Oatly (Reuters, 2026-11-20)",
-        "Nonfat dry milk increases, cheese blocks drop Friday at CME (Brownfield Ag News, 2026-11-20)",
-        "Trust But Verify: How the FARM Program Became Dairy's Shield Against Activists and a Key to Global Markets (Dairy Herd, 2026-11-20)"
+        "Information Collection: Determining Eligibility for Free and Reduced Price Meals and Free Milk in Schools (USDA Food and Nutrition (.gov), 2026-11-23)",
+        "Rising Costs And Falling Milk Prices Squeeze Dairy Farmers (RFD-TV, 2026-11-23)",
+        "Study confirms EU trade barriers cost U.S. dairy farmers billions (Feedstuffs, 2026-11-23)"
       ]
     },
     "palm": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "fundamental": "No new headlines for this market in the last 76 hours.",
       "events": [
         "China Axes Palm Oil Purchases With Storage Space Running Out (Bloomberg.com, 2026-11-20)"
       ],
-      "claude_fund_score": -0.35,
-      "fund_score": -0.35
+      "claude_fund_score": -0.35
     },
     "natgas": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "fundamental": "8 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 1 down by keyword).",
       "events": [
-        "Natgas rebounds on weather (Yahoo Finance)",
-        "FERC approves Sabine Pass LNG expansion (news flow)"
+        "Alberta bill would allow province to fund, construct natural gas pipelines if industry does not meet demand (Reuters, 2026-11-23)",
+        "U.S. Natural Gas Futures Sink on Milder Weather Outlook (WSJ, 2026-11-23)",
+        "U.S. Natural Gas Futures Hand Back Last Week’s Gains (WSJ, 2026-11-23)"
       ]
     },
     "crude": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "8 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 2 down by keyword).",
+      "fundamental": "8 headlines in the last 76 hours; the news flow is mixed on supply and demand, prices mostly reported lower (1 supply-tight, 1 supply-loose, 0 up, 5 down by keyword).",
       "events": [
-        "Oil Futures Post Weekly Losses on Rising Middle East Supply (WSJ, 2026-11-20)",
-        "Oil Futures Fall for Third Straight Week on Supply Outlook (WSJ, 2026-11-20)",
-        "Oil Futures Extend Decline on Improving Supply (WSJ, 2026-11-20)"
+        "Oil Futures Extend Decline as Middle East Crude Continues to Flow (WSJ, 2026-11-23)",
+        "Oil Prices Fall as Traders Weigh Supply Surplus, Gulf Attacks (WSJ, 2026-11-23)",
+        "Oil Futures Start Week Lower as Middle East Flows Continue (WSJ, 2026-11-23)"
       ]
     },
     "ulsd": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-20",
-      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
       "events": [
-        "Hormuz tanker attacks (OilPrice.com)",
-        "Houthi attacks revive product-shipping risk (OilPrice.com)"
+        "Crop Trader’s Amazon Barges Swap Diesel for Biofuel to Cut Costs (Bloomberg.com, 2026-11-23)",
+        "What moves soybean prices? Diesel holds the answer (Farm Progress, 2026-11-23)",
+        "Wheat market wild cards include China, Black Sea and diesel prices (Farm Progress, 2026-11-23)"
       ]
     },
     "rbob": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": "2026-11-19",
-      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "fundamental": "No new headlines for this market in the last 76 hours.",
       "events": [
         "Gasoline stocks rose 5.2 mb, above the 5-year norm (EIA)",
         "Crude rebounds on Hormuz attacks (OilPrice.com)"
       ]
     },
     "gold": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": null,
-      "fundamental": "8 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 1 up, 5 down by keyword).",
+      "fundamental": "8 headlines in the last 76 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported higher (0 supply-tight, 1 supply-loose, 7 up, 2 down by keyword).",
       "events": [
-        "Gold Falls to Nearly 15-Month Low On Interest-Rate Expectations (WSJ, 2026-11-20)",
-        "Gold Futures Inch Higher As U.S. Yields, Dollar Slip (WSJ, 2026-11-20)",
-        "Tether Insiders Seek to Turn Gold Into a 4% Yield Machine (Bloomberg.com, 2026-11-20)"
+        "Gold Rebounds as Traders Pare Bets on Near-Term Fed Rate Hikes (Bloomberg.com, 2026-11-23)",
+        "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
+        "Gold Futures Rebound as Nvidia News Lifts Markets (WSJ, 2026-11-23)"
       ]
     },
     "silver": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": null,
-      "fundamental": "4 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 2 down by keyword).",
+      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
       "events": [
-        "Gold, Silver Drop to Lowest Levels in Over a Year (WSJ, 2026-11-20)",
-        "Gold and silver could return to mid-2025 levels as inflation-hedge bid evaporates – SIA’s Cieszynski (Kitco, 2026-11-20)",
-        "Gold and silver prices fall again: How much lower could they go? (Kitco, 2026-11-20)"
+        "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
+        "Goldman favours gold over silver as central bank demand supports prices (Investing.com, 2026-11-21)",
+        "Gold and silver could return to mid-2025 levels as inflation-hedge bid evaporates – SIA’s Cieszynski (Kitco, 2026-11-20)"
       ]
     },
     "copper": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": null,
-      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "fundamental": "7 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 1 up, 4 down by keyword).",
       "events": [
-        "Two Chinese copper smelters blend concentrate overseas to boost supply, sources say (Reuters, 2026-11-20)"
+        "Copper at Lowest Since April Amid AI Market Turmoil, Chinese Demand Concerns (WSJ, 2026-11-23)",
+        "Copper Slump Tests Kast’s Push to Rein In Chile’s Fiscal Deficit (Bloomberg.com, 2026-11-23)",
+        "Copper Wavers Near $12,000 a Ton After Meltdown on AI Jitters (Bloomberg.com, 2026-11-23)"
       ]
     },
     "aluminum": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": null,
-      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "fundamental": "No new headlines for this market in the last 76 hours.",
       "events": []
     },
     "platinum": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": null,
-      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "fundamental": "No new headlines for this market in the last 76 hours.",
       "events": []
     },
     "palladium": {
-      "date": "2026-11-20",
+      "date": "2026-11-23",
       "by": "bot",
-      "time": "20:51 CT",
+      "time": "19:14 CT",
       "claude_date": null,
-      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "fundamental": "No new headlines for this market in the last 76 hours.",
       "events": []
     }
   },
-  "bot_note": "Automatic backup read (GitHub Actions) at 2026-11-20 20:51 CT: Claude's desk read had not run for 5+ hours."
+  "bot_note": "Automatic backup read (GitHub Actions) at 2026-11-23 19:14 CT: Claude's desk read had not run for 5+ hours."
 }

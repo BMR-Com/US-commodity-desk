@@ -1,21 +1,21 @@
 {
- "updated": "2026-11-21 02:51 UTC",
+ "updated": "2026-11-24 01:14 UTC",
  "by": "bot",
  "views": {
   "corn": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.49
+   "score": -0.52
   },
   "soybeans": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.35
+   "score": 0.36
   },
   "meal": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.27
+   "score": 0.33
   },
   "oil": {
    "view": "bearish",
@@ -28,29 +28,29 @@
    "score": -0.61
   },
   "kc": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.32
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.47
   },
   "cotton": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.06
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.34
   },
   "hogs": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.25
+   "score": -0.2
   },
   "cattle": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.32
+   "score": 0.37
   },
   "feeders": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.34
+   "score": 0.28
   },
   "class3": {
    "view": "bearish",
@@ -63,59 +63,59 @@
    "score": 0.17
   },
   "palm": {
-   "view": "strongly bearish",
-   "shade": "bear3",
-   "score": -0.46
-  },
-  "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.24
+   "score": -0.4
+  },
+  "natgas": {
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.47
   },
   "crude": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.1
+   "score": 0.11
   },
   "ulsd": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.27
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.17
   },
   "rbob": {
    "view": "mildly bearish",
    "shade": "bear1",
-   "score": -0.17
+   "score": -0.16
   },
   "gold": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.54
+   "score": -0.55
   },
   "silver": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.62
+   "score": -0.55
   },
   "copper": {
-   "view": "strongly bearish",
-   "shade": "bear3",
-   "score": -0.51
-  },
-  "aluminum": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.18
-  },
-  "platinum": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": -0.02
-  },
-  "palladium": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.25
+   "score": -0.4
+  },
+  "aluminum": {
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.03
+  },
+  "platinum": {
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.09
+  },
+  "palladium": {
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.14
   }
  },
  "alerts": {
@@ -128,7 +128,9 @@
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [],
+  "feeders": [
+   "Holding below the fund sell trigger (200-day average) 334.692"
+  ],
   "class3": [],
   "class4": [],
   "palm": [],

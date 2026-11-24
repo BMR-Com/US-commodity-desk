@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24 23:06 UTC",
+ "generated": "2026-11-24 23:38 UTC",
  "today": "2026-11-24",
  "sources": [
   {
@@ -29,8 +29,8 @@
   {
    "group": "Prices",
    "source": "Per-contract history (TradingView)",
-   "latest": "2026-11-24",
-   "age": 0,
+   "latest": "2026-11-25",
+   "age": -1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -113,8 +113,8 @@
   {
    "group": "Gold",
    "source": "iShares IAU ounces in trust (product page, daily snapshot)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -329,8 +329,8 @@
   {
    "group": "Prices",
    "source": "Per-contract history, platinum and palladium (TradingView)",
-   "latest": "2026-11-24",
-   "age": 0,
+   "latest": "2026-11-25",
+   "age": -1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

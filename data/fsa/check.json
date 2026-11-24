@@ -1,14 +1,9 @@
 {
  "checked": "2026-11-24",
- "ok": false,
- "failures": [
-  "cotton Texas tx_abandonment: {'central': 0.472, 'lo95': 0.348, 'hi95': 0.653} vs crop_projection.json {'central': 0.471, 'lo95': 0.354, 'hi95': 0.654}",
-  "cotton Texas tx_harvested_acres: {'central': 3.118, 'lo95': 2.046, 'hi95': 3.848} vs crop_projection.json {'central': 3.123, 'lo95': 2.044, 'hi95': 3.811}",
-  "cotton Texas texas: {'central': 3.28, 'lo68': 2.323, 'hi68': 3.616, 'lo95': 2.073, 'hi95': 4.215, 'lo99': 1.951, 'hi99': 4.434} vs crop_projection.json {'central': 3.286, 'lo68': 2.302, 'hi68': 3.608, 'lo95': 2.084, 'hi95': 4.171, 'lo99': 1.971, 'hi99': 4.388}",
-  "cotton Texas abandonment {'central': 0.516, 'lo95': 0.345, 'hi95': 0.688} vs {'central': 0.512, 'lo95': 0.346, 'hi95': 0.677}"
- ],
+ "ok": true,
+ "failures": [],
  "notes": [
-  "cotton: Texas conditional block matches crop_projection.json (2026-11-20)",
+  "cotton: Texas conditional block matches crop_projection.json (2026-11-24)",
   "cotton: 17 states compared with crop.json estimate"
  ],
  "pending": []

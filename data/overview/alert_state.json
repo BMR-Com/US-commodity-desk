@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-24 13:50 UTC",
+ "updated": "2026-11-24 17:55 UTC",
  "by": "claude",
  "views": {
   "corn": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.47
+   "score": -0.58
   },
   "soybeans": {
    "view": "strongly bullish",
@@ -25,7 +25,7 @@
   "wheat": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.55
+   "score": -0.61
   },
   "kc": {
    "view": "strongly bearish",
@@ -35,7 +35,7 @@
   "cotton": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.21
+   "score": 0.33
   },
   "hogs": {
    "view": "bearish",
@@ -50,27 +50,27 @@
   "feeders": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.28
+   "score": 0.22
   },
   "class3": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.26
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.17
   },
   "class4": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.22
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.16
   },
   "palm": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.42
+   "score": -0.44
   },
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.36
+   "score": -0.21
   },
   "crude": {
    "view": "neutral",
@@ -90,12 +90,12 @@
   "gold": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.55
+   "score": -0.65
   },
   "silver": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.55
+   "score": -0.61
   },
   "copper": {
    "view": "strongly bearish",
@@ -103,9 +103,9 @@
    "score": -0.5
   },
   "aluminum": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": -0.03
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.15
   },
   "platinum": {
    "view": "neutral",
@@ -120,7 +120,10 @@
  },
  "alerts": {
   "corn": [],
-  "soybeans": [],
+  "soybeans": [
+   "Broke above R1 1,240.75",
+   "Broke above the fund buy trigger (20-day momentum flip) 1,241.51"
+  ],
   "meal": [],
   "oil": [],
   "wheat": [],
@@ -139,18 +142,11 @@
   "gold": [],
   "silver": [],
   "copper": [],
-  "aluminum": [
-   "Broke above R1 2,761.8",
-   "Broke above R2 2,783.2"
-  ],
+  "aluminum": [],
   "platinum": [],
   "palladium": []
  },
  "news": [
-  "2026-11-16 Wheat falls on Black Sea talks optimism; Dec back below 593",
-  "2026-11-16 Oil lower on supply-surplus worries; Brent ~94.5",
-  "2026-11-16 Soybeans slip under 250-day trigger ahead of Trump-Xi summit",
-  "2026-11-16 Screwworm infestations past 100 across TX/NM/AZ",
   "2026-11-16 Crude -4% to ~85 on IEA surplus/peace hopes; diesel < $6 retail",
   "2026-11-16 Cotton Dec settles 76.95, below 77.05 support",
   "2026-11-16 HPAI returns to Oklahoma dairy herds",
@@ -186,6 +182,10 @@
   "2026-11-20 Equity rout: Nasdaq ~-4.8%, S&P ~-3.3%, VIX ~35; gold -4%, silver -8%",
   "2026-11-20 US screwworm cases surge (Reuters)",
   "2026-11-24 WTI ~80 near 3-month lows despite Hormuz mine claims (OilPrice.com)",
-  "2026-11-24 Views: soybeans and meal to strongly bullish, crude to neutral, natgas to bearish, class4 to bullish; aluminum above R2"
+  "2026-11-24 Views: soybeans and meal to strongly bullish, crude to neutral, natgas to bearish, class4 to bullish; aluminum above R2",
+  "2026-11-24 Soybeans Jan ~1,243.75 above R1 1,240.75 and fund buy trigger 1,241.51",
+  "2026-11-24 Views: class3 to mildly bearish, class4 to mildly bullish, aluminum to mildly bearish (back below R1)",
+  "2026-11-24 Natgas Jan +6% to ~3.74 on LNG demand",
+  "2026-11-24 Metals rout: silver -5.8%, copper -5.2%, platinum -5%; Petrobras seeks more corn ethanol deals (Reuters)"
  ]
 }

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24 14:18 UTC",
+ "generated": "2026-11-24 22:59 UTC",
  "today": "2026-11-24",
  "sources": [
   {
@@ -17,8 +17,8 @@
   {
    "group": "Prices",
    "source": "Aluminum Midwest premium futures, AUP (Yahoo/TradingView)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -65,8 +65,8 @@
   {
    "group": "Gold",
    "source": "GLD price and volume (Yahoo)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 2,
    "cadence": "daily",
@@ -77,8 +77,8 @@
   {
    "group": "Gold",
    "source": "GLD option chain (Yahoo; archived each evening)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 1,
    "cadence": "daily",
@@ -89,8 +89,8 @@
   {
    "group": "Silver",
    "source": "SLV price and volume (Yahoo)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 2,
    "cadence": "daily",
@@ -101,8 +101,8 @@
   {
    "group": "Silver",
    "source": "SLV option chain (Yahoo; archived each evening)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 1,
    "cadence": "daily",
@@ -125,8 +125,8 @@
   {
    "group": "Gold",
    "source": "iShares IAU shares outstanding, daily history (product-page download)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -173,8 +173,8 @@
   {
    "group": "Gold",
    "source": "US 10-yr real yield (Treasury)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -209,8 +209,8 @@
   {
    "group": "Silver",
    "source": "iShares SLV ounces in trust (product page, daily snapshot)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -221,8 +221,8 @@
   {
    "group": "Silver",
    "source": "iShares SLV shares outstanding, daily history (product-page download)",
-   "latest": "2026-11-23",
-   "age": 1,
+   "latest": "2026-11-24",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

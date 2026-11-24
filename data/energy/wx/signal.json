@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T02:36",
+ "generated": "2026-11-24T05:53",
  "regime": "LOW",
  "action": "No colder forecast trend; trade the fundamentals and the curve.",
  "cold_checks_on": 1,
@@ -7,13 +7,13 @@
   {
    "key": "trend72",
    "on": false,
-   "text": "15-day ensembles colder over 2-3 days: -12.2 HDD on matched dates (\u2248+20 Bcf)",
+   "text": "15-day ensembles colder over 2-3 days: -12.1 HDD on matched dates (\u2248+19 Bcf)",
    "role": "trigger"
   },
   {
    "key": "trend24",
    "on": false,
-   "text": "\u2026and over ~24h: -0.8 HDD",
+   "text": "\u2026and over ~24h: +0.7 HDD",
    "role": "trigger"
   },
   {
@@ -25,7 +25,7 @@
   {
    "key": "wk34",
    "on": false,
-   "text": "weeks 3-4 extended models -12 HDD/week vs normal",
+   "text": "weeks 3-4 extended models -11 HDD/week vs normal",
    "role": "trigger"
   },
   {
@@ -48,29 +48,29 @@
   }
  ],
  "trend_24h": {
-  "avg_hdd": -0.8,
-  "bcf": -1,
+  "avg_hdd": 0.7,
+  "bcf": 1,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": -0.4,
-    "days": 8,
-    "vs_run": "2026-11-23T01:59"
+    "hdd": -1.5,
+    "days": 9,
+    "vs_run": "2026-11-23T08:24"
    },
    "ECMWF ENS": {
-    "hdd": -1.3,
+    "hdd": -0.9,
     "days": 13,
-    "vs_run": "2026-11-23T01:59"
+    "vs_run": "2026-11-23T08:24"
    },
    "ECMWF AIFS ENS": {
-    "hdd": -0.8,
-    "days": 13,
-    "vs_run": "2026-11-23T01:59"
+    "hdd": 4.4,
+    "days": 14,
+    "vs_run": "2026-11-23T08:24"
    }
   }
  },
  "trend_72h": {
-  "avg_hdd": -12.2,
-  "bcf": -20,
+  "avg_hdd": -12.1,
+  "bcf": -19,
   "by_model": {
    "GEFS (GFS ensemble)": {
     "hdd": -7.4,
@@ -78,7 +78,7 @@
     "vs_run": "2026-11-22T01:39"
    },
    "ECMWF ENS": {
-    "hdd": -14.3,
+    "hdd": -14.1,
     "days": 12,
     "vs_run": "2026-11-22T01:39"
    },
@@ -98,25 +98,25 @@
   }
  },
  "extended": {
-  "wk34_avg": -11.7,
+  "wk34_avg": -11.3,
   "by_model": {
    "GEFS 35-day": {
     "wk3": {
      "from": "2026-12-08",
      "to": "2026-12-14",
-     "mean": -28.9,
-     "p10": -51.9,
-     "p90": -0.7,
-     "share_cold": 0.097,
+     "mean": -22.6,
+     "p10": -55.9,
+     "p90": 4.6,
+     "share_cold": 0.161,
      "chg_24h": null
     },
     "wk4": {
      "from": "2026-12-15",
      "to": "2026-12-21",
-     "mean": -5.2,
-     "p10": -37.9,
-     "p90": 34.0,
-     "share_cold": 0.419,
+     "mean": -9.4,
+     "p10": -54.3,
+     "p90": 32.3,
+     "share_cold": 0.355,
      "chg_24h": null
     }
    },

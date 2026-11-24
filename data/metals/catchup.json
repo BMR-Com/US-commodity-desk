@@ -1,0 +1,16 @@
+[
+ {
+  "at": "2026-11-24 23:06 UTC",
+  "late": [],
+  "needs_mac": [
+   "NYMEX platinum and palladium warehouse stocks (via Mac collector)",
+   "COMEX warehouse stocks (CME daily reports; via Mac collector)"
+  ],
+  "last_run": {
+   "id": 45504569820,
+   "conclusion": "success",
+   "at": "2026-11-24T22:59:42Z"
+  },
+  "action": "none"
+ }
+]

@@ -1,21 +1,6 @@
 {
-"generated": "2026-11-23 23:22 UTC",
+"generated": "2026-11-24 00:02 UTC",
 "events": [
-{
-"date": "2026-11-16",
-"time": "10:00 AM CT",
-"event": "USDA export inspections",
-"cat": "USDA",
-"markets": [
-"ZC",
-"ZS",
-"ZW",
-"KE"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-11-17",
 "time": "3:30 PM CT",
@@ -3035,6 +3020,69 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-02-22",
+"time": "",
+"event": "IAI primary aluminium production (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": "https://international-aluminium.org/statistics/primary-aluminium-production/",
+"estimated": true
+},
+{
+"date": "2027-02-22",
+"time": "",
+"event": "ICSG copper market press release (monthly) (date estimated)",
+"cat": "Metals",
+"markets": [
+"HG"
+],
+"importance": 2,
+"link": "https://icsg.org/press-releases/",
+"estimated": true
+},
+{
+"date": "2027-02-22",
+"time": "",
+"event": "Cotton Mar 27: first notice day",
+"cat": "ICE contract",
+"markets": [
+"CT"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-22",
+"time": "10:00 AM CT",
+"event": "USDA export inspections",
+"cat": "USDA",
+"markets": [
+"ZC",
+"ZS",
+"ZW",
+"KE"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-22",
+"time": "",
+"event": "WTI crude Mar 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"CL"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 }
 ]
 }

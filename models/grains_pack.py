@@ -840,7 +840,7 @@ def outlook(p):
             L.append(f"Managed money net {k['last']:+.1f} MMT ({k['wow']:+.1f} w/w), {nth(k['pct'])} percentile since 2006"
                      + (" — crowded long." if k["pct"] >= 85 else " — crowded short." if k["pct"] <= 15 else "."))
         sp = (p["spreads"].get(c) or [None])[0]
-        if sp:
+        if sp and sp["current"] is not None and sp["now_med"] is not None:  # now_med is None with under 5 years of history
             L.append(f"{sp['pair']} spread {sp['current']:+g}c vs a {sp['now_med']:+g}c median at this time of year "
                      f"({nth(sp['pct_rank'])} percentile).")
         out.append(dict(key=c, name=nm, lines=L))

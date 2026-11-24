@@ -28,7 +28,8 @@ def main():
         d = d[d.trade_date > last_real]
         dt = pd.to_datetime(d.date)
         now_ct = pd.Timestamp.now(tz="America/Chicago")
-        d = d[(dt.dt.dayofweek < 5) & ((dt.dt.date < now_ct.date()) | (now_ct.hour >= 15))]  # weekdays, settled bars only
+        # weekdays, settled bars only: past days, or today's bar after 3pm CT (an Asian-session bar dated tomorrow, e.g. FCPO, is not settled)
+        d = d[(dt.dt.dayofweek < 5) & ((dt.dt.date < now_ct.date()) | ((dt.dt.date == now_ct.date()) & (now_ct.hour >= 15)))]
         if d.empty:
             continue
         code = d.series.str[len(sym):]

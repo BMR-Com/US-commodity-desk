@@ -165,6 +165,8 @@ def futures_implied():
                          class3_futures=x.get("DC"), class3_implied=round(c["class3"], 2),
                          class4_futures=x.get("GDK"), class4_implied=round(c["class4"], 2),
                          cheese=x.CSC, butter=x.CB, ndm=x.GNF, whey=x.DY))
+    if not rows:  # latest CME day has no dairy settlements (e.g. a partial fallback day)
+        return None
     df = pd.DataFrame(rows)
     df["class3_gap"] = (df.class3_futures - df.class3_implied).round(2)
     df["class4_gap"] = (df.class4_futures - df.class4_implied).round(2)

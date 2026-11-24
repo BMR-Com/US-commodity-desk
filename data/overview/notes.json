@@ -1,248 +1,246 @@
 {
-  "updated": "2026-11-24",
-  "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
-  "markets": {
-    "corn": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "Brazil's corn-ethanol build-out is gaining a new buyer, with Petrobras seeking more supply deals, which supports Brazilian domestic corn use and could slow its export surplus over time. Near term, Dec delivery and a finished US harvest keep the tone heavy; rail-merger worries are a logistics footnote.",
-      "events": [
-        "Petrobras to seek more corn ethanol deals after Neomille (Reuters)",
-        "Corn growers raise concerns over rail merger (Brownfield)",
-        "Corn and beans tick higher overnight as dollar pauses (Pro Farmer)"
-      ]
-    },
-    "soybeans": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "Jan beans pushed through 1,240 resistance with a pause in the dollar and steady risk appetite in ags; there is no fresh Chinese buying headline, so the move is technical and fund-driven more than a demand change.",
-      "events": [
-        "Soybeans higher overnight (Brownfield)",
-        "Corn, soybeans tick higher as dollar rally pauses (Pro Farmer)",
-        "China stockpiles soyoil at 3-month-low prices (Bloomberg)"
-      ]
-    },
-    "meal": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "Meal is again leading the crush (Jan up about 2%), as weak crude and soyoil push processors' margin onto meal; no new export or Argentine news.",
-      "events": [
-        "Meal Jan +2% to ~351 (Yahoo Finance/CBOT)",
-        "Soybean oil lags the soy complex (ADMIS)"
-      ]
-    },
-    "oil": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "Soyoil faces two headwinds: crude at three-month lows erodes biofuel blending economics, and China is building soyoil reserves with domestic prices at a three-month low, signalling surplus there rather than import need.",
-      "events": [
-        "China stockpiles soyoil as domestic prices hit 3-month low (Bloomberg)",
-        "Soybean oil lags the soy complex (ADMIS)",
-        "Brent below $90, WTI near 3-month lows (OilPrice.com, WSJ)"
-      ]
-    },
-    "wheat": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "Overnight Black Sea support faded and Chicago slipped as the dollar firmed early; improving US winter wheat ratings keep 2027 supply risk low.",
-      "events": [
-        "Chicago wheat slips on stronger dollar (Investing.com)",
-        "Black Sea tensions and export demand lift wheat overnight (Fastmarkets)",
-        "Winter wheat ratings up a third week (USDA via AgroLatam)"
-      ]
-    },
-    "kc": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "HRW condition gains on the Plains reduce winterkill and drought worries for the 2027 crop; overnight strength comes from Black Sea headlines rather than US fundamentals.",
-      "events": [
-        "Winter wheat ratings up a third week (USDA via AgroLatam)",
-        "Black Sea tensions lift wheat overnight (Fastmarkets)",
-        "KC wheat mixed against a firmer dollar (Pro Farmer)"
-      ]
-    },
-    "cotton": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "Texas Plains drought losses are confirmed in fresh field reports, supporting the desk's below-USDA crop view; demand news is thin and the strong dollar/weak real remain export headwinds. Focus on old-crop Mar/May.",
-      "events": [
-        "Drought decimates cotton yields on the Texas Plains (Farm Progress)",
-        "Mar/May cotton spread update (Barchart)",
-        "Cotton rallies Monday morning (Barchart)"
-      ]
-    },
-    "hogs": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "Packer slaughter and pork sales are both running lower at lower prices, confirming weak demand, and large open interest in Dec into expiry leaves room for further liquidation.",
-      "events": [
-        "Dec lean hog open interest is large (ADMIS)",
-        "Fewer hogs slaughtered, less pork sold at lower prices (National Hog Farmer)",
-        "Lean hogs near contract lows (The Pig Site)"
-      ]
-    },
-    "cattle": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "Friday's Cattle on Feed was friendly (placements -7.3%), and higher cash backs it; tight supply remains the core. Watch two-sided policy risk: rising beef imports and USDA's herd-rebuilding programme on one side, screwworm cases keeping the Mexican border closed on the other.",
-      "events": [
-        "Live cattle rally on bullish COF and higher cash (AgWeb, ADMIS)",
-        "USDA approves BRAND programme for herd growth (Farms.com)",
-        "US screwworm cases surge (Reuters)"
-      ]
-    },
-    "feeders": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "Lower placements and the closed Mexican border keep feeder supply tight, but cheaper corn helps feedlot demand; screwworm spread is the key tail risk for both supply and sentiment.",
-      "events": [
-        "Bullish COF lifts cattle complex (Barchart, ADMIS)",
-        "Screwworm cases surge, border cattle remain on hold (Reuters, RFD-TV)",
-        "USDA announces new tools for beef industry (Michigan Farm News)"
-      ]
-    },
-    "class3": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "Dec Class III dropped back toward 17 as cheese stays soft against milk output still growing about 2% y/y; demand stories on high-protein dairy help whey and powders more than cheese.",
-      "events": [
-        "Dairy benefits from demand for high-protein foods (Feedstuffs)",
-        "Milk prices falling as costs rise (RFD-TV)"
-      ]
-    },
-    "class4": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "No new butter/powder news; the export side gets attention from a study on EU trade barriers costing US dairy, but nothing changes near-term NDM demand.",
-      "events": [
-        "Study says EU trade barriers cost US dairy billions (Feedstuffs)",
-        "Milk prices falling as costs rise (RFD-TV)"
-      ]
-    },
-    "palm": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "China halting palm buying as storage fills hits demand just as Malaysian stocks are well above average; crude at three-month lows also narrows the biodiesel incentive.",
-      "events": [
-        "China halts palm oil purchases as storage fills (Bloomberg)",
-        "China stockpiles soyoil at 3-month-low prices (Bloomberg)",
-        "Crude near 3-month lows (WSJ)"
-      ]
-    },
-    "natgas": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "Gas rebounded sharply (Jan up ~6% to ~3.74) as record LNG feedgas and stronger Asian and European buying offset the mild US outlook; Japan signalling more LNG purchases adds to export pull.",
-      "events": [
-        "Natural gas buyers step in as LNG terminals stoke demand (NGI)",
-        "Japan poised to ramp up LNG buying as power prices surge (OilPrice.com)",
-        "Cold Europe favours US LNG trade (NGI)"
-      ]
-    },
-    "crude": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "11:50 CT",
-      "fundamental": "WTI is stabilising near $80 after the surplus-driven slide; positioning looks stretched short and Middle East export volumes are trending lower, which limits further downside without new supply news. OPEC+ policy is unchanged.",
-      "events": [
-        "A bit oversold on the surplus theme (ADMIS)",
-        "Middle East crude exports trend lower (Reuters)",
-        "Oil holds near three-month lows despite Hormuz mine claims (OilPrice.com)"
-      ]
-    },
-    "ulsd": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "Distillate stocks remain below average, keeping cracks wide even as crude falls; Red Sea/Houthi risk is the main upside driver for diesel.",
-      "events": [
-        "Oil falls on supply outlook and shipping risks (WSJ)",
-        "Dangote refinery IPO plan approved (Reuters)"
-      ]
-    },
-    "rbob": {
-      "date": "2026-11-24",
-      "by": "claude",
-      "time": "07:55 CT",
-      "fundamental": "US refiners ran hard and rebuilt gasoline stocks above average, compressing margins into the low-demand season; Germany's planned price cap is a small demand-side footnote.",
-      "events": [
-        "America's refiners drowned their own gasoline windfall (OilPrice.com)",
-        "Germany to press ahead with gasoline price cap from 2027 (Bloomberg)"
-      ]
-    },
-    "gold": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": null,
-      "fundamental": "8 headlines in the last 76 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported higher (0 supply-tight, 1 supply-loose, 7 up, 2 down by keyword).",
-      "events": [
-        "Gold Rebounds as Traders Pare Bets on Near-Term Fed Rate Hikes (Bloomberg.com, 2026-11-23)",
-        "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
-        "Gold Futures Rebound as Nvidia News Lifts Markets (WSJ, 2026-11-23)"
-      ]
-    },
-    "silver": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": null,
-      "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
-      "events": [
-        "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
-        "Goldman favours gold over silver as central bank demand supports prices (Investing.com, 2026-11-21)",
-        "Gold and silver could return to mid-2025 levels as inflation-hedge bid evaporates – SIA’s Cieszynski (Kitco, 2026-11-20)"
-      ]
-    },
-    "copper": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": null,
-      "fundamental": "7 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 1 up, 4 down by keyword).",
-      "events": [
-        "Copper at Lowest Since April Amid AI Market Turmoil, Chinese Demand Concerns (WSJ, 2026-11-23)",
-        "Copper Slump Tests Kast’s Push to Rein In Chile’s Fiscal Deficit (Bloomberg.com, 2026-11-23)",
-        "Copper Wavers Near $12,000 a Ton After Meltdown on AI Jitters (Bloomberg.com, 2026-11-23)"
-      ]
-    },
-    "aluminum": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": null,
-      "fundamental": "No new headlines for this market in the last 76 hours.",
-      "events": []
-    },
-    "platinum": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": null,
-      "fundamental": "No new headlines for this market in the last 76 hours.",
-      "events": []
-    },
-    "palladium": {
-      "date": "2026-11-23",
-      "by": "bot",
-      "time": "19:14 CT",
-      "claude_date": null,
-      "fundamental": "No new headlines for this market in the last 76 hours.",
-      "events": []
-    }
+ "updated": "2026-11-24",
+ "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
+ "markets": {
+  "corn": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "11:50 CT",
+   "fundamental": "Brazil's corn-ethanol build-out is gaining a new buyer, with Petrobras seeking more supply deals, which supports Brazilian domestic corn use and could slow its export surplus over time. Near term, Dec delivery and a finished US harvest keep the tone heavy; rail-merger worries are a logistics footnote.",
+   "events": [
+    "Petrobras to seek more corn ethanol deals after Neomille (Reuters)",
+    "Corn growers raise concerns over rail merger (Brownfield)",
+    "Corn and beans tick higher overnight as dollar pauses (Pro Farmer)"
+   ]
+  },
+  "soybeans": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Talk of US-China trade contacts ahead of a leaders' meeting lifted Jan to its upside target intraday, but it has since eased back to about 1,232, under the 1,240.75 break. With no confirmed Chinese purchases, the move is still headline and fund driven; meal is carrying the crush while oil lags.",
+   "events": [
+    "Soybeans tag target on China trade talk, then fade (Barchart)",
+    "Soybeans firm ahead of Trump-Xi meeting (Trading Economics)",
+    "Soybeans close higher Tuesday (Brownfield)"
+   ]
+  },
+  "meal": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Meal leads again (Jan up ~1.8% to ~351) as the oil share of crush falls with soyoil; processors are leaning on meal margins. No new Argentine supply or export news.",
+   "events": [
+    "Soybeans rally as meal leads the charge (Barchart)",
+    "Soyoil -2.4% widens meal's share of crush value (Yahoo Finance)"
+   ]
+  },
+  "oil": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Soyoil fell about 2.4% to ~58.1 even with crude up 2%, a sign the weakness is specific: China stockpiling cheap soyoil points to surplus there, and the board crush is shifting value to meal. Nothing new on US biofuel policy.",
+   "events": [
+    "Soyoil Jan ~58.1, down ~2.4% (Yahoo Finance)",
+    "China builds soyoil reserves at 3-month-low prices (Bloomberg)"
+   ]
+  },
+  "wheat": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Chicago Mar slipped about 1% to ~589 as early Black Sea support faded and US winter wheat ratings keep improving; Barchart's wrap also flags lagging US export pace in the wider grain complex.",
+   "events": [
+    "Wheat slips into Thanksgiving (Barchart)",
+    "Chicago wheat dips on firmer dollar (Investing.com)",
+    "Black Sea tensions lift wheat early (Fastmarkets)"
+   ]
+  },
+  "kc": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "KC Mar eased about 0.9% to ~632, following Chicago lower; better Plains crop ratings keep 2027 HRW supply risk low.",
+   "events": [
+    "Wheat slips into Thanksgiving (Barchart)",
+    "Winter wheat ratings up a third week (AgroLatam)"
+   ]
+  },
+  "cotton": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "With Dec in its final days the front quote has rolled to Mar, now near 82.3, so the jump on screens is mostly the roll rather than new demand. Old-crop Mar/May is the market to watch: Texas Plains losses still back a tighter crop, while high-grade certificated stocks into Dec delivery remain a risk for longs, not a comfort.",
+   "events": [
+    "Front cotton quote rolls to Mar near 82.3 (Yahoo Finance/ICE)",
+    "Cotton slips early Tuesday before recovering (Barchart/Nasdaq)",
+    "Texas Plains drought trims dryland yields (Farm Progress)"
+   ]
+  },
+  "hogs": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Dec hogs fell another ~1.5% to ~51.7 as lower slaughter at lower prices confirms soft pork demand; large Dec open interest into expiry keeps liquidation pressure on.",
+   "events": [
+    "Hogs falling on Tuesday (Barchart)",
+    "Dec lean hog open interest is large (ADMIS)",
+    "Fewer hogs slaughtered, less pork sold (National Hog Farmer)"
+   ]
+  },
+  "cattle": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "07:55 CT",
+   "fundamental": "Friday's Cattle on Feed was friendly (placements -7.3%), and higher cash backs it; tight supply remains the core. Watch two-sided policy risk: rising beef imports and USDA's herd-rebuilding programme on one side, screwworm cases keeping the Mexican border closed on the other.",
+   "events": [
+    "Live cattle rally on bullish COF and higher cash (AgWeb, ADMIS)",
+    "USDA approves BRAND programme for herd growth (Farms.com)",
+    "US screwworm cases surge (Reuters)"
+   ]
+  },
+  "feeders": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "07:55 CT",
+   "fundamental": "Lower placements and the closed Mexican border keep feeder supply tight, but cheaper corn helps feedlot demand; screwworm spread is the key tail risk for both supply and sentiment.",
+   "events": [
+    "Bullish COF lifts cattle complex (Barchart, ADMIS)",
+    "Screwworm cases surge, border cattle remain on hold (Reuters, RFD-TV)",
+    "USDA announces new tools for beef industry (Michigan Farm News)"
+   ]
+  },
+  "class3": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Dec Class III bounced about 1.6% to ~17.2 with CME block cheese firmer, but milk output growth near 2% y/y still caps cheese; a slowing pizza market is a demand watch point.",
+   "events": [
+    "Class III Dec ~17.2, cheese +1.6% (Yahoo Finance/CME)",
+    "Is a slowing pizza market bad news for dairy? (Dairy Herd)"
+   ]
+  },
+  "class4": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Spot nonfat dry milk dropped 7 cents at CME, a soft signal for powder demand; Class IV futures barely moved, so the cash weakness has yet to feed through.",
+   "events": [
+    "Nonfat dry milk drops 7 cents at CME (Brownfield)",
+    "Class IV Mar ~19.3, little changed (Yahoo Finance/CME)"
+   ]
+  },
+  "palm": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "07:55 CT",
+   "fundamental": "China halting palm buying as storage fills hits demand just as Malaysian stocks are well above average; crude at three-month lows also narrows the biodiesel incentive.",
+   "events": [
+    "China halts palm oil purchases as storage fills (Bloomberg)",
+    "China stockpiles soyoil at 3-month-low prices (Bloomberg)",
+    "Crude near 3-month lows (WSJ)"
+   ]
+  },
+  "natgas": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "Jan gas held most of its rebound (~3.68, +4%) as bargain buyers pushed through resistance on strong LNG feedgas and Rio Grande LNG nears first gas; the mild US weather outlook and Wednesday's storage report are the near-term checks.",
+   "events": [
+    "Bargain buyers send gas futures through resistance (Natural Gas Intelligence)",
+    "Rio Grande LNG close to first feedgas (Natural Gas Intelligence)",
+    "Japan poised to raise LNG buying (OilPrice.com)"
+   ]
+  },
+  "crude": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "WTI recovered about 2% to ~81.7 as shipping risk persists and Iraq disputes OPEC's view of its capacity, a small crack in group cohesion worth watching. The surplus outlook has not changed, so this reads as a bounce from stretched short positioning.",
+   "events": [
+    "Iraq rejects OPEC assessment of its capacity (OilPrice.com)",
+    "Oil rebounds as shipping risks persist (WSJ)",
+    "Mideast crude exports trend lower (Reuters)"
+   ]
+  },
+  "ulsd": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "07:55 CT",
+   "fundamental": "Distillate stocks remain below average, keeping cracks wide even as crude falls; Red Sea/Houthi risk is the main upside driver for diesel.",
+   "events": [
+    "Oil falls on supply outlook and shipping risks (WSJ)",
+    "Dangote refinery IPO plan approved (Reuters)"
+   ]
+  },
+  "rbob": {
+   "date": "2026-11-24",
+   "by": "claude",
+   "time": "14:45 CT",
+   "fundamental": "RBOB rose ~1.7% with crude, but above-average gasoline stocks heading into the low-demand season keep the margin story weak.",
+   "events": [
+    "RBOB Jan ~2.43, +1.7% (Yahoo Finance)",
+    "Oil rebounds as shipping risks persist (WSJ)"
+   ]
+  },
+  "gold": {
+   "date": "2026-11-23",
+   "by": "bot",
+   "time": "19:14 CT",
+   "claude_date": null,
+   "fundamental": "8 headlines in the last 76 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported higher (0 supply-tight, 1 supply-loose, 7 up, 2 down by keyword).",
+   "events": [
+    "Gold Rebounds as Traders Pare Bets on Near-Term Fed Rate Hikes (Bloomberg.com, 2026-11-23)",
+    "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
+    "Gold Futures Rebound as Nvidia News Lifts Markets (WSJ, 2026-11-23)"
+   ]
+  },
+  "silver": {
+   "date": "2026-11-23",
+   "by": "bot",
+   "time": "19:14 CT",
+   "claude_date": null,
+   "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+   "events": [
+    "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
+    "Goldman favours gold over silver as central bank demand supports prices (Investing.com, 2026-11-21)",
+    "Gold and silver could return to mid-2025 levels as inflation-hedge bid evaporates – SIA’s Cieszynski (Kitco, 2026-11-20)"
+   ]
+  },
+  "copper": {
+   "date": "2026-11-23",
+   "by": "bot",
+   "time": "19:14 CT",
+   "claude_date": null,
+   "fundamental": "7 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 1 up, 4 down by keyword).",
+   "events": [
+    "Copper at Lowest Since April Amid AI Market Turmoil, Chinese Demand Concerns (WSJ, 2026-11-23)",
+    "Copper Slump Tests Kast’s Push to Rein In Chile’s Fiscal Deficit (Bloomberg.com, 2026-11-23)",
+    "Copper Wavers Near $12,000 a Ton After Meltdown on AI Jitters (Bloomberg.com, 2026-11-23)"
+   ]
+  },
+  "aluminum": {
+   "date": "2026-11-23",
+   "by": "bot",
+   "time": "19:14 CT",
+   "claude_date": null,
+   "fundamental": "No new headlines for this market in the last 76 hours.",
+   "events": []
+  },
+  "platinum": {
+   "date": "2026-11-23",
+   "by": "bot",
+   "time": "19:14 CT",
+   "claude_date": null,
+   "fundamental": "No new headlines for this market in the last 76 hours.",
+   "events": []
+  },
+  "palladium": {
+   "date": "2026-11-23",
+   "by": "bot",
+   "time": "19:14 CT",
+   "claude_date": null,
+   "fundamental": "No new headlines for this market in the last 76 hours.",
+   "events": []
   }
+ }
 }

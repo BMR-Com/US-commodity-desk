@@ -153,7 +153,11 @@ def parse(pdf_bytes):
     from datetime import datetime
     out["date"] = datetime.strptime(m.group(3), "%B %d, %Y").strftime("%Y-%m-%d") if m else None
     out["volume"] = f"Vol. {m.group(1)} No. {m.group(2)}" if m else None
-    g = lambda pat, t=p0, f=float: (lambda m: f(m.group(1)) if m else None)(re.search(pat, t))
+    def g(pat, t=p0, f=float):
+        # alternations ("up from X|down from X") put the number in group 1 or 2: take the first that matched
+        m = re.search(pat, t)
+        v = next((x for x in (m.groups() if m else ()) if x is not None), None)
+        return f(v) if v is not None else None
     out["prices"] = {"spot_7mkt_avg": g(r"([\d.]+)\s*cents/pound"), "chg_week_pts": (lambda m: (-1 if m.group(1) == "down" else 1) * float(m.group(2)) if m else None)(re.search(r"Change vs\. Last Week:\s*(up|down)\s*([\d.]+)\s*points", p0)),
                      "year_ago": g(r"up from ([\d.]+)¢|down from ([\d.]+)¢"), "range": re.findall(r"Weekly Range:\s*([\d.]+)¢\s*–\s*([\d.]+)¢", p0)[0] if re.search(r"Weekly Range", p0) else None,
                      "dec_settle": g(r"Price:\s*([\d.]+)¢"), "dec_settle_prev": g(r"up from ([\d.]+)¢ last week|down from ([\d.]+)¢ last week")}

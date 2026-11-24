@@ -239,20 +239,21 @@ def main():
     txt = []
     if "cpi" in g and g["cpi"].get("yoy") is not None:
         c, cc = g["cpi"], g.get("cpi_core", {})
-        txt.append(f"Inflation: CPI {c['yoy']:.1f}% y/y ({c['period']}), core {cc.get('yoy', 0):.1f}%; core 3-month annualized {cc.get('ann3', 0):.1f}%"
+        txt.append(f"Inflation: CPI {c['yoy']:.1f}% y/y ({c['period']}), core {(cc.get('yoy') or 0):.1f}%; core 3-month annualized {(cc.get('ann3') or 0):.1f}%"
                    + (f"; core PCE {g['pce_core_px']['yoy']:.1f}%" if g.get("pce_core_px", {}).get("yoy") is not None else "") + ".")
-    if "payrolls" in g:
+    if "payrolls" in g and g["payrolls"].get("chg") is not None and g["payrolls"].get("avg3") is not None:
         p, u = g["payrolls"], g.get("unemp", {})
-        txt.append(f"Jobs: payrolls {p['chg']:+.0f}k in {p['period']} (3-month average {p['avg3']:+.0f}k), unemployment {u.get('value', 0):.1f}%"
+        txt.append(f"Jobs: payrolls {p['chg']:+.0f}k in {p['period']} (3-month average {p['avg3']:+.0f}k), unemployment {(u.get('value') or 0):.1f}%"
                    + (f" ({u['chg']:+.1f})" if u.get("chg") is not None else "") + (f", wages {g['ahe']['yoy']:.1f}% y/y" if g.get("ahe", {}).get("yoy") is not None else "") + ".")
     if "gdp" in g:
         txt.append(f"Growth: real GDP {g['gdp']['value']:.1f}% annualized in {g['gdp']['period']}" + (f", consumer spending {g['pce_real_q']['value']:.1f}%" if "pce_real_q" in g else "") + ".")
     if rates.get("effr") is not None:
-        txt.append(f"Policy: fed funds target {rates.get('target_lo')}-{rates.get('target_hi')}% (effective {rates['effr']:.2f}%); 2-year Treasury {rates.get('y2', 0):.2f}%"
+        txt.append(f"Policy: fed funds target {rates.get('target_lo')}-{rates.get('target_hi')}% (effective {rates['effr']:.2f}%); 2-year Treasury {(rates.get('y2') or 0):.2f}%"
                    + (f" ({rates['y2_minus_ff']:+.2f} vs fed funds: market {'pricing cuts' if rates['y2_minus_ff'] < -0.15 else 'pricing hikes' if rates['y2_minus_ff'] > 0.15 else 'expecting little change'})" if rates.get("y2_minus_ff") is not None else "")
                    + (f"; 10-year breakeven inflation {rates['breakeven10']:.2f}%, real 10-year {rates['real10']:.2f}%" if rates.get("breakeven10") is not None else "") + ".")
     if "ppi_farm" in g and g["ppi_farm"].get("yoy") is not None:
-        txt.append(f"Farm prices (PPI farm products) {g['ppi_farm']['yoy']:+.1f}% y/y; food-at-home CPI {g.get('cpi_food_home', {}).get('yoy', 0):+.1f}% y/y.")
+        fh = (g.get("cpi_food_home") or {}).get("yoy")
+        txt.append(f"Farm prices (PPI farm products) {g['ppi_farm']['yoy']:+.1f}% y/y" + (f"; food-at-home CPI {fh:+.1f}% y/y" if fh is not None else "") + ".")
     txt.append("For ags: high real yields and a firm dollar weigh on fund demand for commodities; sticky inflation keeps rates high (carry and storage costs up); "
                "a weak job market or falling real incomes hits meat and dairy demand first.")
     OUT.mkdir(parents=True, exist_ok=True)

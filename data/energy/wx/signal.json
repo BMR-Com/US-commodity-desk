@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T04:51",
+ "generated": "2026-11-25T09:47",
  "regime": "LOW",
  "action": "No colder forecast trend; trade the fundamentals and the curve.",
  "cold_checks_on": 2,
@@ -7,19 +7,19 @@
   {
    "key": "trend72",
    "on": false,
-   "text": "15-day ensembles colder over 2-3 days: +3.4 HDD on matched dates (\u2248-5 Bcf)",
+   "text": "15-day ensembles colder over 2-3 days: +7.2 HDD on matched dates (\u2248-12 Bcf)",
    "role": "trigger"
   },
   {
    "key": "trend24",
    "on": true,
-   "text": "\u2026and over ~24h: +5.8 HDD",
+   "text": "\u2026and over ~24h: +4.9 HDD",
    "role": "trigger"
   },
   {
    "key": "back_end",
    "on": false,
-   "text": "back end of the 15-day window (last 5 days) -6.2 HDD/day vs normal",
+   "text": "back end of the 15-day window (last 5 days) -5.8 HDD/day vs normal",
    "role": "trigger"
   },
   {
@@ -48,53 +48,53 @@
   }
  ],
  "trend_24h": {
-  "avg_hdd": 5.8,
-  "bcf": 9,
+  "avg_hdd": 4.9,
+  "bcf": 8,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": 3.7,
-    "days": 8,
-    "vs_run": "2026-11-24T05:35"
+    "hdd": 0.9,
+    "days": 9,
+    "vs_run": "2026-11-24T10:34"
    },
    "ECMWF ENS": {
     "hdd": 5.8,
     "days": 13,
-    "vs_run": "2026-11-24T05:35"
+    "vs_run": "2026-11-24T10:34"
    },
    "ECMWF AIFS ENS": {
     "hdd": 8.0,
-    "days": 13,
-    "vs_run": "2026-11-24T05:35"
+    "days": 14,
+    "vs_run": "2026-11-24T10:34"
    }
   }
  },
  "trend_72h": {
-  "avg_hdd": 3.4,
-  "bcf": 5,
+  "avg_hdd": 7.2,
+  "bcf": 12,
   "by_model": {
    "GEFS (GFS ensemble)": {
-    "hdd": 2.2,
-    "days": 7,
-    "vs_run": "2026-11-23T01:59"
+    "hdd": 5.3,
+    "days": 8,
+    "vs_run": "2026-11-23T08:24"
    },
    "ECMWF ENS": {
-    "hdd": 3.6,
+    "hdd": 3.8,
     "days": 12,
-    "vs_run": "2026-11-23T01:59"
+    "vs_run": "2026-11-23T08:24"
    },
    "ECMWF AIFS ENS": {
-    "hdd": 4.5,
-    "days": 12,
-    "vs_run": "2026-11-23T01:59"
+    "hdd": 12.5,
+    "days": 13,
+    "vs_run": "2026-11-23T08:24"
    }
   }
  },
  "back_end": {
-  "avg_per_day": -6.2,
+  "avg_per_day": -5.77,
   "by_model": {
-   "GEFS (GFS ensemble)": -7.45,
+   "GEFS (GFS ensemble)": -7.54,
    "ECMWF ENS": -4.62,
-   "ECMWF AIFS ENS": -6.54
+   "ECMWF AIFS ENS": -5.14
   }
  },
  "extended": {
@@ -104,10 +104,10 @@
     "wk3": {
      "from": "2026-12-09",
      "to": "2026-12-15",
-     "mean": -23.7,
-     "p10": -51.9,
-     "p90": 8.4,
-     "share_cold": 0.194,
+     "mean": -23.6,
+     "p10": -50.1,
+     "p90": 3.4,
+     "share_cold": 0.129,
      "chg_24h": null
     },
     "wk4": {
@@ -209,9 +209,9 @@
  },
  "price": {
   "date": "2026-11-24",
-  "last": 3.679,
-  "chg_5d_pct": 14.7,
-  "rsi14": 68.0
+  "last": 3.323,
+  "chg_5d_pct": 3.6,
+  "rsi14": 61.0
  },
  "exit_when": [
   "Two consecutive model cycles not colder on matched dates (24h trend \u2264 0) AND weeks 3-4 no longer colder than normal",
@@ -220,5 +220,5 @@
  ],
  "bcf_per_hdd": 1.6,
  "note": "Rules of thumb, not fitted. signal_hist.json keeps every reading so the rules can be scored against what price did next.",
- "read": "NG weather/positioning: squeeze risk LOW (2 of 7 cold-risk checks on; managed money net -211,476 (2nd pct of 3 yrs, -54,628 in 4 wks)). \u2026and over ~24h: +5.8 HDD; GEFS AO week 2 -1.11 (now -0.50). No colder forecast trend; trade the fundamentals and the curve."
+ "read": "NG weather/positioning: squeeze risk LOW (2 of 7 cold-risk checks on; managed money net -211,476 (2nd pct of 3 yrs, -54,628 in 4 wks)). \u2026and over ~24h: +4.9 HDD; GEFS AO week 2 -1.11 (now -0.50). No colder forecast trend; trade the fundamentals and the curve."
 }

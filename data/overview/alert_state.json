@@ -1,16 +1,16 @@
 {
- "updated": "2026-11-25 17:55 UTC",
+ "updated": "2026-11-25 20:44 UTC",
  "by": "claude",
  "views": {
   "corn": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.51
+   "score": -0.47
   },
   "soybeans": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.3
+   "view": "strongly bullish",
+   "shade": "bull3",
+   "score": 0.47
   },
   "meal": {
    "view": "strongly bullish",
@@ -40,27 +40,27 @@
   "hogs": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.2
+   "score": -0.26
   },
   "cattle": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.37
+   "score": 0.31
   },
   "feeders": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.23
+   "view": "neutral",
+   "shade": "neutral",
+   "score": -0.04
   },
   "class3": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.26
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.16
   },
   "class4": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.16
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.36
   },
   "palm": {
    "view": "strongly bearish",
@@ -70,12 +70,12 @@
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.23
+   "score": -0.29
   },
   "crude": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.05
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.09
   },
   "ulsd": {
    "view": "mildly bullish",
@@ -90,7 +90,7 @@
   "gold": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.65
+   "score": -0.59
   },
   "silver": {
    "view": "bearish",
@@ -100,7 +100,7 @@
   "copper": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.56
+   "score": -0.5
   },
   "aluminum": {
    "view": "mildly bearish",
@@ -110,7 +110,7 @@
   "platinum": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.01
+   "score": 0.05
   },
   "palladium": {
    "view": "bearish",
@@ -121,23 +121,17 @@
  "alerts": {
   "corn": [],
   "soybeans": [
-   "Broke above R1 1,225.25",
-   "Broke above the fund buy trigger (20-day momentum flip) 1,235.00"
+   "Holding above the fund buy trigger (20-day momentum flip) 1,235.00"
   ],
   "meal": [],
   "oil": [],
   "wheat": [],
   "kc": [],
   "cotton": [],
-  "hogs": [
-   "Broke below the 52-wk low 51.225"
-  ],
-  "cattle": [
-   "Broke below S1 224.375"
-  ],
+  "hogs": [],
+  "cattle": [],
   "feeders": [
-   "Broke below S1 328.850",
-   "Broke below the fund sell trigger (50-day average) 330.378"
+   "Holding below the fund sell trigger (50-day average) 330.378"
   ],
   "class3": [],
   "class4": [],
@@ -147,22 +141,13 @@
   "ulsd": [],
   "rbob": [],
   "gold": [
-   "Broke below S1 3,477.7",
-   "Broke below S2 3,469.9",
-   "Broke below the 52-wk low 3,465.3"
+   "Broke above R1 3,561.0"
   ],
-  "silver": [
-   "Broke below S1 38.650",
-   "Broke below the 52-wk low 38.855"
-  ],
+  "silver": [],
   "copper": [],
   "aluminum": [],
-  "platinum": [
-   "Broke below the 52-wk low 1,220.8"
-  ],
-  "palladium": [
-   "Broke below the 52-wk low 828.5"
-  ]
+  "platinum": [],
+  "palladium": []
  },
  "news": [
   "2026-11-17 KC wheat view to mildly bearish; Chicago wheat +8 to ~595",
@@ -207,6 +192,8 @@
   "2026-11-25 Soyoil at nine-month low; hogs at new lows (Bloomberg, The Pig Site)",
   "2026-11-25 Soybeans Jan ~1,239 through 1,235 fund buy trigger; hogs new 52-wk low ~50.6; cattle/feeders break support with equities",
   "2026-11-25 Risk-off: Nasdaq -2.9%, VIX ~34; gold, silver, platinum, palladium at 52-wk lows; views: natgas to bearish, aluminum to mildly bearish",
-  "2026-11-25 US proposes surprise new tariffs on Brazil imports (Reuters)"
+  "2026-11-25 US proposes surprise new tariffs on Brazil imports (Reuters)",
+  "2026-11-25 Late: views soybeans to strongly bullish, feeders to neutral, class3 to mildly bearish, class4 to bullish, crude to mildly bullish; gold above R1 3,561",
+  "2026-11-25 Bullish EIA storage print lifts Jan natgas; LNG feedgas near record 21.5 Bcf/d (NGI)"
  ]
 }

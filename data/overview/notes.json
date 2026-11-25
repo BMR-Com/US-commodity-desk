@@ -5,23 +5,23 @@
   "corn": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Mar corn is up slightly to ~453 in thin pre-Thanksgiving trade, lifted by the soybean complex; lagging US export pace remains the drag and there is no new demand news.",
+   "time": "14:45 CT",
+   "fundamental": "Corn fought back from overnight losses to close higher into the Thanksgiving break, following soybeans and a softer dollar. Slow US export pace is still the main drag; no new demand news.",
    "events": [
-    "Corn starts Wednesday with thin trade (Barchart)",
-    "Corn exports lag into the holiday (Barchart)",
-    "Petrobras seeks more corn ethanol deals in Brazil (Reuters)"
+    "Corn rallying into Thanksgiving break (Barchart)",
+    "Corn and soybeans close higher, livestock fall (Successful Farming)",
+    "Corn exports lag into the holiday (Barchart)"
    ]
   },
   "soybeans": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Jan has pushed to ~1,239 (+1.2%), clearing the November high and the 20-day momentum trigger on continued US-China deal talk, with meal again leading. Brazil's weather is still favourable, though forecasters flag a pattern shift ahead, which keeps a weather premium possible into December.",
+   "time": "14:45 CT",
+   "fundamental": "Jan closed firm near ~1,243, holding above the 20-day momentum trigger despite the new US tariff proposal on Brazil, on a weaker dollar and US-China deal hopes. Brazil weather is still favourable for now.",
    "events": [
-    "Soybeans tag their target on China trade talk (Barchart)",
-    "Brazil's weather holds up, but a shift looms (World Grain)",
-    "Jan ~1,239 midday, through 1,235 (CBOT/Yahoo Finance)"
+    "Soybeans rallying despite tariff news (Barchart)",
+    "Modest buying as dollar index weakens (Pro Farmer)",
+    "Brazil's weather holds up, but a shift looms (World Grain)"
    ]
   },
   "meal": {
@@ -47,85 +47,85 @@
   "wheat": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Chicago Mar is down about 1% to ~583 as improving US winter wheat ratings and a forecast for Canada to rank second among exporters point to ample exportable supply.",
+   "time": "14:45 CT",
+   "fundamental": "Wheat was mixed into the holiday; the outlook for more harvested HRW acres in southwest Kansas and improving ratings keep exportable supply ample.",
    "events": [
-    "Canada forecast to rank second in wheat exports (World Grain)",
-    "Winter wheat conditions improve for a third week (USDA via AgroLatam)",
-    "Mar ~583, -1% (CBOT/Yahoo Finance)"
+    "Wheat posts mixed trade on Wednesday (Barchart)",
+    "SW Kansas farmer sees more harvested wheat acres ahead (Brownfield)",
+    "Canada forecast to rank second in wheat exports (World Grain)"
    ]
   },
   "kc": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "KC Mar is down about 1.2% to ~625, following Chicago; better Plains ratings keep 2027 HRW supply risk low and offer no new support.",
+   "time": "14:45 CT",
+   "fundamental": "KC tracked Chicago in mixed trade; expectations of more harvested acres in southwest Kansas add to the comfortable 2027 HRW supply view.",
    "events": [
-    "KC Mar ~625, -1.2% (CBOT/Yahoo Finance)",
-    "Winter wheat conditions improve for a third week (USDA via AgroLatam)"
+    "SW Kansas farmer sees more harvested wheat acres ahead (Brownfield)",
+    "Wheat mixed on Wednesday (Barchart)"
    ]
   },
   "cotton": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Mar is choppy around 81.5-82 in thin pre-holiday trade, giving back part of Tuesday's outside-market lift early before steadying. Nothing new on demand; old-crop Mar/May still leans on Texas Plains losses, while Dec delivery and high-grade certs keep the risk two-sided for longs.",
+   "time": "14:45 CT",
+   "fundamental": "Mar rallied into the close to ~82.9, clearing Tuesday's highs and the 82.7 resistance as a weaker dollar and firmer crude helped outside money back in. No new supply or demand data; old-crop Mar/May keeps leaning on Texas Plains losses, but high-grade certs stay a two-sided risk for longs.",
    "events": [
-    "Cotton fades in early Wednesday trade (Barchart)",
-    "Mar ~82 midday in light holiday volume (ICE/Yahoo Finance)",
-    "Broad risk-off as equities slide and VIX jumps to ~34 (WSJ, Yahoo Finance)"
+    "Mar ~82.9, through 82.7 resistance (ICE)",
+    "Dollar index slips, firmer crude (WSJ, Pro Farmer)",
+    "Tuesday gains on outside factors (Barchart)"
    ]
   },
   "hogs": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Dec hogs fell another ~2.4% to ~50.6, a fresh 52-week low; weak pork demand and heavy Dec open interest into expiry keep liquidation going. Lower frozen pork stocks in the cold storage report are a modest offset that the market is ignoring for now.",
+   "time": "14:45 CT",
+   "fundamental": "Dec hogs fell to a fresh 52-week low near 49.9 as weak pork demand and heavy Dec open interest keep liquidation going; lower frozen pork stocks are being ignored for now.",
    "events": [
+    "Livestock fall while grains recover (Successful Farming)",
     "Lean hogs fall to new lows on weak pork demand (The Pig Site)",
-    "Cold storage shows lower frozen pork, higher beef (DTN)",
-    "Dec lean hog open interest is large (ADMIS)"
+    "Cold storage shows lower frozen pork (DTN)"
    ]
   },
   "cattle": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Dec live cattle slipped about 0.9% to ~223.8, below 224.4 support, as funds trimmed risk alongside the equity sell-off; cash trade is still awaited. Supply stays tight, but higher beef in cold storage is a small negative for nearby demand.",
+   "time": "14:45 CT",
+   "fundamental": "Live cattle closed lower with the risk-off tone and no cash trade yet; supply stays tight, but more beef in cold storage is a small nearby negative.",
    "events": [
-    "Cattle correct with equities; cash awaited (AgWeb)",
-    "Cold storage shows higher beef supplies (DTN)",
-    "Feedlot supplies tighten (AgroLatam)"
+    "Cattle were lower Wednesday (Brownfield)",
+    "Livestock fall while grains recover (Successful Farming)",
+    "Cold storage shows higher beef supplies (DTN)"
    ]
   },
   "feeders": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Jan feeders dropped about 1.9% to ~326.7, through support and the 50-day average, following live cattle and the risk-off move. The closed Mexican border still keeps feeder supply tight, and screwworm remains the key tail risk.",
+   "time": "14:45 CT",
+   "fundamental": "Feeders closed lower with live cattle, holding below the 50-day average. The closed Mexican border keeps feeder supply tight and screwworm remains the key tail risk.",
    "events": [
-    "Feeders slide with live cattle and equities (AgWeb)",
-    "Jan ~326.7, -1.9% (CME/Yahoo Finance)"
+    "Livestock fall while grains recover (Successful Farming)",
+    "Cattle were lower Wednesday (Brownfield)"
    ]
   },
   "class3": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
    "time": "14:45 CT",
-   "fundamental": "Dec Class III bounced about 1.6% to ~17.2 with CME block cheese firmer, but milk output growth near 2% y/y still caps cheese; a slowing pizza market is a demand watch point.",
+   "fundamental": "CME cheese blocks led a slightly firmer dairy complex ahead of the holiday, but milk output growth near 2% y/y still caps Class III upside.",
    "events": [
-    "Class III Dec ~17.2, cheese +1.6% (Yahoo Finance/CME)",
-    "Is a slowing pizza market bad news for dairy? (Dairy Herd)"
+    "Dairy prices slightly higher before Thanksgiving, cheese blocks lead (Brownfield)",
+    "Dairy heads into 2027 with growing demand and concerns (Dairy Herd)"
    ]
   },
   "class4": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
    "time": "14:45 CT",
-   "fundamental": "Spot nonfat dry milk dropped 7 cents at CME, a soft signal for powder demand; Class IV futures barely moved, so the cash weakness has yet to feed through.",
+   "fundamental": "Dairy products edged higher before the holiday, a small steadying after Tuesday's 7-cent drop in spot nonfat dry milk; powder demand is still the question for Class IV.",
    "events": [
-    "Nonfat dry milk drops 7 cents at CME (Brownfield)",
-    "Class IV Mar ~19.3, little changed (Yahoo Finance/CME)"
+    "Dairy prices slightly higher before Thanksgiving (Brownfield)",
+    "Nonfat dry milk drops 7 cents at CME (Brownfield)"
    ]
   },
   "palm": {
@@ -141,43 +141,44 @@
   "natgas": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Jan is softer near ~3.65 ahead of the holiday-shifted storage report, as strong production and mild weather outweigh LNG demand. Longer term, Europe's tight LNG balance and data-centre demand remain supportive.",
+   "time": "14:45 CT",
+   "fundamental": "Futures advanced after the holiday-shifted EIA storage print came in bullish, and LNG feedgas is testing a record near 21.5 Bcf/d. Strong production and mild weather are still the offsets.",
    "events": [
-    "Stout supply, weak weather soften natgas futures (NGI)",
-    "Germany secures Norwegian pipeline gas through 2044 (NGI)",
-    "Goldman sees US gas demand rising on data centres (OilPrice.com)"
-   ]
+    "January natgas advances after bullish storage print (NGI)",
+    "US LNG feedgas tests new high near 21.5 Bcf/d (NGI)",
+    "Stout supply, weak weather soften natgas (NGI)"
+   ],
+   "fund_score": 0.1
   },
   "crude": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "WTI Jan is up about 0.6% to ~83: an alleged Houthi strike on a Saudi refinery and Hormuz risk offset surplus worries, and China keeps buying the dip. OPEC+ policy is unchanged; Iraq is disputing OPEC's estimate of its capacity.",
+   "time": "14:45 CT",
+   "fundamental": "WTI Jan edged up to ~84 as Middle East tensions persist after the alleged Houthi strike on a Saudi refinery. Within OPEC+, Kazakhstan has joined Iraq in pushing for a higher capacity rating, a sign of future quota friction and more supply.",
    "events": [
-    "Oil rises after alleged Houthi attack on Saudi refinery (Reuters)",
-    "January crude higher early (ADMIS)",
-    "Iraq rejects OPEC capacity assessment (OilPrice.com)"
+    "Oil futures pick up as Middle East tensions persist (WSJ)",
+    "Kazakhstan joins Iraq pushing OPEC for higher capacity rating (OilPrice.com)",
+    "Oil rises after alleged Houthi attack on Saudi refinery (Reuters)"
    ]
   },
   "ulsd": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "ULSD Jan is near ~3.65, little changed; below-average distillate stocks and the alleged attack on a Saudi refinery keep the diesel risk premium in place.",
+   "time": "14:45 CT",
+   "fundamental": "ULSD holds near ~3.71; the diesel squeeze on freight is not easing even as gasoline cheapens, and below-average distillate stocks plus the Saudi refinery attack keep the risk premium in place.",
    "events": [
-    "Oil rises after alleged Houthi attack on Saudi refinery (Reuters)",
-    "Fuel tankers shift into crude trade on Iran war (OilPrice.com)"
+    "Cheaper gasoline won't fix the diesel squeeze (OilPrice.com)",
+    "Oil rises after alleged Houthi attack on Saudi refinery (Reuters)"
    ]
   },
   "rbob": {
    "date": "2026-11-25",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "RBOB Jan is down about 0.5% to ~2.43; gasoline stocks are steady and above average in the low-demand season, so the margin story stays weak despite firmer crude.",
+   "time": "14:45 CT",
+   "fundamental": "RBOB is little changed near ~2.43; cheaper gasoline and stocks above average in the low-demand season keep the crack weak relative to diesel.",
    "events": [
-    "US gasoline stocks hold steady (OilPrice.com)",
-    "RBOB Jan ~2.43 (NYMEX/Yahoo Finance)"
+    "Cheaper gasoline won't fix the diesel squeeze (OilPrice.com)",
+    "US gasoline stocks hold steady (OilPrice.com)"
    ]
   },
   "gold": {

@@ -1,21 +1,32 @@
-2511 hg201_slaughtered_swine / Barrows/Gilts: 51480 rows
-2511 hg201_slaughtered_swine / Carcass Measurements: 6435 rows
+2511 hg201_slaughtered_swine / Barrows/Gilts: 51488 rows
+2511 hg201_slaughtered_swine / Carcass Measurements: 6436 rows
 2524 hg214_weekly_swine / Weekly Volume and Weighted Average Price of Barrows/Gilts by Purchase Type: 4140 rows
-2498 pk602_pork_cutout / Cutout and Primal Values: 3525 rows
-2498 pk602_pork_cutout / Current Volume: 3525 rows
-2466 ct100_5area_daily / Detail: 216039 rows
+2498 pk602_pork_cutout / Cutout and Primal Values: 3526 rows
+2498 pk602_pork_cutout / Current Volume: 3526 rows
+2466 ct100_5area_daily / Detail: 216103 rows
 2477 ct150_5area_weekly / Detail: 60892 rows
 2700 fedcc_weekly / Weighted Average: 5856 rows
 2700 fedcc_weekly / Weekly Fed Cattle Comprehensive: 488 rows
-2453 xb403_boxed_beef / Current Cutout Values: 6512 rows
-2453 xb403_boxed_beef / Current Volume: 6512 rows
-NASS hogs_inventory 9091
-NASS hogs_pig_crop 836
+2453 xb403_boxed_beef / Current Cutout Values: 6513 rows
+2453 xb403_boxed_beef / Current Volume: 6513 rows
+hogs_inventory 1990 504 <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><c
+hogs_inventory 2010 504 504.0 GatewayTimeout
+hogs_pig_crop 1990 504 <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><c
+NASS hogs_pig_crop 285
 NASS hogs_litter_rate 1388
 NASS hogs_slaughter 9220
 NASS cattle_on_feed 26177
 NASS cattle_inventory 19649
-NASS cattle_slaughter 17152
+cattle_slaughter 1990 499 
+NASS cattle_slaughter 5252
 NASS cold_storage_pork 9360
 NASS cold_storage_beef 1932
 ERS ers_meat_supply_disappearance 330950

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25 13:50 UTC",
+ "updated": "2026-11-25 17:55 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -65,12 +65,12 @@
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.46
+   "score": -0.55
   },
   "natgas": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.18
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.23
   },
   "crude": {
    "view": "neutral",
@@ -103,9 +103,9 @@
    "score": -0.56
   },
   "aluminum": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": -0.03
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.09
   },
   "platinum": {
    "view": "neutral",
@@ -121,16 +121,24 @@
  "alerts": {
   "corn": [],
   "soybeans": [
-   "Broke above R1 1,225.25"
+   "Broke above R1 1,225.25",
+   "Broke above the fund buy trigger (20-day momentum flip) 1,235.00"
   ],
   "meal": [],
   "oil": [],
   "wheat": [],
   "kc": [],
   "cotton": [],
-  "hogs": [],
-  "cattle": [],
-  "feeders": [],
+  "hogs": [
+   "Broke below the 52-wk low 51.225"
+  ],
+  "cattle": [
+   "Broke below S1 224.375"
+  ],
+  "feeders": [
+   "Broke below S1 328.850",
+   "Broke below the fund sell trigger (50-day average) 330.378"
+  ],
   "class3": [],
   "class4": [],
   "palm": [],
@@ -138,12 +146,23 @@
   "crude": [],
   "ulsd": [],
   "rbob": [],
-  "gold": [],
-  "silver": [],
+  "gold": [
+   "Broke below S1 3,477.7",
+   "Broke below S2 3,469.9",
+   "Broke below the 52-wk low 3,465.3"
+  ],
+  "silver": [
+   "Broke below S1 38.650",
+   "Broke below the 52-wk low 38.855"
+  ],
   "copper": [],
   "aluminum": [],
-  "platinum": [],
-  "palladium": []
+  "platinum": [
+   "Broke below the 52-wk low 1,220.8"
+  ],
+  "palladium": [
+   "Broke below the 52-wk low 828.5"
+  ]
  },
  "news": [
   "2026-11-17 KC wheat view to mildly bearish; Chicago wheat +8 to ~595",
@@ -185,6 +204,9 @@
   "2026-11-24 Soybeans Jan back to ~1,232, below R1 1,240.75 (failed break); class3 view to bearish",
   "2026-11-25 Views: soybeans to bullish, palm to strongly bearish, natgas to mildly bearish, rbob to bearish, silver to bearish, aluminum to neutral",
   "2026-11-25 Soybeans Jan ~1,226, just above R1 1,225.25 after Tuesday's November high on China deal talk",
-  "2026-11-25 Soyoil at nine-month low; hogs at new lows (Bloomberg, The Pig Site)"
+  "2026-11-25 Soyoil at nine-month low; hogs at new lows (Bloomberg, The Pig Site)",
+  "2026-11-25 Soybeans Jan ~1,239 through 1,235 fund buy trigger; hogs new 52-wk low ~50.6; cattle/feeders break support with equities",
+  "2026-11-25 Risk-off: Nasdaq -2.9%, VIX ~34; gold, silver, platinum, palladium at 52-wk lows; views: natgas to bearish, aluminum to mildly bearish",
+  "2026-11-25 US proposes surprise new tariffs on Brazil imports (Reuters)"
  ]
 }

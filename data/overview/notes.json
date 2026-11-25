@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
  "markets": {
   "corn": {
@@ -14,34 +14,34 @@
    ]
   },
   "soybeans": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Talk of US-China trade contacts ahead of a leaders' meeting lifted Jan to its upside target intraday, but it has since eased back to about 1,232, under the 1,240.75 break. With no confirmed Chinese purchases, the move is still headline and fund driven; meal is carrying the crush while oil lags.",
+   "time": "07:55 CT",
+   "fundamental": "Jan reached a November high on Tuesday on reports of a new US-China deal, then eased to about 1,226 overnight, back at the 1,225 pivot. Strong meal-led crush demand is the firm underpinning; confirmed Chinese purchases are still needed to hold a break above 1,240.",
    "events": [
-    "Soybeans tag target on China trade talk, then fade (Barchart)",
-    "Soybeans firm ahead of Trump-Xi meeting (Trading Economics)",
-    "Soybeans close higher Tuesday (Brownfield)"
+    "Soybeans hit November highs on China deal talk (AgroLatam, AgWeb)",
+    "Jan ~1,226 overnight, down ~0.7% (CBOT/Yahoo Finance)",
+    "Soybeans firm as the real rebounds (American Ag Network)"
    ]
   },
   "meal": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Meal leads again (Jan up ~1.8% to ~351) as the oil share of crush falls with soyoil; processors are leaning on meal margins. No new Argentine supply or export news.",
+   "time": "07:55 CT",
+   "fundamental": "Meal holds near 351 Jan after leading the complex; strong meal demand is keeping crush running hard even as soyoil slides, so meal carries the crush margin. No new Argentine supply news.",
    "events": [
-    "Soybeans rally as meal leads the charge (Barchart)",
-    "Soyoil -2.4% widens meal's share of crush value (Yahoo Finance)"
+    "Strong meal demand boosts crush (Bloomberg)",
+    "Soybeans rally as meal leads (Barchart)"
    ]
   },
   "oil": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Soyoil fell about 2.4% to ~58.1 even with crude up 2%, a sign the weakness is specific: China stockpiling cheap soyoil points to surplus there, and the board crush is shifting value to meal. Nothing new on US biofuel policy.",
+   "time": "07:55 CT",
+   "fundamental": "Soyoil hit a nine-month low (Jan ~57.7, -1.1%) as heavy crush for meal adds oil supply. China's soyoil export surge is cooling as India switches to palm, which trims competition for US export demand only slightly; nothing new on US biofuel policy.",
    "events": [
-    "Soyoil Jan ~58.1, down ~2.4% (Yahoo Finance)",
-    "China builds soyoil reserves at 3-month-low prices (Bloomberg)"
+    "Soyoil at nine-month low as meal demand drives crush (Bloomberg)",
+    "China soyoil export boom cools as India turns to palm (Bloomberg)"
    ]
   },
   "wheat": {
@@ -66,35 +66,35 @@
    ]
   },
   "cotton": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "With Dec in its final days the front quote has rolled to Mar, now near 82.3, so the jump on screens is mostly the roll rather than new demand. Old-crop Mar/May is the market to watch: Texas Plains losses still back a tighter crop, while high-grade certificated stocks into Dec delivery remain a risk for longs, not a comfort.",
+   "time": "07:55 CT",
+   "fundamental": "Mar is steady near 81.5-81.7 after Tuesday's gain, which Barchart tied mostly to outside markets rather than fresh cotton demand. Old-crop Mar/May still rests on Texas Plains crop losses; Dec delivery and high-grade certificated stocks remain a risk for longs, so the firmness is not yet a demand signal.",
    "events": [
-    "Front cotton quote rolls to Mar near 82.3 (Yahoo Finance/ICE)",
-    "Cotton slips early Tuesday before recovering (Barchart/Nasdaq)",
+    "Cotton closes Tuesday higher on outside-market help (Barchart)",
+    "Mar ~81.5 in early trade, little changed (ICE/Yahoo Finance)",
     "Texas Plains drought trims dryland yields (Farm Progress)"
    ]
   },
   "hogs": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Dec hogs fell another ~1.5% to ~51.7 as lower slaughter at lower prices confirms soft pork demand; large Dec open interest into expiry keeps liquidation pressure on.",
+   "time": "07:55 CT",
+   "fundamental": "Dec hogs made new lows (~51.8) as weak pork demand and a pre-holiday cutout sale weigh; large Dec open interest into expiry keeps liquidation pressure on, with the index still above Dec.",
    "events": [
-    "Hogs falling on Tuesday (Barchart)",
-    "Dec lean hog open interest is large (ADMIS)",
+    "Lean hogs fall to new lows on weak pork demand (The Pig Site)",
+    "Hogs close lower as cutout goes on pre-Thanksgiving sale (Barchart)",
     "Fewer hogs slaughtered, less pork sold (National Hog Farmer)"
    ]
   },
   "cattle": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
    "time": "07:55 CT",
-   "fundamental": "Friday's Cattle on Feed was friendly (placements -7.3%), and higher cash backs it; tight supply remains the core. Watch two-sided policy risk: rising beef imports and USDA's herd-rebuilding programme on one side, screwworm cases keeping the Mexican border closed on the other.",
+   "fundamental": "Live cattle were mixed (Dec ~226) while the market waits for direct cash trade; tight supply after the friendly Cattle on Feed remains the core. Screwworm and the closed Mexican border stay the main two-sided risk.",
    "events": [
+    "Cattle futures mixed waiting on direct trade (Brownfield)",
     "Live cattle rally on bullish COF and higher cash (AgWeb, ADMIS)",
-    "USDA approves BRAND programme for herd growth (Farms.com)",
     "US screwworm cases surge (Reuters)"
    ]
   },
@@ -130,36 +130,35 @@
    ]
   },
   "palm": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
    "time": "07:55 CT",
-   "fundamental": "China halting palm buying as storage fills hits demand just as Malaysian stocks are well above average; crude at three-month lows also narrows the biodiesel incentive.",
+   "fundamental": "India is turning back to palm after China's cheap soyoil exports cooled, a modest demand offset to China halting palm purchases. It does not change the picture of Malaysian stocks well above average, and weaker crude still narrows the biodiesel pull.",
    "events": [
-    "China halts palm oil purchases as storage fills (Bloomberg)",
-    "China stockpiles soyoil at 3-month-low prices (Bloomberg)",
-    "Crude near 3-month lows (WSJ)"
+    "China soyoil export boom cools as India turns to palm (Bloomberg)",
+    "China halts palm oil purchases as storage fills (Bloomberg)"
    ]
   },
   "natgas": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Jan gas held most of its rebound (~3.68, +4%) as bargain buyers pushed through resistance on strong LNG feedgas and Rio Grande LNG nears first gas; the mild US weather outlook and Wednesday's storage report are the near-term checks.",
+   "time": "07:55 CT",
+   "fundamental": "Jan eased about 1.5% to ~3.61 ahead of the holiday-shifted storage report, with a Texas chill offset by fading Northeast cash. Longer-dated support is building from LNG: reports see the global LNG supply crunch running into 2027 and data-centre gas demand rising.",
    "events": [
-    "Bargain buyers send gas futures through resistance (Natural Gas Intelligence)",
-    "Rio Grande LNG close to first feedgas (Natural Gas Intelligence)",
-    "Japan poised to raise LNG buying (OilPrice.com)"
+    "Global LNG supply crunch set to spill into 2027 (OilPrice.com)",
+    "Goldman sees data-centre-driven gas demand surge (OilPrice.com)",
+    "Northeast cash rally fizzles as chill lifts Texas (Natural Gas Intelligence)"
    ]
   },
   "crude": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "WTI recovered about 2% to ~81.7 as shipping risk persists and Iraq disputes OPEC's view of its capacity, a small crack in group cohesion worth watching. The surplus outlook has not changed, so this reads as a bounce from stretched short positioning.",
+   "time": "07:55 CT",
+   "fundamental": "WTI Jan is steady near 82 after swinging overnight: supply-surplus worries and a small US crude stock build weigh, while Hormuz threats and China buying the dip support. OPEC+ is holding output; nothing has changed the surplus outlook.",
    "events": [
-    "Iraq rejects OPEC assessment of its capacity (OilPrice.com)",
-    "Oil rebounds as shipping risks persist (WSJ)",
-    "Mideast crude exports trend lower (Reuters)"
+    "Oil falls as traders weigh supply outlook and Mideast tensions (WSJ)",
+    "China goes on oil buying spree as prices slide (OilPrice.com)",
+    "US crude inventories inch up (OilPrice.com)"
    ]
   },
   "ulsd": {
@@ -173,13 +172,13 @@
    ]
   },
   "rbob": {
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "RBOB rose ~1.7% with crude, but above-average gasoline stocks heading into the low-demand season keep the margin story weak.",
+   "time": "07:55 CT",
+   "fundamental": "RBOB Jan eased to ~2.43 (-0.6%) with gasoline stocks holding steady and above average; the low-demand season keeps the margin story weak.",
    "events": [
-    "RBOB Jan ~2.43, +1.7% (Yahoo Finance)",
-    "Oil rebounds as shipping risks persist (WSJ)"
+    "US crude stocks edge up, gasoline steady (OilPrice.com)",
+    "RBOB Jan ~2.43, -0.6% (NYMEX/Yahoo Finance)"
    ]
   },
   "gold": {

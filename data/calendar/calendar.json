@@ -1,37 +1,6 @@
 {
-"generated": "2026-11-25 23:22 UTC",
+"generated": "2026-11-26 02:02 UTC",
 "events": [
-{
-"date": "2026-11-18",
-"time": "9:30 AM CT",
-"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
-"cat": "Energy",
-"markets": [
-"CL",
-"HO",
-"RB"
-],
-"importance": 3,
-"link": "https://www.eia.gov/petroleum/supply/weekly/",
-"estimated": false
-},
-{
-"date": "2026-11-18",
-"time": "11:00 AM CT",
-"event": "USDA NDPSR dairy product prices (weekly)",
-"cat": "Dairy",
-"markets": [
-"DC",
-"GDK",
-"CSC",
-"CB",
-"GNF",
-"DY"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-11-19",
 "time": "9:30 AM CT",
@@ -3071,6 +3040,73 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-02-24",
+"time": "9:30 AM CT",
+"event": "EIA Weekly Petroleum Status Report (crude, gasoline, distillate stocks)",
+"cat": "Energy",
+"markets": [
+"CL",
+"HO",
+"RB"
+],
+"importance": 3,
+"link": "https://www.eia.gov/petroleum/supply/weekly/",
+"estimated": false
+},
+{
+"date": "2027-02-24",
+"time": "11:00 AM CT",
+"event": "USDA NDPSR dairy product prices (weekly)",
+"cat": "Dairy",
+"markets": [
+"DC",
+"GDK",
+"CSC",
+"CB",
+"GNF",
+"DY"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-24",
+"time": "",
+"event": "Aluminum Feb 27: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-24",
+"time": "",
+"event": "Gold Feb 27: last trading day",
+"cat": "COMEX contract",
+"markets": [
+"GC"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-24",
+"time": "",
+"event": "Natural gas Mar 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"NG"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 }
 ]
 }

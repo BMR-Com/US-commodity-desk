@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-26 22:37 UTC",
- "generated_et": "Thu Nov 26, 2026 05:37 PM ET",
+ "generated": "2026-11-26 22:41 UTC",
+ "generated_et": "Thu Nov 26, 2026 05:41 PM ET",
  "date": "2026-11-26",
- "prices_from": "2026-11-26 22:37 UTC",
+ "prices_from": "2026-11-26 22:41 UTC",
  "cme_oi_date": "20261125",
  "headlines": [
   "Biggest moves vs prior settle: Lean hogs -1.875 (-3.6%); Soybean meal +8.6 (+2.4%); Feeder cattle -5.375 (-1.6%).",
@@ -1168,7 +1168,7 @@
    {
     "title": "Dollar & farm currencies",
     "score": -2,
-    "text": "Dollar index 103.78 (+1.4% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.644 (+5.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.71 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 103.78 (+1.6% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.652 (+5.2% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.69 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
@@ -1228,27 +1228,27 @@
   },
   {
    "name": "US dollar index",
-   "last": 103.78,
-   "d1": 0.10610768110117519,
-   "m1": 1.4268963150218195,
+   "last": 103.783,
+   "d1": 0.10900147877936917,
+   "m1": 1.5588585189702409,
    "kind": "price",
-   "time": "2026-11-26 20:58 UTC"
+   "time": "2026-11-26 21:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.0972,
-   "d1": 0.08877620770399997,
-   "m1": -1.8060858419740478,
+   "last": 1.0973,
+   "d1": 0.09789840750418222,
+   "m1": -1.7971363419596376,
    "kind": "price",
-   "time": "2026-11-26 21:07 UTC"
+   "time": "2026-11-26 22:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.644,
-   "d1": -4.403790887838676,
-   "m1": 5.051556368379995,
+   "last": 5.6515,
+   "d1": -4.27675836332747,
+   "m1": 5.191153581839059,
    "kind": "price",
-   "time": "2026-11-26 21:00 UTC"
+   "time": "2026-11-26 22:00 UTC"
   },
   {
    "name": "USD/CNY",
@@ -1256,7 +1256,7 @@
    "d1": -0.0720293263437255,
    "m1": -0.16192018246491413,
    "kind": "price",
-   "time": "2026-11-26 20:15 UTC"
+   "time": "2026-11-26 22:01 UTC"
   },
   {
    "name": "WTI crude",
@@ -1538,7 +1538,7 @@
    "flags": []
   },
   "NG": {
-   "line": "trend short 0.9x for 40% vol (12m excess -26%); carry +149.8%/yr (100th percentile for the month); IV-RV +37.9",
+   "line": "trend short 0.9x for 40% vol (12m excess -26%); carry +149.8%/yr (100th percentile for the month); IV-RV +38.0",
    "flags": [
     "Choppy: 3-month variance ratio 0.89 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
     "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).",
@@ -1547,33 +1547,33 @@
    ]
   },
   "CL": {
-   "line": "trend long 0.8x for 40% vol (12m excess +94%); carry +20.0%/yr (98th percentile for the month); IV-RV -4.8",
+   "line": "trend long 0.8x for 40% vol (12m excess +94%); carry +20.0%/yr (98th percentile for the month); IV-RV -5.0",
    "flags": [
     "Inverted IV curve (Jan 2027 -> Mar 2027 -2.5 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson)."
    ]
   },
   "HO": {
-   "line": "trend long 0.9x for 40% vol (12m excess +138%); carry +15.2%/yr (82nd percentile for the month); IV-RV +5.2",
+   "line": "trend long 0.9x for 40% vol (12m excess +138%); carry +15.2%/yr (82nd percentile for the month); IV-RV +4.8",
    "flags": [
     "Inverted IV curve (Jan 2027 -> Mar 2027 -2.1 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson).",
     "Fat left tail: options price a 40% drop 2.1x as likely as a lognormal at ATM vol."
    ]
   },
   "RB": {
-   "line": "trend long 1.0x for 40% vol (12m excess +81%); carry -2.0%/yr (60th percentile for the month); IV-RV -2.6",
+   "line": "trend long 1.0x for 40% vol (12m excess +81%); carry -2.0%/yr (60th percentile for the month); IV-RV -2.7",
    "flags": [
     "Crowded: managed money at the 90th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR)."
    ]
   },
   "GC": {
-   "line": "trend short 1.5x for 40% vol (12m excess -17%); carry -5.1%/yr (15th percentile for the month)",
+   "line": "trend short 1.5x for 40% vol (12m excess -17%); carry -4.8%/yr (21st percentile for the month)",
    "flags": [
     "Choppy: 3-month variance ratio 0.76 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
     "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka)."
    ]
   },
   "SI": {
-   "line": "trend short 0.8x for 40% vol (12m excess -22%); carry -4.8%/yr (15th percentile for the month)",
+   "line": "trend short 0.8x for 40% vol (12m excess -23%); carry -4.3%/yr (16th percentile for the month)",
    "flags": [
     "Rebound risk: trend is short a beaten-down market in high vol, the setting where momentum shorts crash (Daniel-Moskowitz).",
     "Choppy: 3-month variance ratio 0.76 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
@@ -1582,20 +1582,20 @@
    ]
   },
   "HG": {
-   "line": "trend long 1.4x for 40% vol (12m excess +2%); carry -6.4%/yr (2nd percentile for the month)",
+   "line": "trend long 1.4x for 40% vol (12m excess +1%); carry -4.7%/yr (8th percentile for the month)",
    "flags": [
     "Choppy: 3-month variance ratio 0.69 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud)."
    ]
   },
   "PL": {
-   "line": "trend short 1.0x for 40% vol (12m excess -21%); carry -3.7%/yr (5th percentile for the month)",
+   "line": "trend short 1.0x for 40% vol (12m excess -21%); carry -4.1%/yr (3rd percentile for the month)",
    "flags": [
     "Rebound risk: trend is short a beaten-down market in high vol, the setting where momentum shorts crash (Daniel-Moskowitz).",
     "Choppy: 3-month variance ratio 0.63 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud)."
    ]
   },
   "PA": {
-   "line": "trend short 0.9x for 40% vol (12m excess -42%); carry -2.3%/yr (19th percentile for the month)",
+   "line": "trend short 0.9x for 40% vol (12m excess -43%); carry -3.7%/yr (12th percentile for the month)",
    "flags": [
     "Choppy: 3-month variance ratio 0.62 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
     "Crowded: managed money at the 4th 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR)."

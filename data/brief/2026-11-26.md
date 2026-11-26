@@ -1,6 +1,6 @@
-# Morning brief · Thu Nov 26, 2026 03:35 PM ET
+# Morning brief · Thu Nov 26, 2026 05:37 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-26 20:35 UTC). CME open interest from 20261125. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-26 22:37 UTC). CME open interest from 20261125. Research only, not investment advice.
 
 ## Key points
 
@@ -49,13 +49,13 @@ Jobs: payrolls +165k in 2026-10 (3-month average +137k), unemployment 4.1% (-0.1
 Macro backdrop for ags: headwind (score -6 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar −; brl −; mxn −; risk −; energy −; china −; breadth −. Strongest ag/soft over the month: Rough rice +6.2%; weakest: Lean hogs -22.8%. 
 
 - **Rates**: US 10-year 4.85% (-15 bp in a month), 2-year 4.61% (-7 bp); 2s10s curve +24 bp (-8 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.16% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 103.77 (+1.4% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.696 (+6.0% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.70 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
+- **Dollar & farm currencies**: Dollar index 103.78 (+1.4% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.644 (+5.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.71 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
 - **Risk appetite**: S&P 500 -6.4% in a month (+4.9% YTD); VIX 26.8. Risk-off: funds tend to cut commodity length along with equities. 
 - **Energy**: WTI 84.91 $/bbl (-13.4% in a month), Brent 91.73, ULSD 3.701 $/gal (-18.2%), natural gas 3.60 (+4.0%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
 - **China & industrial demand**: Copper -19.6% in a month, Shanghai Composite -4.7%, Hang Seng -3.5%, yuan +0.2% vs USD. Soft China/industrial signals point to weaker import demand. 
 - **Commodity breadth**: 9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -14.2% in a month; gold -12.5%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,234.500 (+0.54% d/d); S&P 500 7,182.780 (-0.25% d/d); VIX 26.800 (-5.27% d/d); US 10-year 4.848 (-6 bp d/d); US dollar index 103.765 (+0.09% d/d); EUR/USD 1.097 (+0.12% d/d); USD/BRL 5.696 (-3.53% d/d); USD/CNY 6.659 (-0.07% d/d); WTI crude 84.910 (+1.47% d/d); Natural gas 3.599 (-1.61% d/d); Gold 3,566.200 (+0.86% d/d); Copper 5.434 (+0.22% d/d); S&P GSCI 650.296 (+0.76% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,234.500 (+0.54% d/d); S&P 500 7,182.780 (-0.25% d/d); VIX 26.800 (-5.27% d/d); US 10-year 4.848 (-6 bp d/d); US dollar index 103.780 (+0.11% d/d); EUR/USD 1.097 (+0.09% d/d); USD/BRL 5.644 (-4.40% d/d); USD/CNY 6.659 (-0.07% d/d); WTI crude 84.910 (+1.47% d/d); Natural gas 3.599 (-1.61% d/d); Gold 3,566.200 (+0.86% d/d); Copper 5.434 (+0.22% d/d); S&P GSCI 650.296 (+0.76% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -110,7 +110,6 @@ Research signals: trend long 1.8x for 40% vol (12m excess +10%); carry +1.8%/yr 
 **Soybean oil** (Dec 26, bearish). Dec 26 trades at 58.08 ¢/lb (-3.0% on the week, -12.9% on the month), in a down trend: the daily rating is strong sell and the weekly sell. RSI is 22 (oversold) and ADX 40 (trending). Nearest support 52.69, resistance 64.20; 52-week range 48.53–74.55. Levels to watch: a close above 65.52 (50-day average) would bring trend-follower buying; below 51.35 (250-day momentum flip) adds selling; the 52.69–64.20 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Soybean oil Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.
 Flags: RSI 22: oversold; Weather watch: Pergamino, N Buenos Aires.
 Research signals: trend long 1.7x for 40% vol (12m excess +16%); carry -4.9%/yr (44th percentile for the month); IV-RV +2.2. Fat left tail: options price a 15% drop 2.1x as likely as a lognormal at ATM vol.
-- [China’s Surprise Soyoil Export Boom Cools as India Turns to Palm](https://news.google.com/rss/articles/CBMitgFBVV95cUxPNDlMWTB4WXNXeUY2QTBpVlNrU3o2Q3BwRE1oMXFIQmFKTUVhSV9ZcThKbmlhRU4zV005RUMzVWpJbzRFRWxXa2l2T3VNbVJFaHhIMzdrb3lfTmRsMksxb093c1piVVVxU1l5N0NPbVp3MXBGOWYxLV9MUVFoMkQtT3pkQWFLeDU4OGJIeEp6NnZ5Q05NU19uTEI2d1NpZHBlbnM1dXlVZ2VfQ1plVE5wUGFNREF3UQ?oc=5) · Bloomberg.com
 
 **Chicago wheat** (Dec 26, strongly bearish). Dec 26 trades at 565.50 ¢/bu (-0.8% on the week, -7.3% on the month), in a down trend: the daily rating is strong sell and the weekly sell. RSI is 31 and ADX 54 (trending). Nearest support 564.50, resistance 578.00; 52-week range 557.25–795.00. Levels to watch: a close above 572.08 (250-day momentum flip) would bring trend-follower buying; the 564.50–578.00 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Chicago wheat Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.
 Flags: Dec 26 / Mar 27 at 105% of full carry.

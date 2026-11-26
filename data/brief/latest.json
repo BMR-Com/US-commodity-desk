@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-26 20:35 UTC",
- "generated_et": "Thu Nov 26, 2026 03:35 PM ET",
+ "generated": "2026-11-26 22:37 UTC",
+ "generated_et": "Thu Nov 26, 2026 05:37 PM ET",
  "date": "2026-11-26",
- "prices_from": "2026-11-26 20:35 UTC",
+ "prices_from": "2026-11-26 22:37 UTC",
  "cme_oi_date": "20261125",
  "headlines": [
   "Biggest moves vs prior settle: Lean hogs -1.875 (-3.6%); Soybean meal +8.6 (+2.4%); Feeder cattle -5.375 (-1.6%).",
@@ -524,14 +524,7 @@
     "vol": 236880,
     "report": "PRELIMINARY"
    },
-   "news": [
-    {
-     "title": "China\u2019s Surprise Soyoil Export Boom Cools as India Turns to Palm",
-     "source": "Bloomberg.com",
-     "time": "2026-11-25T08:53Z",
-     "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPNDlMWTB4WXNXeUY2QTBpVlNrU3o2Q3BwRE1oMXFIQmFKTUVhSV9ZcThKbmlhRU4zV005RUMzVWpJbzRFRWxXa2l2T3VNbVJFaHhIMzdrb3lfTmRsMksxb093c1piVVVxU1l5N0NPbVp3MXBGOWYxLV9MUVFoMkQtT3pkQWFLeDU4OGJIeEp6NnZ5Q05NU19uTEI2d1NpZHBlbnM1dXlVZ2VfQ1plVE5wUGFNREF3UQ?oc=5"
-    }
-   ]
+   "news": []
   },
   {
    "sym": "ZW",
@@ -1175,7 +1168,7 @@
    {
     "title": "Dollar & farm currencies",
     "score": -2,
-    "text": "Dollar index 103.77 (+1.4% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.696 (+6.0% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.70 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 103.78 (+1.4% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.644 (+5.1% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.71 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
@@ -1235,27 +1228,27 @@
   },
   {
    "name": "US dollar index",
-   "last": 103.765,
-   "d1": 0.0916386927101831,
-   "m1": 1.4122364244386176,
+   "last": 103.78,
+   "d1": 0.10610768110117519,
+   "m1": 1.4268963150218195,
    "kind": "price",
-   "time": "2026-11-26 20:24 UTC"
+   "time": "2026-11-26 20:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.0975,
-   "d1": 0.11614280710456892,
-   "m1": -1.7792373419308394,
+   "last": 1.0972,
+   "d1": 0.08877620770399997,
+   "m1": -1.8060858419740478,
    "kind": "price",
-   "time": "2026-11-26 20:33 UTC"
+   "time": "2026-11-26 21:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.6955,
-   "d1": -3.5315008861951047,
-   "m1": 6.010123900798781,
+   "last": 5.644,
+   "d1": -4.403790887838676,
+   "m1": 5.051556368379995,
    "kind": "price",
-   "time": "2026-11-26 20:34 UTC"
+   "time": "2026-11-26 21:00 UTC"
   },
   {
    "name": "USD/CNY",
@@ -1612,6 +1605,6 @@
  "track": {
   "line": "Track record: 408 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-11-26 19:53 UTC"
+  "generated": "2026-11-26 20:36 UTC"
  }
 }

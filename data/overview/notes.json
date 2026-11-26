@@ -45,24 +45,24 @@
    ]
   },
   "wheat": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Wheat was mixed into the holiday; the outlook for more harvested HRW acres in southwest Kansas and improving ratings keep exportable supply ample.",
+   "time": "11:45 CT",
+   "fundamental": "CBOT is shut. Fair Plains weather keeps HRW establishment on track, and Algerian millers are adjusting to a shifting import mix, a reminder that Black Sea and EU wheat compete hard for North African demand; supply stays ample.",
    "events": [
-    "Wheat posts mixed trade on Wednesday (Barchart)",
-    "SW Kansas farmer sees more harvested wheat acres ahead (Brownfield)",
-    "Canada forecast to rank second in wheat exports (World Grain)"
+    "Fair, seasonal weather on the Plains (Brownfield)",
+    "Algeria millers adjust to changing wheat market (World Grain)",
+    "More harvested HRW acres expected in SW Kansas (Brownfield)"
    ]
   },
   "kc": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "KC tracked Chicago in mixed trade; expectations of more harvested acres in southwest Kansas add to the comfortable 2027 HRW supply view.",
+   "time": "11:45 CT",
+   "fundamental": "Benign Plains weather supports HRW crop condition, adding to a comfortable 2027 supply view; no new export demand with CBOT closed.",
    "events": [
-    "SW Kansas farmer sees more harvested wheat acres ahead (Brownfield)",
-    "Wheat mixed on Wednesday (Barchart)"
+    "Fair, seasonal weather on the Plains (Brownfield)",
+    "SW Kansas farmer sees more harvested acres (Brownfield)"
    ]
   },
   "cotton": {
@@ -127,53 +127,57 @@
    ]
   },
   "palm": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "India is turning back to palm after China's cheap soyoil exports cooled, a modest demand offset to China halting palm purchases. It does not change the picture of Malaysian stocks well above average, and weaker crude still narrows the biodiesel pull.",
+   "time": "11:45 CT",
+   "fundamental": "Bursa palm is up slightly (~4,300 spot) helped by firmer crude, but nothing new on demand; Malaysian stocks well above average still cap rallies.",
    "events": [
-    "China soyoil export boom cools as India turns to palm (Bloomberg)",
-    "China halts palm oil purchases as storage fills (Bloomberg)"
+    "Palm edges up with crude (Bursa Malaysia)",
+    "Crude firm on Hormuz attacks (Invezz)",
+    "India turns back to palm as China's soyoil exports cool (Reuters)"
    ]
   },
   "natgas": {
    "date": "2026-11-26",
    "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "Jan is down about 1% to ~3.62 in holiday trade as a mild Thanksgiving outlook erodes Northeast cash premiums; the bullish storage print and record LNG feedgas are being offset by weather and strong output.",
+   "time": "11:45 CT",
+   "fundamental": "Jan is ~3.60 (-1.6%) as mild Thanksgiving weather outweighs the first storage draw and near-record LNG feedgas. Qatar adding LNG exports into winter and Gulf shipping risk pull global gas in opposite directions; for Henry Hub, weather still rules.",
    "events": [
-    "Mild Thanksgiving outlook cuts Northeast cash premiums (NGI)",
-    "US LNG feedgas near record 21.5 Bcf/d (NGI)"
+    "Mild holiday outlook weighs on Northeast cash (NGI)",
+    "Qatar lifts LNG exports ahead of winter peak (Bloomberg)",
+    "LNG carrier hits mine near Hormuz (OilPrice.com)"
    ]
   },
   "crude": {
    "date": "2026-11-26",
    "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "WTI Jan is up ~1.2% to ~84.7 and Brent ~91.3 in thin holiday trade, as Middle East risk after the Houthi strike on a Saudi refinery stays priced in. OPEC+ capacity disputes (Kazakhstan, Iraq) still point to more supply later.",
+   "time": "11:45 CT",
+   "fundamental": "Fresh tanker attacks near the Strait of Hormuz and an LNG carrier hitting a mine keep supply risk alive; WTI Jan ~84.8 (+1.4%), Brent ~91.6. OPEC+ delegates point to rolling over Q1 targets, with capacity disputes unresolved, so no extra barrels are coming to offset a building surplus.",
    "events": [
-    "Oil futures pick up as Middle East tensions persist (WSJ)",
-    "Kazakhstan joins Iraq pushing OPEC for higher capacity rating (OilPrice.com)"
+    "Fresh tanker attacks near Hormuz lift Brent (Invezz, OilPrice.com)",
+    "OPEC+ likely to roll over Q1 output targets (Reuters, Bloomberg)",
+    "US crude stocks up a third straight week (WSJ)"
    ]
   },
   "ulsd": {
    "date": "2026-11-26",
    "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "ULSD Jan is ~3.68 (+0.6%) with crude; a recent slump in diesel cracks gives a brief easing of the squeeze, but distillate stocks are still below average and the Saudi refinery attack keeps risk in the price.",
+   "time": "11:45 CT",
+   "fundamental": "ULSD Jan ~3.69 (+1.1%) follows crude higher on Gulf shipping attacks; distillate stocks remain below average, so diesel keeps more risk premium than gasoline.",
    "events": [
-    "Diesel's slump offers brief respite from energy turmoil (Bloomberg)",
-    "Cheaper gasoline won't fix the diesel squeeze (OilPrice.com)"
+    "Gulf tanker attacks lift crude complex (Invezz)",
+    "Diesel stays expensive while gasoline falls (OilPrice.com)",
+    "Diesel crack slump offers only brief relief (Bloomberg)"
    ]
   },
   "rbob": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "RBOB is little changed near ~2.43; cheaper gasoline and stocks above average in the low-demand season keep the crack weak relative to diesel.",
+   "time": "11:45 CT",
+   "fundamental": "RBOB is flat near 2.44 even as crude rises; ample gasoline stocks in the low-demand season keep the crack weak relative to diesel.",
    "events": [
-    "Cheaper gasoline won't fix the diesel squeeze (OilPrice.com)",
-    "US gasoline stocks hold steady (OilPrice.com)"
+    "Gasoline prices falling while diesel stays high (OilPrice.com)",
+    "Crude firm on Hormuz attacks (Invezz)"
    ]
   },
   "gold": {

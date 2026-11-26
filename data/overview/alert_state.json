@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26 13:55 UTC",
+ "updated": "2026-11-26 17:46 UTC",
  "by": "claude",
  "views": {
   "corn": {
@@ -65,12 +65,12 @@
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.48
+   "score": -0.57
   },
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.33
+   "score": -0.32
   },
   "crude": {
    "view": "mildly bullish",
@@ -78,14 +78,14 @@
    "score": 0.12
   },
   "ulsd": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.17
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.23
   },
   "rbob": {
    "view": "mildly bearish",
    "shade": "bear1",
-   "score": -0.16
+   "score": -0.14
   },
   "gold": {
    "view": "strongly bearish",
@@ -93,9 +93,9 @@
    "score": -0.47
   },
   "silver": {
-   "view": "strongly bearish",
-   "shade": "bear3",
-   "score": -0.55
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.35
   },
   "copper": {
    "view": "strongly bearish",
@@ -105,17 +105,17 @@
   "aluminum": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.03
+   "score": 0.03
   },
   "platinum": {
    "view": "neutral",
    "shade": "neutral",
-   "score": 0.05
+   "score": -0.05
   },
   "palladium": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.18
+   "view": "bearish",
+   "shade": "bear2",
+   "score": -0.29
   }
  },
  "alerts": {
@@ -139,9 +139,7 @@
   "gold": [],
   "silver": [],
   "copper": [],
-  "aluminum": [
-   "Broke above R1 2,761.8"
-  ],
+  "aluminum": [],
   "platinum": [],
   "palladium": []
  },
@@ -192,6 +190,7 @@
   "2026-11-25 Late: views soybeans to strongly bullish, feeders to neutral, class3 to mildly bearish, class4 to bullish, crude to mildly bullish; gold above R1 3,561",
   "2026-11-25 Bullish EIA storage print lifts Jan natgas; LNG feedgas near record 21.5 Bcf/d (NGI)",
   "2026-11-26 Views: cotton to strongly bullish, class3 to neutral, rbob/palladium to mildly bearish, silver to strongly bearish, aluminum to neutral; aluminum above R1 2,761.8",
-  "2026-11-26 Holiday trade: WTI Jan ~84.7 (+1.2%), natgas Jan ~3.62 (-1.2%) on mild weather; record October NOPA crush"
+  "2026-11-26 Holiday trade: WTI Jan ~84.7 (+1.2%), natgas Jan ~3.62 (-1.2%) on mild weather; record October NOPA crush",
+  "2026-11-26 Midday: views ulsd to bullish, silver/palladium to bearish; fresh Hormuz tanker attacks, OPEC+ seen rolling over Q1 targets; WTI Jan ~84.8"
  ]
 }

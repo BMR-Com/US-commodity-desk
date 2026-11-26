@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Options primer · BMR-Com</title>
+<link rel="stylesheet" href="../assets/style.css?v=20261126p">
+<style>
+body{background:var(--bg)}
+main{max-width:1180px}
+.card{margin-bottom:12px}
+.card p,.card li{max-width:900px}
+.f{font-family:ui-monospace,Menlo,Consolas,monospace;background:#f3f5f2;border:1px solid #e2e7e1;border-radius:5px;padding:7px 10px;margin:6px 0;font-size:12.5px;white-space:pre-wrap;overflow-x:auto}
+.big{font-size:15px;color:#222}
+.key{background:#f0f6f1;border-left:3px solid var(--acc);padding:7px 11px;margin:8px 0;border-radius:0 5px 5px 0}
+svg.ch{width:100%;height:auto;display:block}
+svg.ch text{font-size:11px;fill:#555;font-family:system-ui,sans-serif}
+svg.ch .ax{stroke:#bbb;stroke-width:1}
+svg.ch .gr{stroke:#eee;stroke-width:1}
+.leg{font-size:12px;color:#444;margin:2px 0 6px}.leg span{margin-right:14px;white-space:nowrap}.leg i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:4px}
+td.l b{font-weight:600}
+.calc input{width:80px;padding:3px 6px;border:1px solid #ccc;border-radius:4px;font-size:13px}
+.calc label{font-size:12px;color:#444;margin-right:4px}
+.calc .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:6px 0}
+.sel button{margin:2px}
+h4{font-size:13px;margin:10px 0 4px}
+</style>
+</head>
+<body>
+<nav class="tabs" id="ptabs">
+  <button data-p="basics" class="on">1 · What an option is</button>
+  <button data-p="pricing">2 · Pricing &amp; implied vol</button>
+  <button data-p="greeks">3 · The greeks</button>
+  <button data-p="links">4 · How the greeks connect</button>
+  <button data-p="worked">5 · Worked example &amp; calculator</button>
+  <button data-p="skew">6 · Skew &amp; term structure</button>
+  <button data-p="strats">7 · Strategies</button>
+  <button data-p="hedge">8 · Hedging</button>
+  <button data-p="pitfalls">9 · Pitfalls</button>
+  <button data-p="gloss">10 · Every variable</button>
+</nav>
+<main>
+<p class="note" style="margin:4px 0 10px">A plain-language guide to options on commodity futures. Market numbers in the examples are ICE settlements as of 19 Nov 2026, used only to illustrate; they do not update. Research use only; not investment advice.</p>
+
+<!-- 1 BASICS -->
+<div class="panel on" id="p-basics">
+<div class="card">
+  <h2>An option is a right, not an obligation</h2>
+  <p class="big">A <b>call</b> is the right to buy, and a <b>put</b> is the right to sell, a futures contract at a fixed price (the <b>strike</b>, K) on or before a set day (the <b>expiry</b>). The buyer pays a <b>premium</b> for that right. The seller (the "writer") takes the premium and the obligation.</p>
+  <div class="key">The whole value of an option comes from one asymmetry: the holder keeps the good outcomes and walks away from the bad ones. If prices could not move, an option would be worth only its intrinsic value.</div>
+  <div class="flow">
+    <div class="step"><b>Buyer (long)</b>Pays the premium. Owns a right. Decides whether to exercise. Most they can lose is the premium.</div>
+    <div class="step"><b>Seller (short)</b>Receives the premium. Must perform if assigned. Loss on a short call has no ceiling; on a short put it runs to the strike minus the premium.</div>
+    <div class="step"><b>Exchange (ICE / CME clearing)</b>Stands in the middle. On exercise it assigns a short at random, and both sides get a futures position at the strike.</div>
+  </div>
+</div>
+
+<div class="grid g2">
+<div class="card">
+  <h2>What is different about options on commodity futures</h2>
+  <ul class="read">
+    <li><b>The underlying is a futures contract, not the physical crop.</b> Exercising a March cotton call gives you a long March futures position at the strike. You only get near physical cotton if you then hold that future into delivery.</li>
+    <li><b>Options expire before the futures' first notice day.</b> Standard options stop trading in the month before the futures month, so the option holder has time to roll or close the futures before deliveries start.</li>
+    <li><b>Serial and short-dated options.</b> Some option months have no futures month of their own. ICE January cotton options, for example, exercise into March futures. They let you trade a shorter window on the same underlying.</li>
+    <li><b>American exercise.</b> ICE and CME ag options can be exercised on any business day. Early exercise is rarely worth it: a futures position earns no carry, so exercising only throws away time value. The exception is a deep in-the-money option with almost no time value left, where exercising frees up the interest on the premium.</li>
+    <li><b>Prices are in the contract's own units.</b> ICE cotton, coffee and sugar trade in US cents per pound (¢/lb); cocoa in $ per tonne; CME grains in ¢ per bushel. So a premium of 1.60 on cotton means 1.60 ¢/lb.</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>What one point is worth</h2>
+  <div class="tbl"><table>
+    <tr><th>Contract</th><th>Size</th><th>1 unit move</th><th class="l">So a 1.00 premium costs</th></tr>
+    <tr><td>ICE Cotton No. 2 (CT)</td><td>50,000 lb</td><td>1 ¢/lb</td><td class="l">$500 per contract</td></tr>
+    <tr><td>ICE Coffee "C" (KC)</td><td>37,500 lb</td><td>1 ¢/lb</td><td class="l">$375 per contract</td></tr>
+    <tr><td>ICE Sugar No. 11 (SB)</td><td>112,000 lb</td><td>1 ¢/lb</td><td class="l">$1,120 per contract</td></tr>
+    <tr><td>ICE Cocoa (CC)</td><td>10 t</td><td>$1/t</td><td class="l">$10 per contract</td></tr>
+    <tr><td>CBOT Corn / Soybeans (ZC / ZS)</td><td>5,000 bu</td><td>1 ¢/bu</td><td class="l">$50 per contract</td></tr>
+  </table></div>
+  <p class="note">One option covers one futures contract.</p>
+</div>
+</div>
+
+<div class="grid g2">
+<div class="card">
+  <h2>Payoff at expiry vs profit</h2>
+  <div class="f">Call payoff = max(F_T − K, 0)        Put payoff = max(K − F_T, 0)
+Profit = payoff − premium paid</div>
+  <p>Example: you pay 1.60 ¢/lb for a March 80 cotton call. At expiry March futures are 81.00. You exercise and gain 1.00 ¢/lb, but your profit is 1.00 − 1.60 = <b>−0.60 ¢/lb</b>. Exercise still makes sense, because it gets back part of the premium. The breakeven at expiry is strike + premium = 81.60.</p>
+  <div id="chPayoff"></div>
+  <div class="leg"><span><i style="background:#2f6b3a"></i>Long 80 call, profit at expiry</span><span><i style="background:#b3261e"></i>Long 80 put, profit at expiry</span></div>
+</div>
+<div class="card">
+  <h2>Intrinsic value, time value and moneyness</h2>
+  <ul class="read">
+    <li><b>Intrinsic value</b> is what you would get by exercising right now: max(F − K, 0) for a call, max(K − F, 0) for a put.</li>
+    <li><b>Time value</b> is everything else in the premium. It pays for the chance that prices move your way before expiry, and it melts to zero at expiry.</li>
+    <li><b>In the money (ITM)</b> means it has intrinsic value. <b>At the money (ATM)</b> means the strike is near the futures price. <b>Out of the money (OTM)</b> means no intrinsic value, only time value.</li>
+    <li>Time value is largest at the money, because that is where the outcome is most uncertain.</li>
+  </ul>
+  <h4>Put-call parity on futures</h4>
+  <div class="f">C − P = e^(−rT) × (F − K)</div>
+  <p>A long call plus a short put at the same strike and expiry behaves exactly like a long future bought at K. So the call and put at one strike must imply the <b>same</b> volatility, and you can build any of the three from the other two:</p>
+  <ul class="read">
+    <li>Long call = long put + long futures (a "synthetic call": the classic grower hedge of owning a put against a long position).</li>
+    <li>Long put = long call + short futures.</li>
+    <li>Long futures = long call + short put.</li>
+  </ul>
+  <p class="note">If parity is broken by more than the bid-ask spread, one side is mispriced; in practice the gap is usually stale or wide quotes.</p>
+</div>
+</div>
+</div>
+
+<!-- 2 PRICING -->
+<div class="panel" id="p-pricing">
+<div class="card">
+  <h2>Why uncertainty creates value</h2>
+  <p>Take two futures contracts both at 80 ¢/lb, and an 80-strike call on each.</p>
+  <ul class="read">
+    <li><b>Quiet market:</b> it will almost surely finish near 80. The call is worth almost nothing, because there is no upside to keep.</li>
+    <li><b>Weather market:</b> it will finish at either 70 or 90, equally likely. The call pays 10 half the time and 0 otherwise, so it is worth about 5 ¢/lb.</li>
+  </ul>
+  <div class="key">Same average price, very different option value. A linear position (futures) only cares about the average outcome. An option has a kinked payoff, so it cares about how <b>wide</b> the spread of outcomes is. Buying an option is buying exposure to the width of the distribution; selling one is selling it.</div>
+  <p>Two more rules follow. More time can never hurt an American option, because a longer option includes every right of a shorter one. And time and volatility trade places: what matters is total variance, σ²×T. A market with half the daily volatility needs four times as long to give the same option value.</p>
+</div>
+
+<div class="grid g2">
+<div class="card">
+  <h2>Pricing by replication: a two-state example</h2>
+  <p>March cotton is at 80. Next period it goes to 88 or 72. An 80 call pays 8 or 0. Can we copy that payoff with futures and cash?</p>
+  <div class="f">Hold h futures:  up:  h × (88 − 80) = 8  →  h = 0.5
+                 down: h × (72 − 80) = −4  (and the call pays 0)
+The half future gains 4 up and loses 4 down. Add 4 of cash and you get 8 / 0,
+exactly the call. So the call is worth the 4 of cash (with zero rates).</div>
+  <p>The hedge ratio of 0.5 is the option's <b>delta</b>. The price came out without anyone's view on whether up or down is more likely. That is the core idea behind every option model: the price is the cost of the hedge, not a forecast.</p>
+  <p>Chain many short steps together, rehedging at each one, and you get a binomial tree. Make the steps infinitely short and you get Black-Scholes, or for futures, Black-76.</p>
+</div>
+<div class="card">
+  <h2>Black-76: the model for options on futures</h2>
+  <div class="f">d1 = [ ln(F/K) + ½σ²T ] / (σ√T)          d2 = d1 − σ√T
+Call = e^(−rT) × [ F·N(d1) − K·N(d2) ]
+Put  = e^(−rT) × [ K·N(−d2) − F·N(−d1) ]</div>
+  <p>Fischer Black's 1976 version of Black-Scholes uses the futures price F instead of a spot price. A future costs nothing to hold, so there is no carry or dividend term; the only rate is the discount factor e^(−rT) on the premium.</p>
+  <div class="tbl"><table>
+    <tr><th>Input</th><th class="l">Effect on a call</th><th class="l">Effect on a put</th></tr>
+    <tr><td>Futures price F up</td><td class="l">up</td><td class="l">down</td></tr>
+    <tr><td>Strike K up</td><td class="l">down</td><td class="l">up</td></tr>
+    <tr><td>Volatility σ up</td><td class="l">up</td><td class="l">up</td></tr>
+    <tr><td>Time T up</td><td class="l">up (nearly always)</td><td class="l">up (nearly always)</td></tr>
+    <tr><td>Rate r up</td><td class="l">slightly down</td><td class="l">slightly down</td></tr>
+  </table></div>
+  <p class="note">Handy shortcut: an at-the-money option is worth about 0.4 × F × σ × √T, and a straddle about twice that. March cotton at 79.51, 21.4% vol, 78 days: 0.4 × 79.51 × 0.214 × √(78/365) ≈ 3.1 ¢/lb per option, about 6.3 ¢/lb for the straddle.</p>
+</div>
+</div>
+
+<div class="grid g2">
+<div class="card">
+  <h2>Implied volatility (IV)</h2>
+  <p>Every input to Black-76 is visible on a screen except volatility. So traders turn the formula around: take the market premium and solve for the σ that reproduces it. That σ is the <b>implied volatility</b>. There is no closed form, so it is found by trial (Newton's method): guess, reprice, adjust.</p>
+  <div class="key">IV is a common ruler. Premiums in cents cannot be compared across strikes, expiries or markets; IVs can. A 1.60 ¢ cotton call and a 12 ¢ coffee call mean nothing side by side, but 21% vs 37% does.</div>
+  <ul class="read">
+    <li><b>IV is a price, not a forecast.</b> It is what the market charges for movement. It includes a risk premium (hedgers pay up for protection), supply and demand for options, and model error.</li>
+    <li><b>Realized volatility (RV)</b> is what the futures actually did, the annualized standard deviation of daily log returns. IV minus RV is the <b>volatility risk premium</b>. It is usually positive.</li>
+    <li><b>Converting to cents:</b> daily move ≈ F × σ / √252. Expected move to expiry ≈ F × σ × √T.</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>When IV misleads</h2>
+  <ul class="read">
+    <li><b>Options with under 15 days left are left out of IV readings on these desks.</b> Their premiums are tiny and the price curve is flat, so one tick changes the IV a lot, and the last days are dominated by pin effects and event days.</li>
+    <li><b>Deep in-the-money options</b> are mostly intrinsic value; their IV is unstable for the same reason. Read the smile from out-of-the-money puts on the left and out-of-the-money calls on the right.</li>
+    <li><b>Wrong forward:</b> serial options (January cotton on March futures) must be priced off the March future, not a nearby.</li>
+    <li><b>Bid and ask give a range of IVs</b>, not one number. A smile built from mid-prices can show bumps that are only wide quotes.</li>
+    <li><b>Limit days:</b> when futures lock limit, settlement prices for options can be set off a futures price that did not trade, so that day's IV is not a real market.</li>
+  </ul>
+</div>
+</div>
+</div>
+
+<!-- 3 GREEKS -->
+<div class="panel" id="p-greeks">
+<div class="card">
+  <h2>The greeks in one table</h2>
+  <p>Each greek answers one "what if" question, holding everything else still. Signs are for a <b>long</b> option; flip them for a short.</p>
+  <div class="tbl"><table>
+    <tr><th>Greek</th><th class="l">Question it answers</th><th class="l">Long call</th><th class="l">Long put</th><th class="l">Units used on these desks</th></tr>
+    <tr><td><b>Delta (Δ)</b></td><td class="l">How much does the premium change if futures move 1 ¢?</td><td class="l">0 to +1</td><td class="l">−1 to 0</td><td class="l">futures-equivalent lots per option</td></tr>
+    <tr><td><b>Gamma (Γ)</b></td><td class="l">How much does delta change if futures move 1 ¢?</td><td class="l">+</td><td class="l">+ (same as the call)</td><td class="l">delta per ¢</td></tr>
+    <tr><td><b>Theta (Θ)</b></td><td class="l">How much value is lost as one day passes?</td><td class="l">−</td><td class="l">−</td><td class="l">¢/lb per trading day</td></tr>
+    <tr><td><b>Vega (ν)</b></td><td class="l">How much does the premium change if IV rises 1 point?</td><td class="l">+</td><td class="l">+ (same as the call)</td><td class="l">¢/lb per vol point</td></tr>
+    <tr><td><b>Rho (ρ)</b></td><td class="l">How much does the premium change if rates rise 1%?</td><td class="l">small −</td><td class="l">small −</td><td class="l">rarely matters on futures options</td></tr>
+  </table></div>
+</div>
+<div class="grid g2">
+<div class="card">
+  <h2>Delta: direction</h2>
+  <div class="f">Call Δ = e^(−rT)·N(d1)        Put Δ = −e^(−rT)·N(−d1) = Call Δ − e^(−rT)</div>
+  <ul class="read">
+    <li><b>Hedge ratio:</b> a 0.50-delta call moves like half a futures contract. Ten of them = 5 lots of futures exposure. Sell 5 futures and the book is "delta neutral".</li>
+    <li><b>Slope:</b> delta is the slope of the option-value curve against the futures price.</li>
+    <li><b>Rough odds:</b> delta is close to, but not the same as, the market-implied chance of finishing in the money. That chance is N(d2), which is a bit lower than a call's N(d1).</li>
+    <li>Call delta minus put delta at the same strike is about 1 (exactly e^(−rT)).</li>
+  </ul>
+  <div id="chDelta"></div>
+  <div class="leg"><span><i style="background:#2f6b3a"></i>78 days</span><span><i style="background:#c27a00"></i>40 days</span><span><i style="background:#7a3fa0"></i>20 days</span></div>
+  <p class="note">80-strike call, 21.5% vol. As expiry nears, delta turns into a step: near 0 below the strike, near 1 above.</p>
+</div>
+<div class="card">
+  <h2>Gamma: how fast the hedge goes stale</h2>
+  <div class="f">Γ = e^(−rT)·φ(d1) / (F·σ·√T)        (same for the call and the put)</div>
+  <ul class="read">
+    <li>Gamma is the curvature of the option. A long-gamma position gets <b>longer</b> as prices rise and <b>shorter</b> as they fall, so rehedging makes you sell high and buy low.</li>
+    <li>It peaks at the money and grows sharply as expiry approaches (it scales with 1/√T). A short-dated at-the-money option can swing from 0.2 to 0.8 delta on a normal day.</li>
+    <li>Short gamma is the opposite: you are forced to buy rallies and sell breaks, and a big gap hurts the most.</li>
+  </ul>
+  <div id="chGamma"></div>
+  <div class="leg"><span><i style="background:#2f6b3a"></i>Gamma (delta per ¢), left scale</span><span><i style="background:#b3261e"></i>Theta (¢/lb per trading day), right scale</span></div>
+  <p class="note">At-the-money March cotton style option, F = K = 80, 21.5% vol, from 180 down to 15 days. Both grow faster the closer expiry gets.</p>
+</div>
+</div>
+<div class="grid g2">
+<div class="card">
+  <h2>Theta: the rent you pay for gamma</h2>
+  <div class="f">Θ (per year) = −e^(−rT)·F·φ(d1)·σ / (2√T)  +  r × premium
+Θ per trading day = Θ / 252</div>
+  <ul class="read">
+    <li>A long option loses value every day nothing happens. The seller collects it.</li>
+    <li>Decay is not linear. An at-the-money option loses about half its value in the last quarter of its life, because value scales with √T.</li>
+    <li>Weekends: the model decays over calendar time, but markets only move on trading days. These desks quote theta per trading day so it lines up with daily moves.</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>Vega: exposure to the vol quote itself</h2>
+  <div class="f">ν = e^(−rT)·F·φ(d1)·√T   per 1.00 of vol;   divide by 100 for one vol point</div>
+  <ul class="read">
+    <li>Vega is the change in premium if IV moves 1 point (say 21% to 22%) with futures unchanged. Hedging with futures does <b>not</b> remove it.</li>
+    <li>It grows with √T, so deferred options (new-crop December cotton, back-month coffee) carry most of a book's vega, while short-dated options carry most of its gamma and theta.</li>
+    <li>Commodity vol jumps around events: WASDE days, Brazil frost scares, US planting weather. Long vega pays when uncertainty is repriced higher even if futures go nowhere.</li>
+  </ul>
+  <div id="chVega"></div>
+  <div class="leg"><span><i style="background:#1f5fa8"></i>Vega (¢/lb per vol point), at the money, F = 80, 21.5%</span></div>
+</div>
+</div>
+</div>
+
+<!-- 4 LINKS -->
+<div class="panel" id="p-links">
+<div class="card">
+  <h2>The one equation that ties them together</h2>
+  <p>Hold an option and hedge its delta with futures. Over one short step, the option's value change is (a Taylor expansion):</p>
+  <div class="f">Hedged P&amp;L  ≈  Θ·δt  +  ½·Γ·(δF)²  +  ν·δσ
+           time cost   gamma gain      vol repricing</div>
+  <div class="key">A delta-hedged long option loses to time and gains from movement in either direction. A short option is the reverse. Everything below is a consequence of this one line.</div>
+</div>
+<div class="grid g2">
+<div class="card">
+  <h2>Gamma vs theta, and the daily breakeven move</h2>
+  <p>Set the hedged P&amp;L to zero with no vol change: ½Γ(δF)² = −Θ·δt. In Black-76 at a fair price, theta and gamma are locked together:</p>
+  <div class="f">Θ (per trading day)  ≈  −½ · Γ · (F·σ/√252)²
+Daily breakeven move  m  =  F · σ · √(1/252)</div>
+  <ul class="read">
+    <li>If futures move <b>more</b> than m on the day, the long-gamma holder wins; if less, theta wins.</li>
+    <li>m is simply the one-day, one-standard-deviation move the IV is pricing. Cotton at 79.51 with 21.4% vol: 79.51 × 0.214 / 15.87 ≈ <b>1.07 ¢/lb a day</b>.</li>
+    <li>This is why you hear "the market is paying 107 points a day for March": buying the option is a bet that daily ranges beat that.</li>
+    <li>Squared moves: a day twice the breakeven earns four times the theta; a day at half the breakeven earns only a quarter of it.</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>Realized vs implied: what a hedged option really bets on</h2>
+  <div class="f">Expected hedged P&amp;L per day  ≈  ½ · Γ · F² · (σ_realized² − σ_implied²) / 252</div>
+  <ul class="read">
+    <li>Buy at 21% IV, then futures realize 25%: the gamma gains beat the theta paid. Realize 17% and you bleed.</li>
+    <li>The edge is in the <b>squares</b> of the vols, and it is weighted by gamma, so it is earned mostly when price sits near the strike.</li>
+    <li>Path matters. Big moves far from your strike earn little gamma; the same move right at the strike earns a lot.</li>
+  </ul>
+</div>
+</div>
+<div class="grid g2">
+<div class="card">
+  <h2>Other relationships worth knowing</h2>
+  <div class="tbl"><table>
+    <tr><th class="l">Relationship</th><th class="l">What it means in practice</th></tr>
+    <tr><td class="l"><b>Gamma and theta have opposite signs</b></td><td class="l">You cannot be long gamma and collect theta. Every structure that "earns decay" is short gamma somewhere.</td></tr>
+    <tr><td class="l"><b>Gamma ∝ 1/√T, vega ∝ √T</b></td><td class="l">Short-dated options are gamma trades; long-dated options are vega trades. A calendar spread is long one and short the other.</td></tr>
+    <tr><td class="l"><b>Vega = Γ · F² · σ · T</b></td><td class="l">In Black-76 vega and gamma are the same curvature seen two ways: gamma per ¢ of futures, vega per point of vol.</td></tr>
+    <tr><td class="l"><b>Call and put at one strike share Γ, Θ (nearly) and ν</b></td><td class="l">Parity says they differ by a futures contract, which has no curvature. So a put plus long futures is a call, greeks and all.</td></tr>
+    <tr><td class="l"><b>Δ ≈ N(d1), probability ≈ N(d2)</b></td><td class="l">A 25-delta call has a bit less than a 25% market-implied chance of finishing in the money, and the gap widens with vol and time.</td></tr>
+    <tr><td class="l"><b>Greeks add up</b></td><td class="l">A book's delta, gamma, theta and vega are the sums over its legs (times lots). Structures reshape risk; they do not create profit.</td></tr>
+    <tr><td class="l"><b>Time and vol are interchangeable</b></td><td class="l">Only σ√T enters d1 and d2. A 20%-vol option with 4 months left has the same shape as a 40%-vol option with 1 month left.</td></tr>
+  </table></div>
+</div>
+<div class="card">
+  <h2>Breakeven bands on a one-day P&amp;L curve</h2>
+  <div id="chBE"></div>
+  <div class="leg"><span><i style="background:#2f6b3a"></i>Long, delta-hedged March 80 call: one-day P&amp;L (¢/lb)</span></div>
+  <p class="note">Exact Black-76 repricing after one trading day, IV unchanged, hedge set at the start of the day. The curve crosses zero at about ±1.07 ¢, the breakeven move. It is a parabola because the gain is ½Γ(δF)².</p>
+</div>
+</div>
+</div>
+
+<!-- 5 WORKED -->
+<div class="panel" id="p-worked">
+<div class="card">
+  <h2>Worked example: ICE March 2027 cotton 80 call</h2>
+  <p>Inputs from the 19 Nov 2026 ICE settlement: March futures <b>79.51 ¢/lb</b>, 80-strike implied vol <b>21.52%</b>, <b>78 days</b> to option expiry. Rate assumed 4%.</p>
+  <div id="workSteps"></div>
+</div>
+<div class="grid g2">
+<div class="card">
+  <h2>What one day can do to it</h2>
+  <div id="workScen"></div>
+  <p class="note">Unhedged = the option alone. Hedged = the option plus a short of delta × 1 futures set at the start of the day. Greek estimate = Δ·δF + ½Γ·δF² + Θ. IV held at 21.52%.</p>
+</div>
+<div class="card calc">
+  <h2>Calculator</h2>
+  <p class="note">Black-76, change any input. Futures and strike in the contract's units; vol in %; days are calendar days to option expiry.</p>
+  <div class="row">
+    <span><label>Futures</label><input id="cF" type="number" step="0.01" value="79.51"></span>
+    <span><label>Strike</label><input id="cK" type="number" step="0.5" value="80"></span>
+    <span><label>IV %</label><input id="cV" type="number" step="0.1" value="21.52"></span>
+    <span><label>Days</label><input id="cT" type="number" step="1" value="78"></span>
+    <span><label>Rate %</label><input id="cR" type="number" step="0.1" value="4"></span>
+    <span><label>$ per unit</label><input id="cM" type="number" step="1" value="500"></span>
+  </div>
+  <div id="calcOut"></div>
+</div>
+</div>
+</div>
+
+<!-- 6 SKEW -->
+<div class="panel" id="p-skew">
+<div class="grid g2">
+<div class="card">
+  <h2>Skew: why IV differs by strike</h2>
+  <p>Black-76 assumes one vol for every strike. Real markets don't. Plot IV against strike and you get the <b>smile</b>; its tilt is the <b>skew</b>.</p>
+  <ul class="read">
+    <li><b>Equity indices</b> have put skew: crashes are fast and everyone owns stocks, so downside protection is bid.</li>
+    <li><b>Softs and grains usually have call skew.</b> The big, fast moves are supply shocks up: a frost in Minas Gerais, a drought in West Texas, a short-crop squeeze. Consumers (mills, roasters) and short hedgers who sold forward buy upside calls; growers sell them against their crop. So OTM calls trade over OTM puts.</li>
+    <li>Skew changes with the price level. After a long fall, put skew can appear as specs pile into downside; after a squeeze, call skew steepens.</li>
+  </ul>
+  <h4>How it is quoted</h4>
+  <div class="f">25-delta risk reversal (RR25) = IV(25Δ call) − IV(25Δ put)      positive = calls over puts
+25-delta butterfly    (BF25) = ½[IV(25Δ call) + IV(25Δ put)] − IV(ATM)   = how curved the smile is</div>
+</div>
+<div class="card">
+  <h2>March 2027 smiles across the softs</h2>
+  <div id="chSmile"></div>
+  <div class="leg"><span><i style="background:#2f6b3a"></i>Cotton</span><span><i style="background:#6b3a1f"></i>Coffee</span><span><i style="background:#1f5fa8"></i>Sugar No. 11</span></div>
+  <p class="note">IV vs strike as % of the March future, ICE settlement 19 Nov 2026. All three lean right (call skew). RR25: cotton +3.1, coffee +2.2, sugar +3.6 vol points.</p>
+</div>
+</div>
+<div class="grid g2">
+<div class="card">
+  <h2>Term structure: IV by expiry</h2>
+  <div id="chTerm"></div>
+  <div class="leg"><span><i style="background:#2f6b3a"></i>Cotton ATM IV by option expiry, 19 Nov 2026</span></div>
+  <ul class="read">
+    <li>Commodity term structures follow the crop calendar. Cotton old-crop options (March to July) price 21–23% while new-crop September to December 2027 price about 18%: the old crop has a known, tight story; the new crop is a year away and gets averaged out.</li>
+    <li>Vol tends to rise into the growing season for the crop at risk (US cotton in July to August, Brazil coffee in June to August frost months, US corn in June to July).</li>
+    <li>A scheduled event only lifts options that expire <b>after</b> it.</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>Forward vol: the vol between two expiries</h2>
+  <p>Variance adds over time. Total variance to an expiry is w = σ² × T. The vol priced for the window between two expiries is:</p>
+  <div class="f">σ(1→2) = √[ (σ2²·T2 − σ1²·T1) / (T2 − T1) ]</div>
+  <p id="fwdEx"></p>
+  <p class="note">For cotton the March and May options sit on different futures, so this is only an approximation; it is exact for two expiries on the same future (for example January and March options, both on March futures). A later expiry can have lower IV than an earlier one without any arbitrage, as long as total variance still rises.</p>
+</div>
+</div>
+</div>
+
+<!-- 7 STRATEGIES -->
+<div class="panel" id="p-strats">
+<div class="card">
+  <h2>Strategy payoffs, priced on the March 2027 cotton smile</h2>
+  <div class="sel" id="stratSel"></div>
+  <div id="chStrat"></div>
+  <div class="leg"><span><i style="background:#2f6b3a"></i>Profit at expiry (¢/lb)</span><span><i style="background:#999"></i>Value today, before any time passes</span></div>
+  <div id="stratInfo"></div>
+  <p class="note">Each leg priced with Black-76 at its own strike's IV (19 Nov 2026), futures 79.51, 78 days. Calendar uses the May 2027 option (148 days). Costs exclude commissions and bid-ask.</p>
+</div>
+<div class="card">
+  <h2>Which strategy for which view</h2>
+  <div class="tbl"><table>
+    <tr><th class="l">Strategy</th><th class="l">What it is</th><th class="l">Use it when</th><th class="l">Greeks (sign)</th></tr>
+    <tr><td class="l"><b>Long call / long put</b></td><td class="l">Buy one option</td><td class="l">You expect a big move one way and want the loss capped at the premium. Best when IV is cheap vs the move you expect.</td><td class="l">Δ ±, Γ +, Θ −, ν +</td></tr>
+    <tr><td class="l"><b>Short put / covered call</b></td><td class="l">Sell an option, often against a position (a grower selling calls on stored cotton)</td><td class="l">You'd be happy to buy lower / sell higher and think IV is rich. You are paid to wait.</td><td class="l">Γ −, Θ +, ν −</td></tr>
+    <tr><td class="l"><b>Vertical (bull call, bear put spread)</b></td><td class="l">Buy one strike, sell a further OTM strike</td><td class="l">Directional view with a target. Selling the upper strike cuts the cost and, in call-skewed softs, sells the richer vol.</td><td class="l">Δ directional, small Γ, Θ, ν</td></tr>
+    <tr><td class="l"><b>Straddle / strangle</b></td><td class="l">Buy (or sell) a call and a put, same strike or two OTM strikes</td><td class="l">Long: you expect a big move but not its direction (ahead of a WASDE, a frost window). Short: you expect a quiet range.</td><td class="l">Δ ≈ 0, Γ ±, Θ ∓, ν ±</td></tr>
+    <tr><td class="l"><b>Collar / fence</b></td><td class="l">Own a put, sell a call (for a long hedge, the reverse)</td><td class="l">A hedger wants a floor and a ceiling for little or no premium.</td><td class="l">Acts like a short future between strikes</td></tr>
+    <tr><td class="l"><b>Risk reversal</b></td><td class="l">Buy an OTM call, sell an OTM put (or the reverse)</td><td class="l">Strong directional view; also a direct trade on skew.</td><td class="l">Δ large, ν on skew</td></tr>
+    <tr><td class="l"><b>Calendar</b></td><td class="l">Sell a near expiry, buy a far expiry at the same strike</td><td class="l">You expect the near month to stay quiet while uncertainty stays priced further out (old crop vs new crop). Watch: in cotton the two legs may sit on different futures.</td><td class="l">Γ −, Θ +, ν +</td></tr>
+    <tr><td class="l"><b>Ratio spread (1×2)</b></td><td class="l">Buy one near strike, sell two further strikes</td><td class="l">You expect a moderate move to the short strike and think the wing is overpriced. Risk opens up beyond the upper breakeven.</td><td class="l">Γ − in the wing, Θ +</td></tr>
+    <tr><td class="l"><b>Butterfly</b></td><td class="l">Buy 1 low, sell 2 middle, buy 1 high</td><td class="l">You expect the price to pin near the middle strike at expiry, with capped risk.</td><td class="l">Γ −, Θ + near the body</td></tr>
+  </table></div>
+</div>
+</div>
+
+<!-- 8 HEDGING -->
+<div class="panel" id="p-hedge">
+<div class="grid g2">
+<div class="card">
+  <h2>Producer (grower, sugar mill, coffee farmer): protect the floor</h2>
+  <p>A grower expects to sell 250,000 lb of cotton (5 contracts) in the spring and is worried prices fall. Three choices:</p>
+  <div id="hedgeProd"></div>
+  <ul class="read">
+    <li><b>Sell futures:</b> locks the price; no upside if a squeeze comes, and margin calls if prices rally.</li>
+    <li><b>Buy puts:</b> a floor at strike minus premium, every cent of upside kept. Premium is paid up front.</li>
+    <li><b>Fence (buy a put, sell a call):</b> a floor and a ceiling for much less premium. In call-skewed softs the call sold is relatively rich, which helps the producer.</li>
+  </ul>
+  <p class="note">All are futures-price hedges. The physical price is futures plus basis, which these options do not cover.</p>
+</div>
+<div class="card">
+  <h2>Consumer (textile mill, roaster, refiner): cap the cost</h2>
+  <ul class="read">
+    <li><b>The risk is a rally.</b> A mill buying cotton on-call has its basis set but still has to fix the futures price later. If it waits and futures squeeze, its yarn margin disappears.</li>
+    <li><b>Buy calls</b> to cap the fixing price, or a <b>call spread</b> (buy 82, sell 90) when it only fears a moderate rise and wants to spend less. Call skew makes outright calls dear, so spreads are common.</li>
+    <li><b>Long fence</b> (buy a call, sell a put) gives a cap and a floor, so the mill gives up some benefit of a fall.</li>
+  </ul>
+</div>
+</div>
+<div class="grid g2">
+<div class="card">
+  <h2>Merchant: hedge the book, not just the trade</h2>
+  <ul class="read">
+    <li>A merchant's flat-price risk on physical is normally hedged with futures; what it really trades is <b>basis</b> and <b>spreads</b>. Options come in when it offers clients price protection.</li>
+    <li>Offer a grower a "minimum price" contract and the merchant is short a put to the grower; it buys the matching put on ICE or carries the exposure and delta-hedges it.</li>
+    <li>Offer a mill a "maximum price" contract and the merchant is short a call; same choice.</li>
+    <li>A book of client options is then run on its net greeks: delta hedged daily with futures, with gamma and vega limits.</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>Delta hedging and gamma scalping, step by step</h2>
+  <p>Long 50 March 80 calls, hedged by selling whole futures lots equal to delta, rehedged each close. Futures go up, back down, then up again:</p>
+  <div id="scalp"></div>
+  <p class="note">Black-76 repricing, IV 21.52% throughout. Positive futures-trade cash comes from selling into rallies and buying back on dips; it is the gamma gain. Against it the options lose their daily theta. Whether the total is positive depends on whether the moves beat the ~1.08 ¢ breakeven.</p>
+</div>
+</div>
+</div>
+
+<!-- 9 PITFALLS -->
+<div class="panel" id="p-pitfalls">
+<div class="card">
+  <h2>Common mistakes</h2>
+  <div class="tbl"><table>
+    <tr><th class="l">Mistake</th><th class="l">Why it hurts</th></tr>
+    <tr><td class="l"><b>Reading IV from options with under 15 days left</b></td><td class="l">Tiny premiums and flat price curves make the IV jump on single ticks. These desks leave them out of IV readings.</td></tr>
+    <tr><td class="l"><b>Treating delta as the probability of profit</b></td><td class="l">Delta is a hedge ratio. The chance of finishing ITM is N(d2), and the chance of <i>profit</i> is lower still, because you need to clear the premium too.</td></tr>
+    <tr><td class="l"><b>Selling options as "income"</b></td><td class="l">You are paid theta for being short gamma. Most days you win small; a weather shock or squeeze takes it back with interest.</td></tr>
+    <tr><td class="l"><b>Ignoring limit moves</b></td><td class="l">Cotton, coffee and sugar futures have daily price limits or circuit breakers. On a locked day you cannot delta hedge, and options may become the only thing that trades.</td></tr>
+    <tr><td class="l"><b>Forgetting what you get on exercise</b></td><td class="l">Exercise or assignment gives a futures position the next morning, with margin. Short options left open into expiry can leave an unwanted futures position (pin risk), just before first notice.</td></tr>
+    <tr><td class="l"><b>Pricing serials off the wrong future</b></td><td class="l">January cotton options exercise into March futures; pricing them off the old December contract gives nonsense vols.</td></tr>
+    <tr><td class="l"><b>Using one vol for every strike</b></td><td class="l">The smile matters. A 90 call priced at the ATM vol will look cheap when it isn't.</td></tr>
+    <tr><td class="l"><b>Mixing calendar and trading days</b></td><td class="l">Pick one: here T uses calendar days/365 and daily moves, theta and breakeven use 252 trading days.</td></tr>
+    <tr><td class="l"><b>Forgetting vega in deferred months</b></td><td class="l">A delta-hedged December option can lose more on a 2-point IV drop than on a week of theta.</td></tr>
+    <tr><td class="l"><b>Comparing spreads with mid-prices</b></td><td class="l">Thin strikes have wide markets; a strategy that looks free at mid can cost a tick or two per leg to trade.</td></tr>
+    <tr><td class="l"><b>Assuming a hedge covers basis</b></td><td class="l">Futures options hedge the futures price only. A grower with a put still bears basis risk.</td></tr>
+  </table></div>
+</div>
+</div>
+
+<!-- 10 GLOSSARY -->
+<div class="panel" id="p-gloss">
+<div class="card">
+  <h2>Every variable on this page</h2>
+  <div class="tbl"><table id="glossTbl"></table></div>
+</div>
+</div>
+
+<p class="note" style="margin:14px 0 30px">Sources: course "Introduction to Financial Options" (options-101.com, Charles University, Fall 2026), lectures 1 to 9; Black, F. (1976), "The pricing of commodity contracts", Journal of Financial Economics; ICE and CME contract specifications; ICE settlement prices and implied volatilities as of 19 Nov 2026.</p>
+</main>
+
+<script>
+// ---------- Black-76 ----------
+const SQ252 = Math.sqrt(252);
+function ncdf(x) { // Abramowitz-Stegun 26.2.17 style via erf
+  const t = 1 / (1 + 0.2316419 * Math.abs(x));
+  const d = 0.3989422804014327 * Math.exp(-x * x / 2);
+  const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+  return x >= 0 ? 1 - p : p;
+}
+const npdf = x => 0.3989422804014327 * Math.exp(-x * x / 2);
+function b76(F, K, sig, T, r = 0.04, cp = 'c') {
+  if (T <= 0) { const iv = cp === 'c' ? Math.max(F - K, 0) : Math.max(K - F, 0); return { p: iv, d: cp === 'c' ? (F > K ? 1 : 0) : (F < K ? -1 : 0), g: 0, t: 0, v: 0, d1: NaN, d2: NaN, n2: NaN }; }
+  const s = sig * Math.sqrt(T), d1 = (Math.log(F / K) + 0.5 * sig * sig * T) / s, d2 = d1 - s, D = Math.exp(-r * T);
+  const c = D * (F * ncdf(d1) - K * ncdf(d2)), p = D * (K * ncdf(-d2) - F * ncdf(-d1));
+  const prem = cp === 'c' ? c : p;
+  const g = D * npdf(d1) / (F * s);
+  const vega = D * F * npdf(d1) * Math.sqrt(T) / 100;
+  const thY = -D * F * npdf(d1) * sig / (2 * Math.sqrt(T)) + r * prem;
+  return { p: prem, d: cp === 'c' ? D * ncdf(d1) : -D * ncdf(-d1), g, t: thY / 252, v: vega, d1, d2, n1: ncdf(d1), n2: ncdf(d2), D };
+}
+const f2 = x => (x >= 0 ? '' : '−') + Math.abs(x).toFixed(2), f3 = x => (x >= 0 ? '' : '−') + Math.abs(x).toFixed(3), f4 = x => (x >= 0 ? '' : '−') + Math.abs(x).toFixed(4);
+const usd = x => (x < 0 ? '−$' : '$') + Math.abs(Math.round(x)).toLocaleString('en-US');
+const sgn = (x, f) => (x > 0 ? '+' : '') + f(x);
+
+// ---------- tiny SVG line chart ----------
+function chart(id, series, o = {}) {
+  const W = 560, H = o.h || 260, L = 46, R = o.y2 ? 50 : 14, T = 12, B = 34;
+  const xs = series.flatMap(s => s.pts.map(p => p[0])), ysL = series.filter(s => !s.y2).flatMap(s => s.pts.map(p => p[1])), ysR = series.filter(s => s.y2).flatMap(s => s.pts.map(p => p[1]));
+  const x0 = o.xmin ?? Math.min(...xs), x1 = o.xmax ?? Math.max(...xs);
+  const rng = (a, lo, hi) => { let m = lo ?? Math.min(...a), M = hi ?? Math.max(...a); if (m === M) { m -= 1; M += 1; } const pad = (M - m) * 0.06; return [lo ?? m - pad, hi ?? M + pad]; };
+  const [y0, y1] = rng(ysL, o.ymin, o.ymax), [z0, z1] = ysR.length ? rng(ysR, o.y2min, o.y2max) : [0, 1];
+  const X = x => L + (x - x0) / (x1 - x0) * (W - L - R), Y = y => T + (y1 - y) / (y1 - y0) * (H - T - B), Z = y => T + (z1 - y) / (z1 - z0) * (H - T - B);
+  const ticks = (a, b, n = 5) => { const st = Math.pow(10, Math.floor(Math.log10((b - a) / n))), m = [1, 2, 2.5, 5, 10].find(k => (b - a) / (k * st) <= n) * st; const out = []; for (let v = Math.ceil(a / m) * m; v <= b + 1e-9; v += m) out.push(+v.toFixed(10)); return out; };
+  let g = '';
+  ticks(y0, y1).forEach(v => g += `<line class="gr" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L - 5}" y="${Y(v) + 4}" text-anchor="end">${(o.yf || (x => x))(v)}</text>`);
+  if (ysR.length) ticks(z0, z1).forEach(v => g += `<text x="${W - R + 5}" y="${Z(v) + 4}">${(o.y2f || (x => x))(v)}</text>`);
+  ticks(x0, x1, o.xn || 7).forEach(v => g += `<text x="${X(v)}" y="${H - B + 15}" text-anchor="middle">${(o.xf || (x => x))(v)}</text>`);
+  if (y0 < 0 && y1 > 0) g += `<line class="ax" x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}" style="stroke:#888"/>`;
+  (o.vlines || []).forEach(v => g += `<line x1="${X(v.x)}" x2="${X(v.x)}" y1="${T}" y2="${H - B}" stroke="${v.c || '#999'}" stroke-dasharray="4 3"/><text x="${X(v.x) + 3}" y="${T + 10}" style="fill:${v.c || '#777'}">${v.t || ''}</text>`);
+  g += `<line class="ax" x1="${L}" x2="${L}" y1="${T}" y2="${H - B}"/><line class="ax" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/>`;
+  series.forEach(s => { const P = s.pts.filter(p => isFinite(p[1])).map(p => `${X(p[0]).toFixed(1)},${(s.y2 ? Z : Y)(p[1]).toFixed(1)}`).join(' '); g += `<polyline points="${P}" fill="none" stroke="${s.c}" stroke-width="${s.w || 2}" ${s.dash ? `stroke-dasharray="${s.dash}"` : ''}/>`; if (s.dots) s.pts.forEach(p => g += `<circle cx="${X(p[0])}" cy="${(s.y2 ? Z : Y)(p[1])}" r="3" fill="${s.c}"/>`); });
+  if (o.xl) g += `<text x="${(L + W - R) / 2}" y="${H - 3}" text-anchor="middle">${o.xl}</text>`;
+  document.getElementById(id).innerHTML = `<svg class="ch" viewBox="0 0 ${W} ${H}">${g}</svg>`;
+}
+const range = (a, b, st) => { const o = []; for (let x = a; x <= b + 1e-9; x += st) o.push(+x.toFixed(6)); return o; };
+
+// ---------- market inputs (ICE settlement 19 Nov 2026) ----------
+const F0 = 79.51, T0 = 78 / 365, R0 = 0.04, MULT = 500;
+const CT_SMILE = [[64, 21.82], [65, 21.15], [66, 20.84], [68, 20.43], [70, 20.69], [71, 20.44], [72, 20.32], [73, 20.23], [74, 20.22], [75, 20.39], [76, 20.58], [77, 20.76], [78, 21.01], [79, 21.24], [80, 21.52], [81, 21.81], [82, 22.1], [83, 22.44], [84, 22.76], [85, 23.1], [86, 23.48], [87, 23.82], [88, 24.17], [89, 24.59], [90, 24.99], [91, 25.41], [92, 25.87], [94, 26.83], [95, 27.38]];
+const KC_SMILE = { F: 276.0, s: [[222.5, 36.27], [230, 35.93], [240, 35.98], [250, 36.0], [260, 36.22], [270, 36.5], [276, 36.7], [280, 36.84], [290, 37.21], [300, 37.61], [310, 38.04], [320, 38.49], [330, 39.02]] };
+const SB_SMILE = { F: 17.16, s: [[14, 27.08], [14.5, 26.04], [15, 25.84], [15.5, 25.66], [16, 25.79], [16.5, 26.28], [17, 26.69], [17.5, 27.27], [18, 27.85], [18.5, 28.44], [19, 29.26], [19.5, 30.01], [20, 30.88], [20.5, 31.86]] };
+const CT_TERM = [['Jan 27', 29, 20.53], ['Mar 27', 78, 21.38], ['May 27', 148, 23.44], ['Jul 27', 204, 22.75], ['Sep 27', 274, 18.4], ['Nov 27', 330, 18.17], ['Dec 27', 358, 18.6]];
+const ivAt = K => { const s = CT_SMILE; if (K <= s[0][0]) return s[0][1] / 100; for (let i = 1; i < s.length; i++) if (K <= s[i][0]) { const [a, va] = s[i - 1], [b, vb] = s[i]; return (va + (vb - va) * (K - a) / (b - a)) / 100; } return s[s.length - 1][1] / 100; };
+const V80 = ivAt(80);
+
+// ---------- tab switching ----------
+const drawn = {};
+function show(p) {
+  document.querySelectorAll('#ptabs button').forEach(b => b.classList.toggle('on', b.dataset.p === p));
+  document.querySelectorAll('.panel').forEach(x => x.classList.toggle('on', x.id === 'p-' + p));
+  if (!drawn[p] && DRAW[p]) { DRAW[p](); drawn[p] = 1; }
+  try { parent.postMessage({ primerTab: p }, '*'); } catch (e) {}
+}
+document.querySelectorAll('#ptabs button').forEach(b => b.onclick = () => show(b.dataset.p));
+
+const DRAW = {
+  basics() {
+    const c = b76(F0, 80, V80, T0).p, p = b76(F0, 80, V80, T0, R0, 'p').p;
+    chart('chPayoff', [
+      { c: '#2f6b3a', pts: range(68, 92, 0.5).map(x => [x, Math.max(x - 80, 0) - c]) },
+      { c: '#b3261e', pts: range(68, 92, 0.5).map(x => [x, Math.max(80 - x, 0) - p]) }],
+      { xl: 'March futures at expiry (¢/lb)', vlines: [{ x: 80, t: 'K = 80' }] });
+  },
+  greeks() {
+    const xs = range(66, 94, 0.25);
+    chart('chDelta', [20, 40, 78].reverse().map((d, i) => ({ c: ['#2f6b3a', '#c27a00', '#7a3fa0'][i], pts: xs.map(x => [x, b76(x, 80, V80, d / 365).d]) })), { xl: 'March futures (¢/lb)', ymin: 0, ymax: 1, vlines: [{ x: 80, t: 'K' }], yf: v => v.toFixed(1) });
+    const ds = range(15, 180, 1);
+    chart('chGamma', [{ c: '#2f6b3a', pts: ds.map(d => [d, b76(80, 80, V80, d / 365).g]) }, { c: '#b3261e', y2: 1, pts: ds.map(d => [d, b76(80, 80, V80, d / 365).t]) }],
+      { xl: 'Days to expiry', xmin: 180, xmax: 15, xf: v => v, yf: v => v.toFixed(3), y2f: v => v.toFixed(3), y2: 1 });
+    chart('chVega', [{ c: '#1f5fa8', pts: ds.map(d => [d, b76(80, 80, V80, d / 365).v]) }], { xl: 'Days to expiry', xmin: 180, xmax: 15, yf: v => v.toFixed(2), h: 200 });
+  },
+  links() {
+    const g = b76(F0, 80, V80, T0), dt = 1 / 252;
+    chart('chBE', [{ c: '#2f6b3a', pts: range(-3, 3, 0.05).map(m => [m, b76(F0 + m, 80, V80, T0 - dt).p - g.p - g.d * m]) }],
+      { xl: 'One-day futures move (¢/lb)', yf: v => v.toFixed(2), vlines: [{ x: -F0 * V80 / SQ252, t: '−m', c: '#b3261e' }, { x: F0 * V80 / SQ252, t: '+m', c: '#b3261e' }] });
+  },
+  worked() { worked(); calc(); },
+  skew() {
+    const pct = (F, s) => s.map(([k, v]) => [k / F * 100, v]);
+    chart('chSmile', [{ c: '#2f6b3a', pts: pct(F0, CT_SMILE) }, { c: '#6b3a1f', pts: pct(KC_SMILE.F, KC_SMILE.s) }, { c: '#1f5fa8', pts: pct(SB_SMILE.F, SB_SMILE.s) }],
+      { xl: 'Strike as % of March futures', xmin: 80, xmax: 120, yf: v => v + '%', vlines: [{ x: 100, t: 'ATM' }] });
+    chart('chTerm', [{ c: '#2f6b3a', dots: 1, pts: CT_TERM.map(t => [t[1], t[2]]) }], { xl: 'Days to option expiry (Jan, Mar, May, Jul, Sep, Nov, Dec 2027)', yf: v => v + '%', h: 220, ymin: 16, ymax: 25 });
+    const [, d1, v1] = CT_TERM[1], [, d2, v2] = CT_TERM[2];
+    const fw = Math.sqrt(((v2 / 100) ** 2 * d2 - (v1 / 100) ** 2 * d1) / (d2 - d1));
+    document.getElementById('fwdEx').innerHTML = `Cotton example: March options ${v1}% with ${d1} days, May options ${v2}% with ${d2} days. Forward vol for the ${d2 - d1} days between them = √[(${(v2 / 100).toFixed(4)}² × ${d2} − ${(v1 / 100).toFixed(4)}² × ${d1}) / ${d2 - d1}] = <b>${(fw * 100).toFixed(1)}%</b>. The market is pricing the March-to-May window (US planting and early-season weather) as rougher than the months before March.`;
+  },
+  strats() { strats(); },
+  hedge() { hedge(); scalp(); },
+  gloss() { gloss(); }
+};
+
+// ---------- worked example ----------
+function worked() {
+  const F = F0, K = 80, s = V80, T = T0, r = R0, o = b76(F, K, s, T, r), pu = b76(F, K, s, T, r, 'p'), m = F * s / SQ252;
+  const steps = [
+    ['1. Time and vol', `T = 78 / 365 = ${T.toFixed(4)} years. σ = 0.2152. σ√T = 0.2152 × ${Math.sqrt(T).toFixed(4)} = <b>${(s * Math.sqrt(T)).toFixed(4)}</b>.`],
+    ['2. d1 and d2', `ln(F/K) = ln(79.51/80) = ${f4(Math.log(F / K))}. ½σ²T = ${(0.5 * s * s * T).toFixed(4)}. d1 = (${f4(Math.log(F / K))} + ${(0.5 * s * s * T).toFixed(4)}) / ${(s * Math.sqrt(T)).toFixed(4)} = <b>${f4(o.d1)}</b>; d2 = d1 − σ√T = <b>${f4(o.d2)}</b>.`],
+    ['3. Normal tables', `N(d1) = ${o.n1.toFixed(4)}, N(d2) = ${o.n2.toFixed(4)}, φ(d1) = ${npdf(o.d1).toFixed(4)}. Discount e^(−rT) = e^(−0.04 × ${T.toFixed(4)}) = ${o.D.toFixed(4)}.`],
+    ['4. Premium', `Call = ${o.D.toFixed(4)} × (79.51 × ${o.n1.toFixed(4)} − 80 × ${o.n2.toFixed(4)}) = <b>${o.p.toFixed(2)} ¢/lb</b> = ${usd(o.p * MULT)} per contract. All of it is time value (the call is 0.49 out of the money). The 80 put is ${pu.p.toFixed(2)} ¢; parity check: C − P = ${f3(o.p - pu.p)} = e^(−rT)(F − K) = ${f3(o.D * (F - K))}.`],
+    ['5. Delta', `Δ = e^(−rT) × N(d1) = <b>${o.d.toFixed(3)}</b>. Ten calls move like ${(10 * o.d).toFixed(1)} futures. Put delta = ${o.d.toFixed(3)} − ${o.D.toFixed(3)} = ${f3(pu.d)}. Market-implied chance the call finishes in the money = N(d2) = ${(o.n2 * 100).toFixed(0)}%.`],
+    ['6. Gamma', `Γ = e^(−rT) × φ(d1) / (F σ √T) = ${o.D.toFixed(4)} × ${npdf(o.d1).toFixed(4)} / (79.51 × ${(s * Math.sqrt(T)).toFixed(4)}) = <b>${o.g.toFixed(4)}</b> per ¢. A 1 ¢ rally lifts delta from ${o.d.toFixed(3)} to about ${(o.d + o.g).toFixed(3)}.`],
+    ['7. Theta', `Θ = [−e^(−rT) F φ(d1) σ / (2√T) + r × C] / 252 = <b>${f4(o.t)} ¢/lb per trading day</b> = ${usd(o.t * MULT)} a day per contract.`],
+    ['8. Vega', `ν = e^(−rT) × F × φ(d1) × √T / 100 = <b>${o.v.toFixed(3)} ¢/lb per vol point</b> = ${usd(o.v * MULT)} per contract. A 2-point rise in IV adds about ${(2 * o.v).toFixed(2)} ¢, roughly ${Math.round(2 * o.v / -o.t)} days of theta.`],
+    ['9. Breakeven daily move', `m = F σ / √252 = 79.51 × 0.2152 / 15.875 = <b>${m.toFixed(3)} ¢/lb</b>. Check the theta link: ½ Γ m² = ½ × ${o.g.toFixed(4)} × ${m.toFixed(3)}² = ${(0.5 * o.g * m * m).toFixed(4)}, vs theta ${f4(o.t)} (the small gap is the rate term r × C).`],
+    ['10. Expected move to expiry', `F σ √T = 79.51 × ${(s * Math.sqrt(T)).toFixed(4)} = ${(F * s * Math.sqrt(T)).toFixed(2)} ¢/lb, one standard deviation. The 80 straddle costs ${(o.p + pu.p).toFixed(2)} ¢, about 0.8 of that, as the rule of thumb says.`]];
+  document.getElementById('workSteps').innerHTML = '<div class="tbl"><table>' + steps.map(([a, b]) => `<tr><td class="l" style="width:170px"><b>${a}</b></td><td class="l">${b}</td></tr>`).join('') + '</table></div>';
+  const rows = [-2, -1.5, -1.07, -0.5, 0, 0.5, 1.07, 1.5, 2].map(mv => { mv = Math.abs(Math.abs(mv) - 1.07) < 1e-9 ? Math.sign(mv) * m : mv; const n = b76(F + mv, K, s, T - 1 / 252); const un = n.p - o.p, hd = un - o.d * mv, est = o.g * mv * mv / 2 + o.t; return `<tr><td>${sgn(mv, f2)}</td><td>${n.p.toFixed(3)}</td><td>${sgn(un, f3)}</td><td>${sgn(hd, f3)}</td><td>${sgn(est, f3)}</td><td>${usd(hd * MULT * 10)}</td></tr>`; });
+  document.getElementById('workScen').innerHTML = '<div class="tbl"><table><tr><th>Futures move</th><th>Call next day</th><th>Unhedged</th><th>Hedged</th><th>Greek est. (hedged)</th><th>Hedged, 10 lots</th></tr>' + rows.join('') + '</table></div>';
+}
+function calc() {
+  const ids = ['cF', 'cK', 'cV', 'cT', 'cR', 'cM'], run = () => {
+    const [F, K, V, D, R, M] = ids.map(i => +document.getElementById(i).value);
+    if (!(F > 0 && K > 0 && V > 0 && D > 0)) return;
+    const T = D / 365, c = b76(F, K, V / 100, T, R / 100), p = b76(F, K, V / 100, T, R / 100, 'p'), m = F * V / 100 / SQ252;
+    document.getElementById('calcOut').innerHTML = `<div class="tbl"><table><tr><th></th><th>Call</th><th>Put</th></tr>
+      <tr><td>Premium</td><td>${c.p.toFixed(3)} (${usd(c.p * M)})</td><td>${p.p.toFixed(3)} (${usd(p.p * M)})</td></tr>
+      <tr><td>Delta</td><td>${c.d.toFixed(3)}</td><td>${f3(p.d)}</td></tr>
+      <tr><td>Gamma (per unit)</td><td>${c.g.toFixed(4)}</td><td>${p.g.toFixed(4)}</td></tr>
+      <tr><td>Theta per trading day</td><td>${f4(c.t)} (${usd(c.t * M)})</td><td>${f4(p.t)} (${usd(p.t * M)})</td></tr>
+      <tr><td>Vega per vol point</td><td>${c.v.toFixed(3)} (${usd(c.v * M)})</td><td>${p.v.toFixed(3)} (${usd(p.v * M)})</td></tr>
+      <tr><td>N(d2), chance ITM</td><td>${(c.n2 * 100).toFixed(1)}%</td><td>${((1 - c.n2) * 100).toFixed(1)}%</td></tr>
+      <tr><td>Daily breakeven move</td><td colspan="2" style="text-align:center">${m.toFixed(3)}</td></tr>
+      <tr><td>1 s.d. move to expiry</td><td colspan="2" style="text-align:center">${(F * V / 100 * Math.sqrt(T)).toFixed(2)}</td></tr></table></div>
+      ${D < 15 ? '<p class="callout">Under 15 days to expiry: treat any implied vol here with caution.</p>' : ''}`;
+  };
+  ids.forEach(i => document.getElementById(i).oninput = run); run();
+}
+
+// ---------- strategies ----------
+const STRATS = {
+  'Long call 80': [[1, 'c', 80]],
+  'Long put 78': [[1, 'p', 78]],
+  'Short put 74': [[-1, 'p', 74]],
+  'Bull call spread 80/86': [[1, 'c', 80], [-1, 'c', 86]],
+  'Bear put spread 80/74': [[1, 'p', 80], [-1, 'p', 74]],
+  'Long straddle 80': [[1, 'c', 80], [1, 'p', 80]],
+  'Long strangle 74/86': [[1, 'p', 74], [1, 'c', 86]],
+  'Short strangle 74/86': [[-1, 'p', 74], [-1, 'c', 86]],
+  'Producer fence (long fut, +76 put, −86 call)': [[1, 'f'], [1, 'p', 76], [-1, 'c', 86]],
+  'Risk reversal (+86 call, −74 put)': [[1, 'c', 86], [-1, 'p', 74]],
+  'Call ratio 1×2 80/86': [[1, 'c', 80], [-2, 'c', 86]],
+  'Call butterfly 76/80/84': [[1, 'c', 76], [-2, 'c', 80], [1, 'c', 84]],
+  'Calendar 80 call (−Mar, +May)': [[-1, 'c', 80], [1, 'cMay', 80]]
+};
+const MAY = { F: 80.85, T: 148 / 365, V: 0.2344 };
+function legVal(l, F, dtYears, ivShift = 0) {
+  const [q, t, K] = l;
+  if (t === 'f') return q * (F - F0);
+  if (t === 'cMay') { const Fm = MAY.F + (F - F0); return q * b76(Fm, K, MAY.V + ivShift, MAY.T - dtYears).p; }
+  return q * b76(F, K, ivAt(K) + ivShift, Math.max(T0 - dtYears, 0), R0, t).p;
+}
+function stratGreeks(legs) {
+  const s = { d: 0, g: 0, t: 0, v: 0, cost: 0 };
+  legs.forEach(([q, t, K]) => { if (t === 'f') { s.d += q; return; } const o = t === 'cMay' ? b76(MAY.F, K, MAY.V, MAY.T) : b76(F0, K, ivAt(K), T0, R0, t); s.d += q * o.d; s.g += q * o.g; s.t += q * o.t; s.v += q * o.v; s.cost += q * o.p; });
+  return s;
+}
+function strats() {
+  const sel = document.getElementById('stratSel');
+  sel.innerHTML = Object.keys(STRATS).map((k, i) => `<button class="btn${i ? '' : ' on'}" data-k="${k}">${k}</button>`).join('');
+  const draw = k => {
+    sel.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
+    const legs = STRATS[k], g = stratGreeks(legs), xs = range(66, 94, 0.25);
+    const cost0 = legs.reduce((a, l) => a + legVal(l, F0, 0), 0);
+    const atExp = x => legs.reduce((a, l) => a + legVal(l, x, T0), 0) - cost0;
+    const today = x => legs.reduce((a, l) => a + legVal(l, x, 0), 0) - cost0;
+    chart('chStrat', [{ c: '#999', w: 1.5, dash: '5 3', pts: xs.map(x => [x, today(x)]) }, { c: '#2f6b3a', pts: xs.map(x => [x, atExp(x)]) }],
+      { xl: k.includes('Calendar') ? 'March futures at March expiry (¢/lb); May option valued then' : 'March futures at expiry (¢/lb)', yf: v => v.toFixed(1), vlines: [{ x: F0, t: 'F now' }] });
+    const pl = xs.map(atExp), mx = Math.max(...pl), mn = Math.min(...pl);
+    const be = []; for (let i = 1; i < xs.length; i++) if (Math.sign(pl[i]) !== Math.sign(pl[i - 1]) && pl[i - 1] !== 0) be.push((xs[i - 1] + (xs[i] - xs[i - 1]) * (-pl[i - 1]) / (pl[i] - pl[i - 1])).toFixed(2));
+    const edge = (v, mx) => { const i = pl.indexOf(v), n = pl.length - 1; const grows = (i === 0 && Math.abs(pl[0] - pl[1]) > 1e-6) || (i === n && Math.abs(pl[n] - pl[n - 1]) > 1e-6); return grows ? f2(v) + ' ¢ and ' + (mx ? 'rising' : 'falling') + ' past the chart' : f2(v) + ' ¢'; };
+    const mxS = edge(mx, 1), mnS = edge(mn, 0);
+    document.getElementById('stratInfo').innerHTML = `<div class="tbl"><table><tr><th>Net premium</th><th>Max gain (66–94)</th><th>Max loss (66–94)</th><th>Breakeven(s)</th><th>Delta</th><th>Gamma</th><th>Theta/day</th><th>Vega/pt</th></tr>
+      <tr><td>${g.cost > 0 ? 'pay ' + g.cost.toFixed(2) : 'receive ' + (-g.cost).toFixed(2)} ¢ (${usd(Math.abs(g.cost) * MULT)})</td><td>${mxS}</td><td>${mnS}</td><td>${be.join(', ') || '–'}</td><td>${f2(g.d)}</td><td>${f3(g.g)}</td><td>${f4(g.t)}</td><td>${f3(g.v)}</td></tr></table></div>`;
+  };
+  sel.querySelectorAll('button').forEach(b => b.onclick = () => draw(b.dataset.k));
+  draw(Object.keys(STRATS)[0]);
+}
+
+// ---------- hedging ----------
+function hedge() {
+  const pP = b76(F0, 76, ivAt(76), T0, R0, 'p').p, cC = b76(F0, 86, ivAt(86), T0).p, lots = 5;
+  const rows = [
+    ['Sell 5 March futures at 79.51', '79.51', '79.51', 'none', 'yes, both ways'],
+    [`Buy 5 March 76 puts at ${pP.toFixed(2)}`, (76 - pP).toFixed(2), 'none', `${pP.toFixed(2)} ¢ (${usd(pP * MULT * lots)})`, 'none'],
+    [`Fence: buy 76 put, sell 86 call at ${cC.toFixed(2)}`, (76 - pP + cC).toFixed(2), (86 - pP + cC).toFixed(2), `${(pP - cC).toFixed(2)} ¢ (${usd((pP - cC) * MULT * lots)})`, 'on the call above 86']];
+  document.getElementById('hedgeProd').innerHTML = '<div class="tbl"><table><tr><th class="l">Hedge</th><th>Floor (¢/lb)</th><th>Ceiling</th><th>Up-front cost</th><th>Margin</th></tr>' + rows.map(r => `<tr><td class="l">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('') + '</table></div><p class="note">March 2027 cotton, 19 Nov 2026 settlement vols. Floor and ceiling are the effective futures price after premium.</p>';
+}
+function scalp() {
+  const path = [79.51, 81.00, 79.50, 78.20, 79.60, 80.90], N = 50, K = 80; let hedge = 0, cash = 0, rows = [], prevOpt = 0;
+  for (let i = 0; i < path.length; i++) {
+    const F = path[i], T = T0 - i / 252, o = b76(F, K, V80, T), target = -Math.round(o.d * N), trade = target - hedge;
+    cash += -trade * F; hedge = target;
+    const optVal = o.p * N, optChg = i ? optVal - prevOpt : 0; prevOpt = optVal;
+    rows.push(`<tr><td>Day ${i}</td><td>${F.toFixed(2)}</td><td>${o.d.toFixed(3)}</td><td>${hedge}</td><td>${i ? (trade > 0 ? 'buy ' : 'sell ') + Math.abs(trade) : 'sell ' + Math.abs(trade)}</td><td>${i ? sgn(optChg, f2) : '–'}</td></tr>`);
+  }
+  const last = path[path.length - 1], futPL = cash + hedge * last, optPL = prevOpt - b76(path[0], K, V80, T0).p * N;
+  const theta5 = Array.from({ length: 5 }, (_, i) => b76(path[i], K, V80, T0 - i / 252).t * N).reduce((a, b) => a + b, 0);
+  document.getElementById('scalp').innerHTML = '<div class="tbl"><table><tr><th>Close</th><th>March fut</th><th>Call delta</th><th>Futures held</th><th>Rehedge trade (lots)</th><th>Options value change (¢ × lots)</th></tr>' + rows.join('') + '</table></div>' +
+    `<p>Over 5 days the futures hedge made <b>${sgn(futPL, f2)} ¢ × lots</b> (${usd(futPL * MULT)}), the 50 calls changed by <b>${sgn(optPL, f2)}</b> (${usd(optPL * MULT)}), total <b>${usd((futPL + optPL) * MULT)}</b>. Theta alone over those days was about ${usd(theta5 * MULT)}. The daily moves (≈1.3–1.5 ¢) beat the 1.08 ¢ breakeven, so gamma won.</p>`;
+}
+
+// ---------- glossary ----------
+function gloss() {
+  const G = [
+    ['F', 'Futures price of the option\'s underlying contract (for serial options, the next listed future). In ¢/lb for cotton, coffee, sugar.'],
+    ['F_T', 'Futures price at the option\'s expiry.'],
+    ['K', 'Strike price: the futures price at which the option can be exercised.'],
+    ['C, P', 'Call and put premiums, in the contract\'s units.'],
+    ['σ (sigma)', 'Volatility: annualized standard deviation of daily log futures returns, as a decimal (0.2152 = 21.52%).'],
+    ['IV', 'Implied volatility: the σ that makes Black-76 match the market premium. These desks leave out options with under 15 days to expiry.'],
+    ['RV', 'Realized volatility: σ measured from actual past futures moves (for example over 20 trading days).'],
+    ['VRP', 'Volatility risk premium: IV minus RV.'],
+    ['ATM IV', 'Implied vol at the strike equal to the futures price, read off the smile.'],
+    ['T', 'Time to option expiry in years: calendar days / 365.'],
+    ['DTE', 'Days to expiry (calendar).'],
+    ['δt', 'A small step of time; one trading day = 1/252 of a year.'],
+    ['r', 'Interest rate used to discount the premium (continuously compounded, decimal).'],
+    ['e^(−rT)', 'Discount factor: today\'s value of 1 paid at expiry.'],
+    ['ln', 'Natural logarithm.'],
+    ['d1, d2', 'Standardized distances between futures and strike in Black-76; d2 = d1 − σ√T.'],
+    ['N(x)', 'Standard normal cumulative probability: the chance a normal draw is below x.'],
+    ['φ(x)', 'Standard normal density: the height of the bell curve at x.'],
+    ['N(d1)', 'Call delta before discounting; the hedge ratio.'],
+    ['N(d2)', 'Market-implied (risk-neutral) chance the call finishes in the money.'],
+    ['Δ (delta)', 'Change in premium per 1-unit futures move; also the futures-equivalent position per option.'],
+    ['Γ (gamma)', 'Change in delta per 1-unit futures move; the option\'s curvature.'],
+    ['Θ (theta)', 'Change in premium as time passes, quoted here per trading day.'],
+    ['ν (vega)', 'Change in premium per 1-point rise in IV.'],
+    ['ρ (rho)', 'Change in premium per 1% rise in rates; small for futures options.'],
+    ['δF', 'A futures price change over one step.'],
+    ['δσ', 'A change in implied volatility.'],
+    ['m', 'Daily breakeven move = F σ / √252: the one-day, one-standard-deviation move the IV prices.'],
+    ['√252', 'Square root of trading days in a year (≈ 15.87), to turn annual vol into daily.'],
+    ['w', 'Total variance to expiry = σ² × T.'],
+    ['σ(1→2)', 'Forward volatility between two expiries T1 and T2.'],
+    ['RR25', '25-delta risk reversal: IV of the 25-delta call minus IV of the 25-delta put.'],
+    ['BF25', '25-delta butterfly: average of the 25-delta call and put IVs minus ATM IV.'],
+    ['25-delta', 'An option whose delta is 0.25 (call) or −0.25 (put): a standard OTM point for quoting skew.'],
+    ['Intrinsic value', 'max(F − K, 0) for a call, max(K − F, 0) for a put.'],
+    ['Time value', 'Premium minus intrinsic value.'],
+    ['ITM / ATM / OTM', 'In, at, or out of the money.'],
+    ['Multiplier ($ per unit)', 'Dollar value of a 1-unit price move for one contract: $500 cotton, $375 coffee, $1,120 sugar, $10 cocoa, $50 corn.'],
+    ['Lots', 'Number of contracts.'],
+    ['Basis', 'Physical (cash) price minus futures; not covered by futures options.'],
+    ['First notice day', 'First day sellers can give notice to deliver against the futures; options expire before it.'],
+    ['Serial option', 'An option month with no futures month of its own; it exercises into the next listed future.']];
+  document.getElementById('glossTbl').innerHTML = '<tr><th class="l">Symbol / term</th><th class="l">Meaning</th></tr>' + G.map(([a, b]) => `<tr><td class="l"><b>${a}</b></td><td class="l">${b}</td></tr>`).join('');
+}
+
+// open the tab named in the hash, e.g. options.html#greeks
+const start = (location.hash || '').slice(1);
+show(DRAW[start] || document.getElementById('p-' + start) ? start : 'basics');
+</script>
+</body>
+</html>

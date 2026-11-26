@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 04:36 UTC",
+ "generated": "2026-11-26 13:07 UTC",
  "upcoming": [
   {
    "date": "2026-11-23",
@@ -421,6 +421,22 @@
    "importance": 2,
    "estimated": true,
    "link": "https://icsg.org/press-releases/"
+  },
+  {
+   "date": "2027-03-26",
+   "time_ct": "2:30 PM CT",
+   "event": "CFTC Commitments of Traders (metals)",
+   "markets": [
+    "GC",
+    "SI",
+    "HG",
+    "ALI",
+    "PL",
+    "PA"
+   ],
+   "importance": 1,
+   "calendar": false,
+   "estimated": false
   }
  ],
  "timing": [

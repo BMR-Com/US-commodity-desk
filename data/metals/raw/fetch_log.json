@@ -1,93 +1,94 @@
 {
  "etf": {
   "ok": true,
-  "at": "2026-11-26 14:18 UTC",
+  "at": "2026-11-26 22:56 UTC",
   "new": 0,
-  "secs": 15,
+  "secs": 14,
   "last_new": null
  },
  "lme": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:57 UTC",
   "new": 0,
   "secs": 7,
   "last_new": null
  },
  "wgc": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:57 UTC",
   "new": 0,
-  "secs": 1,
+  "secs": 0,
   "last_new": null
  },
  "icsg": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:57 UTC",
   "new": 0,
   "secs": 7,
   "last_new": null
  },
  "iai": {
-  "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "ok": false,
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
   "secs": 19,
-  "last_new": null
+  "last_new": null,
+  "error": "IAI data not available"
  },
  "usgs": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
  },
  "silver": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
   "secs": 1,
   "last_new": null
  },
  "rates": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
-  "secs": 2,
+  "secs": 1,
   "last_new": null
  },
  "comex": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
   "secs": 0,
   "last_new": null
  },
  "wpic": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
   "secs": 1,
   "last_new": null
  },
  "jm": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
   "secs": 1,
   "last_new": null
  },
  "pgm_etf": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
+  "at": "2026-11-26 22:58 UTC",
   "new": 0,
-  "secs": 11,
+  "secs": 12,
   "last_new": null
  },
  "etf_more": {
   "ok": true,
-  "at": "2026-11-26 14:19 UTC",
-  "new": 6,
-  "secs": 39,
-  "last_new": "2026-11-26 14:19 UTC"
+  "at": "2026-11-26 22:57 UTC",
+  "new": 0,
+  "secs": 36,
+  "last_new": null
  }
 }

@@ -5,56 +5,56 @@
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R48_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 882,
+"last": "2026-11-20"
 },
 "storEast": {
 "label": "Gas \u2014 East region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R31_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 882,
+"last": "2026-11-20"
 },
 "storMw": {
 "label": "Gas \u2014 Midwest region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R32_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 882,
+"last": "2026-11-20"
 },
 "storSc": {
 "label": "Gas \u2014 South Central",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R33_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 882,
+"last": "2026-11-20"
 },
 "storScSalt": {
 "label": "Gas \u2014 South Central salt",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SSO_R33_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 882,
+"last": "2026-11-20"
 },
 "storScNon": {
 "label": "Gas \u2014 South Central non-salt",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SNO_R33_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 882,
+"last": "2026-11-20"
 },
 "storMtn": {
 "label": "Gas \u2014 Mountain region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R34_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 882,
+"last": "2026-11-20"
 },
 "storPac": {
 "label": "Gas \u2014 Pacific region",
@@ -181,16 +181,16 @@
 "route": "petroleum/stoc/wstk",
 "id": "WCESTUS1",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2304,
+"last": "2026-11-20"
 },
 "spr": {
 "label": "SPR crude stocks",
 "route": "petroleum/stoc/wstk",
 "id": "WCSSTUS1",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2304,
+"last": "2026-11-20"
 },
 "cushing": {
 "label": "Cushing crude stocks",
@@ -221,64 +221,64 @@
 "route": "petroleum/stoc/wstk",
 "id": "WKJSTUS1",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2304,
+"last": "2026-11-20"
 },
 "prod": {
 "label": "Crude production",
 "route": "petroleum/sum/sndw",
 "id": "WCRFPUS2",
 "how": "id found",
-"rows": 2286,
-"last": "2026-11-13"
+"rows": 2287,
+"last": "2026-11-20"
 },
 "imp": {
 "label": "Crude imports",
 "route": "petroleum/sum/sndw",
 "id": "WCEIMUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2304,
+"last": "2026-11-20"
 },
 "exp": {
 "label": "Crude exports",
 "route": "petroleum/sum/sndw",
 "id": "WCREXUS2",
 "how": "id found",
-"rows": 1867,
-"last": "2026-11-13"
+"rows": 1868,
+"last": "2026-11-20"
 },
 "runs": {
 "label": "Refiner net crude input",
 "route": "petroleum/pnp/wiup",
 "id": "WCRRIUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2304,
+"last": "2026-11-20"
 },
 "util": {
 "label": "Refinery utilization",
 "route": "petroleum/pnp/wiup",
 "id": "WPULEUS3",
 "how": "id found",
-"rows": 1881,
-"last": "2026-11-13"
+"rows": 1882,
+"last": "2026-11-20"
 },
 "demGaso": {
 "label": "Gasoline supplied",
 "route": "petroleum/cons/wpsup",
 "id": "WGFUPUS2",
 "how": "id found",
-"rows": 1867,
-"last": "2026-11-13"
+"rows": 1868,
+"last": "2026-11-20"
 },
 "demDist": {
 "label": "Distillate supplied",
 "route": "petroleum/cons/wpsup",
 "id": "WDIUPUS2",
 "how": "id found",
-"rows": 1867,
-"last": "2026-11-13"
+"rows": 1868,
+"last": "2026-11-20"
 },
 "demJet": {
 "label": "Jet fuel supplied",
@@ -421,16 +421,16 @@
 "route": "petroleum/sum/sndw",
 "id": "WDIRPUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2304,
+"last": "2026-11-20"
 },
 "gasoProd": {
 "label": "Gasoline production",
 "route": "petroleum/sum/sndw",
 "id": "WGFRPUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2304,
+"last": "2026-11-20"
 },
 "distExp": {
 "label": "Distillate exports",
@@ -465,5 +465,5 @@
 "last": "2026-11-13"
 }
 },
-"generated": "2026-11-25 15:55 UTC"
+"generated": "2026-11-26 04:49 UTC"
 }

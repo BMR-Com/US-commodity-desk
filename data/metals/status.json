@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 13:07 UTC",
+ "generated": "2026-11-26 14:20 UTC",
  "today": "2026-11-26",
  "sources": [
   {
@@ -149,8 +149,8 @@
   {
    "group": "Gold",
    "source": "abrdn SGOL shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-24",
-   "age": 2,
+   "latest": "2026-11-25",
+   "age": 1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -161,8 +161,8 @@
   {
    "group": "Gold",
    "source": "GraniteShares BAR NAV, AUM, metal per basket (fund page history)",
-   "latest": "2026-11-23",
-   "age": 3,
+   "latest": "2026-11-25",
+   "age": 1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -245,8 +245,8 @@
   {
    "group": "Silver",
    "source": "abrdn SIVR shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-24",
-   "age": 2,
+   "latest": "2026-11-25",
+   "age": 1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -389,8 +389,8 @@
   {
    "group": "Platinum",
    "source": "abrdn PPLT shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-24",
-   "age": 2,
+   "latest": "2026-11-25",
+   "age": 1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -401,8 +401,8 @@
   {
    "group": "Palladium",
    "source": "abrdn PALL shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-24",
-   "age": 2,
+   "latest": "2026-11-25",
+   "age": 1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -425,8 +425,8 @@
   {
    "group": "Platinum",
    "source": "GraniteShares PLTM NAV, AUM, metal per basket (fund page history)",
-   "latest": "2026-11-23",
-   "age": 3,
+   "latest": "2026-11-25",
+   "age": 1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

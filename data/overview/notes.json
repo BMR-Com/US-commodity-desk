@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
  "markets": {
   "corn": {
@@ -14,34 +14,34 @@
    ]
   },
   "soybeans": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Jan closed firm near ~1,243, holding above the 20-day momentum trigger despite the new US tariff proposal on Brazil, on a weaker dollar and US-China deal hopes. Brazil weather is still favourable for now.",
+   "time": "07:55 CT",
+   "fundamental": "CBOT is closed today. Wednesday's late rally was helped by talk of firmer Chinese buying, but longer-run Chinese import growth is slowing, which caps how much US export demand can recover; the record October NOPA crush keeps domestic use strong.",
    "events": [
-    "Soybeans rallying despite tariff news (Barchart)",
-    "Modest buying as dollar index weakens (Pro Farmer)",
-    "Brazil's weather holds up, but a shift looms (World Grain)"
+    "Corn and soybeans rally as China boosts demand (AgroLatam)",
+    "Slowing Chinese soybean demand growth challenges exporters (Czapp)",
+    "NOPA reports record October crush (Brownfield)"
    ]
   },
   "meal": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Meal Jan is up about 1.2% to ~355, extending its lead in the complex; strong meal demand keeps crush running hard and meal carries the margin. No new Argentine supply news.",
+   "time": "07:55 CT",
+   "fundamental": "A record October NOPA crush shows plants running flat out for meal, which adds supply but also confirms strong demand; Jan closed ~358 (+2%) on technical buying before the holiday.",
    "events": [
-    "Meal leads soybean complex higher again (CBOT/Yahoo Finance)",
-    "Strong meal demand boosts crush (Bloomberg)"
+    "NOPA reports record October soybean crush (Brownfield)",
+    "Corn, soybeans and meal rally pre-holiday on technical buying (AgWeb)"
    ]
   },
   "oil": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "11:50 CT",
-   "fundamental": "Soyoil Jan holds near ~58.2, close to its nine-month low, as heavy crush for meal keeps adding oil. China's export surge is cooling as India turns to palm, a small help for US export competition, not enough to offset supply.",
+   "time": "07:55 CT",
+   "fundamental": "The record October NOPA crush means more soyoil coming onto an already heavy market, keeping Jan (~58.3) pinned near its nine-month low; firmer crude in holiday trade is the only help.",
    "events": [
-    "Soy oil hits nine-month low as meal demand boosts crush (Bloomberg)",
-    "China's soyoil export boom cools as India turns to palm (Bloomberg)"
+    "NOPA reports record October soybean crush (Brownfield)",
+    "Soy oil at nine-month low as crush runs hard (Bloomberg)"
    ]
   },
   "wheat": {
@@ -77,35 +77,33 @@
    ]
   },
   "hogs": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Dec hogs fell to a fresh 52-week low near 49.9 as weak pork demand and heavy Dec open interest keep liquidation going; lower frozen pork stocks are being ignored for now.",
+   "time": "07:55 CT",
+   "fundamental": "Dec hogs settled ~49.9 (-3.6%), another 52-week low, as weak pork demand and Dec liquidation continue; lower frozen pork stocks are not helping yet. CME is closed today.",
    "events": [
-    "Livestock fall while grains recover (Successful Farming)",
-    "Lean hogs fall to new lows on weak pork demand (The Pig Site)",
-    "Cold storage shows lower frozen pork (DTN)"
+    "Cattle, hog futures lower ahead of holiday (Brownfield)",
+    "Lean hogs fall to new lows on weak pork demand (The Pig Site)"
    ]
   },
   "cattle": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Live cattle closed lower with the risk-off tone and no cash trade yet; supply stays tight, but more beef in cold storage is a small nearby negative.",
+   "time": "07:55 CT",
+   "fundamental": "Live cattle broke sharply into the close on Wednesday with no cash trade established; Dec settled near 223.6 (-1%), just above the 222.2 support. Supplies are still tight, so this looks like position-squaring before the holiday rather than a change in fundamentals; CME is closed today.",
    "events": [
-    "Cattle were lower Wednesday (Brownfield)",
-    "Livestock fall while grains recover (Successful Farming)",
-    "Cold storage shows higher beef supplies (DTN)"
+    "Cattle crash pre-holiday (AgWeb, Barchart)",
+    "Cattle, hog futures lower ahead of Thursday holiday (Brownfield)"
    ]
   },
   "feeders": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Feeders closed lower with live cattle, holding below the 50-day average. The closed Mexican border keeps feeder supply tight and screwworm remains the key tail risk.",
+   "time": "07:55 CT",
+   "fundamental": "Jan feeders fell 1.6% to ~327.4, now close to the 325 support and still below the 50-day average. The closed Mexican border keeps feeder supply tight and screwworm stays the tail risk.",
    "events": [
-    "Livestock fall while grains recover (Successful Farming)",
-    "Cattle were lower Wednesday (Brownfield)"
+    "Cattle crash pre-holiday (AgWeb, Barchart)",
+    "Cattle, hog futures lower ahead of Thursday holiday (Brownfield)"
    ]
   },
   "class3": {
@@ -139,36 +137,33 @@
    ]
   },
   "natgas": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Futures advanced after the holiday-shifted EIA storage print came in bullish, and LNG feedgas is testing a record near 21.5 Bcf/d. Strong production and mild weather are still the offsets.",
+   "time": "07:55 CT",
+   "fundamental": "Jan is down about 1% to ~3.62 in holiday trade as a mild Thanksgiving outlook erodes Northeast cash premiums; the bullish storage print and record LNG feedgas are being offset by weather and strong output.",
    "events": [
-    "January natgas advances after bullish storage print (NGI)",
-    "US LNG feedgas tests new high near 21.5 Bcf/d (NGI)",
-    "Stout supply, weak weather soften natgas (NGI)"
-   ],
-   "fund_score": 0.1
+    "Mild Thanksgiving outlook cuts Northeast cash premiums (NGI)",
+    "US LNG feedgas near record 21.5 Bcf/d (NGI)"
+   ]
   },
   "crude": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "WTI Jan edged up to ~84 as Middle East tensions persist after the alleged Houthi strike on a Saudi refinery. Within OPEC+, Kazakhstan has joined Iraq in pushing for a higher capacity rating, a sign of future quota friction and more supply.",
+   "time": "07:55 CT",
+   "fundamental": "WTI Jan is up ~1.2% to ~84.7 and Brent ~91.3 in thin holiday trade, as Middle East risk after the Houthi strike on a Saudi refinery stays priced in. OPEC+ capacity disputes (Kazakhstan, Iraq) still point to more supply later.",
    "events": [
     "Oil futures pick up as Middle East tensions persist (WSJ)",
-    "Kazakhstan joins Iraq pushing OPEC for higher capacity rating (OilPrice.com)",
-    "Oil rises after alleged Houthi attack on Saudi refinery (Reuters)"
+    "Kazakhstan joins Iraq pushing OPEC for higher capacity rating (OilPrice.com)"
    ]
   },
   "ulsd": {
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "ULSD holds near ~3.71; the diesel squeeze on freight is not easing even as gasoline cheapens, and below-average distillate stocks plus the Saudi refinery attack keep the risk premium in place.",
+   "time": "07:55 CT",
+   "fundamental": "ULSD Jan is ~3.68 (+0.6%) with crude; a recent slump in diesel cracks gives a brief easing of the squeeze, but distillate stocks are still below average and the Saudi refinery attack keeps risk in the price.",
    "events": [
-    "Cheaper gasoline won't fix the diesel squeeze (OilPrice.com)",
-    "Oil rises after alleged Houthi attack on Saudi refinery (Reuters)"
+    "Diesel's slump offers brief respite from energy turmoil (Bloomberg)",
+    "Cheaper gasoline won't fix the diesel squeeze (OilPrice.com)"
    ]
   },
   "rbob": {

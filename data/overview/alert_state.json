@@ -1,16 +1,16 @@
 {
- "updated": "2026-11-25 20:44 UTC",
+ "updated": "2026-11-26 13:55 UTC",
  "by": "claude",
  "views": {
   "corn": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.47
+   "score": -0.55
   },
   "soybeans": {
    "view": "strongly bullish",
    "shade": "bull3",
-   "score": 0.47
+   "score": 0.57
   },
   "meal": {
    "view": "strongly bullish",
@@ -20,7 +20,7 @@
   "oil": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.34
+   "score": -0.3
   },
   "wheat": {
    "view": "strongly bearish",
@@ -33,9 +33,9 @@
    "score": -0.47
   },
   "cotton": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.32
+   "view": "strongly bullish",
+   "shade": "bull3",
+   "score": 0.58
   },
   "hogs": {
    "view": "bearish",
@@ -45,7 +45,7 @@
   "cattle": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.31
+   "score": 0.27
   },
   "feeders": {
    "view": "neutral",
@@ -53,9 +53,9 @@
    "score": -0.04
   },
   "class3": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.16
+   "view": "neutral",
+   "shade": "neutral",
+   "score": -0.02
   },
   "class4": {
    "view": "bullish",
@@ -65,17 +65,17 @@
   "palm": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.55
+   "score": -0.48
   },
   "natgas": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.29
+   "score": -0.33
   },
   "crude": {
    "view": "mildly bullish",
    "shade": "bull1",
-   "score": 0.09
+   "score": 0.12
   },
   "ulsd": {
    "view": "mildly bullish",
@@ -83,19 +83,19 @@
    "score": 0.17
   },
   "rbob": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.22
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.16
   },
   "gold": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.59
+   "score": -0.47
   },
   "silver": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.41
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.55
   },
   "copper": {
    "view": "strongly bearish",
@@ -103,9 +103,9 @@
    "score": -0.5
   },
   "aluminum": {
-   "view": "mildly bearish",
-   "shade": "bear1",
-   "score": -0.09
+   "view": "neutral",
+   "shade": "neutral",
+   "score": -0.03
   },
   "platinum": {
    "view": "neutral",
@@ -113,16 +113,14 @@
    "score": 0.05
   },
   "palladium": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.24
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.18
   }
  },
  "alerts": {
   "corn": [],
-  "soybeans": [
-   "Holding above the fund buy trigger (20-day momentum flip) 1,235.00"
-  ],
+  "soybeans": [],
   "meal": [],
   "oil": [],
   "wheat": [],
@@ -130,9 +128,7 @@
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [
-   "Holding below the fund sell trigger (50-day average) 330.378"
-  ],
+  "feeders": [],
   "class3": [],
   "class4": [],
   "palm": [],
@@ -140,12 +136,12 @@
   "crude": [],
   "ulsd": [],
   "rbob": [],
-  "gold": [
-   "Broke above R1 3,561.0"
-  ],
+  "gold": [],
   "silver": [],
   "copper": [],
-  "aluminum": [],
+  "aluminum": [
+   "Broke above R1 2,761.8"
+  ],
   "platinum": [],
   "palladium": []
  },
@@ -194,6 +190,8 @@
   "2026-11-25 Risk-off: Nasdaq -2.9%, VIX ~34; gold, silver, platinum, palladium at 52-wk lows; views: natgas to bearish, aluminum to mildly bearish",
   "2026-11-25 US proposes surprise new tariffs on Brazil imports (Reuters)",
   "2026-11-25 Late: views soybeans to strongly bullish, feeders to neutral, class3 to mildly bearish, class4 to bullish, crude to mildly bullish; gold above R1 3,561",
-  "2026-11-25 Bullish EIA storage print lifts Jan natgas; LNG feedgas near record 21.5 Bcf/d (NGI)"
+  "2026-11-25 Bullish EIA storage print lifts Jan natgas; LNG feedgas near record 21.5 Bcf/d (NGI)",
+  "2026-11-26 Views: cotton to strongly bullish, class3 to neutral, rbob/palladium to mildly bearish, silver to strongly bearish, aluminum to neutral; aluminum above R1 2,761.8",
+  "2026-11-26 Holiday trade: WTI Jan ~84.7 (+1.2%), natgas Jan ~3.62 (-1.2%) on mild weather; record October NOPA crush"
  ]
 }

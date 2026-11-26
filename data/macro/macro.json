@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 03:28 UTC",
+ "generated": "2026-11-26 11:38 UTC",
  "view": "headwind",
  "score": -6,
  "components": {
@@ -12,7 +12,7 @@
   "china": -1,
   "breadth": -1
  },
- "summary": "Macro backdrop for ags: headwind (score -6 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar \u2212; brl \u2212; mxn \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +6.2%; weakest: Lean hogs -22.8%. Key releases ahead: US Core PCE Price Index m/m (11-25 8:30 AM ET); US Prelim GDP q/q (11-25 8:30 AM ET).",
+ "summary": "Macro backdrop for ags: headwind (score -6 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar \u2212; brl \u2212; mxn \u2212; risk \u2212; energy \u2212; china \u2212; breadth \u2212. Strongest ag/soft over the month: Rough rice +6.2%; weakest: Lean hogs -22.8%. ",
  "sections": [
   {
    "title": "Rates",
@@ -22,50 +22,29 @@
   {
    "title": "Dollar & farm currencies",
    "score": -2,
-   "text": "Dollar index 103.80 (+1.4% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.823 (+17.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.653 (-0.3%); USD/MXN 19.58 (+5.6%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+   "text": "Dollar index 103.78 (+1.4% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.823 (+8.4% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.650 (-0.3%); USD/MXN 19.67 (+6.0%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
   },
   {
    "title": "Risk appetite",
    "score": -1,
-   "text": "S&P 500 -6.4% in a month (+4.9% YTD); VIX 28.3. Risk-off: funds tend to cut commodity length along with equities. "
+   "text": "S&P 500 -6.4% in a month (+4.9% YTD); VIX 27.1. Risk-off: funds tend to cut commodity length along with equities. "
   },
   {
    "title": "Energy",
    "score": -1,
-   "text": "WTI 84.10 $/bbl (-14.2% in a month), Brent 90.78, ULSD 3.655 $/gal (-19.2%), natural gas 3.68 (+6.2%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+   "text": "WTI 84.50 $/bbl (-13.8% in a month), Brent 91.06, ULSD 3.680 $/gal (-18.7%), natural gas 3.63 (+4.9%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
   },
   {
    "title": "China & industrial demand",
    "score": -1,
-   "text": "Copper -18.7% in a month, Shanghai Composite -4.5%, Hang Seng -2.6%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
+   "text": "Copper -19.1% in a month, Shanghai Composite -4.7%, Hang Seng -3.5%, yuan +0.3% vs USD. Soft China/industrial signals point to weaker import demand. "
   },
   {
    "title": "Commodity breadth",
    "score": -1,
-   "text": "9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -14.2% in a month; gold -12.2%. "
+   "text": "9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -14.2% in a month; gold -12.5%. "
   }
  ],
  "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context.",
- "events_ahead": [
-  {
-   "date": "2026-11-25",
-   "time": "8:30 AM ET",
-   "country": "US",
-   "title": "Core PCE Price Index m/m",
-   "impact": "High",
-   "forecast": "0.3%",
-   "previous": "0.3%",
-   "why": "Inflation sets rates and real yields; commodities as an inflation hedge"
-  },
-  {
-   "date": "2026-11-25",
-   "time": "8:30 AM ET",
-   "country": "US",
-   "title": "Prelim GDP q/q",
-   "impact": "High",
-   "forecast": "3.5%",
-   "previous": "3.4%",
-   "why": "Growth and demand"
-  }
- ]
+ "events_ahead": []
 }

@@ -1,16 +1,16 @@
 {
- "updated": "2026-11-27 17:55 UTC",
+ "updated": "2026-11-27 20:45 UTC",
  "by": "claude",
  "views": {
   "corn": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.55
+   "score": -0.49
   },
   "soybeans": {
    "view": "strongly bullish",
    "shade": "bull3",
-   "score": 0.57
+   "score": 0.72
   },
   "meal": {
    "view": "strongly bullish",
@@ -20,37 +20,37 @@
   "oil": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.3
+   "score": -0.24
   },
   "wheat": {
    "view": "strongly bearish",
    "shade": "bear3",
-   "score": -0.67
+   "score": -0.61
   },
   "kc": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.33
+   "score": -0.27
   },
   "cotton": {
    "view": "strongly bullish",
    "shade": "bull3",
-   "score": 0.59
+   "score": 0.65
   },
   "hogs": {
    "view": "bearish",
    "shade": "bear2",
-   "score": -0.26
+   "score": -0.2
   },
   "cattle": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.27
+   "score": 0.37
   },
   "feeders": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": -0.04
+   "view": "mildly bullish",
+   "shade": "bull1",
+   "score": 0.17
   },
   "class3": {
    "view": "neutral",
@@ -121,8 +121,7 @@
  "alerts": {
   "corn": [],
   "soybeans": [
-   "Broke above R1 1,269.50",
-   "Broke above the fund buy trigger (20-day breakout high) 1,247.25"
+   "Holding above the fund buy trigger (20-day breakout high) 1,247.25"
   ],
   "meal": [],
   "oil": [],
@@ -131,23 +130,20 @@
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [],
+  "feeders": [
+   "Holding above the fund buy trigger (120-day momentum flip) 330.478"
+  ],
   "class3": [],
   "class4": [],
   "palm": [],
   "natgas": [],
-  "crude": [
-   "Broke below S1 84.32",
-   "Broke below S2 82.83"
-  ],
+  "crude": [],
   "ulsd": [],
   "rbob": [],
   "gold": [],
   "silver": [],
   "copper": [],
-  "aluminum": [
-   "Broke below S1 2,798.5"
-  ],
+  "aluminum": [],
   "platinum": [],
   "palladium": []
  },
@@ -203,6 +199,7 @@
   "2026-11-27 Real +5.5% on Trabuco finance-minister pick (supports soy/meal via Brazil farmer selling); WTI Jan ~85.1 (+1.7%) on Iraq loading delays and Jazan refinery attack; natgas Jan ~3.52 (-3.9%); silver +9%; views copper to bearish, platinum to neutral",
   "2026-11-27 Soybeans Jan ~1,273 (+2.3%) through R1 1,269.5 and 20-day breakout 1,247.25 on biofuel demand and firm real",
   "2026-11-27 WTI Jan ~82.8 (-1.9%) below S1 84.32 / S2 82.83 as Iraq lifts exports to ~3.6m b/d",
-  "2026-11-27 KC wheat view to bearish from strongly bearish (Dec ~604); aluminum Feb ~2,779 below S1 2,798.5"
+  "2026-11-27 KC wheat view to bearish from strongly bearish (Dec ~604); aluminum Feb ~2,779 below S1 2,798.5",
+  "2026-11-27 Close: feeders view to mildly bullish (Jan ~331.2, above 120-day momentum trigger 330.48); soybeans fade to ~1,266 below R1 1,269.5; WTI back to ~83.1 above S2 82.83"
  ]
 }

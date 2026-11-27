@@ -5,37 +5,37 @@
   "corn": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "11:50 CT",
+   "time": "14:45 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Friday's short session has corn trading the holiday outside markets; heavy crop-insurance claims after this year's weather extremes underline uneven yields but do not change the large US supply. Dec sits just above 438 support.",
+   "fundamental": "Corn gapped higher and held most of it into the short-session close, with Dec settling near 446.75 just above new 445 support; the move tracked the soy complex and pre-holiday export interest rather than any change to the large US crop.",
    "events": [
-    "Weather extremes trigger crop-insurance claims across the Corn Belt (Brownfield)",
-    "Corn traders return from Thanksgiving break (Barchart)",
-    "USDA survey participation falls over 34%, raising data doubts (AgroLatam)"
+    "Corn and soybeans gap higher in Friday's short session (Successful Farming)",
+    "Dec ~446.75, testing 449.5 resistance (CBOT)",
+    "Traders ask whether corn and soy broke out to end the week (Barchart)"
    ]
   },
   "soybeans": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "11:50 CT",
+   "time": "14:45 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Jan beans broke above 1,269.5 resistance on biofuel-driven crush demand and the stronger real, which makes Brazilian beans dearer in dollars. Against that, rains in Mato Grosso have eased El Niño damage fears for Brazil's new crop, which caps the supply-scare part of the story.",
+   "fundamental": "Jan beans pushed through 1,269.5 early but faded into the close at about 1,266, back under that resistance; crush demand for biofuel oil and the firmer real remain the support, while Mato Grosso rains limit the Brazil weather premium.",
    "events": [
-    "Jan ~1,273 (+2.3%) through R1 1,269.5 (CBOT)",
-    "Rains ease El Niño crop fears in Mato Grosso (Bloomberg)",
-    "Biofuels boom adds support to soybean prices (Brownfield)"
+    "Jan settles ~1,266 after early high above 1,269.5 (CBOT)",
+    "Rains ease El Niño fears in Mato Grosso (Bloomberg)",
+    "Biofuels boom supports soybeans (Brownfield)"
    ]
   },
   "meal": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "11:50 CT",
+   "time": "14:45 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Meal rides the bean rally, but record crush to meet biofuel oil demand keeps meal supply heavy, so gains are leaning on the complex rather than on meal's own balance.",
+   "fundamental": "Spread trade points to strong end-user meal demand, which is absorbing the heavy crush output better than expected; Dec meal at about 366 sits just under 369 resistance.",
    "events": [
-    "Soybeans rally in the short Friday session (Barchart)",
-    "Biofuel demand keeps crush running hard (Brownfield)",
-    "Brazil rains ease crop worries (Bloomberg)"
+    "Grain spreads flag impressive meal demand (Barchart)",
+    "Dec ~366.3, below 369.1 resistance (CBOT)",
+    "Soy complex gaps higher Friday (Successful Farming)"
    ]
   },
   "oil": {
@@ -86,35 +86,35 @@
   "hogs": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "11:50 CT",
+   "time": "14:45 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Hogs bounce about 2% from oversold levels after weak pork demand pushed them to new lows; nothing has changed in the supply picture, so this reads as short covering.",
+   "fundamental": "Hogs closed the short session about 2% higher from oversold levels; with ample pork and weak demand unchanged, this still reads as short covering.",
    "events": [
-    "Lean hogs moving into oversold territory (ADMIS)",
-    "Dec ~50.95 (+2%) (CME)",
-    "Hogs look to Friday trade (Barchart)"
+    "Hogs rally in short Friday session (Barchart)",
+    "Lean hogs oversold (ADMIS)",
+    "Dec ~50.98 (+2.1%) (CME)"
    ]
   },
   "cattle": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "11:50 CT",
+   "time": "14:45 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Cattle recover part of the pre-holiday crash in the post-Thanksgiving session; tight fed supplies are unchanged and the bounce suggests the selloff was positioning-driven.",
+   "fundamental": "Live cattle closed the short session higher, extending the recovery from the pre-holiday selloff; tight fed supply is unchanged, so the bounce looks like repositioning.",
    "events": [
-    "Cattle print post-Thanksgiving gains (Barchart)",
-    "Dec live cattle ~224.5 (+0.5%) (CME)"
+    "Cattle higher Friday at the close (Brownfield)",
+    "Dec ~224.35, below 225.5 resistance (CME)"
    ]
   },
   "feeders": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "11:50 CT",
+   "time": "14:45 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Feeders follow cattle higher; cheaper corn keeps feeding margins supportive for feeder demand.",
+   "fundamental": "Feeders closed firmer with cattle and cheaper feed, holding above the 120-day momentum level that flips the trend signal to the buy side.",
    "events": [
-    "Jan feeders ~330.2 (+0.8%) (CME)",
-    "Cattle print post-Thanksgiving gains (Barchart)"
+    "Jan ~331.2 (+1.1%), above 330.5 momentum trigger (CME)",
+    "Livestock post solid gains Friday (Successful Farming)"
    ]
   },
   "class3": {
@@ -166,13 +166,13 @@
   "crude": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "11:50 CT",
+   "time": "14:45 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Crude reversed lower intraday as Iraq lifted exports to about 3.6m b/d, offsetting the earlier loading-delay headlines; OPEC+ is expected to roll over Q1 targets, and the report of US pressure on Iraq and Venezuela to leave OPEC raises questions about future quota discipline. Stockpiling demand into 2027 is cited as a floor.",
+   "fundamental": "WTI recovered from the midday dip to about 83 at the close, back above 82.83 support; Iraq is pushing OPEC for a higher quota as it lifts exports, which adds to doubts over quota discipline ahead of the 2027 capacity review, while stockpiling demand is cited as a floor.",
    "events": [
-    "Iraq boosts oil exports to ~3.6m b/d (OilPrice)",
-    "US pushed Iraq and Venezuela to consider leaving OPEC (Reuters)",
-    "OPEC+ likely to roll over Q1 targets (Reuters, Bloomberg)"
+    "Iraq presses OPEC for a higher production ceiling (Bloomberg, OilPrice)",
+    "WTI Jan ~83.1, back above 82.83 support (NYMEX)",
+    "US urged Iraq and Venezuela to weigh leaving OPEC (Reuters)"
    ]
   },
   "ulsd": {

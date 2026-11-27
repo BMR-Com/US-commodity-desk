@@ -1,5 +1,5 @@
 {
- "built": "2026-11-27 22:27 UTC",
+ "built": "2026-11-27 23:08 UTC",
  "asof": "2026-11-25",
  "prices": {
   "H": 82.97,
@@ -698,19 +698,19 @@
   ]
  },
  "oncall": {
-  "oncall_date": "2026-11-13",
-  "S_old": 68240,
-  "P_old": 27070,
-  "N_old": 41170,
-  "S_old_seas_pct": 80.0,
-  "P_old_seas_pct": 47.0,
+  "oncall_date": "2026-11-20",
+  "S_old": 63451,
+  "P_old": 20527,
+  "N_old": 42924,
+  "S_old_seas_pct": 73.0,
+  "P_old_seas_pct": 27.0,
   "ls_old": 0.397,
   "ls_old_pct": 15.0,
   "pmu_net_old": -111311,
   "front": "December 2026",
-  "S_front": 5219,
-  "S_2nd": 32376,
-  "Sold_pct_trade": 0.159
+  "S_front": 345,
+  "S_2nd": 32380,
+  "Sold_pct_trade": 0.147
  },
  "options": {
   "date": "2026-11-24",
@@ -988,7 +988,7 @@
   ]
  },
  "downside": {
-  "net_now": 41170,
+  "net_now": 42924,
   "rows": [
    {
     "my": "2010/11",

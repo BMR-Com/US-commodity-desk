@@ -1,244 +1,253 @@
 {
- "updated": "2026-11-26",
- "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
- "markets": {
-  "corn": {
-   "date": "2026-11-25",
-   "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Corn fought back from overnight losses to close higher into the Thanksgiving break, following soybeans and a softer dollar. Slow US export pace is still the main drag; no new demand news.",
-   "events": [
-    "Corn rallying into Thanksgiving break (Barchart)",
-    "Corn and soybeans close higher, livestock fall (Successful Farming)",
-    "Corn exports lag into the holiday (Barchart)"
-   ]
+  "updated": "2026-11-26",
+  "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
+  "markets": {
+    "corn": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-25",
+      "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+      "events": [
+        "Fair weather, seasonal temps on the Plains; Autumn storminess eastern Corn Belt (Brownfield Ag News, 2026-11-26)",
+        "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+      ]
+    },
+    "soybeans": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "3 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 2 up, 0 down by keyword).",
+      "events": [
+        "Delayed publication of Brazil soybean domestic prices (Fastmarkets, 2026-11-26)",
+        "Soybeans climb, oil surges and gold loses its shine: What's next for farmers? (AgroLatam, 2026-11-26)",
+        "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+      ]
+    },
+    "meal": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+      "events": [
+        "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+      ]
+    },
+    "oil": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": [
+        "NOPA reports record October soybean crush (Brownfield)",
+        "Soy oil at nine-month low as crush runs hard (Bloomberg)"
+      ]
+    },
+    "wheat": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "events": [
+        "Algeria millers adjusting to changing wheat market (World Grain, 2026-11-26)"
+      ]
+    },
+    "kc": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "events": [
+        "Algeria millers adjusting to changing wheat market (World Grain, 2026-11-26)"
+      ]
+    },
+    "cotton": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-25",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": [
+        "Mar ~82.9, through 82.7 resistance (ICE)",
+        "Dollar index slips, firmer crude (WSJ, Pro Farmer)",
+        "Tuesday gains on outside factors (Barchart)"
+      ]
+    },
+    "hogs": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": [
+        "Cattle, hog futures lower ahead of holiday (Brownfield)",
+        "Lean hogs fall to new lows on weak pork demand (The Pig Site)"
+      ]
+    },
+    "cattle": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+      "events": [
+        "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+      ]
+    },
+    "feeders": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+      "events": [
+        "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+      ]
+    },
+    "class3": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-25",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": [
+        "Dairy prices slightly higher before Thanksgiving, cheese blocks lead (Brownfield)",
+        "Dairy heads into 2027 with growing demand and concerns (Dairy Herd)"
+      ]
+    },
+    "class4": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-25",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": [
+        "Dairy prices slightly higher before Thanksgiving (Brownfield)",
+        "Nonfat dry milk drops 7 cents at CME (Brownfield)"
+      ]
+    },
+    "palm": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": [
+        "Palm edges up with crude (Bursa Malaysia)",
+        "Crude firm on Hormuz attacks (Invezz)",
+        "India turns back to palm as China's soyoil exports cool (Reuters)"
+      ]
+    },
+    "natgas": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "3 headlines in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+      "events": [
+        "Australia delays final vote on gas reservation law for LNG exporters to February (Reuters, 2026-11-26)",
+        "Qatar Is Boosting LNG Exports Just as Winter Demand Nears Its Peak (Bloomberg, 2026-11-26)",
+        "Iran Says LNG Carrier Exploded After Hitting a Mine in Hormuz (Crude Oil Prices Today | OilPrice.com, 2026-11-26)"
+      ]
+    },
+    "crude": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "8 headlines in the last 30 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported higher (3 supply-tight, 1 supply-loose, 5 up, 0 down by keyword).",
+      "events": [
+        "OPEC+ Considers Sticking With Current Quotas, Delegates Say (Bloomberg.com, 2026-11-26)",
+        "OPEC+ likely to roll over oil output targets for Q1 as capacity disputes persist, sources say (Reuters, 2026-11-26)",
+        "OPEC, Allies Face Tough Choices as Surplus Builds, Hormuz Risks Persist (WSJ, 2026-11-26)"
+      ]
+    },
+    "ulsd": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 2 down by keyword).",
+      "events": [
+        "Diesel’s Slump Offers Brief Respite From Global Energy Turmoil (Bloomberg.com, 2026-11-26)",
+        "Why Gasoline Prices Are Falling While Diesel Remains Expensive (Crude Oil Prices Today | OilPrice.com, 2026-11-26)"
+      ]
+    },
+    "rbob": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": "2026-11-26",
+      "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 0 up, 1 down by keyword).",
+      "events": [
+        "Why Gasoline Prices Are Falling While Diesel Remains Expensive (Crude Oil Prices Today | OilPrice.com, 2026-11-26)"
+      ]
+    },
+    "gold": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": null,
+      "fundamental": "8 headlines in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 3 up, 3 down by keyword).",
+      "events": [
+        "SOMA GOLD REPORTS FINANCIAL RESULTS FOR THE THIRD QUARTER OF 2026 – Company Announcement (Financial Times, 2026-11-26)",
+        "Gold Edges Lower as US Inflation Data Fuels Bets for Rate Hikes (Bloomberg, 2026-11-26)",
+        "Congo Gold Trader Plans Two Refineries with 68-Ton Capacity (Bloomberg.com, 2026-11-26)"
+      ]
+    },
+    "silver": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": null,
+      "fundamental": "4 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported lower (0 supply-tight, 0 supply-loose, 1 up, 3 down by keyword).",
+      "events": [
+        "TSX futures flat as copper, silver rebound offset oil slip (Reuters, 2026-11-26)",
+        "Silver price can still go lower but this is a Black Friday deal not to miss – Bawden Capital (Kitco, 2026-11-26)",
+        "Guanajuato Silver targets US$35 cash costs as Bolanitos lifts output - James Anderson (Kitco, 2026-11-26)"
+      ]
+    },
+    "copper": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": null,
+      "fundamental": "5 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 3 up, 1 down by keyword).",
+      "events": [
+        "Congo Closes on Top Copper Supplier Chile as Exports Soar Again (Bloomberg, 2026-11-26)",
+        "China’s Copper Crunch Hides a Fragile Demand Outlook (Bloomberg, 2026-11-26)",
+        "TSX futures flat as copper, silver rebound offset oil slip (Reuters, 2026-11-26)"
+      ]
+    },
+    "aluminum": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": null,
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": []
+    },
+    "platinum": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": null,
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": []
+    },
+    "palladium": {
+      "date": "2026-11-26",
+      "by": "bot",
+      "time": "22:34 CT",
+      "claude_date": null,
+      "fundamental": "No new headlines for this market in the last 30 hours.",
+      "events": []
+    }
   },
-  "soybeans": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "CBOT is closed today. Wednesday's late rally was helped by talk of firmer Chinese buying, but longer-run Chinese import growth is slowing, which caps how much US export demand can recover; the record October NOPA crush keeps domestic use strong.",
-   "events": [
-    "Corn and soybeans rally as China boosts demand (AgroLatam)",
-    "Slowing Chinese soybean demand growth challenges exporters (Czapp)",
-    "NOPA reports record October crush (Brownfield)"
-   ]
-  },
-  "meal": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "A record October NOPA crush shows plants running flat out for meal, which adds supply but also confirms strong demand; Jan closed ~358 (+2%) on technical buying before the holiday.",
-   "events": [
-    "NOPA reports record October soybean crush (Brownfield)",
-    "Corn, soybeans and meal rally pre-holiday on technical buying (AgWeb)"
-   ]
-  },
-  "oil": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "The record October NOPA crush means more soyoil coming onto an already heavy market, keeping Jan (~58.3) pinned near its nine-month low; firmer crude in holiday trade is the only help.",
-   "events": [
-    "NOPA reports record October soybean crush (Brownfield)",
-    "Soy oil at nine-month low as crush runs hard (Bloomberg)"
-   ]
-  },
-  "wheat": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "11:45 CT",
-   "fundamental": "CBOT is shut. Fair Plains weather keeps HRW establishment on track, and Algerian millers are adjusting to a shifting import mix, a reminder that Black Sea and EU wheat compete hard for North African demand; supply stays ample.",
-   "events": [
-    "Fair, seasonal weather on the Plains (Brownfield)",
-    "Algeria millers adjust to changing wheat market (World Grain)",
-    "More harvested HRW acres expected in SW Kansas (Brownfield)"
-   ]
-  },
-  "kc": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "11:45 CT",
-   "fundamental": "Benign Plains weather supports HRW crop condition, adding to a comfortable 2027 supply view; no new export demand with CBOT closed.",
-   "events": [
-    "Fair, seasonal weather on the Plains (Brownfield)",
-    "SW Kansas farmer sees more harvested acres (Brownfield)"
-   ]
-  },
-  "cotton": {
-   "date": "2026-11-25",
-   "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Mar rallied into the close to ~82.9, clearing Tuesday's highs and the 82.7 resistance as a weaker dollar and firmer crude helped outside money back in. No new supply or demand data; old-crop Mar/May keeps leaning on Texas Plains losses, but high-grade certs stay a two-sided risk for longs.",
-   "events": [
-    "Mar ~82.9, through 82.7 resistance (ICE)",
-    "Dollar index slips, firmer crude (WSJ, Pro Farmer)",
-    "Tuesday gains on outside factors (Barchart)"
-   ]
-  },
-  "hogs": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "Dec hogs settled ~49.9 (-3.6%), another 52-week low, as weak pork demand and Dec liquidation continue; lower frozen pork stocks are not helping yet. CME is closed today.",
-   "events": [
-    "Cattle, hog futures lower ahead of holiday (Brownfield)",
-    "Lean hogs fall to new lows on weak pork demand (The Pig Site)"
-   ]
-  },
-  "cattle": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "Live cattle broke sharply into the close on Wednesday with no cash trade established; Dec settled near 223.6 (-1%), just above the 222.2 support. Supplies are still tight, so this looks like position-squaring before the holiday rather than a change in fundamentals; CME is closed today.",
-   "events": [
-    "Cattle crash pre-holiday (AgWeb, Barchart)",
-    "Cattle, hog futures lower ahead of Thursday holiday (Brownfield)"
-   ]
-  },
-  "feeders": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "07:55 CT",
-   "fundamental": "Jan feeders fell 1.6% to ~327.4, now close to the 325 support and still below the 50-day average. The closed Mexican border keeps feeder supply tight and screwworm stays the tail risk.",
-   "events": [
-    "Cattle crash pre-holiday (AgWeb, Barchart)",
-    "Cattle, hog futures lower ahead of Thursday holiday (Brownfield)"
-   ]
-  },
-  "class3": {
-   "date": "2026-11-25",
-   "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "CME cheese blocks led a slightly firmer dairy complex ahead of the holiday, but milk output growth near 2% y/y still caps Class III upside.",
-   "events": [
-    "Dairy prices slightly higher before Thanksgiving, cheese blocks lead (Brownfield)",
-    "Dairy heads into 2027 with growing demand and concerns (Dairy Herd)"
-   ]
-  },
-  "class4": {
-   "date": "2026-11-25",
-   "by": "claude",
-   "time": "14:45 CT",
-   "fundamental": "Dairy products edged higher before the holiday, a small steadying after Tuesday's 7-cent drop in spot nonfat dry milk; powder demand is still the question for Class IV.",
-   "events": [
-    "Dairy prices slightly higher before Thanksgiving (Brownfield)",
-    "Nonfat dry milk drops 7 cents at CME (Brownfield)"
-   ]
-  },
-  "palm": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "11:45 CT",
-   "fundamental": "Bursa palm is up slightly (~4,300 spot) helped by firmer crude, but nothing new on demand; Malaysian stocks well above average still cap rallies.",
-   "events": [
-    "Palm edges up with crude (Bursa Malaysia)",
-    "Crude firm on Hormuz attacks (Invezz)",
-    "India turns back to palm as China's soyoil exports cool (Reuters)"
-   ]
-  },
-  "natgas": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "11:45 CT",
-   "fundamental": "Jan is ~3.60 (-1.6%) as mild Thanksgiving weather outweighs the first storage draw and near-record LNG feedgas. Qatar adding LNG exports into winter and Gulf shipping risk pull global gas in opposite directions; for Henry Hub, weather still rules.",
-   "events": [
-    "Mild holiday outlook weighs on Northeast cash (NGI)",
-    "Qatar lifts LNG exports ahead of winter peak (Bloomberg)",
-    "LNG carrier hits mine near Hormuz (OilPrice.com)"
-   ]
-  },
-  "crude": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "11:45 CT",
-   "fundamental": "Fresh tanker attacks near the Strait of Hormuz and an LNG carrier hitting a mine keep supply risk alive; WTI Jan ~84.8 (+1.4%), Brent ~91.6. OPEC+ delegates point to rolling over Q1 targets, with capacity disputes unresolved, so no extra barrels are coming to offset a building surplus.",
-   "events": [
-    "Fresh tanker attacks near Hormuz lift Brent (Invezz, OilPrice.com)",
-    "OPEC+ likely to roll over Q1 output targets (Reuters, Bloomberg)",
-    "US crude stocks up a third straight week (WSJ)"
-   ]
-  },
-  "ulsd": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "11:45 CT",
-   "fundamental": "ULSD Jan ~3.69 (+1.1%) follows crude higher on Gulf shipping attacks; distillate stocks remain below average, so diesel keeps more risk premium than gasoline.",
-   "events": [
-    "Gulf tanker attacks lift crude complex (Invezz)",
-    "Diesel stays expensive while gasoline falls (OilPrice.com)",
-    "Diesel crack slump offers only brief relief (Bloomberg)"
-   ]
-  },
-  "rbob": {
-   "date": "2026-11-26",
-   "by": "claude",
-   "time": "11:45 CT",
-   "fundamental": "RBOB is flat near 2.44 even as crude rises; ample gasoline stocks in the low-demand season keep the crack weak relative to diesel.",
-   "events": [
-    "Gasoline prices falling while diesel stays high (OilPrice.com)",
-    "Crude firm on Hormuz attacks (Invezz)"
-   ]
-  },
-  "gold": {
-   "date": "2026-11-23",
-   "by": "bot",
-   "time": "19:14 CT",
-   "claude_date": null,
-   "fundamental": "8 headlines in the last 76 hours; the news flow leans bearish (bigger supplies or weaker demand outnumber supply risks), prices mostly reported higher (0 supply-tight, 1 supply-loose, 7 up, 2 down by keyword).",
-   "events": [
-    "Gold Rebounds as Traders Pare Bets on Near-Term Fed Rate Hikes (Bloomberg.com, 2026-11-23)",
-    "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
-    "Gold Futures Rebound as Nvidia News Lifts Markets (WSJ, 2026-11-23)"
-   ]
-  },
-  "silver": {
-   "date": "2026-11-23",
-   "by": "bot",
-   "time": "19:14 CT",
-   "claude_date": null,
-   "fundamental": "3 headlines in the last 76 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
-   "events": [
-    "Gold, Silver Futures Rebound as Markets Get Nvidia Boost (WSJ, 2026-11-23)",
-    "Goldman favours gold over silver as central bank demand supports prices (Investing.com, 2026-11-21)",
-    "Gold and silver could return to mid-2025 levels as inflation-hedge bid evaporates – SIA’s Cieszynski (Kitco, 2026-11-20)"
-   ]
-  },
-  "copper": {
-   "date": "2026-11-23",
-   "by": "bot",
-   "time": "19:14 CT",
-   "claude_date": null,
-   "fundamental": "7 headlines in the last 76 hours; the news flow leans supportive (supply risks or firm demand outnumber bearish supply news), prices mostly reported lower (1 supply-tight, 0 supply-loose, 1 up, 4 down by keyword).",
-   "events": [
-    "Copper at Lowest Since April Amid AI Market Turmoil, Chinese Demand Concerns (WSJ, 2026-11-23)",
-    "Copper Slump Tests Kast’s Push to Rein In Chile’s Fiscal Deficit (Bloomberg.com, 2026-11-23)",
-    "Copper Wavers Near $12,000 a Ton After Meltdown on AI Jitters (Bloomberg.com, 2026-11-23)"
-   ]
-  },
-  "aluminum": {
-   "date": "2026-11-23",
-   "by": "bot",
-   "time": "19:14 CT",
-   "claude_date": null,
-   "fundamental": "No new headlines for this market in the last 76 hours.",
-   "events": []
-  },
-  "platinum": {
-   "date": "2026-11-23",
-   "by": "bot",
-   "time": "19:14 CT",
-   "claude_date": null,
-   "fundamental": "No new headlines for this market in the last 76 hours.",
-   "events": []
-  },
-  "palladium": {
-   "date": "2026-11-23",
-   "by": "bot",
-   "time": "19:14 CT",
-   "claude_date": null,
-   "fundamental": "No new headlines for this market in the last 76 hours.",
-   "events": []
-  }
- }
+  "bot_note": "Automatic backup read (GitHub Actions) at 2026-11-26 22:34 CT: Claude's desk read had not run for 5+ hours."
 }

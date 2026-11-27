@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27 14:19 UTC",
+ "generated": "2026-11-27 20:53 UTC",
  "today": "2026-11-27",
  "sources": [
   {
@@ -65,8 +65,8 @@
   {
    "group": "Gold",
    "source": "GLD price and volume (Yahoo)",
-   "latest": "2026-11-25",
-   "age": 2,
+   "latest": "2026-11-27",
+   "age": 0,
    "age_unit": "bd",
    "limit": 2,
    "cadence": "daily",
@@ -89,8 +89,8 @@
   {
    "group": "Silver",
    "source": "SLV price and volume (Yahoo)",
-   "latest": "2026-11-25",
-   "age": 2,
+   "latest": "2026-11-27",
+   "age": 0,
    "age_unit": "bd",
    "limit": 2,
    "cadence": "daily",
@@ -173,8 +173,8 @@
   {
    "group": "Gold",
    "source": "US 10-yr real yield (Treasury)",
-   "latest": "2026-11-25",
-   "age": 2,
+   "latest": "2026-11-27",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

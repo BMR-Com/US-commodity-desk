@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27 20:53 UTC",
+ "generated": "2026-11-27 22:17 UTC",
  "today": "2026-11-27",
  "sources": [
   {
@@ -77,13 +77,13 @@
   {
    "group": "Gold",
    "source": "GLD option chain (Yahoo; archived each evening)",
-   "latest": "2026-11-25",
-   "age": 2,
+   "latest": "2026-11-27",
+   "age": 0,
    "age_unit": "bd",
    "limit": 1,
    "cadence": "daily",
    "manual": false,
-   "state": "late",
+   "state": "ok",
    "used_in": "ETFs & options tab"
   },
   {
@@ -101,13 +101,13 @@
   {
    "group": "Silver",
    "source": "SLV option chain (Yahoo; archived each evening)",
-   "latest": "2026-11-25",
-   "age": 2,
+   "latest": "2026-11-27",
+   "age": 0,
    "age_unit": "bd",
    "limit": 1,
    "cadence": "daily",
    "manual": false,
-   "state": "late",
+   "state": "ok",
    "used_in": "ETFs & options tab"
   },
   {
@@ -125,8 +125,8 @@
   {
    "group": "Gold",
    "source": "iShares IAU shares outstanding, daily history (product-page download)",
-   "latest": "2026-11-25",
-   "age": 2,
+   "latest": "2026-11-27",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -221,8 +221,8 @@
   {
    "group": "Silver",
    "source": "iShares SLV shares outstanding, daily history (product-page download)",
-   "latest": "2026-11-25",
-   "age": 2,
+   "latest": "2026-11-27",
+   "age": 0,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

@@ -3,59 +3,62 @@
  "about": "Own-words reads from the daily research task (ADMIS, Rabobank, Czapp and the news feed). fund_score: -1 bearish to +1 bullish, a judgement on the fundamental news only.",
  "markets": {
   "corn": {
-   "date": "2026-11-26",
-   "by": "bot",
-   "time": "22:34 CT",
-   "claude_date": "2026-11-25",
-   "fundamental": "2 headlines in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+   "date": "2026-11-27",
+   "by": "claude",
+   "time": "11:50 CT",
+   "claude_date": "2026-11-27",
+   "fundamental": "Friday's short session has corn trading the holiday outside markets; heavy crop-insurance claims after this year's weather extremes underline uneven yields but do not change the large US supply. Dec sits just above 438 support.",
    "events": [
-    "Fair weather, seasonal temps on the Plains; Autumn storminess eastern Corn Belt (Brownfield Ag News, 2026-11-26)",
-    "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+    "Weather extremes trigger crop-insurance claims across the Corn Belt (Brownfield)",
+    "Corn traders return from Thanksgiving break (Barchart)",
+    "USDA survey participation falls over 34%, raising data doubts (AgroLatam)"
    ]
   },
   "soybeans": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "07:45 CT",
+   "time": "11:50 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "The real's surge on the finance-minister appointment makes Brazilian beans dearer in dollars and slows farmer selling of the new crop, mildly helping US export competitiveness; no fresh US demand data over the holiday.",
+   "fundamental": "Jan beans broke above 1,269.5 resistance on biofuel-driven crush demand and the stronger real, which makes Brazilian beans dearer in dollars. Against that, rains in Mato Grosso have eased El Niño damage fears for Brazil's new crop, which caps the supply-scare part of the story.",
    "events": [
-    "USD/BRL ~5.50 (-5.5%) on Trabuco pick (Reuters, Yahoo Finance)",
-    "Brazil domestic soy price publication delayed (Fastmarkets)",
-    "Pre-holiday technical rally in beans and meal (AgWeb)"
+    "Jan ~1,273 (+2.3%) through R1 1,269.5 (CBOT)",
+    "Rains ease El Niño crop fears in Mato Grosso (Bloomberg)",
+    "Biofuels boom adds support to soybean prices (Brownfield)"
    ]
   },
   "meal": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "07:45 CT",
+   "time": "11:50 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Stronger real is a marginal support via South American meal export pricing; record US crush keeps domestic supply ample, so the pre-holiday rally was technical rather than fundamental.",
+   "fundamental": "Meal rides the bean rally, but record crush to meet biofuel oil demand keeps meal supply heavy, so gains are leaning on the complex rather than on meal's own balance.",
    "events": [
-    "Real rallies ~5.5% (Reuters, Yahoo Finance)",
-    "Meal led the pre-holiday rally on technical buying (AgWeb)",
-    "Record October NOPA crush (Brownfield)"
+    "Soybeans rally in the short Friday session (Barchart)",
+    "Biofuel demand keeps crush running hard (Brownfield)",
+    "Brazil rains ease crop worries (Bloomberg)"
    ]
   },
   "oil": {
-   "date": "2026-11-26",
-   "by": "bot",
-   "time": "22:34 CT",
-   "claude_date": "2026-11-26",
-   "fundamental": "No new headlines for this market in the last 30 hours.",
+   "date": "2026-11-27",
+   "by": "claude",
+   "time": "11:50 CT",
+   "claude_date": "2026-11-27",
+   "fundamental": "Biofuel demand is the support story for soyoil, while stalled Indonesian palm tenders on weak demand show the veg-oil complex is not tight; crude's intraday drop is a headwind for biodiesel margins.",
    "events": [
-    "NOPA reports record October soybean crush (Brownfield)",
-    "Soy oil at nine-month low as crush runs hard (Bloomberg)"
+    "Biofuels boom supports soy complex (Brownfield)",
+    "Indonesia palm oil tenders stall on weak demand (Bloomberg)",
+    "WTI ~82.8 (-1.9%) (OilPrice)"
    ]
   },
   "wheat": {
-   "date": "2026-11-26",
-   "by": "bot",
-   "time": "22:34 CT",
-   "claude_date": "2026-11-26",
-   "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, price reports mixed (0 supply-tight, 0 supply-loose, 0 up, 0 down by keyword).",
+   "date": "2026-11-27",
+   "by": "claude",
+   "time": "11:50 CT",
+   "claude_date": "2026-11-27",
+   "fundamental": "Nothing new on world supply; Dec trades just above 564.5 support in thin post-holiday trade, with importer demand from North Africa adjusting to lower prices.",
    "events": [
-    "Algeria millers adjusting to changing wheat market (World Grain, 2026-11-26)"
+    "Wheat heads into a shortened Friday session (Barchart)",
+    "Algeria millers adapting to a changing wheat market (World Grain)"
    ]
   },
   "kc": {
@@ -71,44 +74,47 @@
   "cotton": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "07:45 CT",
+   "time": "11:50 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Nothing new on supply or demand over the Thanksgiving break; the holiday-delayed export sales are already in the desk model. Friday's short session leaves old-crop Mar to trade outside markets, which lean supportive with crude firmer and a broad commodity bid.",
+   "fundamental": "Still no fresh supply or demand data in the shortened session; old-crop Mar holds just under its 83.4 resistance while crude turns lower intraday, removing part of the outside support. Certificated stock flows remain the thing to watch for longs.",
    "events": [
-    "Mar last ~82.0 after Tuesday's push through 82.7 resistance (ICE)",
-    "Crude up ~1.7% on Gulf supply disruptions (Reuters, OilPrice)",
-    "Broad metals and equity-index bid into Friday (Bloomberg, WSJ)"
+    "Mar ~83.0, testing 83.38/83.45 resistance (ICE)",
+    "Cotton rallies out of the Thanksgiving break (Barchart)",
+    "WTI reverses to ~82.8 (-1.9%) as Iraq lifts exports (OilPrice)"
    ]
   },
   "hogs": {
-   "date": "2026-11-26",
-   "by": "bot",
-   "time": "22:34 CT",
-   "claude_date": "2026-11-26",
-   "fundamental": "No new headlines for this market in the last 30 hours.",
+   "date": "2026-11-27",
+   "by": "claude",
+   "time": "11:50 CT",
+   "claude_date": "2026-11-27",
+   "fundamental": "Hogs bounce about 2% from oversold levels after weak pork demand pushed them to new lows; nothing has changed in the supply picture, so this reads as short covering.",
    "events": [
-    "Cattle, hog futures lower ahead of holiday (Brownfield)",
-    "Lean hogs fall to new lows on weak pork demand (The Pig Site)"
+    "Lean hogs moving into oversold territory (ADMIS)",
+    "Dec ~50.95 (+2%) (CME)",
+    "Hogs look to Friday trade (Barchart)"
    ]
   },
   "cattle": {
-   "date": "2026-11-26",
-   "by": "bot",
-   "time": "22:34 CT",
-   "claude_date": "2026-11-26",
-   "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+   "date": "2026-11-27",
+   "by": "claude",
+   "time": "11:50 CT",
+   "claude_date": "2026-11-27",
+   "fundamental": "Cattle recover part of the pre-holiday crash in the post-Thanksgiving session; tight fed supplies are unchanged and the bounce suggests the selloff was positioning-driven.",
    "events": [
-    "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+    "Cattle print post-Thanksgiving gains (Barchart)",
+    "Dec live cattle ~224.5 (+0.5%) (CME)"
    ]
   },
   "feeders": {
-   "date": "2026-11-26",
-   "by": "bot",
-   "time": "22:34 CT",
-   "claude_date": "2026-11-26",
-   "fundamental": "1 headline in the last 30 hours; the news flow has no clear supply or demand signal, prices mostly reported higher (0 supply-tight, 0 supply-loose, 1 up, 0 down by keyword).",
+   "date": "2026-11-27",
+   "by": "claude",
+   "time": "11:50 CT",
+   "claude_date": "2026-11-27",
+   "fundamental": "Feeders follow cattle higher; cheaper corn keeps feeding margins supportive for feeder demand.",
    "events": [
-    "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash (AgWeb, 2026-11-25)"
+    "Jan feeders ~330.2 (+0.8%) (CME)",
+    "Cattle print post-Thanksgiving gains (Barchart)"
    ]
   },
   "class3": {
@@ -136,48 +142,49 @@
   "palm": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "07:45 CT",
+   "time": "11:50 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Firmer crude improves biodiesel economics and gives palm some support; there is no new Malaysian output or export data.",
+   "fundamental": "Stalled Indonesian tenders point to soft export demand even with tight local supply, and crude's intraday reversal removes part of the biodiesel support; India's shift back toward palm remains the main offset.",
    "events": [
-    "Crude up on Iraq loading delays and refinery attacks (Reuters, OilPrice)",
-    "India turning back to palm as China's soyoil exports cool (Reuters)"
+    "Indonesia palm tenders stall on weak demand and tight supply (Bloomberg)",
+    "India turning back to palm as China's soyoil exports cool (Reuters)",
+    "WTI ~82.8 (-1.9%) (OilPrice)"
    ]
   },
   "natgas": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "07:45 CT",
+   "time": "11:50 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Henry Hub is down ~4% without a US supply shock in the news; abroad, Australia's 20% domestic reservation law trims future LNG export flexibility while Qatar is lifting winter cargoes, a roughly offsetting mix for US export demand.",
+   "fundamental": "No US supply shock; abroad, Australia's 20% domestic reservation law and Russia-China pricing friction are longer-term LNG-market stories rather than near-term US demand drivers.",
    "events": [
-    "Australia passes 20% gas reservation law for LNG exporters (Reuters, Bloomberg)",
-    "Qatar boosting LNG exports into winter peak (Bloomberg)",
-    "Iran and Turkey extend gas supply deal (Bloomberg)"
+    "Australia passes 20% gas reservation law (Reuters, Bloomberg)",
+    "Russian domestic gas price may complicate China talks (Reuters)",
+    "Iran and Turkey extend gas deal (Bloomberg)"
    ]
   },
   "crude": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "07:45 CT",
+   "time": "11:50 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Supply risk is back in the headlines: Iraq has deferred up to 30m barrels of loadings, an attack partly halted Aramco's Jazan refinery and a fire hit Venezuela's Amuay. OPEC+ looks set to roll Q1 targets over, while a report that Washington nudged Iraq and Venezuela toward leaving OPEC adds a cohesion question for the group.",
+   "fundamental": "Crude reversed lower intraday as Iraq lifted exports to about 3.6m b/d, offsetting the earlier loading-delay headlines; OPEC+ is expected to roll over Q1 targets, and the report of US pressure on Iraq and Venezuela to leave OPEC raises questions about future quota discipline. Stockpiling demand into 2027 is cited as a floor.",
    "events": [
-    "Iraq delays up to 30m bbl of crude shipments (OilPrice)",
-    "Attack halts part of Aramco's Jazan refinery; Amuay fire (Reuters)",
-    "OPEC+ likely to keep Q1 targets; US pushed Iraq, Venezuela on OPEC exit (Reuters, Bloomberg)"
+    "Iraq boosts oil exports to ~3.6m b/d (OilPrice)",
+    "US pushed Iraq and Venezuela to consider leaving OPEC (Reuters)",
+    "OPEC+ likely to roll over Q1 targets (Reuters, Bloomberg)"
    ]
   },
   "ulsd": {
    "date": "2026-11-27",
    "by": "claude",
-   "time": "07:45 CT",
+   "time": "11:50 CT",
    "claude_date": "2026-11-27",
-   "fundamental": "Refinery outages at Jazan, Amuay and Krasnodar (drone strike) hit middle-distillate supply at the start of winter, which keeps diesel cracks supported even after the recent slump in diesel prices.",
+   "fundamental": "Distillates stay the firm part of the barrel: Russia extended its jet-fuel export ban to March after refinery attacks, and the global diesel balance is seen moving into deficit by Q2 2027. Refinery outages at Jazan and Amuay add to that.",
    "events": [
-    "Jazan refinery operations partly halted after attack (Reuters)",
-    "Fire at Venezuela's Amuay refinery; Krasnodar refinery hit by drones (Reuters)",
-    "Diesel slump offers brief respite (Bloomberg)"
+    "Russia extends jet fuel export ban to March (Bloomberg)",
+    "Global diesel market seen in deficit in Q2 2027 (Reuters)",
+    "Attack halts part of Aramco's Jazan refinery (Reuters)"
    ]
   },
   "rbob": {

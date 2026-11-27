@@ -1,12 +1,12 @@
 {
- "generated": "2026-11-26 23:08 UTC",
+ "generated": "2026-11-27 04:44 UTC",
  "today": "2026-11-26",
  "sources": [
   {
    "group": "Prices",
    "source": "COMEX gold, silver, copper, aluminum futures (Yahoo, TradingView fallback)",
-   "latest": "2026-11-26",
-   "age": 0,
+   "latest": "2026-11-27",
+   "age": -1,
    "age_unit": "bd",
    "limit": 2,
    "cadence": "daily",
@@ -185,8 +185,8 @@
   {
    "group": "Gold",
    "source": "US dollar index (Yahoo)",
-   "latest": "2026-11-26",
-   "age": 0,
+   "latest": "2026-11-27",
+   "age": -1,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -317,8 +317,8 @@
   {
    "group": "Prices",
    "source": "NYMEX platinum and palladium futures (Yahoo, TradingView fallback)",
-   "latest": "2026-11-26",
-   "age": 0,
+   "latest": "2026-11-27",
+   "age": -1,
    "age_unit": "bd",
    "limit": 2,
    "cadence": "daily",

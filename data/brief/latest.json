@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-27 11:42 UTC",
- "generated_et": "Fri Nov 27, 2026 06:42 AM ET",
+ "generated": "2026-11-27 15:10 UTC",
+ "generated_et": "Fri Nov 27, 2026 10:10 AM ET",
  "date": "2026-11-27",
- "prices_from": "2026-11-27 11:42 UTC",
+ "prices_from": "2026-11-27 15:10 UTC",
  "cme_oi_date": "20261125",
  "headlines": [
   "Biggest moves vs prior settle: Lean hogs -1.875 (-3.6%); Soybean meal +8.6 (+2.4%); Feeder cattle -5.375 (-1.6%).",
@@ -243,9 +243,9 @@
    "spread": "Dec 26 / Mar 27",
    "spread_v": -16.75,
    "spread_read": "near full carry: market paying to store \u2014 ample stocks, bearish nearby",
-   "esr_pace": 0.37119,
-   "esr_norm": 0.45953,
-   "esr_proj": 2835.984,
+   "esr_pace": 0.39565,
+   "esr_norm": 0.48816,
+   "esr_proj": 2881.4884,
    "esr_usda": 3275.0,
    "esr_unit": "m bu",
    "view": "strongly bearish",
@@ -259,7 +259,7 @@
     },
     {
      "tilt": "bear",
-     "text": "Desk export projection -13% vs USDA"
+     "text": "Desk export projection -12% vs USDA"
     },
     {
      "tilt": "neutral",
@@ -276,16 +276,22 @@
    },
    "news": [
     {
+     "title": "Soybeans and corn will look to extend Wednesday\u2019s gains | Morning Market Minute",
+     "source": "Brownfield Ag News",
+     "time": "2026-11-27T13:57Z",
+     "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPRE1aMnhCUWtOcmZoWmc3OEprZ2ducW9WenlOQTVXVnhZc2V1T0E5WU1HRE9oakpiQW9NQjhkbk5XTmUyUFQ4TmN3bjJLZWhNWTZMbmxiRWo5SGdvTnpnTmhjUS1RaU0ycm1HcUxoZVBoTUN5b3NTMXd6eHhSWXhKbWh6SE9TTlozeUFJeGFva2FGZGduOGZmTU84MEtLOEZNUWV2OGpGdzJkTmFIcXBKZw?oc=5"
+    },
+    {
+     "title": "Corn Traders Look to Come Back from Thanksgiving Break",
+     "source": "Barchart.com",
+     "time": "2026-11-27T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOOVd6dEd6d0V6d0JjUlpObWdjbDY2SzNCdS14am1jRk5NRDdvX3dEZFhCMXBtd0tVSGRGQXhTQlVJLXNlcTlxSWFiWTFmc1I0SHpnZk5yVGpjTWZ3Uk5ERlNiVXcwNkJTM2I3blh6ejdkMVYyODMzN0RSd1dsc28yWllhdDJKYy1Id0IxRXZ0ZThVd2hyUHM1amxlcVUtZzA?oc=5"
+    },
+    {
      "title": "Fair weather, seasonal temps on the Plains; Autumn storminess eastern Corn Belt",
      "source": "Brownfield Ag News",
      "time": "2026-11-26T15:09Z",
      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZjNVdXRaSkd6R29Ea1ZMNkV1RnFhTjdRZ3ktSFZvbjkzekE4WW9KeHF1Q3VlaWE0OWVkeDR6ZUZBNWhyVktaRUFBT251TXVKa0pwSko1b0ZlczhsdDI2VTdqUVhRQzZIUGhYZFludGFoeGRnLTFxcnVSYWFiT0hKTTZxWUJ3NVJiUTV1cTVVS29IajJuTmdmLVhwbWpqV0JPaGZCOXNlcHhoN1NrUUEyMk9n?oc=5"
-    },
-    {
-     "title": "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash",
-     "source": "AgWeb",
-     "time": "2026-11-25T23:56Z",
-     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOTmc3ajRNcmVyZ3IzMDY0VjdyU2JYZmpUZ0dTcWxGTXU3bGhYdEVKM19HNFp4T2NxZmt2YnI1SUJDRnBVcVlNdjdGNzR3cExrWkZxWXd4ejdnRUFDQURJYnNMUVdQQkhBY0ZHcWVpQ2RaUnNScVZFTWo5T0xtdmoyTFVvRVRzSWtESHdsTHlhOW9nQW9uVlhDcUFhRWVLUHZ3QWc?oc=5"
     }
    ]
   },
@@ -318,9 +324,9 @@
    "spread": "Jan 27 / Mar 27",
    "spread_v": -1.0,
    "spread_read": "weak carry: commercials want grain now",
-   "esr_pace": 0.72204,
-   "esr_norm": 0.60221,
-   "esr_proj": 1980.2599,
+   "esr_pace": 0.73863,
+   "esr_norm": 0.63952,
+   "esr_proj": 1954.2739,
    "esr_usda": 1720.0,
    "esr_unit": "m bu",
    "view": "bullish",
@@ -330,7 +336,7 @@
    "flags": [
     {
      "tilt": "bull",
-     "text": "Desk export projection +15% vs USDA"
+     "text": "Desk export projection +14% vs USDA"
     },
     {
      "tilt": "neutral",
@@ -347,6 +353,12 @@
    },
    "news": [
     {
+     "title": "Soybeans and corn will look to extend Wednesday\u2019s gains | Morning Market Minute",
+     "source": "Brownfield Ag News",
+     "time": "2026-11-27T13:57Z",
+     "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPRE1aMnhCUWtOcmZoWmc3OEprZ2ducW9WenlOQTVXVnhZc2V1T0E5WU1HRE9oakpiQW9NQjhkbk5XTmUyUFQ4TmN3bjJLZWhNWTZMbmxiRWo5SGdvTnpnTmhjUS1RaU0ycm1HcUxoZVBoTUN5b3NTMXd6eHhSWXhKbWh6SE9TTlozeUFJeGFva2FGZGduOGZmTU84MEtLOEZNUWV2OGpGdzJkTmFIcXBKZw?oc=5"
+    },
+    {
      "title": "Bradesco chairman Trabuco agrees to become Brazil's finance minister",
      "source": "Reuters",
      "time": "2026-11-26T23:52Z",
@@ -357,12 +369,6 @@
      "source": "Fastmarkets",
      "time": "2026-11-26T16:41Z",
      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOZmpWeHJpRzI5ci1aTjVRV19zQjFYOHEwcDFVOG5wREc2SFM4elEyeEVYa2lsRTJlc1BvMVc2SGtvWF9VVHJpYTFLLU9BVk9oa3Rmb1NkUkhZVzhtR2JwLXVCc19HRWdoLXFXTVd5UTdKUU9NSkc0a0JaRktHQkNoX0ZFaGhCLTdLRmhicUY4b19iT0J6aXc?oc=5"
-    },
-    {
-     "title": "Soybeans climb, oil surges and gold loses its shine: What's next for farmers?",
-     "source": "AgroLatam",
-     "time": "2026-11-26T13:34Z",
-     "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNX0xRR19WY01QTTBMMTAxWHVMSUZEUzRtWnJ4QTNYN0RXNXRrOWE1OGZWVGZjcHpJY3hkOEc2dmw4QnM2SGw5M2ZVWGkwSm5UWjZHRk41ZjlISlJtYU9PNlExRURpNWdZSmNTaUZIZ1dhNm9pdklxYmFQVzVYb0g2dE1Za1BjRmFMQUc4V3U0dndCTWhVNC1tcjNTT3NJVzVqcVl3dmdHNWpQTklFV3c?oc=5"
     }
    ]
   },
@@ -395,9 +401,9 @@
    "spread": "Dec 26 / Jan 27",
    "spread_v": 3.5,
    "spread_read": "normal",
-   "esr_pace": 0.36407,
-   "esr_norm": 0.42908,
-   "esr_proj": 19155.4504,
+   "esr_pace": 0.3923,
+   "esr_norm": 0.44375,
+   "esr_proj": 19404.5855,
    "esr_usda": 22700.0,
    "esr_unit": "k short tons",
    "view": "bullish",
@@ -411,7 +417,7 @@
     },
     {
      "tilt": "bear",
-     "text": "Desk export projection -16% vs USDA"
+     "text": "Desk export projection -15% vs USDA"
     },
     {
      "tilt": "neutral",
@@ -426,14 +432,7 @@
     "vol": 273698,
     "report": "PRELIMINARY"
    },
-   "news": [
-    {
-     "title": "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash",
-     "source": "AgWeb",
-     "time": "2026-11-25T23:56Z",
-     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOTmc3ajRNcmVyZ3IzMDY0VjdyU2JYZmpUZ0dTcWxGTXU3bGhYdEVKM19HNFp4T2NxZmt2YnI1SUJDRnBVcVlNdjdGNzR3cExrWkZxWXd4ejdnRUFDQURJYnNMUVdQQkhBY0ZHcWVpQ2RaUnNScVZFTWo5T0xtdmoyTFVvRVRzSWtESHdsTHlhOW9nQW9uVlhDcUFhRWVLUHZ3QWc?oc=5"
-    }
-   ]
+   "news": []
   },
   {
    "sym": "ZL",
@@ -464,9 +463,9 @@
    "spread": "Dec 26 / Jan 27",
    "spread_v": -0.29,
    "spread_read": "wide vs history",
-   "esr_pace": 0.26456,
-   "esr_norm": 0.29326,
-   "esr_proj": 360.8455,
+   "esr_pace": 0.26624,
+   "esr_norm": 0.33148,
+   "esr_proj": 321.2712,
    "esr_usda": 400.0,
    "esr_unit": "m lb",
    "view": "bearish",
@@ -477,6 +476,10 @@
     {
      "tilt": "bull",
      "text": "RSI 22: oversold"
+    },
+    {
+     "tilt": "bear",
+     "text": "Desk export projection -20% vs USDA"
     },
     {
      "tilt": "neutral",
@@ -491,7 +494,14 @@
     "vol": 236880,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Indonesia Palm Oil Tenders Stall on Weak Demand and Tight Supply",
+     "source": "Bloomberg.com",
+     "time": "2026-11-27T07:36Z",
+     "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOaU0tNUNSc2VkNWRHTGpkWF9TZTdpOVA0MXEzVExSeUhWMHlJZzBUXzFxNHQ4T0E5em02eV9oamRPWGl0M0Mwd3RKaTFMRWlQZGlOQ2FUUGE4dVhYOXpMZWR3azBRQ3NucVpKMF9nTU4wSERqWnpGdldZeTdjdENvbDRaRUV1ajVYYUhBalp6Y1VJb3o0UHExSDdHSnpYTy15Z1J0ZnhQNzIyRXJZUC1sR2pRd3ZzUQ?oc=5"
+    }
+   ]
   },
   {
    "sym": "ZW",
@@ -522,9 +532,9 @@
    "spread": "Dec 26 / Mar 27",
    "spread_v": -22.0,
    "spread_read": "near full carry: market paying to store \u2014 ample stocks, bearish nearby",
-   "esr_pace": 0.65933,
-   "esr_norm": 0.71249,
-   "esr_proj": 702.389,
+   "esr_pace": 0.68892,
+   "esr_norm": 0.73275,
+   "esr_proj": 710.3647,
    "esr_usda": 750.0,
    "esr_unit": "m bu",
    "view": "strongly bearish",
@@ -546,6 +556,12 @@
     "report": "PRELIMINARY"
    },
    "news": [
+    {
+     "title": "Wheat Looks to Shortened Friday Trade",
+     "source": "Barchart.com",
+     "time": "2026-11-27T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUDVDaXcxa29QTE0tWkpkTU5XOXFRRHkwZ3ZDZ0RjWXdWX25ZS3BfdzVUQzdDVXNWMG50ajhTdEFzMlUwY3VpY0t4SjE2N1ZvcWs5TzQ2TVVlNjc5SkduNUJaV252TTN1WWJOaGFsZjRzQVllSEZFWVI5X3cwdVZPZ2VNcUd4djFu?oc=5"
+    },
     {
      "title": "Algeria millers adjusting to changing wheat market",
      "source": "World Grain",
@@ -583,9 +599,9 @@
    "spread": "Dec 26 / Mar 27",
    "spread_v": -26.5,
    "spread_read": "near full carry: market paying to store \u2014 ample stocks, bearish nearby",
-   "esr_pace": 0.63881,
-   "esr_norm": 0.70554,
-   "esr_proj": 168.1381,
+   "esr_pace": 0.68056,
+   "esr_norm": 0.72274,
+   "esr_proj": 172.5686,
    "esr_usda": 165.0,
    "esr_unit": "m bu",
    "view": "bearish",
@@ -607,6 +623,12 @@
     "report": "PRELIMINARY"
    },
    "news": [
+    {
+     "title": "Wheat Looks to Shortened Friday Trade",
+     "source": "Barchart.com",
+     "time": "2026-11-27T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUDVDaXcxa29QTE0tWkpkTU5XOXFRRHkwZ3ZDZ0RjWXdWX25ZS3BfdzVUQzdDVXNWMG50ajhTdEFzMlUwY3VpY0t4SjE2N1ZvcWs5TzQ2TVVlNjc5SkduNUJaV252TTN1WWJOaGFsZjRzQVllSEZFWVI5X3cwdVZPZ2VNcUd4djFu?oc=5"
+    },
     {
      "title": "Algeria millers adjusting to changing wheat market",
      "source": "World Grain",
@@ -644,9 +666,9 @@
    "spread": "Dec 26 / Mar 27",
    "spread_v": -3.32,
    "spread_read": "wide vs history",
-   "esr_pace": 0.54147,
-   "esr_norm": 0.61505,
-   "esr_proj": 12.4288,
+   "esr_pace": 0.57001,
+   "esr_norm": 0.63034,
+   "esr_proj": 12.5094,
    "esr_usda": 12.3,
    "esr_unit": "m bales",
    "view": "bullish",
@@ -656,13 +678,20 @@
    "flags": [
     {
      "tilt": "neutral",
-     "text": "Weather watch: Sorriso, Mato Grosso"
+     "text": "Weather watch: Sorriso, Mato Grosso; Lubbock, West Texas (cotton)"
     }
    ],
    "event": "USDA WASDE",
    "event_date": "2026-12-10",
    "oi": null,
-   "news": []
+   "news": [
+    {
+     "title": "Cotton Rallying out of Thanksgiving Break",
+     "source": "Barchart.com",
+     "time": "2026-11-27T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNakVOYWRubXdqVVdtX2F3OWpHRkd2MjVwRG1jWXFKcFhHR2FOcmpNMWU2YWgxdld4eXJOdjlRR0lqbnNsdmNvRml6WXBKNFNjVjg4WDY0Ym0tb0ZmSW5DdGFtUml5XzRtOXlmNWQ4eXU3bVkzQW9PMVhZUnZYNWVaazJOV3k5akxiN09iTEFn?oc=5"
+    }
+   ]
   },
   {
    "sym": "HE",
@@ -720,7 +749,14 @@
     "vol": 63484,
     "report": "PRELIMINARY"
    },
-   "news": []
+   "news": [
+    {
+     "title": "Hogs Look to Friday Trade",
+     "source": "Barchart.com",
+     "time": "2026-11-27T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5iendwUmttcDVSOTBGdHp3Vm96V0N0dnVqQUxZQXdFMU9ZQ0dRU2hZcE1obHNKUVNwWkt0OU02akFxbWRYc1FxOVE4eGgxR1U5YnZHVDJYT1N6Ui03RzJJNEhlUFp5R3ZQRk5LNXNiTHpKbVNvOWNPbQ?oc=5"
+    }
+   ]
   },
   {
    "sym": "LE",
@@ -771,10 +807,10 @@
    },
    "news": [
     {
-     "title": "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash",
-     "source": "AgWeb",
-     "time": "2026-11-25T23:56Z",
-     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOTmc3ajRNcmVyZ3IzMDY0VjdyU2JYZmpUZ0dTcWxGTXU3bGhYdEVKM19HNFp4T2NxZmt2YnI1SUJDRnBVcVlNdjdGNzR3cExrWkZxWXd4ejdnRUFDQURJYnNMUVdQQkhBY0ZHcWVpQ2RaUnNScVZFTWo5T0xtdmoyTFVvRVRzSWtESHdsTHlhOW9nQW9uVlhDcUFhRWVLUHZ3QWc?oc=5"
+     "title": "Cattle Traders Look to Closer Out the Week",
+     "source": "Barchart.com",
+     "time": "2026-11-27T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPbExSMktTekJfMG1KV2txZm9yUmJLZUtUNHVWRURVSTFKU1pKN1drQkVLNkVtY1JrSzRVa21xRExuRUV2NGlCSmIxclZPcWQtMXVkVXRxRGhmajdudG9fZEczQXRvcXd0R0xubkpvWVVycU1rbFE1aDNVZHY4Rzc0RWFpNGo4UjJITWxNZDRTcw?oc=5"
     }
    ]
   },
@@ -827,10 +863,10 @@
    },
    "news": [
     {
-     "title": "Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash",
-     "source": "AgWeb",
-     "time": "2026-11-25T23:56Z",
-     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOTmc3ajRNcmVyZ3IzMDY0VjdyU2JYZmpUZ0dTcWxGTXU3bGhYdEVKM19HNFp4T2NxZmt2YnI1SUJDRnBVcVlNdjdGNzR3cExrWkZxWXd4ejdnRUFDQURJYnNMUVdQQkhBY0ZHcWVpQ2RaUnNScVZFTWo5T0xtdmoyTFVvRVRzSWtESHdsTHlhOW9nQW9uVlhDcUFhRWVLUHZ3QWc?oc=5"
+     "title": "Cattle Traders Look to Closer Out the Week",
+     "source": "Barchart.com",
+     "time": "2026-11-27T13:32Z",
+     "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPbExSMktTekJfMG1KV2txZm9yUmJLZUtUNHVWRURVSTFKU1pKN1drQkVLNkVtY1JrSzRVa21xRExuRUV2NGlCSmIxclZPcWQtMXVkVXRxRGhmajdudG9fZEczQXRvcXd0R0xubkpvWVVycU1rbFE1aDNVZHY4Rzc0RWFpNGo4UjJITWxNZDRTcw?oc=5"
     }
    ]
   },
@@ -1029,27 +1065,27 @@
    {
     "title": "Dollar & farm currencies",
     "score": -2,
-    "text": "Dollar index 103.81 (+1.6% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.652 (+5.6% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.644 (-0.4%); USD/MXN 19.52 (+4.4%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
+    "text": "Dollar index 103.89 (+1.7% in a month, +5.7% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.537 (+3.5% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.644 (-0.4%); USD/MXN 19.62 (+5.0%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four)."
    },
    {
     "title": "Risk appetite",
     "score": -1,
-    "text": "S&P 500 -6.4% in a month (+4.9% YTD); VIX 25.0. Risk-off: funds tend to cut commodity length along with equities. "
+    "text": "S&P 500 -6.4% in a month (+4.9% YTD); VIX 25.4. Risk-off: funds tend to cut commodity length along with equities. "
    },
    {
     "title": "Energy",
     "score": -1,
-    "text": "WTI 85.40 $/bbl (-15.4% in a month), Brent 92.10, ULSD 3.692 $/gal (-19.3%), natural gas 3.57 (+2.8%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
+    "text": "WTI 84.45 $/bbl (-16.4% in a month), Brent 91.60, ULSD 3.694 $/gal (-19.2%), natural gas 3.49 (+0.5%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. "
    },
    {
     "title": "China & industrial demand",
     "score": -1,
-    "text": "Copper -16.3% in a month, Shanghai Composite -2.0%, Hang Seng -1.7%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
+    "text": "Copper -17.0% in a month, Shanghai Composite -2.0%, Hang Seng -1.7%, yuan +0.4% vs USD. Soft China/industrial signals point to weaker import demand. "
    },
    {
     "title": "Commodity breadth",
     "score": -1,
-    "text": "9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -13.9% in a month; gold -9.3%. "
+    "text": "9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -13.9% in a month; gold -10.0%. "
    }
   ],
   "caveat": "Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context."
@@ -1057,11 +1093,11 @@
  "macro_numbers": [
   {
    "name": "S&P 500 futures",
-   "last": 7320.75,
-   "d1": 1.7371365041864983,
-   "m1": -5.942247775672116,
+   "last": 7307.0,
+   "d1": 1.5460514887259746,
+   "m1": -6.118909196029931,
    "kind": "price",
-   "time": "2026-11-27 11:28 UTC"
+   "time": "2026-11-27 13:58 UTC"
   },
   {
    "name": "S&P 500",
@@ -1073,83 +1109,83 @@
   },
   {
    "name": "VIX",
-   "last": 24.98,
-   "d1": -6.791042122657043,
-   "m1": 47.723242018969714,
+   "last": 25.41,
+   "d1": -5.186564465040644,
+   "m1": 50.26611608094558,
    "kind": "price",
-   "time": "2026-11-27 11:23 UTC"
+   "time": "2026-11-27 13:53 UTC"
   },
   {
    "name": "US 10-year",
-   "last": 4.848,
-   "d1": -5.599980545043959,
-   "m1": -13.800006103515639,
+   "last": 4.9,
+   "d1": 5.19999504089359,
+   "m1": -14.500007629394496,
    "kind": "yield",
-   "time": "2026-11-25 19:59 UTC"
+   "time": "2026-11-27 13:53 UTC"
   },
   {
    "name": "US dollar index",
-   "last": 103.813,
-   "d1": 0.13793945556133114,
-   "m1": 1.588215598217979,
+   "last": 103.889,
+   "d1": 0.21124899674231923,
+   "m1": 1.6625868656455989,
    "kind": "price",
-   "time": "2026-11-27 11:29 UTC"
+   "time": "2026-11-27 13:58 UTC"
   },
   {
    "name": "EUR/USD",
-   "last": 1.0964,
-   "d1": -0.05546600040380323,
-   "m1": -1.4884605402005646,
+   "last": 1.0949,
+   "d1": -0.19220149930876396,
+   "m1": -1.6232355394615094,
    "kind": "price",
-   "time": "2026-11-27 11:38 UTC"
+   "time": "2026-11-27 14:07 UTC"
   },
   {
    "name": "USD/BRL",
-   "last": 5.6525,
-   "d1": -2.9097011984773435,
-   "m1": 5.648284658860403,
+   "last": 5.5366,
+   "d1": -4.90046026634049,
+   "m1": 3.482050922998048,
    "kind": "price",
-   "time": "2026-11-27 08:15 UTC"
+   "time": "2026-11-27 14:08 UTC"
   },
   {
    "name": "USD/CNY",
-   "last": 6.6435,
-   "d1": -0.30762356282504344,
-   "m1": -0.36742982062827334,
+   "last": 6.6445,
+   "d1": -0.29261756050139587,
+   "m1": -0.3524328205260274,
    "kind": "price",
-   "time": "2026-11-27 11:32 UTC"
+   "time": "2026-11-27 14:08 UTC"
   },
   {
    "name": "WTI crude",
-   "last": 85.4,
-   "d1": 2.0554489585940416,
-   "m1": -15.437170208479111,
+   "last": 84.45,
+   "d1": 0.920171716080409,
+   "m1": -16.377857425129527,
    "kind": "price",
-   "time": "2026-11-27 11:28 UTC"
+   "time": "2026-11-27 13:57 UTC"
   },
   {
    "name": "Natural gas",
-   "last": 3.568,
-   "d1": -2.460360649489235,
-   "m1": 2.8242066450074432,
+   "last": 3.488,
+   "d1": -4.647348078872882,
+   "m1": 0.5187311596933863,
    "kind": "price",
-   "time": "2026-11-27 11:28 UTC"
+   "time": "2026-11-27 13:57 UTC"
   },
   {
    "name": "Gold",
-   "last": 3676.0,
-   "d1": 3.9651549645275175,
-   "m1": -9.2704138760764,
+   "last": 3647.7,
+   "d1": 3.1647703384404258,
+   "m1": -9.968903344875923,
    "kind": "price",
-   "time": "2026-11-27 11:27 UTC"
+   "time": "2026-11-27 13:55 UTC"
   },
   {
    "name": "Copper",
-   "last": 5.6765,
-   "d1": 4.703491364335588,
-   "m1": -16.257285049570736,
+   "last": 5.623,
+   "d1": 3.716679633869302,
+   "m1": -17.04654520104575,
    "kind": "price",
-   "time": "2026-11-27 11:27 UTC"
+   "time": "2026-11-27 13:57 UTC"
   },
   {
    "name": "S&P GSCI",
@@ -1157,7 +1193,7 @@
    "d1": -0.0006132235958133947,
    "m1": -13.906852956379668,
    "kind": "price",
-   "time": "2026-11-27 11:38 UTC"
+   "time": "2026-11-27 14:08 UTC"
   }
  ],
  "econ": [],
@@ -1312,10 +1348,11 @@
    ]
   },
   "ZM": {
-   "line": "trend long 1.8x for 40% vol (12m excess +10%); carry +1.8%/yr (61st percentile for the month); IV-RV +0.4",
+   "line": "trend long 1.8x for 40% vol (12m excess +10%); carry +1.8%/yr (61st percentile for the month); IV-RV +2.6",
    "flags": [
     "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).",
-    "Fat right tail: options price a 13% rally 2.2x as likely as a lognormal at ATM vol."
+    "Inverted IV curve (Jan 2027 -> Mar 2027 -2.4 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson).",
+    "Fat right tail: options price a 14% rally 2.2x as likely as a lognormal at ATM vol."
    ]
   },
   "ZL": {
@@ -1367,9 +1404,10 @@
    ]
   },
   "DC": {
-   "line": "trend short 1.8x for 40% vol (12m excess -18%); carry +18.7%/yr (43rd percentile for the month); IV-RV -7.3",
+   "line": "trend short 1.8x for 40% vol (12m excess -18%); carry +18.7%/yr (43rd percentile for the month); IV-RV -9.7",
    "flags": [
-    "Fat left tail: options price a 8% drop 2.6x as likely as a lognormal at ATM vol."
+    "Fat left tail: options price a 6% drop 2.5x as likely as a lognormal at ATM vol.",
+    "Fat right tail: options price a 6% rally 2.8x as likely as a lognormal at ATM vol."
    ]
   },
   "GDK": {
@@ -1381,25 +1419,25 @@
    ]
   },
   "CSC": {
-   "line": "trend short 1.9x for 40% vol (12m excess -20%); carry +18.7%/yr (46th percentile for the month); IV-RV -7.9",
+   "line": "trend short 1.9x for 40% vol (12m excess -20%); carry +18.7%/yr (46th percentile for the month); IV-RV -8.6",
    "flags": []
   },
   "CB": {
-   "line": "trend short 1.7x for 40% vol (12m excess -39%); carry -18.4%/yr (10th percentile for the month); IV-RV -3.4",
+   "line": "trend short 1.7x for 40% vol (12m excess -39%); carry -18.4%/yr (10th percentile for the month); IV-RV -4.9",
    "flags": [
     "Crowded: managed money at the 1st 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR)."
    ]
   },
   "GNF": {
-   "line": "trend long 1.7x for 40% vol (12m excess +101%); carry +47.5%/yr (92nd percentile for the month); IV-RV -6.5",
+   "line": "trend long 1.7x for 40% vol (12m excess +101%); carry +47.5%/yr (92nd percentile for the month); IV-RV -6.9",
    "flags": []
   },
   "DY": {
-   "line": "trend long 2.4x for 40% vol (12m excess +12%); carry +7.8%/yr (54th percentile for the month); IV-RV +0.9",
+   "line": "trend long 2.4x for 40% vol (12m excess +12%); carry +7.8%/yr (54th percentile for the month); IV-RV -3.2",
    "flags": []
   },
   "NG": {
-   "line": "trend short 0.9x for 40% vol (12m excess -28%); carry +151.5%/yr (100th percentile for the month); IV-RV +37.9",
+   "line": "trend short 0.9x for 40% vol (12m excess -28%); carry +151.5%/yr (100th percentile for the month); IV-RV +34.7",
    "flags": [
     "Choppy: 3-month variance ratio 0.89 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
     "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).",
@@ -1408,53 +1446,50 @@
    ]
   },
   "CL": {
-   "line": "trend long 0.8x for 40% vol (12m excess +97%); carry +23.5%/yr (100th percentile for the month); IV-RV -5.7",
+   "line": "trend long 0.8x for 40% vol (12m excess +97%); carry +23.5%/yr (100th percentile for the month); IV-RV -4.7",
    "flags": [
     "Inverted IV curve (Jan 2027 -> Mar 2027 -2.5 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson)."
    ]
   },
   "HO": {
-   "line": "trend long 0.9x for 40% vol (12m excess +142%); carry +17.5%/yr (88th percentile for the month); IV-RV +4.0",
-   "flags": [
-    "Inverted IV curve (Jan 2027 -> Mar 2027 -2.1 pts): near-dated risk priced high; for SPX an inverted slope preceded positive returns to long variance (Johnson).",
-    "Fat left tail: options price a 40% drop 2.1x as likely as a lognormal at ATM vol."
-   ]
+   "line": "trend long 0.9x for 40% vol (12m excess +142%); carry +17.5%/yr (88th percentile for the month); IV-RV +3.3",
+   "flags": []
   },
   "RB": {
-   "line": "trend long 1.0x for 40% vol (12m excess +84%); carry -0.1%/yr (71st percentile for the month); IV-RV -2.9",
+   "line": "trend long 1.0x for 40% vol (12m excess +84%); carry -0.1%/yr (71st percentile for the month); IV-RV -7.6",
    "flags": [
     "Crowded: managed money at the 90th 5-year percentile of its net position, long with the trend; COT is a crowding gauge, not a return signal (GHR)."
    ]
   },
   "GC": {
-   "line": "trend short 1.4x for 40% vol (12m excess -16%); carry -4.6%/yr (21st percentile for the month)",
+   "line": "trend short 1.4x for 40% vol (12m excess -15%); carry -5.0%/yr (18th percentile for the month)",
    "flags": [
     "Choppy: 3-month variance ratio 0.76 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
     "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka)."
    ]
   },
   "SI": {
-   "line": "trend short 0.8x for 40% vol (12m excess -19%); carry -4.7%/yr (15th percentile for the month)",
+   "line": "trend short 0.8x for 40% vol (12m excess -18%); carry -4.8%/yr (15th percentile for the month)",
    "flags": [
-    "Choppy: 3-month variance ratio 0.76 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
+    "Choppy: 3-month variance ratio 0.75 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
     "Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).",
     "Crowded: managed money at the 11th 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR)."
    ]
   },
   "HG": {
-   "line": "trend long 1.4x for 40% vol (12m excess +5%); carry -6.4%/yr (2nd percentile for the month)",
+   "line": "trend long 1.4x for 40% vol (12m excess +5%); carry -6.8%/yr (1st percentile for the month)",
    "flags": [
     "Choppy: 3-month variance ratio 0.69 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud)."
    ]
   },
   "PL": {
-   "line": "trend short 0.9x for 40% vol (12m excess -18%); carry -5.2%/yr (0th percentile for the month)",
+   "line": "trend short 0.9x for 40% vol (12m excess -18%); carry -3.9%/yr (4th percentile for the month)",
    "flags": [
     "Choppy: 3-month variance ratio 0.62 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud)."
    ]
   },
   "PA": {
-   "line": "trend short 0.9x for 40% vol (12m excess -41%); carry -5.8%/yr (2nd percentile for the month)",
+   "line": "trend short 0.9x for 40% vol (12m excess -41%); carry -6.5%/yr (1st percentile for the month)",
    "flags": [
     "Choppy: 3-month variance ratio 0.62 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud).",
     "Crowded: managed money at the 4th 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR)."
@@ -1462,8 +1497,8 @@
   }
  },
  "track": {
-  "line": "Track record: 408 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
+  "line": "Track record: 420 calls logged since 2026-10-21; scoring needs about 50 trading days of 5-day calls before the numbers mean anything.",
   "weak": [],
-  "generated": "2026-11-26 20:36 UTC"
+  "generated": "2026-11-27 11:42 UTC"
  }
 }

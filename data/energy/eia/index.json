@@ -141,8 +141,8 @@
 "route": "natural-gas/pri/fut",
 "id": "RNGWHHD",
 "how": "id found",
-"rows": 2215,
-"last": "2026-11-03"
+"rows": 2225,
+"last": "2026-11-17"
 },
 "fut1": {
 "label": "Gas contract 1",
@@ -229,8 +229,8 @@
 "route": "petroleum/sum/sndw",
 "id": "WCRFPUS2",
 "how": "id found",
-"rows": 2284,
-"last": "2026-10-30"
+"rows": 2286,
+"last": "2026-11-13"
 },
 "imp": {
 "label": "Crude imports",
@@ -293,8 +293,8 @@
 "route": "petroleum/pri/spt",
 "id": "RWTC",
 "how": "id found",
-"rows": 2230,
-"last": "2026-11-24"
+"rows": 2225,
+"last": "2026-11-17"
 },
 "brent": {
 "label": "Brent spot",
@@ -421,49 +421,49 @@
 "route": "petroleum/sum/sndw",
 "id": "WDIRPUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2301,
+"last": "2026-10-30"
 },
 "gasoProd": {
 "label": "Gasoline production",
 "route": "petroleum/sum/sndw",
 "id": "WGFRPUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2301,
+"last": "2026-10-30"
 },
 "distExp": {
 "label": "Distillate exports",
 "route": "petroleum/sum/sndw",
 "id": "WDIEXUS2",
 "how": "id found",
-"rows": 859,
-"last": "2026-11-13"
+"rows": 857,
+"last": "2026-10-30"
 },
 "gasoExp": {
 "label": "Gasoline exports",
 "route": "petroleum/sum/sndw",
 "id": "W_EPM0F_EEX_NUS-Z00_MBBLD",
 "how": "name matched",
-"rows": 859,
-"last": "2026-11-13"
+"rows": 857,
+"last": "2026-10-30"
 },
 "distImp": {
 "label": "Distillate imports",
 "route": "petroleum/sum/sndw",
 "id": "WDIIMUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2301,
+"last": "2026-10-30"
 },
 "gasoImp": {
 "label": "Gasoline imports",
 "route": "petroleum/sum/sndw",
 "id": "WGTIMUS2",
 "how": "id found",
-"rows": 2303,
-"last": "2026-11-13"
+"rows": 2301,
+"last": "2026-10-30"
 }
 },
-"generated": "2026-11-26 23:43 UTC"
+"generated": "2026-11-27 00:04 UTC"
 }

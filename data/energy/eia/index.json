@@ -21,48 +21,48 @@
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R32_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 879,
+"last": "2026-10-30"
 },
 "storSc": {
 "label": "Gas \u2014 South Central",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R33_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 879,
+"last": "2026-10-30"
 },
 "storScSalt": {
 "label": "Gas \u2014 South Central salt",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SSO_R33_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 879,
+"last": "2026-10-30"
 },
 "storScNon": {
 "label": "Gas \u2014 South Central non-salt",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SNO_R33_BCF",
 "how": "id found",
-"rows": 882,
-"last": "2026-11-20"
+"rows": 879,
+"last": "2026-10-30"
 },
 "storMtn": {
 "label": "Gas \u2014 Mountain region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R34_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 879,
+"last": "2026-10-30"
 },
 "storPac": {
 "label": "Gas \u2014 Pacific region",
 "route": "natural-gas/stor/wkly",
 "id": "NW2_EPG0_SWO_R35_BCF",
 "how": "id found",
-"rows": 881,
-"last": "2026-11-13"
+"rows": 879,
+"last": "2026-10-30"
 },
 "prodDry": {
 "label": "Gas \u2014 dry production",
@@ -141,8 +141,8 @@
 "route": "natural-gas/pri/fut",
 "id": "RNGWHHD",
 "how": "id found",
-"rows": 2225,
-"last": "2026-11-17"
+"rows": 2215,
+"last": "2026-11-03"
 },
 "fut1": {
 "label": "Gas contract 1",
@@ -205,8 +205,8 @@
 "route": "petroleum/stoc/wstk",
 "id": "WGTSTUS1",
 "how": "id found",
-"rows": 1922,
-"last": "2026-10-30"
+"rows": 1921,
+"last": "2026-10-23"
 },
 "dist": {
 "label": "Distillate stocks",
@@ -229,8 +229,8 @@
 "route": "petroleum/sum/sndw",
 "id": "WCRFPUS2",
 "how": "id found",
-"rows": 2286,
-"last": "2026-11-13"
+"rows": 2284,
+"last": "2026-10-30"
 },
 "imp": {
 "label": "Crude imports",
@@ -465,5 +465,5 @@
 "last": "2026-10-30"
 }
 },
-"generated": "2026-11-27 00:25 UTC"
+"generated": "2026-11-27 04:53 UTC"
 }

@@ -93,5 +93,30 @@
    "GLD option chain (Yahoo; archived each evening)",
    "SLV option chain (Yahoo; archived each evening)"
   ]
+ },
+ {
+  "at": "2026-11-27 22:06 UTC",
+  "late": [
+   "GLD option chain (Yahoo; archived each evening)",
+   "SLV option chain (Yahoo; archived each evening)"
+  ],
+  "needs_mac": [
+   "NYMEX platinum and palladium warehouse stocks (via Mac collector)",
+   "COMEX warehouse stocks (CME daily reports; via Mac collector)"
+  ],
+  "last_run": {
+   "id": 46065728741,
+   "conclusion": "success",
+   "at": "2026-11-27T20:53:54Z"
+  },
+  "action": "reran metals.yml (dispatch 204)",
+  "rerun": {
+   "id": 46074583932,
+   "conclusion": "success"
+  },
+  "late_after": [
+   "GLD option chain (Yahoo; archived each evening)",
+   "SLV option chain (Yahoo; archived each evening)"
+  ]
  }
 ]

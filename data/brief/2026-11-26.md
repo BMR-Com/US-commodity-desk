@@ -1,6 +1,6 @@
-# Morning brief · Thu Nov 26, 2026 05:45 PM ET
+# Morning brief · Thu Nov 26, 2026 08:11 PM ET
 
-Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-26 22:45 UTC). CME open interest from 20261125. Research only, not investment advice.
+Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, last vs prior settle (indicative before the open; data 2026-11-27 01:11 UTC). CME open interest from 20261125. Research only, not investment advice.
 
 ## Key points
 
@@ -32,13 +32,13 @@ Prices: Yahoo Finance (CBOT/CME ~10 min delayed, ICE ~30 min), front contracts, 
 
 | Market | Last | 1 d | 1 wk | 1 m |
 |---|---|---|---|---|
-| Natural gas | 3.625 | +10.9% | +10.9% | +28.7% |
-| WTI crude | 85.1 | +1.7% | +2.3% | -17.2% |
+| Natural gas | 3.591 | +9.9% | +9.9% | +27.5% |
+| WTI crude | 84.98 | +1.6% | +2.1% | -17.3% |
 | ULSD | 3.699 | -0.1% | -6.4% | -23.2% |
-| RBOB | 2.448 | +0.2% | -1.9% | -22.9% |
-| Brent | 91.65 | -3.1% | -0.4% | -20.5% |
+| RBOB | 2.44 | -0.1% | -2.2% | -23.1% |
+| Brent | 91.67 | -3.1% | -0.3% | -20.5% |
 
-Gas storage 3,882 Bcf (week to 2026-11-13), +20 Bcf vs a 5-year average -25 for the week; +98 Bcf (+2.6%) vs the 5-year average, -54 vs last year. Crude stocks 418.9 mb (+1.1 mb on the week, -2.9% vs 5-yr avg); gasoline +1.7 mb, distillate +0.7 mb; refinery utilization 95.7%. 3-2-1 crack $35.22/bbl (ULSD $70.25, gasoline $17.71). NG weather/positioning: squeeze risk ELEVATED (2 of 7 cold-risk checks on; managed money net -211,476 (2nd pct of 3 yrs, -54,628 in 4 wks)). GEFS AO week 2 -1.00 (now -0.28); GEFS PNA week 2 +0.56 (western ridge / eastern trough). Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold. Options: NG IV 83% vs RV 65%; CL IV 47% vs RV 53%; HO IV 50% vs RV 50%; RB IV 44% vs RV 43%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).
+Gas storage 3,801 Bcf (week to 2026-10-30), +77 Bcf vs a 5-year average +36 for the week; +40 Bcf (+1.1%) vs the 5-year average, -104 vs last year. Crude stocks 409.8 mb (-0.9 mb on the week, -5.2% vs 5-yr avg); gasoline -0.2 mb, distillate -3.6 mb; refinery utilization 92.8%. 3-2-1 crack $35.22/bbl (ULSD $70.25, gasoline $17.71). NG weather/positioning: squeeze risk ELEVATED (2 of 7 cold-risk checks on; managed money net -211,476 (2nd pct of 3 yrs, -54,628 in 4 wks)). GEFS AO week 2 -1.00 (now -0.28); GEFS PNA week 2 +0.56 (western ridge / eastern trough). Cold-pattern signals are present but the models have not turned colder yet. Keep shorts small and in options; switch to HIGH if the 2-3 day trend or weeks 3-4 turn cold. Options: NG IV 83% vs RV 65%; CL IV 47% vs RV 53%; HO IV 50% vs RV 50%; RB IV 44% vs RV 43%. For ags: diesel and natural gas set farm fuel, drying and nitrogen fertilizer costs; crude and gasoline drive ethanol and biodiesel margins (corn, soybean oil).
 
 ## US economy
 
@@ -49,13 +49,13 @@ Jobs: payrolls +165k in 2026-10 (3-month average +137k), unemployment 4.1% (-0.1
 Macro backdrop for ags: headwind (score -6 across rates, dollar, Brazil real, risk, energy, China, breadth). rates +; dollar −; brl −; mxn −; risk −; energy −; china −; breadth −. Strongest ag/soft over the month: Rough rice +6.2%; weakest: Lean hogs -22.8%. 
 
 - **Rates**: US 10-year 4.85% (-15 bp in a month), 2-year 4.61% (-7 bp); 2s10s curve +24 bp (-8 bp in a month). Falling yields ease funding costs and support commodity investment flows. T-bill yield 4.16% sets the cost of carrying inventory.
-- **Dollar & farm currencies**: Dollar index 103.78 (+1.6% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.652 (+5.2% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.69 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
+- **Dollar & farm currencies**: Dollar index 103.75 (+1.5% in a month, +5.6% YTD). A stronger dollar makes US grain, oilseeds, cotton and meat dearer abroad. USD/BRL 5.651 (+5.2% in a month): a weaker real encourages Brazilian farmer selling of soybeans, corn, sugar, coffee and cotton, pressuring world prices. USD/CNY 6.659 (-0.2%); USD/MXN 19.70 (+6.2%); a sharply weaker peso cuts Mexico's buying power for US corn, pork, dairy and wheat (Mexico is the top buyer of all four).
 - **Risk appetite**: S&P 500 -6.4% in a month (+4.9% YTD); VIX 26.8. Risk-off: funds tend to cut commodity length along with equities. 
 - **Energy**: WTI 84.91 $/bbl (-13.4% in a month), Brent 91.73, ULSD 3.701 $/gal (-18.2%), natural gas 3.60 (+4.0%). Lower crude weighs on soybean oil and corn through biofuel margins and on cotton via cheaper polyester. 
 - **China & industrial demand**: Copper -19.6% in a month, Shanghai Composite -4.7%, Hang Seng -3.5%, yuan +0.2% vs USD. Soft China/industrial signals point to weaker import demand. 
 - **Commodity breadth**: 9 of 33 commodities trade above their 50-day average (27%); S&P GSCI -14.2% in a month; gold -12.5%. 
 
-Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,234.500 (+0.54% d/d); S&P 500 7,182.780 (-0.25% d/d); VIX 26.800 (-5.27% d/d); US 10-year 4.848 (-6 bp d/d); US dollar index 103.783 (+0.11% d/d); EUR/USD 1.097 (+0.10% d/d); USD/BRL 5.652 (-4.28% d/d); USD/CNY 6.659 (-0.07% d/d); WTI crude 84.910 (+1.47% d/d); Natural gas 3.599 (-1.61% d/d); Gold 3,566.200 (+0.86% d/d); Copper 5.434 (+0.22% d/d); S&P GSCI 650.296 (+0.76% d/d).
+Cross-market (Yahoo Finance, delayed): S&P 500 futures 7,234.500 (+0.54% d/d); S&P 500 7,182.780 (-0.25% d/d); VIX 26.800 (-5.27% d/d); US 10-year 4.848 (-6 bp d/d); US dollar index 103.752 (+0.08% d/d); EUR/USD 1.097 (+0.10% d/d); USD/BRL 5.651 (-4.28% d/d); USD/CNY 6.659 (-0.07% d/d); WTI crude 84.910 (+1.47% d/d); Natural gas 3.599 (-1.61% d/d); Gold 3,566.200 (+0.86% d/d); Copper 5.434 (+0.22% d/d); S&P GSCI 650.296 (+0.76% d/d).
 
 _Directional channels from macro to ag prices are standard relationships, not signals tested on this desk; use as context._
 
@@ -87,28 +87,27 @@ Board crush 1.904 $/bu (10-yr pct 81), oil share 44.5%. Soybean / corn price rat
 ### Grains & oilseeds
 
 **Corn** (Dec 26, strongly bearish). Dec 26 trades at 439.75 ¢/bu (+1.0% on the week, -2.0% on the month), in a down trend: the daily rating is sell and the weekly sell. RSI is 39 and ADX 40 (trending). Nearest support 438.00, resistance 449.50; 52-week range 425.75–549.75. Levels to watch: a close above 446.94 (120-day momentum flip) would bring trend-follower buying; below 430.25 (100-day breakout low) adds selling; the 438.00–449.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Corn Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.
-Flags: Dec 26 / Mar 27 at 85% of full carry; Desk export projection -13% vs USDA; Weather watch: Sorriso, Mato Grosso; Central Iowa.
+Flags: Dec 26 / Mar 27 at 85% of full carry; Desk export projection -13% vs USDA; Weather watch: Pergamino, N Buenos Aires; Sorriso, Mato Grosso.
 Research signals: trend short 1.9x for 40% vol (12m excess -9%); carry -12.1%/yr (34th percentile for the month); IV-RV +1.4.
 - [Fair weather, seasonal temps on the Plains; Autumn storminess eastern Corn Belt](https://news.google.com/rss/articles/CBMisgFBVV95cUxOZjNVdXRaSkd6R29Ea1ZMNkV1RnFhTjdRZ3ktSFZvbjkzekE4WW9KeHF1Q3VlaWE0OWVkeDR6ZUZBNWhyVktaRUFBT251TXVKa0pwSko1b0ZlczhsdDI2VTdqUVhRQzZIUGhYZFludGFoeGRnLTFxcnVSYWFiT0hKTTZxWUJ3NVJiUTV1cTVVS29IajJuTmdmLVhwbWpqV0JPaGZCOXNlcHhoN1NrUUEyMk9n?oc=5) · Brownfield Ag News
 - [Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash](https://news.google.com/rss/articles/CBMiogFBVV95cUxOTmc3ajRNcmVyZ3IzMDY0VjdyU2JYZmpUZ0dTcWxGTXU3bGhYdEVKM19HNFp4T2NxZmt2YnI1SUJDRnBVcVlNdjdGNzR3cExrWkZxWXd4ejdnRUFDQURJYnNMUVdQQkhBY0ZHcWVpQ2RaUnNScVZFTWo5T0xtdmoyTFVvRVRzSWtESHdsTHlhOW9nQW9uVlhDcUFhRWVLUHZ3QWc?oc=5) · AgWeb
 - [Grain Market Close: Corn and Soybeans Rally as China Boosts Demand](https://news.google.com/rss/articles/CBMiowFBVV95cUxOenpFUWlTcUJUVzVBbEkxTGVzV1lNU3FPc3JzSmJBWGRfcEFTdjJlY2I0ODlFMkV5bXpzNXAyNE1kXzhJekYyYzA1QnVJbVFMUXdpeVpFZUloSHd6SUs3enJfb3h6MFJSRERpSlBIdXRnT3FSd1hyMEFINk5sTWk2M04wM3BSN1pYY2ZhbGs2bmJPZi1UbVN2SmhMV3BILTZIeGVr?oc=5) · AgroLatam
 
 **Soybeans** (Jan 27, bullish). Jan 27 trades at 1244.00 ¢/bu (+2.2% on the week, +0.1% on the month), in a mixed trend: the daily rating is buy and the weekly buy. RSI is 54 and ADX 22 (weak trend). Nearest support 1184.00, resistance 1269.50; 52-week range 1067.25–1350.25. Levels to watch: a close above 1247.25 (20-day breakout high) would bring trend-follower buying; below 1234.75 (20-day momentum flip) adds selling; the 1184.00–1269.50 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; USDA weekly export sales Dec 3; USDA WASDE Dec 10.
-Flags: Desk export projection +15% vs USDA; Weather watch: Sorriso, Mato Grosso; Central Iowa.
+Flags: Desk export projection +15% vs USDA; Weather watch: Pergamino, N Buenos Aires; Sorriso, Mato Grosso.
 Research signals: trend long 2.4x for 40% vol (12m excess +4%); carry -0.5%/yr (86th percentile for the month); IV-RV -3.1. Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka).
 - [Delayed publication of Brazil soybean domestic prices](https://news.google.com/rss/articles/CBMilgFBVV95cUxOZmpWeHJpRzI5ci1aTjVRV19zQjFYOHEwcDFVOG5wREc2SFM4elEyeEVYa2lsRTJlc1BvMVc2SGtvWF9VVHJpYTFLLU9BVk9oa3Rmb1NkUkhZVzhtR2JwLXVCc19HRWdoLXFXTVd5UTdKUU9NSkc0a0JaRktHQkNoX0ZFaGhCLTdLRmhicUY4b19iT0J6aXc?oc=5) · Fastmarkets
 - [Soybeans climb, oil surges and gold loses its shine: What's next for farmers?](https://news.google.com/rss/articles/CBMirgFBVV95cUxNX0xRR19WY01QTTBMMTAxWHVMSUZEUzRtWnJ4QTNYN0RXNXRrOWE1OGZWVGZjcHpJY3hkOEc2dmw4QnM2SGw5M2ZVWGkwSm5UWjZHRk41ZjlISlJtYU9PNlExRURpNWdZSmNTaUZIZ1dhNm9pdklxYmFQVzVYb0g2dE1Za1BjRmFMQUc4V3U0dndCTWhVNC1tcjNTT3NJVzVqcVl3dmdHNWpQTklFV3c?oc=5) · AgroLatam
-- [Brazil Consumer Prices Rise Less Than Forecast by All Analysts](https://news.google.com/rss/articles/CBMiswFBVV95cUxOcEFJT2Zub3ZRREtTOXc3QzQxNGpfRXhrSXpITkpTWm96NVhqZ3Q4dU1aMms1bUc4Uk8tazdTbTNtVHE5UXB4Z1Zlb0R3Tm0xU29yeDhSeUxUOGxEQzJTejJXMDJGOW1YU2ZIVHpvS2R1SEo4eWNxSUJtdHp1ejZNMWthTUZTSlMzYVZlZ2JCOEFKbk8zT2Z4UkJMM3JJZnNjMzZyRjBYd2Y1OXdYRWd3UFlxMA?oc=5) · Bloomberg.com
+- [Brazil Consumer Prices Rise Less Than Forecast by All Analysts](https://news.google.com/rss/articles/CBMiswFBVV95cUxOcEFJT2Zub3ZRREtTOXc3QzQxNGpfRXhrSXpITkpTWm96NVhqZ3Q4dU1aMms1bUc4Uk8tazdTbTNtVHE5UXB4Z1Zlb0R3Tm0xU29yeDhSeUxUOGxEQzJTejJXMDJGOW1YU2ZIVHpvS2R1SEo4eWNxSUJtdHp1ejZNMWthTUZTSlMzYVZlZ2JCOEFKbk8zT2Z4UkJMM3JJZnNjMzZyRjBYd2Y1OXdYRWd3UFlxMA?oc=5) · Bloomberg
 
 **Soybean meal** (Dec 26, bullish). Dec 26 trades at 361.6 $/st (+7.7% on the week, +8.1% on the month), in an up trend: the daily rating is strong buy and the weekly strong buy. RSI is 70 (overbought) and ADX 25 (trending). Nearest support 344.2, resistance 369.1; 52-week range 299.1–376.9. Levels to watch: below 347.2 (60-day momentum flip) adds selling; the 344.2–369.1 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Soybean meal Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.
-Flags: RSI 70: overbought; Desk export projection -16% vs USDA; Weather watch: Pergamino, N Buenos Aires.
+Flags: RSI 70: overbought; Desk export projection -16% vs USDA; Weather watch: Pergamino, N Buenos Aires; Rafaela, Santa Fe.
 Research signals: trend long 1.8x for 40% vol (12m excess +10%); carry +1.8%/yr (61st percentile for the month); IV-RV +0.4. Jumpy trend: most of the move came on a few days (high information discreteness), which tends to fade sooner (Da-Gurun-Warachka). Fat right tail: options price a 13% rally 2.2x as likely as a lognormal at ATM vol.
 - [Corn, Soybeans and Meal Rally Pre-Holiday on Technical Buying: Cattle Crash](https://news.google.com/rss/articles/CBMiogFBVV95cUxOTmc3ajRNcmVyZ3IzMDY0VjdyU2JYZmpUZ0dTcWxGTXU3bGhYdEVKM19HNFp4T2NxZmt2YnI1SUJDRnBVcVlNdjdGNzR3cExrWkZxWXd4ejdnRUFDQURJYnNMUVdQQkhBY0ZHcWVpQ2RaUnNScVZFTWo5T0xtdmoyTFVvRVRzSWtESHdsTHlhOW9nQW9uVlhDcUFhRWVLUHZ3QWc?oc=5) · AgWeb
 - [NOPA reports record October soybean crush](https://news.google.com/rss/articles/CBMiggFBVV95cUxQSUQwTVFZYjVPTWI3eXRCcXl1eEJwX1dkSlh2cDU5WkRYR3Jqd010Wk9MNnJoMER0SE9Jc0VveURWRmYzRWxtTVN2MG9RQ0VyQ3RXbWNUWmp0NlpvTVM4bUVWcXNxWU9mdkVRWnJEdm14S194eHk5OFFja1NHcG80V2JR?oc=5) · Brownfield Ag News
-- [Soy Oil Hits Nine-Month Low as Strong Meal Demand Boosts Crush](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMG9PUDVaMjhQNzFya256VmQzMG9jMHZGaGhmSDA4M3lDZEJSTGoyTm9ZUkdVN1BwU3V1OWt5QTd1TlNXN2pmcWlVMEtEbHFfSk9oc0dIZW9VVk43ZTRTeWkyYWZ2SUtTZkg1SFczMGpocEY2Wm1OamREZnpHZmxTcFN6eHprRUZsQnQtZllmZXJxSTdyVFNJel80NUdFbDNmR2kxaExOZGJMSGY5WDhKdU5wMA?oc=5) · Bloomberg.com
 
 **Soybean oil** (Dec 26, bearish). Dec 26 trades at 58.08 ¢/lb (-3.0% on the week, -12.9% on the month), in a down trend: the daily rating is strong sell and the weekly sell. RSI is 22 (oversold) and ADX 40 (trending). Nearest support 52.69, resistance 64.20; 52-week range 48.53–74.55. Levels to watch: a close above 65.52 (50-day average) would bring trend-follower buying; below 51.35 (250-day momentum flip) adds selling; the 52.69–64.20 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Soybean oil Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.
-Flags: RSI 22: oversold; Weather watch: Pergamino, N Buenos Aires.
+Flags: RSI 22: oversold; Weather watch: Pergamino, N Buenos Aires; Rafaela, Santa Fe.
 Research signals: trend long 1.7x for 40% vol (12m excess +16%); carry -4.9%/yr (44th percentile for the month); IV-RV +2.2. Fat left tail: options price a 15% drop 2.1x as likely as a lognormal at ATM vol.
 
 **Chicago wheat** (Dec 26, strongly bearish). Dec 26 trades at 565.50 ¢/bu (-0.8% on the week, -7.3% on the month), in a down trend: the daily rating is strong sell and the weekly sell. RSI is 31 and ADX 54 (trending). Nearest support 564.50, resistance 578.00; 52-week range 557.25–795.00. Levels to watch: a close above 572.08 (250-day momentum flip) would bring trend-follower buying; the 564.50–578.00 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; Chicago wheat Dec 26: first notice day Nov 30; USDA weekly export sales Dec 3.
@@ -140,7 +139,6 @@ Flags: Funds near a 10-yr short extreme (0th pct); RSI 23: oversold.
 Research signals: trend short 1.5x for 40% vol (12m excess -39%); carry -66.0%/yr (29th percentile for the month); IV-RV -11.6. Crowded: managed money at the 0th 5-year percentile of its net position, short with the trend; COT is a crowding gauge, not a return signal (GHR). Fat left tail: options price a 12% drop 2.4x as likely as a lognormal at ATM vol.
 - [Cattle, hog futures lower ahead of Thursday holiday](https://news.google.com/rss/articles/CBMijgFBVV95cUxNekxPUUtTZjVEQkNmaXA0LU9VenpLbUloRk1zX25lZThIZXdKRXlaTFAtM1Q5RWtoc2tjcEgwU0hEZVpEYU5TY1dBNWNlY1dhUnFheHpXYnJ1WVNHb09MNVdNZW1YZm50V1JDUERiVVJsM1lpbGZualpWNmtIZG16RVZNVlNjZ0lYX1JvU2R3?oc=5) · Brownfield Ag News
 - [Frozen beef supplies rise; pork belly stocks surge 34%](https://news.google.com/rss/articles/CBMioAFBVV95cUxQQ3RGSmZPYjhqX1JDZzRqVkJlRzQ1SGJiQmZYRmd4eXJSOXNHVWF4UVlLQThGQk1NZ3kwWjRiNDZDNHd3eW9uNi1FbmczYlQweDZNaGdOQjhYQjFpYnJnR0gySWEwZ0RYaDB3UkI0dVRPMFkwTDc1RnVuWlJ0RzBpMDRjbHM4SnVkWDNtSmVubkhIMUg2NlhHZmhSUERfUkVX?oc=5) · National Hog Farmer
-- [Pork producers warn against misuse of retaliatory tariff law](https://news.google.com/rss/articles/CBMisAFBVV95cUxPNkp6QlBiYV9Zb3p6VjhZVW5uamoyWElsaWl2OW5Gb0QwY05sMGRiZkJHTEFDTHlMdVJGUUI5NkNxMFpuX0VydjB5THQtQ2kxTEJpUHZqTDJZcW9Vd3lRblBTY3FjQ3JWR3RmUkFMMjVhSmF3Nzc0ZlowUEpKOWVKTGFsQ01wd1RaSXVrWnkyc1gzWWFfVnlxc3FkOTRPeEZKbE1zMlZTNnhRYnYybEZ4ag?oc=5) · National Hog Farmer
 
 **Live cattle** (Dec 26, mildly bullish). Dec 26 trades at 223.325 ¢/lb (+1.6% on the week, -3.3% on the month), in a mixed trend: the daily rating is neutral and the weekly neutral. RSI is 53 and ADX 18 (range-bound). Nearest support 222.225, resistance 225.500; 52-week range 197.050–245.900. Levels to watch: a close above 226.700 (20-day breakout high) would bring trend-follower buying; below 222.919 (50-day average) adds selling; the 222.225–225.500 band is the immediate range. Next catalysts: USDA weekly export sales Nov 27; USDA weekly export sales Dec 3; USDA WASDE Dec 10.
 Research signals: trend long 2.7x for 40% vol (12m excess +10%); carry -9.8%/yr (57th percentile for the month); IV-RV -2.9. Choppy: 3-month variance ratio 0.81 < 1 (mean reversion), trend signals whipsaw here (Dao-Bouchaud). Fat left tail: options price a 4% drop 2.2x as likely as a lognormal at ATM vol.

@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-27 20:45 UTC",
- "by": "claude",
+ "updated": "2026-11-28 04:16 UTC",
+ "by": "bot",
  "views": {
   "corn": {
    "view": "strongly bearish",
@@ -48,9 +48,9 @@
    "score": 0.37
   },
   "feeders": {
-   "view": "mildly bullish",
-   "shade": "bull1",
-   "score": 0.17
+   "view": "bullish",
+   "shade": "bull2",
+   "score": 0.23
   },
   "class3": {
    "view": "neutral",
@@ -68,29 +68,29 @@
    "score": -0.56
   },
   "natgas": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.23
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.49
   },
   "crude": {
-   "view": "bullish",
-   "shade": "bull2",
-   "score": 0.21
+   "view": "neutral",
+   "shade": "neutral",
+   "score": 0.06
   },
   "ulsd": {
    "view": "bullish",
    "shade": "bull2",
-   "score": 0.31
+   "score": 0.23
   },
   "rbob": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.01
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.13
   },
   "gold": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.43
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.55
   },
   "silver": {
    "view": "strongly bearish",
@@ -98,19 +98,19 @@
    "score": -0.5
   },
   "copper": {
-   "view": "bearish",
-   "shade": "bear2",
-   "score": -0.4
+   "view": "strongly bearish",
+   "shade": "bear3",
+   "score": -0.45
   },
   "aluminum": {
-   "view": "neutral",
-   "shade": "neutral",
-   "score": 0.03
+   "view": "mildly bearish",
+   "shade": "bear1",
+   "score": -0.09
   },
   "platinum": {
    "view": "neutral",
    "shade": "neutral",
-   "score": -0.05
+   "score": -0.04
   },
   "palladium": {
    "view": "bearish",
@@ -120,9 +120,7 @@
  },
  "alerts": {
   "corn": [],
-  "soybeans": [
-   "Holding above the fund buy trigger (20-day breakout high) 1,247.25"
-  ],
+  "soybeans": [],
   "meal": [],
   "oil": [],
   "wheat": [],
@@ -130,9 +128,7 @@
   "cotton": [],
   "hogs": [],
   "cattle": [],
-  "feeders": [
-   "Holding above the fund buy trigger (120-day momentum flip) 330.478"
-  ],
+  "feeders": [],
   "class3": [],
   "class4": [],
   "palm": [],

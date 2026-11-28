@@ -1,31 +1,6 @@
 {
-"generated": "2026-11-27 23:22 UTC",
+"generated": "2026-11-28 02:02 UTC",
 "events": [
-{
-"date": "2026-11-20",
-"time": "12:00 PM CT",
-"event": "Baker Hughes rig count",
-"cat": "Energy",
-"markets": [
-"CL",
-"NG"
-],
-"importance": 2,
-"link": null,
-"estimated": false
-},
-{
-"date": "2026-11-20",
-"time": "2:30 PM CT",
-"event": "CFTC Commitments of Traders",
-"cat": "CFTC",
-"markets": [
-"ALL"
-],
-"importance": 1,
-"link": null,
-"estimated": false
-},
 {
 "date": "2026-11-23",
 "time": "",
@@ -3071,6 +3046,187 @@
 "importance": 1,
 "link": null,
 "estimated": false
+},
+{
+"date": "2027-02-26",
+"time": "12:00 PM CT",
+"event": "Baker Hughes rig count",
+"cat": "Energy",
+"markets": [
+"CL",
+"NG"
+],
+"importance": 2,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Aluminum Mar 27: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"ALI"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Copper Mar 27: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"HG"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "KC HRW wheat Mar 27: first notice day",
+"cat": "CME contract",
+"markets": [
+"KE"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Palladium Mar 27: first notice day",
+"cat": "NYMEX contract",
+"markets": [
+"PA"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Silver Mar 27: first notice day",
+"cat": "COMEX contract",
+"markets": [
+"SI"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Corn Mar 27: first notice day",
+"cat": "CME contract",
+"markets": [
+"ZC"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Soybean oil Mar 27: first notice day",
+"cat": "CME contract",
+"markets": [
+"ZL"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Soybean meal Mar 27: first notice day",
+"cat": "CME contract",
+"markets": [
+"ZM"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Soybeans Mar 27: first notice day",
+"cat": "CME contract",
+"markets": [
+"ZS"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Chicago wheat Mar 27: first notice day",
+"cat": "CME contract",
+"markets": [
+"ZW"
+],
+"importance": 2,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "2:30 PM CT",
+"event": "CFTC Commitments of Traders",
+"cat": "CFTC",
+"markets": [
+"ALL"
+],
+"importance": 1,
+"link": null,
+"estimated": false
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "ULSD (heating oil) Mar 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"HO"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "Live cattle Feb 27: last trading day",
+"cat": "CME contract",
+"markets": [
+"LE"
+],
+"importance": 1,
+"link": null,
+"estimated": true
+},
+{
+"date": "2027-02-26",
+"time": "",
+"event": "RBOB gasoline Mar 27: last trading day",
+"cat": "NYMEX contract",
+"markets": [
+"RB"
+],
+"importance": 1,
+"link": null,
+"estimated": true
 }
 ]
 }

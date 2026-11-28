@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-28 12:27 UTC",
+ "generated": "2026-11-28 12:28 UTC",
  "today": "2026-11-28",
  "sources": [
   {
@@ -149,8 +149,8 @@
   {
    "group": "Gold",
    "source": "abrdn SGOL shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-27",
-   "age": 1,
+   "latest": "2026-11-25",
+   "age": 3,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -245,8 +245,8 @@
   {
    "group": "Silver",
    "source": "abrdn SIVR shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-27",
-   "age": 1,
+   "latest": "2026-11-25",
+   "age": 3,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -389,8 +389,8 @@
   {
    "group": "Platinum",
    "source": "abrdn PPLT shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-27",
-   "age": 1,
+   "latest": "2026-11-25",
+   "age": 3,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",
@@ -401,8 +401,8 @@
   {
    "group": "Palladium",
    "source": "abrdn PALL shares and metal per basket (fund page, daily snapshot)",
-   "latest": "2026-11-27",
-   "age": 1,
+   "latest": "2026-11-25",
+   "age": 3,
    "age_unit": "bd",
    "limit": 3,
    "cadence": "daily",

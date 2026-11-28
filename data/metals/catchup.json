@@ -118,5 +118,30 @@
    "GLD option chain (Yahoo; archived each evening)",
    "SLV option chain (Yahoo; archived each evening)"
   ]
+ },
+ {
+  "at": "2026-11-28 12:19 UTC",
+  "late": [
+   "CFTC COT, positions date (gold, silver, copper, aluminum MWP)",
+   "CFTC COT, positions date (platinum, palladium)"
+  ],
+  "needs_mac": [
+   "NYMEX platinum and palladium warehouse stocks (via Mac collector)",
+   "COMEX warehouse stocks (CME daily reports; via Mac collector)"
+  ],
+  "last_run": {
+   "id": 46106725470,
+   "conclusion": "success",
+   "at": "2026-11-28T04:26:36Z"
+  },
+  "action": "reran metals.yml (dispatch 204)",
+  "rerun": {
+   "id": 46144089190,
+   "conclusion": "success"
+  },
+  "late_after": [
+   "CFTC COT, positions date (gold, silver, copper, aluminum MWP)",
+   "CFTC COT, positions date (platinum, palladium)"
+  ]
  }
 ]

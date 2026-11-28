@@ -1118,21 +1118,21 @@
 "quote": "$/MMBtu",
 "tick": "$0.001 = $10",
 "usd": 10000,
-"price": 3.269,
+"price": 3.491,
 "months": "Every month, about 12 years out",
 "settle": "Physical delivery at Henry Hub, Louisiana",
 "options": "Yes, incl. weeklies",
 "of": "NG",
-"front_contract": "Dec 26",
-"price_date": "2026-11-25",
-"notional": 32690,
-"day_move": 1157,
-"hv20": 56.2,
-"margin_period": "12/2026",
-"maint": 2562,
-"initial": 2818,
-"margin_long": 2562,
-"margin_short": 2435,
+"front_contract": "Jan 27",
+"price_date": "2026-11-27",
+"notional": 34910,
+"day_move": 1023,
+"hv20": 46.5,
+"margin_period": "01/2027",
+"maint": 2643,
+"initial": 2907,
+"margin_long": 2643,
+"margin_short": 2539,
 "margin_all": [
 {
 "period": "11/2026",
@@ -1147,9 +1147,9 @@
 "maint": 2643
 }
 ],
-"margin_pct": 7.8,
-"leverage": 12.8,
-"days_covered": 2.2
+"margin_pct": 7.6,
+"leverage": 13.2,
+"days_covered": 2.6
 },
 {
 "sym": "QG",
@@ -1160,16 +1160,16 @@
 "quote": "$/MMBtu",
 "tick": "$0.005 = $12.50",
 "usd": 2500,
-"price": 3.269,
+"price": 3.491,
 "months": "Every month",
 "settle": "Cash-settled to NG",
 "options": "No",
 "of": "NG",
-"front_contract": "Dec 26",
-"price_date": "2026-11-25",
-"notional": 8172,
-"day_move": 289,
-"hv20": 56.2,
+"front_contract": "Jan 27",
+"price_date": "2026-11-27",
+"notional": 8728,
+"day_move": 256,
+"hv20": 46.5,
 "margin_period": "11/2026",
 "maint": 811,
 "initial": 892,
@@ -1181,9 +1181,9 @@
 "maint": 792
 }
 ],
-"margin_pct": 9.9,
-"leverage": 10.1,
-"days_covered": 2.8
+"margin_pct": 9.3,
+"leverage": 10.8,
+"days_covered": 3.2
 },
 {
 "sym": "MNG",
@@ -1194,16 +1194,16 @@
 "quote": "$/MMBtu",
 "tick": "$0.001 = $1",
 "usd": 1000,
-"price": 3.269,
+"price": 3.491,
 "months": "Every month",
 "settle": "Cash-settled to NG",
 "options": "No",
 "of": "NG",
-"front_contract": "Dec 26",
-"price_date": "2026-11-25",
-"notional": 3269,
-"day_move": 116,
-"hv20": 56.2,
+"front_contract": "Jan 27",
+"price_date": "2026-11-27",
+"notional": 3491,
+"day_move": 102,
+"hv20": 46.5,
 "margin_period": "11/2026",
 "maint": 324,
 "initial": 356,
@@ -1215,9 +1215,9 @@
 "maint": 317
 }
 ],
-"margin_pct": 9.9,
-"leverage": 10.1,
-"days_covered": 2.8
+"margin_pct": 9.3,
+"leverage": 10.8,
+"days_covered": 3.2
 },
 {
 "sym": "HO",

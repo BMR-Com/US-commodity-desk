@@ -371,16 +371,16 @@
  "HE": {
   "w4": {
    "all": {
-    "n": 959,
-    "mean_pct": 0.08,
+    "n": 960,
+    "mean_pct": 0.06,
     "up_share": 0.51,
-    "t_approx": 0.13
+    "t_approx": 0.11
    },
    "extreme_short": {
-    "n": 118,
-    "mean_pct": -1.32,
-    "up_share": 0.4,
-    "t_approx": -0.68
+    "n": 119,
+    "mean_pct": -1.42,
+    "up_share": 0.39,
+    "t_approx": -0.74
    },
    "extreme_long": {
     "n": 169,
@@ -391,16 +391,16 @@
   },
   "w8": {
    "all": {
-    "n": 954,
-    "mean_pct": 0.2,
+    "n": 955,
+    "mean_pct": 0.17,
     "up_share": 0.49,
-    "t_approx": 0.17
+    "t_approx": 0.15
    },
    "extreme_short": {
-    "n": 114,
-    "mean_pct": -2.04,
-    "up_share": 0.44,
-    "t_approx": -0.49
+    "n": 115,
+    "mean_pct": -2.27,
+    "up_share": 0.43,
+    "t_approx": -0.54
    },
    "extreme_long": {
     "n": 169,
@@ -411,16 +411,16 @@
   },
   "w13": {
    "all": {
-    "n": 949,
-    "mean_pct": 0.33,
+    "n": 950,
+    "mean_pct": 0.3,
     "up_share": 0.48,
-    "t_approx": 0.18
+    "t_approx": 0.16
    },
    "extreme_short": {
-    "n": 109,
-    "mean_pct": -2.31,
+    "n": 110,
+    "mean_pct": -2.57,
     "up_share": 0.45,
-    "t_approx": -0.37
+    "t_approx": -0.41
    },
    "extreme_long": {
     "n": 169,
@@ -430,15 +430,15 @@
    }
   },
   "first_week": "2008-06-03",
-  "current_pctl_3y": 1.0
+  "current_pctl_3y": 0.0
  },
  "LE": {
   "w4": {
    "all": {
-    "n": 959,
+    "n": 960,
     "mean_pct": 0.13,
     "up_share": 0.55,
-    "t_approx": 0.49
+    "t_approx": 0.5
    },
    "extreme_short": {
     "n": 97,
@@ -455,8 +455,8 @@
   },
   "w8": {
    "all": {
-    "n": 954,
-    "mean_pct": 0.29,
+    "n": 955,
+    "mean_pct": 0.3,
     "up_share": 0.56,
     "t_approx": 0.56
    },
@@ -475,8 +475,8 @@
   },
   "w13": {
    "all": {
-    "n": 949,
-    "mean_pct": 0.47,
+    "n": 950,
+    "mean_pct": 0.48,
     "up_share": 0.57,
     "t_approx": 0.57
    },
@@ -494,15 +494,15 @@
    }
   },
   "first_week": "2008-06-03",
-  "current_pctl_3y": 23.0
+  "current_pctl_3y": 30.0
  },
  "GF": {
   "w4": {
    "all": {
-    "n": 959,
+    "n": 960,
     "mean_pct": 0.18,
     "up_share": 0.55,
-    "t_approx": 0.66
+    "t_approx": 0.65
    },
    "extreme_short": {
     "n": 120,
@@ -519,7 +519,7 @@
   },
   "w8": {
    "all": {
-    "n": 954,
+    "n": 955,
     "mean_pct": 0.38,
     "up_share": 0.52,
     "t_approx": 0.68
@@ -539,10 +539,10 @@
   },
   "w13": {
    "all": {
-    "n": 949,
+    "n": 950,
     "mean_pct": 0.57,
     "up_share": 0.53,
-    "t_approx": 0.64
+    "t_approx": 0.65
    },
    "extreme_short": {
     "n": 120,
@@ -558,6 +558,6 @@
    }
   },
   "first_week": "2008-06-03",
-  "current_pctl_3y": 38.0
+  "current_pctl_3y": 46.0
  }
 }
